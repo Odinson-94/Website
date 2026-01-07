@@ -1,0 +1,1 @@
+make sure the delivery matches the intent, check against a checklist.

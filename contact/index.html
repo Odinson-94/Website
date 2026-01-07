@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Adelphos AI</title>
+  <meta name="description" content="Get in touch with Adelphos AI. Contact us about early access, partnerships, or learn more about our AI-powered design automation platform.">
+  <!-- CRITICAL: Apply dark mode IMMEDIATELY before any CSS loads to prevent flash -->
+  <!-- Uses cookies for persistence across sessions -->
+  <script>
+    function getDarkModeCookie() {
+      const match = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+      return match ? match[1] === 'true' : false;
+    }
+    const darkModeEnabled = getDarkModeCookie() || localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+      document.documentElement.classList.add('dark-mode');
+      if (!getDarkModeCookie() && localStorage.getItem('darkMode') === 'true') {
+        document.cookie = 'darkMode=true; path=/; max-age=31536000; SameSite=Lax';
+      }
+    }
+  </script>
+  <!-- PRELOAD FONTS: Load Inter font early to prevent FOUT (Flash of Unstyled Text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block">
+  <!-- CRITICAL CSS: Dark mode colors and font-hiding applied IMMEDIATELY -->
+  <style>
+    html { visibility: hidden; }
+    html.fonts-loaded { visibility: visible; }
+    html.dark-mode, html.dark-mode body { background: #1a1a1a !important; }
+    html.dark-mode #scene { background: radial-gradient(ellipse at center, #2a2a2a 0%, #1a1a1a 70%) !important; }
+    html.dark-mode #mapNodesCanvas { background: transparent !important; }
+  </style>
+  <script>
+    // Show content once fonts are loaded (with timeout fallback)
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function() {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+    // Fallback: show after 300ms max
+    setTimeout(function() {
+      document.documentElement.classList.add('fonts-loaded');
+    }, 300);
+  </script>
+  <link rel="stylesheet" href="../css/shared-styles.css">
+  <style>
+    /* Inter font is now loaded via <link> above with display=block */
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      cursor: default;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    html.dark-mode, html.dark-mode body {
+      background: #1a1a1a;
+    }
+
+    /* LOGO, MENUBAR - styles inherited from shared-styles.css */
+
+    /* ============================================
+       BRAIN CANVAS BACKGROUND
+       ============================================ */
+    #scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: auto;
+    }
+
+    /* ============================================
+       DARK MODE TOGGLE
+       ============================================ */
+    .dark-toggle {
+      position: fixed;
+      top: 75px;
+      right: 40px;
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .dark-toggle-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: #999;
+      text-transform: uppercase;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: #ddd;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    /* Toggle state is driven by html.dark-mode, not .active class */
+    /* This ensures no flash - CSS applies immediately with inline head script */
+    html.dark-mode .toggle-switch {
+      background: #007AFF;
+    }
+    
+    html.dark-mode .toggle-switch::after {
+      transform: translateX(20px);
+    }
+    
+
+    /* ============================================
+       CONTACT PAGE - Matching About Us Layout
+       ============================================ */
+    .contact-panel {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1003;
+      pointer-events: none; /* Allow brain hover in gaps */
+    }
+    
+    .contact-content {
+      pointer-events: none; /* Let brain events through */
+      display: flex;
+      width: 100%;
+      height: 100%;
+      gap: 0;
+      align-items: stretch;
+    }
+    
+    /* Only map and form areas receive pointer events */
+    .contact-content .contact-left-map,
+    .contact-content .contact-right-text {
+      pointer-events: auto;
+    }
+    
+    /* In dark mode, transparent right panel lets brain events through */
+    html.dark-mode .contact-right-text {
+      pointer-events: none;
+    }
+    
+    html.dark-mode .contact-right-text .contact-inner {
+      pointer-events: auto;
+    }
+    
+    /* Left Side - Map Container (60% like roadmap right panel) */
+    .contact-left-map {
+      flex: 0 0 60%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    /* Map area - Fixed height based on 1920x1080 @ 60% */
+    .map-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: calc(1080px * 0.6); /* 648px fixed height */
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: 
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url('../images/backgrounds/Data Centre.png') center center / cover no-repeat;
+      border-radius: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .contact-inner {
+      max-width: 400px;
+    }
+
+    .contact-tagline {
+      font-family: 'Inter Display', 'Inter', sans-serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: #000;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+    
+    html.dark-mode .contact-tagline {
+      color: #e0e0e0;
+    }
+
+    .contact-heading {
+      font-family: 'Inter Display', 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: normal;
+      color: #000;
+      margin-bottom: 16px;
+      margin-top: 8px;
+    }
+    
+    html.dark-mode .contact-heading {
+      color: #e0e0e0;
+    }
+    
+    .contact-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #555;
+      text-align: justify;
+      max-width: 400px;
+      margin-bottom: 32px;
+    }
+    
+    html.dark-mode .contact-text {
+      color: #aaa;
+    }
+    
+    .email-row {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 24px;
+    }
+
+    .email-section {
+      margin-bottom: 0;
+    }
+
+    .email-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: #999;
+      text-transform: none;
+      margin-bottom: 6px;
+    }
+
+    .email-link {
+      font-size: 18px;
+      font-weight: 300;
+      color: #156082;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .email-link:hover {
+      color: #1a7aa8;
+    }
+    
+    html.dark-mode .email-link {
+      color: #ffffff;
+    }
+    
+    html.dark-mode .email-link:hover {
+      color: #007AFF;
+    }
+    
+    html.dark-mode .email-label {
+      color: #888;
+    }
+
+    /* ============================================
+       BUTTONS - Build X Style
+       ============================================ */
+    .button-row {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .signup-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    
+    .signup-btn.primary {
+      background: #007AFF;
+      color: #fff;
+      border: none;
+    }
+    
+    .signup-btn.primary:hover {
+      background: #0056D6;
+      transform: scale(1.02);
+    }
+    
+    .signup-btn.secondary {
+      background: #6c757d;
+      color: #fff;
+      border: none;
+    }
+    
+    .signup-btn.secondary:hover {
+      background: #5a6268;
+      transform: scale(1.02);
+    }
+    
+    html.dark-mode .signup-btn.primary {
+      background: #007AFF;
+    }
+    
+    html.dark-mode .signup-btn.primary:hover {
+      background: #0056D6;
+    }
+    
+    /* Right Side - Contact Info (40% like roadmap left panel) */
+    .contact-right-text {
+      flex: 0 0 40%;
+      padding: 0 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 40%;
+      background: #ffffff;
+    }
+    
+    html.dark-mode .contact-right-text {
+      background: transparent;
+    }
+
+    .map-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .map-header .map-title {
+      font-family: 'Gotham', 'Century Gothic', 'AppleGothic', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+
+
+    /* SVG Map Container - Percentage-based for responsive scaling */
+    #mapContainer {
+      /* Percentage width - nodes use xPct/yPct so they scale proportionally */
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      /* Force aspect ratio to match SVG: 1000 x 507.209 */
+      aspect-ratio: 1000 / 507.209;
+      max-height: calc(100% - 60px);
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    
+    #zoomIndicator {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: monospace;
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    #zoomIndicator.visible {
+      opacity: 1;
+    }
+
+    #mapObject {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Note: SVG country styling is applied via JavaScript after SVG loads */
+    
+    #mapNodesCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: transparent !important;
+    }
+    
+    /* Ensure map canvas stays transparent in dark mode */
+    html.dark-mode #mapNodesCanvas {
+      background: transparent !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Brain Canvas Background -->
+<canvas id="scene"></canvas>
+
+<!-- Logo -->
+<a href="../" class="logo">ADELPHOS <span class="ai">AI</span></a>
+
+<!-- Menubar -->
+<nav class="menubar" id="menubar">
+  <div class="menu-tail" id="menuTail"></div>
+  <div class="menu-highlight" id="menuHighlight"></div>
+  <a href="../" class="menu-link">Home</a>
+  <a href="../about/" class="menu-link">About Us</a>
+  <a href="../roadmap/" class="menu-link">Roadmap</a>
+  <a href="../contact/" class="menu-link">Contact</a>
+</nav>
+
+<!-- Dark Mode Toggle -->
+<div class="dark-toggle" id="darkToggle">
+  <span class="dark-toggle-label">Dark</span>
+  <div class="toggle-switch" id="toggleSwitch"></div>
+</div>
+
+<!-- Contact Panel (matching About Us structure) -->
+<div class="contact-panel">
+  <div class="contact-content">
+    <!-- Left: Map -->
+    <div class="contact-left-map">
+      <div class="map-wrapper">
+        <div class="map-header">
+          <div class="map-title">Registration activity worldwide</div>
+        </div>
+        <div id="mapContainer">
+          <object id="mapObject" type="image/svg+xml" data="../images/shared/world-map.svg"></object>
+          <canvas id="mapNodesCanvas"></canvas>
+          <div id="zoomIndicator">1.0x</div>
+        </div>
+      </div>
+    </div>
+              
+    <!-- Right: Contact Info -->
+    <div class="contact-right-text">
+    <div class="contact-inner">
+        <p class="contact-tagline">Contact us.<br>We'd love to hear from you.</p>
+        <h3 class="contact-heading">Get in Touch</h3>
+        <p class="contact-text">Whether you're interested in early access, partnerships, or just want to learn more about what we're building — reach out anytime.</p>
+        
+        <div class="email-row">
+        <div class="email-section">
+          <div class="email-label">General</div>
+          <a href="mailto:hello@adelphos.ai" class="email-link">hello@adelphos.ai</a>
+      </div>
+        <div class="email-section">
+          <div class="email-label">Partnerships</div>
+          <a href="mailto:partners@adelphos.ai" class="email-link">partners@adelphos.ai</a>
+          </div>
+      </div>
+    
+        <div class="button-row">
+          <a href="#" class="signup-btn primary" onclick="window.adelphosSignup.openModal('early_access'); return false;">Sign Up for Early Access</a>
+          <a href="#" class="signup-btn secondary" onclick="window.adelphosSignup.openModal('news'); return false;">Sign Up for News</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Site Footer -->
+<footer class="site-footer" id="siteFooter"></footer>
+
+<!-- Menubar hover effect - SINGLE SOURCE OF TRUTH -->
+<script src="../js/menubar.js"></script>
+
+<!-- Shared Footer -->
+<script src="../js/footer.js"></script>
+
+<!-- Supabase Signup Integration - loaded early so map can use signup data -->
+<script src="../js/supabase.js"></script>
+
+<script>
+  // ============================================
+  // DARK MODE TOGGLE
+  // ============================================
+  // Note: Toggle visual state is purely CSS-based (html.dark-mode .toggle-switch)
+  // No .active class needed - CSS responds to html.dark-mode immediately
+  // Uses cookies for persistence across sessions
+  (function() {
+    const toggle = document.getElementById('toggleSwitch');
+    const html = document.documentElement;
+    
+    function setDarkModeCookie(enabled) {
+      document.cookie = `darkMode=${enabled}; path=/; max-age=31536000; SameSite=Lax`;
+      localStorage.setItem('darkMode', enabled);
+    }
+    
+    toggle.addEventListener('click', () => {
+      html.classList.toggle('dark-mode');
+      const isDark = html.classList.contains('dark-mode');
+      setDarkModeCookie(isDark);
+      // Update brain.js dark mode
+      if (window.setDarkMode) {
+        window.setDarkMode(isDark);
+      }
+    });
+  })();
+
+  // ============================================
+  // MAP INITIALIZATION
+  // ============================================
+  // Note: UK styling is already embedded in world-map.svg file
+  // This just handles fade-in and node initialization
+  
+  const mapObject = document.getElementById('mapObject');
+  let mapInitialized = false;
+
+  function initializeMap() {
+    if (mapInitialized) return;
+    mapInitialized = true;
+    
+    // Try to apply additional styling if we can access the SVG
+    try {
+      const svgDoc = mapObject.contentDocument;
+      if (svgDoc) {
+        const svg = svgDoc.querySelector('svg');
+        if (svg) {
+          // NOTE: This JavaScript styling only works when served from a web server (not file://)
+          // The actual styling is done in world-map.svg embedded <style> block
+          // This is kept as a backup for web server deployment
+          /*
+          const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
+          style.textContent = `
+            path[id] {
+              fill: rgba(78, 130, 150, 0.6) !important;
+              stroke: rgba(255,255,255,0.2) !important;
+              stroke-width: 0.3 !important;
+            }
+            #Ocean, #World, rect {
+              fill: transparent !important;
+              pointer-events: none;
+            }
+            text, [id$="-label"], #Labels, g[id="Labels"] {
+              display: none !important;
+            }
+            // Heatmap gradient red glow for GB, AU, US, AE
+            #GB path, #AU path, #US path, #AE path,
+            g#GB path, g#AU path, g#US path, g#AE path {
+              fill: rgba(220, 60, 60, 0.7) !important;
+              filter: drop-shadow(0 0 4px rgba(255, 80, 80, 0.9)) drop-shadow(0 0 8px rgba(220, 50, 50, 0.6)) drop-shadow(0 0 14px rgba(180, 30, 30, 0.4));
+            }
+            // Teal glow for CA, IE (keep original)
+            #CA path, #IE path,
+            g#CA path, g#IE path {
+              fill: rgba(0, 180, 140, 0.7) !important;
+              filter: drop-shadow(0 0 4px rgba(0, 200, 160, 0.8)) drop-shadow(0 0 8px rgba(0, 180, 140, 0.5)) drop-shadow(0 0 12px rgba(0, 160, 120, 0.3));
+            }
+          `;
+          svg.insertBefore(style, svg.firstChild);
+          */
+          console.log('Map colors will be updated dynamically based on signups');
+        }
+      }
+    } catch (err) {
+      console.log('Map ready - colors set by Supabase signup data');
+    }
+    
+    // Start map nodes animation
+    setTimeout(() => {
+      initMapNodes();
+    }, 100);
+  }
+
+  mapObject.addEventListener('load', initializeMap);
+  
+  // Fallback: if load event doesn't fire within 2 seconds, initialize anyway
+  setTimeout(() => {
+    if (!mapInitialized) {
+      console.log('Map load timeout - initializing anyway');
+      initializeMap();
+    }
+  }, 2000);
+
+  // ============================================
+  // MAP NODES - UK & AUSTRALIA with Signals
+  // Brain.js-style animation with hover acceleration
+  // ============================================
+  function initMapNodes() {
+    const canvas = document.getElementById('mapNodesCanvas');
+    const container = document.getElementById('mapContainer');
+    if (!canvas || !container) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Resize canvas to match container (which now has correct aspect ratio)
+    function resizeCanvas() {
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+    resizeCanvas();
+    // Resize again after layout settles (fixes issues with flex container sizing)
+    setTimeout(resizeCanvas, 100);
+    setTimeout(resizeCanvas, 500);
+    window.addEventListener('resize', resizeCanvas);
+    
+    // ============================================
+    // COUNTRY CAPITAL COORDINATES (extracted from SVG)
+    // SVG dimensions: 1000 x 507.209
+    // ============================================
+    
+    // All country capitals with locked coordinates
+    const countryCapitals = {
+      // Europe
+      GB: { name: 'United Kingdom', capital: 'London', xPct: 0.4751, yPct: 0.1799 },
+      FR: { name: 'France', capital: 'Paris', xPct: 0.4829, yPct: 0.2008 },
+      DE: { name: 'Germany', capital: 'Berlin', xPct: 0.5081, yPct: 0.1765 },
+      ES: { name: 'Spain', capital: 'Madrid', xPct: 0.4671, yPct: 0.2539 },
+      IT: { name: 'Italy', capital: 'Rome', xPct: 0.5049, yPct: 0.2279 },
+      PT: { name: 'Portugal', capital: 'Lisbon', xPct: 0.4505, yPct: 0.2618 },
+      NL: { name: 'Netherlands', capital: 'Amsterdam', xPct: 0.4886, yPct: 0.1765 },
+      BE: { name: 'Belgium', capital: 'Brussels', xPct: 0.4866, yPct: 0.1856 },
+      CH: { name: 'Switzerland', capital: 'Bern', xPct: 0.4943, yPct: 0.2082 },
+      AT: { name: 'Austria', capital: 'Vienna', xPct: 0.5138, yPct: 0.2036 },
+      PL: { name: 'Poland', capital: 'Warsaw', xPct: 0.5273, yPct: 0.1777 },
+      CZ: { name: 'Czechia', capital: 'Prague', xPct: 0.5107, yPct: 0.1901 },
+      SE: { name: 'Sweden', capital: 'Stockholm', xPct: 0.5164, yPct: 0.1381 },
+      NO: { name: 'Norway', capital: 'Oslo', xPct: 0.5018, yPct: 0.1342 },
+      FI: { name: 'Finland', capital: 'Helsinki', xPct: 0.5327, yPct: 0.1285 },
+      DK: { name: 'Denmark', capital: 'Copenhagen', xPct: 0.5058, yPct: 0.1562 },
+      IE: { name: 'Ireland', capital: 'Dublin', xPct: 0.4608, yPct: 0.1714 },
+      GR: { name: 'Greece', capital: 'Athens', xPct: 0.5350, yPct: 0.2658 },
+      TR: { name: 'Turkey', capital: 'Ankara', xPct: 0.5554, yPct: 0.2551 },
+      RU: { name: 'Russia', capital: 'Moscow', xPct: 0.5645, yPct: 0.1551 },
+      UA: { name: 'Ukraine', capital: 'Kyiv', xPct: 0.5450, yPct: 0.1870 },
+      HU: { name: 'Hungary', capital: 'Budapest', xPct: 0.5230, yPct: 0.2099 },
+      RO: { name: 'Romania', capital: 'Bucharest', xPct: 0.5416, yPct: 0.2223 },
+      BG: { name: 'Bulgaria', capital: 'Sofia', xPct: 0.5362, yPct: 0.2359 },
+      RS: { name: 'Serbia', capital: 'Belgrade', xPct: 0.5261, yPct: 0.2268 },
+      HR: { name: 'Croatia', capital: 'Zagreb', xPct: 0.5135, yPct: 0.2217 },
+      SK: { name: 'Slovakia', capital: 'Bratislava', xPct: 0.5233, yPct: 0.1986 },
+      LT: { name: 'Lithuania', capital: 'Vilnius', xPct: 0.5367, yPct: 0.1624 },
+      LV: { name: 'Latvia', capital: 'Riga', xPct: 0.5299, yPct: 0.1505 },
+      EE: { name: 'Estonia', capital: 'Tallinn', xPct: 0.5344, yPct: 0.1353 },
+      BY: { name: 'Belarus', capital: 'Minsk', xPct: 0.5439, yPct: 0.1720 },
+      
+      // Asia
+      JP: { name: 'Japan', capital: 'Tokyo', xPct: 0.8300, yPct: 0.2660 },
+      CN: { name: 'China', capital: 'Beijing', xPct: 0.7731, yPct: 0.2534 },
+      IN: { name: 'India', capital: 'New Delhi', xPct: 0.6757, yPct: 0.3240 },
+      KR: { name: 'South Korea', capital: 'Seoul', xPct: 0.8029, yPct: 0.2726 },
+      VN: { name: 'Vietnam', capital: 'Hanoi', xPct: 0.7597, yPct: 0.3726 },
+      TH: { name: 'Thailand', capital: 'Bangkok', xPct: 0.7505, yPct: 0.4149 },
+      ID: { name: 'Indonesia', capital: 'Jakarta', xPct: 0.7697, yPct: 0.5375 },
+      MY: { name: 'Malaysia', capital: 'Kuala Lumpur', xPct: 0.7550, yPct: 0.4630 },
+      SG: { name: 'Singapore', capital: 'Singapore', xPct: 0.7550, yPct: 0.4830 },
+      PH: { name: 'Philippines', capital: 'Manila', xPct: 0.8058, yPct: 0.4133 },
+      PK: { name: 'Pakistan', capital: 'Islamabad', xPct: 0.6637, yPct: 0.2912 },
+      BD: { name: 'Bangladesh', capital: 'Dhaka', xPct: 0.7200, yPct: 0.3550 },
+      MM: { name: 'Myanmar', capital: 'Naypyidaw', xPct: 0.7347, yPct: 0.3754 },
+      KH: { name: 'Cambodia', capital: 'Phnom Penh', xPct: 0.7599, yPct: 0.4195 },
+      LA: { name: 'Laos', capital: 'Vientiane', xPct: 0.7480, yPct: 0.3800 },
+      NP: { name: 'Nepal', capital: 'Kathmandu', xPct: 0.7050, yPct: 0.3300 },
+      LK: { name: 'Sri Lanka', capital: 'Colombo', xPct: 0.6946, yPct: 0.4562 },
+      KZ: { name: 'Kazakhstan', capital: 'Astana', xPct: 0.6565, yPct: 0.1935 },
+      UZ: { name: 'Uzbekistan', capital: 'Tashkent', xPct: 0.6513, yPct: 0.2455 },
+      
+      // Oceania
+      AU: { name: 'Australia', capital: 'Canberra', xPct: 0.8634, yPct: 0.7127 },
+      NZ: { name: 'New Zealand', capital: 'Wellington', xPct: 0.9204, yPct: 0.7551 },
+      
+      // Americas
+      US: { name: 'United States', capital: 'Washington DC', xPct: 0.2760, yPct: 0.2584 },
+      CA: { name: 'Canada', capital: 'Ottawa', xPct: 0.2919, yPct: 0.2169 },
+      MX: { name: 'Mexico', capital: 'Mexico City', xPct: 0.2036, yPct: 0.3809 },
+      BR: { name: 'Brazil', capital: 'Brasília', xPct: 0.3441, yPct: 0.6053 },
+      AR: { name: 'Argentina', capital: 'Buenos Aires', xPct: 0.3162, yPct: 0.7143 },
+      CL: { name: 'Chile', capital: 'Santiago', xPct: 0.2864, yPct: 0.7143 },
+      CO: { name: 'Colombia', capital: 'Bogotá', xPct: 0.2693, yPct: 0.4742 },
+      PE: { name: 'Peru', capital: 'Lima', xPct: 0.2621, yPct: 0.5747 },
+      VE: { name: 'Venezuela', capital: 'Caracas', xPct: 0.2876, yPct: 0.4405 },
+      EC: { name: 'Ecuador', capital: 'Quito', xPct: 0.2553, yPct: 0.5001 },
+      BO: { name: 'Bolivia', capital: 'La Paz', xPct: 0.2864, yPct: 0.5896 },
+      PY: { name: 'Paraguay', capital: 'Asunción', xPct: 0.3182, yPct: 0.6547 },
+      UY: { name: 'Uruguay', capital: 'Montevideo', xPct: 0.3274, yPct: 0.7136 },
+      PA: { name: 'Panama', capital: 'Panama City', xPct: 0.2529, yPct: 0.4468 },
+      CR: { name: 'Costa Rica', capital: 'San José', xPct: 0.2398, yPct: 0.4397 },
+      GT: { name: 'Guatemala', capital: 'Guatemala City', xPct: 0.2227, yPct: 0.4068 },
+      CU: { name: 'Cuba', capital: 'Havana', xPct: 0.2500, yPct: 0.3550 },
+      DO: { name: 'Dominican Republic', capital: 'Santo Domingo', xPct: 0.2800, yPct: 0.3750 },
+      JM: { name: 'Jamaica', capital: 'Kingston', xPct: 0.2600, yPct: 0.3800 },
+      
+      // Africa
+      ZA: { name: 'South Africa', capital: 'Pretoria', xPct: 0.5531, yPct: 0.6601 },
+      EG: { name: 'Egypt', capital: 'Cairo', xPct: 0.5568, yPct: 0.3172 },
+      NG: { name: 'Nigeria', capital: 'Abuja', xPct: 0.4923, yPct: 0.4466 },
+      KE: { name: 'Kenya', capital: 'Nairobi', xPct: 0.5650, yPct: 0.5030 },
+      MA: { name: 'Morocco', capital: 'Rabat', xPct: 0.4525, yPct: 0.2969 },
+      ZW: { name: 'Zimbabwe', capital: 'Harare', xPct: 0.5554, yPct: 0.6116 },
+      ZM: { name: 'Zambia', capital: 'Lusaka', xPct: 0.5479, yPct: 0.5952 },
+      ET: { name: 'Ethiopia', capital: 'Addis Ababa', xPct: 0.5786, yPct: 0.4438 },
+      GH: { name: 'Ghana', capital: 'Accra', xPct: 0.4760, yPct: 0.4550 },
+      TZ: { name: 'Tanzania', capital: 'Dodoma', xPct: 0.5711, yPct: 0.5415 },
+      UG: { name: 'Uganda', capital: 'Kampala', xPct: 0.5622, yPct: 0.4963 },
+      SN: { name: 'Senegal', capital: 'Dakar', xPct: 0.4250, yPct: 0.4082 },
+      CI: { name: 'Côte d\'Ivoire', capital: 'Yamoussoukro', xPct: 0.4579, yPct: 0.4551 },
+      AO: { name: 'Angola', capital: 'Luanda', xPct: 0.5050, yPct: 0.5450 },
+      MZ: { name: 'Mozambique', capital: 'Maputo', xPct: 0.5599, yPct: 0.6613 },
+      DZ: { name: 'Algeria', capital: 'Algiers', xPct: 0.4831, yPct: 0.2777 },
+      LY: { name: 'Libya', capital: 'Tripoli', xPct: 0.5144, yPct: 0.3042 },
+      TN: { name: 'Tunisia', capital: 'Tunis', xPct: 0.5012, yPct: 0.2737 },
+      
+      // Middle East
+      SA: { name: 'Saudi Arabia', capital: 'Riyadh', xPct: 0.6009, yPct: 0.3460 },
+      AE: { name: 'UAE', capital: 'Abu Dhabi', xPct: 0.6213, yPct: 0.3477 },
+      IL: { name: 'Israel', capital: 'Jerusalem', xPct: 0.5660, yPct: 0.3076 },
+      YE: { name: 'Yemen', capital: 'Sanaa', xPct: 0.5938, yPct: 0.4048 },
+      IQ: { name: 'Iraq', capital: 'Baghdad', xPct: 0.5895, yPct: 0.2923 },
+      IR: { name: 'Iran', capital: 'Tehran', xPct: 0.6109, yPct: 0.2850 },
+      SY: { name: 'Syria', capital: 'Damascus', xPct: 0.5720, yPct: 0.2907 },
+      JO: { name: 'Jordan', capital: 'Amman', xPct: 0.5703, yPct: 0.3070 },
+      LB: { name: 'Lebanon', capital: 'Beirut', xPct: 0.5680, yPct: 0.2878 },
+      KW: { name: 'Kuwait', capital: 'Kuwait City', xPct: 0.5980, yPct: 0.3200 },
+      QA: { name: 'Qatar', capital: 'Doha', xPct: 0.6112, yPct: 0.3415 },
+      BH: { name: 'Bahrain', capital: 'Manama', xPct: 0.6095, yPct: 0.3375 },
+      OM: { name: 'Oman', capital: 'Muscat', xPct: 0.6299, yPct: 0.3551 },
+      AF: { name: 'Afghanistan', capital: 'Kabul', xPct: 0.6551, yPct: 0.2895 }
+    };
+    
+    // Convert to array format for animation - brain.js neural node style
+    const mapNodes = Object.entries(countryCapitals).map(([code, data]) => ({
+      id: code.toLowerCase(),
+      code: code,
+      label: data.capital,
+      country: data.name,
+      xPct: data.xPct,
+      yPct: data.yPct,
+      // Brain.js style properties
+      baseR: 3 + Math.random() * 2, // Random radius 3-5px like brain nodes
+      baseBrightness: 0.3 + Math.random() * 0.4, // Random brightness 0.3-0.7
+      activation: 0,
+      yellowActivation: 0, // For teal pulse glow
+      hoverIntensity: 0,
+      hoverTimer: 0
+    }));
+    
+    // Build edges connecting nodes (like brain.js) - MORE connections
+    const mapEdges = [];
+    const MAX_EDGE_DISTANCE = 0.18; // For local connections
+    const MIN_EDGE_DISTANCE = 0.015; // Min distance to avoid self-connections
+    
+    // Hub countries - everything connects to these
+    const HUB_COUNTRIES = ['IE', 'US', 'CA', 'DE', 'AU', 'CN', 'AE'];
+    const hubIndices = HUB_COUNTRIES.map(code => mapNodes.findIndex(n => n.code === code)).filter(idx => idx !== -1);
+    
+    // Helper to add edge if not exists
+    function addEdge(fromIdx, toIdx, isLongDistance = false) {
+      const exists = mapEdges.some(e => 
+        (e.fromIdx === toIdx && e.toIdx === fromIdx) ||
+        (e.fromIdx === fromIdx && e.toIdx === toIdx)
+      );
+      
+      if (!exists && fromIdx !== toIdx) {
+        const from = mapNodes[fromIdx];
+        const to = mapNodes[toIdx];
+        const midX = (from.xPct + to.xPct) / 2;
+        const midY = (from.yPct + to.yPct) / 2;
+        const dx = to.xPct - from.xPct;
+        const dy = to.yPct - from.yPct;
+        const len = Math.sqrt(dx * dx + dy * dy) || 0.01;
+        const nx = -dy / len;
+        const ny = dx / len;
+        // Longer distances get more curve
+        const curveStrength = isLongDistance ? (Math.random() - 0.5) * 0.08 : (Math.random() - 0.5) * 0.025;
+        
+        mapEdges.push({
+          fromIdx: fromIdx,
+          toIdx: toIdx,
+          ctrlXPct: midX + nx * curveStrength,
+          ctrlYPct: midY + ny * curveStrength,
+          baseOpacity: isLongDistance ? 0.02 + Math.random() * 0.03 : 0.03 + Math.random() * 0.05,
+          activity: 0,
+          pulsePositions: [],
+          isLongDistance: isLongDistance
+        });
+      }
+    }
+    
+    // Local connections (nearby nodes)
+    for (let i = 0; i < mapNodes.length; i++) {
+      const from = mapNodes[i];
+      const connections = [];
+      
+      for (let j = 0; j < mapNodes.length; j++) {
+        if (i === j) continue;
+        const to = mapNodes[j];
+        const dx = to.xPct - from.xPct;
+        const dy = to.yPct - from.yPct;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist > MIN_EDGE_DISTANCE && dist < MAX_EDGE_DISTANCE) {
+          connections.push({ idx: j, dist: dist });
+        }
+      }
+      
+      connections.sort((a, b) => a.dist - b.dist);
+      const maxConnections = 3 + Math.floor(Math.random() * 4);
+      
+      for (let c = 0; c < Math.min(maxConnections, connections.length); c++) {
+        addEdge(i, connections[c].idx, false);
+      }
+    }
+    
+    // Long-distance routes (intercontinental)
+    const longDistanceRoutes = [
+      // Transatlantic
+      ['IE', 'US'], ['IE', 'CA'], ['GB', 'US'], ['GB', 'CA'],
+      // Europe to Asia
+      ['IE', 'JP'], ['IE', 'CN'], ['IE', 'IN'], ['IE', 'AU'],
+      ['GB', 'JP'], ['GB', 'AU'], ['GB', 'SG'], ['GB', 'IN'],
+      // Americas
+      ['US', 'BR'], ['US', 'MX'], ['US', 'AR'], ['CA', 'BR'],
+      // Asia-Pacific
+      ['JP', 'AU'], ['CN', 'AU'], ['SG', 'AU'], ['IN', 'AU'],
+      ['JP', 'KR'], ['CN', 'JP'],
+      // Europe cross-continental
+      ['DE', 'RU'], ['FR', 'TR'], ['ES', 'MA'],
+      // Middle East connections
+      ['GB', 'AE'], ['IE', 'AE'], ['DE', 'SA'],
+      // Africa
+      ['GB', 'ZA'], ['IE', 'ZA'], ['FR', 'NG'],
+      // More Dublin connections (hub)
+      ['IE', 'DE'], ['IE', 'FR'], ['IE', 'ES'], ['IE', 'IT'],
+      ['IE', 'NL'], ['IE', 'SE'], ['IE', 'NO'], ['IE', 'PL'],
+      ['IE', 'BR'], ['IE', 'MX'], ['IE', 'KR'], ['IE', 'NZ'],
+      ['IE', 'EG'], ['IE', 'KE'], ['IE', 'NG']
+    ];
+    
+    longDistanceRoutes.forEach(([fromCode, toCode]) => {
+      const fromIdx = mapNodes.findIndex(n => n.code === fromCode);
+      const toIdx = mapNodes.findIndex(n => n.code === toCode);
+      if (fromIdx !== -1 && toIdx !== -1) {
+        addEdge(fromIdx, toIdx, true);
+      }
+    });
+    
+    // Connect ALL nodes to at least one hub
+    mapNodes.forEach((node, idx) => {
+      // Skip if this node IS a hub
+      if (hubIndices.includes(idx)) return;
+      
+      // Find closest hub
+      let closestHub = -1;
+      let closestDist = Infinity;
+      
+      hubIndices.forEach(hubIdx => {
+        const hub = mapNodes[hubIdx];
+        const dx = node.xPct - hub.xPct;
+        const dy = node.yPct - hub.yPct;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestHub = hubIdx;
+        }
+      });
+      
+      // Connect to closest hub
+      if (closestHub !== -1) {
+        addEdge(closestHub, idx, closestDist > 0.2);
+      }
+    });
+    
+    // Connect hubs to each other
+    for (let i = 0; i < hubIndices.length; i++) {
+      for (let j = i + 1; j < hubIndices.length; j++) {
+        addEdge(hubIndices[i], hubIndices[j], true);
+      }
+    }
+    
+    // Pulse system (like brain.js)
+    const mapPulses = [];
+    const PULSE_SPEED_MIN = 1.0;  // Slower base speed
+    const PULSE_SPEED_MAX = 2.0;
+    const TRAIL_LENGTH = 6;
+    let hoverPulseTimer = 0;
+    
+    function spawnMapPulse(fromNodeIdx = null) {
+      if (mapEdges.length === 0) return;
+      
+      let edgeIdx;
+      let isYellow = false;
+      
+      if (fromNodeIdx !== null) {
+        // Spawn from hovered node
+        const validEdges = mapEdges.filter((e, idx) => e.fromIdx === fromNodeIdx || e.toIdx === fromNodeIdx);
+        if (validEdges.length === 0) return;
+        const edge = validEdges[Math.floor(Math.random() * validEdges.length)];
+        edgeIdx = mapEdges.indexOf(edge);
+        isYellow = Math.random() < 0.5; // 50% teal
+        
+        // Activate source node
+        const node = mapNodes[fromNodeIdx];
+        node.activation = Math.min(0.8, node.activation + 0.3);
+        node.yellowActivation = isYellow ? 1.0 : node.yellowActivation;
+      } else {
+        edgeIdx = Math.floor(Math.random() * mapEdges.length);
+        isYellow = Math.random() < 0.15; // 15% teal for random
+      }
+      
+      const edge = mapEdges[edgeIdx];
+      const reverse = Math.random() < 0.5;
+      
+      mapPulses.push({
+        edgeIdx: edgeIdx,
+        t: reverse ? 1 : 0,
+        speed: PULSE_SPEED_MIN + Math.random() * (PULSE_SPEED_MAX - PULSE_SPEED_MIN),
+        direction: reverse ? -1 : 1,
+        isYellow: isYellow,
+        brightness: 50 + Math.random() * 30,
+        trail: [],
+        alive: true,
+        isGhost: false,
+        fadeOpacity: 1
+      });
+    }
+    
+    // Spawn initial pulses (10 base)
+    for (let i = 0; i < 10; i++) {
+      spawnMapPulse();
+    }
+    
+    // Map nodes always use dark mode styling (blue map background looks better with dark mode nodes)
+    function isDarkMode() {
+      return true; // Always dark mode for map neural network
+    }
+    
+    // Clamp helper (defined early for zoom/pan)
+    function clamp(val, min, max) {
+      return Math.max(min, Math.min(max, val));
+    }
+    
+    // Zoom and pan state
+    let zoomLevel = 1;
+    let panX = 0;
+    let panY = 0;
+    let isPanning = false;
+    let panStartX = 0;
+    let panStartY = 0;
+    const MIN_ZOOM = 1;
+    const MAX_ZOOM = 2;
+    
+    // Apply zoom/pan transform
+    const zoomIndicator = document.getElementById('zoomIndicator');
+    let zoomIndicatorTimeout;
+    
+    function applyTransform() {
+      const mapObject = document.getElementById('mapObject');
+      const transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`;
+      mapObject.style.transform = transform;
+      mapObject.style.transformOrigin = 'center center';
+      // Don't transform canvas - we'll handle node positions manually
+      // so nodes stay fixed screen size
+      
+      // Update zoom indicator
+      zoomIndicator.textContent = `${zoomLevel.toFixed(1)}x`;
+      zoomIndicator.classList.add('visible');
+      
+      // Hide indicator after 1.5s of no changes
+      clearTimeout(zoomIndicatorTimeout);
+      zoomIndicatorTimeout = setTimeout(() => {
+        if (zoomLevel === 1) {
+          zoomIndicator.classList.remove('visible');
+        }
+      }, 1500);
+    }
+    
+    // Ctrl + Scroll to zoom
+    container.addEventListener('wheel', (e) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.2 : 0.2;
+        const newZoom = clamp(zoomLevel + delta, MIN_ZOOM, MAX_ZOOM);
+        
+        if (newZoom !== zoomLevel) {
+          zoomLevel = newZoom;
+          
+          // Reset pan if zooming back to 1
+          if (zoomLevel === 1) {
+            panX = 0;
+            panY = 0;
+          }
+          
+          applyTransform();
+        }
+      }
+    }, { passive: false });
+    
+    // Pan with mouse drag (only when zoomed in)
+    container.addEventListener('mousedown', (e) => {
+      if (zoomLevel > 1 && e.button === 0 && !e.ctrlKey) {
+        isPanning = true;
+        panStartX = e.clientX - panX * zoomLevel;
+        panStartY = e.clientY - panY * zoomLevel;
+        container.style.cursor = 'grabbing';
+        e.preventDefault();
+      }
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+      if (isPanning) {
+        panX = (e.clientX - panStartX) / zoomLevel;
+        panY = (e.clientY - panStartY) / zoomLevel;
+        
+        // Limit pan to reasonable bounds
+        const maxPan = (zoomLevel - 1) * 200;
+        panX = clamp(panX, -maxPan, maxPan);
+        panY = clamp(panY, -maxPan, maxPan);
+        
+        applyTransform();
+      }
+    });
+    
+    document.addEventListener('mouseup', () => {
+      if (isPanning) {
+        isPanning = false;
+        container.style.cursor = zoomLevel > 1 ? 'grab' : 'default';
+      }
+    });
+    
+    // Update cursor based on zoom
+    container.addEventListener('mouseenter', () => {
+      if (zoomLevel > 1) {
+        container.style.cursor = 'grab';
+      }
+    });
+    
+    // Reset zoom with Escape or double-click
+    container.addEventListener('dblclick', () => {
+      zoomLevel = 1;
+      panX = 0;
+      panY = 0;
+      applyTransform();
+      container.style.cursor = 'default';
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && zoomLevel > 1) {
+        zoomLevel = 1;
+        panX = 0;
+        panY = 0;
+        applyTransform();
+        container.style.cursor = 'default';
+      }
+    });
+    
+    // Hover state
+    let hoveredNodeIdx = null;
+    
+    // Get node screen position (accounting for zoom and pan)
+    function getNodePos(node) {
+      // Base position in canvas coords
+      const baseX = node.xPct * canvas.width;
+      const baseY = node.yPct * canvas.height;
+      
+      // Apply zoom and pan transforms
+      // Center of canvas
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      
+      // Translate to center, scale, translate back, then apply pan
+      const x = (baseX - cx) * zoomLevel + cx + panX * zoomLevel;
+      const y = (baseY - cy) * zoomLevel + cy + panY * zoomLevel;
+      
+      return { x, y };
+    }
+    
+    // Check if point (in screen coords) is near a node
+    function getNodeAtPoint(screenX, screenY) {
+      const hoverRadius = 15;
+      for (let i = 0; i < mapNodes.length; i++) {
+        const pos = getNodePos(mapNodes[i]); // Already in screen coords
+        const dx = screenX - pos.x;
+        const dy = screenY - pos.y;
+        if (dx * dx + dy * dy < hoverRadius * hoverRadius) {
+          return i;
+        }
+      }
+      return null;
+    }
+    
+    // Mouse handlers for hover effect
+    canvas.style.pointerEvents = 'auto';
+    
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const screenX = e.clientX - rect.left;
+      const screenY = e.clientY - rect.top;
+      
+      const nodeIdx = getNodeAtPoint(screenX, screenY);
+      
+      if (nodeIdx !== null && nodeIdx !== hoveredNodeIdx) {
+        // Started hovering a node
+        hoveredNodeIdx = nodeIdx;
+        mapNodes[nodeIdx].hoverIntensity = 1.0;
+        mapNodes[nodeIdx].activation = 0.8;
+        canvas.style.cursor = 'pointer';
+      } else if (nodeIdx === null && hoveredNodeIdx !== null) {
+        // Stopped hovering
+        hoveredNodeIdx = null;
+        canvas.style.cursor = 'default';
+      }
+    });
+    
+    canvas.addEventListener('mouseleave', () => {
+      hoveredNodeIdx = null;
+      canvas.style.cursor = 'default';
+    });
+    
+    // Download coordinates button
+    function downloadCoordinates() {
+      let output = '// Updated coordinates - paste into countryCapitals object\\n';
+      output += 'const countryCapitals = {\\n';
+      
+      mapNodes.forEach((node, idx) => {
+        const comma = idx < mapNodes.length - 1 ? ',' : '';
+        const primaryFlag = ''; // No longer used
+        output += `  ${node.code}: { name: '${node.country}', capital: '${node.label}', xPct: ${node.xPct.toFixed(4)}, yPct: ${node.yPct.toFixed(4)}${primaryFlag} }${comma}\\n`;
+      });
+      
+      output += '};\\n';
+      
+      const blob = new Blob([output], { type: 'text/javascript' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'map-coordinates.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+    
+    // Add download button to page
+    const downloadBtn = document.createElement('button');
+    downloadBtn.textContent = '📥 Download Coordinates';
+    downloadBtn.style.cssText = 'position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background: #333; color: white; border: none; border-radius: 5px; cursor: pointer; z-index: 9999; font-size: 14px; display: none;';
+    downloadBtn.addEventListener('click', downloadCoordinates);
+    document.body.appendChild(downloadBtn);
+    
+    // Animation loop
+    let lastTime = 0;
+    
+    // Debug mode - set to true to show alignment markers
+    const DEBUG_MODE = false;
+    
+    function animate(timestamp) {
+      const dt = lastTime ? (timestamp - lastTime) / 1000 : 0.016;
+      lastTime = timestamp;
+      
+      const darkMode = isDarkMode();
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Debug: Draw corner markers and border to verify canvas alignment with SVG
+      if (DEBUG_MODE) {
+        // Canvas border
+        ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(1, 1, canvas.width - 2, canvas.height - 2);
+        
+        // Corner squares
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.8)';
+        ctx.fillRect(0, 0, 10, 10);
+        ctx.fillRect(canvas.width - 10, 0, 10, 10);
+        ctx.fillRect(0, canvas.height - 10, 10, 10);
+        ctx.fillRect(canvas.width - 10, canvas.height - 10, 10, 10);
+        
+      }
+      
+      // Decay node activation and hover intensity (like brain.js)
+      mapNodes.forEach((node, idx) => {
+        node.activation *= 0.96;
+        node.yellowActivation *= 0.94;
+        
+        if (idx === hoveredNodeIdx) {
+          node.hoverTimer += dt;
+          node.hoverIntensity = Math.min(1.0, node.hoverTimer * 0.25);
+        } else {
+          node.hoverIntensity *= 0.95;
+          if (node.hoverIntensity < 0.01) {
+            node.hoverIntensity = 0;
+            node.hoverTimer = 0;
+          }
+        }
+      });
+      
+      // Spawn hover pulses (like brain.js)
+      if (hoveredNodeIdx !== null) {
+        const hoveredNode = mapNodes[hoveredNodeIdx];
+        const baseRate = 0.04 + (1 - hoveredNode.hoverIntensity) * 0.06;
+        hoverPulseTimer += dt;
+        if (hoverPulseTimer > baseRate) {
+          hoverPulseTimer = 0;
+          spawnMapPulse(hoveredNodeIdx);
+        }
+      }
+      
+      // Maintain base pulse count (10 always firing)
+      const activePulses = mapPulses.filter(p => !p.isGhost).length;
+      if (activePulses < 10 && Math.random() < 0.05) {
+        spawnMapPulse();
+      }
+      
+      // Draw edges first (behind nodes) - brain.js style curved connections
+      ctx.save();
+      ctx.globalCompositeOperation = 'source-over';
+      
+      mapEdges.forEach(edge => {
+        edge.pulsePositions = []; // Reset pulse positions
+        
+        const from = mapNodes[edge.fromIdx];
+        const to = mapNodes[edge.toIdx];
+        const fromPos = getNodePos(from);
+        const toPos = getNodePos(to);
+        const ctrlX = edge.ctrlXPct * canvas.width + (panX * zoomLevel);
+        const ctrlY = edge.ctrlYPct * canvas.height + (panY * zoomLevel);
+        
+        // Base edge
+        const opacity = edge.baseOpacity;
+      ctx.beginPath();
+        ctx.strokeStyle = darkMode ? `rgba(120, 120, 120, ${opacity})` : `rgba(20, 20, 20, ${opacity})`;
+        ctx.lineWidth = 0.6;
+        ctx.moveTo(fromPos.x, fromPos.y);
+        ctx.quadraticCurveTo(ctrlX, ctrlY, toPos.x, toPos.y);
+      ctx.stroke();
+      });
+      
+      ctx.restore();
+      
+      // Update and draw pulses (like brain.js)
+      ctx.save();
+      ctx.globalCompositeOperation = 'source-over';
+      
+      const pulsesToRemove = [];
+      
+      mapPulses.forEach((pulse, pulseIdx) => {
+        const edge = mapEdges[pulse.edgeIdx];
+        if (!edge) {
+          pulsesToRemove.push(pulseIdx);
+          return;
+        }
+        
+        const from = mapNodes[edge.fromIdx];
+        const to = mapNodes[edge.toIdx];
+        const fromPos = getNodePos(from);
+        const toPos = getNodePos(to);
+        const ctrlX = edge.ctrlXPct * canvas.width + (panX * zoomLevel);
+        const ctrlY = edge.ctrlYPct * canvas.height + (panY * zoomLevel);
+        
+        // Update pulse position
+        if (!pulse.isGhost) {
+          pulse.t += pulse.speed * pulse.direction * dt;
+        }
+        
+        // Check if arrived
+        if (pulse.t >= 1 || pulse.t <= 0) {
+          if (!pulse.isGhost) {
+          // Activate destination node
+            const destNode = pulse.direction > 0 ? to : from;
+            destNode.activation = Math.min(0.8, destNode.activation + 0.2);
+            if (pulse.isYellow) destNode.yellowActivation = 1.0;
+            
+            // Create ghost pulse (brain.js exact style)
+            mapPulses.push({
+              edgeIdx: pulse.edgeIdx,
+              t: 1,
+              speed: 0,
+              direction: pulse.direction,
+              isYellow: pulse.isYellow,
+              brightness: pulse.brightness * 1.4, // Brighter ghost like brain.js
+              trail: [],
+              alive: true,
+              isGhost: true,
+              fadeTimer: 0,
+              fadeOpacity: 1,
+              ghostX: pulse.direction > 0 ? toPos.x : fromPos.x,
+              ghostY: pulse.direction > 0 ? toPos.y : fromPos.y,
+              hasArrived: true
+            });
+            
+            pulsesToRemove.push(pulseIdx);
+          return;
+          }
+        }
+        
+        // Handle ghost fade (brain.js: fadeTimer approach)
+        if (pulse.isGhost) {
+          pulse.fadeTimer = (pulse.fadeTimer || 0) + dt;
+          pulse.fadeOpacity = Math.max(0, 1 - pulse.fadeTimer / 1.5);
+          if (pulse.fadeOpacity <= 0) {
+            pulsesToRemove.push(pulseIdx);
+            return;
+          }
+        }
+        
+        // Calculate position on curve (quadratic bezier)
+        const t = clamp(pulse.t, 0, 1);
+        const mt = 1 - t;
+        const posX = mt * mt * fromPos.x + 2 * mt * t * ctrlX + t * t * toPos.x;
+        const posY = mt * mt * fromPos.y + 2 * mt * t * ctrlY + t * t * toPos.y;
+        
+        // Draw pulse head - EXACTLY like brain.js
+        let radius;
+        if (pulse.isGhost) {
+          const pulseScale = 1.05 + Math.sin((pulse.fadeTimer || 0) * 3) * 0.08;
+          radius = 1.4 * pulseScale;
+        } else {
+          radius = 1.0;
+        }
+        
+        const adaptiveBrightness = Math.max(30, pulse.brightness);
+        const fadeMultiplier = pulse.fadeOpacity || 1;
+        
+        // Outer glow (brain.js exact style)
+        const screenX = pulse.isGhost ? pulse.ghostX : posX;
+        const screenY = pulse.isGhost ? pulse.ghostY : posY;
+        
+        const glowGrad = ctx.createRadialGradient(screenX, screenY, 0, screenX, screenY, radius * 2.8);
+        const glowAlpha = pulse.isGhost ? 
+          0.7 * (pulse.brightness / 70) * fadeMultiplier :
+          0.5 * (pulse.brightness / 70) * fadeMultiplier;
+        
+        if (pulse.isYellow) {
+          if (darkMode) {
+            glowGrad.addColorStop(0, `rgba(50, 255, 100, ${glowAlpha})`);
+            glowGrad.addColorStop(0.3, `rgba(30, 200, 70, ${glowAlpha * 0.4})`);
+            glowGrad.addColorStop(1, `rgba(20, 150, 50, 0)`);
+          } else {
+            glowGrad.addColorStop(0, `rgba(0, ${200 + adaptiveBrightness}, ${200 + adaptiveBrightness}, ${glowAlpha})`);
+            glowGrad.addColorStop(0.3, `rgba(0, ${180 + adaptiveBrightness}, ${180 + adaptiveBrightness}, ${glowAlpha * 0.4})`);
+            glowGrad.addColorStop(1, `rgba(0, 150, 150, 0)`);
+          }
+        } else {
+          if (darkMode) {
+            const greyBase = 140 + adaptiveBrightness * 0.5;
+            glowGrad.addColorStop(0, `rgba(${greyBase}, ${greyBase}, ${greyBase}, ${glowAlpha})`);
+            glowGrad.addColorStop(0.3, `rgba(${greyBase - 20}, ${greyBase - 20}, ${greyBase - 20}, ${glowAlpha * 0.4})`);
+            glowGrad.addColorStop(1, `rgba(80, 80, 80, 0)`);
+          } else {
+            const greyBase = 20 + adaptiveBrightness * 0.5;
+            glowGrad.addColorStop(0, `rgba(${greyBase}, ${greyBase}, ${greyBase}, ${glowAlpha})`);
+            glowGrad.addColorStop(0.3, `rgba(${greyBase - 10}, ${greyBase - 10}, ${greyBase - 10}, ${glowAlpha * 0.4})`);
+            glowGrad.addColorStop(1, `rgba(10, 10, 10, 0)`);
+          }
+        }
+        
+        ctx.beginPath();
+        ctx.fillStyle = glowGrad;
+        ctx.arc(screenX, screenY, radius * 2.8, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Core (brain.js exact style)
+        ctx.beginPath();
+        if (pulse.isYellow) {
+          const coreAlpha = pulse.isGhost ? 0.95 : 0.75;
+          if (darkMode) {
+            ctx.fillStyle = `rgba(50, 255, 100, ${coreAlpha * (pulse.brightness / 70) * fadeMultiplier})`;
+          } else {
+            ctx.fillStyle = `rgba(0, ${220 + adaptiveBrightness}, ${220 + adaptiveBrightness}, ${coreAlpha * (pulse.brightness / 70) * fadeMultiplier})`;
+          }
+        } else {
+          const coreAlpha = pulse.isGhost ? 0.9 : 0.65;
+          if (darkMode) {
+            const coreGrey = Math.min(200, 140 + adaptiveBrightness * 0.7);
+            ctx.fillStyle = `rgba(${coreGrey}, ${coreGrey}, ${coreGrey}, ${coreAlpha * (pulse.brightness / 70) * fadeMultiplier})`;
+          } else {
+            const greyCore = Math.min(75, 35 + adaptiveBrightness * 0.7);
+            ctx.fillStyle = `rgba(${greyCore}, ${greyCore}, ${greyCore}, ${coreAlpha * (pulse.brightness / 70) * fadeMultiplier})`;
+          }
+        }
+        ctx.arc(screenX, screenY, radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      
+      // Remove dead pulses
+      for (let i = pulsesToRemove.length - 1; i >= 0; i--) {
+        mapPulses.splice(pulsesToRemove[i], 1);
+      }
+      
+      ctx.restore();
+      
+      // Draw nodes - brain.js neural network style
+      ctx.save();
+      ctx.globalCompositeOperation = 'source-over';
+      
+      mapNodes.forEach((node, idx) => {
+        const pos = getNodePos(node);
+        const isHovered = idx === hoveredNodeIdx;
+        const act = clamp(node.activation, 0, 1);
+        const brightness = node.baseBrightness;
+        const r = node.baseR + act * 1.5 + node.hoverIntensity * 2;
+        
+        // Check if this country has signups (from Supabase)
+        const signupData = window.signupCountsByCountry && window.signupCountsByCountry[node.code];
+        const signupIntensity = signupData ? signupData.intensity : 0;
+        const hasSignups = signupIntensity > 0;
+        
+        if (darkMode) {
+          // ============================================
+          // DARK MODE - Brain.js style (uniform for all nodes)
+          // ============================================
+          
+          // Glow effect - RED for signups, teal if yellowActivation, grey otherwise
+          if (act > 0.05 || brightness > 0.2 || hasSignups) {
+            const expansionFactor = 1 + act * 0.03 + signupIntensity * 0.5;
+            const glowRadius = r * (1.5 + signupIntensity * 2) * expansionFactor;
+        const grad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, glowRadius);
+            
+            const glowIntensity = brightness * 0.12 + act * 0.08 + signupIntensity * 0.4;
+            
+            if (hasSignups) {
+              // RED glow for countries with signups - intensity based on signup count
+              const redVal = Math.round(200 + signupIntensity * 55);
+              grad.addColorStop(0, `rgba(${redVal}, 60, 60, ${0.3 + signupIntensity * 0.6})`);
+              grad.addColorStop(0.4, `rgba(${redVal - 40}, 40, 40, ${0.15 + signupIntensity * 0.3})`);
+              grad.addColorStop(1, `rgba(180, 30, 30, 0)`);
+            } else if (node.yellowActivation > 0.1) {
+              grad.addColorStop(0, `rgba(50, 255, 100, ${glowIntensity * node.yellowActivation})`);
+              grad.addColorStop(0.5, `rgba(30, 200, 70, ${glowIntensity * node.yellowActivation * 0.4})`);
+              grad.addColorStop(1, `rgba(20, 150, 50, 0)`);
+            } else {
+              const greyValue = 130;
+              grad.addColorStop(0, `rgba(${greyValue}, ${greyValue}, ${greyValue}, ${glowIntensity})`);
+              grad.addColorStop(0.5, `rgba(${greyValue * 0.7}, ${greyValue * 0.7}, ${greyValue * 0.7}, ${glowIntensity * 0.4})`);
+              grad.addColorStop(1, `rgba(${greyValue * 0.5}, ${greyValue * 0.5}, ${greyValue * 0.5}, 0)`);
+            }
+            
+        ctx.beginPath();
+        ctx.fillStyle = grad;
+        ctx.arc(pos.x, pos.y, glowRadius, 0, Math.PI * 2);
+        ctx.fill();
+          }
+          
+          // Hover glow
+          if (node.hoverIntensity > 0.01) {
+            const hoverGlowRadius = r * 2.5;
+            const hoverGrad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, hoverGlowRadius);
+            const hoverGlowIntensity = node.hoverIntensity * 0.12;
+            
+            hoverGrad.addColorStop(0, `rgba(160, 160, 160, ${hoverGlowIntensity})`);
+            hoverGrad.addColorStop(0.5, `rgba(120, 120, 120, ${hoverGlowIntensity * 0.4})`);
+            hoverGrad.addColorStop(1, `rgba(80, 80, 80, 0)`);
+            
+        ctx.beginPath();
+            ctx.fillStyle = hoverGrad;
+            ctx.arc(pos.x, pos.y, hoverGlowRadius, 0, Math.PI * 2);
+        ctx.fill();
+          }
+          
+          // Center dot (filled) - RED for signups
+          const dotAlpha = brightness * 0.3 + act * 0.4 + node.hoverIntensity * 0.2 + signupIntensity * 0.5;
+          let dotColor;
+          if (hasSignups) {
+            dotColor = `rgba(255, ${80 - signupIntensity * 30}, ${80 - signupIntensity * 30}, ${0.6 + signupIntensity * 0.4})`;
+          } else if (node.yellowActivation > 0.1) {
+            dotColor = `rgba(50, 255, 100, ${dotAlpha * (0.5 + node.yellowActivation * 0.5)})`;
+          } else {
+            dotColor = `rgba(180, 180, 180, ${dotAlpha})`;
+          }
+        ctx.beginPath();
+          ctx.fillStyle = dotColor;
+          ctx.arc(pos.x, pos.y, node.baseR * (0.35 + signupIntensity * 0.3), 0, Math.PI * 2);
+        ctx.fill();
+        
+          // Ring - RED for signups
+          const ringAlpha = brightness * 0.15 + act * 0.25 + node.hoverIntensity * 0.25 + signupIntensity * 0.4;
+          let ringColor;
+          if (hasSignups) {
+            ringColor = `rgba(255, ${60 - signupIntensity * 20}, ${60 - signupIntensity * 20}, ${0.5 + signupIntensity * 0.5})`;
+          } else if (node.yellowActivation > 0.1) {
+            ringColor = `rgba(50, 255, 100, ${ringAlpha * (0.5 + node.yellowActivation * 0.5)})`;
+          } else {
+            ringColor = `rgba(140, 140, 140, ${ringAlpha})`;
+          }
+          ctx.beginPath();
+          ctx.strokeStyle = ringColor;
+          ctx.lineWidth = 0.5 + brightness * 0.15 + act * 0.15;
+          ctx.arc(pos.x, pos.y, node.baseR * 0.85, 0, Math.PI * 2);
+          ctx.stroke();
+          
+        } else {
+          // ============================================
+          // LIGHT MODE - Brain.js style (uniform for all nodes)
+          // ============================================
+          
+          // Glow effect
+          if (act > 0.05 || brightness > 0.2) {
+            const expansionFactor = 1 + act * 0.05;
+            const glowRadius = r * 2.0 * expansionFactor;
+            const grad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, glowRadius);
+            
+            const glowIntensity = brightness * 0.15 + act * 0.1;
+            const neonIntensity = act > 0.3 ? 1.1 : 1.0;
+            const greyValue = 50;
+            
+            grad.addColorStop(0, `rgba(${greyValue}, ${greyValue}, ${greyValue}, ${glowIntensity * neonIntensity})`);
+            grad.addColorStop(0.5, `rgba(${greyValue * 0.8}, ${greyValue * 0.8}, ${greyValue * 0.8}, ${glowIntensity * neonIntensity * 0.5})`);
+            grad.addColorStop(1, `rgba(${greyValue * 0.6}, ${greyValue * 0.6}, ${greyValue * 0.6}, 0)`);
+            
+            ctx.beginPath();
+            ctx.fillStyle = grad;
+            ctx.arc(pos.x, pos.y, glowRadius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          
+          // Hover glow
+          if (node.hoverIntensity > 0.01) {
+            const hoverGlowRadius = r * 3;
+            const hoverGrad = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, hoverGlowRadius);
+            const hoverGlowIntensity = node.hoverIntensity * 0.15;
+            
+            hoverGrad.addColorStop(0, `rgba(80, 80, 80, ${hoverGlowIntensity})`);
+            hoverGrad.addColorStop(0.5, `rgba(60, 60, 60, ${hoverGlowIntensity * 0.5})`);
+            hoverGrad.addColorStop(1, `rgba(40, 40, 40, 0)`);
+            
+            ctx.beginPath();
+            ctx.fillStyle = hoverGrad;
+            ctx.arc(pos.x, pos.y, hoverGlowRadius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          
+          // Center dot (filled)
+          const dotAlpha = brightness * 0.4 + act * 0.5 + node.hoverIntensity * 0.3;
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(30, 30, 30, ${dotAlpha})`;
+          ctx.arc(pos.x, pos.y, node.baseR * 0.35, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Ring
+          const ringAlpha = brightness * 0.2 + act * 0.3;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(2, 2, 2, ${ringAlpha})`;
+          ctx.lineWidth = 0.7 + brightness * 0.2 + act * 0.2;
+          ctx.arc(pos.x, pos.y, node.baseR, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      });
+      
+      ctx.restore();
+      
+      requestAnimationFrame(animate);
+    }
+    
+    requestAnimationFrame(animate);
+    console.log('Map nodes initialized with', mapNodes.length, 'capitals,', mapEdges.length, 'edges, pulse animations enabled');
+    
+    // Expose redraw function for Supabase to trigger after signup
+    window.redrawMapNodes = function() {
+      console.log('Map redraw triggered - signup data updated');
+      // Animation loop already running, data will be used on next frame
+    };
+    
+    // Load signup data from Supabase on init (after a brief delay to ensure supabase.js is ready)
+    setTimeout(() => {
+      if (window.refreshMapColors) {
+        console.log('Loading signup data for map...');
+        window.refreshMapColors();
+      }
+    }, 500);
+  }
+</script>
+
+<!-- Set initial view BEFORE brain.js loads to prevent jumping -->
+<script>
+  (function() {
+    const viewsToShow = [3, 4, 5, 6, 7];
+    window.BRAIN_INITIAL_VIEW = viewsToShow[Math.floor(Math.random() * viewsToShow.length)];
+  })();
+</script>
+<script src="../js/brain.js"></script>
+<script>
+  // Start neural animations after brain.js is ready
+        if (window.startNeuralAnimations) {
+          window.startNeuralAnimations();
+        }
+</script>
+
+
+</body>
+</html>

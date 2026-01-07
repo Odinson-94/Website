@@ -1,0 +1,70 @@
+<!-- 
+  THINKING ANIMATION TEMPLATE
+  ============================
+  Use this HTML structure along with thinking-animation.css and thinking-animation.js
+  to add AI "thinking" step indicators to chat interfaces.
+  
+  Usage:
+  1. Include css/thinking-animation.css in your page
+  2. Include js/thinking-animation.js in your page
+  3. Copy this template into your chat container
+  4. Call ThinkingAnimation.run(container) to start the animation
+  
+  The animation will:
+  - Show a pulsing node indicating AI is processing
+  - Expand to reveal steps one by one
+  - Collapse after completion
+  - Call optional onComplete callback
+-->
+
+<div class="thinking-container" id="thinkingContainer">
+  <div class="thinking-header" id="thinkingHeader">
+    <div class="pulsing-node"></div>
+    <div class="steps-toggle" id="stepsToggle">
+      <span class="chevron">⌃</span>
+      <span class="steps-count" id="stepsCount">8 steps</span>
+    </div>
+  </div>
+  <ul class="steps-list" id="stepsList">
+    <li><span class="step-icon dot">●</span> Analyzing request...</li>
+    <li><span class="step-icon dot">●</span> Processing input data</li>
+    <li><span class="step-icon edit">✎</span> Generating response <span class="step-changes"><span class="added">+12</span> <span class="removed">-0</span></span></li>
+    <li><span class="step-icon dot">●</span> Validating output</li>
+    <li><span class="step-icon check">✓</span> Complete</li>
+  </ul>
+</div>
+
+<!-- 
+  DYNAMIC USAGE EXAMPLE:
+  
+  <script>
+    // Get or create container
+    const container = document.getElementById('thinkingContainer');
+    
+    // Option 1: Run full animation sequence
+    ThinkingAnimation.run(container, {
+      stepDelay: 350,        // ms between steps
+      autoCollapse: true,    // collapse after completion
+      onComplete: () => {
+        console.log('Thinking animation complete!');
+        // Add AI response here
+      }
+    });
+    
+    // Option 2: Add steps dynamically
+    const stepsList = container.querySelector('.steps-list');
+    ThinkingAnimation.addStep(stepsList, 'Analyzing request...', 'dot');
+    ThinkingAnimation.addStep(stepsList, 'Processing data', 'dot');
+    ThinkingAnimation.addStep(stepsList, 'Generating output', 'edit', { added: 15, removed: 3 });
+    ThinkingAnimation.addStep(stepsList, 'Complete', 'check');
+    
+    // Option 3: Manual show/hide
+    ThinkingAnimation.show(container);
+    // ... later ...
+    await ThinkingAnimation.hide(container);
+    
+    // Option 4: Reset to initial state
+    ThinkingAnimation.reset(container);
+  </script>
+-->
+

@@ -1,0 +1,56 @@
+# Cursor AI Agent Rules
+
+do not restore old code. thats a rule. if you are rewriting, please only use the actual code, not memory. always read the code you are about to rewrite. do not call from memory. 
+
+## File Editing Policy: NEVER Rewrite Entire Files
+
+### Core Principle
+**ALWAYS use targeted, surgical edits. NEVER rewrite entire files from memory.**
+
+### Required Workflow
+
+1. **Read Before Edit**: Always use `read_file` to inspect the current state of any file before making changes. Never assume you know the file contents.
+
+2. **Use `search_replace` for Edits**: 
+   - Use the `search_replace` tool for all modifications
+   - Provide enough context in `old_string` to uniquely identify the exact location
+   - Only change the specific lines that need modification
+   - Preserve all surrounding code, comments, and formatting exactly as they are
+
+3. **Never Use `write` for Existing Files**:
+   - The `write` tool overwrites the entire file
+   - Only use `write` for creating NEW files that don't exist yet
+   - For existing files, always use `search_replace`
+
+4. **Incremental Changes**:
+   - Make one logical change at a time
+   - If multiple changes are needed, make them as separate `search_replace` calls
+   - This preserves content you haven't explicitly read into context
+
+### Why This Matters
+- Large files may be truncated when read, causing loss of content if rewritten
+- Memory of file contents may be incomplete or outdated
+- Targeted edits preserve formatting, comments, and code you haven't seen
+- Reduces risk of accidentally removing or corrupting existing functionality
+
+### Examples
+
+**✅ CORRECT Approach:**
+```
+1. read_file("index.html")
+2. search_replace("index.html", old_string="<div class='old'>", new_string="<div class='new'>")
+```
+
+**❌ WRONG Approach:**
+```
+1. write("index.html", "...entire file contents from memory...")
+```
+
+### Special Cases
+- If a file is very large (>500 lines), read it in sections or use `grep`/`codebase_search` to find the relevant portions
+- When making multiple edits to the same file, complete all `search_replace` operations before moving to another file
+- If you're unsure about surrounding context, read more of the file first
+
+### Exception
+The only exception is when explicitly asked to create a new file from scratch, or when the user specifically requests a complete rewrite.
+

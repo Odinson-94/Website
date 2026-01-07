@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Adelphos AI</title>
+  <meta name="description" content="Meet the team behind Adelphos AI. Software built by industry professionals, for industry professionals.">
+  <!-- CRITICAL: Apply dark mode IMMEDIATELY before any CSS loads to prevent flash -->
+  <script>
+    function getDarkModeCookie() {
+      const match = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+      return match ? match[1] === 'true' : false;
+    }
+    const darkModeEnabled = getDarkModeCookie() || localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+      document.documentElement.classList.add('dark-mode');
+      if (!getDarkModeCookie() && localStorage.getItem('darkMode') === 'true') {
+        document.cookie = 'darkMode=true; path=/; max-age=31536000; SameSite=Lax';
+      }
+    }
+  </script>
+  <style>
+    html.dark-mode, html.dark-mode body { background: #1a1a1a !important; }
+    html.dark-mode canvas, html.dark-mode #scene { background: radial-gradient(ellipse at center, #2a2a2a 0%, #1a1a1a 70%) !important; }
+  </style>
+  <!-- PRELOAD FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block">
+  <!-- CRITICAL CSS: Hide content until fonts ready -->
+  <style>
+    html { visibility: hidden; }
+    html.fonts-loaded { visibility: visible; }
+  </style>
+  <script>
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function() {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+    setTimeout(function() {
+      document.documentElement.classList.add('fonts-loaded');
+    }, 300);
+  </script>
+  <link rel="stylesheet" href="css/shared-styles.css">
+  <link rel="stylesheet" href="css/index-styles.css">
+  <style>
+    /* Override for standalone page - allows scrolling to footer */
+    html, body {
+      overflow-x: hidden;
+      overflow-y: auto !important;
+      height: auto !important;
+    }
+    
+    /* Brain canvas background */
+    #scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: auto;
+    }
+    
+    .about-us-panel {
+      position: relative !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: none !important; /* Let brain events through */
+      height: 100vh;
+      min-height: 600px;
+      z-index: 1;
+    }
+    
+    .about-us-content {
+      padding-top: 80px;
+      height: 100%;
+      pointer-events: none;
+    }
+    
+    /* Left panel - white in light mode, transparent in dark mode */
+    .about-us-left {
+      background: #ffffff;
+      pointer-events: none;
+    }
+    
+    html.dark-mode .about-us-left {
+      background: transparent !important;
+    }
+    
+    .about-us-inner {
+      pointer-events: auto; /* Text content is interactive */
+    }
+    
+    .about-us-right {
+      height: 100%;
+      pointer-events: none;
+    }
+    
+    .team-members-container {
+      height: 70%;
+      pointer-events: auto; /* Team cards are interactive */
+    }
+    
+    .team-member {
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Brain Canvas Background -->
+<canvas id="scene"></canvas>
+
+<!-- Logo -->
+<a href="index.html" class="logo">ADELPHOS <span class="ai">AI</span></a>
+
+<!-- Menubar -->
+<nav class="menubar" id="menubar">
+  <div class="menu-tail" id="menuTail"></div>
+  <div class="menu-highlight" id="menuHighlight"></div>
+  <a href="index.html" class="menu-link">Home</a>
+  <a href="about.html" class="menu-link">About Us</a>
+  <a href="roadmap.html" class="menu-link">Roadmap</a>
+  <a href="contact.html" class="menu-link">Contact</a>
+</nav>
+
+<!-- Dark Mode Toggle -->
+<div class="dark-toggle" id="darkToggle">
+  <span class="dark-toggle-label">Dark</span>
+  <div class="toggle-switch" id="toggleSwitch"></div>
+</div>
+
+<!-- About Us Panel - EXACT COPY from index.html -->
+<div class="about-us-panel" id="aboutUsPanel">
+  <div class="about-us-content">
+    <div class="about-us-left">
+      <div class="about-us-inner">
+        <p class="about-us-tagline">About us. Software Built by Industry Professionals, for Industry Professionals.</p>
+        <div class="about-us-text">
+          <p>Adelphos emerged from years of hands-on consultancy delivering complex construction projects across residential, retail, government and healthcare sectors. The founding team comprises practising professionals who have written the code themselves — every workflow reflects the actual logic applied on live construction projects. Optimisation through automation became the focus. By 2024, profit margins had grown from industry-typical 30% to over 70%. We codified our engineering logic, and the AI was born.</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-us-right">
+      <div class="team-members-container">
+        <div class="team-member">
+          <img src="images/team/JJ.webp" class="team-member-image" alt="Jordan Jones">
+          <div class="team-member-overlay">
+            <div class="team-member-name">Jordan Jones</div>
+            <div class="team-member-role">Chief Technology Officer</div>
+            <div class="team-member-duties">AI architecture and system development. Building the core automation engine that powers every deliverable.</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="images/team/JR.jpg" class="team-member-image" alt="James Reed">
+          <div class="team-member-overlay">
+            <div class="team-member-name">James Reed</div>
+            <div class="team-member-role">Chief Operations Officer</div>
+            <div class="team-member-duties">Driving business expansion and client relationships. Ensuring seamless delivery through personable feedback and quality-focused workflows.</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="images/team/JL.jpg" class="team-member-image" alt="Jean-Luc Wright">
+          <div class="team-member-overlay">
+            <div class="team-member-name">Jean-Luc Wright</div>
+            <div class="team-member-role">Chief Digital Officer</div>
+            <div class="team-member-duties">Digital strategy and platform integration. Connecting Adelphos with industry-standard tools and workflows.</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="images/team/Andre.jpg" class="team-member-image" alt="Andre Snoxall">
+          <div class="team-member-overlay">
+            <div class="team-member-name">Andre Snoxall</div>
+            <div class="team-member-role">Chief Information Officer</div>
+            <div class="team-member-duties">Data architecture and security. Ensuring robust, scalable systems that protect client information.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Site Footer -->
+<footer class="site-footer" id="siteFooter"></footer>
+
+<!-- Menubar hover effect -->
+<script src="js/menubar.js"></script>
+
+<!-- Shared Footer -->
+<script src="js/footer.js"></script>
+
+<!-- Dark Mode Toggle -->
+<script>
+  function setDarkModeCookie(enabled) {
+    document.cookie = `darkMode=${enabled}; path=/; max-age=31536000; SameSite=Lax`;
+    localStorage.setItem('darkMode', enabled);
+  }
+  
+  function getDarkModeCookieLocal() {
+    const match = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    return match ? match[1] === 'true' : false;
+  }
+  
+  const toggleSwitch = document.getElementById('toggleSwitch');
+  
+  if (getDarkModeCookieLocal() || localStorage.getItem('darkMode') === 'true') {
+    toggleSwitch.classList.add('active');
+  }
+  
+  toggleSwitch.addEventListener('click', () => {
+    toggleSwitch.classList.toggle('active');
+    document.documentElement.classList.toggle('dark-mode');
+    const isDark = document.documentElement.classList.contains('dark-mode');
+    setDarkModeCookie(isDark);
+    if (window.setDarkMode) {
+      window.setDarkMode(isDark);
+    }
+  });
+</script>
+
+<!-- Set initial view BEFORE brain.js loads -->
+<script>
+  (function() {
+    const viewsToShow = [3, 4, 5, 6, 7];
+    window.BRAIN_INITIAL_VIEW = viewsToShow[Math.floor(Math.random() * viewsToShow.length)];
+  })();
+</script>
+<script src="js/brain.js"></script>
+<script>
+  if (window.startNeuralAnimations) {
+    window.startNeuralAnimations();
+  }
+</script>
+
+</body>
+</html>

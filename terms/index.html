@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - Adelphos AI</title>
+  <meta name="description" content="Terms of Service for Adelphos AI. Read our terms and conditions for using our platform.">
+  <!-- CRITICAL: Apply dark mode IMMEDIATELY before any CSS loads to prevent flash -->
+  <script>
+    function getDarkModeCookie() {
+      const match = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+      return match ? match[1] === 'true' : false;
+    }
+    const darkModeEnabled = getDarkModeCookie() || localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+      document.documentElement.classList.add('dark-mode');
+      if (!getDarkModeCookie() && localStorage.getItem('darkMode') === 'true') {
+        document.cookie = 'darkMode=true; path=/; max-age=31536000; SameSite=Lax';
+      }
+    }
+  </script>
+  <style>
+    html.dark-mode, html.dark-mode body { background: #1a1a1a !important; }
+  </style>
+  <!-- PRELOAD FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block">
+  <!-- CRITICAL CSS: Hide content until fonts ready -->
+  <style>
+    html { visibility: hidden; }
+    html.fonts-loaded { visibility: visible; }
+  </style>
+  <script>
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function() {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+    setTimeout(function() {
+      document.documentElement.classList.add('fonts-loaded');
+    }, 300);
+  </script>
+  <link rel="stylesheet" href="../css/shared-styles.css">
+  <style>
+    .legal-page {
+      min-height: 100vh;
+      padding: 120px 40px 60px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .legal-title {
+      font-family: 'Gotham', 'Segoe UI', sans-serif;
+      font-size: 36px;
+      font-weight: 500;
+      color: #000;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    
+    .legal-updated {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+    
+    .legal-content {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+    }
+    
+    .legal-content h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #000;
+      margin: 40px 0 16px;
+    }
+    
+    .legal-content p {
+      margin-bottom: 16px;
+    }
+    
+    .legal-content ul {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+    
+    .legal-content li {
+      margin-bottom: 8px;
+    }
+    
+    .legal-placeholder {
+      background: rgba(0, 191, 165, 0.1);
+      border: 1px dashed rgba(0, 191, 165, 0.3);
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    
+    .legal-placeholder p {
+      color: #156082;
+      font-weight: 500;
+    }
+    
+    html.dark-mode .legal-title {
+      color: #e0e0e0;
+    }
+    
+    html.dark-mode .legal-updated {
+      color: #888;
+    }
+    
+    html.dark-mode .legal-content {
+      color: #ccc;
+    }
+    
+    html.dark-mode .legal-content h2 {
+      color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Logo -->
+<a href="../" class="logo">ADELPHOS <span class="ai">AI</span></a>
+
+<!-- Menubar -->
+<nav class="menubar" id="menubar">
+  <div class="menu-tail" id="menuTail"></div>
+  <div class="menu-highlight" id="menuHighlight"></div>
+  <a href="../" class="menu-link">Home</a>
+  <a href="../about/" class="menu-link">About Us</a>
+  <a href="../roadmap/" class="menu-link">Roadmap</a>
+  <a href="../contact/" class="menu-link">Contact</a>
+</nav>
+
+<!-- Dark Mode Toggle -->
+<div class="dark-toggle" id="darkToggle">
+  <span class="dark-toggle-label">Dark</span>
+  <div class="toggle-switch" id="toggleSwitch"></div>
+</div>
+
+<!-- Terms of Service Content -->
+<div class="legal-page">
+  <h1 class="legal-title">Terms of Service</h1>
+  <p class="legal-updated">Last updated: January 2026</p>
+  
+  <div class="legal-content">
+    <div class="legal-placeholder">
+      <p>Full Terms of Service content coming soon.</p>
+      <p>For enquiries, please contact <a href="mailto:hello@adelphos.ai">hello@adelphos.ai</a></p>
+    </div>
+    
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing and using Adelphos AI's services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+    
+    <h2>2. Use of Service</h2>
+    <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You are responsible for maintaining the confidentiality of your account credentials.</p>
+    
+    <h2>3. Intellectual Property</h2>
+    <p>All content, features, and functionality of our services are owned by Adelphos AI and are protected by international copyright, trademark, and other intellectual property laws.</p>
+    
+    <h2>4. Limitation of Liability</h2>
+    <p>Adelphos AI shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services.</p>
+    
+    <h2>5. Contact Us</h2>
+    <p>If you have any questions about these Terms of Service, please contact us at <a href="mailto:hello@adelphos.ai">hello@adelphos.ai</a>.</p>
+  </div>
+</div>
+
+<!-- Site Footer -->
+<footer class="site-footer" id="siteFooter"></footer>
+
+<!-- Menubar hover effect -->
+<script src="../js/menubar.js"></script>
+
+<!-- Shared Footer -->
+<script src="../js/footer.js"></script>
+
+<!-- Dark Mode Toggle -->
+<script>
+  function setDarkModeCookie(enabled) {
+    document.cookie = `darkMode=${enabled}; path=/; max-age=31536000; SameSite=Lax`;
+    localStorage.setItem('darkMode', enabled);
+  }
+  
+  function getDarkModeCookieLocal() {
+    const match = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    return match ? match[1] === 'true' : false;
+  }
+  
+  const toggleSwitch = document.getElementById('toggleSwitch');
+  
+  toggleSwitch.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark-mode');
+    const isDark = document.documentElement.classList.contains('dark-mode');
+    setDarkModeCookie(isDark);
+  });
+</script>
+
+</body>
+</html>
+
