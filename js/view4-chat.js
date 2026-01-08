@@ -778,11 +778,13 @@
       filesWrapper.innerHTML = thinkingContainer.dataset.filesHtml.replace('class="files-changed-section visible"', 'class="files-changed-section"');
       const filesSection = filesWrapper.firstElementChild;
       chatEl.appendChild(filesSection);
-      chatEl.scrollTop = chatEl.scrollHeight;
       
-      // Trigger animation after append
-      await sleep(50);
+      // Wait for DOM update, then trigger animation
+      await sleep(100);
       filesSection.classList.add('visible');
+      
+      // Scroll to show full files section
+      await sleep(100);
       chatEl.scrollTop = chatEl.scrollHeight;
       
       // Add click handlers for files changed buttons

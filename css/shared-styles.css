@@ -433,7 +433,7 @@ html.dark-mode .coming-soon-badge {
 .demo-msg-user p,
 .demo-msg-bot p {
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
+  font-size: 0.7rem;
   font-weight: 300;
   font-optical-sizing: auto;
   line-height: 1.6;
