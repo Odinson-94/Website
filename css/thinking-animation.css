@@ -569,10 +569,13 @@ html.dark-mode .thought-trail-content p {
   background: #fafafa;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 6px;
-  overflow: hidden;
+  overflow: visible;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
+  align-self: stretch;
+  flex-shrink: 0;
+  min-height: 80px;
 }
 
 .files-changed-section.visible {

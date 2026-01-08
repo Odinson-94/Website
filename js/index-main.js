@@ -242,11 +242,13 @@
         handle.style.cssText = 'position:absolute;z-index:200;';
         
         if (edge === 'e') {
-          handle.style.cssText += 'top:36px;right:0;width:12px;height:calc(100% - 56px);cursor:ew-resize;';
+          // Narrower handle (4px) at the very edge, doesn't overlap scrollbar
+          handle.style.cssText += 'top:36px;right:0;width:4px;height:calc(100% - 56px);cursor:ew-resize;';
         } else if (edge === 's') {
-          handle.style.cssText += 'bottom:0;left:0;width:100%;height:12px;cursor:ns-resize;';
+          // Narrower handle (4px) at the very edge
+          handle.style.cssText += 'bottom:0;left:0;width:100%;height:4px;cursor:ns-resize;';
         } else if (edge === 'se') {
-          handle.style.cssText += 'bottom:0;right:0;width:20px;height:20px;cursor:nwse-resize;';
+          handle.style.cssText += 'bottom:0;right:0;width:16px;height:16px;cursor:nwse-resize;';
         }
         
         handle.addEventListener('mousedown', function(e) {
