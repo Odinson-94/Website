@@ -1,0 +1,803 @@
+/* ============================================
+   CLASH MANAGER STYLES
+   ============================================
+   Modal-based Clash Manager for 3D Modelling view
+*/
+
+/* ============================================
+   MODAL CONTAINER (for iframe in index.html)
+   ============================================ */
+
+.clash-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.clash-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.clash-modal-container {
+  width: 90%;
+  max-width: 1200px;
+  height: 85%;
+  max-height: 800px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.clash-modal-overlay.active .clash-modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.clash-modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+html.dark-mode .clash-modal-container {
+  background: #2a2a2a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   CLASH MANAGER BODY (standalone page)
+   ============================================ */
+
+.clash-manager-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f5f5f5;
+  height: 100vh;
+  overflow: hidden;
+}
+
+html.dark-mode .clash-manager-body {
+  background: #1a1a1a;
+}
+
+.clash-manager {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ============================================
+   HEADER BAR
+   ============================================ */
+
+.clash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+html.dark-mode .clash-header {
+  background: #2a2a2a;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.clash-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clash-icon {
+  font-size: 20px;
+}
+
+.clash-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+html.dark-mode .clash-title {
+  color: #e0e0e0;
+}
+
+.clash-count {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+html.dark-mode .clash-count {
+  background: rgba(255, 255, 255, 0.08);
+  color: #999;
+}
+
+.clash-header-right {
+  display: flex;
+  gap: 8px;
+}
+
+.clash-header-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clash-header-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.clash-header-btn.close-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+html.dark-mode .clash-header-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #999;
+}
+
+html.dark-mode .clash-header-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #e0e0e0;
+}
+
+html.dark-mode .clash-header-btn.close-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+.clash-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ============================================
+   LEFT SIDEBAR: CLASH CATEGORIES
+   ============================================ */
+
+.clash-sidebar {
+  width: 220px;
+  min-width: 180px;
+  background: #f0f0f0;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+html.dark-mode .clash-sidebar {
+  background: #252525;
+  border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+.clash-sidebar-header {
+  padding: 10px 14px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark-mode .clash-sidebar-header {
+  color: #666;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.clash-sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.clash-category-item {
+  padding: 10px 12px;
+  margin-bottom: 3px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clash-category-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html.dark-mode .clash-category-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.clash-category-item.active {
+  background: #007AFF;
+  color: white;
+}
+
+.clash-category-item.active .category-count {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.category-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  display: block;
+}
+
+html.dark-mode .category-title {
+  color: #e0e0e0;
+}
+
+.clash-category-item.active .category-title {
+  color: white;
+}
+
+.category-count {
+  font-size: 10px;
+  color: #888;
+  margin-top: 2px;
+  display: block;
+}
+
+html.dark-mode .category-count {
+  color: #666;
+}
+
+/* ============================================
+   MAIN PANEL
+   ============================================ */
+
+.clash-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+}
+
+html.dark-mode .clash-main {
+  background: #1e1e1e;
+}
+
+/* ============================================
+   RESULTS LIST SECTION
+   ============================================ */
+
+.clash-results-section {
+  flex: 0 0 auto;
+  max-height: 140px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+html.dark-mode .clash-results-section {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.clash-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+html.dark-mode .clash-results-header {
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom-color: rgba(255, 255, 255, 0.04);
+}
+
+.results-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+html.dark-mode .results-title {
+  color: #888;
+}
+
+.status-filter {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+html.dark-mode .status-filter {
+  background: #2a2a2a;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
+
+.clash-results-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+}
+
+.clash-result-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  min-width: 180px;
+  flex: 0 0 auto;
+}
+
+.clash-result-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.clash-result-item.active {
+  background: rgba(0, 122, 255, 0.1);
+  border-color: #007AFF;
+}
+
+html.dark-mode .clash-result-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+html.dark-mode .clash-result-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .clash-result-item.active {
+  background: rgba(0, 122, 255, 0.15);
+  border-color: #007AFF;
+}
+
+.result-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.result-status.new { background: #e74c3c; }
+.result-status.active { background: #e67e22; }
+.result-status.reviewed { background: #3498db; }
+.result-status.approved { background: #27ae60; }
+.result-status.resolved { background: #95a5a6; }
+
+.result-name {
+  font-size: 11px;
+  font-weight: 400;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.dark-mode .result-name {
+  color: #ccc;
+}
+
+/* ============================================
+   BEFORE/AFTER VIEWS SECTION
+   ============================================ */
+
+.clash-views-section {
+  flex: 1;
+  display: flex;
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  min-height: 200px;
+}
+
+html.dark-mode .clash-views-section {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.clash-view-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+html.dark-mode .clash-view-panel {
+  background: #1e1e1e;
+}
+
+.view-header {
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark-mode .view-header {
+  color: #666;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.view-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  position: relative;
+  overflow: hidden;
+}
+
+html.dark-mode .view-content {
+  background: #1a1a1a;
+}
+
+.view-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #aaa;
+}
+
+html.dark-mode .view-placeholder {
+  color: #555;
+}
+
+.placeholder-icon {
+  font-size: 32px;
+  opacity: 0.5;
+}
+
+.placeholder-text {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.view-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Clash highlight overlay on images */
+.clash-highlight {
+  position: absolute;
+  border: 2px solid #e74c3c;
+  background: rgba(231, 76, 60, 0.2);
+  border-radius: 4px;
+  animation: pulse-highlight 1.5s infinite;
+}
+
+@keyframes pulse-highlight {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.02); }
+}
+
+/* ============================================
+   ITEM DETAILS SECTION
+   ============================================ */
+
+.clash-details-section {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html.dark-mode .clash-details-section {
+  background: rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.clash-item-panel {
+  flex: 1;
+  background: #fff;
+  padding: 12px;
+}
+
+html.dark-mode .clash-item-panel {
+  background: #1e1e1e;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+html.dark-mode .item-header {
+  color: #ccc;
+}
+
+.item-header-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-row {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.detail-label {
+  color: #888;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+html.dark-mode .detail-label {
+  color: #666;
+}
+
+.detail-value {
+  color: #333;
+  font-weight: 400;
+  word-break: break-word;
+}
+
+html.dark-mode .detail-value {
+  color: #ccc;
+}
+
+/* ============================================
+   FOOTER: ACTION BUTTONS
+   ============================================ */
+
+.clash-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+html.dark-mode .clash-footer {
+  background: #2a2a2a;
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+}
+
+.clash-status {
+  font-size: 12px;
+  color: #888;
+}
+
+html.dark-mode .clash-status {
+  color: #666;
+}
+
+.footer-right {
+  display: flex;
+  gap: 10px;
+}
+
+.clash-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clash-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.clash-action-btn .btn-icon {
+  font-size: 12px;
+}
+
+.solve-btn {
+  background: #007AFF;
+  color: white;
+}
+
+.solve-btn:hover:not(:disabled) {
+  background: #0056D6;
+}
+
+.accept-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.accept-btn:hover:not(:disabled) {
+  background: #1e8449;
+}
+
+.reject-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.reject-btn:hover:not(:disabled) {
+  background: #c0392b;
+}
+
+.cancel-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: #5a6268;
+}
+
+html.dark-mode .cancel-btn {
+  background: #555;
+}
+
+html.dark-mode .cancel-btn:hover {
+  background: #666;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+.clash-sidebar-list::-webkit-scrollbar,
+.clash-results-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.clash-sidebar-list::-webkit-scrollbar-track,
+.clash-results-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.clash-sidebar-list::-webkit-scrollbar-thumb,
+.clash-results-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+.clash-sidebar-list::-webkit-scrollbar-thumb:hover,
+.clash-results-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+html.dark-mode .clash-sidebar-list::-webkit-scrollbar-thumb,
+html.dark-mode .clash-results-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+html.dark-mode .clash-sidebar-list::-webkit-scrollbar-thumb:hover,
+html.dark-mode .clash-results-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .clash-content {
+    flex-direction: column;
+  }
+  
+  .clash-sidebar {
+    width: 100%;
+    max-height: 120px;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  .clash-sidebar-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 4px;
+  }
+  
+  .clash-category-item {
+    flex-shrink: 0;
+  }
+  
+  .clash-views-section {
+    flex-direction: column;
+  }
+  
+  .clash-details-section {
+    flex-direction: column;
+  }
+  
+  .footer-right {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}

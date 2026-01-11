@@ -360,6 +360,209 @@ html.dark-mode .toggle-switch::after {
   transform: translateX(20px);
 }
 
+/* Color Palette Button & Dropdown */
+.color-palette-btn {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-palette-btn .palette-icon {
+  font-size: 14px;
+  color: #999;
+  transition: color 0.2s ease;
+}
+
+/* Larger icon for main palette button (next to dark mode toggle) */
+.color-palette-btn.main-palette .palette-icon {
+  font-size: 18px;
+}
+
+.color-palette-btn.main-palette {
+  margin-right: 6px;
+}
+
+.color-palette-btn:hover .palette-icon {
+  color: #666;
+}
+
+html.dark-mode .color-palette-btn .palette-icon {
+  color: #666;
+}
+
+html.dark-mode .color-palette-btn:hover .palette-icon {
+  color: #999;
+}
+
+.color-palette-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  padding: 12px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  z-index: 2000;
+}
+
+.color-palette-btn:hover .color-palette-dropdown,
+.color-palette-dropdown:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+html.dark-mode .color-palette-dropdown {
+  background: #2a2a2a;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Word-style color palette dropdown */
+.color-palette-dropdown.word-style {
+  min-width: 220px;
+  padding: 10px;
+}
+
+.palette-section {
+  margin-bottom: 10px;
+}
+
+.palette-section:last-of-type {
+  margin-bottom: 8px;
+}
+
+.palette-header {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin-bottom: 6px;
+  padding: 0;
+  border: none;
+}
+
+html.dark-mode .palette-header {
+  color: #888;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+}
+
+.palette-grid.standard-colors {
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.color-swatch {
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 10;
+  position: relative;
+}
+
+.color-swatch.active {
+  outline: 2px solid #156082;
+  outline-offset: 1px;
+}
+
+html.dark-mode .color-swatch {
+  border-color: rgba(255,255,255,0.15);
+}
+
+html.dark-mode .color-swatch.active {
+  outline-color: #1a9cc2;
+}
+
+/* Apply background color from data attribute */
+.color-swatch[data-color] {
+  background-color: attr(data-color);
+}
+
+/* More Colors button */
+.more-colors-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 6px;
+  border: none;
+  background: transparent;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  margin-top: 4px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #555;
+  transition: background 0.15s ease;
+  border-radius: 0 0 6px 6px;
+}
+
+.more-colors-btn:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+html.dark-mode .more-colors-btn {
+  border-top-color: rgba(255,255,255,0.08);
+  color: #aaa;
+}
+
+html.dark-mode .more-colors-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.more-colors-icon {
+  font-size: 14px;
+}
+
+/* Hidden color input for custom picker */
+.hidden-color-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Chat Settings Wrapper for dropdown positioning */
+.chat-settings-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.chat-settings-wrapper .color-palette-dropdown.chat-palette {
+  top: calc(100% + 4px);
+  right: 0;
+}
+
+.chat-settings-wrapper:hover .color-palette-dropdown.chat-palette,
+.chat-settings-wrapper .color-palette-dropdown.chat-palette:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 /* Dark Mode Styles */
 html.dark-mode body {
   background: #1a1a1a;
@@ -2715,12 +2918,12 @@ html.dark-mode .demo-view-overlay .demo-chat-history-sidebar {
 
 /* Chat sidebar resize handle (horizontal) */
 .demo-view-overlay .chat-sidebar-resize {
-  width: 5px;
-  background: rgba(128, 128, 128, 0.1);
+  width: 1px;
+  background: rgba(128, 128, 128, 0.2);
   cursor: ew-resize;
   flex-shrink: 0;
   transition: background 0.15s ease;
-  z-index: 10;
+  z-index: 1;
   position: relative;
 }
 
@@ -2922,7 +3125,10 @@ html.dark-mode .demo-view-overlay .demo-history-item:hover {
 }
 
 .demo-view-overlay .demo-history-item-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.60rem;
   font-weight: 500;
+  line-height: 1.3;
   margin-bottom: 0.125rem;
 }
 
@@ -3151,7 +3357,7 @@ html.dark-mode .demo-view-overlay .demo-chat-messages {
 
 .demo-view-overlay .demo-chat-messages .thinking-container .steps-list,
 .demo-chat-container .demo-chat-messages .thinking-container .steps-list {
-  font-size: 0.65rem;
+  font-size: 0.60rem;
   font-weight: 200;
 }
 
@@ -3186,6 +3392,14 @@ html.dark-mode .demo-view-overlay .demo-msg-bot {
   color: var(--text-primary);
 }
 
+html.dark-mode .demo-view-overlay .demo-msg-user {
+  background: #007AFF;
+}
+
+html.dark-mode .demo-view-overlay .demo-msg-user p {
+  color: #fff;
+}
+
 .demo-view-overlay .demo-msg-user p {
   margin: 0;
   color: #232323;
@@ -3202,6 +3416,11 @@ html.dark-mode .demo-view-overlay .demo-msg-bot {
   border-radius: 0.5rem;
   text-align: center;
   font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  color: #007AFF;
+  margin-top: 0.5rem;
   font-weight: 300;
   font-size: 0.7rem;
   line-height: 1.5;
@@ -3248,6 +3467,7 @@ html.dark-mode .demo-view-overlay .demo-chat-titlebar-text {
 .demo-view-overlay .demo-chat-titlebar-btns {
   margin-left: auto;
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 
@@ -3683,6 +3903,51 @@ html.dark-mode .demo-chat-input-row.cursor-style .dropdown-item.llm-option.enabl
 
 html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label {
   color: #777;
+}
+
+/* Model display brand formatting in label */
+.demo-chat-input-row.cursor-style .chat-model-label .model-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Gotham', 'Inter', sans-serif;
+}
+
+.demo-chat-input-row.cursor-style .chat-model-label .brand-build {
+  font-weight: 500;
+  color: #333;
+}
+
+.demo-chat-input-row.cursor-style .chat-model-label .brand-variant {
+  font-weight: 500;
+  color: #156082;
+}
+
+.demo-chat-input-row.cursor-style .chat-model-label .brand-dot {
+  color: #333;
+}
+
+.demo-chat-input-row.cursor-style .chat-model-label .model-version-display {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  color: #888;
+  margin-left: 2px;
+}
+
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .brand-build {
+  color: #ccc;
+}
+
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .brand-variant {
+  color: #4a9bb8;
+}
+
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .brand-dot {
+  color: #ccc;
+}
+
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .model-version-display {
+  color: #666;
 }
 
 .demo-chat-input-row.cursor-style .chat-model-dropdown:hover .chat-dropdown-menu {
@@ -4966,8 +5231,11 @@ html.dark-mode .demo-history-item.active {
 }
 
 .demo-history-item-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
   font-weight: 500;
-  margin-bottom: 2px;
+  line-height: 1.3;
+  margin-bottom: 0.125rem;
 }
 
 .demo-history-preview,

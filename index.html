@@ -74,6 +74,7 @@
   <link rel="stylesheet" href="css/shared-styles.css">
   <link rel="stylesheet" href="css/index-styles.css">
   <link rel="stylesheet" href="css/thinking-animation.css">
+  <link rel="stylesheet" href="css/clash-manager.css">
 </head>
 <body class="has-view-system">
 <script>window.PERF.mark('Body start');</script>
@@ -144,6 +145,98 @@
 
 <!-- Dark Mode Toggle -->
 <div class="dark-toggle" id="darkToggle">
+  <div class="color-palette-btn main-palette" id="colorPaletteBtn" title="Color Theme">
+    <span class="palette-icon">⚙</span>
+    <div class="color-palette-dropdown word-style" id="colorPaletteDropdown">
+      <div class="palette-section">
+        <div class="palette-header">Theme Colors</div>
+        <div class="palette-grid theme-colors">
+          <!-- Row 1: Base colors -->
+          <button class="color-swatch" data-color="#FFFFFF" title="White"></button>
+          <button class="color-swatch" data-color="#000000" title="Black"></button>
+          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+          <button class="color-swatch" data-color="#c55a11" title="Orange"></button>
+          <button class="color-swatch" data-color="#2e7d32" title="Green"></button>
+          <button class="color-swatch active" data-color="#156082" title="Teal (Default)"></button>
+          <button class="color-swatch" data-color="#9c27b0" title="Magenta"></button>
+          <button class="color-swatch" data-color="#00838f" title="Cyan"></button>
+          <button class="color-swatch" data-color="#558b2f" title="Olive"></button>
+          <!-- Row 2-6: Tints -->
+          <button class="color-swatch" data-color="#f2f2f2" title="White 5%"></button>
+          <button class="color-swatch" data-color="#7f7f7f" title="Black 50%"></button>
+          <button class="color-swatch" data-color="#d6dce5" title="Dark Blue 80%"></button>
+          <button class="color-swatch" data-color="#e1d5e7" title="Purple 80%"></button>
+          <button class="color-swatch" data-color="#fbe5d6" title="Orange 80%"></button>
+          <button class="color-swatch" data-color="#e2efda" title="Green 80%"></button>
+          <button class="color-swatch" data-color="#deebf7" title="Teal 80%"></button>
+          <button class="color-swatch" data-color="#f3e5f5" title="Magenta 80%"></button>
+          <button class="color-swatch" data-color="#e0f7fa" title="Cyan 80%"></button>
+          <button class="color-swatch" data-color="#f1f8e9" title="Olive 80%"></button>
+          <button class="color-swatch" data-color="#d9d9d9" title="White 15%"></button>
+          <button class="color-swatch" data-color="#595959" title="Black 35%"></button>
+          <button class="color-swatch" data-color="#adb9ca" title="Dark Blue 60%"></button>
+          <button class="color-swatch" data-color="#c3abd0" title="Purple 60%"></button>
+          <button class="color-swatch" data-color="#f7cbac" title="Orange 60%"></button>
+          <button class="color-swatch" data-color="#c5e0b4" title="Green 60%"></button>
+          <button class="color-swatch" data-color="#bdd7ee" title="Teal 60%"></button>
+          <button class="color-swatch" data-color="#e1bee7" title="Magenta 60%"></button>
+          <button class="color-swatch" data-color="#b2ebf2" title="Cyan 60%"></button>
+          <button class="color-swatch" data-color="#dcedc8" title="Olive 60%"></button>
+          <button class="color-swatch" data-color="#bfbfbf" title="White 25%"></button>
+          <button class="color-swatch" data-color="#404040" title="Black 25%"></button>
+          <button class="color-swatch" data-color="#8497b0" title="Dark Blue 40%"></button>
+          <button class="color-swatch" data-color="#a481b8" title="Purple 40%"></button>
+          <button class="color-swatch" data-color="#f4b183" title="Orange 40%"></button>
+          <button class="color-swatch" data-color="#a9d18e" title="Green 40%"></button>
+          <button class="color-swatch" data-color="#9cc3e5" title="Teal 40%"></button>
+          <button class="color-swatch" data-color="#ce93d8" title="Magenta 40%"></button>
+          <button class="color-swatch" data-color="#80deea" title="Cyan 40%"></button>
+          <button class="color-swatch" data-color="#c5e1a5" title="Olive 40%"></button>
+          <button class="color-swatch" data-color="#a6a6a6" title="White 35%"></button>
+          <button class="color-swatch" data-color="#262626" title="Black 15%"></button>
+          <button class="color-swatch" data-color="#324a5f" title="Dark Blue 25%"></button>
+          <button class="color-swatch" data-color="#6b3d7a" title="Purple 25%"></button>
+          <button class="color-swatch" data-color="#c55a11" title="Orange 25%"></button>
+          <button class="color-swatch" data-color="#538135" title="Green 25%"></button>
+          <button class="color-swatch" data-color="#2e75b6" title="Teal 25%"></button>
+          <button class="color-swatch" data-color="#8e24aa" title="Magenta 25%"></button>
+          <button class="color-swatch" data-color="#00acc1" title="Cyan 25%"></button>
+          <button class="color-swatch" data-color="#7cb342" title="Olive 25%"></button>
+          <button class="color-swatch" data-color="#808080" title="White 50%"></button>
+          <button class="color-swatch" data-color="#0d0d0d" title="Black 5%"></button>
+          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+          <button class="color-swatch" data-color="#974706" title="Orange Dark"></button>
+          <button class="color-swatch" data-color="#385723" title="Green Dark"></button>
+          <button class="color-swatch" data-color="#1f4e79" title="Teal Dark"></button>
+          <button class="color-swatch" data-color="#6a1b9a" title="Magenta Dark"></button>
+          <button class="color-swatch" data-color="#006064" title="Cyan Dark"></button>
+          <button class="color-swatch" data-color="#33691e" title="Olive Dark"></button>
+        </div>
+      </div>
+      <div class="palette-section">
+        <div class="palette-header">Standard Colors</div>
+        <div class="palette-grid standard-colors">
+          <button class="color-swatch" data-color="#c00000" title="Dark Red"></button>
+          <button class="color-swatch" data-color="#ff0000" title="Red"></button>
+          <button class="color-swatch" data-color="#ffc000" title="Orange"></button>
+          <button class="color-swatch" data-color="#ffff00" title="Yellow"></button>
+          <button class="color-swatch" data-color="#92d050" title="Light Green"></button>
+          <button class="color-swatch" data-color="#00b050" title="Green"></button>
+          <button class="color-swatch" data-color="#00b0f0" title="Light Blue"></button>
+          <button class="color-swatch" data-color="#0070c0" title="Blue"></button>
+          <button class="color-swatch" data-color="#002060" title="Dark Blue"></button>
+          <button class="color-swatch" data-color="#7030a0" title="Purple"></button>
+        </div>
+      </div>
+      <button class="more-colors-btn" id="moreColorsBtn">
+        <span class="more-colors-icon">🎨</span>
+        <span>More Colors...</span>
+      </button>
+      <input type="color" id="customColorPicker" class="hidden-color-input" value="#156082">
+    </div>
+  </div>
   <span class="dark-toggle-label">Dark</span>
   <div class="toggle-switch" id="toggleSwitch"></div>
 </div>
@@ -726,7 +819,96 @@
               <div class="demo-chat-titlebar">
                 <span class="demo-chat-titlebar-text">JASON — Chat</span>
                 <div class="demo-chat-titlebar-btns">
-                  <button class="demo-titlebar-btn settings" title="Settings">⚙</button>
+                  <div class="chat-settings-wrapper">
+                    <button class="demo-titlebar-btn settings" id="chatSettingsBtn" title="Settings">⚙</button>
+                    <div class="color-palette-dropdown word-style chat-palette" id="chatColorPaletteDropdown">
+                      <div class="palette-section">
+                        <div class="palette-header">Theme Colors</div>
+                        <div class="palette-grid theme-colors">
+                          <button class="color-swatch" data-color="#FFFFFF" title="White"></button>
+                          <button class="color-swatch" data-color="#000000" title="Black"></button>
+                          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+                          <button class="color-swatch" data-color="#c55a11" title="Orange"></button>
+                          <button class="color-swatch" data-color="#2e7d32" title="Green"></button>
+                          <button class="color-swatch active" data-color="#156082" title="Teal (Default)"></button>
+                          <button class="color-swatch" data-color="#9c27b0" title="Magenta"></button>
+                          <button class="color-swatch" data-color="#00838f" title="Cyan"></button>
+                          <button class="color-swatch" data-color="#558b2f" title="Olive"></button>
+                          <button class="color-swatch" data-color="#f2f2f2" title="White 5%"></button>
+                          <button class="color-swatch" data-color="#7f7f7f" title="Black 50%"></button>
+                          <button class="color-swatch" data-color="#d6dce5" title="Dark Blue 80%"></button>
+                          <button class="color-swatch" data-color="#e1d5e7" title="Purple 80%"></button>
+                          <button class="color-swatch" data-color="#fbe5d6" title="Orange 80%"></button>
+                          <button class="color-swatch" data-color="#e2efda" title="Green 80%"></button>
+                          <button class="color-swatch" data-color="#deebf7" title="Teal 80%"></button>
+                          <button class="color-swatch" data-color="#f3e5f5" title="Magenta 80%"></button>
+                          <button class="color-swatch" data-color="#e0f7fa" title="Cyan 80%"></button>
+                          <button class="color-swatch" data-color="#f1f8e9" title="Olive 80%"></button>
+                          <button class="color-swatch" data-color="#d9d9d9" title="White 15%"></button>
+                          <button class="color-swatch" data-color="#595959" title="Black 35%"></button>
+                          <button class="color-swatch" data-color="#adb9ca" title="Dark Blue 60%"></button>
+                          <button class="color-swatch" data-color="#c3abd0" title="Purple 60%"></button>
+                          <button class="color-swatch" data-color="#f7cbac" title="Orange 60%"></button>
+                          <button class="color-swatch" data-color="#c5e0b4" title="Green 60%"></button>
+                          <button class="color-swatch" data-color="#bdd7ee" title="Teal 60%"></button>
+                          <button class="color-swatch" data-color="#e1bee7" title="Magenta 60%"></button>
+                          <button class="color-swatch" data-color="#b2ebf2" title="Cyan 60%"></button>
+                          <button class="color-swatch" data-color="#dcedc8" title="Olive 60%"></button>
+                          <button class="color-swatch" data-color="#bfbfbf" title="White 25%"></button>
+                          <button class="color-swatch" data-color="#404040" title="Black 25%"></button>
+                          <button class="color-swatch" data-color="#8497b0" title="Dark Blue 40%"></button>
+                          <button class="color-swatch" data-color="#a481b8" title="Purple 40%"></button>
+                          <button class="color-swatch" data-color="#f4b183" title="Orange 40%"></button>
+                          <button class="color-swatch" data-color="#a9d18e" title="Green 40%"></button>
+                          <button class="color-swatch" data-color="#9cc3e5" title="Teal 40%"></button>
+                          <button class="color-swatch" data-color="#ce93d8" title="Magenta 40%"></button>
+                          <button class="color-swatch" data-color="#80deea" title="Cyan 40%"></button>
+                          <button class="color-swatch" data-color="#c5e1a5" title="Olive 40%"></button>
+                          <button class="color-swatch" data-color="#a6a6a6" title="White 35%"></button>
+                          <button class="color-swatch" data-color="#262626" title="Black 15%"></button>
+                          <button class="color-swatch" data-color="#324a5f" title="Dark Blue 25%"></button>
+                          <button class="color-swatch" data-color="#6b3d7a" title="Purple 25%"></button>
+                          <button class="color-swatch" data-color="#c55a11" title="Orange 25%"></button>
+                          <button class="color-swatch" data-color="#538135" title="Green 25%"></button>
+                          <button class="color-swatch" data-color="#2e75b6" title="Teal 25%"></button>
+                          <button class="color-swatch" data-color="#8e24aa" title="Magenta 25%"></button>
+                          <button class="color-swatch" data-color="#00acc1" title="Cyan 25%"></button>
+                          <button class="color-swatch" data-color="#7cb342" title="Olive 25%"></button>
+                          <button class="color-swatch" data-color="#808080" title="White 50%"></button>
+                          <button class="color-swatch" data-color="#0d0d0d" title="Black 5%"></button>
+                          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+                          <button class="color-swatch" data-color="#974706" title="Orange Dark"></button>
+                          <button class="color-swatch" data-color="#385723" title="Green Dark"></button>
+                          <button class="color-swatch" data-color="#1f4e79" title="Teal Dark"></button>
+                          <button class="color-swatch" data-color="#6a1b9a" title="Magenta Dark"></button>
+                          <button class="color-swatch" data-color="#006064" title="Cyan Dark"></button>
+                          <button class="color-swatch" data-color="#33691e" title="Olive Dark"></button>
+                        </div>
+                      </div>
+                      <div class="palette-section">
+                        <div class="palette-header">Standard Colors</div>
+                        <div class="palette-grid standard-colors">
+                          <button class="color-swatch" data-color="#c00000" title="Dark Red"></button>
+                          <button class="color-swatch" data-color="#ff0000" title="Red"></button>
+                          <button class="color-swatch" data-color="#ffc000" title="Orange"></button>
+                          <button class="color-swatch" data-color="#ffff00" title="Yellow"></button>
+                          <button class="color-swatch" data-color="#92d050" title="Light Green"></button>
+                          <button class="color-swatch" data-color="#00b050" title="Green"></button>
+                          <button class="color-swatch" data-color="#00b0f0" title="Light Blue"></button>
+                          <button class="color-swatch" data-color="#0070c0" title="Blue"></button>
+                          <button class="color-swatch" data-color="#002060" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#7030a0" title="Purple"></button>
+                        </div>
+                      </div>
+                      <button class="more-colors-btn chat-more-colors">
+                        <span class="more-colors-icon">🎨</span>
+                        <span>More Colors...</span>
+                      </button>
+                      <input type="color" class="hidden-color-input chat-custom-color" value="#156082">
+                    </div>
+                  </div>
                   <button class="demo-titlebar-btn min"></button>
                   <button class="demo-titlebar-btn max"></button>
                   <button class="demo-titlebar-btn close"></button>
@@ -848,7 +1030,42 @@
                   </div>
                   <div class="demo-chat-messages" id="chatMessagesIndex4">
                     <div class="demo-msg-user"><p>Can you design the drainage system?</p></div>
-                    <div class="demo-msg-bot"><p>Of course, let me check the rooms.</p></div>
+                    <div class="demo-msg-bot"><p>Of course, let me analyse the project requirements and regulations.</p></div>
+                    <!-- Expandable thinking steps -->
+                    <div class="thinking-container visible">
+                      <div class="thinking-header done">
+                        <div class="thinking-header-left">
+                          <div class="pulsing-node"></div>
+                          <span class="steps-count">19 steps</span>
+                        </div>
+                        <div class="steps-toggle">
+                          <span class="chevron">⌃</span>
+                        </div>
+                      </div>
+                      <ul class="steps-list expanded">
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Loading project context...</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Location identified: London, UK.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking Approved Document H.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking BS EN 12056-2 for gravity drainage.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking BS EN 12056-3 for roof drainage.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Reviewing local water authority requirements.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Loading company standard.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking similar project approaches.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Client preference found: SVPs to be boxed in risers.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Finding rooms from Revit model...</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">24 rooms found requiring drainage.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking number of sanitary outlets per room.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Calculating discharge units per BS EN 12056.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking for additional drainage requirements.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Reading project specification...</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Calculating condensate connection requirements.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Looking for civil engineering pop-up information...</span></span></li>
+                        <li class="visible"><span class="step-icon error">✕</span><span class="step-content"><span class="step-text">Civil data not found in project folder.</span></span></li>
+                        <li class="visible"><span class="step-icon check"></span><span class="step-content"><span class="step-text">Stopped — awaiting civil data.</span></span></li>
+                      </ul>
+                    </div>
+                    <div class="demo-msg-bot"><p>I've analysed the project against <strong>Approved Document H</strong> and <strong>BS EN 12056</strong>. Local authority requirements and similar projects checked. Client preference for boxed SVPs noted.<br><br>However, I need the civil engineering information to locate the drainage pop-ups. Do you have this available?</p></div>
+                    <div class="demo-msg-user"><p>Yes, sorry just added to the folder now.</p></div>
                     <!-- Expandable thinking steps -->
                     <div class="thinking-container visible">
                       <div class="thinking-header done">
@@ -860,39 +1077,18 @@
                           <span class="chevron">⌃</span>
                         </div>
                       </div>
-                      <ul class="steps-list">
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Finding rooms...</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">24 rooms found.</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking number of outlets.</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking for further drainage requirements.</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Reading specification.</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Calculating condensate connection requirements.</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Looking for civil pop up information...</span></span></li>
-                        <li class="visible"><span class="step-icon check"></span><span class="step-content"><span class="step-text">Stopped — awaiting civil data.</span></span></li>
+                      <ul class="steps-list expanded">
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Continuing analysis...</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Reading civil engineering drawings.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Parsing drainage pop-up locations from civil data.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Cross-referencing with room layout requirements.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Pop-up locations differ from optimal positions.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Checking if relocation is feasible per Approved Doc H.</span></span></li>
+                        <li class="visible"><span class="step-icon edit">✎</span><span class="step-content"><span class="step-text">Placing pop-up markers on drawing for review.</span><span class="step-changes"><span class="changes-box"><span class="added">+366</span></span><span class="filename">drainage-layout.rvt</span></span></span></li>
+                        <li class="visible"><span class="step-icon check"></span><span class="step-content"><span class="step-text">Analysis complete.</span></span></li>
                       </ul>
                     </div>
-                    <div class="demo-msg-bot"><p>Do you have civil engineering information?</p></div>
-                    <div class="demo-msg-user"><p>Yes, sorry just added to the folder now.</p></div>
-                    <!-- Expandable thinking steps -->
-                    <div class="thinking-container visible">
-                      <div class="thinking-header done">
-                        <div class="thinking-header-left">
-                          <div class="pulsing-node"></div>
-                          <span class="steps-count">5 steps</span>
-                        </div>
-                        <div class="steps-toggle">
-                          <span class="chevron">⌃</span>
-                        </div>
-                      </div>
-                      <ul class="steps-list">
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Continuing.</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Reading civil drawings.</span></span></li>
-                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Pop up locations found — different to requirements.</span></span></li>
-                        <li class="visible"><span class="step-icon edit">✎</span><span class="step-content"><span class="step-text">Placing pop ups on drawing.</span><span class="step-changes"><span class="changes-box"><span class="added">+366</span></span><span class="filename">drainage-layout.rvt</span></span></span></li>
-                        <li class="visible"><span class="step-icon check"></span><span class="step-content"><span class="step-text">Done.</span></span></li>
-                      </ul>
-                    </div>
-                    <div class="demo-msg-bot"><p>Can you check to see if you are happy? If happy, type yes or proceed to continue.</p></div>
+                    <div class="demo-msg-bot"><p>I've cross-referenced the civil pop-up locations with the room requirements. Some positions differ from optimal — I've marked these for your review.<br><br>Ready to proceed with the full drainage design? Type yes or proceed to continue.</p></div>
                     <div class="demo-ready-prompt">
                       <span>Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate drainage layout</span>
                     </div>
@@ -914,39 +1110,39 @@
                       <div class="chat-input-controls">
                         <div class="chat-input-left">
                           <div class="chat-agent-dropdown">
-                            <span class="chat-agent-badge active-mode">∞ <span class="agent-mode-display">Designer</span> <span class="dropdown-arrow">▾</span></span>
+                            <span class="chat-agent-badge active-mode">∞ <span class="agent-mode-display">Build</span> <span class="dropdown-arrow">▾</span></span>
                             <div class="chat-dropdown-menu agent-menu">
                               <div class="dropdown-section-header">Mode</div>
-                              <div class="dropdown-item mode-toggle-row" data-mode="Designer">
+                              <div class="dropdown-item mode-toggle-row" data-mode="Build">
                                 <div class="mode-info">
                                   <span class="mode-icon">∞</span>
-                                  <span class="mode-name">Designer</span>
+                                  <span class="mode-name">Build</span>
                                   <span class="mode-tooltip">Full autonomous design mode - creates and places elements</span>
                                 </div>
                                 <label class="mode-toggle">
-                                  <input type="checkbox" name="agentMode" value="Designer" checked>
+                                  <input type="checkbox" name="agentMode" value="Build" checked>
                                   <span class="toggle-slider"></span>
                                 </label>
                               </div>
-                              <div class="dropdown-item mode-toggle-row" data-mode="Plan">
+                              <div class="dropdown-item mode-toggle-row" data-mode="Designer">
                                 <div class="mode-info">
                                   <span class="mode-icon">☰</span>
-                                  <span class="mode-name">Plan</span>
-                                  <span class="mode-tooltip">Planning mode - outlines steps before executing</span>
+                                  <span class="mode-name">Designer</span>
+                                  <span class="mode-tooltip">Designer mode - outlines steps before executing</span>
                                 </div>
                                 <label class="mode-toggle">
-                                  <input type="checkbox" name="agentMode" value="Plan">
+                                  <input type="checkbox" name="agentMode" value="Designer">
                                   <span class="toggle-slider"></span>
                                 </label>
                               </div>
-                              <div class="dropdown-item mode-toggle-row" data-mode="Debug">
+                              <div class="dropdown-item mode-toggle-row" data-mode="QA">
                                 <div class="mode-info">
                                   <span class="mode-icon">⚙</span>
-                                  <span class="mode-name">Debug</span>
-                                  <span class="mode-tooltip">Debug mode - identifies and fixes issues in existing designs</span>
+                                  <span class="mode-name">QA</span>
+                                  <span class="mode-tooltip">QA Mode - identifies and fixes issues in existing designs</span>
                                 </div>
                                 <label class="mode-toggle">
-                                  <input type="checkbox" name="agentMode" value="Debug">
+                                  <input type="checkbox" name="agentMode" value="QA">
                                   <span class="toggle-slider"></span>
                                 </label>
                               </div>
@@ -964,7 +1160,7 @@
                             </div>
                           </div>
                           <div class="chat-model-dropdown">
-                            <span class="chat-model-label"><span class="model-display">Build X 0.1</span> <span class="dropdown-arrow">▾</span></span>
+                            <span class="chat-model-label"><span class="model-display"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> <span class="model-version-display">0.1</span></span> <span class="dropdown-arrow">▾</span></span>
                             <div class="chat-dropdown-menu model-menu">
                               <div class="dropdown-section-header">Model</div>
                               <div class="dropdown-item model-option active" data-model="Build X 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Advanced premium model incorporating every service</span></div>
@@ -1051,71 +1247,242 @@
               <div class="demo-chat-body">
                 <!-- History Sidebar -->
                 <div class="demo-chat-history-sidebar">
-                  <div class="demo-history-header">Schematics</div>
-                  <div class="demo-history-list" id="chatHistoryIndex5">
-                    <div class="demo-history-item active" data-conversation="lv-schematic" data-system="lv">
-                      <div class="demo-history-item-title">LV Schematic</div>
-                      <div class="demo-history-item-preview">Boards allocated</div>
+                  <div class="sidebar-tab-bar">
+                    <button class="sidebar-tab active" data-panel="agents" title="View all designer conversations">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span>Designers</span>
+                    </button>
+                    <button class="sidebar-tab" data-panel="files" title="View project files and outputs">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                      <span>Files</span>
+                    </button>
+                    <button class="share-chat-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                  </div>
+                  
+                  <!-- Agents Panel -->
+                  <div class="sidebar-panel active" data-panel="agents">
+                    <div class="demo-history-search">
+                      <input type="text" class="history-search-input" id="agentHistorySearch5" name="agentHistorySearch5" placeholder="Search...">
                     </div>
-                    <div class="demo-history-item" data-conversation="containment" data-system="containment">
-                      <div class="demo-history-item-title">Containment</div>
-                      <div class="demo-history-item-preview">Routes calculated</div>
+                    <button class="new-agent-btn" title="Start a new designer conversation">+ New Designer</button>
+                    <div class="demo-history-list" id="chatHistoryIndex5">
+                      <div class="demo-history-item active" data-conversation="lv" data-system="lv">
+                        <div class="demo-history-item-title">LV Schematic</div>
+                        <div class="demo-history-item-preview">Boards allocated</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="drainage" data-system="drainage">
+                        <div class="demo-history-item-title">Drainage Schematic</div>
+                        <div class="demo-history-item-preview">SVPs loaded</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="water" data-system="water">
+                        <div class="demo-history-item-title">Water Schematic</div>
+                        <div class="demo-history-item-preview">Revit data ready</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="heating" data-system="heating">
+                        <div class="demo-history-item-title">Heating Schematic</div>
+                        <div class="demo-history-item-preview">Flow diagram ready</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="ventilation" data-system="ventilation">
+                        <div class="demo-history-item-title">Ventilation Schematic</div>
+                        <div class="demo-history-item-preview">Air balance ready</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="containment" data-system="containment">
+                        <div class="demo-history-item-title">Containment Schematic</div>
+                        <div class="demo-history-item-preview">Routes calculated</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="smallpower" data-system="smallpower">
+                        <div class="demo-history-item-title">Small Power Schematic</div>
+                        <div class="demo-history-item-preview">Circuits allocated</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="lighting" data-system="lighting">
+                        <div class="demo-history-item-title">Lighting Schematic</div>
+                        <div class="demo-history-item-preview">Circuits complete</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="firealarms" data-system="firealarms">
+                        <div class="demo-history-item-title">Fire Alarm Schematic</div>
+                        <div class="demo-history-item-preview">Zones defined</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="security" data-system="security">
+                        <div class="demo-history-item-title">Security Schematic</div>
+                        <div class="demo-history-item-preview">Access diagram ready</div>
+                      </div>
                     </div>
-                    <div class="demo-history-item" data-conversation="small-power" data-system="smallpower">
-                      <div class="demo-history-item-title">Small Power</div>
-                      <div class="demo-history-item-preview">Circuits allocated</div>
-                    </div>
-                    <div class="demo-history-item" data-conversation="lighting" data-system="lighting">
-                      <div class="demo-history-item-title">Lighting</div>
-                      <div class="demo-history-item-preview">Fittings positioned</div>
-                    </div>
-                    <div class="demo-history-item" data-conversation="fire-alarm" data-system="firealarm">
-                      <div class="demo-history-item-title">Fire Alarms</div>
-                      <div class="demo-history-item-preview">Devices circuited</div>
-                    </div>
-                    <div class="demo-history-item" data-conversation="security" data-system="security">
-                      <div class="demo-history-item-title">Security</div>
-                      <div class="demo-history-item-preview">Access control added</div>
+                    <div class="sidebar-footer">
+                      <span class="footer-text">10 designers</span>
                     </div>
                   </div>
-                  <!-- Outputs Section -->
-                  <div class="demo-outputs-section">
-                    <div class="demo-outputs-header">Outputs</div>
-                    <div class="demo-outputs-list">
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon pdf">PDF</div>
-                        <div class="demo-output-name">LV_Schematic.pdf</div>
+                  
+                  <!-- Files Panel -->
+                  <div class="sidebar-panel" data-panel="files">
+                    <div class="demo-outputs-section project-structure">
+                      <div class="demo-outputs-tree">
+                        <div class="tree-folder expanded">
+                          <div class="tree-folder-header"><span class="folder-icon">▼</span> Project</div>
+                          <div class="tree-folder-content">
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header"><span class="folder-icon">▼</span> Schematics</div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file"><span class="file-icon pdf"></span>LV_Schematic.pdf</div>
+                                <div class="tree-file"><span class="file-icon pdf"></span>Drainage_Schematic.pdf</div>
+                              </div>
+                            </div>
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header"><span class="folder-icon">▼</span> Schedules</div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file"><span class="file-icon xlsx"></span>Circuit_Schedule.xlsx</div>
+                                <div class="tree-file"><span class="file-icon xlsx"></span>Cable_Calculations.xlsx</div>
+                              </div>
+                            </div>
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header"><span class="folder-icon">▼</span> Models</div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file"><span class="file-icon rvt"></span>Electrical_Model.rvt</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon dwg">DWG</div>
-                        <div class="demo-output-name">Containment_Layout.dwg</div>
-                      </div>
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon rvt">RVT</div>
-                        <div class="demo-output-name">Electrical_Model.rvt</div>
-                      </div>
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon xlsx">XLS</div>
-                        <div class="demo-output-name">Circuit_Schedule.xlsx</div>
-                      </div>
+                    </div>
+                    <div class="sidebar-footer">
+                      <span class="footer-text">5 files</span>
                     </div>
                   </div>
                 </div>
+                <!-- Chat Sidebar Resize Handle -->
+                <div class="chat-sidebar-resize"></div>
                 <!-- Chat Main Area -->
                 <div class="demo-chat-main">
-                  <div class="demo-chat-messages" id="chatMessagesIndex5">
-                    <div class="demo-msg-bot"><p>I can generate schematics from your layouts. Which layout would you like to use as the source?</p></div>
-                    <div class="demo-msg-user"><p>Use the Level 1 electrical layout</p></div>
-                    <div class="demo-msg-bot"><p>Layout selected. I've extracted board zones from the scoping document. DB-01 serves the north wing, DB-02 covers south. Small power has been determined from furniture recognition and mechanical equipment JSON.</p></div>
-                    <div class="demo-msg-user"><p>What about cable calculations?</p></div>
-                    <div class="demo-msg-bot"><p>Cable lengths calculated and stored per circuit. The LV schematic is ready with protective device coordination. Cable calculations show all circuits within volt drop limits. Ready to generate the schematic?</p></div>
-                    <div class="demo-ready-prompt">
-                      <span>Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate schematic</span>
+                  <div class="design-options-bar">
+                    <div class="design-tabs">
+                      <button class="design-tab active" data-tab="main">Option 1 <span class="tab-label">(main)</span><span class="tab-close">×</span></button>
+                      <button class="design-option-add" title="Add design option - allow the agent to run parallel design options so you can best decide which is best."><span class="plus-icon">+</span><span class="branch-icon">⑂</span></button>
                     </div>
                   </div>
-                  <div class="demo-chat-input-row">
-                    <input type="text" class="demo-chat-input" id="chatInputIndex5" placeholder="Type 'yes' to proceed...">
-                    <button class="demo-chat-send" id="chatSendIndex5">Send</button>
+                  <div class="demo-chat-messages" id="chatMessagesIndex5">
+                    <div class="demo-msg-user"><p>Can you create the LV schematic?</p></div>
+                    <div class="demo-msg-bot"><p>I can see the panelboard is existing, but I don't have the circuit charts. Do you have a photograph or document showing the existing circuits?</p></div>
+                    <div class="demo-msg-user"><p>Yes, I've uploaded the photo to the project folder.</p></div>
+                    <!-- Expandable thinking steps -->
+                    <div class="thinking-container visible">
+                      <div class="thinking-header done">
+                        <div class="thinking-header-left">
+                          <div class="pulsing-node"></div>
+                          <span class="steps-count">8 steps</span>
+                        </div>
+                        <div class="steps-toggle">
+                          <span class="chevron">⌃</span>
+                        </div>
+                      </div>
+                      <ul class="steps-list expanded">
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Reading uploaded photograph...</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Running OCR on circuit chart image.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Extracting circuit descriptions.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Parsing protective device ratings.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Cross-referencing with layout data.</span></span></li>
+                        <li class="visible"><span class="step-icon dot"></span><span class="step-content"><span class="step-text">Matching circuits to distribution boards.</span></span></li>
+                        <li class="visible"><span class="step-icon edit">✎</span><span class="step-content"><span class="step-text">Storing circuit data to project.</span><span class="step-changes"><span class="changes-box"><span class="added">+48</span></span><span class="filename">Circuit_Schedule.xlsx</span></span></span></li>
+                        <li class="visible"><span class="step-icon check"></span><span class="step-content"><span class="step-text">Circuit data extracted successfully.</span></span></li>
+                      </ul>
+                    </div>
+                    <div class="demo-msg-bot"><p>I've extracted the circuit data from your photograph using OCR. <strong>48 circuits</strong> identified across <strong>DB-01</strong> and <strong>DB-02</strong>. Protective device ratings and cable sizes have been captured.<br><br>Ready to generate the LV schematic?</p></div>
+                    <div class="demo-ready-prompt">
+                      <span>Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate LV schematic</span>
+                    </div>
+                  </div>
+                  <!-- Persistent Neural Node with Status -->
+                  <div class="chat-persistent-node-wrapper">
+                    <div class="chat-neural-node" id="chatPersistentNodeIndex5">
+                      <div class="chat-node-core"></div>
+                      <div class="chat-node-glow"></div>
+                      <div class="chat-node-pulse-ring"></div>
+                    </div>
+                    <div class="chat-node-status" id="chatNodeStatus5">
+                      <span class="status-text"></span>
+                    </div>
+                  </div>
+                  <div class="demo-chat-input-row cursor-style">
+                    <div class="chat-input-wrapper">
+                      <span class="chat-input-placeholder" id="chatInputIndex5" contenteditable="true" data-placeholder="Message..."></span>
+                      <div class="chat-input-controls">
+                        <div class="chat-input-left">
+                          <div class="chat-agent-dropdown">
+                            <span class="chat-agent-badge active-mode">∞ <span class="agent-mode-display">Build</span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu agent-menu">
+                              <div class="dropdown-section-header">Mode</div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Build">
+                                <div class="mode-info">
+                                  <span class="mode-icon">∞</span>
+                                  <span class="mode-name">Build</span>
+                                  <span class="mode-tooltip">Full autonomous design mode - creates and places elements</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Build" checked>
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Designer">
+                                <div class="mode-info">
+                                  <span class="mode-icon">☰</span>
+                                  <span class="mode-name">Designer</span>
+                                  <span class="mode-tooltip">Designer mode - outlines steps before executing</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Designer">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="QA">
+                                <div class="mode-info">
+                                  <span class="mode-icon">⚙</span>
+                                  <span class="mode-name">QA</span>
+                                  <span class="mode-tooltip">QA Mode - identifies and fixes issues in existing designs</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="QA">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Query">
+                                <div class="mode-info">
+                                  <span class="mode-icon">?</span>
+                                  <span class="mode-name">Query</span>
+                                  <span class="mode-tooltip">Query the model for answers and golden thread decision making logic</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Query">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chat-model-dropdown">
+                            <span class="chat-model-label"><span class="model-display"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> <span class="model-version-display">0.1</span></span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu model-menu">
+                              <div class="dropdown-section-header">Model</div>
+                              <div class="dropdown-item model-option active" data-model="Build X 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Advanced premium model incorporating every service</span></div>
+                              <div class="dropdown-item model-option" data-model="Build MEP 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">MEP</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Production-ready model optimized for mechanical, electrical and plumbing systems</span></div>
+                              <div class="dropdown-item model-option" data-model="Build A 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">A</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Architectural coordination model for space planning and layout optimization</span></div>
+                              <div class="dropdown-divider"></div>
+                              <div class="dropdown-item llm-toggle-row" title="Not recommended: LLM has not been specifically trained on inputs and is likely to make more mistakes. Please only use LLM for language exercises like specification and schedule writing.">
+                                <span>LLM Mode ⚠</span>
+                                <label class="llm-toggle">
+                                  <input type="checkbox" id="llmModeToggle5">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item llm-option disabled">Opus 4.5</div>
+                              <div class="dropdown-item llm-option disabled">Chat GPT 5.2</div>
+                              <div class="dropdown-item llm-option disabled">Gemini 3.0</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-input-right">
+                          <button class="chat-share-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                          <button class="chat-meeting-btn" id="meetingModeBtn5" title="Activate meeting mode when in calls, so the agent can understand what the team discussion results in, allowing them to make changes instantly.">👥</button>
+                          <button class="chat-send-btn" id="chatSendIndex5" title="Send">↑</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1125,7 +1492,7 @@
           <div class="demo-revit-wrapper">
             <div class="demo-revit-box">
               <div class="demo-revit-titlebar">
-                <span class="demo-revit-titlebar-text">AI MEP Design Demo — Schematics</span>
+                <span class="demo-revit-titlebar-text">Revit MEP — Schematics</span>
                 <div class="demo-revit-titlebar-btns">
                   <button class="demo-titlebar-btn min"></button>
                   <button class="demo-titlebar-btn max"></button>
@@ -1133,11 +1500,10 @@
                 </div>
               </div>
               <div class="demo-revit-content" id="gifSectionIndex5">
-                <div class="demo-revit-placeholder">
-                  <div class="demo-revit-placeholder-icon">▶</div>
-                  <div class="demo-revit-placeholder-text">Type a request to start</div>
-                </div>
-                <img src="images/demos/1227(1).gif" alt="Schematic Demo">
+                <img class="video-poster" src="images/demos/schematic-preview.jpg" alt="Schematic Preview">
+                <video id="schematicVideo" muted playsinline preload="none">
+                  <source src="Videos/View 5 - Schematics/01-lv.mp4" type="video/mp4">
+                </video>
               </div>
             </div>
           </div>
@@ -1156,7 +1522,7 @@
         <div class="demo-text-body">
           <p>Transform 2D layouts into fully coordinated 3D Revit models with automatic clash detection and resolution.</p>
           <p>Our AI builds complete MEP models with proper families, parameters, and coordination — ready for construction documentation.</p>
-          <a href="3D_Model_Output.pdf" download class="demo-example-btn">See example output</a>
+          <button class="demo-example-btn" id="openClashSolverBtn">Open Clash Solver</button>
         </div>
       </div>
     </div>
@@ -1177,50 +1543,87 @@
               <div class="demo-chat-body">
                 <!-- History Sidebar -->
                 <div class="demo-chat-history-sidebar">
-                  <div class="demo-history-header">3D Systems</div>
-                  <div class="demo-history-list" id="chatHistoryIndex6">
-                    <div class="demo-history-item active" data-conversation="risers" data-system="risers">
-                      <div class="demo-history-item-title">Risers</div>
-                      <div class="demo-history-item-preview">Sections created</div>
+                  <div class="sidebar-tab-bar">
+                    <button class="sidebar-tab active" data-panel="agents" title="View all designer conversations">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span>Designers</span>
+                    </button>
+                    <button class="sidebar-tab" data-panel="files" title="View project files and outputs">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                      <span>Files</span>
+                    </button>
+                    <button class="share-chat-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                  </div>
+                  
+                  <!-- Agents Panel -->
+                  <div class="sidebar-panel active" data-panel="agents">
+                    <div class="demo-history-search">
+                      <input type="text" class="history-search-input" id="agentHistorySearch6" name="agentHistorySearch6" placeholder="Search...">
                     </div>
-                    <div class="demo-history-item" data-conversation="corridors" data-system="corridors">
-                      <div class="demo-history-item-title">Corridor Sections</div>
-                      <div class="demo-history-item-preview">Routing stacked</div>
+                    <button class="new-agent-btn" title="Start a new designer conversation">+ New Designer</button>
+                    <div class="demo-history-list" id="chatHistoryIndex6">
+                      <div class="demo-history-item active" data-conversation="risers" data-system="risers">
+                        <div class="demo-history-item-title">Risers</div>
+                        <div class="demo-history-item-preview">Sections created</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="corridors" data-system="corridors">
+                        <div class="demo-history-item-title">Corridor Sections</div>
+                        <div class="demo-history-item-preview">Routing stacked</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="plantrooms" data-system="plantrooms">
+                        <div class="demo-history-item-title">Plant Rooms</div>
+                        <div class="demo-history-item-preview">Equipment placed</div>
+                      </div>
+                      <div class="demo-history-item" data-conversation="clash" data-system="clash">
+                        <div class="demo-history-item-title">Clash Detection</div>
+                        <div class="demo-history-item-preview">8 clashes resolved</div>
+                      </div>
                     </div>
-                    <div class="demo-history-item" data-conversation="plantrooms" data-system="plantrooms">
-                      <div class="demo-history-item-title">Plant Rooms</div>
-                      <div class="demo-history-item-preview">Equipment placed</div>
-                    </div>
-                    <div class="demo-history-item" data-conversation="clash" data-system="clash">
-                      <div class="demo-history-item-title">Clash Detection</div>
-                      <div class="demo-history-item-preview">8 clashes resolved</div>
+                    <div class="sidebar-footer">
+                      <span class="footer-text">4 designers</span>
                     </div>
                   </div>
-                  <!-- Outputs Section -->
-                  <div class="demo-outputs-section">
-                    <div class="demo-outputs-header">Outputs</div>
-                    <div class="demo-outputs-list">
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon rvt">RVT</div>
-                        <div class="demo-output-name">MEP_3D_Model.rvt</div>
+                  
+                  <!-- Files Panel -->
+                  <div class="sidebar-panel" data-panel="files">
+                    <div class="demo-outputs-section project-structure">
+                      <div class="demo-outputs-tree">
+                        <div class="tree-folder expanded">
+                          <div class="tree-folder-header"><span class="folder-icon">▼</span> Project</div>
+                          <div class="tree-folder-content">
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header"><span class="folder-icon">▼</span> 3D Models</div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file"><span class="file-icon rvt"></span>MEP_3D_Model.rvt</div>
+                                <div class="tree-file"><span class="file-icon dwg"></span>Riser_Sections.dwg</div>
+                              </div>
+                            </div>
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header"><span class="folder-icon">▼</span> Reports</div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file"><span class="file-icon pdf"></span>Clash_Report.pdf</div>
+                                <div class="tree-file"><span class="file-icon xlsx"></span>Void_Analysis.xlsx</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon dwg">DWG</div>
-                        <div class="demo-output-name">Riser_Sections.dwg</div>
-                      </div>
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon pdf">PDF</div>
-                        <div class="demo-output-name">Clash_Report.pdf</div>
-                      </div>
-                      <div class="demo-output-file">
-                        <div class="demo-output-icon xlsx">XLS</div>
-                        <div class="demo-output-name">Void_Analysis.xlsx</div>
-                      </div>
+                    </div>
+                    <div class="sidebar-footer">
+                      <span class="footer-text">4 files</span>
                     </div>
                   </div>
                 </div>
+                <!-- Chat Sidebar Resize Handle -->
+                <div class="chat-sidebar-resize"></div>
                 <!-- Chat Main Area -->
                 <div class="demo-chat-main">
+                  <div class="design-options-bar">
+                    <div class="design-tabs">
+                      <button class="design-tab active" data-tab="main">Option 1 <span class="tab-label">(main)</span><span class="tab-close">×</span></button>
+                      <button class="design-option-add" title="Add design option - allow the agent to run parallel design options so you can best decide which is best."><span class="plus-icon">+</span><span class="branch-icon">⑂</span></button>
+                    </div>
+                  </div>
                   <div class="demo-chat-messages" id="chatMessagesIndex6">
                     <div class="demo-msg-bot"><p>I've analysed the ceiling void data from the architectural model. The void depth is 400mm on Level 1 and 350mm on Level 2.</p></div>
                     <div class="demo-msg-user"><p>Can we fit all services in that void?</p></div>
@@ -1231,9 +1634,100 @@
                       <span>Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate 3D model</span>
                     </div>
                   </div>
-                  <div class="demo-chat-input-row">
-                    <input type="text" class="demo-chat-input" id="chatInputIndex6" placeholder="Type 'yes' to proceed...">
-                    <button class="demo-chat-send" id="chatSendIndex6">Send</button>
+                  <!-- Persistent Neural Node with Status -->
+                  <div class="chat-persistent-node-wrapper">
+                    <div class="chat-neural-node" id="chatPersistentNodeIndex6">
+                      <div class="chat-node-core"></div>
+                      <div class="chat-node-glow"></div>
+                      <div class="chat-node-pulse-ring"></div>
+                    </div>
+                    <div class="chat-node-status" id="chatNodeStatus6">
+                      <span class="status-text"></span>
+                    </div>
+                  </div>
+                  <div class="demo-chat-input-row cursor-style">
+                    <div class="chat-input-wrapper">
+                      <span class="chat-input-placeholder" id="chatInputIndex6" contenteditable="true" data-placeholder="Message..."></span>
+                      <div class="chat-input-controls">
+                        <div class="chat-input-left">
+                          <div class="chat-agent-dropdown">
+                            <span class="chat-agent-badge active-mode">∞ <span class="agent-mode-display">Build</span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu agent-menu">
+                              <div class="dropdown-section-header">Mode</div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Build">
+                                <div class="mode-info">
+                                  <span class="mode-icon">∞</span>
+                                  <span class="mode-name">Build</span>
+                                  <span class="mode-tooltip">Full autonomous design mode - creates and places elements</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Build" checked>
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Designer">
+                                <div class="mode-info">
+                                  <span class="mode-icon">☰</span>
+                                  <span class="mode-name">Designer</span>
+                                  <span class="mode-tooltip">Designer mode - outlines steps before executing</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Designer">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="QA">
+                                <div class="mode-info">
+                                  <span class="mode-icon">⚙</span>
+                                  <span class="mode-name">QA</span>
+                                  <span class="mode-tooltip">QA Mode - identifies and fixes issues in existing designs</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="QA">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Query">
+                                <div class="mode-info">
+                                  <span class="mode-icon">?</span>
+                                  <span class="mode-name">Query</span>
+                                  <span class="mode-tooltip">Query the model for answers and golden thread decision making logic</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Query">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chat-model-dropdown">
+                            <span class="chat-model-label"><span class="model-display"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> <span class="model-version-display">0.1</span></span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu model-menu">
+                              <div class="dropdown-section-header">Model</div>
+                              <div class="dropdown-item model-option active" data-model="Build X 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Advanced premium model incorporating every service</span></div>
+                              <div class="dropdown-item model-option" data-model="Build MEP 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">MEP</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Production-ready model optimized for mechanical, electrical and plumbing systems</span></div>
+                              <div class="dropdown-item model-option" data-model="Build A 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">A</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Architectural coordination model for space planning and layout optimization</span></div>
+                              <div class="dropdown-divider"></div>
+                              <div class="dropdown-item llm-toggle-row" title="Not recommended: LLM has not been specifically trained on inputs and is likely to make more mistakes. Please only use LLM for language exercises like specification and schedule writing.">
+                                <span>LLM Mode ⚠</span>
+                                <label class="llm-toggle">
+                                  <input type="checkbox" id="llmModeToggle6">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item llm-option disabled">Opus 4.5</div>
+                              <div class="dropdown-item llm-option disabled">Chat GPT 5.2</div>
+                              <div class="dropdown-item llm-option disabled">Gemini 3.0</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-input-right">
+                          <button class="chat-share-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                          <button class="chat-meeting-btn" id="meetingModeBtn6" title="Activate meeting mode when in calls, so the agent can understand what the team discussion results in, allowing them to make changes instantly.">👥</button>
+                          <button class="chat-send-btn" id="chatSendIndex6" title="Send">↑</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1908,26 +2402,99 @@ window.addEventListener('load', function() {
     }, { passive: false });
   });
   
-  // Re-attach click handlers to thinking containers AFTER cloning
-  document.querySelectorAll('.thinking-container').forEach(function(container) {
-    const toggle = container.querySelector('.steps-toggle');
-    const header = container.querySelector('.thinking-header');
-    const stepsList = container.querySelector('.steps-list');
-    
-    if (header && stepsList) {
-      // Make entire header clickable
-      header.style.cursor = 'pointer';
-      header.addEventListener('click', function() {
-        if (toggle) toggle.classList.toggle('expanded');
-        stepsList.classList.toggle('expanded');
-      });
-    }
+  // Thinking container click handlers are now handled by event delegation in view4-chat.js
+  // Just set cursor style for visual feedback
+  document.querySelectorAll('.thinking-container .thinking-header').forEach(function(header) {
+    header.style.cursor = 'pointer';
   });
 });
 </script>
 
 <!-- View 4 Chat Controller - handles conversation switching and neural node animation -->
 <script src="js/view4-chat.js"></script>
+
+<!-- View 5 Chat Controller - handles schematic conversation switching and neural node animation -->
+<script src="js/view5-chat.js"></script>
+
+<!-- View 6 Chat Controller - handles 3D model conversation switching and neural node animation -->
+<script src="js/view6-chat.js"></script>
+
+<!-- Clash Manager Modal -->
+<div class="clash-modal-overlay" id="clashModalOverlay">
+  <div class="clash-modal-container">
+    <iframe class="clash-modal-iframe" id="clashModalIframe" src="about:blank"></iframe>
+  </div>
+</div>
+
+<!-- Clash Manager Modal Controller -->
+<script>
+(function() {
+  'use strict';
+  
+  function initClashManager() {
+    const openBtn = document.getElementById('openClashSolverBtn');
+    const modalOverlay = document.getElementById('clashModalOverlay');
+    const modalIframe = document.getElementById('clashModalIframe');
+    
+    if (!openBtn || !modalOverlay || !modalIframe) {
+      console.warn('Clash Manager: Required elements not found');
+      return;
+    }
+    
+    // Open modal when button is clicked
+    openBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Load the clash manager page
+      modalIframe.src = 'clash-manager.html';
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Close modal when clicking overlay (outside the container)
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) {
+        closeClashModal();
+      }
+    });
+    
+    // Listen for close message from iframe
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'closeClashManager') {
+        closeClashModal();
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        closeClashModal();
+      }
+    });
+    
+    function closeClashModal() {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      
+      // Clear iframe after transition
+      setTimeout(function() {
+        modalIframe.src = 'about:blank';
+      }, 300);
+    }
+    
+    // Expose close function globally
+    window.closeClashManager = closeClashModal;
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initClashManager);
+  } else {
+    initClashManager();
+  }
+})();
+</script>
 
 <!-- Shared Footer -->
 <script src="js/footer.js"></script>

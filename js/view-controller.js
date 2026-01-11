@@ -25,8 +25,8 @@
     // we're navigating to. Text/panels only show when animation completes
     // AND targetViewIndex still matches. This prevents text bleeding.
     
-    let targetViewIndex = 1;
-    let currentView = 1;  // Last confirmed view (after animation complete)
+    let targetViewIndex = 0;
+    let currentView = 0;  // Last confirmed view (after animation complete)
     
     function setTargetView(viewNum) {
       targetViewIndex = viewNum;
@@ -1125,6 +1125,106 @@
     }, 100);
     
     // --------------------------------------------------
+    // COLOR PALETTE SYNC
+    // --------------------------------------------------
+    // Both dropdowns (dark toggle area + chat settings) share the same color selection
+    
+    function initColorPaletteSync() {
+      // Apply background colors to swatches from data-color attribute
+      document.querySelectorAll('.color-swatch[data-color]').forEach(swatch => {
+        swatch.style.backgroundColor = swatch.dataset.color;
+      });
+      
+      // Handle color swatch clicks
+      const allColorSwatches = document.querySelectorAll('.color-swatch');
+      
+      allColorSwatches.forEach(swatch => {
+        swatch.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const selectedColor = swatch.dataset.color;
+          
+          // Update all swatches across both dropdowns
+          document.querySelectorAll('.color-swatch').forEach(s => {
+            if (s.dataset.color === selectedColor) {
+              s.classList.add('active');
+            } else {
+              s.classList.remove('active');
+            }
+          });
+          
+          // Store selection in localStorage for persistence
+          localStorage.setItem('colorPalette', selectedColor);
+          
+          // Dispatch event for future color application
+          window.dispatchEvent(new CustomEvent('paletteChanged', { 
+            detail: { color: selectedColor } 
+          }));
+          
+          console.log('Color selected:', selectedColor);
+        });
+      });
+      
+      // Handle "More Colors" button clicks
+      const moreColorsBtn = document.getElementById('moreColorsBtn');
+      const customColorPicker = document.getElementById('customColorPicker');
+      const chatMoreColorsBtn = document.querySelector('.chat-more-colors');
+      const chatCustomColorPicker = document.querySelector('.chat-custom-color');
+      
+      if (moreColorsBtn && customColorPicker) {
+        moreColorsBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          customColorPicker.click();
+        });
+        
+        customColorPicker.addEventListener('input', (e) => {
+          const selectedColor = e.target.value;
+          applyCustomColor(selectedColor);
+        });
+      }
+      
+      if (chatMoreColorsBtn && chatCustomColorPicker) {
+        chatMoreColorsBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          chatCustomColorPicker.click();
+        });
+        
+        chatCustomColorPicker.addEventListener('input', (e) => {
+          const selectedColor = e.target.value;
+          applyCustomColor(selectedColor);
+        });
+      }
+      
+      function applyCustomColor(color) {
+        // Remove active from all swatches
+        document.querySelectorAll('.color-swatch').forEach(s => {
+          s.classList.remove('active');
+        });
+        
+        // Store and dispatch
+        localStorage.setItem('colorPalette', color);
+        window.dispatchEvent(new CustomEvent('paletteChanged', { 
+          detail: { color: color } 
+        }));
+        
+        console.log('Custom color selected:', color);
+      }
+      
+      // Restore saved color on load
+      const savedColor = localStorage.getItem('colorPalette');
+      if (savedColor) {
+        document.querySelectorAll('.color-swatch').forEach(s => {
+          if (s.dataset.color && s.dataset.color.toLowerCase() === savedColor.toLowerCase()) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+      }
+    }
+    
+    initColorPaletteSync();
+    
+    // --------------------------------------------------
     // MENU NAVIGATION CLICK HANDLERS
     // --------------------------------------------------
     // These run on DOMContentLoaded so they work from any page
@@ -1211,6 +1311,11 @@
       await sleep(500);
       if (window.PERF) window.PERF.mark('After 500ms sleep');
       
+      // Start neural network pulse animations immediately as brain appears
+      if (window.startNeuralAnimations) {
+        window.startNeuralAnimations();
+      }
+      
       // Check for interruption - if target changed, abort intro
       if (!isTargetView(0)) {
         console.log('Intro interrupted at phase 1, aborting');
@@ -1237,76 +1342,22 @@
       await sleep(1000);
       if (window.PERF) window.PERF.mark('After 1000ms sleep');
       
-      // Check for interruption before transitioning to view 1
-      if (!isTargetView(0)) {
-        console.log('Intro interrupted at phase 3, aborting');
-        return;
-      }
+      // STAY AT VIEW 0 - don't auto-transition to View 1
+      // User scrolls/clicks to continue
       
-      // Transition to View 1: shrink and move brain left
-      setTargetView(1);
-      updateSectionIndicator(1);
+      // Start auto-hover on view 0
+      updateAutoHover(0);
       
-      if (window.shrinkAndMoveBrain) {
-        window.shrinkAndMoveBrain();
-      }
-      if (window.PERF) window.PERF.mark('shrinkAndMoveBrain called');
-      
-      // Wait for brain move animation
-      await sleep(getDuration('brainMove') + 700);
-      if (window.PERF) window.PERF.mark('Brain move animation complete');
-      
-      // Check for interruption - user may have scrolled away during animation
-      if (!isTargetView(1)) {
-        console.log('Intro interrupted during brain move, aborting');
-        isTransitioning = false;
-        return;
-      }
-      
-      // Show right panel and hero text
-      rightPanel.classList.add('visible');
-      
-      await sleep(300);
-      
-      // Final check before showing hero text
-      if (!isTargetView(1)) {
-        console.log('Intro interrupted before hero text, aborting');
-        isTransitioning = false;
-        return;
-      }
-      
-      document.getElementById('heroTextContainer').classList.add('visible');
-      if (window.PERF) window.PERF.mark('Hero text visible');
-      
-      currentView = 1;
-      
-      // Start auto-hover on view 1
-      updateAutoHover(1);
-      
-      await sleep(1000);
-      
-      // Start neural network pulse animations
-      if (window.startNeuralAnimations) {
-        window.startNeuralAnimations();
-      }
-      
-      // Check before showing scroll indicator
-      if (!isTargetView(1)) {
-        console.log('Intro interrupted at final phase, aborting');
-        isTransitioning = false;
-        return;
-      }
-      
-      // Show scroll indicator
+      // Show scroll indicator so user can click to continue
       await sleep(500);
       scrollIndicator.classList.add('visible');
       
-      // Mark intro complete
+      // Mark intro complete - stay at View 0
       isTransitioning = false;
       animationPhase = false;
       
       if (window.PERF) {
-        window.PERF.mark('VIEW 1 FULLY LOADED - Animation complete');
+        window.PERF.mark('VIEW 0 FULLY LOADED - Waiting for user scroll');
         window.PERF.summary();
       }
     }
@@ -1434,11 +1485,35 @@
       
       // Touch support
       let touchStartY = 0;
+      let touchStartTarget = null;
       document.addEventListener('touchstart', (e) => {
         touchStartY = e.touches[0].clientY;
+        touchStartTarget = e.target;
       }, { passive: true });
       
       document.addEventListener('touchend', (e) => {
+        // Check if touch originated from inside a scrollable panel
+        const scrollablePanels = [
+          '.demo-chat-messages',
+          '.demo-history-list',
+          '.demo-outputs-tree',
+          '.demo-chat-history-sidebar',
+          '.demo-revit-box',
+          '.demo-chat-box',
+          '.demo-chat-wrapper',
+          '.demo-containers-stack',
+          '.sidebar-panel',
+          '.riba-left-panel',
+          '.about-us-panel'
+        ];
+        
+        for (const selector of scrollablePanels) {
+          if (touchStartTarget && touchStartTarget.closest(selector)) {
+            // Let the panel handle its own scroll - don't change views
+            return;
+          }
+        }
+        
         const touchEndY = e.changedTouches[0].clientY;
         const diff = touchStartY - touchEndY;
         
@@ -1458,6 +1533,29 @@
       const ribaPanel = document.getElementById('ribaLeftPanel');
       if (ribaPanel && ribaPanel.classList.contains('scroll-locked')) {
         return;
+      }
+      
+      // Check if scroll originated from inside a scrollable panel
+      // If so, let the panel scroll naturally - don't change views
+      const scrollablePanels = [
+        '.demo-chat-messages',
+        '.demo-history-list',
+        '.demo-outputs-tree',
+        '.demo-chat-history-sidebar',
+        '.demo-revit-box',
+        '.demo-chat-box',
+        '.demo-chat-wrapper',
+        '.demo-containers-stack',
+        '.sidebar-panel',
+        '.riba-left-panel',
+        '.about-us-panel'
+      ];
+      
+      for (const selector of scrollablePanels) {
+        if (e.target.closest(selector)) {
+          // Let the panel handle its own scroll - don't change views
+          return;
+        }
       }
       
       e.preventDefault();

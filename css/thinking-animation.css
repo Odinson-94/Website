@@ -20,7 +20,7 @@
 }
 
 .thinking-container.visible {
-  max-height: 800px;
+  max-height: 2500px;
   margin: 0.5rem 0;
   padding: 6px 10px;
   opacity: 1;
@@ -205,7 +205,7 @@ html.dark-mode .steps-toggle {
 
 /* Expanded: animate to large max-height for smooth fold */
 .steps-list.expanded {
-  max-height: 800px;
+  max-height: 2000px;
   margin-top: 8px;
   opacity: 1;
   overflow: visible;
@@ -214,7 +214,7 @@ html.dark-mode .steps-toggle {
 
 /* Full expanded mode: same, just shows hidden steps via CSS */
 .steps-list.fully-expanded {
-  max-height: 800px;
+  max-height: 2000px;
   overflow: visible;
 }
 
@@ -572,7 +572,7 @@ html.dark-mode .thought-trail-content p {
   overflow: visible;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
   align-self: stretch;
   flex-shrink: 0;
   min-height: 80px;
@@ -718,11 +718,11 @@ html.dark-mode .files-action-btn:hover {
 }
 
 html.dark-mode .files-action-btn.primary {
-  background: #4a9bb8;
+  background: #156082;
 }
 
 html.dark-mode .files-action-btn.primary:hover {
-  background: #5aabbf;
+  background: #1a7299;
 }
 
 html.dark-mode .file-changed-item:hover {

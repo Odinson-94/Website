@@ -235,7 +235,7 @@
     
     // Add resize handle overlays that sit on top of scrollbars
     function addResizeHandles() {
-      const handles = ['e', 's', 'se'];
+      const handles = ['e', 's', 'se', 'sw'];
       handles.forEach(function(edge) {
         const handle = document.createElement('div');
         handle.className = 'resize-handle resize-handle-' + edge;
@@ -245,10 +245,12 @@
           // Narrower handle (4px) at the very edge, doesn't overlap scrollbar
           handle.style.cssText += 'top:36px;right:0;width:4px;height:calc(100% - 56px);cursor:ew-resize;';
         } else if (edge === 's') {
-          // Narrower handle (4px) at the very edge
-          handle.style.cssText += 'bottom:0;left:0;width:100%;height:4px;cursor:ns-resize;';
+          // Narrower handle (4px) at the very edge, leave room for corner handles
+          handle.style.cssText += 'bottom:0;left:16px;width:calc(100% - 32px);height:4px;cursor:ns-resize;';
         } else if (edge === 'se') {
           handle.style.cssText += 'bottom:0;right:0;width:16px;height:16px;cursor:nwse-resize;';
+        } else if (edge === 'sw') {
+          handle.style.cssText += 'bottom:0;left:0;width:16px;height:16px;cursor:nesw-resize;';
         }
         
         handle.addEventListener('mousedown', function(e) {
@@ -441,8 +443,7 @@
       box.style.top = (startTop + startHeight - newHeight) + 'px';
     }
     
-    const chatMessages = box.querySelector('.demo-chat-messages');
-    if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Removed auto-scroll during resize - was causing scroll jump issues
   });
   
   // Single document mouseup for resize
@@ -457,8 +458,7 @@
     const wrapper = box._wrapper;
     if (wrapper) wrapper.classList.remove('snap-target');
     
-    const chatMessages = box.querySelector('.demo-chat-messages');
-    if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Removed auto-scroll during resize - was causing scroll jump issues
     
     resizeState = null;
   });

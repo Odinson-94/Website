@@ -723,19 +723,20 @@ window.isInTransition = isInTransition;
     }
   }
   
-  // Function to start animations after container animation completes
-  function startNeuralAnimations() {
-    animationStarted = true;
-    
-    // Start base pulses immediately (normal firing)
-    ensureBasePulseCount();
-    
-    // Also fire the special stem-to-center cascade (separate animation)
-    setTimeout(() => {
-      fireInitialSignal();
-    }, 500);
-  }
-  window.startNeuralAnimations = startNeuralAnimations;
+// Function to start animations after container animation completes
+function startNeuralAnimations() {
+  animationStarted = true;
+  
+  // Start base pulses immediately (normal firing)
+  ensureBasePulseCount();
+  
+  // Fire multiple stem-to-center cascades immediately for impressive visual
+  // Fire 3 streams with slight stagger for a burst effect
+  fireInitialSignal();
+  setTimeout(() => fireInitialSignal(), 80);
+  setTimeout(() => fireInitialSignal(), 160);
+}
+window.startNeuralAnimations = startNeuralAnimations;
   
   // Fire a special signal from brain stem up to the center node
   function fireInitialSignal() {
