@@ -89,6 +89,11 @@ export async function buildHome() {
   const countSummary =
     `${apps.length} apps · ${features.length} bespoke automations · ${managedSvc.length} agentic modules · ${emailSvc.length} email services.`;
 
+  // ── SECTION 3: Popular apps carousel ────────────────────────────────
+  // Card vocabulary = .rp-commands-card derivative (.app-card.dark-card).
+  // Each card surfaces real PNG logo + apps.json headline_claim.
+  const appsCarousel = renderAppsCarousel(apps);
+
   // SEO
   const seoHead = await renderSeoHead({
     title: 'Adelphos AI — apps, agentic services and bespoke automations for MEP',
@@ -116,6 +121,7 @@ export async function buildHome() {
     .replaceAll('{{tier10_agentic}}',           tier10)
     .replaceAll('{{command_count}}',          String(cmdCount))
     .replaceAll('{{tool_count}}',             String(toolCount))
+    .replaceAll('{{apps_carousel}}',            appsCarousel)
     .replaceAll('{{seo_head}}',                 seoHead)
     .replaceAll('{{json_ld}}',                  jsonLd);
 
@@ -237,6 +243,75 @@ function combinedBanner(parent, children, { badge, divider } = {}) {
       </a>
       ${divider ? `<div class="bundle-divider">${esc(divider)}</div>` : ''}
       <div class="bundle-grid">${inner}</div>
+    </div>`;
+}
+
+/* ─────────────────────────────────────────────  POPULAR APPS CAROUSEL
+   Built per /opt/cursor/artifacts/PLAN.md Phase 1.
+   Card style = .rp-commands-card derivative (single-law: same dark
+   #2f2f2f surface as Section 2, white type, agent spinner where
+   meaningful). Each card carries the real PNG logo + the apps.json
+   headline_claim verbatim. No "Available" stamps, no one-word names. */
+function renderAppsCarousel(apps) {
+  const order = [
+    'revit-copilot', 'specbuilder', 'cobie-manager', 'schedule-builder',
+    'qa-manager', 'adelphos-chat', 'document-controller', 'autocad-copilot',
+    'report-builder', 'word-add-in', 'excel-add-in'
+  ];
+  const findApp = (slug) => apps.find(a => a.slug === slug);
+  const liveCards = order.map(findApp).filter(Boolean).map(a => appCard(a)).join('');
+
+  // Roadmap entries — surfaced as .app-card.roadmap (light teal-bordered ghost
+  // versions of the dark card; same shape, single accent, NOT a different
+  // card style). Names from sandbox plan Section 3.
+  const roadmap = [
+    { title: '2D-to-3D Floorplan from PDF',  blurb: 'Architectural floorplans rebuilt as a Revit model from a PDF.' },
+    { title: 'Plantroom Generator',           blurb: 'Boilers, pumps and AHUs placed and connected from the brief.' },
+    { title: 'AutoRouting — Pipework',        blurb: 'Header drops and branch runs through corridors and risers.' },
+    { title: 'AutoCAD CoPilot',               blurb: 'Same agent, native to AutoCAD MEP.' },
+    { title: 'Report Builder — IESVE',        blurb: 'IESVE outputs assembled into client-ready energy reports.' },
+    { title: 'Arch Floorplan Editing',        blurb: 'Architectural floorplan generation and editing features.' },
+    { title: 'MEP Design Modules',            blurb: 'Editing surfaces for routing, sizing and coordination.' }
+  ];
+  const roadmapCards = roadmap.map(r => roadmapCard(r)).join('');
+
+  return `
+    <div class="apps-scroll">${liveCards}<div class="carousel-divider">Coming after</div>${roadmapCards}</div>
+    <a class="apps-roadmap-link" href="/sandbox/roadmap/">See the full roadmap →</a>`;
+}
+
+function appCard(a) {
+  const claim = (a.headline_claim || a.tagline || '').trim();
+  const surface = (a.surface || '').split('·')[0].trim();
+  return `
+    <a class="app-card" href="/dist/apps/${esc(a.slug)}/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/${esc(a.icon)}" alt="${esc(a.title)} logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">${esc(a.title)}</div>
+        <div class="app-card-claim">${esc(claim)}</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">${esc(surface)}</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>`;
+}
+
+function roadmapCard(r) {
+  return `
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">${esc(r.title)}</div>
+        <div class="app-card-claim">${esc(r.blurb)}</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
     </div>`;
 }
 

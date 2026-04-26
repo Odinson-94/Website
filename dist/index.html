@@ -733,48 +733,175 @@
   .end-cta a.secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.35); }
   .end-cta a:hover { transform: translateY(-2px); }
 
-  /* ── SECTION 3: APPS CAROUSEL ──────────────────────────────────── */
+  /* ── SECTION 3: POPULAR APPS CAROUSEL — .rp-commands-card derivative
+        Same dark #2f2f2f surface as Section 2, white type, app logo
+        on a 12%-opacity painted bg patch, real headline_claim copy
+        from sandbox/data/apps.json, bottom strip with surface + status.
+        Roadmap variant = teal-bordered ghost in same shape (single
+        accent, no new card style).                                    */
   .apps-scroll {
-    display: flex; gap: 14px; padding: 8px 0 20px;
+    display: flex; gap: 16px; padding: 8px 0 20px;
     overflow-x: auto; scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
   .apps-scroll::-webkit-scrollbar { display: none; }
+
   .app-card {
-    flex: 0 0 180px; scroll-snap-align: start;
-    background: #2f2f2f; border-radius: var(--radius-md);
-    padding: 20px 18px; color: #fff;
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    background: var(--ad-card-dark);
+    border-radius: 14px;
+    overflow: hidden;
+    color: #fff;
+    display: flex; flex-direction: column;
+    text-decoration: none;
+    min-height: 340px;
+    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+  }
+  @media (hover: hover) {
+    .app-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    }
+  }
+  .app-card:active { transform: scale(0.99); }
+
+  .app-card .app-logo-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: rgba(255,255,255,0.05);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .app-card .app-logo-wrap::before {
+    content: ''; position: absolute; inset: 0;
+    background: url('/images/revit-bg.png') center/cover no-repeat;
+    opacity: 0.12; z-index: 0;
+  }
+  .app-card .app-logo-img {
+    position: relative; z-index: 1;
+    max-width: 100px; max-height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
+  }
+
+  .app-card .app-card-body {
+    padding: 18px 20px 8px;
     display: flex; flex-direction: column; gap: 8px;
-    transition: transform 0.22s, box-shadow 0.22s;
-    text-decoration: none; min-height: 100px;
+    flex: 1 1 auto;
   }
-  .app-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 36px rgba(0,0,0,0.18);
+  .app-card .app-card-title {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-card);    /* 18px */
+    font-weight: var(--ad-w-card);     /* 600 — dark-card-only weight */
+    letter-spacing: var(--ad-ls-row);
+    line-height: 1.25;
+    color: #fff;
   }
-  .app-card .app-name {
-    font-size: 14px; font-weight: 600; color: #fff;
-    letter-spacing: -0.01em; line-height: 1.3;
+  .app-card .app-card-claim {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-row);     /* 16px */
+    font-weight: var(--ad-w-light);    /* 300 */
+    line-height: var(--ad-lh-row);
+    color: rgba(255,255,255,0.65);
   }
-  .app-card .app-tag {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em; color: rgba(21,96,130,0.9);
+  .app-card .app-card-foot {
     margin-top: auto;
+    padding: 12px 20px 16px;
+    border-top: 1px solid var(--ad-border-card);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
   }
+  .app-card .app-card-surf {
+    font-size: var(--ad-text-mini);   /* 11px */
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: rgba(255,255,255,0.55);
+  }
+  .app-card .app-card-status {
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal-light);
+    letter-spacing: 0.02em;
+  }
+
+  /* Roadmap variant — teal-bordered ghost in the SAME shape. Light
+     surface so it visually contrasts the live/dark cards but still
+     within the single-accent palette. */
   .app-card.roadmap {
-    background: transparent;
-    border: 1px dashed rgba(21,96,130,0.30);
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-teal);
+    color: var(--ad-text-1);
+    box-shadow: none;
   }
-  .app-card.roadmap .app-name { color: #222; }
-  .app-card.roadmap .app-tag { color: #888; }
-  html.dark-mode .app-card.roadmap .app-name { color: #ccc; }
-  html.dark-mode .app-card.roadmap { border-color: rgba(74,155,184,0.30); }
+  .app-card.roadmap .app-logo-wrap {
+    background: rgba(21,96,130,0.05);
+  }
+  .app-card.roadmap .app-logo-wrap::before { opacity: 0; }
+  .app-card.roadmap .app-logo-placeholder {
+    position: relative; z-index: 1;
+    font-family: var(--ad-font-body);
+    font-size: 36px; font-weight: var(--ad-w-light);
+    color: var(--ad-teal);
+    line-height: 1;
+  }
+  .app-card.roadmap .app-card-title { color: var(--ad-text-1); }
+  .app-card.roadmap .app-card-claim { color: var(--ad-text-3); }
+  .app-card.roadmap .app-card-foot { border-top-color: rgba(21,96,130,0.18); }
+  .app-card.roadmap .app-card-surf { color: var(--ad-teal); }
+  html.dark-mode .app-card.roadmap {
+    background: var(--ad-card-dark);
+    color: #fff;
+    border-color: var(--ad-teal-light);
+  }
+  html.dark-mode .app-card.roadmap .app-card-title { color: #fff; }
+  html.dark-mode .app-card.roadmap .app-card-claim { color: rgba(255,255,255,0.65); }
+  html.dark-mode .app-card.roadmap .app-card-surf { color: var(--ad-teal-light); }
+  html.dark-mode .app-card.roadmap .app-logo-placeholder { color: var(--ad-teal-light); }
+
   .carousel-divider {
-    flex: 0 0 auto; display: flex; align-items: center;
-    padding: 0 14px; white-space: nowrap;
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.10em; color: #888;
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: 1px;
+    margin: 24px 16px;
+    background: var(--ad-border);
+    position: relative;
+    overflow: visible;
+  }
+  .carousel-divider::after {
+    content: 'Coming after';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    transform-origin: center;
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-text-5);
+    background: var(--ad-bg);
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  .apps-roadmap-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .apps-roadmap-link:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .app-card { flex: 0 0 240px; min-height: 300px; }
+    .app-card .app-logo-img { max-width: 80px; max-height: 64px; }
   }
 
   /* .showcase-split — DELETED in Phase 0. Black-gradient visual columns
@@ -1428,38 +1555,250 @@
     </script>
   </section>
 
-  <!-- ═══ SECTION 3: POPULAR APPS CAROUSEL ═══ -->
+  <!-- ═══ SECTION 3: POPULAR APPS CAROUSEL ═══
+       Cards are .rp-commands-card derivatives. Real PNG logos +
+       headline_claim from sandbox/data/apps.json (no "Available"
+       stamps, no one-word names). Roadmap entries = teal-bordered
+       ghost variant of the same card shape. See scripts/build-home.mjs
+       renderAppsCarousel(). -->
   <section class="home-section reveal d3">
     <div class="home-section-head">
       <h2>Popular apps</h2>
       <div class="head-aside">
-        <p>Twelve apps shipping today, seven more on the roadmap. Each plugs into the same AI backbone.</p>
+        <p>Eleven apps shipping today, seven more on the roadmap. Each plugs into the same MEP Bridge backbone.</p>
         <a class="see-all" href="/dist/apps/index.html">See all apps →</a>
       </div>
     </div>
+    
     <div class="apps-scroll">
-      <div class="app-card"><span class="app-name">Specbuilder</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">CoBie Builder</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Schedule Builder</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">QA Manager</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Schematic Generator</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">2D to 3D MEP &amp; Furniture</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Adelphos Chat</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Document Controller</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Excel Plugin</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Word Plugin</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Report Builder</span><span class="app-tag">Available</span></div>
-      <div class="app-card"><span class="app-name">Clash Solver</span><span class="app-tag">Available</span></div>
-      <div class="carousel-divider">Coming After</div>
-      <div class="app-card roadmap"><span class="app-name">2D to 3D FloorPlan from PDF</span><span class="app-tag">Roadmap</span></div>
-      <div class="app-card roadmap"><span class="app-name">Plantroom Generator</span><span class="app-tag">Roadmap</span></div>
-      <div class="app-card roadmap"><span class="app-name">AutoRouting</span><span class="app-tag">Roadmap</span></div>
-      <div class="app-card roadmap"><span class="app-name">AutoCAD CoPilot</span><span class="app-tag">Roadmap</span></div>
-      <div class="app-card roadmap"><span class="app-name">Report Builder IESVE</span><span class="app-tag">Roadmap</span></div>
-      <div class="app-card roadmap"><span class="app-name">Arch Floorplan</span><span class="app-tag">Roadmap</span></div>
-      <div class="app-card roadmap"><span class="app-name">MEP Design Modules</span><span class="app-tag">Roadmap</span></div>
+    <a class="app-card" href="/dist/apps/revit-copilot/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/revit-copilot.png" alt="Revit Copilot logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Revit Copilot</div>
+        <div class="app-card-claim">An AI engineer that lives inside Revit and runs the model with you.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Revit add-in</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/specbuilder/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/specbuilder.png" alt="Specbuilder logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Specbuilder</div>
+        <div class="app-card-claim">The MEP specification, drafted from your live model in minutes.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Web app + Word add-in</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/cobie-manager/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/cobie-manager.png" alt="CoBie Manager logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">CoBie Manager</div>
+        <div class="app-card-claim">A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Revit add-in + web dashboard</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/schedule-builder/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/logos/Excel.jpg" alt="Schedule Builder logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Schedule Builder</div>
+        <div class="app-card-claim">Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Revit add-in + web app</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/qa-manager/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/qa-manager.png" alt="QA Manager logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">QA Manager</div>
+        <div class="app-card-claim">Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Desktop app + Revit add-in</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/adelphos-chat/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/adelphos-chat.png" alt="Adelphos Chat logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Adelphos Chat</div>
+        <div class="app-card-claim">Your project's brain — without Revit, without a desk.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Web app + native desktop (Windows / macOS)</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/document-controller/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/document-controller.png" alt="Document Controller logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Document Controller</div>
+        <div class="app-card-claim">Single source of truth for every drawing, every revision, every transmittal.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Desktop service + web dashboard</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/autocad-copilot/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/autocad-copilot.png" alt="AutoCAD Copilot logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">AutoCAD Copilot</div>
+        <div class="app-card-claim">An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">AutoCAD MEP add-in</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/report-builder/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/images/app-logos/report-builder.png" alt="Report Builder logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Report Builder</div>
+        <div class="app-card-claim">Every recurring report — composed, formatted, and traceable to source.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Web app</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/word-add-in/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/logos/Word.jpg" alt="Adelphos for Word logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Adelphos for Word</div>
+        <div class="app-card-claim">The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Word add-in</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a>
+    <a class="app-card" href="/dist/apps/excel-add-in/index.html">
+      <div class="app-logo-wrap">
+        <img class="app-logo-img" src="/logos/Excel.jpg" alt="Adelphos for Excel logo" loading="lazy">
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Adelphos for Excel</div>
+        <div class="app-card-claim">The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Excel add-in</span>
+        <span class="app-card-status">Available</span>
+      </div>
+    </a><div class="carousel-divider">Coming after</div>
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">2D-to-3D Floorplan from PDF</div>
+        <div class="app-card-claim">Architectural floorplans rebuilt as a Revit model from a PDF.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
     </div>
-    <a style="color:#156082;font-weight:600;font-size:13px;text-decoration:none;display:inline-block;margin-top:12px;" href="/roadmap/">See roadmap →</a>
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Plantroom Generator</div>
+        <div class="app-card-claim">Boilers, pumps and AHUs placed and connected from the brief.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
+    </div>
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">AutoRouting — Pipework</div>
+        <div class="app-card-claim">Header drops and branch runs through corridors and risers.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
+    </div>
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">AutoCAD CoPilot</div>
+        <div class="app-card-claim">Same agent, native to AutoCAD MEP.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
+    </div>
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Report Builder — IESVE</div>
+        <div class="app-card-claim">IESVE outputs assembled into client-ready energy reports.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
+    </div>
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">Arch Floorplan Editing</div>
+        <div class="app-card-claim">Architectural floorplan generation and editing features.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
+    </div>
+    <div class="app-card roadmap">
+      <div class="app-logo-wrap roadmap-logo">
+        <span class="app-logo-placeholder">+</span>
+      </div>
+      <div class="app-card-body">
+        <div class="app-card-title">MEP Design Modules</div>
+        <div class="app-card-claim">Editing surfaces for routing, sizing and coordination.</div>
+      </div>
+      <div class="app-card-foot">
+        <span class="app-card-surf">Roadmap</span>
+      </div>
+    </div></div>
+    <a class="apps-roadmap-link" href="/sandbox/roadmap/">See the full roadmap →</a>
   </section>
 
   <!-- ═══ SECTION 4: CLASH SOLVER 3D MODEL — single row ═══
