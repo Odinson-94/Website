@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculation engines — Adelphos AI</title>
+<meta name="description" content="The verified calculation modules the Adelphos agent calls during MEP design. SAP, EPC, SBEM, cable, lighting, thermal, pipe and duct sizing — all server-side, all auditable.">
+<link rel="canonical" href="https://adelphos.ai/dist/docs/calc-engines/index.html">
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  /* Phase 6: calc-engines doc shell. Single-law: the calc engines are
+     infrastructure, not a flagship product, so the page is a single
+     dark-card surface listing each engine + a 14/300/1.8 prose intro
+     in a 400px column. No new card style. */
+
+  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html.dark-mode body { background: var(--ad-bg-dark); }
+
+  .docs-layout.ce-no-rails {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 80% !important; max-width: none !important;
+    margin-left: auto !important; margin-right: auto !important;
+    padding-left: 0 !important; padding-right: 0 !important;
+  }
+  .docs-layout.ce-no-rails > .docs-left,
+  .docs-layout.ce-no-rails > .docs-right { display: none !important; }
+  @media (max-width: 1100px) {
+    .docs-layout.ce-no-rails { width: 94% !important; }
+  }
+
+  .ce-intro {
+    margin: 56px 0 var(--space-2xl);
+    display: flex; flex-direction: column; gap: 12px;
+    max-width: 760px;
+  }
+  .ce-intro nav.ce-crumb {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-text-5);
+  }
+  .ce-intro nav.ce-crumb a { color: var(--ad-teal); text-decoration: none; }
+  .ce-intro nav.ce-crumb a:hover { text-decoration: underline; }
+  .ce-intro h1 {
+    margin: 0;
+    font-family: var(--ad-font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: var(--ad-w-medium);
+    line-height: var(--ad-lh-hero);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
+  }
+  .ce-intro p {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 18px;
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-row);
+    color: var(--ad-text-1);
+    max-width: 60ch;
+  }
+
+  /* Engine list — same dark-card vocabulary as Section 7 of home */
+  .ce-card {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: 0 0 var(--space-xl);
+    padding: 32px 36px 28px;
+    background: var(--ad-card-dark);
+    color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .ce-card-header {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 22px;
+    font-weight: var(--ad-w-card);
+    line-height: 1.2;
+    color: #fff;
+  }
+  .ce-card-tagline {
+    margin: 0 0 8px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-row);
+    font-weight: var(--ad-w-light);
+    color: rgba(255,255,255,0.65);
+    max-width: 60ch;
+  }
+
+  /* rp-feat-list rows reused — single-law check pass */
+  .ce-card .rp-feat-list { margin-top: 8px; }
+  .ce-card .rp-feat-item {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ce-card .rp-feat-item:last-child { border-bottom: none; }
+  .ce-card .rp-feat-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+  .ce-card .rp-feat-title {
+    font-size: 18px; font-weight: 600; color: #fff; letter-spacing: -0.01em;
+  }
+  .ce-card .rp-feat-desc {
+    font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.4;
+  }
+  .ce-card .ce-status {
+    flex-shrink: 0;
+    font-family: var(--ad-font-mono);
+    font-size: 11px;
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(74,155,184,0.18);
+    color: var(--ad-teal-light);
+  }
+
+  .ce-stamp {
+    margin-top: 48px;
+    padding: 14px 18px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--ad-font-mono);
+    font-size: 12px;
+    color: var(--ad-text-5);
+  }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout wide ce-no-rails">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <header class="ce-intro">
+    <nav class="ce-crumb"><a href="/">Home</a> &rsaquo; <a href="/dist/docs/index.html">Docs</a> &rsaquo; Calculation engines</nav>
+    <h1>Calculation engines</h1>
+    <p>Verified calculation modules the agent calls during MEP design. Each engine runs server-side and returns auditable results — the agent never invents a number, and you can trace every result back to the inputs that produced it.</p>
+  </header>
+
+  <section class="ce-card rp-commands-card">
+    <h2 class="ce-card-header">Energy &amp; compliance</h2>
+    <p class="ce-card-tagline">Standards-compliant energy modelling for UK building regulations and sustainability assessments.</p>
+    <div class="rp-feat-list">
+      <div class="rp-feat-item">
+        <div class="rp-feat-copy">
+          <span class="rp-feat-title">SAP</span>
+          <span class="rp-feat-desc">Standard Assessment Procedure for domestic dwellings — SAP 10.2 compliant.</span>
+        </div>
+        <span class="ce-status">live</span>
+      </div>
+      <div class="rp-feat-item">
+        <div class="rp-feat-copy">
+          <span class="rp-feat-title">EPC</span>
+          <span class="rp-feat-desc">Energy Performance Certificate generation — domestic + commercial outputs.</span>
+        </div>
+        <span class="ce-status">live</span>
+      </div>
+      <div class="rp-feat-item">
+        <div class="rp-feat-copy">
+          <span class="rp-feat-title">SBEM</span>
+          <span class="rp-feat-desc">Simplified Building Energy Model for non-domestic buildings — Part L compliance.</span>
+        </div>
+        <span class="ce-status">live</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="ce-card rp-commands-card">
+    <h2 class="ce-card-header">Electrical</h2>
+    <p class="ce-card-tagline">Cable and circuit calculations against BS 7671 and project-level house standards.</p>
+    <div class="rp-feat-list">
+      <div class="rp-feat-item">
+        <div class="rp-feat-copy">
+          <span class="rp-feat-title">Cable Calculations</span>
+          <span class="rp-feat-desc">Voltage drop, current carrying capacity, protective device coordination — full BS 7671.</span>
+        </div>
+        <span class="ce-status">live</span>
+      </div>
+      <div class="rp-feat-item">
+        <div class="rp-feat-copy">
+          <span class="rp-feat-title">Lighting Calculations</span>
+          <span class="rp-feat-desc">Lux levels, uniformity, glare and lumen output for every space — CIBSE LG and SLL compliant.</span>
+        </div>
+        <span class="ce-status">live</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="ce-card rp-commands-card">
+    <h2 class="ce-card-header">Mechanical</h2>
+    <p class="ce-card-tagline">Heat-load, pressure-drop and sizing calculations driven by the live model and the project brief.</p>
+    <div class="rp-feat-list">
+      <div class="rp-feat-item">
+        <div class="rp-feat-copy">
+          <span class="rp-feat-title">Thermal Calculations</span>
+          <span class="rp-feat-desc">Heating &amp; cooling loads, U-values, thermal bridging — CIBSE Guide A reference.</span>
+        </div>
+        <span class="ce-status">live</span>
+      </div>
+      <div class="rp-feat-item">
+        <div class="rp-feat-copy">
+          <span class="rp-feat-title">Pipe &amp; Duct Sizing</span>
+          <span class="rp-feat-desc">Velocity, pressure-drop and pipe-sizing tables for water, refrigerant, gas and ventilation runs.</span>
+        </div>
+        <span class="ce-status">live</span>
+      </div>
+    </div>
+  </section>
+
+  <p class="ce-stamp">
+    Each engine is invoked through the Revit Copilot or Adelphos Chat with auditable inputs. Outputs are versioned and traceable to the model element, brief clause or system that drove them.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>
