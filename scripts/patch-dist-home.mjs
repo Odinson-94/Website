@@ -84,8 +84,20 @@ export async function patchHome() {
   );
 
   // 2. Lift MEP chat from /index.html, wrap in natural ancestor chain
-  const chatMarkup = await extractMepChat();
+  let chatMarkup = await extractMepChat();
   console.log(`patch-dist-home: extracted MEP chat (${chatMarkup.length} chars)`);
+
+  // Phase 8.7.5 accessibility patch: the live SPA's chat titlebar buttons
+  // ship without aria-labels (icon-only, decorative). On dist home Section
+  // 2 they're focusable controls so they need accessible names. Inject
+  // here without touching the live SPA source (single-law: dist work only).
+  chatMarkup = chatMarkup
+    .replace(/<button class="demo-titlebar-btn min">/g,
+             '<button class="demo-titlebar-btn min" aria-label="Minimise chat panel" title="Minimise">')
+    .replace(/<button class="demo-titlebar-btn max">/g,
+             '<button class="demo-titlebar-btn max" aria-label="Maximise chat panel" title="Maximise">')
+    .replace(/<button class="demo-titlebar-btn close">/g,
+             '<button class="demo-titlebar-btn close" aria-label="Close chat panel" title="Close">');
 
   const overlayStyle =
     'position:absolute;top:0;left:0;width:100%;height:100%;' +

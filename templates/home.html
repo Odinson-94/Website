@@ -1772,7 +1772,9 @@
     <div class="integrations-strip">
       <div class="integration-tile"><img src="/images/logos/Revit.jpg"       alt="Autodesk Revit logo"></div>
       <div class="integration-tile"><img src="/images/logos/AutoCAD.jpg"     alt="Autodesk AutoCAD logo"></div>
-      <div class="integration-tile"><img src="/images/logos/AutodeskMEP.jpg" alt="Autodesk MEP logo"></div>
+      <!-- Phase 8.6.2: use the existing transparent SVG for AutoCAD MEP
+           in priority instead of the lower-quality JPG. -->
+      <div class="integration-tile"><img src="/logos/autodesk-autocad-mep-product-icon.svg" alt="Autodesk AutoCAD MEP logo"></div>
       <div class="integration-tile"><img src="/images/logos/Civil3D.jpg"     alt="Autodesk Civil 3D logo"></div>
       <div class="integration-tile"><img src="/images/logos/Robot.jpg"       alt="Autodesk Robot logo"></div>
       <div class="integration-tile"><img src="/images/logos/IESVE.jpg"       alt="IESVE logo"></div>
@@ -2163,10 +2165,18 @@
 
     let stop = false;
     let t0 = performance.now();
+    // Phase 8.7.5: respect prefers-reduced-motion. The user's reduced-
+    // motion preference pauses the gentle auto-rotation; the scene
+    // still renders one frame at the initial camera position so the
+    // viewer sees the geometry, just static. OrbitControls (modal)
+    // remain interactive because the user invoked them deliberately.
+    const reduceMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let reduceMotion = reduceMotionMq.matches;
+    reduceMotionMq.addEventListener('change', e => { reduceMotion = e.matches; });
     function tick(now) {
       if (stop) return;
       const dt = (now - t0) * 0.001; t0 = now;
-      if (!opts.controls) {
+      if (!opts.controls && !reduceMotion) {
         // gentle auto-rotate around the lookAt
         const ang = now * 0.00018;
         const rad = Math.hypot(cx, cz);
