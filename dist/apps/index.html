@@ -160,348 +160,396 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
 <style>
-  /* APPS INVENTORY ────────────────────────────────────────────────────────
-     Crown-jewel layout: a featured hero card for the flagship app, then a
-     premium 2-up grid for the rest. Each card carries a screenshot/poster,
-     a bold claim, and a key-outcomes strip.
-     Edit /sandbox/data/apps.json to change content.
-  */
+  /* APPS INVENTORY — single-law derivative.
+     Hero intro paragraph + a flagship hero (Section 2 derivative) +
+     responsive grid of dark .rp-commands-card-style app tiles
+     (same .app-card vocabulary as Section 3 of the home).
+     NO uniform 3-col grid (banned). NO multi-tone gradients. */
 
-  /* Section intro */
-  .apps-intro { margin-bottom: var(--space-2xl); }
-  .apps-intro .lead {
-    font-size: 28px; font-weight: 300; line-height: 1.35; letter-spacing: -0.015em;
-    color: var(--text); margin: 0 0 var(--space-md); max-width: 900px;
+  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html.dark-mode body { background: var(--ad-bg-dark); }
+
+  .docs-layout.ai-no-rails {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 80% !important; max-width: none !important;
+    margin-left: auto !important; margin-right: auto !important;
+    padding-left: 0 !important; padding-right: 0 !important;
   }
-  .apps-intro p {
-    font-size: 16px; line-height: 1.65; color: var(--text-muted);
-    max-width: 760px; margin: 0;
+  .docs-layout.ai-no-rails > .docs-left,
+  .docs-layout.ai-no-rails > .docs-right { display: none !important; }
+  @media (max-width: 1100px) {
+    .docs-layout.ai-no-rails { width: 94% !important; }
   }
 
-  /* Flagship hero card — bigger, cinematic, sets the tone.
-     Light mode = dark navy → brand teal (cinematic).
-     Dark mode  = brighter teal gradient (so it pops on dark bg). */
-  .flagship {
-    display: grid; grid-template-columns: 1.15fr 1fr; gap: 0;
-    background: linear-gradient(135deg, #0e1c25 0%, #1a3441 50%, #156082 100%);
-    border-radius: var(--radius-lg); overflow: hidden;
-    box-shadow: 0 20px 60px rgba(21,96,130,0.20);
-    margin-bottom: var(--space-2xl);
-    text-decoration: none; color: #fff;
-    transition: transform 0.25s, box-shadow 0.25s;
+  .ai-intro {
+    margin: 56px 0 var(--space-2xl);
+    display: flex; flex-direction: column; gap: 12px;
+    max-width: 760px;
   }
-  .flagship:hover { transform: translateY(-4px); box-shadow: 0 28px 70px rgba(21,96,130,0.28); }
-  .flagship .copy { padding: 48px 48px 56px; display: flex; flex-direction: column; gap: 20px; }
-  .flagship .badge {
-    display: inline-block; align-self: flex-start;
-    background: rgba(255,255,255,0.16); color: #fff;
-    font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
-    text-transform: uppercase; letter-spacing: 0.10em;
-    backdrop-filter: blur(8px);
+  .ai-intro h1 {
+    margin: 0;
+    font-family: var(--ad-font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: var(--ad-w-medium);
+    line-height: var(--ad-lh-hero);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
   }
-  .flagship h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 44px; font-weight: 600; line-height: 1.1; letter-spacing: -0.025em;
-    margin: 0; color: #fff;
+  .ai-intro .lead {
+    font-family: var(--ad-font-body);
+    font-size: 18px;
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-row);
+    color: var(--ad-text-1);
+    margin: 0; max-width: 60ch;
   }
-  .flagship .claim {
-    font-size: 22px; font-weight: 300; line-height: 1.4; letter-spacing: -0.01em;
-    color: rgba(255,255,255,0.92); margin: 0;
+  .ai-intro p:not(.lead) {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    max-width: var(--ad-measure);
   }
-  .flagship .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 8px; }
-  .flagship .stats .stat { color: #fff; }
-  .flagship .stats .stat .num { font-size: 28px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
-  .flagship .stats .stat .lbl { display: block; font-size: 11px; color: rgba(255,255,255,0.70); margin-top: 4px; line-height: 1.35; }
-  .flagship .arrow {
-    align-self: flex-start; margin-top: 12px;
-    background: #fff; color: #156082;
-    padding: 12px 22px; border-radius: 999px;
-    font-size: 14px; font-weight: 600;
-    transition: transform 0.18s;
-  }
-  .flagship:hover .arrow { transform: translateX(4px); }
-  .flagship .visual {
-    position: relative; min-height: 380px;
-    background: linear-gradient(135deg, rgba(0,0,0,0.20), rgba(0,0,0,0.45)),
-                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10), transparent);
-    display: flex; align-items: center; justify-content: center;
+
+  /* Flagship card — 2-col Section 2 derivative (copy left, painted
+     frame right with the flagship app's 240px logo). */
+  .ai-flagship {
+    margin: 0 0 var(--space-2xl);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 0;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
   }
-  .flagship .visual::after {
+  @media (hover: hover) {
+    .ai-flagship:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 30px 70px rgba(30,52,72,0.22);
+    }
+  }
+  .ai-flagship .copy {
+    padding: clamp(40px, 5vw, 56px);
+    display: flex; flex-direction: column; gap: 14px;
+    justify-content: center;
+    background: var(--ad-panel);
+  }
+  html.dark-mode .ai-flagship .copy { background: var(--ad-panel-dark); }
+  .ai-flagship .badge {
+    align-self: flex-start;
+    background: rgba(21,96,130,0.10);
+    color: var(--ad-teal);
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    padding: 5px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+  }
+  .ai-flagship h2 {
+    margin: 0;
+    font-family: var(--ad-font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: var(--ad-w-medium);
+    line-height: var(--ad-lh-hero);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
+    max-width: var(--ad-measure);
+  }
+  .ai-flagship .claim {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    max-width: var(--ad-measure);
+  }
+  .ai-flagship .arrow {
+    align-self: flex-start;
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal);
+    margin-top: 6px;
+  }
+  .ai-flagship .visual {
+    position: relative;
+    min-height: 380px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .ai-flagship .visual::before {
     content: ''; position: absolute; inset: 0;
-    background-image: url('/sandbox/app-assets/revit-copilot/hero.svg');
-    background-size: cover; background-position: center;
-    opacity: 0.55;
+    background: url('/images/revit-bg.png') center/cover no-repeat;
+    z-index: 0;
   }
-  .flagship .visual .play {
-    position: relative; z-index: 2;
-    width: 80px; height: 80px; border-radius: 50%;
-    background: rgba(255,255,255,0.95); color: #156082;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; box-shadow: 0 12px 40px rgba(0,0,0,0.30);
-    transition: transform 0.2s;
+  .ai-flagship .visual::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--ad-painted-overlay);
+    z-index: 0;
   }
-  .flagship:hover .visual .play { transform: scale(1.08); }
+  .ai-flagship .visual img {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 240px; height: 240px;
+    object-fit: contain;
+    border-radius: 36px;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55));
+  }
+  @media (max-width: 1100px) {
+    .ai-flagship { grid-template-columns: 1fr; }
+    .ai-flagship .visual { aspect-ratio: 16/10; min-height: auto; }
+    .ai-flagship .visual img { width: 180px; height: 180px; }
+  }
 
-  @media (max-width: 900px) {
-    .flagship { grid-template-columns: 1fr; }
-    .flagship .copy { padding: 32px; gap: 16px; }
-    .flagship h2 { font-size: 32px; }
-    .flagship .claim { font-size: 18px; }
-    .flagship .stats { grid-template-columns: repeat(2, 1fr); }
-    .flagship .visual { min-height: 220px; }
+  /* Apps grid — same .app-card vocabulary as Section 3 of the home */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
   }
-
-  /* The remaining apps as premium tiles */
-  .apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: var(--space-xl); }
   .app-tile {
+    background: var(--ad-card-dark);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 14px;
+    overflow: hidden;
     display: flex; flex-direction: column;
-    background: var(--bg-card);
-    border: 1px solid var(--border); border-radius: var(--radius-lg);
-    overflow: hidden; text-decoration: none; color: var(--text);
-    transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
   }
-  .app-tile:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--brand-teal); }
+  @media (hover: hover) {
+    .app-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    }
+  }
   .app-tile .visual {
-    height: 200px; position: relative;
-    background: linear-gradient(135deg, #1f3340, #0e1c25);
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: rgba(255,255,255,0.05);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
   }
-  .app-tile .visual::after {
-    content: ''; position: absolute; inset: 0; opacity: 0.25;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.18), transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(21,96,130,0.45), transparent 50%);
-  }
-  /* Dark mode — switch to the brighter brand-blue gradient so it pops on dark bg */
-  html.dark-mode .flagship {
-    background: linear-gradient(135deg, #156082 0%, #1f7ba8 55%, #2c9bcf 100%);
-  }
-  html.dark-mode .app-tile .visual {
-    background: linear-gradient(135deg, #156082 0%, #1f7ba8 100%);
+  .app-tile .visual::before {
+    content: ''; position: absolute; inset: 0;
+    background: url('/images/revit-bg.png') center/cover no-repeat;
+    opacity: 0.12; z-index: 0;
   }
   .app-tile .visual img {
     position: relative; z-index: 1;
-    width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius-md);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+    width: 100px; height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
   }
-  .app-tile .body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .app-tile .body {
+    padding: 18px 20px 14px;
+    display: flex; flex-direction: column; gap: 8px;
+    flex: 1 1 auto;
+  }
   .app-tile .surf {
-    font-size: 11px; color: var(--text-muted);
-    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: rgba(255,255,255,0.55);
   }
   .app-tile h3 {
-    margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.015em;
-    color: var(--text);
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-card);
+    font-weight: var(--ad-w-card);
+    line-height: 1.25;
+    color: #fff;
   }
   .app-tile .claim {
-    font-size: 16px; line-height: 1.5; color: var(--text);
-    font-weight: 400; margin: 0;
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-light);
+    line-height: 1.45;
+    color: rgba(255,255,255,0.65);
   }
-  .app-tile .outcomes { display: flex; flex-wrap: wrap; gap: 18px; padding-top: 12px; border-top: 1px solid var(--border); margin-top: auto; }
-  .app-tile .outcomes .stat .num { display: block; font-size: 18px; font-weight: 600; color: var(--brand-teal); line-height: 1.1; }
-  .app-tile .outcomes .stat .lbl { display: block; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
   .app-tile .more {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600; color: var(--brand-teal);
-    text-decoration: none; padding-top: 4px;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--ad-border-card);
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal-light);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
   }
-  .app-tile:hover .more::after { content: '→'; transition: transform 0.18s; }
-  .app-tile:hover .more::after { transform: translateX(3px); }
+
+  .ai-stamp {
+    margin-top: 48px;
+    padding: 14px 18px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--ad-font-mono);
+    font-size: 12px;
+    color: var(--ad-text-5);
+  }
 </style>
 </head>
 <body>
 
 <script src="/sandbox/shell.js"></script>
 
-<div class="docs-layout wide">
+<div class="docs-layout wide ai-no-rails">
 <aside class="docs-left"></aside>
 <main class="docs-content">
 
-  <div class="apps-intro">
-    <h1 style="font-size:48px;font-weight:500;letter-spacing:-0.025em;margin:0 0 12px;">Eleven flagship apps. One platform.</h1>
+  <div class="ai-intro">
+    <h1>Eleven flagship apps. One platform.</h1>
     <p class="lead">Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.</p>
   </div>
 
   
-    <a class="flagship" href="/dist/apps/revit-copilot/index.html">
+    <a class="ai-flagship" href="/dist/apps/revit-copilot/index.html">
       <div class="copy">
         <span class="badge">Flagship · Revit add-in</span>
         <h2>Revit Copilot</h2>
         <p class="claim">An AI engineer that lives inside Revit and runs the model with you.</p>
-        <div class="stats">
-    <div class="stat">
-      <span class="num">163</span>
-      <span class="lbl">Revit commands one prompt away</span>
-    </div>
-    <div class="stat">
-      <span class="num">191</span>
-      <span class="lbl">MCP tools the agent can chain</span>
-    </div>
-    <div class="stat">
-      <span class="num">18×</span>
-      <span class="lbl">faster than manual on coordination tasks</span>
-    </div>
-    <div class="stat">
-      <span class="num">0</span>
-      <span class="lbl">context switches — never leave Revit</span>
-    </div></div>
-        <span class="arrow">Explore Revit Copilot  →</span>
+        <span class="arrow">Open Revit Copilot →</span>
       </div>
-      <div class="visual"><span class="play">▶</span></div>
+      <div class="visual">
+        <img src="/images/app-logos/revit-copilot.png" alt="Revit Copilot logo" onerror="this.style.opacity=0">
+      </div>
     </a>
 
   <div class="apps-grid">
     <a class="app-tile" href="/dist/apps/adelphos-chat/index.html">
       <div class="visual">
-        <img src="/images/app-logos/adelphos-chat.png" alt="" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/adelphos-chat.png" alt="Adelphos Chat logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Web app + native desktop (Windows / macOS)</span>
         <h3>Adelphos Chat</h3>
         <p class="claim">Your project's brain — without Revit, without a desk.</p>
-        <div class="outcomes">
-    <div class="stat"><span class="num">Anywhere</span><span class="lbl">browser · desktop · mobile</span></div>
-    <div class="stat"><span class="num">1</span><span class="lbl">shared project memory across devices</span></div>
-    <div class="stat"><span class="num">Read-write</span><span class="lbl">to your DMS and project folders</span></div></div>
-        <span class="more">See Adelphos Chat </span>
+        <span class="more">Open Adelphos Chat →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/specbuilder/index.html">
       <div class="visual">
-        <img src="/images/app-logos/specbuilder.png" alt="" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/specbuilder.png" alt="Specbuilder logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Web app + Word add-in</span>
         <h3>Specbuilder</h3>
         <p class="claim">The MEP specification, drafted from your live model in minutes.</p>
-        <div class="outcomes">
-    <div class="stat"><span class="num">Minutes</span><span class="lbl">to first complete draft</span></div>
-    <div class="stat"><span class="num">Stage-aware</span><span class="lbl">Stage 2 / 3 / 4 templates</span></div>
-    <div class="stat"><span class="num">House standards</span><span class="lbl">applied automatically</span></div></div>
-        <span class="more">See Specbuilder </span>
+        <span class="more">Open Specbuilder →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/report-builder/index.html">
       <div class="visual">
-        <img src="/images/app-logos/report-builder.png" alt="" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/report-builder.png" alt="Report Builder logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Web app</span>
         <h3>Report Builder</h3>
         <p class="claim">Every recurring report — composed, formatted, and traceable to source.</p>
-        <div class="outcomes">
-    <div class="stat"><span class="num">8+</span><span class="lbl">report templates ship in the box</span></div>
-    <div class="stat"><span class="num">Live</span><span class="lbl">links back to model + calcs</span></div>
-    <div class="stat"><span class="num">Audit-trail</span><span class="lbl">every figure traceable to source</span></div></div>
-        <span class="more">See Report Builder </span>
+        <span class="more">Open Report Builder →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/document-controller/index.html">
       <div class="visual">
-        <img src="/images/app-logos/document-controller.png" alt="" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/document-controller.png" alt="Document Controller logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Desktop service + web dashboard</span>
         <h3>Document Controller</h3>
         <p class="claim">Single source of truth for every drawing, every revision, every transmittal.</p>
-        <div class="outcomes">
-    <div class="stat"><span class="num">0</span><span class="lbl">missed revisions</span></div>
-    <div class="stat"><span class="num">Minutes</span><span class="lbl">from issue to transmittal sent</span></div>
-    <div class="stat"><span class="num">On-demand</span><span class="lbl">audit-ready golden thread</span></div></div>
-        <span class="more">See Document Controller </span>
+        <span class="more">Open Document Controller →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/qa-manager/index.html">
       <div class="visual">
-        <img src="/images/app-logos/qa-manager.png" alt="" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/qa-manager.png" alt="QA Manager logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Desktop app + Revit add-in</span>
         <h3>QA Manager</h3>
         <p class="claim">Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.</p>
-        <div class="outcomes">
-    <div class="stat"><span class="num">Continuous</span><span class="lbl">checks run on every save</span></div>
-    <div class="stat"><span class="num">5</span><span class="lbl">QA surfaces in one dashboard</span></div>
-    <div class="stat"><span class="num">Element-linked</span><span class="lbl">every fail jumps to the issue</span></div></div>
-        <span class="more">See QA Manager </span>
+        <span class="more">Open QA Manager →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/schedule-builder/index.html">
       <div class="visual">
-        <img src="/logos/Excel.jpg" alt="" onerror="this.style.opacity=0">
+        <img src="/logos/Excel.jpg" alt="Schedule Builder logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Revit add-in + web app</span>
         <h3>Schedule Builder</h3>
         <p class="claim">Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.</p>
-        <div class="outcomes">
-    <div class="stat"><span class="num">Minutes</span><span class="lbl">from prompt to populated schedule</span></div>
-    <div class="stat"><span class="num">Auto</span><span class="lbl">cross-check against model + calcs</span></div>
-    <div class="stat"><span class="num">Your standards</span><span class="lbl">templates + preferred manufacturers</span></div></div>
-        <span class="more">See Schedule Builder </span>
+        <span class="more">Open Schedule Builder →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/cobie-manager/index.html">
       <div class="visual">
-        <img src="/images/app-logos/cobie-manager.png" alt="" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/cobie-manager.png" alt="CoBie Manager logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Revit add-in + web dashboard</span>
         <h3>CoBie Manager</h3>
         <p class="claim">A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.</p>
-        <div class="outcomes"></div>
-        <span class="more">See CoBie Manager </span>
+        <span class="more">Open CoBie Manager →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/autocad-copilot/index.html">
       <div class="visual">
-        <img src="/images/app-logos/autocad-copilot.png" alt="" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/autocad-copilot.png" alt="AutoCAD Copilot logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
-        <span class="surf">AutoCAD MEP add-in · AutoCAD MEP 2024+ · Windows</span>
+        <span class="surf">AutoCAD MEP add-in</span>
         <h3>AutoCAD Copilot</h3>
         <p class="claim">An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.</p>
-        <div class="outcomes"></div>
-        <span class="more">See AutoCAD Copilot </span>
+        <span class="more">Open AutoCAD Copilot →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/word-add-in/index.html">
       <div class="visual">
-        <img src="/logos/Word.jpg" alt="" onerror="this.style.opacity=0">
+        <img src="/logos/Word.jpg" alt="Adelphos for Word logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
-        <span class="surf">Word add-in · Word for Microsoft 365 · Windows + Mac</span>
+        <span class="surf">Word add-in</span>
         <h3>Adelphos for Word</h3>
         <p class="claim">The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.</p>
-        <div class="outcomes"></div>
-        <span class="more">See Adelphos for Word </span>
+        <span class="more">Open Adelphos for Word →</span>
       </div>
     </a>
     <a class="app-tile" href="/dist/apps/excel-add-in/index.html">
       <div class="visual">
-        <img src="/logos/Excel.jpg" alt="" onerror="this.style.opacity=0">
+        <img src="/logos/Excel.jpg" alt="Adelphos for Excel logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
-        <span class="surf">Excel add-in · Excel for Microsoft 365 · Windows + Mac</span>
+        <span class="surf">Excel add-in</span>
         <h3>Adelphos for Excel</h3>
         <p class="claim">The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.</p>
-        <div class="outcomes"></div>
-        <span class="more">See Adelphos for Excel </span>
+        <span class="more">Open Adelphos for Excel →</span>
       </div>
     </a></div>
 
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
-    Auto-generated <code>2026-04-25T08:02:33.616Z</code> from <code>sandbox/data/apps.json</code> (11 apps).
-    Re-run with <code>adelphos_CLI auto-all</code>.
+  <p class="ai-stamp">
+    Auto-generated <code>2026-04-26T06:24:15.030Z</code> from <code>sandbox/data/apps.json</code> (11 apps).
   </p>
 
 </main>

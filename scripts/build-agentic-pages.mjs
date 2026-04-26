@@ -180,11 +180,21 @@ export async function buildAgenticServicesInventory() {
   const data = await loadJson('sandbox/data/agentic-services.json');
   const tmpl = await fs.readFile(T('agentic-services-inventory.html'), 'utf8');
 
-  const flagship = data.services.find(s => s.is_flagship);
-  const others   = data.services.filter(s => !s.is_flagship);
+  // Truth-only: real services from the JSON only. The 3 fabricated
+  // services from the previous build (Procurement / Resource /
+  // Compliance) are not in the JSON so they can't appear here.
+  const isEmail = s => (s.kind || '').toLowerCase().includes('email');
+  const managed = data.services.filter(s => !isEmail(s));
+  const emails  = data.services.filter(s => isEmail(s));
 
-  const flagshipHtml = flagship ? renderFlagship(flagship) : '';
-  const tilesHtml    = others.map(s => renderTile(s)).join('');
+  // Flagship = first non-email service marked is_flagship; falls back
+  // to the first managed service.
+  const flagship = managed.find(s => s.is_flagship) || managed[0];
+  const remainingManaged = managed.filter(s => s.slug !== (flagship && flagship.slug));
+
+  const flagshipHtml      = flagship ? renderFlagship(flagship) : '';
+  const managedTilesHtml  = remainingManaged.map(s => renderTile(s)).join('');
+  const emailTilesHtml    = emails.map(s => renderEmailTile(s)).join('');
 
   const seoHead = await renderSeoHead({
     title: 'Agentic Services — Adelphos AI',
@@ -201,14 +211,15 @@ export async function buildAgenticServicesInventory() {
   });
 
   const html = tmpl
-    .replaceAll('{{section_lead}}',  esc(data.section_lead  || data.section_title || 'Agentic Services'))
-    .replaceAll('{{section_blurb}}', esc(data.section_blurb || ''))
-    .replaceAll('{{count}}',         String(data.services.length))
-    .replaceAll('{{flagship_html}}', flagshipHtml)
-    .replaceAll('{{tiles_html}}',    tilesHtml)
-    .replaceAll('{{seo_head}}',      seoHead)
-    .replaceAll('{{json_ld}}',       jsonLd)
-    .replaceAll('{{generated_at}}',  new Date().toISOString());
+    .replaceAll('{{section_lead}}',         esc(data.section_lead  || data.section_title || 'Agentic Services'))
+    .replaceAll('{{section_blurb}}',        esc(data.section_blurb || ''))
+    .replaceAll('{{count}}',                String(data.services.length))
+    .replaceAll('{{flagship_html}}',        flagshipHtml)
+    .replaceAll('{{managed_tiles_html}}',   managedTilesHtml)
+    .replaceAll('{{email_tiles_html}}',     emailTilesHtml)
+    .replaceAll('{{seo_head}}',             seoHead)
+    .replaceAll('{{json_ld}}',              jsonLd)
+    .replaceAll('{{generated_at}}',         new Date().toISOString());
 
   const out = O('agentic-services', 'index.html');
   await fs.mkdir(path.dirname(out), { recursive: true });
@@ -216,43 +227,57 @@ export async function buildAgenticServicesInventory() {
   return { out, count: data.services.length };
 }
 
+// SVG glyph for service tiles (services don't have a PNG logo).
+const SERVICE_GLYPH = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </svg>`;
+const EMAIL_GLYPH = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2"/>
+    <path d="M3 7l9 6 9-6"/>
+  </svg>`;
+
 function renderFlagship(s) {
-  const stats = (s.key_outcomes || []).slice(0, 4).map(o => `
-    <div class="stat">
-      <span class="num">${esc(o.stat)}</span>
-      <span class="lbl">${esc(o.label)}</span>
-    </div>`).join('');
   return `
-    <a class="flagship-svc" href="/dist/agentic-services/${esc(s.slug)}/index.html">
+    <a class="ai-flagship" href="/dist/agentic-services/${esc(s.slug)}/index.html">
       <div class="copy">
-        <span class="badge">Flagship Service · Managed by Adelphos</span>
+        <span class="badge">Flagship · Managed by Adelphos</span>
         <h2>${esc(s.title)}</h2>
         <p class="claim">${esc(s.headline_claim || s.tagline || '')}</p>
-        <div class="stats">${stats}</div>
-        <span class="arrow">Explore ${esc(s.title)}  →</span>
+        <span class="arrow">Open ${esc(s.title)} →</span>
       </div>
       <div class="visual">
-        <div class="seal">
-          <span class="big">Adelphos</span>
-          <span class="small">Managed Service</span>
-        </div>
+        <img src="/${esc(s.icon || 'logos/Node Logo.png')}" alt="${esc(s.title)} logo" onerror="this.style.opacity=0">
       </div>
     </a>`;
 }
 
 function renderTile(s) {
-  const outcomes = (s.key_outcomes || []).slice(0, 3).map(o => `
-    <div class="stat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('');
   return `
     <a class="svc-tile" href="/dist/agentic-services/${esc(s.slug)}/index.html">
-      <div class="visual">
-        <img src="/${esc(s.icon || 'logos/Node Logo.png')}" alt="" onerror="this.style.opacity=0">
-      </div>
+      <div class="visual">${SERVICE_GLYPH}</div>
       <div class="body">
-        <span class="badge">Managed service</span>
+        <span class="surf">Managed service</span>
         <h3>${esc(s.title)}</h3>
         <p class="claim">${esc(s.headline_claim || s.tagline || '')}</p>
-        <div class="outcomes">${outcomes}</div>
+        <span class="more">Open ${esc(s.title)} →</span>
+      </div>
+    </a>`;
+}
+
+function renderEmailTile(s) {
+  const email = s.email_address || s.email || '';
+  return `
+    <a class="svc-tile" href="/dist/agentic-services/${esc(s.slug)}/index.html">
+      <div class="visual">${EMAIL_GLYPH}</div>
+      <div class="body">
+        <span class="surf">Email service</span>
+        <h3>${esc(s.title)}</h3>
+        <p class="claim">${esc(s.tagline || s.headline_claim || '')}</p>
+        ${email ? `<span class="email-line">${esc(email)}</span>` : ''}
+        <span class="more">Open ${esc(s.title)} →</span>
       </div>
     </a>`;
 }

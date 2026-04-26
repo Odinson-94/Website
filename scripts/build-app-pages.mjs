@@ -190,39 +190,37 @@ export async function buildAppsInventory() {
   return { out, count: data.apps.length };
 }
 
+// Flagship card matches templates/apps-inventory.html .ai-flagship —
+// 2-col copy LEFT + painted artsy frame RIGHT with the 240px PNG logo.
+// Single-law: direct Section 2 derivative.
 function renderFlagship(a) {
-  const stats = (a.key_outcomes || []).slice(0, 4).map(o => `
-    <div class="stat">
-      <span class="num">${esc(o.stat)}</span>
-      <span class="lbl">${esc(o.label)}</span>
-    </div>`).join('');
   return `
-    <a class="flagship" href="/dist/apps/${esc(a.slug)}/index.html">
+    <a class="ai-flagship" href="/dist/apps/${esc(a.slug)}/index.html">
       <div class="copy">
         <span class="badge">Flagship · ${esc(a.surface ? a.surface.split('·')[0].trim() : 'Live')}</span>
         <h2>${esc(a.title)}</h2>
         <p class="claim">${esc(a.headline_claim || a.tagline || '')}</p>
-        <div class="stats">${stats}</div>
-        <span class="arrow">Explore ${esc(a.title)}  →</span>
+        <span class="arrow">Open ${esc(a.title)} →</span>
       </div>
-      <div class="visual"><span class="play">▶</span></div>
+      <div class="visual">
+        <img src="/${esc(a.icon || 'logos/Node Logo.png')}" alt="${esc(a.title)} logo" onerror="this.style.opacity=0">
+      </div>
     </a>`;
 }
 
+// Tile = .app-tile (dark .rp-commands-card derivative, same vocab as
+// the home Section 3 .app-card carousel, just here in a grid).
 function renderTile(a) {
-  const outcomes = (a.key_outcomes || []).slice(0, 3).map(o => `
-    <div class="stat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('');
   return `
     <a class="app-tile" href="/dist/apps/${esc(a.slug)}/index.html">
       <div class="visual">
-        <img src="/${esc(a.icon || 'logos/Node Logo.png')}" alt="" onerror="this.style.opacity=0">
+        <img src="/${esc(a.icon || 'logos/Node Logo.png')}" alt="${esc(a.title)} logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
-        <span class="surf">${esc(a.surface || '')}</span>
+        <span class="surf">${esc(a.surface ? a.surface.split('·')[0].trim() : 'App')}</span>
         <h3>${esc(a.title)}</h3>
         <p class="claim">${esc(a.headline_claim || a.tagline || '')}</p>
-        <div class="outcomes">${outcomes}</div>
-        <span class="more">See ${esc(a.title)} </span>
+        <span class="more">Open ${esc(a.title)} →</span>
       </div>
     </a>`;
 }

@@ -243,36 +243,33 @@ export async function buildFeaturesInventory() {
   return { out, count: data.features.length };
 }
 
+// Same vocabulary as apps-inventory: .ai-flagship + .app-tile.
 function renderFlagship(f) {
-  const stats = (f.key_outcomes || []).slice(0, 4).map(o => `
-    <div class="stat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('');
   return `
-    <a class="flagship" href="/dist/features/${esc(f.slug)}/index.html">
+    <a class="ai-flagship" href="/dist/features/${esc(f.slug)}/index.html">
       <div class="copy">
-        <span class="badge">Flagship Feature</span>
+        <span class="badge">Flagship feature</span>
         <h2>${esc(f.title)}</h2>
         <p class="claim">${esc(f.headline_claim || f.tagline || '')}</p>
-        <div class="stats">${stats}</div>
-        <span class="arrow">Explore ${esc(f.title)}  →</span>
+        <span class="arrow">Open ${esc(f.title)} →</span>
       </div>
-      <div class="visual"><span class="play">▶</span></div>
+      <div class="visual">
+        <img src="/${esc(f.icon || 'logos/Node Logo.png')}" alt="${esc(f.title)} logo" onerror="this.style.opacity=0">
+      </div>
     </a>`;
 }
 
 function renderTile(f) {
-  const outcomes = (f.key_outcomes || []).slice(0, 3).map(o => `
-    <div class="stat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('');
   return `
     <a class="app-tile" href="/dist/features/${esc(f.slug)}/index.html">
       <div class="visual">
-        <img src="/${esc(f.icon || 'logos/Node Logo.png')}" alt="" onerror="this.style.opacity=0">
+        <img src="/${esc(f.icon || 'logos/Node Logo.png')}" alt="${esc(f.title)} logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Feature</span>
         <h3>${esc(f.title)}</h3>
         <p class="claim">${esc(f.headline_claim || f.tagline || '')}</p>
-        <div class="outcomes">${outcomes}</div>
-        <span class="more">See ${esc(f.title)} </span>
+        <span class="more">Open ${esc(f.title)} →</span>
       </div>
     </a>`;
 }

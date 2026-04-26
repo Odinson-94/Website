@@ -191,9 +191,20 @@ export async function buildDemosGallery() {
       </section>
     `).join('');
 
+  // Sticky category nav (Phase 8.3): one anchor link per category that
+  // actually has demos. Reduces 60+ tile cognitive load to N category
+  // entry points.
+  const catnavHtml = `
+    <nav class="dg-catnav" aria-label="Demo categories">
+      ${cats.filter(c => byCat[c.slug] && byCat[c.slug].length).map(c =>
+        `<a href="#cat-${esc(c.slug)}">${esc(c.title)} <span style="opacity:0.55;">${byCat[c.slug].length}</span></a>`
+      ).join('')}
+    </nav>`;
+
   const html = (await fs.readFile(T('demos-gallery.html'), 'utf8'))
     .replaceAll('{{count}}',        String(demos.length))
     .replaceAll('{{cat_count}}',    String(cats.length))
+    .replaceAll('{{catnav_html}}',  catnavHtml)
     .replaceAll('{{sections_html}}', sectionsHtml)
     .replaceAll('{{generated_at}}', new Date().toISOString());
 
@@ -205,17 +216,25 @@ export async function buildDemosGallery() {
 
 /* ──────────────────────────────────────────────────────────  DOCS  INDEX  */
 export async function buildDocsIndex() {
-  let tools = await loadJson('sandbox/data/tools.json');
+  let tools = await loadJson('sandbox/data/tools.json').catch(() => []);
   if (!Array.isArray(tools)) tools = [tools];
-  let cmds  = await loadJson('data/registries/command_registry.json');
+  let cmds  = await loadJson('data/registries/command_registry.json').catch(() => []);
   if (!Array.isArray(cmds)) cmds = [cmds];
   const demos = (await loadJson('sandbox/data/demos.json')).demos;
+  const apps  = (await loadJson('sandbox/data/apps.json')).apps;
+  const services = (await loadJson('sandbox/data/agentic-services.json')).services;
+  // workflows count — may not exist
+  let workflows = [];
+  try { workflows = (await loadJson('sandbox/data/workflows.json')).workflows || []; } catch {}
 
   const html = (await fs.readFile(T('docs-index.html'), 'utf8'))
-    .replaceAll('{{tools_count}}',    String(tools.length))
-    .replaceAll('{{commands_count}}', String(cmds.length))
-    .replaceAll('{{demos_count}}',    String(demos.length))
-    .replaceAll('{{generated_at}}',   new Date().toISOString());
+    .replaceAll('{{tools_count}}',     String(tools.length))
+    .replaceAll('{{commands_count}}',  String(cmds.length))
+    .replaceAll('{{demos_count}}',     String(demos.length))
+    .replaceAll('{{workflows_count}}', String(workflows.length))
+    .replaceAll('{{apps_count}}',      String(apps.length))
+    .replaceAll('{{services_count}}',  String(services.length))
+    .replaceAll('{{generated_at}}',    new Date().toISOString());
 
   const out = O('docs', 'index.html');
   await fs.mkdir(path.dirname(out), { recursive: true });
