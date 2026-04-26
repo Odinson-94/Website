@@ -1266,9 +1266,21 @@
         wraps to 3-up <900px and 2-up <600px without media queries. */
   .integrations-strip {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* Phase 8.6.1: 6-up at desktop, explicitly. Auto-fit was getting 7
+       which left a 4-tile second row. 6+4 is intentional with 10 real
+       partners — clean rhythm. */
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 12px;
     margin-top: var(--space-md);
+  }
+  @media (max-width: 1100px) {
+    .integrations-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+  @media (max-width: 900px) {
+    .integrations-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .integrations-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   .integration-tile {
     background: var(--ad-panel);
