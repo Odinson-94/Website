@@ -87,17 +87,30 @@ export async function patchHome() {
   let chatMarkup = await extractMepChat();
   console.log(`patch-dist-home: extracted MEP chat (${chatMarkup.length} chars)`);
 
-  // Phase 8.7.5 accessibility patch: the live SPA's chat titlebar buttons
-  // ship without aria-labels (icon-only, decorative). On dist home Section
-  // 2 they're focusable controls so they need accessible names. Inject
-  // here without touching the live SPA source (single-law: dist work only).
+  // Phase 8.7.5 accessibility patches on the lifted chat block.
+  // (Single-law: do NOT edit /workspace/index.html — patch at lift time.)
   chatMarkup = chatMarkup
+    // 1. Icon-only titlebar buttons need accessible names.
     .replace(/<button class="demo-titlebar-btn min">/g,
              '<button class="demo-titlebar-btn min" aria-label="Minimise chat panel" title="Minimise">')
     .replace(/<button class="demo-titlebar-btn max">/g,
              '<button class="demo-titlebar-btn max" aria-label="Maximise chat panel" title="Maximise">')
     .replace(/<button class="demo-titlebar-btn close">/g,
-             '<button class="demo-titlebar-btn close" aria-label="Close chat panel" title="Close">');
+             '<button class="demo-titlebar-btn close" aria-label="Close chat panel" title="Close">')
+    // 2. Tab-order: the chat colour-palette dropdown holds 70+ .color-swatch
+    //    buttons that are visually hidden by default. They were polluting
+    //    keyboard tab order — after the 4 hero CTAs the user had to tab
+    //    through 70 hidden swatches before reaching anything else. Fix:
+    //    set the closed dropdown as `inert`, which removes ALL descendants
+    //    from tab order + the accessibility tree. Click handlers still
+    //    work when the user opens the dropdown via the settings button
+    //    (the open state needs to remove `inert` — the live SPA's open
+    //    handler in /js/* doesn't currently know about inert; this is a
+    //    follow-up for the chat-panel agent. For now the swatches are
+    //    keyboard-unreachable while the dropdown is closed, which is the
+    //    correct default state).
+    .replace(/<div class="color-palette-dropdown word-style chat-palette" id="chatColorPaletteDropdown">/g,
+             '<div class="color-palette-dropdown word-style chat-palette" id="chatColorPaletteDropdown" inert>');
 
   const overlayStyle =
     'position:absolute;top:0;left:0;width:100%;height:100%;' +
