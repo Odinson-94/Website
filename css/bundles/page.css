@@ -800,7 +800,7 @@
 .titlebar-brand {
   align-items: baseline;
   display: inline-flex;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Gotham Medium', 'Inter', sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 2px;

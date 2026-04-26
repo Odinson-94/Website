@@ -249,7 +249,7 @@ html.dark-mode .clash-category-item:hover {
 }
 
 .clash-category-item.active {
-  background: #007AFF;
+  background: #156082;
   color: white;
 }
 
@@ -389,7 +389,7 @@ html.dark-mode .status-filter {
 
 .clash-result-item.active {
   background: rgba(0, 122, 255, 0.1);
-  border-color: #007AFF;
+  border-color: #156082;
 }
 
 html.dark-mode .clash-result-item {
@@ -404,7 +404,7 @@ html.dark-mode .clash-result-item:hover {
 
 html.dark-mode .clash-result-item.active {
   background: rgba(0, 122, 255, 0.15);
-  border-color: #007AFF;
+  border-color: #156082;
 }
 
 .result-status {
@@ -682,12 +682,12 @@ html.dark-mode .clash-status {
 }
 
 .solve-btn {
-  background: #007AFF;
+  background: #156082;
   color: white;
 }
 
 .solve-btn:hover:not(:disabled) {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 .accept-btn {
@@ -709,12 +709,12 @@ html.dark-mode .clash-status {
 }
 
 .cancel-btn {
-  background: #6c757d;
+  background: #444;
   color: white;
 }
 
 .cancel-btn:hover {
-  background: #5a6268;
+  background: #222;
 }
 
 html.dark-mode .cancel-btn {
