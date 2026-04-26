@@ -1296,6 +1296,53 @@
     background: rgba(74,155,184,0.08);
   }
 
+  /* ── SECTION 8b: INTEGRATIONS STRIP — partner logos on white tiles.
+        Phase 8.6: 10 partner JPGs at min 80px height (fixes critique
+        #15 / #16). Each tile = white --ad-panel surface, 12px radius,
+        1px --ad-border, 24px padding, so the JPG colour cast doesn't
+        fight the warm body bg. Auto-fit grid: ~6-up at desktop,
+        wraps to 3-up <900px and 2-up <600px without media queries. */
+  .integrations-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: var(--space-md);
+  }
+  .integration-tile {
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: 12px;
+    padding: 22px 18px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100px;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+  }
+  @media (hover: hover) {
+    .integration-tile:hover {
+      transform: translateY(-2px);
+      border-color: rgba(21,96,130,0.30);
+      box-shadow: 0 8px 22px rgba(30,52,72,0.10);
+    }
+  }
+  html.dark-mode .integration-tile {
+    background: var(--ad-card-dark);
+    border-color: var(--ad-border);
+  }
+  .integration-tile img {
+    height: 80px;          /* the 80px min height is the Phase 8.6 fix */
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    /* JPGs aren't transparent — clip to the tile bounds and let the
+       white tile bg blend the JPG's white background. */
+  }
+  html.dark-mode .integration-tile img {
+    /* JPGs render on dark surface — slightly mute them so the white
+       JPG bg doesn't blast against the dark card surface. */
+    filter: brightness(0.92) contrast(1.05);
+    border-radius: 4px;
+  }
+
   /* ── SECTION 9: PRIVACY BANNER — dark .rp-commands-card derivative.
         Same surface as Section 2, single-accent (teal padlock icon),
         no gradient. */
@@ -2620,6 +2667,34 @@
       <span class="calc-badge">Pipe &amp; Duct Sizing</span>
     </div>
     <a class="apps-roadmap-link" href="/dist/docs/index.html">Read about the calc layer →</a>
+  </section>
+
+  <!-- ═══ SECTION 8b: INTEGRATIONS STRIP ═══
+       Per Phase 8.6 of the plan: 10 real partner JPGs from
+       /images/logos/, each on a white --ad-panel tile (12px radius,
+       1px --ad-border, 24px padding). 6-up flex row at desktop,
+       3-up at <900px, 2-up at <600px. 80px min logo height (the
+       fix for critique #15: the live-SPA carousel had 40×40 logos,
+       this dist strip puts them at proper showcase size). -->
+  <section class="home-section reveal d5">
+    <div class="home-section-head">
+      <h2>Integrates with</h2>
+      <div class="head-aside">
+        <p>The agent reads from and writes to the tools you already use. The platform plugs into your existing Revit, AutoCAD, Excel, Word, IESVE and AutoCAD MEP files — no migration required.</p>
+      </div>
+    </div>
+    <div class="integrations-strip">
+      <div class="integration-tile"><img src="/images/logos/Revit.jpg"       alt="Autodesk Revit logo"></div>
+      <div class="integration-tile"><img src="/images/logos/AutoCAD.jpg"     alt="Autodesk AutoCAD logo"></div>
+      <div class="integration-tile"><img src="/images/logos/AutodeskMEP.jpg" alt="Autodesk MEP logo"></div>
+      <div class="integration-tile"><img src="/images/logos/Civil3D.jpg"     alt="Autodesk Civil 3D logo"></div>
+      <div class="integration-tile"><img src="/images/logos/Robot.jpg"       alt="Autodesk Robot logo"></div>
+      <div class="integration-tile"><img src="/images/logos/IESVE.jpg"       alt="IESVE logo"></div>
+      <div class="integration-tile"><img src="/images/logos/Trimble.jpg"     alt="Trimble logo"></div>
+      <div class="integration-tile"><img src="/images/logos/ProEst.jpg"      alt="ProEst logo"></div>
+      <div class="integration-tile"><img src="/images/logos/Word.jpg"        alt="Microsoft Word logo"></div>
+      <div class="integration-tile"><img src="/images/logos/Excel.jpg"       alt="Microsoft Excel logo"></div>
+    </div>
   </section>
 
   <!-- ═══ SECTION 9: PRIVACY NOTE — dark #2f2f2f banner with weight ═══
