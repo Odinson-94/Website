@@ -709,8 +709,28 @@
     height: 100%;
   }
 
+  /* Section 5 + reverse-direction modifier (text LEFT, frame RIGHT). */
+  .clash-row.clash-row-reverse {
+    grid-template-columns: 40% 60%;
+  }
+
+  /* Light-mode painted frame for Section 5 — same painted bg + 30%
+     overlay but the floating content inside is a light-mode iframe
+     (per original plan: "Keep it on light mode"). */
+  .clash-frame.clash-frame-light .cobie-iframe {
+    position: absolute; inset: 24px;
+    z-index: 2;
+    width: calc(100% - 48px);
+    height: calc(100% - 48px);
+    border: 0;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+  }
+
   @media (max-width: 1100px) {
-    .clash-row { grid-template-columns: 1fr; }
+    .clash-row,
+    .clash-row.clash-row-reverse { grid-template-columns: 1fr; }
     .clash-copy { padding: clamp(32px, 5vw, 56px); }
     .clash-frame { aspect-ratio: 4 / 3; }
   }
@@ -1836,25 +1856,34 @@
     </div>
   </section>
 
-  <!-- ═══ SECTION 5: COBIE PANEL ═══ -->
-  <section class="home-section reveal d4">
+  <!-- ═══ SECTION 5: COBIE PANEL ═══
+       Per original sandbox plan Section 5: "Take the chat panel
+       container (artsy background frame) and put the COBie webview
+       inside it. Keep it on light mode. Text on left, panel on right."
+       Layout: text 40% LEFT, painted artsy frame 60% RIGHT with the
+       COBie demo iframe floating inside (light-mode webview). -->
+  <section class="home-section clash-section reveal d4">
     <div class="home-section-head">
-      <h2>COBie Manager</h2>
+      <h2>CoBie Manager</h2>
       <div class="head-aside">
-        <p>BIM hand-over data validated, structured and exported — without the spreadsheet marathon.</p>
+        <p>Continuously populates and validates the COBie spreadsheet against the live Revit model. Every cell traceable to its source element.</p>
       </div>
     </div>
 
-    <div class="showcase-split">
-      <div class="sc-copy">
-        <span class="sc-kicker">Data Handover</span>
-        <h3>COBie deliverables from the live model</h3>
-        <p>Extract asset registers, space data, system breakdowns and maintenance schedules directly from the Revit model. Every row validated against the COBie schema before it leaves the building.</p>
-        <p>No manual mapping. No copy-paste from schedules. The agent reads the model, fills the workbook, flags what's missing, and hands you a file ready for the client.</p>
-        <a class="sc-link" href="/dist/apps/cobie/index.html">Open COBie Manager →</a>
+    <div class="clash-row clash-row-reverse">
+      <div class="clash-copy">
+        <h3 class="clash-heading">A live COBie deliverable, never a panic before hand-over.</h3>
+        <div class="clash-body">
+          <p>CoBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.</p>
+          <p>Every cell traces back to the source Revit element. No manual mapping, no copy-paste from schedules — the agent reads the model, fills the workbook, flags what's missing, and hands you a file ready for the client.</p>
+        </div>
+        <a class="clash-link" href="/dist/apps/cobie-manager/index.html">Open CoBie Manager →</a>
       </div>
-      <div class="sc-visual" style="background:url('/images/revit-bg.png') center/cover no-repeat #1a1a1a;">
-        <span class="vis-placeholder" style="position:relative;z-index:1;">COBie Webview</span>
+      <div class="clash-frame clash-frame-light">
+        <iframe class="cobie-iframe"
+                src="/dist/demos/cobie-manager/index.html"
+                title="CoBie Manager preview"
+                loading="lazy"></iframe>
       </div>
     </div>
   </section>
