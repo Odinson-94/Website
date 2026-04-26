@@ -988,7 +988,8 @@
   .apps-scroll::-webkit-scrollbar { display: none; }
 
   .app-card {
-    flex: 0 0 280px;
+    flex: 0 0 240px;        /* Phase 1 acceptance: ~4.5 cards visible at
+                               1440px (1152px boxed / (240+16) ≈ 4.5). */
     scroll-snap-align: start;
     background: var(--ad-card-dark);
     border-radius: 14px;
@@ -2257,7 +2258,9 @@
     <div class="home-section-head">
       <h2>Clash Solver</h2>
       <div class="head-aside">
-        <p>Ingests your ACC clash report, proposes a resolution for every clash, and applies the ones you accept — straight into the live model.</p>
+        <!-- Phase 2: head-aside copy lifted VERBATIM from
+             sandbox/data/features.json[clash-solver].tagline -->
+        <p>Ingests your ACC clash report, proposes a resolution for every clash, and applies the resolutions you accept — straight into the live model.</p>
       </div>
     </div>
 
