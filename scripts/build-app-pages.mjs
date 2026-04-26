@@ -81,9 +81,11 @@ async function renderApp(app) {
     </div>
   ` : '';
 
+  // Inline stat line (Phase 7.2): replaces the 4-tile outcomes-strip
+  // dashboard cliché. tabular-nums on numbers, mid-dot separators.
   const outcomesStrip = (app.key_outcomes || []).length
-    ? `<div class="outcomes-strip">${app.key_outcomes.map(o => `
-        <div class="ostat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('')}</div>`
+    ? `<p class="ap-stats-inline">${app.key_outcomes.map(o => `
+        <span><span class="ap-stat-num">${esc(o.stat)}</span>${esc(o.label)}</span>`).join('<span aria-hidden="true">·</span>')}</p>`
     : '';
 
   const shiftBlock = app.the_shift
@@ -229,27 +231,37 @@ function renderTile(a) {
 // Two variants:
 //   • Flat features[]      → single .rp-feat-list
 //   • feature_groups[]     → grouped sections; each group has its own .rp-feat-list
+// Renders the Features block as ONE dark .ap-features-card.rp-commands-card
+// (single-law: same dark-card vocabulary as Section 2 of the home).
+// NO rp-agent-spinner per row — Phase 7.4: 11 simultaneous spinners is
+// motion noise. Each row gets a static teal chevron (the same teal-tinted
+// chevron used as the "right-side accent" on agentic email rows).
 function renderFeatures(entity) {
-  const renderList = items => `<div class="rp-feat-list">${items.map(f => `
+  const renderItems = items => items.map(f => `
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">${esc(f.name)}</span>
         <span class="rp-feat-desc">${esc(f.desc)}</span>
       </div>
-      <div class="rp-agent-spinner"></div>
-    </div>`).join('')}</div>`;
+      <span class="ap-feat-chev" aria-hidden="true">›</span>
+    </div>`).join('');
 
+  let body = '';
   if (Array.isArray(entity.feature_groups) && entity.feature_groups.length) {
-    return entity.feature_groups.map(g => `
-      <section class="ap-group">
-        <h3 class="ap-group-label">${esc(g.title)} <span class="ap-group-count">${(g.features || []).length}</span></h3>
-        ${renderList(g.features || [])}
-      </section>`).join('');
+    body = entity.feature_groups.map(g => `
+      <p class="ap-feat-group-label">${esc(g.title)} · ${(g.features || []).length}</p>
+      <div class="rp-feat-list">${renderItems(g.features || [])}</div>`).join('');
+  } else if (Array.isArray(entity.features) && entity.features.length) {
+    body = `<div class="rp-feat-list">${renderItems(entity.features)}</div>`;
+  } else {
+    return '';
   }
-  if (Array.isArray(entity.features) && entity.features.length) {
-    return renderList(entity.features);
-  }
-  return '';
+
+  return `
+    <div class="ap-features-card rp-commands-card">
+      <h3 class="ap-features-header">${esc(entity.title)} features</h3>
+      ${body}
+    </div>`;
 }
 
 // Renders the Install section body:
@@ -263,7 +275,7 @@ function renderInstall(entity) {
   const strip = (i.platforms || []).length ? `
     <div class="install-strip">
       ${i.platforms.map(p => `
-        <div class="platform">
+        <div class="install-tile">
           <span class="pname">${esc(p.name)}</span>
           <span class="pspec">${esc(p.spec)}</span>
         </div>`).join('')}
