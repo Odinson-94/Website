@@ -1,0 +1,39 @@
+{
+  "class": "QAManagerCommand",
+  "desc": "Opens the QA Manager window — a WebView2 + AI Chat split-panel for running error checks, reviewing QA results, navigating clashes, and managing rule sets.",
+  "summary": "Opens the QA Manager window — a WebView2 + AI Chat split-panel for running error checks, reviewing QA results, navigating clashes, and managing rule sets.",
+  "usecase": "Run every QA check on the live Revit model, capture 3D images of each finding, and export a native PDF / DOCX / Excel / XML / HTML report — from one window, or by asking the chat \"run every QA check and send me a PDF\".",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "qa manager",
+    "error manager",
+    "quality assurance",
+    "run checks",
+    "qa window",
+    "error check"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening the QA Manager…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "QA Manager window is now open."
+    ],
+    "failureprompts": [
+      "Failed to open QA Manager: {error}"
+    ]
+  },
+  "has_restapi": false
+}

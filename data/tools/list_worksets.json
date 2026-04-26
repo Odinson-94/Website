@@ -1,0 +1,12 @@
+{
+  "name": "list_worksets",
+  "desc": "List all worksets with name and visibility.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list worksets"
+  ]
+}

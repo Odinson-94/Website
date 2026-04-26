@@ -1,0 +1,103 @@
+{
+  "class": "SnapshotQueryCommand",
+  "desc": "External command that queries the SQLite model snapshot.",
+  "summary": "External command that queries the SQLite model snapshot. Runs in Add-In Manager ALC context so Microsoft.Data.Sqlite resolves correctly. Requires a prior export via SnapshotExportCommand. Tools.MCPSnapshotQuery routes here via execute_command. Uses SnapshotDatabase.QueryAsJson for raw SQL and structured queries. Uses SnapshotRegistry to retrieve the current snapshot instance.",
+  "usecase": "User wants to query elements by category, level, or parameter value from the snapshot. User wants to run raw SQL joins across elements and parameters tables. User wants snapshot metadata (element counts, export time, scope). AI sub-agents need fast parallel reads without hitting the Revit thread.",
+  "notfor": "Exporting/creating a snapshot (use SnapshotExportCommand instead). Writing parameter changes (use snapshot_write/snapshot_apply instead). Live Revit model queries that need real-time data (use MCP context tools instead).",
+  "precondition": "A snapshot must have been exported via SnapshotExportCommand (snapshot_export). The SnapshotRegistry.Current must be non-null and IsReady.",
+  "postcondition": "Returns JSON query results via CommandExecutor.SetResultObject. No model changes — read-only operation on the SQLite database.",
+  "sideeffects": "",
+  "logictree": "check: info == \"true\" → return snapshot metadata\rcheck: sql provided → validate read-only → execute raw SQL\rcheck: table provided → build structured query with filters → execute\rfallback: → return snapshot metadata (info)",
+  "keywords": [
+    "snapshot query",
+    "query snapshot",
+    "sqlite query",
+    "model snapshot query",
+    "elements query",
+    "parameters query",
+    "rooms query",
+    "levels query"
+  ],
+  "intent_patterns": [
+    "query * snapshot",
+    "snapshot * query",
+    "search * snapshot",
+    "find * in snapshot",
+    "get * from snapshot",
+    "snapshot * info"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "sql",
+      "type": "string",
+      "description": "Raw SQL query (SELECT only)",
+      "default": "null"
+    },
+    {
+      "name": "table",
+      "type": "string",
+      "description": "Table to query (structured mode)",
+      "default": "null"
+    },
+    {
+      "name": "filters",
+      "type": "string",
+      "description": "JSON column=value filters for structured query",
+      "default": "null"
+    },
+    {
+      "name": "include_parameters",
+      "type": "string",
+      "description": "Comma-separated parameter names to join",
+      "default": "null"
+    },
+    {
+      "name": "limit",
+      "type": "string",
+      "description": "Max rows returned",
+      "default": "\"200\""
+    },
+    {
+      "name": "info",
+      "type": "string",
+      "description": "Set to 'true' for snapshot metadata",
+      "default": "null"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "QueryResult",
+      "type": "JSON",
+      "description": "Query results as JSON array or metadata object"
+    }
+  ],
+  "related_commands": [
+    "SnapshotExportCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Querying model snapshot...",
+      "Running snapshot query...",
+      "Fetching data from snapshot database..."
+    ],
+    "thinkingsteps": [
+      "Checking snapshot availability...",
+      "Parsing query parameters...",
+      "Executing SQLite query...",
+      "Formatting results..."
+    ],
+    "successprompts": [
+      "Query returned {RowCount} rows.",
+      "Done — snapshot query complete.",
+      "Here are the results from the snapshot."
+    ],
+    "failureprompts": [
+      "Snapshot query failed: {error}",
+      "Couldn't query snapshot: {error}"
+    ]
+  },
+  "has_restapi": false
+}

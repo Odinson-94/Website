@@ -1,0 +1,14 @@
+{
+  "name": "drawing_exporter_get_selection",
+  "desc": "Get the currently selected sheets in the Drawing Exporter. Returns an array of selected sheet objects.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "selected sheets",
+    "sheet selection",
+    "export selection"
+  ]
+}

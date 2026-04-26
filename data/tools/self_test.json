@@ -1,0 +1,36 @@
+{
+  "name": "self_test",
+  "desc": "Run the self-test checklist. Returns pass/fail summary. Use to verify tools and commands work. Optionally filter by section or test_id.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "section",
+      "type": "string",
+      "description": "Filter tests by section name (e.g., 'bridge', 'tools', 'snapshot')",
+      "required": false
+    },
+    {
+      "name": "test_id",
+      "type": "string",
+      "description": "Run a single test by ID (e.g., '2.1')",
+      "required": false
+    },
+    {
+      "name": "mcp_debug_script",
+      "type": "string",
+      "description": "Run MCP UI debug JSON from BUILD MEP Plan/AIChat/MCP Debug Tests/ (e.g. 01_startup.json). Overrides section/test_id when set.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "self test",
+    "debug test",
+    "test checklist",
+    "run tests",
+    "self debug",
+    "mcp debug script"
+  ]
+}

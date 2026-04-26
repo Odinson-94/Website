@@ -1,0 +1,69 @@
+{
+  "name": "determine_view_position",
+  "desc": "Calculate viewport placement positions for single/dual/grid layout.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 9,
+  "parameters": [
+    {
+      "name": "centerXMm",
+      "type": "number",
+      "description": "Viewport-space center X in mm.",
+      "required": false
+    },
+    {
+      "name": "centerYMm",
+      "type": "number",
+      "description": "Viewport-space center Y in mm.",
+      "required": false
+    },
+    {
+      "name": "availableWidthMm",
+      "type": "number",
+      "description": "Available width in mm.",
+      "required": true
+    },
+    {
+      "name": "availableHeightMm",
+      "type": "number",
+      "description": "Available height in mm.",
+      "required": true
+    },
+    {
+      "name": "layout",
+      "type": "string",
+      "description": "single|dual|grid (default single).",
+      "required": false
+    },
+    {
+      "name": "viewWidthMm",
+      "type": "number",
+      "description": "View width in mm.",
+      "required": false
+    },
+    {
+      "name": "viewHeightMm",
+      "type": "number",
+      "description": "View height in mm.",
+      "required": false
+    },
+    {
+      "name": "columns",
+      "type": "integer",
+      "description": "Grid columns (default 2).",
+      "required": false
+    },
+    {
+      "name": "rows",
+      "type": "integer",
+      "description": "Grid rows (default 2).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "determine view position",
+    "viewport placement",
+    "sheet layout"
+  ]
+}

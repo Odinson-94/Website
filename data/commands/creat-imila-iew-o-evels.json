@@ -1,0 +1,85 @@
+{
+  "class": "CreateSimilarViewsForLevelsCommand",
+  "desc": "Command: Creates similar views for each primary level based on current view.",
+  "summary": "Command: Creates similar views for each primary level based on current view. Extracts settings from the active view and replicates to all other levels. Uses ListLevels.GetPrimaryLevels for level discovery. Uses ListViews to check for existing views. Related: CreateViewsCommand for service-based view creation. Related: CreateSheetCommand for placing views on sheets. WORKFLOW: 1. Gets the current active view (must be a ViewPlan) 2. Extracts view settings: template, scope box, scale, crop region, detail level, etc. 3. Gets all primary levels using ListLevels.GetPrimaryLevels 4. For each level (except current), creates a new view with same settings 5. Names views consistently based on source view pattern 6. Reports success with list of created views",
+  "usecase": "User has set up a view for one level and wants identical views on all floors. User needs to create consistent MEP plan views across all levels. User wants to propagate view setup from one floor to all others.",
+  "notfor": "Custom UI required for preview/confirmation only. AI path is JSON-first and dialog-free.",
+  "precondition": "Active document must be open with an active ViewPlan. At least two primary levels must exist (current + targets). ViewPlan must be a floor plan or ceiling plan.",
+  "postcondition": "New views are created for each primary level (except the source level). All views match the source view's template, scope box, scale, and other settings. View names follow consistent pattern based on source view name.",
+  "sideeffects": "Creates new ViewPlan elements in the document.",
+  "logictree": "check: document.isOpen → continue\rcheck: activeView.isViewPlan → continue, else → error\raction: extractViewSettings → template, scopeBox, scale, crop, etc.\raction: getPrimaryLevels → ListLevels.GetPrimaryLevels\rcheck: primaryLevels.count >= 2 → continue, else → error\raction: filterLevels → exclude source level\raction: createViewsForEachLevel → CreateViews helper\raction: applySettings → match all properties\rresolve: success → showSuccess with created views",
+  "keywords": [
+    "create similar views",
+    "copy view levels",
+    "duplicate view",
+    "propagate view",
+    "view for all levels"
+  ],
+  "intent_patterns": [
+    "create * similar * views * levels",
+    "copy * view * all * levels",
+    "duplicate * view * levels",
+    "create * views * each * level"
+  ],
+  "pillar": "Combined",
+  "pillar_raw": "Combined",
+  "selection_inputs": [
+    {
+      "name": "SourceView",
+      "type": "ViewPlan",
+      "description": "Source view to copy settings from",
+      "prompt": "Active view is used as source"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "IncludeSourceLevel",
+      "type": "bool",
+      "description": "Whether to skip or include the source level",
+      "default": "false"
+    },
+    {
+      "name": "NamePattern",
+      "type": "string",
+      "description": "Pattern for naming views, use {Level} for level name",
+      "default": "\"auto\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedViews",
+      "type": "List<ViewPlan>",
+      "description": "List of created views"
+    },
+    {
+      "name": "ViewCount",
+      "type": "int",
+      "description": "Number of views created"
+    }
+  ],
+  "related_commands": [
+    "CreateViewsCommand",
+    "SetTemplateCommand",
+    "SetViewToScopeBoxCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Replicating your view settings across all levels...",
+      "Creating matching views for each floor..."
+    ],
+    "thinkingsteps": [
+      "Extracting view settings from source view...",
+      "Getting primary levels from model...",
+      "Creating views for each target level...",
+      "Applying template, scope box, and scale settings..."
+    ],
+    "successprompts": [
+      "Created {ViewCount} views matching your source view settings.",
+      "Done! Views created for all levels."
+    ],
+    "failureprompts": [
+      "View replication failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

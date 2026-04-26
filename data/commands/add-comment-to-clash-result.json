@@ -1,0 +1,40 @@
+{
+  "class": "AddCommentToClashResult",
+  "desc": "Appends a timestamped comment to a clash row in the newest QA results XML (orchestrated parameters: clashId, comment).",
+  "summary": "Appends a timestamped comment to a clash row in the newest QA results XML (orchestrated parameters: clashId, comment).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "comment clash",
+    "add comment to clash",
+    "annotate clash"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Appending clash comment to QA XML…"
+    ],
+    "thinkingsteps": [
+      "Resolving latest results_*.xml beside the saved model…",
+      "Locating the clash row by id…",
+      "Writing the stamped comment line…"
+    ],
+    "successprompts": [
+      "Comment saved for clash {clashId}."
+    ],
+    "failureprompts": [
+      "Could not append clash comment: {error}"
+    ]
+  },
+  "has_restapi": false
+}

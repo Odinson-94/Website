@@ -1,0 +1,14 @@
+{
+  "name": "get_central_warning_log_summary",
+  "desc": "Summary of the central warning log: count by level, top 5 sources, last 10 entries.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "warning log summary",
+    "log summary",
+    "command log summary"
+  ]
+}

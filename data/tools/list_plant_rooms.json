@@ -1,0 +1,12 @@
+{
+  "name": "list_plant_rooms",
+  "desc": "List all plant rooms detected by name pattern.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list plant rooms"
+  ]
+}

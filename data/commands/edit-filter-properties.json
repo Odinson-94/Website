@@ -1,0 +1,77 @@
+{
+  "class": "EditFilterPropertiesCommand",
+  "desc": "Edits properties on an existing ParameterFilterElement — can rename the filter and/or reassign its category set.",
+  "summary": "Edits properties on an existing ParameterFilterElement — can rename the filter and/or reassign its category set. Uses ListFilters.GetByName to resolve the filter from a user-supplied name. Categories are parsed from comma-separated BuiltInCategory enum names. Related: ListFilters for querying available filters.",
+  "usecase": "User wants to rename a view filter or change which categories it applies to.",
+  "notfor": "Creating new filters (use a create filter command). Not for view filter overrides.",
+  "precondition": "Active document must be open. Target filter must exist by name.",
+  "postcondition": "The filter element is renamed and/or has its categories updated.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "edit filter properties",
+    "rename filter",
+    "set filter categories",
+    "update filter",
+    "change filter name"
+  ],
+  "intent_patterns": [
+    "edit * filter",
+    "rename * filter",
+    "set * filter * categories",
+    "update * filter"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "filterName",
+      "type": "string",
+      "description": "Existing filter name",
+      "default": ""
+    },
+    {
+      "name": "newName",
+      "type": "string",
+      "description": "Optional new filter name",
+      "default": ""
+    },
+    {
+      "name": "categories",
+      "type": "string",
+      "description": "Optional comma-separated BuiltInCategory names",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Filter edit result including id, name, categoryCount"
+    }
+  ],
+  "related_commands": [
+    "ListFilters"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Editing filter properties...",
+      "Updating the view filter..."
+    ],
+    "thinkingsteps": [
+      "Looking up filter by name...",
+      "Applying name change if requested...",
+      "Parsing and setting category assignments..."
+    ],
+    "successprompts": [
+      "Filter \"{name}\" updated — now has {categoryCount} categories",
+      "Done — filter properties updated successfully"
+    ],
+    "failureprompts": [
+      "Could not edit filter: {error}",
+      "Filter edit failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

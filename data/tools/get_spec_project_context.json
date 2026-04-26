@@ -1,0 +1,16 @@
+{
+  "name": "get_spec_project_context",
+  "desc": "Read current specification project context: building type, disciplines, design parameters, system configurations.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "spec context",
+    "project context",
+    "specification context",
+    "building type",
+    "design parameters"
+  ]
+}

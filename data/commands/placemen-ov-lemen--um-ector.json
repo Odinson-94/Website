@@ -1,0 +1,37 @@
+{
+  "class": "PlacementMoveElementByDumbVectorCommand",
+  "desc": "Translate selected elements by an explicit (dx, dy, dz) vector supplied in millimetres.",
+  "summary": "Translate selected elements by an explicit (dx, dy, dz) vector supplied in millimetres. Inline default = (0, 0, 0).",
+  "usecase": "\"Shift selection by 200 mm +Z\" style moves from Bot or UI.",
+  "notfor": "Space-aware moves (use IntoDetectedSpace). View-axis directional moves (use DirectionalByViewAxis).",
+  "precondition": "Active document. ≥1 element resolved. Vector non-zero.",
+  "postcondition": "Each element translated by the vector. Audit entry written.",
+  "sideeffects": "",
+  "logictree": "1) Resolve element ids and (dx,dy,dz) mm. 2) Validate. 3) Convert mm → ft. 4) Transaction: MoveElement per id. 5) Commit, log. 6) Failure → WireFault + rollback.",
+  "keywords": [
+    "placementmoveelementbydumbvector"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running PlacementMoveElementByDumbVectorCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "PlacementMoveElementByDumbVectorCommand completed successfully."
+    ],
+    "failureprompts": [
+      "PlacementMoveElementByDumbVectorCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

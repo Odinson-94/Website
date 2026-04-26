@@ -1,0 +1,576 @@
+{
+  "section_title": "Apps",
+  "section_lead": "Eleven flagship apps. One platform.",
+  "section_blurb": "Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.",
+  "apps": [
+    {
+      "slug": "revit-copilot",
+      "title": "Revit Copilot",
+      "is_flagship": true,
+      "headline_claim": "An AI engineer that lives inside Revit and runs the model with you.",
+      "tagline": "Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.",
+      "the_shift": {
+        "before": "Click through ribbons. Memorise plug-ins. Copy parameters by hand. Hope the schedule matches the model.",
+        "after": "Ask. The Copilot picks the right tool, asks the questions a senior would, and writes the result back to the model — already coordinated, already scheduled, already QA'd."
+      },
+      "blurb": "The Revit Copilot is the headline product. It's the difference between Revit-as-a-drafting-tool and Revit-as-an-engineering-environment. It reads your model like a senior engineer would, knows your office standards, runs the right command for the job, and shows its working. You stay in control of every change — but the donkey-work is done.",
+      "detail_paragraphs": [
+        "The Revit Copilot installs as a Revit add-in that exposes 163 commands and 191 MCP tools to a chat-based agent running inside the model. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination of those — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a transactional Revit operation with one-click undo.",
+        "For an MEP designer, this typically removes 10 to 18 hours per project from manual ribbon-clicking, parameter copy-pasting and schedule cross-checks. For a coordinator, it cuts a typical clash-resolution loop from a half-day to under an hour, because the agent is reading the model continuously rather than waiting for a human to spot the issue.",
+        "Across a Stage 3 MEP package on a typical mixed-use scheme, teams using the Copilot ship the same scope in 35–45% less Revit time than teams without it."
+      ],
+      "pullquote": "Revit Copilot will be the only AI engineer that lives natively inside Revit, runs the platform's commands as a senior would, and shows its working on every change.",
+      "key_outcomes": [
+        { "stat": "163",   "label": "Revit commands one prompt away" },
+        { "stat": "191",   "label": "MCP tools the agent can chain" },
+        { "stat": "18×",   "label": "faster than manual on coordination tasks" },
+        { "stat": "0",     "label": "context switches — never leave Revit" }
+      ],
+      "what_makes_it_special": "It's not a chat window stitched onto Revit. It's a deeply embedded agent with read/write access to your model through a typed, audited tool surface. Every action is reversible. Every decision is explainable.",
+      "features": [
+        { "name": "Talk-to-Revit",                  "desc": "A docked chat panel in Revit. Ask in plain English; the Copilot picks the right tool and does the work." },
+        { "name": "Runs 163 Revit commands",        "desc": "Every shipped command — extend connectors, place SVPs, snap to walls, build schedules — callable from chat." },
+        { "name": "Drives 191 MCP tools",           "desc": "Read tools (queries) and action tools (writes) the agent can chain into multi-step operations." },
+        { "name": "Cross-discipline coordinator",   "desc": "Drainage, ventilation, lighting, mechanical, electrical, public health, fire alarm — all in one agent." },
+        { "name": "House-standards aware",          "desc": "Reads office templates, parameter conventions and naming rules. Applies them automatically." },
+        { "name": "Audited + reversible",           "desc": "Every write wrapped as a Revit transaction. One-click undo on anything the agent did." },
+        { "name": "Workshare-aware",                "desc": "Works on local + central models; respects worksets and ownership." },
+        { "name": "Live model reading",             "desc": "Queries the model in real time. No exports, no snapshots, no stale data." },
+        { "name": "Shows its working",              "desc": "Surfaces every element it touched and every parameter it changed before you accept the change." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Revit 2022", "spec": "Windows 10/11 · .addin auto-loaded" },
+          { "name": "Revit 2023", "spec": "Windows 10/11 · .addin auto-loaded" },
+          { "name": "Revit 2024", "spec": "Windows 10/11 · .addin auto-loaded" },
+          { "name": "Revit 2025", "spec": "Windows 10/11 · .addin auto-loaded" },
+          { "name": "Revit 2026", "spec": "Windows 11 · .addin auto-loaded" }
+        ],
+        "requirements": [
+          "Revit 2022 or later, 64-bit, with admin rights for first install.",
+          "MEP Bridge installed (bundled with the Copilot installer).",
+          "Internet connection (the agent runs in the cloud; the model stays local).",
+          "An Adelphos account."
+        ],
+        "auth": "Sign in once via Adelphos Chat; the Revit add-in inherits the session.",
+        "download_label": "Download Revit add-in (.msi)",
+        "download_href": "/dist/downloads/index.html"
+      },
+      "surface": "Revit add-in · Revit 2022 → 2026 · Windows",
+      "status": "live",
+      "icon": "images/app-logos/revit-copilot.png",
+      "tone": "blue",
+      "best_for": ["MEP designers", "BIM coordinators", "Engineers who live in Revit"],
+      "hero_video": "/Videos/Final Website Release.mp4",
+      "primary_cta": { "label": "Download the add-in", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "Watch a demo", "href": "/dist/demos/index.html" },
+      "seo": {
+        "why_h3":     "AI Revit add-in for MEP engineers",
+        "shift_h3":   "From manual Revit modelling to AI-assisted MEP design",
+        "special_h3": "Deep Revit integration with an audited, reversible tool surface",
+        "who_h3":     "Built for MEP designers and BIM coordinators inside Revit"
+      }
+    },
+    {
+      "slug": "adelphos-chat",
+      "title": "Adelphos Chat",
+      "headline_claim": "Your project's brain — without Revit, without a desk.",
+      "tagline": "Same agent. Same project context. Browser, phone, or desktop. The Adelphos Chat is the agent untethered from any one tool.",
+      "the_shift": {
+        "before": "On site, in a meeting, on a train. Need a number from the model, a quote from the brief, a check against the spec — and you can't open Revit.",
+        "after": "Ask Adelphos. It already knows the project. It pulls the answer from the live model, the brief, the spec, the schedule. You move on."
+      },
+      "blurb": "When you're not in Revit but you still need the agent. Adelphos Chat carries the same project memory, the same tool surface, and the same standards as the Revit Copilot — just without a host application. Use it on site to query a schedule, in a meeting to check a brief, or at the desk to draft a report.",
+      "detail_paragraphs": [
+        "Adelphos Chat runs in any modern browser and as a native Windows / macOS desktop app. It carries the same project memory the Revit Copilot uses — when you log in, it already knows which project you're working on, what you discussed yesterday, what's in the brief, what's in the spec, and what was last issued.",
+        "From the chat you can query the live Revit model (read-only when off-Revit, read-write when connected), pull figures from your calc spreadsheets, draft client-ready text, search project minutes, and trigger any tool the platform exposes.",
+        "For a project lead this typically reclaims 3 to 5 hours per week previously lost to context switching: walking back to the desk to look something up, opening Revit just to read a schedule, drafting the same status update three times across email, Teams and meetings. It also removes the daily \"can someone send me…\" pings to the modelling team because the agent can answer them instantly with the live data."
+      ],
+      "pullquote": "Adelphos Chat will be the only project-aware AI surface for engineers — same agent, same project memory, same standards, anywhere you can open a browser.",
+      "key_outcomes": [
+        { "stat": "Anywhere", "label": "browser · desktop · mobile" },
+        { "stat": "1",        "label": "shared project memory across devices" },
+        { "stat": "Read-write","label": "to your DMS and project folders" }
+      ],
+      "what_makes_it_special": "Most AI chat tools are stateless and project-blind. Adelphos Chat is built around your projects: it remembers what you discussed yesterday, knows which job you're on, and can act on the live data, not a snapshot.",
+      "features": [
+        { "name": "AEC specialist on tap",          "desc": "Trained on MEP, BIM, Building Safety, RIBA stages, ACC and CIBSE/BSRIA guides — answers like a senior engineer, not a generalist chatbot." },
+        { "name": "Drafts MEP specifications",       "desc": "Authors Stage 2/3/4 specs from the live Revit model, brief and your house manufacturer library." },
+        { "name": "Builds and validates schedules",  "desc": "Generates radiator, AHU, fan, light and fixture schedules straight from the model — and gap-checks them against your calcs." },
+        { "name": "Drafts client documents",         "desc": "Status updates, scope notes, meeting minutes, site reports, survey writeups — formatted to your house style." },
+        { "name": "Live model query (Bridge on)",    "desc": "Pull a number, parameter, view or schedule row from the live Revit model in seconds." },
+        { "name": "Reads project folders",           "desc": "Briefs, specs, schedules, calc spreadsheets, prior drawings — all ingested and searchable." },
+        { "name": "Files incoming files",            "desc": "Drag in PDFs, surveys, photos, emails — auto-filed against the right project, with the right metadata." },
+        { "name": "Project memory",                  "desc": "Remembers what you discussed yesterday, which job you're on, and every decision logged so far." },
+        { "name": "Search the project decision log", "desc": "Every previous answer, decision and rationale is searchable — the project's institutional memory." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Web",     "spec": "Any modern browser — Chrome, Edge, Firefox, Safari. No install." },
+          { "name": "Windows", "spec": "Windows 10 / 11, 64-bit · 4 GB RAM · 200 MB disk · auto-updates" },
+          { "name": "macOS",   "spec": "macOS 12 Monterey or later · Apple Silicon native" }
+        ],
+        "requirements": [
+          "Internet connection for chat (offline drafting is limited).",
+          "An Adelphos account (free tier available).",
+          "Optional: MEP Bridge installed locally for live Revit read/write."
+        ],
+        "auth": "Sign in with Microsoft, Google or an email magic link.",
+        "download_label": "Open in browser or download installer",
+        "download_href": "/dist/downloads/index.html"
+      },
+      "surface": "Web app + native desktop (Windows / macOS)",
+      "status": "live",
+      "icon": "images/app-logos/adelphos-chat.png",
+      "tone": "midnight",
+      "best_for": ["Project leads on site", "Off-Revit consultations", "Drafting reports + briefs"],
+      "primary_cta": { "label": "Open Adelphos Chat", "href": "https://chat.adelphos.ai" },
+      "secondary_cta": { "label": "Download desktop app", "href": "/dist/downloads/index.html" },
+      "seo": {
+        "why_h3":     "AI chat assistant for MEP engineering projects",
+        "shift_h3":   "From desk-bound Revit access to project-aware AI anywhere",
+        "special_h3": "Project-memory chat with read-write access to live model data",
+        "who_h3":     "For project leads on site, in meetings, or off-Revit"
+      }
+    },
+    {
+      "slug": "specbuilder",
+      "title": "Specbuilder",
+      "headline_claim": "The MEP specification, drafted from your live model in minutes.",
+      "tagline": "Specbuilder reads the model, applies your office standards, layers your preferred manufacturers, and produces a stage-appropriate specification — ready for issue.",
+      "the_shift": {
+        "before": "Three days copying the last spec, deleting what doesn't apply, hand-merging a manufacturer's data sheet, fighting Word styling.",
+        "after": "Point Specbuilder at the model. Get a draft in minutes. Edit inline. Regenerate any section. Issue with confidence."
+      },
+      "blurb": "Specbuilder is the tool every MEP practice has tried to build in-house and given up on. It cross-references your live Revit model against the brief, applies your house standards, layers in your preferred manufacturer data, and writes the specification — at the right stage, with the right scope. Lock sections, regenerate sections, edit inline. Outputs to Word, PDF, and your DMS.",
+      "detail_paragraphs": [
+        "Specbuilder takes a Revit model, a project brief, your office's specification template and your preferred-manufacturer library, and writes a stage-appropriate MEP specification: clauses populated from the model's actual systems, performance criteria pulled from the brief, manufacturer references from your house list, and formatting matched to your Word styles.",
+        "You review section-by-section in the browser, lock anything you don't want regenerated, edit inline where you want to override, then export to Word, PDF or your DMS in one click. The model and the spec stay coupled: when something changes downstream — a new pump, a revised duct sizing, a swapped manufacturer — you regenerate only the affected sections, not the whole document, and your hand-edits stay intact.",
+        "For a Stage 3 MEP specification on a typical commercial scheme, Specbuilder takes a job that's normally two to three full days of editing the previous spec and reduces it to about an hour of review. Across a year, a five-engineer practice typically saves 60–90 working days of specification effort."
+      ],
+      "pullquote": "Specbuilder will be the only specification tool that reads your live model, applies your house standards, and writes a stage-appropriate document — preserving every hand-edit when something downstream changes.",
+      "key_outcomes": [
+        { "stat": "Minutes", "label": "to first complete draft" },
+        { "stat": "Stage-aware", "label": "Stage 2 / 3 / 4 templates" },
+        { "stat": "House standards", "label": "applied automatically" }
+      ],
+      "what_makes_it_special": "Specbuilder doesn't generate from a blank prompt. It reads your actual project — the model, the brief, your office library — and writes specifications that already match the design intent. Section-level regeneration means you never lose hand-edits when something downstream changes.",
+      "features": [
+        { "name": "Drafts MEP specifications",     "desc": "Stage 2/3/4 specifications written from your live Revit model, project brief and house manufacturer library." },
+        { "name": "Reads the live Revit model",    "desc": "System inventories pulled directly from the model — pumps, AHUs, fixtures, fans, lights — no manual exports." },
+        { "name": "Reads the project brief",       "desc": "Performance criteria, sustainability targets and design notes pulled directly from the client brief." },
+        { "name": "House manufacturer library",    "desc": "Your preferred-manufacturer list applied automatically; no hand-merging data sheets." },
+        { "name": "Section-level regeneration",    "desc": "Rebuild only the sections affected by a downstream change. Lock sections to protect hand-edits." },
+        { "name": "Inline browser editing",        "desc": "Edit clauses in the browser; changes flow back into Word and PDF exports." },
+        { "name": "Word, PDF, DMS export",         "desc": "One click to your house Word template, a PDF for issue, or your DMS of choice." },
+        { "name": "Source tracing on every clause","desc": "Every clause links to the model element or brief line that drove it. Audit-ready." },
+        { "name": "Version history with diff",     "desc": "Every spec issue versioned; diff any two versions clause-by-clause side-by-side." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Web",          "spec": "Any modern browser. No install for the spec authoring app." },
+          { "name": "Word add-in",  "spec": "Word for Microsoft 365 (Windows + Mac). Loaded from the AppSource catalogue." }
+        ],
+        "requirements": [
+          "An Adelphos account.",
+          "Optional: MEP Bridge connector to read the live Revit model directly.",
+          "Optional: connect your DMS (SharePoint, Procore, Autodesk Docs)."
+        ],
+        "auth": "Single sign-on via Microsoft, Google or email magic link.",
+        "download_label": "Open Specbuilder online",
+        "download_href": "https://app.adelphos.ai/specbuilder"
+      },
+      "surface": "Web app + Word add-in",
+      "status": "live",
+      "icon": "images/app-logos/specbuilder.png",
+      "tone": "blue",
+      "best_for": ["Stage 3 + specifications", "Practices with house standards", "Multi-discipline projects"],
+      "primary_cta": { "label": "Run Specbuilder online", "href": "https://app.adelphos.ai/specbuilder" },
+      "secondary_cta": { "label": "Get the Word add-in", "href": "/dist/downloads/index.html" },
+      "seo": {
+        "why_h3":     "Automated MEP specification writing from Revit models",
+        "shift_h3":   "From three-day spec rewrites to minutes of model-driven drafting",
+        "special_h3": "Section-level regeneration that preserves your hand-edits",
+        "who_h3":     "For practices issuing Stage 3 + MEP specifications"
+      }
+    },
+    {
+      "slug": "report-builder",
+      "title": "Report Builder",
+      "headline_claim": "Every recurring report — composed, formatted, and traceable to source.",
+      "tagline": "Site reports, MEP strategies, option appraisals, IESVE reports, stage submissions. One tool, one workflow, every template you need.",
+      "the_shift": {
+        "before": "Find the last report. Copy it. Update the dates. Beg the modeller for the latest views. Re-export the calc results. Re-format. Issue late.",
+        "after": "Pick a template. Point it at the project. Adelphos pulls the model views, the calc outputs, the meeting minutes, the photos — and assembles the draft. You review and issue."
+      },
+      "blurb": "Report Builder turns the most repetitive part of an engineer's week into a five-minute review. Every report stays versioned, every claim is traceable to the source data (model, calcs, photos, minutes), and the formatting matches your house style. When the project data changes, you regenerate — you don't rewrite.",
+      "detail_paragraphs": [
+        "Report Builder ships with eight templates out of the box: site report, MEP strategy, option appraisal, IESVE report, clash report, Stage 2 submission, Stage 3 submission, and survey writeup. Point any template at a project and it pulls the model views it needs, the calc outputs, the meeting minutes, the site photos and the latest issued drawings — and assembles the draft.",
+        "You review in the browser, the agent shows you the source for every figure (one click jumps to the model element or the spreadsheet cell), then you export to Word, PDF, or your DMS. When something changes — a new survey photo, a re-run calc, a revised drawing — you regenerate only the affected sections.",
+        "A typical recurring site report drops from 4–6 hours to about 30 minutes of review. A Stage 3 submission drops from a half-week of formatting work to a single afternoon. For an engineer issuing reports weekly, that's roughly half a day a week back."
+      ],
+      "pullquote": "Report Builder will be the only report tool where every figure stays traceable to its source and every report regenerates in minutes when the project data moves on.",
+      "key_outcomes": [
+        { "stat": "8+",   "label": "report templates ship in the box" },
+        { "stat": "Live", "label": "links back to model + calcs" },
+        { "stat": "Audit-trail", "label": "every figure traceable to source" }
+      ],
+      "what_makes_it_special": "Reports are normally a once-a-stage spreadsheet-shuffling exercise. Report Builder makes them a continuous artifact — always current, always defensible, always issue-ready.",
+      "features": [
+        { "name": "Site reports",              "desc": "Photos, observations, actions, distribution — assembled from your site visit notes." },
+        { "name": "MEP strategy reports",      "desc": "System narratives, performance criteria and key assumptions, drawn from the live model." },
+        { "name": "Option appraisals",         "desc": "Side-by-side comparison reports with cost, programme and sustainability columns." },
+        { "name": "IESVE energy reports",      "desc": "Energy outputs assembled directly from your IESVE export." },
+        { "name": "Clash reports",             "desc": "Pulled live from your ACC clash issues, prioritised by severity." },
+        { "name": "Stage 2 + Stage 3 submissions", "desc": "RIBA-aligned submission templates with the right content per stage." },
+        { "name": "Site survey writeups",      "desc": "Survey writeups with photos linked to as-found measurements and parameters." },
+        { "name": "Live model + calc sources", "desc": "Every figure traces one click back to the model element, drawing or spreadsheet cell." },
+        { "name": "Section regeneration",      "desc": "Only the affected sections regenerate when source data changes — your edits are preserved." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Web", "spec": "Any modern browser. No install required." }
+        ],
+        "requirements": [
+          "An Adelphos account.",
+          "Optional: MEP Bridge for live Revit views and parameters.",
+          "Optional: connect IESVE / heat-loss / sizing spreadsheets for live calc data.",
+          "Optional: ACC connection for live clash report import."
+        ],
+        "auth": "Single sign-on via Microsoft, Google or email magic link.",
+        "download_label": "Open Report Builder online",
+        "download_href": "https://app.adelphos.ai/report-builder"
+      },
+      "surface": "Web app",
+      "status": "live",
+      "icon": "images/app-logos/report-builder.png",
+      "tone": "blue",
+      "best_for": ["Recurring client reports", "Stage submissions", "Site survey writeups"],
+      "primary_cta": { "label": "Run Report Builder online", "href": "https://app.adelphos.ai/report-builder" },
+      "secondary_cta": { "label": "See report templates", "href": "/dist/docs/index.html" },
+      "seo": {
+        "why_h3":     "Automated MEP report generation for stage submissions",
+        "shift_h3":   "From manual report assembly to model-linked composition",
+        "special_h3": "Reports that stay live — re-generate when the data changes",
+        "who_h3":     "For engineers issuing site reports, MEP strategies, IESVE outputs"
+      }
+    },
+    {
+      "slug": "document-controller",
+      "title": "Document Controller",
+      "headline_claim": "Single source of truth for every drawing, every revision, every transmittal.",
+      "tagline": "Watches your project folders, registers every issue, supersedes the old, surfaces conflicts, and produces audit-ready transmittal records — automatically.",
+      "the_shift": {
+        "before": "Spreadsheet of revisions that's always two issues out of date. 'Latest on site' is whatever someone remembers. Audit means digging through three years of email.",
+        "after": "The Document Controller knows. Latest revision: confirmed. Transmittals: sent + acknowledged. Golden thread: complete and exportable."
+      },
+      "blurb": "Document control is the unglamorous backbone of every project — and the thing that exposes you when it goes wrong. The Adelphos Document Controller runs it in the background. It watches your shared drives, ingests new revisions, supersedes the old ones, drafts transmittals, chases acknowledgement, and keeps a complete golden-thread record. Audit-ready on demand, no spreadsheet maintenance.",
+      "detail_paragraphs": [
+        "The Document Controller installs as a Windows desktop service that watches your project shared drive (or ACC, or both). When a new drawing revision lands, it registers it, marks the previous one as superseded, links the change to the latest project programme, drafts a transmittal email with the right distribution list, and chases acknowledgement until everyone has confirmed receipt.",
+        "The web dashboard gives you a live view of every project: latest revision per drawing, what's currently on site, who has acknowledged what, and a complete golden-thread audit log of every change with rationale and approval.",
+        "For a 30-person practice running 40 active projects, this typically removes 8–12 hours per week of document-control admin, eliminates the \"who has the latest?\" emails entirely, and produces audit-ready compliance evidence in seconds rather than the days it currently takes to dig through email archives."
+      ],
+      "pullquote": "The Adelphos Document Controller will be the only document control system that runs itself — watching, registering, transmitting and chasing without anyone touching a spreadsheet.",
+      "key_outcomes": [
+        { "stat": "0",       "label": "missed revisions" },
+        { "stat": "Minutes", "label": "from issue to transmittal sent" },
+        { "stat": "On-demand", "label": "audit-ready golden thread" }
+      ],
+      "what_makes_it_special": "Most DM systems are passive — they hold files. The Adelphos Document Controller is active — it watches, it reconciles, it chases. It treats document control as a workflow, not a filing system.",
+      "features": [
+        { "name": "Watches shared drives + ACC",      "desc": "Network drives, SharePoint, OneDrive and Autodesk Construction Cloud — all monitored continuously." },
+        { "name": "Auto revision registration",        "desc": "New revision detected → registered → previous one superseded with timestamp + rationale." },
+        { "name": "Auto-drafted transmittals",         "desc": "Transmittal email drafted per distribution rule on every issue, ready to send." },
+        { "name": "Acknowledgement chasing",           "desc": "Tracks who has confirmed receipt; chases the rest with escalating reminders." },
+        { "name": "Latest-on-site checker",            "desc": "Confirms what's currently on site matches the latest issued. Flags discrepancies." },
+        { "name": "Golden-thread audit log",           "desc": "Every change captured with rationale and approval trail. Building Safety Act ready." },
+        { "name": "Compliance reports on demand",      "desc": "Audit-ready drawing register and transmittal log exports in seconds, not days." },
+        { "name": "Project programme linkage",         "desc": "Every revision linked to its programme milestone. Trace any issue back to its decision." },
+        { "name": "Distribution-list rules",           "desc": "Per-project rules for who gets what, with auto-CC for safety-critical revisions." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Windows desktop service", "spec": "Windows 10/11 64-bit · 4 GB RAM · runs as background service" },
+          { "name": "Web dashboard",           "spec": "Any modern browser — no separate install needed for viewers" }
+        ],
+        "requirements": [
+          "Read access to project shared drive(s) and/or ACC.",
+          "An Adelphos account with admin rights for project setup.",
+          "SMTP credentials (Office 365, Google Workspace) for transmittal dispatch."
+        ],
+        "auth": "Microsoft 365 SSO recommended (gives ACC + email + drive in one).",
+        "download_label": "Download Document Controller (.msi)",
+        "download_href": "/dist/downloads/index.html"
+      },
+      "surface": "Desktop service + web dashboard",
+      "status": "live",
+      "icon": "images/app-logos/document-controller.png",
+      "tone": "red",
+      "best_for": ["Project managers", "Document controllers", "Compliance + audit teams"],
+      "primary_cta": { "label": "Download Document Controller", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "Open the dashboard", "href": "https://app.adelphos.ai/document-controller" },
+      "seo": {
+        "why_h3":     "Automated drawing revision tracking and golden-thread compliance",
+        "shift_h3":   "From spreadsheet revision logs to active document control",
+        "special_h3": "Active document control — watches, reconciles, chases automatically",
+        "who_h3":     "For project managers and compliance teams who need an audit-ready trail"
+      }
+    },
+    {
+      "slug": "qa-manager",
+      "title": "QA Manager",
+      "headline_claim": "Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.",
+      "tagline": "Replaces the manual QA checklist with continuous automated checks. Pass / fail / warn — with the exact element to fix.",
+      "the_shift": {
+        "before": "QA is a senior engineer with a clipboard, a week before issue, finding what's broken when it's too late to fix gracefully.",
+        "after": "QA Manager runs continuously. Drawings, schedules, spec, model, and ACC clash issues — all checked, all surfaced, all linked back to the failing element. Fix as you go, issue with confidence."
+      },
+      "blurb": "QA Manager replaces the pre-issue QA scramble with a live, always-on quality dashboard. Drawings checked against your standards, schedules cross-referenced with the model, spec tested against the brief, model validated against your QA rules, and ACC clash issues pulled into the same view. Every fail links to the exact thing to fix.",
+      "detail_paragraphs": [
+        "QA Manager runs five categories of checks continuously and surfaces them in one dashboard: drawing checks (line weights, layer naming, sheet borders, title-block compliance), schedule checks (every row reconciled against the model element it represents), specification checks (every clause tested against the live model and brief), model checks (your QA rules applied to every workset on every save), and ACC clash issues (live-imported, deduplicated and prioritised).",
+        "Every failure links one click back to the exact element, drawing or clause that needs fixing.",
+        "For a typical Stage 3 issue gate, this replaces a senior engineer's two-day pre-issue QA week with a 30-minute review — and crucially, it catches mismatches between the model and the schedule before they reach a client, which is where most expensive re-issues come from. Across a year, a five-engineer practice typically saves 40–60 working days of QA effort and avoids three to six re-issues."
+      ],
+      "pullquote": "QA Manager will be the only quality gate that reconciles drawings, schedules, specifications and the model in one continuous, always-on dashboard.",
+      "key_outcomes": [
+        { "stat": "Continuous", "label": "checks run on every save" },
+        { "stat": "5",          "label": "QA surfaces in one dashboard" },
+        { "stat": "Element-linked", "label": "every fail jumps to the issue" }
+      ],
+      "what_makes_it_special": "Other QA tools check one surface — drawings, or model, or schedules. QA Manager unifies all of them and reconciles between them: a parameter that's correct in the model but wrong in the schedule still fails, because the issued document is what counts.",
+      "feature_groups": [
+        {
+          "title": "Drawing checks",
+          "features": [
+            { "name": "Line weights", "desc": "Every line on every sheet checked against your house line-weight standard." },
+            { "name": "Layer naming", "desc": "Layer names validated against your office naming convention." },
+            { "name": "Sheet borders + title block", "desc": "Title block parameter completeness, project info, revision block." },
+            { "name": "Viewport scale + orientation", "desc": "Every viewport at the right scale; north arrows consistent." },
+            { "name": "Annotation hygiene", "desc": "Text styles, dimension styles, leaders all match house standards." },
+            { "name": "Sheet numbering", "desc": "Drawing numbers match the project numbering convention." }
+          ]
+        },
+        {
+          "title": "Schedule checks",
+          "features": [
+            { "name": "Row reconciliation", "desc": "Every schedule row reconciled against the model element it represents." },
+            { "name": "Missing rows", "desc": "Elements present in the model but missing from the schedule — flagged." },
+            { "name": "Orphaned rows", "desc": "Schedule rows with no matching model element — flagged." },
+            { "name": "Parameter mismatches", "desc": "Schedule parameter doesn't match the model parameter — flagged with both values." },
+            { "name": "Manufacturer mismatch", "desc": "Schedule manufacturer differs from the model element — flagged." },
+            { "name": "Cross-discipline schedules", "desc": "All disciplines (rad, AHU, fan, light, fixture, custom)." }
+          ]
+        },
+        {
+          "title": "Specification checks",
+          "features": [
+            { "name": "Clause vs model", "desc": "Every clause tested against the live Revit model." },
+            { "name": "Clause vs brief", "desc": "Every performance clause cross-checked against the project brief." },
+            { "name": "Missing clauses", "desc": "Systems present in the model but uncovered by the spec — flagged." },
+            { "name": "Unsupported clauses", "desc": "Clauses that no longer match anything in the model — flagged." },
+            { "name": "Manufacturer alignment", "desc": "Spec manufacturer vs model + house preferred-list." }
+          ]
+        },
+        {
+          "title": "Model checks",
+          "features": [
+            { "name": "Workset hygiene", "desc": "Elements in the right workset; ownership clean." },
+            { "name": "View filter integrity", "desc": "View filters present, correctly applied per workset and view template." },
+            { "name": "Family parameter integrity", "desc": "All required parameters present and populated on every family instance." },
+            { "name": "Group instance health", "desc": "Group instances aren't broken / overridden." },
+            { "name": "Linked CAD cleanup", "desc": "Linked CAD files cleaned, not exploded, in the right view." },
+            { "name": "Naming conventions", "desc": "Views, sheets, families, types all match office naming rules." },
+            { "name": "Per-save runs", "desc": "Checks fire on every save — not just at issue gates." }
+          ]
+        },
+        {
+          "title": "ACC clash issues",
+          "features": [
+            { "name": "Live import", "desc": "Pulled live from your Autodesk Construction Cloud project." },
+            { "name": "Deduplication", "desc": "Duplicate clashes auto-merged across runs." },
+            { "name": "Severity + discipline", "desc": "Prioritised by severity and the disciplines involved." },
+            { "name": "Element-link", "desc": "One click jumps to the offending element in Revit." },
+            { "name": "Resolution status", "desc": "Tracks which clashes are resolved, ignored, or pending." }
+          ]
+        },
+        {
+          "title": "Cross-surface reconciliation",
+          "features": [
+            { "name": "Model vs schedule vs spec", "desc": "When the three disagree, the issued documents win — fail flagged." },
+            { "name": "Model vs calc", "desc": "Element output (heat, flow, lux, dB) matches the calc spreadsheet." },
+            { "name": "Pre-issue gate", "desc": "Single comprehensive sweep before any drawing leaves the office." },
+            { "name": "Continuous dashboard", "desc": "Live status page for every project, not a one-shot report." }
+          ]
+        }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Desktop dashboard",   "spec": "Windows 10/11 64-bit · 8 GB RAM · 500 MB disk" },
+          { "name": "Revit add-in",        "spec": "Revit 2022 → 2026 · auto-loaded with the dashboard install" },
+          { "name": "Web dashboard",       "spec": "Any modern browser for viewers and stakeholders" }
+        ],
+        "requirements": [
+          "An Adelphos account with project admin rights.",
+          "Optional: ACC connection for live clash issue import.",
+          "Optional: connect IESVE / heat-loss / sizing spreadsheets for cross-surface QA.",
+          "Recommended: configure your house QA rule pack on first install."
+        ],
+        "auth": "Microsoft 365 SSO recommended — gives ACC + Revit + email integration in one.",
+        "download_label": "Download QA Manager (.msi)",
+        "download_href": "/dist/downloads/index.html"
+      },
+      "surface": "Desktop app + Revit add-in",
+      "status": "live",
+      "icon": "images/app-logos/qa-manager.png",
+      "tone": "blue",
+      "best_for": ["Pre-issue QA gates", "Stage submissions", "Internal audits"],
+      "primary_cta": { "label": "Download QA Manager", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "Open the dashboard", "href": "https://app.adelphos.ai/qa-manager" },
+      "seo": {
+        "why_h3":     "Automated MEP QA across drawings, schedules, specs and Revit models",
+        "shift_h3":   "From pre-issue QA scrambles to continuous quality dashboards",
+        "special_h3": "Cross-surface QA — drawings, model and schedules reconciled together",
+        "who_h3":     "For QA leads running pre-issue gates and stage submissions"
+      }
+    },
+    {
+      "slug": "schedule-builder",
+      "title": "Schedule Builder",
+      "headline_claim": "Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.",
+      "tagline": "Schedule Builder asks for your data, applies your office templates and preferred manufacturers, builds the schedules into Revit, and runs a gap analysis against the live model.",
+      "the_shift": {
+        "before": "Hand-build every schedule from a generic template. Hand-merge manufacturer data. Hand-cross-check against the model. Discover the mismatch the day before issue.",
+        "after": "Ask for the schedules you need. Schedule Builder uses your data, your templates, your preferred manufacturers — then tells you exactly where the model and the calcs disagree."
+      },
+      "blurb": "Schedule Builder is what every modeller wishes Revit shipped with. Point it at your project — connected workspace, calc spreadsheets, client brief — and it produces every schedule you need, formatted to your house standard, populated with your preferred manufacturers, and saved into the right folder. Then it runs a gap analysis: what's in the schedule but missing from the model, what's in the model but missing from the schedule, and which rows disagree with your calculations. Workflow lives at /dist/workflows/schedules/.",
+      "detail_paragraphs": [
+        "Schedule Builder reads the live Revit model, your house schedule template, your calc spreadsheets and your preferred-manufacturer library, then produces every schedule the project needs in one go: radiators, AHUs, fans, lights, fixtures, and any custom schedule type you've configured. It saves them into your project's `Schedules/` folder, formatted exactly to your house style.",
+        "Then it runs a three-way gap analysis: what's in the schedule but missing from the model, what's in the model but missing from the schedule, and which rows disagree with your calculations (e.g. a radiator whose model output doesn't match the heat-loss spreadsheet). Each mismatch links straight to the offending element.",
+        "For a typical commercial scheme, this collapses what is normally 4–8 hours per schedule of hand-building plus another half-day of pre-issue cross-checking into about 20 minutes of review — and crucially, catches model/schedule disagreements before they reach issue, which is where most schedule re-issues come from."
+      ],
+      "pullquote": "Schedule Builder will be the only schedule tool that builds, populates and reconciles in a single loop — the model, the schedule, and the calculations end the day in agreement.",
+      "key_outcomes": [
+        { "stat": "Minutes",       "label": "from prompt to populated schedule" },
+        { "stat": "Auto",          "label": "cross-check against model + calcs" },
+        { "stat": "Your standards","label": "templates + preferred manufacturers" },
+        { "stat": "Gap analysis",  "label": "tells you what disagrees and why" }
+      ],
+      "what_makes_it_special": "Most schedule tools either build a schedule OR check a schedule. Schedule Builder does both, in one loop, against the live model and your calculations. The schedule, the model, and the calcs end the day in agreement — or you know exactly why they don't.",
+      "features": [
+        { "name": "Builds Revit schedules from the model", "desc": "Radiators, AHUs, fans, lights, fixtures + your custom schedule types — all populated from live element data." },
+        { "name": "House schedule templates",          "desc": "Your office templates applied automatically; output formatted exactly like your manual schedules." },
+        { "name": "Preferred-manufacturer lookup",     "desc": "Your house manufacturer library applied per element type. No hand-merging data sheets." },
+        { "name": "Calc spreadsheet integration",      "desc": "Heat-loss, sizing and IESVE outputs pulled into the schedule rows where they belong." },
+        { "name": "Three-way gap analysis",            "desc": "Model vs schedule vs calc cross-checked. Every disagreement flagged with both values." },
+        { "name": "Element-level deep links",          "desc": "Every mismatch jumps one click to the offending element in Revit." },
+        { "name": "Brief integration",                 "desc": "Pulls performance criteria from the project brief where it drives schedule fields." },
+        { "name": "Cross-discipline single pass",      "desc": "Mechanical, electrical and public health schedules built in one run, in agreement with each other." },
+        { "name": "Auto-update on data change",        "desc": "Schedules refresh automatically when the model or a connected calc moves on." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Revit add-in", "spec": "Revit 2022 → 2026 · Windows 10/11 · auto-loaded with the installer" },
+          { "name": "Web app",      "spec": "Any modern browser — same Schedule Builder, runs without Revit for review and gap analysis" }
+        ],
+        "requirements": [
+          "Revit 2022 or later for the add-in side.",
+          "An Adelphos account.",
+          "Optional: connect heat-loss / sizing / IESVE spreadsheets for the gap analysis."
+        ],
+        "auth": "Microsoft 365 SSO recommended.",
+        "download_label": "Run online or get the Revit add-in",
+        "download_href": "/dist/downloads/index.html"
+      },
+      "surface": "Revit add-in + web app",
+      "status": "live",
+      "icon": "logos/Excel.jpg",
+      "_icon_todo": "drop images/app-logos/schedule-builder.png and update this path",
+      "tone": "green",
+      "best_for": ["MEP modellers", "Schedule QA before issue", "Practices with house schedule templates"],
+      "primary_cta": { "label": "Run Schedule Builder online", "href": "https://app.adelphos.ai/schedule-builder" },
+      "secondary_cta": { "label": "Open the workflow", "href": "/dist/workflows/schedules/index.html" },
+      "seo": {
+        "why_h3":     "Automated Revit schedule builder with model and calc cross-checking",
+        "shift_h3":   "From hand-built schedules to AI-built schedules with gap analysis",
+        "special_h3": "One loop that builds, populates and reconciles your Revit schedules",
+        "who_h3":     "For MEP modellers issuing schedules with house templates"
+      }
+    },
+    {
+      "slug": "cobie-manager",
+      "title": "CoBie Manager",
+      "headline_claim": "A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.",
+      "tagline": "Continuously populates and validates the COBie spreadsheet against the live Revit model. Every cell traceable to its source element.",
+      "blurb": "CoBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.",
+      "surface": "Revit add-in + web dashboard",
+      "status": "live",
+      "icon": "images/app-logos/cobie-manager.png",
+      "tone": "blue",
+      "best_for": ["BIM coordinators", "Stage 4 hand-overs", "Compliance + audit teams"],
+      "features": [
+        { "name": "Live COBie population", "desc": "20+ COBie sheets populated continuously from the live model." },
+        { "name": "BS 1192-4 + EIR validation", "desc": "Validated against the standard and the project's EIR before delivery." },
+        { "name": "Source traceability", "desc": "Every cell traces back to its source Revit element." }
+      ],
+      "primary_cta": { "label": "Open CoBie Manager", "href": "https://app.adelphos.ai/cobie-manager" },
+      "secondary_cta": { "label": "See the email service", "href": "/dist/agentic-services/email-cobie/index.html" }
+    },
+    {
+      "slug": "autocad-copilot",
+      "title": "AutoCAD Copilot",
+      "headline_claim": "An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.",
+      "tagline": "The Adelphos Copilot for AutoCAD MEP teams. Talk to your drawing the same way you talk to Revit. Every Adelphos tool, callable from a chat panel inside AutoCAD.",
+      "blurb": "AutoCAD Copilot is the AutoCAD-side counterpart to the Revit Copilot. Same agent, same project memory, same MCP tool surface — except it lives in AutoCAD MEP. Practices that run a mixed Revit + AutoCAD environment use both Copilots side by side.",
+      "surface": "AutoCAD MEP add-in · AutoCAD MEP 2024+ · Windows",
+      "status": "live",
+      "icon": "images/app-logos/autocad-copilot.png",
+      "tone": "red",
+      "best_for": ["AutoCAD MEP teams", "Mixed Revit + AutoCAD practices", "Existing-building schemes drawn in CAD"],
+      "features": [
+        { "name": "Chat-in-AutoCAD",       "desc": "Docked panel inside AutoCAD MEP. Same agent as Revit." },
+        { "name": "MCP tool surface",      "desc": "Every Adelphos tool callable from inside the drawing." },
+        { "name": "Cross-tool memory",     "desc": "Picks up where the Revit Copilot left off on the same project." }
+      ],
+      "primary_cta": { "label": "Download AutoCAD add-in", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "See the Revit Copilot", "href": "/dist/apps/revit-copilot/index.html" }
+    },
+    {
+      "slug": "word-add-in",
+      "title": "Adelphos for Word",
+      "headline_claim": "The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.",
+      "tagline": "Word add-in that brings the Adelphos agent into your authoring environment. Draft a section, ask for a rewrite, fact-check against the project model, all without leaving Word.",
+      "blurb": "Adelphos for Word turns your existing Word workflow into an agent-assisted one. Drafts MEP report and specification sections from prompts, fact-checks claims against the live project model, and applies your house style — all inside the document you're already writing.",
+      "surface": "Word add-in · Word for Microsoft 365 · Windows + Mac",
+      "status": "live",
+      "icon": "logos/Word.jpg",
+      "tone": "blue",
+      "best_for": ["Engineers drafting reports + specs", "Multi-author documents", "Office-style enforcement"],
+      "features": [
+        { "name": "In-Word agent panel",   "desc": "Drafts, rewrites, fact-checks without leaving Word." },
+        { "name": "Live model awareness",  "desc": "Cross-checks claims against the live Revit model." },
+        { "name": "House style enforcement", "desc": "Applies your office Word styles automatically." }
+      ],
+      "primary_cta": { "label": "Get the Word add-in", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "See Specbuilder", "href": "/dist/apps/specbuilder/index.html" }
+    },
+    {
+      "slug": "excel-add-in",
+      "title": "Adelphos for Excel",
+      "headline_claim": "The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.",
+      "tagline": "Excel add-in that connects your heat-loss, sizing, and IESVE workbooks to the live Revit model. Push values to the model, pull values from the model, run gap analyses inline.",
+      "blurb": "Adelphos for Excel turns your calc spreadsheets into live, model-aware workbooks. The values in your sizing tabs stay in sync with the model elements they drive — and any disagreement is flagged inline before it becomes a re-issue.",
+      "surface": "Excel add-in · Excel for Microsoft 365 · Windows + Mac",
+      "status": "live",
+      "icon": "logos/Excel.jpg",
+      "tone": "green",
+      "best_for": ["Heat-loss / sizing engineers", "IESVE workflow integration", "Calc-to-model gap analysis"],
+      "features": [
+        { "name": "Live model values",     "desc": "Pull values from the model into your sizing tabs." },
+        { "name": "Push-back to Revit",     "desc": "Push calc results back to the model elements." },
+        { "name": "Inline gap analysis",    "desc": "Disagreements flagged in the cell, not weeks later." }
+      ],
+      "primary_cta": { "label": "Get the Excel add-in", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "See Schedule Builder", "href": "/dist/apps/schedule-builder/index.html" }
+    }
+  ]
+}

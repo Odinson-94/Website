@@ -1,0 +1,37 @@
+{
+  "class": "SheetViewSetupArrangeViewsOnSheetInCleanGridLayoutCommand",
+  "desc": "Arrange Views On Sheet In Clean Grid Layout.",
+  "summary": "Arrange Views On Sheet In Clean Grid Layout.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "arrange views on sheet",
+    "grid layout views",
+    "auto arrange views",
+    "place views grid"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Arrange Views On Sheet In Clean Grid Layout…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Arrange Views On Sheet In Clean Grid Layout: completed."
+    ],
+    "failureprompts": [
+      "Arrange Views On Sheet In Clean Grid Layout: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

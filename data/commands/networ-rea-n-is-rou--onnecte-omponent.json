@@ -1,0 +1,38 @@
+{
+  "class": "NetworkBreakAndRiseGroupByConnectedComponentCommand",
+  "desc": "NetworkBreakAndRiseGroupByConnectedComponentCommand — lifts every pipe on the seed's connected component that runs parallel to the seed pipe, through the requested ramp profile.",
+  "summary": "NetworkBreakAndRiseGroupByConnectedComponentCommand — lifts every pipe on the seed's connected component that runs parallel to the seed pipe, through the requested ramp profile.",
+  "usecase": "User wants to re-route an entire branch of a run over a shared obstacle.",
+  "notfor": "Mixed-system runs (graph spans systems — flagged and skipped per pipe).",
+  "precondition": "Active document. A seed pipe selected (or set via Resolver_SeedId).",
+  "postcondition": "All parallel pipes in the seed's connected component are broken and re-routed through the chosen ramp profile in one undo step.",
+  "sideeffects": "",
+  "logictree": "1) Resolve seed pipe. 2) Build component via GetConnectedComponentGraphOfNetwork. 3) Enumerate MEPCurve elements; filter by bearing (± tolerance). 4) Transaction \"Break & Rise (Component)\". 5) For each edge: plan + apply. 6) Commit, count. 7) Failures → WireFault.",
+  "keywords": [
+    "networkbreakandrisegroupbyconnectedcomponent"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running NetworkBreakAndRiseGroupByConnectedComponentCommand..."
+    ],
+    "thinkingsteps": [
+      "Walking connected component...",
+      "Filtering parallel edges...",
+      "Applying ramps to each edge..."
+    ],
+    "successprompts": [
+      "Lifted {count} pipes across the connected component."
+    ],
+    "failureprompts": [
+      "NetworkBreakAndRiseGroupByConnectedComponentCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

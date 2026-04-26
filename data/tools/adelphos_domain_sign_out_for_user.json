@@ -1,0 +1,16 @@
+{
+  "name": "adelphos_domain_sign_out_for_user",
+  "desc": "Erase the stored Adelphos JWT from this machine. After this call, Adelphos-backed tools will return 'not configured' until adelphos_domain_sign_in_with_jwt_for_user is called again.",
+  "bridge": "",
+  "category": "adelphos",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "adelphos sign out",
+    "adelphos logout",
+    "clear token",
+    "remove credentials",
+    "forget adelphos"
+  ]
+}

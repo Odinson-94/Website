@@ -1,0 +1,37 @@
+{
+  "class": "SheetViewSetupSplitSheetIntoMultipleNumberedSheetsCommand",
+  "desc": "Split Sheet Into Multiple Numbered Sheets.",
+  "summary": "Split Sheet Into Multiple Numbered Sheets.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "split sheet",
+    "sheet 1 of 2",
+    "split into sheets",
+    "sheet splitting"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Split Sheet Into Multiple Numbered Sheets…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Split Sheet Into Multiple Numbered Sheets: completed."
+    ],
+    "failureprompts": [
+      "Split Sheet Into Multiple Numbered Sheets: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

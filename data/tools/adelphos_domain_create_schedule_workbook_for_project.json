@@ -1,0 +1,58 @@
+{
+  "name": "adelphos_domain_create_schedule_workbook_for_project",
+  "desc": "Create a blank MEP equipment schedule workbook (.xlsx) on the Adelphos backend and save it to disk. Uses the project_ref and a schedule type from adelphos_domain_list_schedule_types_for_user. Returns the local file path.",
+  "bridge": "",
+  "category": "adelphos",
+  "always": false,
+  "param_count": 6,
+  "parameters": [
+    {
+      "name": "type_key",
+      "type": "string",
+      "description": "Schedule-type key, e.g. 'extract_fan_schedule'",
+      "required": false
+    },
+    {
+      "name": "project_ref",
+      "type": "string",
+      "description": "Project reference, e.g. 'G0053'",
+      "required": false
+    },
+    {
+      "name": "project_name",
+      "type": "string",
+      "description": "Optional friendly project name for the workbook header",
+      "required": false
+    },
+    {
+      "name": "schedule_number",
+      "type": "string",
+      "description": "Optional schedule identifier, e.g. 'MS-01'",
+      "required": false
+    },
+    {
+      "name": "item_count",
+      "type": "integer",
+      "description": "Number of empty item columns (default 6, max 40)",
+      "required": false
+    },
+    {
+      "name": "save_to_path",
+      "type": "string",
+      "description": "Absolute path to save the .xlsx. Default: %TEMP%/Adelphos/Schedules/{filename}",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "create schedule",
+    "new schedule",
+    "blank schedule",
+    "mep schedule",
+    "extract fan schedule",
+    "pump schedule",
+    "ashp schedule",
+    "schedule workbook",
+    "schedule xlsx",
+    "adelphos"
+  ]
+}

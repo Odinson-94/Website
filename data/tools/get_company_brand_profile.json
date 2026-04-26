@@ -1,0 +1,15 @@
+{
+  "name": "get_company_brand_profile",
+  "desc": "Read the current company brand profile: name, template, fonts, colours, approved manufacturers.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "brand profile",
+    "company brand",
+    "brand standards",
+    "company template"
+  ]
+}

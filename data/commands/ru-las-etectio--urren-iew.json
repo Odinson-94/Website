@@ -1,0 +1,40 @@
+{
+  "class": "RunClashDetectionInCurrentViewCommand",
+  "desc": "Performs a pairwise bounding-box clash pass across every visible element in Autodesk.Revit.DB.Document.ActiveView, then appends coordination rule results for export.",
+  "summary": "Performs a pairwise bounding-box clash pass across every visible element in Autodesk.Revit.DB.Document.ActiveView, then appends coordination rule results for export.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clash current view",
+    "check clashes in view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Scanning the current view for clashes…"
+    ],
+    "thinkingsteps": [
+      "Load tolerance presets and optional tolerance override…",
+      "Collect visible elements from the active view…",
+      "Run coordination Error Manager rules and merge with geometric clashes…",
+      "Persist merged results to QA XML and history…"
+    ],
+    "successprompts": [
+      "View clash run finished — {total} rows ({geometric} geometric, {rules} from rules)."
+    ],
+    "failureprompts": [
+      "Clash finder in current view failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

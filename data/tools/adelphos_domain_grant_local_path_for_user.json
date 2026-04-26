@@ -1,0 +1,32 @@
+{
+  "name": "adelphos_domain_grant_local_path_for_user",
+  "desc": "Register a local Windows folder with the Adelphos Domain API so server-side tools can read and write there on the user's behalf. Call once per project folder. Requires MEPBRIDGE_ADELPHOS_TOKEN (LibreChat JWT from chat.adelphos.ai).",
+  "bridge": "",
+  "category": "adelphos",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": "Absolute Windows path, e.g. C:\\\\JPA Projects\\\\G0053 - Glanmire\\\\2.0 Issued\\\\",
+      "required": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Optional human-readable label (defaults to the path)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "adelphos",
+    "grant folder",
+    "register folder",
+    "local path",
+    "directory grant",
+    "share folder",
+    "connect folder",
+    "give access"
+  ]
+}

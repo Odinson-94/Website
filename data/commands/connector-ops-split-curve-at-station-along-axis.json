@@ -1,0 +1,39 @@
+{
+  "class": "ConnectorOpsSplitCurveAtStationAlongAxisCommand",
+  "desc": "ConnectorOpsSplitCurveAtStationAlongAxisCommand — split a pipe at a station (distance from end 0).",
+  "summary": "ConnectorOpsSplitCurveAtStationAlongAxisCommand — split a pipe at a station (distance from end 0).",
+  "usecase": "Pre-step for fitting insertion.",
+  "notfor": "Arbitrary orientation — uses LocationCurve.",
+  "precondition": "Pipe resolvable; distance within pipe length.",
+  "postcondition": "Two pipes + union fitting inside one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId required OR single Pipe selection.\n2) Resolver_DistanceFromEnd0Mm required and within bounds.\n3) Delegate to SplitCurveAtStation.SplitAtDistanceFromEnd0 (opens its own Transaction via SplitAtStation).\n4) Emit left_id + right_id.",
+  "keywords": [
+    "connectoropssplitcurveatstationalongaxis",
+    "split pipe at distance",
+    "split curve at station"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Splitting curve at station…"
+    ],
+    "thinkingsteps": [
+      "Resolving pipe + distance…",
+      "Delegating to SplitCurveAtStation…"
+    ],
+    "successprompts": [
+      "Split: left {left_id}, right {right_id}."
+    ],
+    "failureprompts": [
+      "Split failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

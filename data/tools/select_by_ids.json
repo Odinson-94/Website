@@ -1,0 +1,22 @@
+{
+  "name": "select_by_ids",
+  "desc": "Set Revit selection to the given element IDs. Use after export_equipment_json to select specific elements by ID (e.g. one radiator from the list).",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "element_ids",
+      "type": "string",
+      "description": "JSON array of element IDs, e.g. [12345,67890], or comma-separated numbers.",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "select by ids",
+    "select elements",
+    "set selection",
+    "element ids"
+  ]
+}

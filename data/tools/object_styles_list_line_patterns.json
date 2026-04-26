@@ -1,0 +1,13 @@
+{
+  "name": "object_styles_list_line_patterns",
+  "desc": "List all LinePatternElement entries: id, name, segment definition.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list line patterns",
+    "object_styles_list_line_patterns"
+  ]
+}

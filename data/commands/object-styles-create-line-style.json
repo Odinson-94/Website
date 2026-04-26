@@ -1,0 +1,35 @@
+{
+  "class": "ObjectStylesCreateLineStyleCommand",
+  "desc": "Create a new line style (subcategory of OST_Lines).",
+  "summary": "Create a new line style (subcategory of OST_Lines).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create line style",
+    "object_styles_create_line_style"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating line style…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Line style created."
+    ],
+    "failureprompts": [
+      "Create line style failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

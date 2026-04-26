@@ -1,0 +1,22 @@
+{
+  "name": "drawing_exporter_rename_sheets",
+  "desc": "Queue sheet rename operations. Renames are staged and applied with drawing_exporter_apply_renames. Provide a JSON array of mappings.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "mappings",
+      "type": "string",
+      "description": "JSON array of rename mappings, e.g. [{\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "rename sheets",
+    "sheet names",
+    "batch rename",
+    "rename drawings"
+  ]
+}

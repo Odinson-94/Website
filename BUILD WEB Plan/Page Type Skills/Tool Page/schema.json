@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "tool-page.schema.json",
+  "title": "Tool Page YAML",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug", "title", "display_title", "description",
+    "category_label", "always_available", "example_prompts", "related",
+    "generated_by", "generated_at", "source_sha"
+  ],
+  "properties": {
+    "slug":             { "type": "string", "pattern": "^[a-z][a-z0-9_]+$" },
+    "title":            { "type": "string", "minLength": 1, "maxLength": 80 },
+    "display_title":    { "type": "string", "minLength": 1, "maxLength": 32, "pattern": "^[A-Z]" },
+    "description":      { "type": "string", "minLength": 20, "maxLength": 200 },
+    "bridge_label":     { "type": "string", "maxLength": 18 },
+    "category_label":   { "type": "string", "enum": ["context", "action", "snapshot", "calculator", "debug"] },
+    "always_available": { "type": "boolean" },
+    "what_it_returns":  { "type": "string", "maxLength": 1000 },
+    "example_prompts": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "string", "minLength": 5, "maxLength": 90 }
+    },
+    "related": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tools", "skills", "demos"],
+      "properties": {
+        "tools":   { "type": "array", "minItems": 0, "maxItems": 5, "items": { "type": "string" } },
+        "skills":  { "type": "array", "minItems": 0, "maxItems": 3, "items": { "type": "string" } },
+        "demos":   { "type": "array", "minItems": 0, "maxItems": 3, "items": { "type": "string" } }
+      }
+    },
+    "detail_paragraph": {
+      "type": "string", "minLength": 200, "maxLength": 1500,
+      "description": "OPTIONAL. Long-form prose with quantified savings. Sourced from [DetailParagraph(...)] attr or <detail> XML tag in the C# source. Renders left of the brand pull-quote in the new 'Description' section."
+    },
+    "features": {
+      "type": "array", "minItems": 3, "maxItems": 20,
+      "description": "OPTIONAL. Concrete capabilities of the tool. Sourced from [Feature(name, desc)] attrs in C#.",
+      "items": {
+        "type": "object", "required": ["name", "desc"],
+        "properties": {
+          "name": { "type": "string", "maxLength": 60 },
+          "desc": { "type": "string", "maxLength": 200 }
+        }
+      }
+    },
+    "feature_groups": {
+      "type": "array", "minItems": 2, "maxItems": 8,
+      "description": "OPTIONAL. Used when [Feature(..., Group=\"...\")] attrs are grouped (e.g. QA-style multi-surface tools).",
+      "items": {
+        "type": "object", "required": ["title", "features"],
+        "properties": {
+          "title":    { "type": "string", "maxLength": 60 },
+          "features": { "type": "array", "minItems": 3, "maxItems": 12 }
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "description": "OPTIONAL. Per-section H3 phrases for SEO/AEO. If absent, build script auto-derives from title.",
+      "properties": {
+        "why_h3":     { "type": "string", "maxLength": 120 },
+        "shift_h3":   { "type": "string", "maxLength": 120 },
+        "special_h3": { "type": "string", "maxLength": 120 },
+        "who_h3":     { "type": "string", "maxLength": 120 }
+      }
+    },
+    "generated_by":  { "type": "string", "enum": ["claude-opus-4-20251010", "stub-deterministic-v1"] },
+    "generated_at":  { "type": "string", "format": "date-time" },
+    "source_sha":    { "type": "string", "minLength": 7 }
+  }
+}

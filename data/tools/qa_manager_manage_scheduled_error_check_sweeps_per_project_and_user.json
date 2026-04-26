@@ -1,0 +1,66 @@
+{
+  "name": "qa_manager_manage_scheduled_error_check_sweeps_per_project_and_user",
+  "desc": "QA Manager scheduled QA sweep manager: CRUD + run_now on recurring Error Manager error-check sweeps fired by an in-process timer. Cadence grammar: every_N_minutes | daily_HH:MM | weekly_DOW_HH:MM | once_ISO8601. Each schedule can attach a rule set, capture images, and auto-export to excel/xml/html/pdf/word. Persists to .mepbridge/qa/schedules.json (project) with %APPDATA%/BuildMEP/QA fallback (user).",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 8,
+  "parameters": [
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "list | add | update | remove | run_now",
+      "required": false
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Existing schedule id. Required for update/remove/run_now.",
+      "required": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Human-readable name for the schedule. Required for add.",
+      "required": false
+    },
+    {
+      "name": "cadence",
+      "type": "string",
+      "description": "Cadence token (every_60_minutes | daily_08:00 | weekly_MON_09:30 | once_2026-05-01T09:00:00Z). Required for add.",
+      "required": false
+    },
+    {
+      "name": "rule_set",
+      "type": "string",
+      "description": "Optional rule set name to use for the sweep.",
+      "required": false
+    },
+    {
+      "name": "capture_images",
+      "type": "boolean",
+      "description": "When true, queue CaptureAllClashResultImages after the sweep (default false).",
+      "required": false
+    },
+    {
+      "name": "export_format",
+      "type": "string",
+      "description": "Optional auto-export format after the sweep: excel | xml | html | pdf | word.",
+      "required": false
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": "Enable/disable the schedule (default true).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "qa manager schedule qa sweep",
+    "timer qa sweep",
+    "recurring qa",
+    "scheduled error check",
+    "hourly qa check",
+    "nightly qa"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "class": "MarkClashResultAsResolved",
+  "desc": "Marks a single clash as resolved in the newest results XML, recording who resolved it and when.",
+  "summary": "Marks a single clash as resolved in the newest results XML, recording who resolved it and when. Orchestrates ReadWriteClashResultsToXml read/write with summary recomputation.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "resolve clash",
+    "mark clash resolved",
+    "close clash"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Marking clash as resolved…"
+    ],
+    "thinkingsteps": [
+      "Load latest clashresults XML…",
+      "Update status, solvedBy, and solvedDate…",
+      "Write refreshed QA export…"
+    ],
+    "successprompts": [
+      "Clash {clashId} marked resolved by {solvedBy}."
+    ],
+    "failureprompts": [
+      "Could not mark clash resolved — {error}"
+    ]
+  },
+  "has_restapi": false
+}

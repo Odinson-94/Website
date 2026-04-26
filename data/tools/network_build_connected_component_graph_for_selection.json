@@ -1,0 +1,12 @@
+{
+  "name": "network_build_connected_component_graph_for_selection",
+  "desc": "network_build_connected_component_graph_for_selection — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "network build connected component graph for selection"
+  ]
+}

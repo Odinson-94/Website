@@ -1,0 +1,14 @@
+{
+  "name": "get_sheet_export_groups",
+  "desc": "Get all sheet groups from the Drawing Exporter. Returns group names and their member sheets.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "sheet groups",
+    "groups",
+    "export groups"
+  ]
+}

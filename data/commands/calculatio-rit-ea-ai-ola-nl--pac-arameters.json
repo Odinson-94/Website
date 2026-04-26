@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteHeatGainSolarOnlyToSpaceParametersCommand",
+  "desc": "CalculationWriteHeatGainSolarOnlyToSpaceParametersCommand — writes HeatGainSolarSensibleWatts from solar-only MCP.",
+  "summary": "CalculationWriteHeatGainSolarOnlyToSpaceParametersCommand — writes HeatGainSolarSensibleWatts from solar-only MCP.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteheatgainsolaronlytospaceparameters",
+    "write solar gain only"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

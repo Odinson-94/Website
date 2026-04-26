@@ -1,0 +1,12 @@
+{
+  "name": "list_risers",
+  "desc": "List all riser elements in the model.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list risers"
+  ]
+}

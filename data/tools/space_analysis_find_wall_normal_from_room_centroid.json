@@ -1,0 +1,12 @@
+{
+  "name": "space_analysis_find_wall_normal_from_room_centroid",
+  "desc": "space_analysis_find_wall_normal_from_room_centroid — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "space analysis find wall normal from room centroid"
+  ]
+}

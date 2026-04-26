@@ -1,0 +1,32 @@
+{
+  "class": "FittingCreateFlexConnectionBetweenConnectorsCommand",
+  "desc": "FittingCreateFlexConnectionBetweenConnectorsCommand — Pipework bucket alias for the canonical flex-connect command.",
+  "summary": "FittingCreateFlexConnectionBetweenConnectorsCommand — Pipework bucket alias for the canonical flex-connect command.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "fittingcreateflexconnectionbetweenconnectors",
+    "flex connect pipework",
+    "add flex pipe"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

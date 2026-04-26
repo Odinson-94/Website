@@ -1,0 +1,14 @@
+{
+  "name": "object_styles_list_line_weight_table",
+  "desc": "Return the project's 1–16 pen-table for model line weights and a per-scale matrix. Mirrors Manage > Additional Settings > Line Weights.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "line weight table",
+    "list line weights",
+    "object_styles_list_line_weight_table"
+  ]
+}

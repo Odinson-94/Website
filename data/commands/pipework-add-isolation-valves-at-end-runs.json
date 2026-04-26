@@ -1,0 +1,46 @@
+{
+  "class": "PipeworkAddIsolationValvesAtEndRunsCommand",
+  "desc": "PipeworkAddIsolationValvesAtEndRunsCommand — install isolation fittings at every end-run connector in a network component.",
+  "summary": "PipeworkAddIsolationValvesAtEndRunsCommand — install isolation fittings at every end-run connector in a network component.",
+  "usecase": "Bulk isolation.",
+  "notfor": "Per-pair insertion — use the per-pair ConnectorOps command.",
+  "precondition": "Seed element ids in a valid MEP component.",
+  "postcondition": "0..N fittings committed in one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve seeds (resolver or active selection).\n2) Build graph → find end-run edges.\n3) For each end-run connector, insert the chosen FittingKind if not already connected.\n4) Commit / rollback single Transaction.\n5) Emit counts + fitting ids.",
+  "keywords": [
+    "pipeworkaddisolationvalvesatendruns",
+    "add isolation valves at end runs",
+    "pipework bulk isolation"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Adding isolation valves at every end-run connector…"
+    ],
+    "thinkingsteps": [
+      "Building connector graph…",
+      "Inserting fittings where missing…"
+    ],
+    "successprompts": [
+      "Installed {installed_count} fittings; skipped {skipped_count}."
+    ],
+    "failureprompts": [
+      "Add isolation valves failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,15 @@
+{
+  "name": "get_error_summary",
+  "desc": "Get error counts by wire type and top offending classes. Quick health check after running commands.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "error summary",
+    "error stats",
+    "error count",
+    "how many errors"
+  ]
+}

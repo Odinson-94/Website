@@ -1,0 +1,16 @@
+{
+  "name": "get_current_view_level",
+  "desc": "Get the level name and elevation for the current active view.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "current level",
+    "view level",
+    "what level",
+    "which floor",
+    "active level"
+  ]
+}

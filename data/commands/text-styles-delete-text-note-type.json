@@ -1,0 +1,35 @@
+{
+  "class": "TextStylesDeleteTextNoteTypeCommand",
+  "desc": "Delete a TextNoteType by id.",
+  "summary": "Delete a TextNoteType by id.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "text styles delete text note type",
+    "text_styles_delete_text_note_type"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running text styles delete text note type…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "text styles delete text note type: done."
+    ],
+    "failureprompts": [
+      "text styles delete text note type failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

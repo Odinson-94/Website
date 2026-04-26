@@ -1,0 +1,35 @@
+{
+  "name": "document_controller_sync_document_between_cde_platforms_with_metadata",
+  "desc": "Downloads a document from one CDE platform and uploads it to another, mapping metadata between platforms.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "Document code to sync",
+      "required": true
+    },
+    {
+      "name": "sourcePlatform",
+      "type": "string",
+      "description": "Platform to download from",
+      "required": true
+    },
+    {
+      "name": "targetPlatform",
+      "type": "string",
+      "description": "Platform to upload to",
+      "required": true
+    },
+    {
+      "name": "targetProjectId",
+      "type": "string",
+      "description": "Project ID on target platform",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

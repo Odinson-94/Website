@@ -1,0 +1,12 @@
+{
+  "name": "calculation_calculate_ventilation_requirement_part_f_2021_for_dwelling",
+  "desc": "calculation_calculate_ventilation_requirement_part_f_2021_for_dwelling — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation calculate ventilation requirement part f 2021 for dwelling"
+  ]
+}

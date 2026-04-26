@@ -1,0 +1,25 @@
+{
+  "name": "adelphos_domain_get_schedule_type_fields_for_user",
+  "desc": "Return the full field spec for one schedule type (sections, field labels, units, database columns). 404 means the type is unknown — call adelphos_domain_list_schedule_types_for_user for valid keys.",
+  "bridge": "",
+  "category": "adelphos",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "type_key",
+      "type": "string",
+      "description": "Schedule-type key, e.g. 'extract_fan_schedule'. Case-sensitive.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "schedule fields",
+    "schedule spec",
+    "schedule details",
+    "what's in the schedule",
+    "schedule columns",
+    "schedule structure",
+    "adelphos"
+  ]
+}

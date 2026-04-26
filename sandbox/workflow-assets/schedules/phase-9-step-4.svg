@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f3340"/><stop offset="100%" stop-color="#0e1c25"/>
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <g font-family="Inter,sans-serif" fill="#fff" text-anchor="middle">
+    <text x="960" y="510" font-size="56" font-weight="600" opacity="0.95">PHASE 9 · STEP 4</text>
+    <text x="960" y="570" font-size="22" font-weight="400" opacity="0.6">drop schedules/phase-9-step-4.jpg in to replace</text>
+  </g>
+</svg>

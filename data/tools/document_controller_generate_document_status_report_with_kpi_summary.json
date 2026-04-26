@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_generate_document_status_report_with_kpi_summary",
+  "desc": "Generates a document status report with KPIs: counts by suitability stage, overdue documents, revision frequency, platform distribution, issue statistics.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project identifier",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

@@ -1,0 +1,47 @@
+{
+  "name": "select_by_location",
+  "desc": "Get elements at or near a point (X/Y/Z in mm). Returns lightweight JSON. Optionally set Revit selection to those elements.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 5,
+  "parameters": [
+    {
+      "name": "x_mm",
+      "type": "string",
+      "description": "X coordinate in mm.",
+      "required": false
+    },
+    {
+      "name": "y_mm",
+      "type": "string",
+      "description": "Y coordinate in mm.",
+      "required": false
+    },
+    {
+      "name": "z_mm",
+      "type": "string",
+      "description": "Z coordinate in mm.",
+      "required": false
+    },
+    {
+      "name": "tolerance_mm",
+      "type": "string",
+      "description": "Distance tolerance in mm (default 500).",
+      "required": false
+    },
+    {
+      "name": "set_selection",
+      "type": "string",
+      "description": "If 'true', set Revit selection to elements at this location.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "location",
+    "coordinates",
+    "select by location",
+    "nearby elements",
+    "point"
+  ]
+}

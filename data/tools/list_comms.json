@@ -1,0 +1,15 @@
+{
+  "name": "list_comms",
+  "desc": "Filter rooms to comms/data rooms by room-name patterns (host or links).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "filter room list to comms",
+    "comms rooms",
+    "data rooms",
+    "list comms rooms"
+  ]
+}

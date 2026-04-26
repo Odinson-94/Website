@@ -1,0 +1,41 @@
+{
+  "class": "CycleThroughClashResultsInModel",
+  "desc": "Cycles the clash navigator cursor forward or backward and navigates the model to the selected row.",
+  "summary": "Cycles the clash navigator cursor forward or backward and navigates the model to the selected row. Uses the same framing pipeline as ClashManagerNavigateToResult.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "cycle clashes",
+    "next clash",
+    "previous clash",
+    "iterate clashes"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Moving to the next clash in the list…",
+      "Moving to the previous clash in the list…"
+    ],
+    "thinkingsteps": [
+      "Load latest clashresults and advance the static index…",
+      "Reuse clash navigation (section box, 3D view, zoom)…"
+    ],
+    "successprompts": [
+      "Showing clash {clashId} ({indexOneBased} of {total})."
+    ],
+    "failureprompts": [
+      "Could not cycle clashes — {error}"
+    ]
+  },
+  "has_restapi": false
+}

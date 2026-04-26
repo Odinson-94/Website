@@ -1,0 +1,12 @@
+{
+  "name": "voxel_grid_query_cells_by_state_in_scope",
+  "desc": "voxel_grid_query_cells_by_state_in_scope — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "voxel grid query cells by state in scope"
+  ]
+}

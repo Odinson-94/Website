@@ -1,0 +1,28 @@
+{
+  "name": "drawing_exporter_generate_register",
+  "desc": "Generate a drawing register (spreadsheet) from the current sheet data. Optionally specify output path and template.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "output_path",
+      "type": "string",
+      "description": "Output file path for the register. Use \\",
+      "required": false
+    },
+    {
+      "name": "template_path",
+      "type": "string",
+      "description": "Optional path to an Excel template file for the register format.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "drawing register",
+    "generate register",
+    "transmittal",
+    "excel register"
+  ]
+}

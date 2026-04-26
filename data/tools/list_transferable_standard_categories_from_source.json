@@ -1,0 +1,21 @@
+{
+  "name": "list_transferable_standard_categories_from_source",
+  "desc": "List all transferable standard categories from a source .rvt file with item counts per category.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "source_path",
+      "type": "string",
+      "description": "Path to the source .rvt file",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "list transferable standards",
+    "transfer categories",
+    "what standards can I transfer"
+  ]
+}

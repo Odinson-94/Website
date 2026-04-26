@@ -1,0 +1,12 @@
+{
+  "name": "architecture_get_floor_footprint_from_selected_room_boundary",
+  "desc": "ArchitectureGetFloorFootprintFromSelectedRoomBoundary — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureGetFloorFootprintFromSelectedRoomBoundary"
+  ]
+}

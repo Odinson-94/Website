@@ -1,0 +1,46 @@
+{
+  "class": "VoxelMultiServiceRequest",
+  "desc": "VoxelGridRouteMultiServiceRackThroughCorridorCommand — sequential rack routing: each service inflates the cache's Forbidden zones before the next A* runs so services stack without overlap.",
+  "summary": "VoxelGridRouteMultiServiceRackThroughCorridorCommand — sequential rack routing: each service inflates the cache's Forbidden zones before the next A* runs so services stack without overlap.",
+  "usecase": "Corridor multi-service stacking.",
+  "notfor": "Single service — use the single-service command.",
+  "precondition": "Voxel grid cached; services list non-empty.",
+  "postcondition": "0..N placeholders per service, all inside one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve cached grid.\n2) For each service in order: (a) inflate clearance zones of prior services, (b) A*, (c) emit placeholder segments.\n3) If any service fails, rollback whole Transaction.\n4) Emit per-service results + totals.",
+  "keywords": [
+    "voxelgridroutemultiservicerackthroughcorridor",
+    "route multi service rack",
+    "voxel rack corridor"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"voxel_routing\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Planning multi-service rack…"
+    ],
+    "thinkingsteps": [
+      "Running A* per service with cumulative clearance…",
+      "Emitting placeholders…"
+    ],
+    "successprompts": [
+      "Routed {service_count} services."
+    ],
+    "failureprompts": [
+      "Rack route failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,36 @@
+{
+  "class": "NetworkBreakAndOffset90DownOnSelectionCommand",
+  "desc": "NetworkBreakAndOffset90DownOnSelectionCommand — 90° vertical drop on selection.",
+  "summary": "NetworkBreakAndOffset90DownOnSelectionCommand — 90° vertical drop on selection.",
+  "usecase": "Fitting a run through a low-clearance zone that needs a hard step-down.",
+  "notfor": "Rectangular duct.",
+  "precondition": "Active document. ≥1 pipe in selection.",
+  "postcondition": "Pipes broken and re-routed through a 90° down dog-leg.",
+  "sideeffects": "",
+  "logictree": "1) Selection → ≥1 Pipe. 2) Resolve ΔZ + flat-top. 3) Plan @ 90° Down. 4) Transaction \"Break & Offset 90° Down\". 5) Apply. 6) Commit, report.",
+  "keywords": [
+    "networkbreakandoffset90downonselection"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running NetworkBreakAndOffset90DownOnSelectionCommand..."
+    ],
+    "thinkingsteps": [
+      "Computing 90° down dog-leg geometry..."
+    ],
+    "successprompts": [
+      "NetworkBreakAndOffset90DownOnSelectionCommand completed successfully."
+    ],
+    "failureprompts": [
+      "NetworkBreakAndOffset90DownOnSelectionCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

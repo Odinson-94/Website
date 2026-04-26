@@ -1,0 +1,22 @@
+{
+  "name": "get_sheets_missing_revision",
+  "desc": "Returns all sheets that do NOT have a specific revision assigned. Answers: which sheets still need this revision?",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "revisionId",
+      "type": "integer",
+      "description": "Element ID of the revision to check",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "sheets missing revision",
+    "which sheets need revision",
+    "missing revision",
+    "revision not on sheet"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "class": "SelectByCategoryCommand",
+  "desc": "Selects all elements of a given category in the current view or entire model.",
+  "summary": "Selects all elements of a given category in the current view or entire model. Maps friendly names to BuiltInCategory enums with fuzzy matching. Uses CommandExecutor to read parameters from Claude. Follow up with FilterSelectionCommand to narrow the selection. Related: SelectAllInstancesCommand for family-specific selection. Related: SelectByFamilyNameCommand for family name selection.",
+  "usecase": "User wants to select all lighting fixtures to tag them. User wants to count how many pipes are in the current view. User wants to pre-select elements before running TagAllCommand.",
+  "notfor": "Selecting by family name (use SelectByFamilyNameCommand). Selecting by parameter value (use SelectByParameterCommand). Filtering an existing selection (use FilterSelectionCommand).",
+  "precondition": "Active document must be open with a valid active view.",
+  "postcondition": "Revit selection is replaced with all elements matching the category. Returns JSON with totalSelected and breakdown by family.",
+  "sideeffects": "",
+  "logictree": "check: parameters.category → resolve category name to BuiltInCategory\rcheck: parameters.allViews == \"true\" → search entire model\rdefault: search current view only",
+  "keywords": [
+    "select by category",
+    "select all",
+    "select lights",
+    "select pipes",
+    "select elements",
+    "pick category"
+  ],
+  "intent_patterns": [
+    "select * category",
+    "select all *",
+    "pick all *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Revit category name",
+      "default": ""
+    },
+    {
+      "name": "allViews",
+      "type": "bool",
+      "description": "Search entire model instead of current view",
+      "default": "false"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Selected element IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Breakdown by family name and count"
+    }
+  ],
+  "related_commands": [
+    "SelectByFamilyNameCommand",
+    "SelectByParameterCommand",
+    "FilterSelectionCommand",
+    "TagAllCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Selecting elements by category...",
+      "Finding all elements in the category..."
+    ],
+    "thinkingsteps": [
+      "Resolving category name...",
+      "Collecting elements from {scope}...",
+      "Setting Revit selection..."
+    ],
+    "successprompts": [
+      "Selected {totalSelected} elements in category {category}.",
+      "Done — {totalSelected} {category} elements selected from {scope}."
+    ],
+    "failureprompts": [
+      "Could not select by category: {error}",
+      "Category selection failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

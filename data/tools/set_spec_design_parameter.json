@@ -1,0 +1,29 @@
+{
+  "name": "set_spec_design_parameter",
+  "desc": "Set or update a design parameter value for the current project.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "parameterName",
+      "type": "string",
+      "description": "Parameter name (e.g. TotalHeatingLoad, ExternalSummerTemp)",
+      "required": true
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "description": "Parameter value",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "set parameter",
+    "design parameter",
+    "update parameter",
+    "heating load",
+    "cooling load"
+  ]
+}

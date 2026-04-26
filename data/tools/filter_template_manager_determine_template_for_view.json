@@ -1,0 +1,27 @@
+{
+  "name": "filter_template_manager_determine_template_for_view",
+  "desc": "Resolve which view template to apply to a new view based on discipline (e.g. Drainage) and scale denominator (e.g. 100). Returns the template id and matched name.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "discipline",
+      "type": "string",
+      "description": "Discipline / service name. e.g. Drainage, Mechanical, Electrical.",
+      "required": true
+    },
+    {
+      "name": "scale",
+      "type": "integer",
+      "description": "Scale denominator (e.g. 100 for 1:100).",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "determine template",
+    "filter_template_manager_determine_template_for_view",
+    "which template"
+  ]
+}

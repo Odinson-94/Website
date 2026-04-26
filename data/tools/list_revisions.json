@@ -1,0 +1,15 @@
+{
+  "name": "list_revisions",
+  "desc": "List all revisions with sequence, date, description, issued status.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list revisions",
+    "revision list",
+    "show revisions",
+    "check revisions"
+  ]
+}

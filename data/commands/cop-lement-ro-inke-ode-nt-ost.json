@@ -1,0 +1,37 @@
+{
+  "class": "CopyElementsFromLinkedModelIntoHostCommand",
+  "desc": "Copy Elements From Linked Model Into Host.",
+  "summary": "Copy Elements From Linked Model Into Host.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Views/View Setup Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Views/View Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "copy from link",
+    "copy elements from link",
+    "link to host copy",
+    "copy linked elements"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Copy Elements From Linked Model Into Host…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Copy Elements From Linked Model Into Host: completed."
+    ],
+    "failureprompts": [
+      "Copy Elements From Linked Model Into Host: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "clash_manager_group_clash_results_from_latest_check_by_mep_system_type",
+  "desc": "Group clash results by MEP system type.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "group clashes system",
+    "clashes by system type"
+  ]
+}

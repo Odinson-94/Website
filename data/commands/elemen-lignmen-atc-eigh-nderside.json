@@ -1,0 +1,37 @@
+{
+  "class": "ElementAlignmentMatchHeightByUndersideCommand",
+  "desc": "Aligns undersides (bbox min.Z) of moving elements to the reference element's underside.",
+  "summary": "Aligns undersides (bbox min.Z) of moving elements to the reference element's underside.",
+  "usecase": "Preserve headroom below a service run — match undersides.",
+  "notfor": "Top-face alignment (ByTop). Centre alignment (ByCentre).",
+  "precondition": "Active document. 1 reference + ≥1 mover resolved. Bounding boxes available.",
+  "postcondition": "Each mover translated by (0, 0, dz) feet. Audit entry written.",
+  "sideeffects": "",
+  "logictree": "1) Resolve reference + movers. 2) Validate bboxes. 3) Transaction: ΔZ = refMinZ − moverMinZ, MoveElement. 4) Commit, log. 5) Failure → WireFault + rollback.",
+  "keywords": [
+    "elementalignmentmatchheightbyunderside"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running ElementAlignmentMatchHeightByUndersideCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "ElementAlignmentMatchHeightByUndersideCommand completed successfully."
+    ],
+    "failureprompts": [
+      "ElementAlignmentMatchHeightByUndersideCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

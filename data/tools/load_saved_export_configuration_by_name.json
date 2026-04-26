@@ -1,0 +1,22 @@
+{
+  "name": "load_saved_export_configuration_by_name",
+  "desc": "Load a previously saved Drawing Exporter configuration by name. Restores all settings, selections, and groups.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the saved configuration to load.",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "load config",
+    "load settings",
+    "apply preset",
+    "load export"
+  ]
+}

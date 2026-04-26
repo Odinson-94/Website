@@ -1,0 +1,30 @@
+{
+  "class": "ClashSolverPlanSolutionsForAllActiveClashesCommand",
+  "desc": "Optional cap on how many clashes to plan in one run.",
+  "summary": "Optional cap on how many clashes to plan in one run. Null = no cap.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clashsolverplansolutionsforallactiveclashes"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

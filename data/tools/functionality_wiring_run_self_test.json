@@ -1,0 +1,36 @@
+{
+  "name": "functionality_wiring_run_self_test",
+  "desc": "Run the Functionality Wiring self-test harness. Verifies MCP registry entries, command manifest, bridge action parity, error wiring, skill YAML, and domain naming for every agent (00 through 15). Returns the parsed JSON report and the paths to the on-disk Markdown + JSON artefacts.",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "agent",
+      "type": "string",
+      "description": "Optional: run a single agent (e.g. \\",
+      "required": false
+    },
+    {
+      "name": "verbose",
+      "type": "boolean",
+      "description": "Optional: stream per-assert output to stderr.",
+      "required": false
+    },
+    {
+      "name": "fail_fast",
+      "type": "boolean",
+      "description": "Optional: stop on the first failing assert.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "wiring self test",
+    "run wiring tests",
+    "agent self test",
+    "verify functionality wiring",
+    "self test wiring",
+    "functionality self test"
+  ]
+}

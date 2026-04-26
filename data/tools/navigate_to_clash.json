@@ -1,0 +1,30 @@
+{
+  "name": "navigate_to_clash",
+  "desc": "Navigate the Revit view to show a clash location. Selects both clashing elements and zooms to fit them in a section box.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "element1_id",
+      "type": "string",
+      "description": "Element ID of the first clashing element",
+      "required": false
+    },
+    {
+      "name": "element2_id",
+      "type": "string",
+      "description": "Element ID of the second clashing element",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "clash",
+    "navigate",
+    "zoom",
+    "section box",
+    "view",
+    "element"
+  ]
+}

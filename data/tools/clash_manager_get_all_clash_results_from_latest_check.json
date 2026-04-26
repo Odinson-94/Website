@@ -1,0 +1,34 @@
+{
+  "name": "clash_manager_get_all_clash_results_from_latest_check",
+  "desc": "Get all clash/error results from the latest QA check. Supports filtering by status, navigator group, and level name.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Filter by status: new, active, reviewed, resolved",
+      "required": false
+    },
+    {
+      "name": "group",
+      "type": "string",
+      "description": "Filter by navigator group",
+      "required": false
+    },
+    {
+      "name": "level",
+      "type": "string",
+      "description": "Filter by level name",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "clash results",
+    "QA results",
+    "all clashes",
+    "error results"
+  ]
+}

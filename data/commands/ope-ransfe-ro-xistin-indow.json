@@ -1,0 +1,25 @@
+{
+  "class": "OpenTransferFromExistingWindowCommand",
+  "desc": "Opens the Transfer from Existing tool window.",
+  "summary": "Opens the Transfer from Existing tool window.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "open transfer window",
+    "transfer from existing",
+    "transfer standards window"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

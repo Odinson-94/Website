@@ -1,0 +1,58 @@
+{
+  "name": "adelphos_domain_rebuild_drawing_issue_sheet_register_for_project",
+  "desc": "Rebuild the Drawing Issue Sheet (.xlsx register) for a project. Client zips the project's 2.0 Issued folder and uploads it to the Adelphos Domain API; the rebuilt workbook is written back next to the source (or to save_to_path if provided). Requires an Adelphos JWT (see adelphos_domain_sign_in_with_jwt_for_user) and a prior grant on the folder via adelphos_domain_grant_local_path_for_user.",
+  "bridge": "",
+  "category": "adelphos",
+  "always": false,
+  "param_count": 6,
+  "parameters": [
+    {
+      "name": "project_ref",
+      "type": "string",
+      "description": "Project reference, e.g. 'G0053'",
+      "required": false
+    },
+    {
+      "name": "issued_folder_path",
+      "type": "string",
+      "description": "Absolute path to the project's '2.0 Issued' folder on this machine",
+      "required": false
+    },
+    {
+      "name": "project_name",
+      "type": "string",
+      "description": "Optional friendly project name for the workbook header",
+      "required": false
+    },
+    {
+      "name": "save_to_path",
+      "type": "string",
+      "description": "Optional absolute path to save the rebuilt .xlsx to. Default: {issued_folder_path}/Drawing Issue Sheet.xlsx",
+      "required": false
+    },
+    {
+      "name": "skip_notifications",
+      "type": "boolean",
+      "description": "If true, server will not send a notification on completion (default false)",
+      "required": false
+    },
+    {
+      "name": "include_undated_events",
+      "type": "boolean",
+      "description": "If true, folders without a YYYY.MM.DD prefix are also folded into the register (default false)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "drawing issue sheet",
+    "DIS",
+    "register",
+    "issue sheet",
+    "rebuild register",
+    "rebuild issue sheet",
+    "issued drawings",
+    "drawings register",
+    "drawing issue sheets",
+    "adelphos dis"
+  ]
+}

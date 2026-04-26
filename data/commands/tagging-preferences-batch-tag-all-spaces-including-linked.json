@@ -1,0 +1,35 @@
+{
+  "class": "TaggingPreferencesBatchTagAllSpacesIncludingLinkedCommand",
+  "desc": "Tag every space in the current view including spaces from linked architectural / mechanical files.",
+  "summary": "Tag every space in the current view including spaces from linked architectural / mechanical files.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tagging preferences batch tag all spaces including linked",
+    "tagging_preferences_batch_tag_all_spaces_including_linked"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running tagging preferences batch tag all spaces including linked…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "tagging preferences batch tag all spaces including linked: done."
+    ],
+    "failureprompts": [
+      "tagging preferences batch tag all spaces including linked failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

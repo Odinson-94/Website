@@ -1,0 +1,22 @@
+{
+  "name": "accept_fix",
+  "desc": "Accept the cloud agent's fix: pull branch, build, regenerate registry. Use reload_dll after to load new code.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "agent_id",
+      "type": "string",
+      "description": "The agent ID whose branch to pull. Defaults to active agent.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "accept fix",
+    "pull and build",
+    "apply fix",
+    "self debug accept"
+  ]
+}

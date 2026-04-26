@@ -1,0 +1,40 @@
+{
+  "class": "RunClashDetectionOnSelectionCommand",
+  "desc": "Clashes the current Revit selection against every other host element with a bounding box, then merges coordination findings from RunErrorCheckingRulesOnModel into the exported clash table.",
+  "summary": "Clashes the current Revit selection against every other host element with a bounding box, then merges coordination findings from RunErrorCheckingRulesOnModel into the exported clash table.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clash selected",
+    "check selection clashes"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Checking clashes for your selection…"
+    ],
+    "thinkingsteps": [
+      "Confirm selection and resolve tolerance…",
+      "Run selection-vs-model geometric sweep…",
+      "Execute coordination Error Manager rules…",
+      "Write merged QA XML and update clash history…"
+    ],
+    "successprompts": [
+      "Selection clash run finished — {total} rows ({geometric} geometric, {rules} from rules)."
+    ],
+    "failureprompts": [
+      "Clash finder on selection failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

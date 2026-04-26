@@ -1,0 +1,12 @@
+{
+  "name": "qa_manager_list_pushed_forma_issues",
+  "desc": "qa_manager_list_pushed_forma_issues — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "qa manager list pushed forma issues"
+  ]
+}

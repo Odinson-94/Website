@@ -1,0 +1,66 @@
+{
+  "class": "AddFilledRegionCommand",
+  "desc": "Creates a filled region in the active view from a set of XY points provided in millimetres.",
+  "summary": "Creates a filled region in the active view from a set of XY points provided in millimetres. Points are parsed from a JSON array, converted to feet, and used to build a closed CurveLoop. An optional region type name can be specified; otherwise the first available FilledRegionType is used. Uses CommandExecutor to retrieve parameters from the AI orchestrator. Related: AddDetailLineCommand for drawing individual detail lines.",
+  "usecase": "User wants to create a hatched or solid region to highlight an area on a plan or section. AI needs to annotate a view with a bounded filled region.",
+  "notfor": "Creating 3D floor slabs or model regions (use Floor or ModelLine API). Drawing open polylines (use AddDetailLineCommand in a loop).",
+  "precondition": "Active document must be open with a detail-capable view. At least 3 XY points must be provided in mm as a JSON array: [[x,y],[x,y],...].",
+  "postcondition": "A new FilledRegion element is created in the active view using the resolved or default region type.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add filled region",
+    "create filled region",
+    "draw region",
+    "hatch region",
+    "annotation region"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "points",
+      "type": "string",
+      "description": "JSON array of XY points in mm: [[x,y],[x,y],...]",
+      "default": ""
+    },
+    {
+      "name": "regionType",
+      "type": "string",
+      "description": "Optional filled region type name",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Filled region creation result with element ID"
+    }
+  ],
+  "related_commands": [
+    "AddDetailLineCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a filled region in the active view...",
+      "Drawing your filled region now..."
+    ],
+    "thinkingsteps": [
+      "Parsing point coordinates from JSON...",
+      "Resolving filled region type...",
+      "Building curve loop and creating filled region..."
+    ],
+    "successprompts": [
+      "Filled region created successfully (ID: {Result}).",
+      "Done — filled region drawn with {Result} boundary."
+    ],
+    "failureprompts": [
+      "Could not create filled region: {error}",
+      "Filled region creation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

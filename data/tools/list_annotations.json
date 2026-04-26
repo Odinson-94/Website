@@ -1,0 +1,16 @@
+{
+  "name": "list_annotations",
+  "desc": "List lightweight annotation context in active view (text, tags, generic annotations, bounds, leaders).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list annotations",
+    "annotation context",
+    "text notes in view",
+    "annotation bounds",
+    "leader positions"
+  ]
+}

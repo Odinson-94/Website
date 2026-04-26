@@ -1,0 +1,23 @@
+{
+  "name": "create_spec_generation_job",
+  "desc": "Create and run a new specification generation job for the current project. Runs 11 agents in parallel respecting dependency order.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "disciplines",
+      "type": "string",
+      "description": "Comma-separated discipline names to include (leave empty for all required)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "generate spec",
+    "create specification",
+    "run spec builder",
+    "build spec",
+    "write specification"
+  ]
+}

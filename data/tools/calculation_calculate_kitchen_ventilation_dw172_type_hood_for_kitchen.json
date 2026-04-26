@@ -1,0 +1,12 @@
+{
+  "name": "calculation_calculate_kitchen_ventilation_dw172_type_hood_for_kitchen",
+  "desc": "calculation_calculate_kitchen_ventilation_dw172_type_hood_for_kitchen — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation calculate kitchen ventilation dw172 type hood for kitchen"
+  ]
+}

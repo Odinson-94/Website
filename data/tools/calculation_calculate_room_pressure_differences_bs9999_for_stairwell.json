@@ -1,0 +1,12 @@
+{
+  "name": "calculation_calculate_room_pressure_differences_bs9999_for_stairwell",
+  "desc": "calculation_calculate_room_pressure_differences_bs9999_for_stairwell — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation calculate room pressure differences bs9999 for stairwell"
+  ]
+}

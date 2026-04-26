@@ -1,0 +1,101 @@
+{
+  "class": "TagsAllRoomsCommand",
+  "desc": "Phase 8 Command: Tags all rooms in the current view.",
+  "summary": "Phase 8 Command: Tags all rooms in the current view. Supports rooms from both host document and linked models. Uses room tag families filtered by \"room\" keyword.",
+  "usecase": "User wants to tag all rooms in a floor plan quickly. User needs to add room tags to rooms from linked architectural model. User wants to verify all rooms are properly tagged before issue.",
+  "notfor": "Custom UI required for rich tag-type picker. AI path is JSON-first and dialog-free.",
+  "precondition": "Active document must be open with a valid plan or section view active. At least one room must exist in the model (host or linked). At least one room tag family must be loaded in the document. View must support annotation (not 3D or schedules).",
+  "postcondition": "All visible rooms in the current view are tagged with room tags. Rooms from linked models are tagged using room tags in the host document. Tags are placed at room center points. Summary dialog shows count of tags created and any failures.",
+  "sideeffects": "",
+  "logictree": "check: activeView.isValidForAnnotation → proceed\rcheck: activeView.is3D || activeView.isSchedule → fail \"Cannot tag in this view type\"\rcheck: loadedRoomTags.count == 0 → fail \"No room tag families loaded\"\rcheck: visibleRooms.count == 0 → fail \"No rooms visible in current view\"\rcheck: selectedTagType != null → useSelectedTagType\rcheck: selectedTagType == null → useFirstAvailableTagType\rresolve: includeLinkedRooms == true → GetAllIncludingLinks, else → GetAll",
+  "keywords": [
+    "tag rooms",
+    "room tags",
+    "tag all rooms",
+    "annotation",
+    "linked rooms",
+    "architectural rooms",
+    "room annotation"
+  ],
+  "intent_patterns": [
+    "tag * rooms",
+    "tag all rooms",
+    "add room tags",
+    "annotate rooms",
+    "room tag * all",
+    "tag linked rooms"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "View",
+      "type": "View",
+      "description": "View to tag rooms in (defaults to active view)",
+      "default": "null"
+    },
+    {
+      "name": "TagType",
+      "type": "FamilySymbol",
+      "description": "Room tag type to use",
+      "default": "null"
+    },
+    {
+      "name": "WithLeader",
+      "type": "bool",
+      "description": "Whether to add leader lines to tags",
+      "default": "false"
+    },
+    {
+      "name": "IncludeLinkedRooms",
+      "type": "bool",
+      "description": "Whether to include rooms from linked models",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "TagsCreated",
+      "type": "int",
+      "description": "Number of room tags successfully created"
+    },
+    {
+      "name": "TagsFailed",
+      "type": "int",
+      "description": "Number of rooms that could not be tagged"
+    },
+    {
+      "name": "RoomsTagged",
+      "type": "List<string>",
+      "description": "Names of rooms that were tagged"
+    }
+  ],
+  "related_commands": [
+    "CreateSectionFromGridlineCommand",
+    "PlaceViewOnSheetCommand",
+    "TagAllCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Tagging all rooms in the current view...",
+      "Starting room annotation workflow..."
+    ],
+    "thinkingsteps": [
+      "Validating view supports annotation...",
+      "Finding available room tag families...",
+      "Collecting rooms from host and linked models...",
+      "Filtering rooms visible in current view...",
+      "Placing room tags at centroids..."
+    ],
+    "successprompts": [
+      "Tagged {TagsCreated} rooms in view. {TagsFailed} skipped.",
+      "Room tagging complete — {TagsCreated} tags placed."
+    ],
+    "failureprompts": [
+      "Room tagging failed: {error}",
+      "Could not tag rooms — {error}"
+    ]
+  },
+  "has_restapi": false
+}

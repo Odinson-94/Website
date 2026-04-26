@@ -1,0 +1,13 @@
+{
+  "name": "family_swap_list_candidate_replacements_for_type",
+  "desc": "Given a source FamilyInstance type, list candidate replacement family types (in-model, in user/business folders, downloadable from Supabase).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "family_swap_list_candidate_replacements_for_type",
+    "family swap list candidate replacements for type"
+  ]
+}

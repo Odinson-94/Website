@@ -1,0 +1,13 @@
+{
+  "name": "cobie_sheet_list_impact",
+  "desc": "List rows for the COBie Impact sheet projected from Revit elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "cobie_sheet_list_impact",
+    "cobie sheet list impact"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupCreateSectionAcrossBoundingBoxCommand",
+  "desc": "Create a section view across a bounding box.",
+  "summary": "Create a section view across a bounding box.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup create section across bounding box",
+    "sheet_view_setup_create_section_across_bounding_box"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup create section across bounding box…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup create section across bounding box: done."
+    ],
+    "failureprompts": [
+      "sheet view setup create section across bounding box failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

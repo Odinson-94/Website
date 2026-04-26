@@ -1,0 +1,47 @@
+{
+  "class": "HeatingSizeRadiatorsFromCalculatedLossForSpaceCommand",
+  "desc": "HeatingSizeRadiatorsFromCalculatedLossForSpaceCommand — select a radiator via EN 442 from the project schedule.",
+  "summary": "HeatingSizeRadiatorsFromCalculatedLossForSpaceCommand — select a radiator via EN 442 from the project schedule.",
+  "usecase": "Automated radiator sizing per room.",
+  "notfor": "Altitude-corrected variants — use the dedicated sibling commands.",
+  "precondition": "Room resolvable + `HeatLossWatts` shared parameter present.",
+  "postcondition": "SelectedRadiatorType parameter set on the Room.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_RoomId required; load Room + HeatLossWatts param.\n2) Parse Resolver_ScheduleJson as an array of ScheduleEntry.\n3) Call CalculateRadiatorSizeToEn442.Size(inputs).\n4) On success: write SelectedRadiatorType on Room inside one Transaction.\n5) Emit chosen + reason.",
+  "keywords": [
+    "heatingsizeradiatorsfromcalculatedlossforspace",
+    "size radiator from heat loss",
+    "en442 pick"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Sizing radiator for the selected room…"
+    ],
+    "thinkingsteps": [
+      "Loading HeatLossWatts + schedule…",
+      "Calling EN 442 math engine…",
+      "Writing SelectedRadiatorType on the Room…"
+    ],
+    "successprompts": [
+      "Chose {chosen_type}."
+    ],
+    "failureprompts": [
+      "Sizing failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

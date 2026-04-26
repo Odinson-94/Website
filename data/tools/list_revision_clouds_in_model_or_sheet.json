@@ -1,0 +1,22 @@
+{
+  "name": "list_revision_clouds_in_model_or_sheet",
+  "desc": "Lists all revision clouds in the model or on a specific sheet. Returns cloud ID, associated revision, view, and sheet.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "sheetNumber",
+      "type": "string",
+      "description": "Filter to clouds on this sheet only (optional)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "list revision clouds",
+    "revision clouds",
+    "clouds on sheet",
+    "revision cloud list"
+  ]
+}

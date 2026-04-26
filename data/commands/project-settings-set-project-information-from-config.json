@@ -1,0 +1,35 @@
+{
+  "class": "ProjectSettingsSetProjectInformationFromConfigCommand",
+  "desc": "Apply a JSON config of Project Information fields atomically.",
+  "summary": "Apply a JSON config of Project Information fields atomically.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings set project information from config",
+    "project_settings_set_project_information_from_config"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running project settings set project information from config…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "project settings set project information from config: done."
+    ],
+    "failureprompts": [
+      "project settings set project information from config failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,58 @@
+{
+  "class": "ExportModelFiltersCommand",
+  "desc": "Exports every filter in the model (ParameterFilterElement) to JSON.",
+  "summary": "Exports every filter in the model (ParameterFilterElement) to JSON. Includes categories and decoded rules via GetViewFilterSettings. For per-view filter export, use ExportViewFilterSettingsCommand instead.",
+  "usecase": "User wants a full list of every filter defined in the project.",
+  "notfor": "Exporting view-specific filter overrides (use ExportViewFilterSettingsCommand).",
+  "precondition": "Active document must be open.",
+  "postcondition": "JSON file written to disk with all model filters.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export all filters",
+    "model filters json",
+    "list all filters",
+    "audit filters",
+    "backup model filters"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "totalFilters",
+      "type": "int",
+      "description": "Total number of filters exported"
+    },
+    {
+      "name": "filePath",
+      "type": "string",
+      "description": "File path the JSON was saved to"
+    }
+  ],
+  "related_commands": [
+    "ExportViewFilterSettingsCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting all model filters to JSON...",
+      "Gathering every filter in the project..."
+    ],
+    "thinkingsteps": [
+      "Collecting all filters in the document...",
+      "Decoding filter rules and categories...",
+      "Writing JSON to disk..."
+    ],
+    "successprompts": [
+      "Exported {totalFilters} filters to {filePath}",
+      "Done — {totalFilters} model filters saved to JSON."
+    ],
+    "failureprompts": [
+      "Filter export failed: {error}",
+      "Could not export model filters — {error}"
+    ]
+  },
+  "has_restapi": false
+}

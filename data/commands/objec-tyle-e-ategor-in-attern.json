@@ -1,0 +1,35 @@
+{
+  "class": "ObjectStylesSetCategoryLinePatternCommand",
+  "desc": "Set the projection or cut line pattern for an object-style category.",
+  "summary": "Set the projection or cut line pattern for an object-style category.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "set category line pattern",
+    "object_styles_set_category_line_pattern"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Updating line pattern…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Line pattern set."
+    ],
+    "failureprompts": [
+      "Set line pattern failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

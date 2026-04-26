@@ -1,0 +1,78 @@
+{
+  "class": "SelectByRoomCommand",
+  "desc": "Returns elements inside an architectural room (by number or name).",
+  "summary": "Returns elements inside an architectural room (by number or name). Optionally sets Revit selection to those elements. Uses GetElementsInRoomHelper.ResolveRoom to find the room and GetElementsInRoomHelper.GetElementsInRoom to collect elements within it. Called by MEPBridge.Revit.AIChat.Services.CustomTools.SelectByRoomTool via execute_command. Related: SelectByIdsCommand for ID-based selection, SelectByLocationCommand for coordinate-based selection.",
+  "usecase": "List/filter elements in a room; then use get_selection or SelectByIdsCommand for cross-off.",
+  "notfor": "Selecting by coordinates — use SelectByLocationCommand. Selecting by ID — use SelectByIdsCommand.",
+  "precondition": "Active document; roomNumber or roomName required.",
+  "postcondition": "Returns { success, count, room, items }; optionally selection set.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "select by room",
+    "elements in room",
+    "room filter",
+    "room elements",
+    "room contents"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "roomNumber",
+      "type": "string",
+      "description": "Room number (e.g. 101)",
+      "default": ""
+    },
+    {
+      "name": "roomName",
+      "type": "string",
+      "description": "Room name (e.g. Office)",
+      "default": ""
+    },
+    {
+      "name": "setSelection",
+      "type": "bool",
+      "description": "If true, set Revit selection to elements in room",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "count",
+      "type": "int",
+      "description": "Number of elements in room"
+    },
+    {
+      "name": "items",
+      "type": "JSON",
+      "description": "Lightweight list: id, category, name"
+    }
+  ],
+  "related_commands": [
+    "SelectByIdsCommand",
+    "SelectByLocationCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Finding elements in the specified room...",
+      "Searching room for elements..."
+    ],
+    "thinkingsteps": [
+      "Resolving room by number or name...",
+      "Collecting elements within room boundary...",
+      "Building result set..."
+    ],
+    "successprompts": [
+      "Found {count} element(s) in room {room}.",
+      "{count} elements located inside the room."
+    ],
+    "failureprompts": [
+      "Could not find elements in room: {error}",
+      "Room search failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

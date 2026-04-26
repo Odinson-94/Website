@@ -1,0 +1,14 @@
+{
+  "name": "drawing_exporter_get_summary",
+  "desc": "Get a high-level summary of the Drawing Exporter state: total sheets, selected count, export format, output folder, and readiness status.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "export summary",
+    "drawing exporter status",
+    "export status"
+  ]
+}

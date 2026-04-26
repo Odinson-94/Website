@@ -1,0 +1,69 @@
+{
+  "class": "QueryModelCommand",
+  "desc": "Generic query command for Claude to call [McpTool] utilities via reflection.",
+  "summary": "Generic query command for Claude to call [McpTool] utilities via reflection. Uses CommandExecutor parameters to identify the target utility class, locates it by name, invokes its entry method, and serializes the result to JSON. Parameters (via CommandExecutor.GetParameter or JSON): - utility: Class name to call (e.g., \"ListLevels\", \"GetCurrentView\", \"ListRooms\") - method: Method name to call (optional, defaults from [McpTool] EntryMethod or \"GetAll\"/\"Get\") - filter: Optional JSON string of parameters to pass to the method",
+  "usecase": "Claude needs model context data (rooms, levels, views) via the execute_command path. User asks a question about the model and Claude routes through this command.",
+  "notfor": "Direct MCP tool calls (Claude calls those via GenericContextTool, not this). Model-modifying operations (use a dedicated ExternalCommand instead).",
+  "precondition": "Active document must be open. The specified utility class must exist and have a compatible static entry method.",
+  "postcondition": "Query result JSON is stored in LastQueryResult for consumption by the command system. No model modifications are made.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "query model",
+    "list data",
+    "get info",
+    "model query",
+    "context query"
+  ],
+  "intent_patterns": [],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "utility",
+      "type": "string",
+      "description": "Class name of the McpTool utility to invoke",
+      "default": ""
+    },
+    {
+      "name": "method",
+      "type": "string",
+      "description": "Optional method name (defaults to GetAll or Get)",
+      "default": ""
+    },
+    {
+      "name": "filter",
+      "type": "string",
+      "description": "Optional JSON parameters for the method",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Query result data"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Querying the model for {utility} data...",
+      "Running context query..."
+    ],
+    "thinkingsteps": [
+      "Locating utility class...",
+      "Invoking method and serializing results..."
+    ],
+    "successprompts": [
+      "Query returned results from {utility}.",
+      "Model data retrieved successfully."
+    ],
+    "failureprompts": [
+      "Query failed: {error}",
+      "Could not execute utility: {error}"
+    ]
+  },
+  "has_restapi": false
+}

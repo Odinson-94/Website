@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupDeleteSheetCommand",
+  "desc": "Delete a sheet by id.",
+  "summary": "Delete a sheet by id.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup delete sheet",
+    "sheet_view_setup_delete_sheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup delete sheet…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup delete sheet: done."
+    ],
+    "failureprompts": [
+      "sheet view setup delete sheet failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

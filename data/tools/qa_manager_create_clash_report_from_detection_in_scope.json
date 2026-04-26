@@ -1,0 +1,52 @@
+{
+  "name": "qa_manager_create_clash_report_from_detection_in_scope",
+  "desc": "QA Manager workflow: run a clash detection sweep in the chosen scope (view | selection | filters | worksets) → optionally capture screenshots → export the clash report in any mix of excel/xml/html/pdf/word. Single-call workflow replacement for manually chaining RunClashDetection*Command + CaptureAllClashResultImages + ExportClashResults*.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 6,
+  "parameters": [
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "view | selection | filters | worksets — picks the RunClashDetection*Command variant. Default: view.",
+      "required": false
+    },
+    {
+      "name": "filter_a",
+      "type": "string",
+      "description": "Only for scope=filters. Name/regex of first filter.",
+      "required": false
+    },
+    {
+      "name": "filter_b",
+      "type": "string",
+      "description": "Only for scope=filters. Name/regex of second filter.",
+      "required": false
+    },
+    {
+      "name": "tolerance_mm",
+      "type": "string",
+      "description": "Optional tolerance override in mm for filter-pair sweeps.",
+      "required": false
+    },
+    {
+      "name": "capture_images",
+      "type": "boolean",
+      "description": "Capture screenshots before exporting (default true).",
+      "required": false
+    },
+    {
+      "name": "formats",
+      "type": "string",
+      "description": "Comma-separated formats: excel, xml, html, pdf, word. Default: excel,xml,html.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "create clash report from detection",
+    "qa manager clash report",
+    "clash report workflow",
+    "clash export end-to-end"
+  ]
+}

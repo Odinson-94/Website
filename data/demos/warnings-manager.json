@@ -1,0 +1,8 @@
+{
+  "slug": "warnings-manager",
+  "category": "qa",
+  "title": "Warnings Manager",
+  "desc": "Triage Revit's built-in warnings, auto-resolve the safe ones.",
+  "duration": "1:27",
+  "status": "live"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "snapshot_apply",
+  "desc": "Apply all pending parameter changes to the Revit model in a single transaction. Call snapshot_review first to inspect changes. Set validate_only to true for a dry run that checks feasibility without modifying the model.",
+  "bridge": "RevitContext",
+  "category": "snapshot",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "validate_only",
+      "type": "string",
+      "description": "Set to 'true' for a dry run — validates all changes without modifying the model.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "snapshot apply",
+    "apply changes",
+    "commit changes",
+    "apply pending",
+    "batch apply",
+    "execute changes",
+    "validate changes"
+  ]
+}

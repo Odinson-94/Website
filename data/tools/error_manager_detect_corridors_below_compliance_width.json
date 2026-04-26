@@ -1,0 +1,12 @@
+{
+  "name": "error_manager_detect_corridors_below_compliance_width",
+  "desc": "error_manager_detect_corridors_below_compliance_width — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "error manager detect corridors below compliance width"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "determine_level",
+  "desc": "Determine which level an element or elevation belongs to based on level elevations.",
+  "bridge": "",
+  "category": "calculator",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "elevationMm",
+      "type": "number",
+      "description": "Elevation in mm to determine the level for",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "determine level",
+    "which level",
+    "what floor",
+    "level from height",
+    "elevation to level"
+  ]
+}

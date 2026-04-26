@@ -1,0 +1,30 @@
+{
+  "class": "ClashSolverResolvePipeworkServicesClashWithPrimaryBranchingCommand",
+  "desc": "Additional safety clearance added above the computed penetration (ft).",
+  "summary": "Additional safety clearance added above the computed penetration (ft).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clashsolverresolvepipeworkservicesclashwithprimarybranching"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

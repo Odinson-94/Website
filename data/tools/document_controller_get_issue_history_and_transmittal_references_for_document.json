@@ -1,0 +1,23 @@
+{
+  "name": "document_controller_get_issue_history_and_transmittal_references_for_document",
+  "desc": "Returns document issue history: every transmittal it appeared in, with dates, purposes, recipients, and transmittal references.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "BS 1192 document code",
+      "required": true
+    },
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project ID to scope the query",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

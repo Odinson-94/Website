@@ -1,0 +1,15 @@
+{
+  "name": "get_revit_warnings_grouped_by_failure_type",
+  "desc": "Get model warnings grouped by failure definition type with count per type.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "warnings by type",
+    "grouped warnings",
+    "warning types",
+    "duplicate warnings"
+  ]
+}

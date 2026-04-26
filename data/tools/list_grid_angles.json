@@ -1,0 +1,12 @@
+{
+  "name": "list_grid_angles",
+  "desc": "List all grids with their angles for section orientation.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list grid angles"
+  ]
+}

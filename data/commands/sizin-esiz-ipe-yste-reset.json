@@ -1,0 +1,32 @@
+{
+  "class": "SizingResizePipesInSystemByPresetCommand",
+  "desc": "Size + resize every pipe in a system in one Transaction.",
+  "summary": "Size + resize every pipe in a system in one Transaction.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sizingresizepipesinsystembypreset",
+    "resize pipes",
+    "pipe sizing by preset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

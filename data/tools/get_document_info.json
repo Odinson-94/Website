@@ -1,0 +1,16 @@
+{
+  "name": "get_document_info",
+  "desc": "Get information about the current Revit document. Returns JSON with title, available levels, and summary of loaded families.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "document info",
+    "project info",
+    "levels",
+    "model info",
+    "what document"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "_comment": "Global site config consumed by scripts/lib/seo.mjs. Edit once, every page picks it up.",
+  "site_name": "Adelphos AI",
+  "site_url": "https://adelphos.ai",
+  "site_tagline": "AI-enabled engineering software for MEP and BIM teams",
+  "default_description": "Adelphos AI ships seven flagship apps and three managed agentic services that take hours per week off MEP engineers — built on the MEP Bridge platform with 191 MCP tools and 163 Revit commands.",
+  "default_og_image": "/images/og/default.png",
+  "twitter_handle": "@adelphos_ai",
+  "organization": {
+    "@type": "Organization",
+    "name": "Adelphos AI",
+    "url": "https://adelphos.ai",
+    "logo": "https://adelphos.ai/logos/Node%20Logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/adelphos-ai",
+      "https://github.com/adelphos-ai"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "JPA Designs Ltd"
+    },
+    "founders": [
+      { "@type": "Person", "name": "Jordan Jones" }
+    ]
+  },
+  "ai_crawlers_allowed": [
+    "GPTBot",
+    "ClaudeBot",
+    "Claude-Web",
+    "anthropic-ai",
+    "PerplexityBot",
+    "Perplexity-User",
+    "Google-Extended",
+    "OAI-SearchBot",
+    "ChatGPT-User",
+    "Bingbot",
+    "Applebot",
+    "Applebot-Extended",
+    "Amazonbot",
+    "CCBot",
+    "FacebookBot",
+    "Diffbot",
+    "DuckAssistBot",
+    "Bytespider",
+    "YouBot",
+    "cohere-ai",
+    "Meta-ExternalAgent"
+  ]
+}

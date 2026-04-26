@@ -1,0 +1,35 @@
+{
+  "class": "DrawingExporterBatchExportSelectedSheetsCommand",
+  "desc": "Large-scale batch export across many sheets.",
+  "summary": "Large-scale batch export across many sheets. Carries [RestApi] for external triggers.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "drawing exporter batch export selected sheets",
+    "drawing_exporter_batch_export_selected_sheets"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running drawing exporter batch export selected sheets…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "drawing exporter batch export selected sheets: done."
+    ],
+    "failureprompts": [
+      "drawing exporter batch export selected sheets failed: {error}"
+    ]
+  },
+  "has_restapi": true
+}

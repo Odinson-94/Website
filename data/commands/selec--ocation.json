@@ -1,0 +1,91 @@
+{
+  "class": "SelectByLocationCommand",
+  "desc": "Returns elements at or near the given X/Y/Z coordinates (mm).",
+  "summary": "Returns elements at or near the given X/Y/Z coordinates (mm). Optionally sets Revit selection to those elements. Uses FilteredElementCollector to find elements within a tolerance radius. Called by MEPBridge.Revit.AIChat.Services.CustomTools.SelectByLocationTool via execute_command. Related: SelectByIdsCommand for ID-based selection, SelectByRoomCommand for room-based selection.",
+  "usecase": "Find/select elements by coordinates; then use SelectByIdsCommand for cross-off.",
+  "notfor": "Selecting by category/family/room — use SelectByRoomCommand. Selecting by ID — use SelectByIdsCommand.",
+  "precondition": "Active document; xMm, yMm, zMm required (numbers in mm).",
+  "postcondition": "Returns { success, count, positionMm, items }; optionally selection set.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "select by location",
+    "select by coordinates",
+    "xyz",
+    "position",
+    "elements at point"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "xMm",
+      "type": "number",
+      "description": "X coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "yMm",
+      "type": "number",
+      "description": "Y coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "zMm",
+      "type": "number",
+      "description": "Z coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "toleranceMm",
+      "type": "number",
+      "description": "Distance tolerance in mm (default 500)",
+      "default": ""
+    },
+    {
+      "name": "setSelection",
+      "type": "bool",
+      "description": "If true, set Revit selection to elements at location",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "count",
+      "type": "int",
+      "description": "Number of elements at/near point"
+    },
+    {
+      "name": "items",
+      "type": "JSON",
+      "description": "Lightweight list: id, category, name"
+    }
+  ],
+  "related_commands": [
+    "SelectByIdsCommand",
+    "SelectByRoomCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Searching for elements near that location...",
+      "Finding elements at the specified coordinates..."
+    ],
+    "thinkingsteps": [
+      "Converting mm coordinates to internal feet...",
+      "Collecting elements within tolerance radius...",
+      "Filtering by distance to target point...",
+      "Building result set..."
+    ],
+    "successprompts": [
+      "Found {count} element(s) near ({xMm}, {yMm}, {zMm}).",
+      "Located {count} elements within {toleranceMm}mm of the target point."
+    ],
+    "failureprompts": [
+      "Could not find elements at that location: {error}",
+      "Location search failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

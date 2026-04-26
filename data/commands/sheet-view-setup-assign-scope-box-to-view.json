@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupAssignScopeBoxToViewCommand",
+  "desc": "Assign a scope box to a view.",
+  "summary": "Assign a scope box to a view.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup assign scope box to view",
+    "sheet_view_setup_assign_scope_box_to_view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup assign scope box to view…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup assign scope box to view: done."
+    ],
+    "failureprompts": [
+      "sheet view setup assign scope box to view failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,35 @@
+{
+  "class": "WorksetManagerCreateStandardMepWorksetsCommand",
+  "desc": "Create the standard MEP workset set: Mechanical, Electrical, Plumbing, Drainage, Sprinkler, FireAlarm, BMS.",
+  "summary": "Create the standard MEP workset set: Mechanical, Electrical, Plumbing, Drainage, Sprinkler, FireAlarm, BMS.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager create standard mep worksets",
+    "workset_manager_create_standard_mep_worksets"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running workset manager create standard mep worksets…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "workset manager create standard mep worksets: done."
+    ],
+    "failureprompts": [
+      "workset manager create standard mep worksets failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

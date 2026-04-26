@@ -1,0 +1,81 @@
+{
+  "class": "BatchAddRevisionToSheetsByFilter",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "batch add revision",
+    "add revision to multiple sheets",
+    "revision to all sheets",
+    "bulk revision"
+  ],
+  "intent_patterns": [
+    "add revision to all *",
+    "batch * revision *",
+    "revision to * sheets"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "revisionId",
+      "type": "int",
+      "description": "Revision element ID to add",
+      "default": ""
+    },
+    {
+      "name": "sheetNumbers",
+      "type": "string",
+      "description": "JSON array of sheet numbers (filter mode: by list)",
+      "default": ""
+    },
+    {
+      "name": "sheetPrefix",
+      "type": "string",
+      "description": "Sheet number prefix (filter mode: by prefix)",
+      "default": ""
+    },
+    {
+      "name": "discipline",
+      "type": "string",
+      "description": "Discipline name (filter mode: by discipline)",
+      "default": ""
+    },
+    {
+      "name": "parameterName",
+      "type": "string",
+      "description": "Parameter name (filter mode: by parameter)",
+      "default": ""
+    },
+    {
+      "name": "parameterValue",
+      "type": "string",
+      "description": "Parameter value to match (filter mode: by parameter)",
+      "default": ""
+    },
+    {
+      "name": "level",
+      "type": "string",
+      "description": "Level name (filter mode: by level)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Batch result with counts and sheet numbers"
+    }
+  ],
+  "related_commands": [
+    "AddRevisionToSheetCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverMatchSlopeIntersectionPlaneCommand",
+  "desc": "ClashSolverMatchSlopeIntersectionPlaneCommand — PDF \"MATCH_SLOPE_INTERSECTION\".",
+  "summary": "ClashSolverMatchSlopeIntersectionPlaneCommand — PDF \"MATCH_SLOPE_INTERSECTION\".",
+  "usecase": "Align two sloped runs so they meet at a single fitting apex.",
+  "notfor": "Simple slope matching — use MATCH_SLOPE.",
+  "precondition": "Active document; two line-based elements resolvable.",
+  "postcondition": "Delegates apex-at-intersection rotation to ElementAlignmentMatchSlopeIntersectionCommand.",
+  "sideeffects": "",
+  "logictree": "1) Resolve two elements (resolvers or selection). 2) Delegate to ElementAlignmentMatchSlopeIntersectionCommand. 3) Tag tracker with clash_id.",
+  "keywords": [
+    "clashsolvermatchslopeintersectionplane",
+    "slope intersection apex",
+    "solver apex match"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Matching slope intersection apex…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ElementAlignmentMatchSlopeIntersectionCommand…"
+    ],
+    "successprompts": [
+      "Slope intersection delegated."
+    ],
+    "failureprompts": [
+      "Slope intersection failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "object_styles_list_line_styles",
+  "desc": "List all line styles (subcategories of OST_Lines). Returns name, line weight, colour, pattern.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list line styles",
+    "object_styles_list_line_styles"
+  ]
+}

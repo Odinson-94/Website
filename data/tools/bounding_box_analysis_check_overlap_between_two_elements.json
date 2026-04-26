@@ -1,0 +1,39 @@
+{
+  "name": "bounding_box_analysis_check_overlap_between_two_elements",
+  "desc": "Do the two elements' bounding boxes overlap? Default mode = axis-aligned; set mode=oriented for SAT on rotated elements. Returns {overlaps, overlap_volume_mm3, reason}.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "element_id_a",
+      "type": "integer",
+      "description": "Revit element id #1.",
+      "required": true
+    },
+    {
+      "name": "element_id_b",
+      "type": "integer",
+      "description": "Revit element id #2.",
+      "required": true
+    },
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "'axis_aligned' (default) or 'oriented' for SAT.",
+      "required": false
+    },
+    {
+      "name": "tolerance_mm",
+      "type": "number",
+      "description": "Optional overlap tolerance in mm. Default 0.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "bounding box analysis check overlap between two elements",
+    "check overlap",
+    "do these clash"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "class": "TextStylesDuplicateTextNoteTypeCommand",
+  "desc": "Duplicate an existing TextNoteType under a new name.",
+  "summary": "Duplicate an existing TextNoteType under a new name.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "text styles duplicate text note type",
+    "text_styles_duplicate_text_note_type"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running text styles duplicate text note type…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "text styles duplicate text note type: done."
+    ],
+    "failureprompts": [
+      "text styles duplicate text note type failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

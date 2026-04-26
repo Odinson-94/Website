@@ -1,0 +1,41 @@
+{
+  "class": "AnnotationDistributeDimensionsUniformlyWithSpacingCommand",
+  "desc": "Distribute Dimensions vertically with a uniform spacing.",
+  "summary": "Distribute Dimensions vertically with a uniform spacing.",
+  "usecase": "Drawing presentation — uniform stacking of dimensions.",
+  "notfor": "Aligning to a reference line (use AlignDimensionsToReferenceLineCommand when built).",
+  "precondition": "Active document open; at least one dimension id supplied; spacing &gt; 0.",
+  "postcondition": "Every input dimension moved by (index × spacing) on Y. One committed Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_DimensionIdsCsv → list of ids; Resolver_SpacingMm (default 300). 2) Resolve dimensions (preserving input order so spacing is predictable). 3) Validate spacing &gt; 0 and ≥ 1 dimension. Else WireError. 4) Open Transaction 'Distribute dimensions'. 5) For i = 0..N-1 move element i by (0, i × spacingFt, 0). 6) Commit. 7) Bot JSON / User toast. 8) Exception → tracker.Fail + WireFault.",
+  "keywords": [
+    "annotationdistributedimensionsuniformlywithspacing",
+    "dimension",
+    "distribute",
+    "annotation",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Distributing dimensions uniformly…"
+    ],
+    "thinkingsteps": [
+      "Resolving dimensions + ordering…",
+      "Applying per-index Y shift…"
+    ],
+    "successprompts": [
+      "Distributed {moved_count} dimensions at {spacing_mm} mm spacing."
+    ],
+    "failureprompts": [
+      "Could not distribute dimensions: {error}."
+    ]
+  },
+  "has_restapi": false
+}

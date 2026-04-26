@@ -1,0 +1,87 @@
+{
+  "class": "MultiServiceDrawerCommand",
+  "desc": "Main command for drawing multiple parallel MEP services.",
+  "summary": "Main command for drawing multiple parallel MEP services. Opens MultiServiceDrawerWindow where user selects services, groups them into rows, sets offsets, then delegates to MultiServiceDrawer for interactive drawing with transient preview. Corner fittings placed via MEPSystemAutoFillet. Related: PlaceDropsCommand for drop-then-draw workflow.",
+  "usecase": "User wants to draw multiple MEP services (pipes, ducts) in parallel. User wants to stack services in rows with specific offsets. User wants real-time preview while drawing.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open with a floor plan, ceiling plan, or 3D view. At least one PipingSystemType must exist in the model. User must be able to select points in the view.",
+  "postcondition": "Multiple parallel pipes are created along the user-picked path. Corner fittings are automatically placed using MEPSystemAutoFillet. Pipes near vertical drops are optionally connected.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "multi service",
+    "parallel pipes",
+    "service drawer",
+    "MEP layout",
+    "stack services",
+    "draw services",
+    "MPL"
+  ],
+  "intent_patterns": [
+    "draw * services",
+    "parallel * pipes",
+    "multi * service",
+    "stack * services",
+    "MEP * layout"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "RowOffset",
+      "type": "double",
+      "description": "Vertical offset between rows (mm)",
+      "default": "100.0"
+    },
+    {
+      "name": "ServiceSpacing",
+      "type": "double",
+      "description": "Horizontal spacing between services (mm)",
+      "default": "25.0"
+    },
+    {
+      "name": "ConnectToDrops",
+      "type": "bool",
+      "description": "Auto-connect to nearby vertical drops",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedPipes",
+      "type": "List<Pipe>",
+      "description": "Pipes created by the command"
+    },
+    {
+      "name": "CreatedFittings",
+      "type": "List<FamilyInstance>",
+      "description": "Fittings created at corners"
+    }
+  ],
+  "related_commands": [
+    "PlaceDropsCommand",
+    "ExtendPipesToDropsCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Opening the Multi-Service Drawer configuration...",
+      "Setting up parallel service drawing..."
+    ],
+    "thinkingsteps": [
+      "Validating view type and document state...",
+      "Loading service configuration UI...",
+      "Calculating offsets and starting interactive draw...",
+      "Placing corner fittings and connecting drops..."
+    ],
+    "successprompts": [
+      "Drawing complete — {CreatedPipes} pipes and {CreatedFittings} fittings created.",
+      "Multi-service draw finished successfully."
+    ],
+    "failureprompts": [
+      "Multi-Service Drawer failed: {error}",
+      "Could not complete drawing: {error}"
+    ]
+  },
+  "has_restapi": false
+}

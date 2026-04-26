@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupCloneViewWithAllDependenciesCommand",
+  "desc": "Clone View With All Dependencies.",
+  "summary": "Clone View With All Dependencies.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clone view",
+    "duplicate view with deps",
+    "clone with dependencies"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Clone View With All Dependencies…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Clone View With All Dependencies: completed."
+    ],
+    "failureprompts": [
+      "Clone View With All Dependencies: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

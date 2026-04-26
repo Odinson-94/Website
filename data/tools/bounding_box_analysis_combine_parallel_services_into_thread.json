@@ -1,0 +1,33 @@
+{
+  "name": "bounding_box_analysis_combine_parallel_services_into_thread",
+  "desc": "Group N parallel services by bearing + lateral distance. Returns one BB per thread plus unthreaded elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "element_ids_json",
+      "type": "string",
+      "description": "JSON array of element ids, e.g. '[123, 456, 789]'.",
+      "required": true
+    },
+    {
+      "name": "angle_tol_deg",
+      "type": "number",
+      "description": "Bearing-angle tolerance (deg). Default 5°.",
+      "required": false
+    },
+    {
+      "name": "lateral_tol_mm",
+      "type": "number",
+      "description": "Perpendicular mid-line tolerance (mm). Default 300 mm.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "bounding box analysis combine parallel services into thread",
+    "combine parallel",
+    "services thread"
+  ]
+}

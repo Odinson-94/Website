@@ -1,0 +1,53 @@
+{
+  "name": "document_controller_send_issue_email_to_recipients_with_download_links",
+  "desc": "Sends a transmittal email with HTML body containing document table and download links (SharePoint/GDrive) to specified recipients.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 7,
+  "parameters": [
+    {
+      "name": "recipientEmails",
+      "type": "string",
+      "description": "Comma-separated recipient email addresses",
+      "required": true
+    },
+    {
+      "name": "transmittalRef",
+      "type": "string",
+      "description": "Transmittal reference number",
+      "required": true
+    },
+    {
+      "name": "purpose",
+      "type": "string",
+      "description": "Issue purpose: For Information, For Comment, For Approval, For Construction",
+      "required": true
+    },
+    {
+      "name": "documentCodes",
+      "type": "string",
+      "description": "Comma-separated document codes to include",
+      "required": true
+    },
+    {
+      "name": "projectName",
+      "type": "string",
+      "description": "Project name for the email header",
+      "required": false
+    },
+    {
+      "name": "projectNumber",
+      "type": "string",
+      "description": "Project number",
+      "required": false
+    },
+    {
+      "name": "notes",
+      "type": "string",
+      "description": "Additional notes for the transmittal",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

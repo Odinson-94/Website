@@ -1,0 +1,42 @@
+{
+  "class": "ArchitectureSplitSelectedColumnAtLevelCommand",
+  "desc": "Splits a column FamilyInstance into two segments at a supplied Level.",
+  "summary": "Splits a column FamilyInstance into two segments at a supplied Level. Pure validation and level-lookup delegated to GetColumnBaseAndTopLevels.",
+  "usecase": "Convert floor-to-floor-to-floor single-column modelling into per-level segments for schedule / QA.",
+  "notfor": "Structural splits that require axis changes or rotations (use the structural variant, not yet built).",
+  "precondition": "Active document open; column id resolves to a FamilyInstance with FAMILY_BASE_LEVEL_PARAM + FAMILY_TOP_LEVEL_PARAM; split level id resolves to a Level strictly between base and top.",
+  "postcondition": "One additional column exists in the model; the original now spans base→split and the copy spans split→top. One committed Transaction. Audit entry recorded.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot supplies Resolver_ColumnId + Resolver_SplitLevelId. 2) Resolve both — the element must be a FamilyInstance whose category is OST_Columns or OST_StructuralColumns; the split level must be a Level. Else WireError + abort. 3) Read bounds via GetColumnBaseAndTopLevels.Read(doc, column); if null → abort. 4) Validate via GetColumnBaseAndTopLevels.ValidateSplitLevel(bounds, splitLevel); if false → WireError 'split_level_not_between_base_and_top' + abort. 5) Open Transaction 'Split column at level'. 6) Set original column's TOP_LEVEL_PARAM to splitLevelId (now original = bottom segment). 7) Copy via ElementTransformUtils.CopyElement(doc, column.Id, XYZ.Zero); set copy's BASE_LEVEL_PARAM = splitLevelId and TOP_LEVEL_PARAM = original top level id. 8) Commit. 9) Bot: JSON {ok, bottom_column_id, top_column_id, split_level_id}. User: toast 'Column split at '{level.Name}'.' 10) Any exception → tracker.Fail(ex); WireFault {column_id, split_level_id}.",
+  "keywords": [
+    "architecturesplitselectedcolumnatlevel",
+    "column",
+    "split",
+    "level",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Splitting column at level…"
+    ],
+    "thinkingsteps": [
+      "Reading column base + top levels…",
+      "Validating split level is strictly between…",
+      "Mutating original + creating copy…"
+    ],
+    "successprompts": [
+      "Column split at '{level_name}'. Bottom id {bottom_column_id}, top id {top_column_id}."
+    ],
+    "failureprompts": [
+      "Could not split column: {error}."
+    ]
+  },
+  "has_restapi": false
+}

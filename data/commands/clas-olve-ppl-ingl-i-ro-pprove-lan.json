@@ -1,0 +1,30 @@
+{
+  "class": "ClashSolverApplySingleFixFromApprovedPlanCommand",
+  "desc": "Parse the planner payload.",
+  "summary": "Parse the planner payload. Returns false on any malformed input; the caller transitions the clash to 'failed'.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clashsolverapplysinglefixfromapprovedplan"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

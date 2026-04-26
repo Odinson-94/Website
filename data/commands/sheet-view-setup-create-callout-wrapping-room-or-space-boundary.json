@@ -1,0 +1,42 @@
+{
+  "class": "SheetViewSetupCreateCalloutWrappingRoomOrSpaceBoundaryCommand",
+  "desc": "Creates a Detail callout view that wraps a selected Room or Space with a configurable margin.",
+  "summary": "Creates a Detail callout view that wraps a selected Room or Space with a configurable margin. Pure maths delegated to GetCalloutRectangle.",
+  "usecase": "Detail callout around a semantic room or MEP space.",
+  "notfor": "Arbitrary region callouts (use SheetViewSetupCreateCalloutOnViewAtBoundingBoxCommand).",
+  "precondition": "Active document open; parent view supports callouts; Room/Space id resolves; project has a Detail ViewFamilyType.",
+  "postcondition": "One new callout view added, inside one committed Transaction, audit trail recorded.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot supplies Resolver_ParentViewId (defaults to active view) + Resolver_RoomOrSpaceId + Resolver_MarginMm (default 600). 2) Resolve the element; if it is neither a Room nor a Space WireError + abort. 3) Resolve Detail ViewFamilyType id via ResolveDetailViewFamilyTypeId.FindFirstInDocument; if invalid WireError + abort. 4) Open Transaction 'Create callout (room/space wrap)'. 5) rect = GetCalloutRectangle.FromRoom(room, marginFt) OR FromSpace(space, marginFt). 6) callout = ViewSection.CreateCallout(doc, parentView.Id, vftId, rect.min, rect.max); commit. 7) Bot: JSON {ok, callout_view_id, parent_view_id, room_or_space_id, margin_mm}. User: toast 'Callout placed around {target.Name}.' 8) Any exception → tracker.Fail(ex); WireFault {parent_view_id, room_or_space_id, margin_mm}.",
+  "keywords": [
+    "sheetviewsetupcreatecalloutwrappingroomorspaceboundary",
+    "callout",
+    "room",
+    "space",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating callout wrapping Room/Space…"
+    ],
+    "thinkingsteps": [
+      "Resolving Room or Space element…",
+      "Computing padded bounding box…",
+      "Calling ViewSection.CreateCallout…"
+    ],
+    "successprompts": [
+      "Callout view {callout_view_id} placed around {target_name}."
+    ],
+    "failureprompts": [
+      "Could not create callout: {error}."
+    ]
+  },
+  "has_restapi": false
+}

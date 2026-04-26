@@ -1,0 +1,31 @@
+{
+  "class": "PlacementDisjoinFamilyFromHostInActiveDocumentCommand",
+  "desc": "Un-host a hosted family — recreate as non-hosted at the same location.",
+  "summary": "Un-host a hosted family — recreate as non-hosted at the same location.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "placementdisjoinfamilyfromhostinactivedocument",
+    "disjoin from host"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

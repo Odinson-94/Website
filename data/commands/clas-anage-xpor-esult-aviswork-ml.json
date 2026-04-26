@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerExportResultsToNavisworksXmlCommand",
+  "desc": "ClashManagerExportResultsToNavisworksXmlCommand — write an NW-compatible exchange XML from the staging clashes table.",
+  "summary": "ClashManagerExportResultsToNavisworksXmlCommand — write an NW-compatible exchange XML from the staging clashes table.",
+  "usecase": "Hand-off to Navisworks Manage coordinator.",
+  "notfor": "Reading NW XML — use ClashFinderImportResultsFromNavisworksXmlCommand.",
+  "precondition": "Active doc; staging DB has ≥ 1 clash row.",
+  "postcondition": "Single .xml file on disk.",
+  "sideeffects": "",
+  "logictree": "1) Resolve output path (default .mepbridge/qa/reports/clashes_{ts}.xml).\n2) Pull rows via repo.ListByState(state_filter ?? \"*\").\n3) Build XDocument: &lt;exchange&gt;&lt;batchtest&gt;&lt;clashtest&gt;&lt;clashresults&gt;&lt;clashresult&gt;&lt;description&gt;...&lt;/description&gt;&lt;clashpoint&gt;&lt;pos3f .../&gt;&lt;/clashpoint&gt;&lt;objects&gt;&lt;object ...&gt;...&lt;/object&gt;&lt;/objects&gt;&lt;/clashresult&gt;...&lt;/clashresults&gt;&lt;/clashtest&gt;&lt;/batchtest&gt;&lt;/exchange&gt;.\n4) Pull element centroids for clashpoint; elements as &lt;object&gt; with guid + displayname.\n5) Save XML with indentation; emit result summary.",
+  "keywords": [
+    "clashmanagerexportresultstonavisworksxml",
+    "export navisworks xml",
+    "qa nw export"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting clashes to Navisworks XML…"
+    ],
+    "thinkingsteps": [
+      "Querying staging DB…",
+      "Writing XML tree…"
+    ],
+    "successprompts": [
+      "Navisworks XML written to {output_path}."
+    ],
+    "failureprompts": [
+      "Navisworks export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

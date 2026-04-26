@@ -1,0 +1,12 @@
+{
+  "name": "list_templates",
+  "desc": "List all view templates in the document.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list templates"
+  ]
+}

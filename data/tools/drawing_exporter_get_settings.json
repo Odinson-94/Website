@@ -1,0 +1,15 @@
+{
+  "name": "drawing_exporter_get_settings",
+  "desc": "Get the current export settings from the Drawing Exporter, including format, naming pattern, output folder, merge/compress options, and DWG preset.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "export settings",
+    "settings",
+    "export config",
+    "naming pattern"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "transfer_standards_list_categories_per_standard",
+  "desc": "List the categories that participate in a given transferable standard.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "transfer_standards_list_categories_per_standard",
+    "transfer standards list categories per standard"
+  ]
+}

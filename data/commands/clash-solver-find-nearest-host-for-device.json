@@ -1,0 +1,47 @@
+{
+  "class": "ClashSolverFindNearestHostForDeviceCommand",
+  "desc": "ClashSolverFindNearestHostForDeviceCommand — PDF \"FIND_NEAREST_HOST\".",
+  "summary": "ClashSolverFindNearestHostForDeviceCommand — PDF \"FIND_NEAREST_HOST\". Candidate host listing ordered by distance.",
+  "usecase": "Pre-step before MOVE_TO_HOST / MOVE_TO_WALL.",
+  "notfor": "Actually moving the device.",
+  "precondition": "Active document; one FamilyInstance device resolvable.",
+  "postcondition": "No mutation; audit recorded.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_DeviceUniqueId required OR single selection. Must be a FamilyInstance.\n2) Inspect fi.Host: if non-null, currentHostCategory = Host.Category; else fall back to HostBehavior.Plane / HostedByFace flag: tag as \"any\".\n3) Build pool by BuiltInCategory matching currentHostCategory (Walls / Ceilings / Floors). If unknown, union Walls + Ceilings + Floors.\n4) For each candidate, compute Euclidean distance between device.Location.Point and candidate BB centroid; skip beyond max radius.\n5) Skip the device's current host.\n6) Sort ascending; emit top 50 (configurable).",
+  "keywords": [
+    "clashsolverfindnearesthostfordevice",
+    "find nearest host",
+    "solver host search"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Listing nearest host candidates for device…"
+    ],
+    "thinkingsteps": [
+      "Resolving device + current host…",
+      "Collecting candidates from matching category…",
+      "Ranking by distance…"
+    ],
+    "successprompts": [
+      "{candidate_count} candidates found, top {top_count} returned."
+    ],
+    "failureprompts": [
+      "Find-nearest-host failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

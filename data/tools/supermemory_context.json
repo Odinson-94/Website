@@ -1,0 +1,32 @@
+{
+  "name": "supermemory_context",
+  "desc": "Get the full user profile and relevant context. Call this at the start of conversations or when you need comprehensive context about the user's preferences, projects, and instructions.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "container_tag",
+      "type": "string",
+      "description": "Memory scope — defaults to user ID",
+      "required": false
+    },
+    {
+      "name": "query",
+      "type": "string",
+      "description": "Optional focus query to bias the dynamic context toward",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "user profile",
+    "user context",
+    "supermemory context",
+    "memory context",
+    "who am I",
+    "my preferences",
+    "my projects",
+    "conversation context"
+  ]
+}

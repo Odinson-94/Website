@@ -1,0 +1,82 @@
+{
+  "class": "CreateTextNoteCommand",
+  "desc": "Creates a TextNote in the active view at user-provided XY coordinates (in mm).",
+  "summary": "Creates a TextNote in the active view at user-provided XY coordinates (in mm). Optionally targets a named TextNoteType via ListText.GetTextNoteType; falls back to ListText.GetDefaultTextNoteType when no type is specified. Uses CommandExecutor.GetParameter for AI-resolved inputs.",
+  "usecase": "User wants to place a text annotation on a plan or section view.",
+  "notfor": "Creating keynotes or tags (use tagging commands). Not for sheet title blocks.",
+  "precondition": "Active view must support text notes (not a schedule, legend, or 3D view).",
+  "postcondition": "A new TextNote element exists in the active view at the specified location.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create text note",
+    "add text",
+    "place text note",
+    "text annotation",
+    "add annotation"
+  ],
+  "intent_patterns": [
+    "create * text",
+    "add * text note",
+    "place * note",
+    "text * annotation"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "content",
+      "type": "string",
+      "description": "Text content",
+      "default": ""
+    },
+    {
+      "name": "x",
+      "type": "number",
+      "description": "X coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Y coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "textType",
+      "type": "string",
+      "description": "Optional text type name",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Created text note id, view, textType, and placement coordinates"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Placing a text note in the active view...",
+      "Creating text annotation..."
+    ],
+    "thinkingsteps": [
+      "Reading text content and coordinates...",
+      "Resolving text note type...",
+      "Converting mm coordinates to internal units...",
+      "Creating text note element..."
+    ],
+    "successprompts": [
+      "Text note placed in {view} at ({x}, {y}) mm",
+      "Done — text note created using type \"{textType}\""
+    ],
+    "failureprompts": [
+      "Could not create text note: {error}",
+      "Text note creation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

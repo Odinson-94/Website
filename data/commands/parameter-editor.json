@@ -1,0 +1,45 @@
+{
+  "class": "ParameterEditorCommand",
+  "desc": "Opens a modeless WPF DataGrid to inspect and bulk-edit elevation/hosting parameters of selected FamilyInstance elements.",
+  "summary": "Opens a modeless WPF DataGrid to inspect and bulk-edit elevation/hosting parameters of selected FamilyInstance elements. Reads parameters once into a snapshot, shows the grid, and writes only dirty values back via ParameterEditorViewModel. Uses CommandExecutor.SetResultObject to signal AI Chat. Uses CommandFeedback for all user notifications.",
+  "usecase": "User wants to inspect/edit elevation parameters of multiple families at once. AI Chat triggers parameter editing as part of a placement verification workflow.",
+  "notfor": "Editing parameters of non-FamilyInstance elements (walls, floors, etc.). Bulk parameter export to Excel (use ExportParametersCommand).",
+  "precondition": "Active Revit document must be open. FamilyInstances may or may not be pre-selected — the editor supports launching with an empty grid and refreshing later.",
+  "postcondition": "A singleton ParameterEditorView window is shown. Changed parameter values are written back inside a Transaction when the user clicks Apply.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "parameter editor",
+    "edit parameters",
+    "elevation editor",
+    "hosting parameters",
+    "family parameters"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening the Parameter Editor...",
+      "Loading family parameters into the editor..."
+    ],
+    "thinkingsteps": [
+      "Reading selected family instances...",
+      "Building parameter snapshot...",
+      "Launching editor window..."
+    ],
+    "successprompts": [
+      "Parameter Editor opened with {elementCount} element(s).",
+      "Editor is ready — edit values and click Apply to save."
+    ],
+    "failureprompts": [
+      "Could not open Parameter Editor: {error}",
+      "Parameter Editor failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

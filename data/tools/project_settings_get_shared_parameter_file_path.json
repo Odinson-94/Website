@@ -1,0 +1,13 @@
+{
+  "name": "project_settings_get_shared_parameter_file_path",
+  "desc": "Read the application-scoped shared parameter file path.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "project_settings_get_shared_parameter_file_path",
+    "project settings get shared parameter file path"
+  ]
+}

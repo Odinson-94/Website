@@ -1,0 +1,17 @@
+{
+  "name": "adelphos_domain_list_schedule_types_for_user",
+  "desc": "List every MEP equipment schedule type the Adelphos backend can build (extract fan, pump, ASHP, etc.). Empty list means the backend's schedule-types volume has no type folders populated yet.",
+  "bridge": "",
+  "category": "adelphos",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "schedule types",
+    "schedule list",
+    "available schedules",
+    "mep schedules",
+    "schedule categories",
+    "adelphos schedules"
+  ]
+}

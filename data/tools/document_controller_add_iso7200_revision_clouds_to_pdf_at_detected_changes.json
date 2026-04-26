@@ -1,0 +1,35 @@
+{
+  "name": "document_controller_add_iso7200_revision_clouds_to_pdf_at_detected_changes",
+  "desc": "Embeds ISO 7200 revision cloud annotations onto a PDF at specified change regions. Returns annotated PDF path.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "sourcePdfPath",
+      "type": "string",
+      "description": "Path to the source PDF to annotate",
+      "required": true
+    },
+    {
+      "name": "outputPdfPath",
+      "type": "string",
+      "description": "Path for the annotated output PDF",
+      "required": true
+    },
+    {
+      "name": "revisionLetter",
+      "type": "string",
+      "description": "Revision letter/number to label clouds",
+      "required": true
+    },
+    {
+      "name": "changeRegionIds",
+      "type": "string",
+      "description": "Comma-separated change region IDs to annotate (from comparison result)",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

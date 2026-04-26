@@ -1,0 +1,46 @@
+{
+  "class": "LaunchDocumentControllerCommand",
+  "desc": "Launches the standalone Document Controller WPF desktop app from a Revit ribbon button.",
+  "summary": "Launches the standalone Document Controller WPF desktop app from a Revit ribbon button. The Document Controller is NOT hosted inside Revit — it runs as its own process (DocumentController.WPF.exe) and shares the Supabase backend. The command resolves the exe path from an environment variable override, then the published add-in folder, then known development build-output locations. If an instance is already running, it is brought to the foreground instead of launching a duplicate. Uses ErrorPanel for the three-wire error model and CommandFeedback for user notifications.",
+  "usecase": "User clicks the \"Doc Controller\" ribbon button to open the standalone document management desktop app while continuing to work in Revit.",
+  "notfor": "Hosting the Document Controller inside Revit (it is intentionally a separate process so it can run without Revit and share the web/desktop chat core). Launching from headless automation — requires a Windows desktop session.",
+  "precondition": "DocumentController.WPF.exe must have been built at least once (dotnet build DocumentController/DocumentController.WPF/DocumentController.WPF.csproj) OR be deployed alongside the MEPBridge add-in in the ApplicationPlugins folder.",
+  "postcondition": "A DocumentController.WPF window is visible on the desktop. If a prior instance existed, that window is brought to the foreground. If the exe cannot be found, a recoverable error is raised listing every probed path for the user.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "open document controller",
+    "launch doc controller",
+    "document controller app",
+    "issue documents",
+    "drawing issue sheet",
+    "bim 360 upload"
+  ],
+  "intent_patterns": [
+    "open * document controller",
+    "launch * doc controller",
+    "start * document controller"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Launching the Document Controller desktop app..."
+    ],
+    "thinkingsteps": [
+      "Looking for DocumentController.WPF.exe in known locations..."
+    ],
+    "successprompts": [
+      "Document Controller is open.",
+      "Document Controller was already running — brought to foreground."
+    ],
+    "failureprompts": [
+      "Could not launch Document Controller: {error}"
+    ]
+  },
+  "has_restapi": false
+}

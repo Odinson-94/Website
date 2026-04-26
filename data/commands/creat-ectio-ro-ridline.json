@@ -1,0 +1,95 @@
+{
+  "class": "CreateSectionFromGridlineCommand",
+  "desc": "Phase 7 Command: Creates a section view along a selected gridline.",
+  "summary": "Phase 7 Command: Creates a section view along a selected gridline. User selects TWO inputs: 1. Gridline (from host or linked model) 2. Room (from host or linked model) Uses grid-room boundary intersection for section bounds. Calls CreateSectionFromGridline for the actual section creation. Uses FindClosestGridlineToPoint.FindClosestIntersectingGrid in auto mode. Uses FindCentroidOfRoom.GetCentroid for room centroid calculation. Called by SheetSetUpCommand during automated sheet setup. Related: CreateSectionForCorridorCommand for corridor sections. Scale: 1:50",
+  "usecase": "User wants to create a section view showing MEP services along a specific grid line. User needs to see building cross-section at a particular grid location. User wants section through a room at a grid intersection.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. User must have access to select elements. At least one grid and one room must exist in the model (host or linked).",
+  "postcondition": "A new ViewSection is created in the document, oriented along the selected gridline. Section bounds are clipped to the room boundary intersection. Section is NOT placed on a sheet (separate command).",
+  "sideeffects": "",
+  "logictree": "check: currentSelection.hasGrid → useSelectedGrid\rcheck: visibleGrids.count == 1 → autoSelectGrid\rcheck: currentSelection.hasRoom → useSelectedRoom\rcheck: visibleRooms.count == 1 → autoSelectRoom\rcheck: visibleRooms.count > 1 → ask \"Which room?\"\rresolve: room.isCorridor → CreateSectionForCorridorCommand, else → this",
+  "keywords": [
+    "create section from gridline",
+    "section along grid",
+    "gridline section",
+    "room section",
+    "MEP section",
+    "create section rooms"
+  ],
+  "intent_patterns": [
+    "create * section * gridline",
+    "section * along * grid",
+    "gridline * section",
+    "create * section * room",
+    "create section * rooms"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [
+    {
+      "name": "Grid",
+      "type": "Grid",
+      "description": "Gridline to create section along",
+      "prompt": "Select a gridline"
+    },
+    {
+      "name": "Room",
+      "type": "Room",
+      "description": "Room to determine section bounds",
+      "prompt": "Select a room"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "Scale",
+      "type": "int",
+      "description": "View scale for the section",
+      "default": "50"
+    },
+    {
+      "name": "gridSelectionMode",
+      "type": "string",
+      "description": "Selection mode: manual_grid_room or room_only_auto",
+      "default": "\"manual_grid_room\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedSection",
+      "type": "ViewSection",
+      "description": "The created section view"
+    },
+    {
+      "name": "ActiveViewChanged",
+      "type": "ViewSection",
+      "description": "Active view changed to the created section"
+    }
+  ],
+  "related_commands": [
+    "CreateSectionForCorridorCommand",
+    "PlaceViewOnSheetCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a section view along your gridline...",
+      "Setting up gridline section...",
+      "Preparing section through the selected grid..."
+    ],
+    "thinkingsteps": [
+      "Identifying gridline orientation...",
+      "Calculating room intersection bounds...",
+      "Determining section depth and width...",
+      "Creating section view box..."
+    ],
+    "successprompts": [
+      "Section created successfully along {Grid} through {Room}",
+      "Done! Your gridline section is ready at 1:{Scale}",
+      "Created section view: {CreatedSection}"
+    ],
+    "failureprompts": [
+      "Couldn't create section: {error}",
+      "Section creation failed - {error}"
+    ]
+  },
+  "has_restapi": false
+}

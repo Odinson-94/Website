@@ -1,0 +1,27 @@
+{
+  "name": "obtain_room_boundary_walls",
+  "desc": "Get room boundary dimensions and wall direction summaries.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "roomId",
+      "type": "integer",
+      "description": "Room ID to analyze.",
+      "required": true
+    },
+    {
+      "name": "directionToleranceRad",
+      "type": "number",
+      "description": "Tolerance for grouping unique wall directions (default 0.1).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "room boundary walls",
+    "room width length",
+    "unique wall facing directions"
+  ]
+}

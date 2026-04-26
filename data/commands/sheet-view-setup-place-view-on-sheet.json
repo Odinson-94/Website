@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupPlaceViewOnSheetCommand",
+  "desc": "Place an existing view onto a chosen sheet.",
+  "summary": "Place an existing view onto a chosen sheet.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup place view on sheet",
+    "sheet_view_setup_place_view_on_sheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup place view on sheet…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup place view on sheet: done."
+    ],
+    "failureprompts": [
+      "sheet view setup place view on sheet failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

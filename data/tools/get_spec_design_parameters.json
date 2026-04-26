@@ -1,0 +1,16 @@
+{
+  "name": "get_spec_design_parameters",
+  "desc": "Read design parameters for the current project: heating, cooling, ventilation, controls, and electrical configurations.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "design parameters",
+    "system parameters",
+    "heating config",
+    "cooling config",
+    "electrical config"
+  ]
+}

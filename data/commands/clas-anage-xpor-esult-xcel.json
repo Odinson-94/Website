@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerExportResultsToExcelCommand",
+  "desc": "ClashManagerExportResultsToExcelCommand — .xlsx export via ClosedXML with embedded clash images.",
+  "summary": "ClashManagerExportResultsToExcelCommand — .xlsx export via ClosedXML with embedded clash images.",
+  "usecase": "BIM-coordinator-facing spreadsheet for review meetings.",
+  "notfor": "PDF / Word / HTML — dedicated commands.",
+  "precondition": "Active doc; ClosedXML available; staging DB has ≥ 1 row.",
+  "postcondition": "Single .xlsx on disk.",
+  "sideeffects": "",
+  "logictree": "1) Resolve output path (default .mepbridge/qa/reports/clashes_{ts}.xlsx).\n2) Resolve image root (default .mepbridge/qa/images).\n3) Delegate to SaveClashResultsToExcelFile.WriteReport.\n4) Open on Human path.\n5) Emit ok + output_path + rows.",
+  "keywords": [
+    "clashmanagerexportresultstoexcel",
+    "export clash excel",
+    "qa xlsx report"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting clashes to Excel…"
+    ],
+    "thinkingsteps": [
+      "Resolving default paths…",
+      "Delegating to SaveClashResultsToExcelFile…"
+    ],
+    "successprompts": [
+      "Excel written at {output_path}."
+    ],
+    "failureprompts": [
+      "Excel export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "drawing-export",
+  "category": "document-control",
+  "title": "Drawing Export",
+  "desc": "Batch-export PDFs, BCF, IFC and DWG with one prompt.",
+  "duration": "1:32",
+  "status": "live"
+}

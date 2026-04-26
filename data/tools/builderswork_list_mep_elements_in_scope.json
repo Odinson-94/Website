@@ -1,0 +1,13 @@
+{
+  "name": "builderswork_list_mep_elements_in_scope",
+  "desc": "List MEP elements (pipes, ducts, cable trays, conduits) currently in scope for builderswork penetration detection.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "builderswork_list_mep_elements_in_scope",
+    "builderswork list mep elements in scope"
+  ]
+}

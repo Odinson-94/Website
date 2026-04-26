@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteKitchenVentilationDw172TypeHoodToKitchenParametersCommand",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwritekitchenventilationdw172typehoodtokitchenparameters",
+    "write dw172 kitchen"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

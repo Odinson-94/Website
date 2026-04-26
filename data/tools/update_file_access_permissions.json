@@ -1,0 +1,30 @@
+{
+  "name": "update_file_access_permissions",
+  "desc": "Manage which directories BUILD X can access. Use action='grant' to add a directory, 'revoke' to remove, 'list' to see current permissions. Grants are saved locally so the user won't be asked again across sessions.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": "Full path to the directory to grant or revoke access to",
+      "required": false
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "description": "Action to perform: 'grant' (default), 'revoke', or 'list'",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "file access",
+    "folder permission",
+    "directory access",
+    "grant access",
+    "revoke access",
+    "file permissions"
+  ]
+}

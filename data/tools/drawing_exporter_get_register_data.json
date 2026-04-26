@@ -1,0 +1,15 @@
+{
+  "name": "drawing_exporter_get_register_data",
+  "desc": "Get the drawing register data including sheet numbers, names, revisions, and issue history. Used to preview what will appear in the exported register.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "drawing register",
+    "register data",
+    "transmittal",
+    "issue register"
+  ]
+}

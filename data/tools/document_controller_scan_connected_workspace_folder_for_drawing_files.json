@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_scan_connected_workspace_folder_for_drawing_files",
+  "desc": "Scans a connected workspace folder for PDF/DWG drawing files. Returns parsed metadata and flags files not found in any CDE platform.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "folderPath",
+      "type": "string",
+      "description": "Absolute path to the workspace folder to scan",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

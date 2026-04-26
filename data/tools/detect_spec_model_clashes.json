@@ -1,0 +1,23 @@
+{
+  "name": "detect_spec_model_clashes",
+  "desc": "Run specification vs Revit model clash detection. Finds equipment mismatches, parameter differences, missing items.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "jobId",
+      "type": "string",
+      "description": "The job ID to check against the model",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "clash detection",
+    "spec vs model",
+    "model clashes",
+    "equipment mismatch",
+    "discrepancy check"
+  ]
+}

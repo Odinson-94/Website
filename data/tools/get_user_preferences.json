@@ -1,0 +1,26 @@
+{
+  "name": "get_user_preferences",
+  "desc": "Read the user's saved preferences (measurement units, MEP standard, view scale, AI response detail, etc.). Returns all preferences or a specific one by key.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "key",
+      "type": "string",
+      "description": "Optional: specific preference key to read. Omit to get all preferences.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "user preferences",
+    "preferences",
+    "settings",
+    "measurement units",
+    "MEP standard",
+    "view scale",
+    "AI response detail",
+    "get preferences"
+  ]
+}

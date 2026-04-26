@@ -1,0 +1,32 @@
+{
+  "class": "DrainageAddBranchToSoilVentPipeCommand",
+  "desc": "DrainageAddBranchToSoilVentPipeCommand — split stack + create branch + insert tee inside one Transaction.",
+  "summary": "DrainageAddBranchToSoilVentPipeCommand — split stack + create branch + insert tee inside one Transaction.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "1) Validate resolvers.\n2) Transaction. Split stack at station.\n3) Create new branch Pipe from split station along (dir_x,dir_y,dir_z) for length_mm.\n4) Insert Tee at stack split facing connectors + branch start connector.\n5) Commit on full success, rollback on any failure.",
+  "keywords": [
+    "drainageaddbranchtosoilventpipe",
+    "add svp branch",
+    "drainage stack tee"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteVentilationRequirementPartF2021ToDwellingParametersCommand",
+  "desc": "Writes whole-dwelling Part F 2021 ventilation target.",
+  "summary": "Writes whole-dwelling Part F 2021 ventilation target.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteventilationrequirementpartf2021todwellingparameters",
+    "write part f ventilation dwelling"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

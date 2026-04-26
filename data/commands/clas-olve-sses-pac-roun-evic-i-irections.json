@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverAssessSpaceAroundDeviceSixDirectionsCommand",
+  "desc": "ClashSolverAssessSpaceAroundDeviceSixDirectionsCommand — PDF \"ASSESS_SPACE_AROUND_DEVICE\".",
+  "summary": "ClashSolverAssessSpaceAroundDeviceSixDirectionsCommand — PDF \"ASSESS_SPACE_AROUND_DEVICE\". Device-anchored wrapper over the canonical six-direction assessment MCP tool.",
+  "usecase": "Pre-flight check before any Move*IntoSpace decision.",
+  "notfor": "Actual movement.",
+  "precondition": "Active document; one resolvable element (Bot via UniqueId, Human via single selection).",
+  "postcondition": "No model mutation; audit recorded.",
+  "sideeffects": "",
+  "logictree": "1) Resolve element: Resolver_ElementUniqueId (Bot) else single active selection (Human).\n2) WireError if unresolved.\n3) Probe point = LocationPoint.Point if available, else BB centroid.\n4) Delegate to SpaceAnalysisAssessAroundPointInSixDirections.GetAll.\n5) Attach element identity to result.\n6) Tracker output + TaskDialog on Human path.",
+  "keywords": [
+    "clashsolverassessspacearounddevicesixdirections",
+    "six direction around device",
+    "clash solver assess space around device"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Assessing space around the selected device…"
+    ],
+    "thinkingsteps": [
+      "Resolving element and probe point…",
+      "Delegating to SpaceAnalysisAssessAroundPointInSixDirections…"
+    ],
+    "successprompts": [
+      "Six-direction clearance recorded for element {elementId}."
+    ],
+    "failureprompts": [
+      "Assessment failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

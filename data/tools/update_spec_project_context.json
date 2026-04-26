@@ -1,0 +1,59 @@
+{
+  "name": "update_spec_project_context",
+  "desc": "Set or update the specification project context: building type, location, disciplines, design parameters.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 7,
+  "parameters": [
+    {
+      "name": "projectName",
+      "type": "string",
+      "description": "Project name",
+      "required": false
+    },
+    {
+      "name": "buildingType",
+      "type": "string",
+      "description": "Building type enum (e.g. Commercial_Office, Healthcare_Hospital)",
+      "required": false
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "description": "Site location",
+      "required": false
+    },
+    {
+      "name": "postCode",
+      "type": "string",
+      "description": "UK post code",
+      "required": false
+    },
+    {
+      "name": "grossInternalArea",
+      "type": "number",
+      "description": "GIA in m²",
+      "required": false
+    },
+    {
+      "name": "numberOfFloors",
+      "type": "integer",
+      "description": "Number of floors",
+      "required": false
+    },
+    {
+      "name": "contractType",
+      "type": "string",
+      "description": "Contract form: NEC4, JCT, FIDIC, Bespoke, None",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "set context",
+    "project setup",
+    "building type",
+    "spec context",
+    "project parameters"
+  ]
+}

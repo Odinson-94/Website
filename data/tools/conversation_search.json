@@ -1,0 +1,31 @@
+{
+  "name": "conversation_search",
+  "desc": "Search past conversation history by keyword. Returns matching exchanges with session IDs, timestamps, and relevant snippets. Use to recall what was discussed previously.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "query",
+      "type": "string",
+      "description": "Search keywords to match against conversation titles, user messages, and assistant responses",
+      "required": true
+    },
+    {
+      "name": "count",
+      "type": "integer",
+      "description": "Number of results to return (1-20, default 5)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "conversation search",
+    "past conversations",
+    "chat history",
+    "recall discussion",
+    "previous chat",
+    "what was discussed",
+    "search history"
+  ]
+}

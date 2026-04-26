@@ -1,0 +1,25 @@
+{
+  "name": "qa_manager_get_error_context_by_id",
+  "desc": "Resolve one or more QA Manager finding ids (e.g. ERR-001, ERR-003) back to their full JSON rows so the chat can reason over the finding's description, element ids, category, level, severity, status and location. Read-only; no Revit transaction. Pair with the @mention palette: when the user inserts `@ERR-001` the LLM calls this tool to pull the rest of the context without re-running the rule engine.",
+  "bridge": "QAManager",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "ids",
+      "type": "string",
+      "description": "Comma-separated finding ids (e.g. 'ERR-001,ERR-003'). Whitespace around commas is tolerated. Empty string returns every finding currently cached in the open QA Manager window (capped at 50 to protect the prompt budget).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "get error context by id",
+    "qa manager get error context",
+    "resolve error mention",
+    "fetch qa finding",
+    "expand error mention",
+    "error context lookup",
+    "qa finding details"
+  ]
+}

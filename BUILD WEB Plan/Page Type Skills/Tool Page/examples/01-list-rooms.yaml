@@ -1,0 +1,25 @@
+slug: list_rooms
+title: list_rooms
+display_title: "List rooms"
+description: "Returns every room in the active document, optionally filtered by level name or minimum area. Use this whenever a question mentions rooms, spaces, or per-room outputs."
+bridge_label: "Revit"
+category_label: context
+always_available: true
+what_it_returns: |
+  Array of room objects. Each row:
+  { "id": 345621,
+    "name": "Office",
+    "number": "02-014",
+    "area_m2": 18.4,
+    "level": "Level 02" }
+example_prompts:
+  - "List all rooms on Level 02"
+  - "Which rooms on the ground floor are larger than 25 m²?"
+  - "Show me every meeting room in the model"
+related:
+  tools:    [list_levels, snapshot_query, get_current_view_level]
+  skills:   [schedules, filters-and-templates]
+  demos:    [model-set-up-views]
+generated_by: claude-opus-4-20251010
+generated_at: "2026-04-21T15:30:00Z"
+source_sha: d4e5f60

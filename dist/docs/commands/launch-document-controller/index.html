@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch Document Controller — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Launch Document Controller</div>
+
+  <h1 id="overview">Launch Document Controller</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Launches the standalone Document Controller WPF desktop app from a Revit ribbon button. The Document Controller is NOT hosted inside Revit — it runs as its own process (DocumentController.WPF.exe) and shares the Supabase backend. The command resolves the exe path from an environment variable override, then the published add-in folder, then known development build-output locations. If an instance is already running, it is brought to the foreground instead of launching a duplicate. Uses ErrorPanel for the three-wire error model and CommandFeedback for user notifications.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>DocumentController.WPF.exe must have been built at least once (dotnet build DocumentController/DocumentController.WPF/DocumentController.WPF.csproj) OR be deployed alongside the MEPBridge add-in in the ApplicationPlugins folder.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>A DocumentController.WPF window is visible on the desktop. If a prior instance existed, that window is brought to the foreground. If the exe cannot be found, a recoverable error is raised listing every probed path for the user.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/launch-document-controller/thumbnail.svg"
+           data-src="/sandbox/demo-assets/launch-document-controller/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop launch-document-controller/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User clicks the &quot;Doc Controller&quot; ribbon button to open the standalone document management desktop app while continuing to work in Revit.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Hosting the Document Controller inside Revit (it is intentionally a separate process so it can run without Revit and share the web/desktop chat core). Launching from headless automation — requires a Windows desktop session.</p></div>
+  
+
+  
+
+  
+
+  
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Launching the Document Controller desktop app...</div>
+    <div class="lab">thinking</div><div class="msg">Looking for DocumentController.WPF.exe in known locations...</div>
+    <div class="lab">on success</div><div class="msg">Document Controller is open.</div>
+    <div class="lab">on failure</div><div class="msg">Could not launch Document Controller: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/launch_document_controller</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">open document controller · launch doc controller · document controller app · issue documents · drawing issue sheet · bim 360 upload<br><span style="font-size:12px;">Patterns: <code>open * document controller</code> · <code>launch * doc controller</code> · <code>start * document controller</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

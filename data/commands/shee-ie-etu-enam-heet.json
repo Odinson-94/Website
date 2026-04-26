@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupRenameSheetCommand",
+  "desc": "Rename a single sheet (number + name).",
+  "summary": "Rename a single sheet (number + name).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup rename sheet",
+    "sheet_view_setup_rename_sheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup rename sheet…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup rename sheet: done."
+    ],
+    "failureprompts": [
+      "sheet view setup rename sheet failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

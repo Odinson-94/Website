@@ -1,0 +1,21 @@
+{
+  "name": "error_manager_get_error_results_from_latest_run_by_navigator_group",
+  "desc": "Get error results filtered by navigator group.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "group",
+      "type": "string",
+      "description": "Navigator group: Coordination, Checking, Mechanical, Electrical, Legends & Notes, Custom",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "errors by group",
+    "coordination errors",
+    "checking errors"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "class": "ExportClashResultsToNavisworksXml",
+  "desc": "Exports the current clash table to Navisworks-compatible clashresults XML using the same writer as live QA runs, then duplicates the output into the exports folder for sharing.",
+  "summary": "Exports the current clash table to Navisworks-compatible clashresults XML using the same writer as live QA runs, then duplicates the output into the exports folder for sharing.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export navisworks xml",
+    "clash export xml",
+    "navisworks report"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting clash results to Navisworks XML…"
+    ],
+    "thinkingsteps": [
+      "Load latest clashresults XML…",
+      "Recompute summary and call ReadWriteClashResultsToXml.WriteResults…",
+      "Copy new results file into qa/exports with clash_export name…"
+    ],
+    "successprompts": [
+      "Navisworks XML copy saved to {path}."
+    ],
+    "failureprompts": [
+      "Navisworks XML export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

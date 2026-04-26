@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demos — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+
+<!-- Dark mode bootstrap (must run BEFORE any CSS to prevent flash) -->
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+
+<!-- Inter font (matches existing site) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+
+<!-- The real site CSS, unchanged -->
+<link rel="stylesheet" href="/css/shared-styles.css">
+<!-- Sandbox-specific additions on top -->
+<link rel="stylesheet" href="/sandbox/sandbox.css">
+</head>
+<body>
+
+<!-- The shared shell (logo + menubar + dark toggle + hamburger) -->
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout wide">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <h1 style="font-size:44px;font-weight:500;letter-spacing:-0.02em;margin-bottom:8px;">Demos</h1>
+  <p style="font-size:18px;line-height:1.55;color:var(--text-muted);max-width:760px;margin-bottom:32px;">
+    Every workflow, on video. Click any card to open the full demo — Cursor-docs
+    style with hero video, description, steps and related links.
+  </p>
+
+  <div id="demoSections"></div>
+
+  <p style="margin-top:64px;font-size:13px;color:var(--text-muted);max-width:760px;">
+    <strong style="color:var(--text);">Asset drop-in:</strong>
+    each demo expects <code>/sandbox/demo-assets/&lt;slug&gt;/video.mp4</code> + <code>thumbnail.jpg</code>.
+    Until those land, the card shows a placeholder.
+    See <a href="/sandbox/demo-assets/ASSETS.md">ASSETS.md</a> for the convention.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+(async function(){
+  const r = await fetch('/sandbox/data/demos.json');
+  const data = await r.json();
+
+  const sections = document.getElementById('demoSections');
+
+  const grouped = {};
+  data.demos.forEach(d => { (grouped[d.category] = grouped[d.category] || []).push(d); });
+
+  data.categories.forEach(cat => {
+    const demos = grouped[cat.slug] || [];
+    if (!demos.length) return;
+
+    const sec = document.createElement('section');
+    sec.className = 'demo-cat-section';
+    sec.id = 'cat-' + cat.slug;
+    sec.innerHTML = `
+      <h2 id="cat-${cat.slug}-h">${cat.title}</h2>
+      <p class="cat-blurb">${cat.blurb}</p>
+      <div class="demo-cat-grid"></div>
+    `;
+    const grid = sec.querySelector('.demo-cat-grid');
+    demos.forEach(d => grid.appendChild(buildCard(d)));
+    sections.appendChild(sec);
+  });
+
+  function buildCard(d) {
+    // Card is an <a> linking to the per-demo detail page
+    const card = document.createElement('a');
+    card.className = 'demo-card' + (d.status === 'coming-soon' ? ' coming-soon' : '');
+    card.id = 'demo-' + d.slug;
+    card.href = '/sandbox/demos/' + d.slug + '.html';
+    card.setAttribute('data-toc', '');
+    card.setAttribute('data-toc-label', d.title);
+    card.setAttribute('data-toc-level', 'h3');
+    const assetBase = `/sandbox/demo-assets/${d.slug}`;
+    // Gallery cards: poster image only (no video player). Click → detail page.
+    card.innerHTML = `
+      <div class="video-wrap">
+        <div class="poster-fallback" style="background:url(${assetBase}/thumbnail.svg) center/cover, linear-gradient(135deg,#1f3340,#0e1c25);"></div>
+        <span class="duration">${d.duration}</span>
+      </div>
+      <div class="body">
+        <div class="title">${escape(d.title)}</div>
+        <div class="desc">${escape(d.desc)}</div>
+        <div class="meta">
+          <span class="pill pill-pillar">${displayCategory(d.category)}</span>
+          ${d.status === 'live' ? '<span class="pill pill-live">Live</span>' : '<span class="pill pill-coming">Coming Soon</span>'}
+        </div>
+      </div>
+    `;
+    return card;
+  }
+
+  function displayCategory(slug) {
+    const c = data.categories.find(x => x.slug === slug);
+    return c ? c.title : slug;
+  }
+  function escape(s) {
+    return (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  }
+
+})();
+</script>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

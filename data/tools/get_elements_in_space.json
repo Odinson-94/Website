@@ -1,0 +1,39 @@
+{
+  "name": "get_elements_in_space",
+  "desc": "List lightweight element summaries that sit inside a target MEP space.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "spaceId",
+      "type": "integer",
+      "description": "Target space id (preferred).",
+      "required": false
+    },
+    {
+      "name": "spaceName",
+      "type": "string",
+      "description": "Optional space name fallback.",
+      "required": false
+    },
+    {
+      "name": "spaceNumber",
+      "type": "string",
+      "description": "Optional space number fallback.",
+      "required": false
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "description": "Max rows returned (default 200, max 500).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "get elements in space",
+    "space contents",
+    "elements inside space"
+  ]
+}

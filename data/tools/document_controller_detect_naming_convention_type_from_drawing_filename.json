@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_detect_naming_convention_type_from_drawing_filename",
+  "desc": "Auto-detects which naming convention a filename follows: BS 1192, Uniclass 2015, NBS, Legacy UK, or custom.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "filename",
+      "type": "string",
+      "description": "Filename to analyze",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

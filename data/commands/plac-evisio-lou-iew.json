@@ -1,0 +1,79 @@
+{
+  "class": "PlaceRevisionCloudOnView",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "place revision cloud",
+    "add revision cloud",
+    "revision cloud on view",
+    "draw cloud"
+  ],
+  "intent_patterns": [
+    "place * revision cloud *",
+    "add * cloud * revision *",
+    "draw * cloud *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "revisionId",
+      "type": "int",
+      "description": "Revision element ID to associate with the cloud",
+      "default": ""
+    },
+    {
+      "name": "viewId",
+      "type": "int",
+      "description": "View element ID where the cloud will be placed",
+      "default": ""
+    },
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "JSON array of element IDs to bound the cloud around",
+      "default": ""
+    },
+    {
+      "name": "minX",
+      "type": "number",
+      "description": "Bounding box min X in feet (alternative to elementIds)",
+      "default": ""
+    },
+    {
+      "name": "minY",
+      "type": "number",
+      "description": "Bounding box min Y in feet",
+      "default": ""
+    },
+    {
+      "name": "maxX",
+      "type": "number",
+      "description": "Bounding box max X in feet",
+      "default": ""
+    },
+    {
+      "name": "maxY",
+      "type": "number",
+      "description": "Bounding box max Y in feet",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Created cloud element ID"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

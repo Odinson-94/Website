@@ -1,0 +1,46 @@
+{
+  "class": "PlantroomLayoutSolveRoomWithPresetCommand",
+  "desc": "PlantroomLayoutSolveRoomWithPresetCommand — named-preset variant.",
+  "summary": "PlantroomLayoutSolveRoomWithPresetCommand — named-preset variant.",
+  "usecase": "Wizard-driven solve with named preset.",
+  "notfor": "Inline JSON — use LayoutSolvePlantroomEquipmentWithPresetCommand directly.",
+  "precondition": "Preset name resolvable in local store; equipment JSON non-empty; room dims positive.",
+  "postcondition": "Staged placements.",
+  "sideeffects": "",
+  "logictree": "1) Resolve preset JSON from local store by name.\n2) Delegate to LayoutSolvePlantroomEquipmentWithPresetCommand.\n3) Tag tracker with preset_name.",
+  "keywords": [
+    "plantroomlayoutsolveroomwithpreset",
+    "plantroom solve named preset",
+    "plantroom layout solve"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Solving plantroom with named preset…"
+    ],
+    "thinkingsteps": [
+      "Loading preset from local store…",
+      "Delegating to Layout solve…"
+    ],
+    "successprompts": [
+      "Solve delegated."
+    ],
+    "failureprompts": [
+      "Solve failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

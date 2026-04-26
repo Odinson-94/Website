@@ -1,0 +1,14 @@
+{
+  "name": "apply_queued_sheet_renames_to_model",
+  "desc": "Apply all queued sheet rename operations to the Revit model. Use drawing_exporter_rename_sheets first to queue renames.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "apply renames",
+    "commit renames",
+    "save sheet names"
+  ]
+}

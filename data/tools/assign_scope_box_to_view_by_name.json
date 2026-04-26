@@ -1,0 +1,27 @@
+{
+  "name": "assign_scope_box_to_view_by_name",
+  "desc": "Assign a named scope box to a target view.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "viewId",
+      "type": "integer",
+      "description": "Target view id (required).",
+      "required": false
+    },
+    {
+      "name": "scopeBoxName",
+      "type": "string",
+      "description": "Scope box name (required).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "add scope box to view",
+    "apply scope box",
+    "scope box view"
+  ]
+}

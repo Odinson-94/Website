@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 28" preserveAspectRatio="xMidYMid meet">
+  <style>
+    @media (prefers-color-scheme: dark) { .brand-text { fill: #E8E8E8; } }
+    @media (prefers-color-scheme: light) { .brand-text { fill: #1e1e1e; } }
+  </style>
+  <text x="0" y="22" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-size="20" font-weight="500" letter-spacing="-0.4" class="brand-text" fill="#E8E8E8">Adelphos<tspan font-weight="700" fill="#156082">.</tspan></text>
+</svg>

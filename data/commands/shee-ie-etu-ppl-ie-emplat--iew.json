@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupApplyViewTemplateToViewCommand",
+  "desc": "Apply a chosen view template to one or more views.",
+  "summary": "Apply a chosen view template to one or more views.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup apply view template to view",
+    "sheet_view_setup_apply_view_template_to_view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup apply view template to view…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup apply view template to view: done."
+    ],
+    "failureprompts": [
+      "sheet view setup apply view template to view failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverOffsetServiceUnderAllBeamsInViewCommand",
+  "desc": "ClashSolverOffsetServiceUnderAllBeamsInViewCommand — PDF \"OFFSET_SERVICE_UNDER_ALL_BEAMS_IN_VIEW\".",
+  "summary": "ClashSolverOffsetServiceUnderAllBeamsInViewCommand — PDF \"OFFSET_SERVICE_UNDER_ALL_BEAMS_IN_VIEW\". Bulk drop of services below the lowest beam soffit in the active view.",
+  "usecase": "Coordination pre-pass to remove routine beam clashes.",
+  "notfor": "Per-element targeted offsets — use OFFSET_SERVICE_AROUND_DUCT or MOVE_OBJECT_DOWN.",
+  "precondition": "Active view with StructuralFraming elements visible.",
+  "postcondition": "Zero or more ElementTransformUtils.MoveElement calls, each inside its own Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Enumerate StructuralFraming in active view; WireError if none.\n2) beam_soffit_z_ft = min over beams of bb.Min.Z (lowest underside in view).\n3) Gather candidate services from Resolver_ElementIds (Bot) OR FilteredElementCollector scoped to active view for Pipes/Ducts/CableTrays (Human).\n4) For each service: compute drop_ft = max(0, (service bb.Max.Z - beam_soffit_z_ft) + envelope_ft).\n5) If drop_ft &gt; 1e-6, delegate TryDirectionalMoveOnService.ProbeAndMove(doc, service, -Z, drop_ft, threshold_ft, centreFallback=false). Otherwise emit {already_below_beams}.\n6) Aggregate and emit summary.",
+  "keywords": [
+    "clashsolveroffsetserviceunderallbeamsinview",
+    "offset under beams",
+    "solver drop below beams"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Dropping services below all in-view beams…"
+    ],
+    "thinkingsteps": [
+      "Enumerating beams + min soffit…",
+      "Dropping each candidate service via DirectionalMoveService…"
+    ],
+    "successprompts": [
+      "Processed {elements_processed} services; moved {elements_moved}."
+    ],
+    "failureprompts": [
+      "Offset under beams failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

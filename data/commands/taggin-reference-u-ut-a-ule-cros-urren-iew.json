@@ -1,0 +1,35 @@
+{
+  "class": "TaggingPreferencesRunAutoTagRulesAcrossCurrentViewCommand",
+  "desc": "Execute all configured auto-tag rules against the current view via TaggingPreferencesAutoTagRuleExecutor.",
+  "summary": "Execute all configured auto-tag rules against the current view via TaggingPreferencesAutoTagRuleExecutor.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tagging preferences run auto tag rules across current view",
+    "tagging_preferences_run_auto_tag_rules_across_current_view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running tagging preferences run auto tag rules across current view…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "tagging preferences run auto tag rules across current view: done."
+    ],
+    "failureprompts": [
+      "tagging preferences run auto tag rules across current view failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

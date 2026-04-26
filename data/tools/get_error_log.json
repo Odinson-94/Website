@@ -1,0 +1,35 @@
+{
+  "name": "get_error_log",
+  "desc": "Get all errors from the current session. Returns cable_id, wire type, message, source class, timestamp, resolved status. These are suggestions for debugging — reject if not relevant.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "wire_type",
+      "type": "string",
+      "description": "Optional: filter by 'recoverable', 'error', or 'fault'",
+      "required": false
+    },
+    {
+      "name": "source_class",
+      "type": "string",
+      "description": "Optional: filter by source class name",
+      "required": false
+    },
+    {
+      "name": "limit",
+      "type": "string",
+      "description": "Optional: max entries to return (default 50)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "error log",
+    "show errors",
+    "what errors",
+    "get errors",
+    "list errors"
+  ]
+}

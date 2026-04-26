@@ -1,0 +1,46 @@
+{
+  "class": "ClashFinderRunByWorksetPairsCommand",
+  "desc": "ClashFinderRunByWorksetPairsCommand — workset-scoped pipeline invocation.",
+  "summary": "ClashFinderRunByWorksetPairsCommand — workset-scoped pipeline invocation.",
+  "usecase": "Discipline-boundary detection.",
+  "notfor": "Non-workshared models — WireError.",
+  "precondition": "Workshared model; worksets available; at least one element per workset.",
+  "postcondition": "Clashes upserted per workset pair.",
+  "sideeffects": "",
+  "logictree": "1) If doc is not workshared → WireError.\n2) Resolver_WorksetPairs default to [(MEP|Mechanical|Electrical|Plumbing, Structural|Structure)].\n3) For each pair: resolve WorksetId by name match; collect elements per side via ElementWorksetFilter.\n4) Delegate pipeline.Run.\n5) Aggregate + emit summary.",
+  "keywords": [
+    "clashfinderrunbyworksetpairs",
+    "clash by workset pairs",
+    "discipline boundary clashes"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running clash detection by workset pairs…"
+    ],
+    "thinkingsteps": [
+      "Resolving workset ids by name…",
+      "Delegating pipeline.Run per pair…"
+    ],
+    "successprompts": [
+      "Workset-pair detection wrote {total} clashes."
+    ],
+    "failureprompts": [
+      "Workset-pair run failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

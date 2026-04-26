@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverMatchSlopeFromUserReferenceCommand",
+  "desc": "ClashSolverMatchSlopeFromUserReferenceCommand — PDF \"MATCH_SLOPE\".",
+  "summary": "ClashSolverMatchSlopeFromUserReferenceCommand — PDF \"MATCH_SLOPE\".",
+  "usecase": "Solver branch-to-main slope match.",
+  "notfor": "Slope intersection (use MatchSlopeIntersectionPlane).",
+  "precondition": "Active document; reference + mover(s) resolvable; all line-based.",
+  "postcondition": "Delegates rotation Transaction to ElementAlignmentMatchSlopeFromReferenceCommand.",
+  "sideeffects": "",
+  "logictree": "1) Resolve reference + movers. 2) Delegate to ElementAlignmentMatchSlopeFromReferenceCommand. 3) Tag tracker with clash id.",
+  "keywords": [
+    "clashsolvermatchslopefromuserreference",
+    "match slope user reference",
+    "solver slope match"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Matching slope from user reference…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ElementAlignmentMatchSlopeFromReferenceCommand…"
+    ],
+    "successprompts": [
+      "Slope match delegated."
+    ],
+    "failureprompts": [
+      "Slope match failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

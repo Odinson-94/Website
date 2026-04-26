@@ -1,0 +1,12 @@
+{
+  "name": "list_corridors",
+  "desc": "List all corridor rooms detected by name pattern.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list corridors"
+  ]
+}

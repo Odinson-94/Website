@@ -1,0 +1,21 @@
+{
+  "name": "detection_find_radiator_position_in_room",
+  "desc": "Returns where a radiator belongs in a room per the ordered rule hierarchy. ",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "roomId",
+      "type": "integer",
+      "description": "Revit Room element id",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "find radiator position",
+    "radiator where",
+    "detection radiator"
+  ]
+}

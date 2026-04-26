@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupCreateRoomCutSheetSetWithCalloutsAndElevationsCommand",
+  "desc": "Create Room Cut Sheet Set With Callouts And Elevations.",
+  "summary": "Create Room Cut Sheet Set With Callouts And Elevations.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "room cut sheets",
+    "callouts elevations room",
+    "room sheet set"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Create Room Cut Sheet Set With Callouts And Elevations…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Create Room Cut Sheet Set With Callouts And Elevations: completed."
+    ],
+    "failureprompts": [
+      "Create Room Cut Sheet Set With Callouts And Elevations: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

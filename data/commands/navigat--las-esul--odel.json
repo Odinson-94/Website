@@ -1,0 +1,41 @@
+{
+  "class": "NavigateToClashResultInModel",
+  "desc": "Navigates the UI to a clash identified by clashId: section box, active 3D view, selection, and zoom.",
+  "summary": "Navigates the UI to a clash identified by clashId: section box, active 3D view, selection, and zoom. Delegates geometry framing to Create3DSectionBox.FromElements.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "navigate to clash",
+    "go to clash",
+    "show clash in model",
+    "zoom to clash"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Navigating to clash in the model…"
+    ],
+    "thinkingsteps": [
+      "Resolve clash row from latest QA XML…",
+      "Frame clash elements in a managed 3D view…",
+      "Activate view and zoom to selection…"
+    ],
+    "successprompts": [
+      "Showing clash {clashId} in {viewName}."
+    ],
+    "failureprompts": [
+      "Could not navigate to clash — {error}"
+    ]
+  },
+  "has_restapi": false
+}

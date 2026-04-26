@@ -1,0 +1,15 @@
+{
+  "name": "get_available_dwg_export_presets",
+  "desc": "Get all available DWG export presets. Returns preset names that can be used with drawing_exporter_set_dwg_preset.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "dwg presets",
+    "dwg settings",
+    "autocad export",
+    "dwg export"
+  ]
+}

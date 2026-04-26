@@ -1,0 +1,32 @@
+{
+  "class": "CalculationWriteHeatLossCibseGuideADetailedToSpaceParametersCommand",
+  "desc": "CalculationWriteHeatLossCibseGuideADetailedToSpaceParametersCommand — writes Simple + ψ-bridge watts to the room.",
+  "summary": "CalculationWriteHeatLossCibseGuideADetailedToSpaceParametersCommand — writes Simple + ψ-bridge watts to the room.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteheatlosscibseguideadetailedtospaceparameters",
+    "write heat loss detailed",
+    "cibse detailed write"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

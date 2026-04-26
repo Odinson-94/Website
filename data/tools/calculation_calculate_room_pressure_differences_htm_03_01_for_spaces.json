@@ -1,0 +1,12 @@
+{
+  "name": "calculation_calculate_room_pressure_differences_htm_03_01_for_spaces",
+  "desc": "calculation_calculate_room_pressure_differences_htm_03_01_for_spaces — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation calculate room pressure differences htm 03 01 for spaces"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "class": "DebugCanvasSizeCommand",
+  "desc": "Debug command: finds Revit's canvas panel window handle and dimensions.",
+  "summary": "Debug command: finds Revit's canvas panel window handle and dimensions. Enumerates all child windows of the main Revit window to identify the drawing canvas by size, visibility, and aspect ratio match against the active Autodesk.Revit.UI.UIView. Uses MEPBridge.Revit.AIChat.Services.Execution.CommandFeedback for output.",
+  "usecase": "Developer needs to identify the canvas window handle for screen-to-model coordinate mapping.",
+  "notfor": "Production workflows. Modifying the model. End-user features.",
+  "precondition": "Active Revit document must be open with a valid active view.",
+  "postcondition": "Debug log written to canvas_debug.txt. Results fed back via CommandFeedback.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "debug canvas size",
+    "canvas window handle",
+    "find canvas panel",
+    "window hierarchy debug"
+  ],
+  "intent_patterns": [
+    "* debug canvas size",
+    "find canvas *",
+    "debug * window *"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Debug analysis results including candidate windows and aspect ratios"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Scanning Revit window hierarchy for canvas panel...",
+      "Looking for the drawing canvas window handle..."
+    ],
+    "thinkingsteps": [
+      "Enumerating child windows of the main Revit window...",
+      "Filtering visible windows larger than 400x400...",
+      "Comparing aspect ratios against the active UIView..."
+    ],
+    "successprompts": [
+      "Canvas debug complete — found {Result} candidate windows. See canvas_debug.txt."
+    ],
+    "failureprompts": [
+      "Canvas debug failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

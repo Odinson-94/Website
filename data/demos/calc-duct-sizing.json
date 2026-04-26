@@ -1,0 +1,8 @@
+{
+  "slug": "calc-duct-sizing",
+  "category": "calculations",
+  "title": "Duct Sizing Calculator",
+  "desc": "Size a duct network with friction-loss and velocity targets.",
+  "duration": "1:12",
+  "status": "live"
+}

@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverMatchOffsetHeightByUndersideCommand",
+  "desc": "ClashSolverMatchOffsetHeightByUndersideCommand — PDF \"MATCH_OFFSET_HEIGHT_UNDERSIDE\".",
+  "summary": "ClashSolverMatchOffsetHeightByUndersideCommand — PDF \"MATCH_OFFSET_HEIGHT_UNDERSIDE\".",
+  "usecase": "Soffit alignment (underside match).",
+  "notfor": "Centre / top alignment.",
+  "precondition": "Active document; reference + mover(s) resolvable; BBs exist.",
+  "postcondition": "Delegates to ElementAlignmentMatchHeightByUndersideCommand.",
+  "sideeffects": "",
+  "logictree": "1) Resolve reference + movers (resolvers or selection first=reference).\n2) Delegate to ElementAlignmentMatchHeightByUndersideCommand.\n3) Tag tracker.",
+  "keywords": [
+    "clashsolvermatchoffsetheightbyunderside",
+    "match underside alignment",
+    "solver height underside"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Matching underside alignment…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ElementAlignmentMatchHeightByUndersideCommand…"
+    ],
+    "successprompts": [
+      "Underside alignment delegated."
+    ],
+    "failureprompts": [
+      "Underside alignment failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

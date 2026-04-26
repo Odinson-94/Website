@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverOffsetServiceTowardSpaceUpCommand",
+  "desc": "ClashSolverOffsetServiceTowardSpaceUpCommand — PDF \"OFFSET_SERVICE_TOWARD_SPACE_UP\".",
+  "summary": "ClashSolverOffsetServiceTowardSpaceUpCommand — PDF \"OFFSET_SERVICE_TOWARD_SPACE_UP\". Step = service height + envelope.",
+  "usecase": "Solver lifts a service by its own height + clearance envelope.",
+  "notfor": "Fixed-step nudges — use MoveObjectUpOrCentreInSpace.",
+  "precondition": "Active document; one service resolvable with BoundingBox; default 3D view.",
+  "postcondition": "One MoveElement inside the directional service's Transaction, or no-op.",
+  "sideeffects": "",
+  "logictree": "1) Resolve element (resolver or selection).\n2) Read BoundingBox; height_ft = Max.Z - Min.Z; WireError if missing.\n3) envelope_mm = Resolver_EnvelopeMm ?? 25.\n4) step_ft = height_ft + envelope_mm/304.8.\n5) Delegate to TryDirectionalMoveOnService.ProbeAndMove(doc, el, +Z, step_ft, threshold_ft, centreFallback=false).\n6) Emit outcome + service_height_mm + envelope_mm.",
+  "keywords": [
+    "clashsolveroffsetservicetowardspaceup",
+    "offset toward space up",
+    "solver +Z offset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Offsetting service upward by height + envelope…"
+    ],
+    "thinkingsteps": [
+      "Reading bounding-box height…",
+      "Delegating to TryDirectionalMoveOnService…"
+    ],
+    "successprompts": [
+      "Offset +{applied_delta_ft} ft."
+    ],
+    "failureprompts": [
+      "Offset up failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

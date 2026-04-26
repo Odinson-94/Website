@@ -1,0 +1,18 @@
+slug: list_rooms
+title: list_rooms
+display_title: List rooms
+description: "List all rooms in the model (host + linked). Returns name, number, level, area for each room."
+category_label: context
+always_available: true
+what_it_returns: |
+  Array of rooms objects.
+  Each row carries id, name, and the key properties of a room.
+  Empty array when no rooms match the filter.
+example_prompts: [List rooms, Room list, What rooms]
+related:
+  tools: []
+  skills: []
+  demos: []
+generated_by: stub-deterministic-v1
+generated_at: "2026-04-21T07:50:14.014Z"
+source_sha: 4d73f23

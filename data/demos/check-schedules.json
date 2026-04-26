@@ -1,0 +1,8 @@
+{
+  "slug": "check-schedules",
+  "category": "qa",
+  "title": "Check Schedules",
+  "desc": "Schedules vs model gap analysis; flag missing values and rogue parameters.",
+  "duration": "1:08",
+  "status": "live"
+}

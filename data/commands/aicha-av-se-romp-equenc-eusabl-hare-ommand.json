@@ -1,0 +1,37 @@
+{
+  "class": "AIChatSaveUserPromptSequenceAsReusableSharedCommandCommand",
+  "desc": "Save User Prompt Sequence As Reusable Shared Command.",
+  "summary": "Save User Prompt Sequence As Reusable Shared Command.",
+  "usecase": "See plan — BUILD MEP Plan/AIChat/AI Chat Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/AIChat/AI Chat Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "save prompt as command",
+    "reusable shared command",
+    "save ai command",
+    "save workflow command"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Save User Prompt Sequence As Reusable Shared Command…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Save User Prompt Sequence As Reusable Shared Command: completed."
+    ],
+    "failureprompts": [
+      "Save User Prompt Sequence As Reusable Shared Command: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

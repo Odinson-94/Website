@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverCheckAvailableSpaceInAllDirectionsCommand",
+  "desc": "ClashSolverCheckAvailableSpaceInAllDirectionsCommand — PDF \"CHECK_AVAILABLE_SPACE\".",
+  "summary": "ClashSolverCheckAvailableSpaceInAllDirectionsCommand — PDF \"CHECK_AVAILABLE_SPACE\". Horizontal ±X/±Y clearance at a point compared against a pass threshold.",
+  "usecase": "Pass/fail gate before committing a lateral move.",
+  "notfor": "Actual movement.",
+  "precondition": "Active document; either (x,y,z) resolvers, or one selected element.",
+  "postcondition": "No mutation; audit recorded; pass/fail emitted.",
+  "sideeffects": "",
+  "logictree": "1) Resolve probe point: (Resolver_X, Resolver_Y, Resolver_Z) OR BB centre of one selected element.\n2) WireError if no valid point.\n3) threshold_mm = Resolver_ThresholdMm (required > 0).\n4) Delegate to SpaceAnalysisCheckAvailableClearanceAtPoint.GetAll(doc, x, y, z, threshold_mm).\n5) Compute pass = all four axes reported at_cap=true (i.e. nothing within threshold_mm).\n6) Emit { probe, threshold_mm, result, pass, failing_axes }.",
+  "keywords": [
+    "clashsolvercheckavailablespaceinalldirections",
+    "check available space",
+    "clash solver clearance gate"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Checking available space around point…"
+    ],
+    "thinkingsteps": [
+      "Resolving probe point…",
+      "Calling SpaceAnalysisCheckAvailableClearanceAtPoint…"
+    ],
+    "successprompts": [
+      "Pass={pass}. Failing axes: {failing_axes}."
+    ],
+    "failureprompts": [
+      "Check failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

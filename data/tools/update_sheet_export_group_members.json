@@ -1,0 +1,34 @@
+{
+  "name": "update_sheet_export_group_members",
+  "desc": "Update an existing sheet group by adding or removing sheets.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "group_name",
+      "type": "string",
+      "description": "Name of the group to update.",
+      "required": true
+    },
+    {
+      "name": "add_sheets",
+      "type": "string",
+      "description": "Optional JSON array of sheet numbers to add, e.g. [\\",
+      "required": false
+    },
+    {
+      "name": "remove_sheets",
+      "type": "string",
+      "description": "Optional JSON array of sheet numbers to remove, e.g. [\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "update group",
+    "modify group",
+    "add to group",
+    "remove from group"
+  ]
+}

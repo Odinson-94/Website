@@ -1,0 +1,12 @@
+{
+  "name": "list_tags",
+  "desc": "List all tag families loaded in the document.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list tags"
+  ]
+}

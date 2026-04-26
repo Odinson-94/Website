@@ -1,0 +1,8 @@
+{
+  "slug": "check-latest-revisions",
+  "category": "document-control",
+  "title": "Check Latest Revisions on Site",
+  "desc": "Compare site-issued PDFs with current model revisions; flag stale.",
+  "duration": "1:09",
+  "status": "live"
+}

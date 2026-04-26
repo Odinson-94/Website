@@ -1,0 +1,35 @@
+{
+  "class": "ProjectSettingsSetStartingViewCommand",
+  "desc": "Set the project's Starting View by view id.",
+  "summary": "Set the project's Starting View by view id.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings set starting view",
+    "project_settings_set_starting_view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running project settings set starting view…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "project settings set starting view: done."
+    ],
+    "failureprompts": [
+      "project settings set starting view failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,21 @@
+{
+  "class": "BuildSchedulesCommand",
+  "desc": "Declares an intent-keyword H3 for one section of the page.",
+  "summary": "Declares an intent-keyword H3 for one section of the page. The website renders these as visible sub-headings and also feeds them into JSON-LD signals consumed by Google + AI search engines (Perplexity, ChatGPT, Claude, Google AI Overviews). USAGE — apply once per section: [SeoIntent(\"why\", \"Automated MEP schedule builder for Revit\")] [SeoIntent(\"shift\", \"From hand-built schedules to AI-built schedules with gap analysis\")] [SeoIntent(\"special\", \"One loop that builds, populates and reconciles your Revit schedules\")] [SeoIntent(\"who\", \"For MEP modellers issuing schedules with house templates\")] [Transaction(TransactionMode.Manual)] public class BuildSchedulesCommand : IExternalCommand { ... } AUTHORING GUIDANCE: - Phrase as a real search query / question. - Lead with the intent, not the brand. - 120 characters max.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

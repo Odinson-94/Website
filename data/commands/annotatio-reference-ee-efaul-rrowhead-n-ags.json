@@ -1,0 +1,41 @@
+{
+  "class": "AnnotationPreferencesSeedDefaultArrowheadsAndTagsCommand",
+  "desc": "Seeds default arrowheads and tag families per the Annotation Preferences Plan.",
+  "summary": "Seeds default arrowheads and tag families per the Annotation Preferences Plan. Walks each known category, attempts to resolve via the three-tier resolver, and downloads from Supabase if absent. Idempotent — safe to re-run.",
+  "usecase": "User opens a fresh model and wants every tagging command to \"just work\" without picking families.",
+  "notfor": "Loading a single specific family (use AnnotationPreferencesDownloadFamilyFromSupabase directly).",
+  "precondition": "Active document must be open. Internet access required for Supabase fallback.",
+  "postcondition": "The standard MEP tag and arrowhead families are loaded into the active document.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "seed annotations",
+    "annotation_preferences_seed_defaults",
+    "install standard tags",
+    "load default arrowheads"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Seeding standard MEP tag and arrowhead families…"
+    ],
+    "thinkingsteps": [
+      "Checking which annotation families are already loaded…",
+      "Downloading missing families from Supabase…",
+      "Loading families into the model…"
+    ],
+    "successprompts": [
+      "Loaded {LoadedCount} standard annotation families. {SkippedCount} already present."
+    ],
+    "failureprompts": [
+      "Could not seed annotation defaults: {error}"
+    ]
+  },
+  "has_restapi": false
+}

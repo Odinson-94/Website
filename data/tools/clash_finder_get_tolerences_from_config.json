@@ -1,0 +1,12 @@
+{
+  "name": "clash_finder_get_tolerences_from_config",
+  "desc": "Return the active clash tolerance rules loaded from the JSON config (or BSRIA-inspired defaults).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash finder get tolerences from config"
+  ]
+}

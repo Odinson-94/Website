@@ -1,0 +1,12 @@
+{
+  "name": "clash_solver_forecast_move_without_commit",
+  "desc": "clash_solver_forecast_move_without_commit — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash solver forecast move without commit"
+  ]
+}

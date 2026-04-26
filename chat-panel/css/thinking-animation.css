@@ -1,0 +1,752 @@
+/* ============================================
+   THINKING ANIMATION STYLES
+   ============================================
+   Extracted from index.html for use in chat interfaces.
+   This animation shows AI "thinking" steps with a pulsing node
+   and expanding/collapsing step list.
+*/
+
+/* Thinking Container - Light rounded box like Claude */
+.thinking-container {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, max-height 0.4s ease-out, margin 0.4s ease-out, padding 0.3s ease-out;
+}
+
+.thinking-container.visible {
+  max-height: 800px;
+  margin: 0.5rem 0;
+  padding: 6px 10px;
+  opacity: 1;
+  overflow: visible;
+}
+
+.thinking-container.collapsing {
+  opacity: 0.5;
+  max-height: 50px;
+}
+
+.thinking-container.hidden {
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Dark mode - subtle dark box */
+html.dark-mode .thinking-container {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+/* Thinking Header - Claude style with chevron on right */
+.thinking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.thinking-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Steps count text - 20% smaller than chat (12px -> ~10px) */
+.steps-count {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  color: #888;
+}
+
+html.dark-mode .steps-count {
+  color: #777;
+}
+
+.thinking-header:hover {
+  color: #333;
+}
+
+.thinking-header:hover .steps-toggle {
+  color: #156082;
+}
+
+html.dark-mode .thinking-header {
+  color: #aaa;
+}
+
+html.dark-mode .thinking-header:hover {
+  color: #ccc;
+}
+
+html.dark-mode .thinking-header:hover .steps-toggle {
+  color: #4a9bb8;
+}
+
+/* Pulsing Node */
+.pulsing-node {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.pulsing-node::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #156082;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+/* Static node - no pulse ring by default */
+.pulsing-node::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+.thinking-header.done .pulsing-node::after {
+  animation: none;
+  opacity: 0;
+}
+
+html.dark-mode .pulsing-node::before {
+  background: linear-gradient(135deg, #4a9bb8 0%, #3a7b98 100%);
+  box-shadow: none;
+}
+
+html.dark-mode .pulsing-node::after {
+  border: none;
+  opacity: 0;
+}
+
+/* Steps Toggle - chevron on right */
+.steps-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  color: #888;
+  padding: 2px 4px;
+}
+
+.steps-toggle .chevron {
+  font-size: 0.75rem;
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+
+.steps-toggle.expanded .chevron {
+  transform: rotate(0deg);
+}
+
+.steps-toggle:not(.expanded) .chevron {
+  transform: rotate(180deg);
+}
+
+html.dark-mode .steps-toggle {
+  color: #666;
+}
+
+/* Steps List - vertical timeline with connected nodes */
+.steps-list {
+  margin: 0;
+  padding: 0 0 0 7px;
+  list-style: none;
+  font-size: 0.8rem;
+  color: #666;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transform-origin: top;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.25s ease, 
+              margin 0.25s ease,
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* Expanded: animate to large max-height for smooth fold */
+.steps-list.expanded {
+  max-height: 800px;
+  margin-top: 8px;
+  opacity: 1;
+  overflow: visible;
+  transform: translateY(0);
+}
+
+/* Progressive expansion: 1 step visible */
+
+
+/* Progressive expansion: 2 steps visible */
+
+
+/* Animating: limited height during step-by-step reveal (fits exactly 3 steps) */
+.steps-list.animating {
+  max-height: 95px;
+  margin-top: 8px;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateY(0);
+}
+
+/* Full expanded mode: same, just shows hidden steps via CSS */
+.steps-list.fully-expanded {
+  max-height: 800px;
+  overflow: visible;
+}
+
+.steps-list li {
+  padding: 6px 0;
+  padding-left: 18px;
+  display: none;
+  align-items: flex-start;
+  gap: 10px;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease, height 0.2s ease, padding 0.2s ease;
+  position: relative;
+}
+
+/* Vertical connecting line */
+.steps-list li::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #d0d0d0;
+}
+
+/* Hide line above first item */
+.steps-list li:first-child::before {
+  top: 50%;
+}
+
+/* Hide line below last item */
+.steps-list li:last-child::before {
+  bottom: 50%;
+}
+
+/* Visible step - fully shown */
+.steps-list li.visible {
+  display: flex;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hidden during preview (collapsed but still in DOM) */
+.steps-list li.preview-hidden {
+  display: none;
+}
+
+/* When fully expanded, show all visible steps including preview-hidden */
+.steps-list.fully-expanded li.preview-hidden {
+  display: flex;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+html.dark-mode .steps-list li {
+  color: #999;
+}
+
+html.dark-mode .steps-list li::before {
+  background: #444;
+}
+
+/* Step Icons - positioned as nodes on the timeline */
+.steps-list li .step-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  background: #999;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Thinking step - simple dot */
+.steps-list li .step-icon.dot {
+  background: #156082;
+}
+
+/* Completed step - green dot */
+.steps-list li .step-icon.check {
+  background: #22863a;
+}
+
+/* Action step - pencil icon (edit/write) */
+.steps-list li .step-icon.edit {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  font-size: 0.7rem;
+  color: #666;
+  left: -2px;
+}
+
+html.dark-mode .step-icon.dot {
+  background: #4a9bb8;
+}
+
+html.dark-mode .step-icon.check {
+  background: #4CD964;
+}
+
+html.dark-mode .step-icon.edit {
+  color: #888;
+}
+
+/* Error/blocker step - red X icon */
+.steps-list li .step-icon.error {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  font-size: 0.75rem;
+  color: #d73a49;
+  left: -3px;
+  font-weight: 600;
+}
+
+html.dark-mode .step-icon.error {
+  color: #f85149;
+}
+
+/* Step Content - text and right-side info */
+.step-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.step-text {
+  flex: 1;
+}
+
+/* Step Changes - styled box like Claude */
+.step-changes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+  font-size: 0.7rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.step-changes .changes-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.step-changes .added { 
+  color: #22863a;
+  font-weight: 500;
+}
+
+.step-changes .removed { 
+  color: #cb2431;
+  font-weight: 500;
+}
+
+.step-changes .filename { 
+  color: #888;
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.65rem;
+  text-align: right;
+}
+
+html.dark-mode .step-changes .changes-box {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html.dark-mode .step-changes .added {
+  color: #4CD964;
+}
+
+html.dark-mode .step-changes .removed {
+  color: #ff6b6b;
+}
+
+html.dark-mode .step-changes .filename {
+  color: #777;
+}
+
+/* ============================================
+   THOUGHT STATUS - Shiny text during thinking
+   ============================================ */
+
+.thought-status {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.thinking-container.complete .thought-status {
+  display: none;
+}
+
+.thought-status-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  background: linear-gradient(
+    90deg, 
+    #888 0%, 
+    #888 40%, 
+    #fff 50%, 
+    #888 60%, 
+    #888 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: thoughtShine 2s ease-in-out infinite;
+}
+
+@keyframes thoughtShine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+html.dark-mode .thought-status {
+  border-top-color: #3a3a3a;
+}
+
+html.dark-mode .thought-status-text {
+  background: linear-gradient(
+    90deg, 
+    #777 0%, 
+    #777 40%, 
+    #ccc 50%, 
+    #777 60%, 
+    #777 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: thoughtShine 2s ease-in-out infinite;
+}
+
+/* ============================================
+   THOUGHT TRAIL - Expandable section after complete
+   ============================================ */
+
+.thought-trail {
+  display: none;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.thinking-container.complete .thought-trail {
+  display: block;
+}
+
+.thought-trail-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.thought-trail-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.thought-duration {
+  color: #156082;
+}
+
+.thought-trail-expand {
+  font-size: 0.6rem;
+  color: #999;
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.thought-trail-header:hover .thought-trail-expand {
+  opacity: 1;
+}
+
+.thought-trail.expanded .thought-trail-expand {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+
+.thought-trail-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+}
+
+.thought-trail.expanded .thought-trail-content {
+  max-height: 150px;
+  opacity: 1;
+  padding-top: 8px;
+}
+
+.thought-trail-content p {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* Dark mode */
+html.dark-mode .thought-trail {
+  border-top-color: #3a3a3a;
+}
+
+html.dark-mode .thought-trail-label {
+  color: #999;
+}
+
+html.dark-mode .thought-duration {
+  color: #4a9bb8;
+}
+
+html.dark-mode .thought-trail-expand {
+  color: #777;
+}
+
+html.dark-mode .thought-trail-content p {
+  color: #999;
+}
+
+/* Files Changed Section */
+.files-changed-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #fafafa;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  align-self: stretch;
+  flex-shrink: 0;
+  min-height: 80px;
+}
+
+.files-changed-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.files-changed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #f5f5f5;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.files-changed-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.files-changed-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.files-action-btn {
+  padding: 3px 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: #666;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.files-action-btn:hover {
+  color: #333;
+}
+
+.files-action-btn.primary {
+  background: #156082;
+  color: #fff;
+  border-radius: 4px;
+  padding: 3px 10px;
+}
+
+.files-action-btn.primary:hover {
+  background: #1a7299;
+}
+
+.files-changed-list {
+  padding: 4px 0;
+}
+
+.file-changed-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  transition: background 0.15s ease;
+}
+
+.file-changed-item:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+.file-lang-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.45rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+
+
+
+.file-lang-icon.rvt { background: #3498db; }
+.file-lang-icon.dwg { background: #e67e22; }
+.file-lang-icon.pdf { background: #e74c3c; }
+.file-lang-icon.xlsx { background: #27ae60; }
+
+
+
+.file-name {
+  flex: 1;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-changes {
+  font-size: 0.55rem;
+  color: #888;
+}
+
+.file-changes .added {
+  color: #22863a;
+}
+
+.file-changes .removed {
+  color: #cb2431;
+}
+
+/* Dark mode */
+html.dark-mode .files-changed-section {
+  background: #2a2a2a;
+  border-color: rgba(255,255,255,0.08);
+}
+
+html.dark-mode .files-changed-header {
+  background: #333;
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+
+html.dark-mode .files-changed-count {
+  color: #999;
+}
+
+html.dark-mode .files-action-btn {
+  color: #999;
+}
+
+html.dark-mode .files-action-btn:hover {
+  color: #fff;
+}
+
+html.dark-mode .files-action-btn.primary {
+  background: #4a9bb8;
+}
+
+html.dark-mode .files-action-btn.primary:hover {
+  background: #5aabbf;
+}
+
+html.dark-mode .file-changed-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+html.dark-mode .file-name {
+  color: #ccc;
+}
+
+html.dark-mode .file-changes {
+  color: #666;
+}

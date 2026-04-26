@@ -1,0 +1,12 @@
+{
+  "name": "space_analysis_list_boundary_walls_of_room",
+  "desc": "space_analysis_list_boundary_walls_of_room — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "space analysis list boundary walls of room"
+  ]
+}

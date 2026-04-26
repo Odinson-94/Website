@@ -1,0 +1,32 @@
+{
+  "class": "AcknowledgeCentralWarningLogEntry",
+  "desc": "Marks a CentralWarningLogger.WarningLogEntry as acknowledged.",
+  "summary": "Marks a CentralWarningLogger.WarningLogEntry as acknowledged. After the AI presents a warning and the user confirms they've seen it, this command flags it so it doesn't reappear in unacknowledged filters.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Entry ID must exist in the central warning log.",
+  "postcondition": "Entry.Acknowledged = true.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "acknowledge warning",
+    "mark warning seen",
+    "confirm warning reviewed"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "EntryId",
+      "type": "string",
+      "description": "GUID of the warning log entry to acknowledge",
+      "default": ""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,40 @@
+{
+  "class": "ExportClashResultsToExcel",
+  "desc": "Exports every clash row from the newest QA XML to a UTF-8 CSV suitable for Excel import.",
+  "summary": "Exports every clash row from the newest QA XML to a UTF-8 CSV suitable for Excel import. ClashResult does not persist a separate rule display name; the Rule Name column is reserved for future enrichment and is left blank for rows sourced from XML alone.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export clashes excel",
+    "clash report excel",
+    "QA report excel"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting clash results to CSV…"
+    ],
+    "thinkingsteps": [
+      "Resolve project root and ensure exports folder…",
+      "Load latest clashresults XML…",
+      "Write RFC-4180 CSV with clash columns…"
+    ],
+    "successprompts": [
+      "Clash CSV saved to {path} ({count} rows)."
+    ],
+    "failureprompts": [
+      "Clash CSV export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

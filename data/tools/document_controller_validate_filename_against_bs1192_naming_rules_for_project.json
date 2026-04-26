@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_validate_filename_against_bs1192_naming_rules_for_project",
+  "desc": "Validates a filename against BS 1192/ISO 19650 naming convention. Returns field-by-field pass/fail breakdown.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "filename",
+      "type": "string",
+      "description": "Filename to validate",
+      "required": true
+    },
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project ID for project-specific rules",
+      "required": false
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Target platform: vfp, asite, acc",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

@@ -1,0 +1,21 @@
+{
+  "name": "list_space_names",
+  "desc": "List MEP spaces with lightweight name/number/level metadata.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "nameContains",
+      "type": "string",
+      "description": "Optional contains filter on space name.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "list space names",
+    "list spaces",
+    "space names"
+  ]
+}

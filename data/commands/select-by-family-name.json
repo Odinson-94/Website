@@ -1,0 +1,85 @@
+{
+  "class": "SelectByFamilyNameCommand",
+  "desc": "Selects elements by family name, type name, or element name (contains match).",
+  "summary": "Selects elements by family name, type name, or element name (contains match). Uses FilteredElementCollector to gather elements, then filters by case-insensitive search term. Optionally narrows via SelectByCategoryCommand.TryResolveCategory. Called by CommandExecutor when Claude invokes execute_command. Related: SelectByParameterCommand for deep parameter search, SelectByCategoryCommand for category-only selection.",
+  "usecase": "User wants to select all downlights (search=\"downlight\"). User wants to select all EDC_LF_ families (search=\"EDC_LF\"). User wants to find elements of a specific type across the model.",
+  "notfor": "Selecting by category (use SelectByCategoryCommand — faster). Deep parameter value search (use SelectByParameterCommand). Filtering an existing selection (use FilterSelectionCommand).",
+  "precondition": "Active document must be open with a valid active view.",
+  "postcondition": "Revit selection is replaced with all elements whose family/type/element name contains the search term. Returns JSON with totalSelected, totalSearched, and breakdown by family:type.",
+  "sideeffects": "",
+  "logictree": "check: parameters.search → required, fail if empty\rcheck: parameters.category → optional, narrows collector for performance\rcheck: parameters.scope == \"model\" → search entire model\rdefault: search current view only",
+  "keywords": [
+    "select by family",
+    "select by name",
+    "find family",
+    "search family",
+    "select by type",
+    "filter family"
+  ],
+  "intent_patterns": [
+    "select * family *",
+    "find * family *",
+    "select * named *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "search",
+      "type": "string",
+      "description": "Text to search for in family/type/element name",
+      "default": ""
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Optional Revit category to narrow search",
+      "default": ""
+    },
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "view (default) or model",
+      "default": "\"view\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Selected element IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Breakdown by family:type and count"
+    }
+  ],
+  "related_commands": [
+    "SelectByCategoryCommand",
+    "SelectByParameterCommand",
+    "FilterSelectionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Searching for elements by family name...",
+      "Looking for families matching your search term...",
+      "Starting family name selection..."
+    ],
+    "thinkingsteps": [
+      "Building element collector...",
+      "Filtering by family, type, and element name...",
+      "Applying selection to model..."
+    ],
+    "successprompts": [
+      "Selected {totalSelected} elements matching \"{searchTerm}\" from {scope}",
+      "Found and selected {totalSelected} out of {totalSearched} elements for \"{searchTerm}\""
+    ],
+    "failureprompts": [
+      "Family name search failed: {error}",
+      "Could not select by family name: {error}"
+    ]
+  },
+  "has_restapi": false
+}

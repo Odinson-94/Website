@@ -1,0 +1,40 @@
+{
+  "name": "qa_manager_supabase_family_probe_download_or_run_error_rules_on_instances",
+  "desc": "QA Manager ↔ Supabase bridge. Three modes. mode=list: probe the Supabase families bucket for a category + fuzzy candidates (no Revit mutation). mode=download: fetch the .rfa into the persistent %APPDATA% family cache. mode=run_rules_on_loaded_family: run every relevant Error Manager rule against instances of the family already in the model and return a pass/fail matrix scoped to that family.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "One of: list, download, run_rules_on_loaded_family. Default: list.",
+      "required": false
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Supabase family category (e.g. '52 Drainage', '65 Mechanical Power'). Required for list/download.",
+      "required": false
+    },
+    {
+      "name": "family_name",
+      "type": "string",
+      "description": "The family to target (case-sensitive RFA name without extension). Required for download/run_rules_on_loaded_family.",
+      "required": false
+    },
+    {
+      "name": "rule_group",
+      "type": "string",
+      "description": "Optional navigator group filter (Coordination/Checking/Mechanical/Electrical) for run_rules_on_loaded_family mode.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "qa manager supabase family probe",
+    "download family from supabase",
+    "run error rules on family instances",
+    "qa supabase family bridge"
+  ]
+}

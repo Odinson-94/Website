@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerNavigateToResultInActiveViewCommand",
+  "desc": "ClashManagerNavigateToResultInActiveViewCommand — snap a 3D section box around a clash pair and show the elements.",
+  "summary": "ClashManagerNavigateToResultInActiveViewCommand — snap a 3D section box around a clash pair and show the elements.",
+  "usecase": "Navigate-to-clash workflow.",
+  "notfor": "Bulk multi-clash preview — use CycleThroughAllResultsInOrder.",
+  "precondition": "Resolver_ClashId resolvable; clash pair still in the model; a 3D view exists.",
+  "postcondition": "Active view becomes a 3D view with a section box around the pair; selection set to the two ids.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ClashId required; load ClashRecord.\n2) Resolve UidA + UidB in doc; WireError on missing.\n3) View3D = current if it's a View3D; else pick first non-template View3D. If none, WireError.\n4) Call Create3DSectionBox.FromElements(doc, view3d, [a,b], margin_ft).\n5) uidoc.ActiveView = view3d; uidoc.ShowElements([a.Id, b.Id]); uidoc.Selection.SetElementIds([a.Id, b.Id]).\n6) Emit ok + view_id + element_ids.",
+  "keywords": [
+    "clashmanagernavigatetoresultinactiveview",
+    "navigate to clash",
+    "qa go to clash"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Navigating to clash pair in active view…"
+    ],
+    "thinkingsteps": [
+      "Loading clash pair…",
+      "Resolving 3D view and section box…"
+    ],
+    "successprompts": [
+      "Navigated to clash {clash_id}."
+    ],
+    "failureprompts": [
+      "Navigation failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

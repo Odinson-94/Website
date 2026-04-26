@@ -1,0 +1,74 @@
+{
+  "class": "SheetSetUpExternalCommand",
+  "desc": "Main Entry Point: Orchestrates the entire MEP sheet setup workflow.",
+  "summary": "Main Entry Point: Orchestrates the entire MEP sheet setup workflow. This command automates the creation of sheets and views for MEP documentation: - Auto-detects primary levels (filters duplicates) - Auto-detects existing sheets and views (reuses them) - Auto-infers sheet naming patterns from existing sheets - Auto-selects titleblocks based on view sizes - Auto-applies view templates based on service type - Creates scope boxes for plant rooms and risers if needed - Creates sheets with proper layouts for plans, elevations, and sections ONLY USER INTERACTION: ServiceSelectionDialog to select which MEP services to document.",
+  "usecase": "User wants to set up all MEP documentation sheets automatically. User has a new project and needs to create all standard MEP sheets. User wants to add sheets for additional MEP services to an existing project.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open with MEP elements. At least one level must exist in the model. Titleblocks must be loaded in the project.",
+  "postcondition": "Sheets are created for each selected service type. Views are created and placed on sheets with appropriate layouts. Statistics are displayed showing what was created/reused.",
+  "sideeffects": "",
+  "logictree": "check: document.isValid → proceed\rcheck: levels.count > 0 → proceed\rcheck: titleblocks.count > 0 → proceed\raction: detectServices → showServiceSelectionDialog\raction: userSelectsServices → createSheetsAndViews",
+  "keywords": [
+    "sheet setup",
+    "MEP sheets",
+    "auto sheets",
+    "create all sheets",
+    "MEP documentation",
+    "sheet generator",
+    "setup sheets"
+  ],
+  "intent_patterns": [
+    "setup * sheets",
+    "create * MEP * sheets",
+    "generate * sheets",
+    "auto * sheet * setup",
+    "sheet * setup"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "SheetsCreated",
+      "type": "List<ViewSheet>",
+      "description": "List of sheets that were created"
+    },
+    {
+      "name": "ViewsCreated",
+      "type": "List<View>",
+      "description": "List of views that were created"
+    },
+    {
+      "name": "Statistics",
+      "type": "SetupStatistics",
+      "description": "Detailed statistics of the operation"
+    }
+  ],
+  "related_commands": [
+    "CreateSectionFromGridlineCommand",
+    "CreateSectionForCorridorCommand",
+    "CreateRoomElevationViewsCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Starting MEP sheet setup workflow...",
+      "Preparing to auto-generate MEP sheets and views..."
+    ],
+    "thinkingsteps": [
+      "Detecting primary levels and existing sheets...",
+      "Inferring sheet naming patterns...",
+      "Creating sheets and placing views...",
+      "Applying view templates and scope boxes..."
+    ],
+    "successprompts": [
+      "Sheet setup complete — {SheetsCreated} sheets, {ViewsCreated} views created.",
+      "Done! {Statistics}"
+    ],
+    "failureprompts": [
+      "Sheet setup failed: {error}",
+      "Could not complete sheet setup — {error}"
+    ]
+  },
+  "has_restapi": false
+}

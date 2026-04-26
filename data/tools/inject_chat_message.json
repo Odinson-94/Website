@@ -1,0 +1,35 @@
+{
+  "name": "inject_chat_message",
+  "desc": "Type and send a message in a chat WebView2. Optionally animates typing character-by-character. Use for agent handoff: open specialist window, then inject continuation prompt.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "message",
+      "type": "string",
+      "description": "The text to type and send.",
+      "required": true
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "description": "Which WebView2 to target: Main, DrawingExporter, ParameterEditor. Default: Main.",
+      "required": false
+    },
+    {
+      "name": "typing_animation",
+      "type": "string",
+      "description": "Set to 'true' for character-by-character typing. Default: false (instant).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "inject chat",
+    "type message",
+    "send message",
+    "chat injection",
+    "agent handoff"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "class": "PlaceViewsInSheetCommand",
+  "desc": "Places views onto the currently active sheet.",
+  "summary": "Places views onto the currently active sheet. Shows a list of recently modified/created views that can be placed. User must be on a ViewSheet when running this command. Uses PlaceViewsInSheet helper for viewport placement and layout.",
+  "usecase": "User wants to populate a sheet with floor plans, sections, or details after creating them.",
+  "notfor": "Creating new views (use CreateSectionFromGridlineCommand etc.). Creating sheets (use CreateSheetCommand).",
+  "precondition": "Active view must be a ViewSheet. At least one unplaced view must exist.",
+  "postcondition": "Selected views are placed as viewports on the active sheet.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "place views",
+    "add views to sheet",
+    "populate sheet",
+    "place on sheet",
+    "viewport"
+  ],
+  "intent_patterns": [
+    "place * views in sheet",
+    "add * views to sheet",
+    "place views on sheet"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "viewIds",
+      "type": "string",
+      "description": "Comma-separated view IDs to place",
+      "default": "null"
+    },
+    {
+      "name": "layout",
+      "type": "string",
+      "description": "Layout strategy: single, row, or grid",
+      "default": "\"single\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "PlacedCount",
+      "type": "int",
+      "description": "Number of views placed"
+    },
+    {
+      "name": "SheetNumber",
+      "type": "string",
+      "description": "Sheet number views were placed on"
+    },
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Summary message"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Placing views onto the active sheet...",
+      "Adding selected views to the sheet..."
+    ],
+    "thinkingsteps": [
+      "Checking active view is a sheet...",
+      "Finding views available for placement...",
+      "Resolving selected views...",
+      "Placing viewports on sheet..."
+    ],
+    "successprompts": [
+      "Placed {PlacedCount} view(s) on sheet {SheetNumber}.",
+      "Done — views are now on the sheet."
+    ],
+    "failureprompts": [
+      "Failed to place views: {error}",
+      "View placement failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

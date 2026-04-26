@@ -1,0 +1,12 @@
+{
+  "name": "clash_manager_group_results_by_location",
+  "desc": "clash_manager_group_results_by_location — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash manager group results by location"
+  ]
+}

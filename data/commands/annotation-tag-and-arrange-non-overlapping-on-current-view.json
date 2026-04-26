@@ -1,0 +1,37 @@
+{
+  "class": "AnnotationTagAndArrangeNonOverlappingOnCurrentViewCommand",
+  "desc": "Tag And Arrange Non Overlapping Tags On Current View.",
+  "summary": "Tag And Arrange Non Overlapping Tags On Current View.",
+  "usecase": "See plan — BUILD MEP Plan/Annotation/Annotation Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/Annotation/Annotation Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tag and arrange",
+    "non overlapping tags",
+    "intelligent tag placement",
+    "tag arrangement"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Tag And Arrange Non Overlapping Tags On Current View…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Tag And Arrange Non Overlapping Tags On Current View: completed."
+    ],
+    "failureprompts": [
+      "Tag And Arrange Non Overlapping Tags On Current View: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "extend-connectors",
+  "category": "revit-utilities",
+  "title": "Extend Connectors",
+  "desc": "Stub pipes from every unconnected fitting connector at once.",
+  "duration": "0:38",
+  "status": "live"
+}

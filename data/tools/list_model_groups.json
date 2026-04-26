@@ -1,0 +1,12 @@
+{
+  "name": "list_model_groups",
+  "desc": "List all model groups with name, count, and member elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list model groups"
+  ]
+}

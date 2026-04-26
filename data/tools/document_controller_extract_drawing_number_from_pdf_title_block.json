@@ -1,0 +1,23 @@
+{
+  "name": "document_controller_extract_drawing_number_from_pdf_title_block",
+  "desc": "Extracts drawing number from PDF title block using text scraping. Cross-references against filename.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "pdfPath",
+      "type": "string",
+      "description": "Path to the PDF file",
+      "required": true
+    },
+    {
+      "name": "expectedFilename",
+      "type": "string",
+      "description": "Expected filename for cross-reference",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

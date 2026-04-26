@@ -1,0 +1,32 @@
+{
+  "class": "SchematicGenerateBoilerSchematicFromPresetToDwgCommand",
+  "desc": "Boiler-scheme DWG from a plantroom preset definition.",
+  "summary": "Boiler-scheme DWG from a plantroom preset definition.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "schematicgenerateboilerschematicfrompresettodwg",
+    "generate boiler schematic",
+    "boiler schematic dwg"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,67 @@
+{
+  "class": "ExportMEPTagsToJsonCommand",
+  "desc": "Debug command: Export MEP tags from current view with positions and content.",
+  "summary": "Debug command: Export MEP tags from current view with positions and content. Exports all IndependentTag elements that tag MEP elements to JSON. Use ImportMEPTagsFromJsonCommand to recreate the tags.",
+  "usecase": "User wants to backup tag positions before model changes. User needs to transfer tags between views or models. User wants to document tag positions for analysis.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active view must be a plan, section, or 3D view with MEP tags.",
+  "postcondition": "A JSON file is created containing all MEP tag data. File can be used with ImportMEPTagsFromJsonCommand.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export mep tags to json",
+    "export tags",
+    "save tags",
+    "tag positions json"
+  ],
+  "intent_patterns": [
+    "export * tags * json",
+    "save * tags",
+    "* export tags"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "ExportedFilePath",
+      "type": "string",
+      "description": "Path to the exported JSON file"
+    },
+    {
+      "name": "TagCount",
+      "type": "int",
+      "description": "Number of tags exported"
+    },
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Command execution result"
+    }
+  ],
+  "related_commands": [
+    "ImportMEPTagsFromJsonCommand",
+    "TagAllCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting MEP tags from current view...",
+      "Saving tag positions and content to JSON..."
+    ],
+    "thinkingsteps": [
+      "Finding all tags in current view...",
+      "Extracting tag positions and content...",
+      "Building JSON export structure...",
+      "Writing to file..."
+    ],
+    "successprompts": [
+      "Successfully exported {TagCount} tags!",
+      "Done! Your tags are saved to JSON."
+    ],
+    "failureprompts": [
+      "Couldn't export tags: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,65 @@
+{
+  "name": "qa_manager_add_or_remove_family_exception_on_error_rule_in_rule_set_json",
+  "desc": "QA Manager rule exception editor: add or remove a bespoke family / type / system-type exception on an Error Manager rule INSIDE a named RuleSet JSON (not globally on the rule class). Targets property_name = ExcludedFamilyTypes | ExcludedFamilies | ExcludedSystemTypes | ExcludedTypes. Refuses to overwrite malformed existing lists. Default create_if_missing=false so a typo in rule_name surfaces as an error.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 8,
+  "parameters": [
+    {
+      "name": "rule_set_name",
+      "type": "string",
+      "description": "Rule set name (no .json). Must already exist unless create_if_missing is true.",
+      "required": false
+    },
+    {
+      "name": "rule_name",
+      "type": "string",
+      "description": "Target rule's class-level RuleName (e.g. 'Accessible for Maintenance').",
+      "required": false
+    },
+    {
+      "name": "property_name",
+      "type": "string",
+      "description": "Excluded list property to modify: ExcludedFamilyTypes | ExcludedFamilies | ExcludedSystemTypes | ExcludedTypes. Default: ExcludedFamilyTypes.",
+      "required": false
+    },
+    {
+      "name": "family_or_type_values",
+      "type": "string",
+      "description": "Comma-separated values to add (or remove when action=remove). For ExcludedFamilyTypes use 'FamilyName:TypeName' format.",
+      "required": false
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "description": "add (default) | remove",
+      "required": false
+    },
+    {
+      "name": "save_to_project",
+      "type": "boolean",
+      "description": "Write into project .mepbridge/errors/rules (default true).",
+      "required": false
+    },
+    {
+      "name": "save_to_user",
+      "type": "boolean",
+      "description": "Write into %APPDATA%/BuildMEP/RuleSets (default true).",
+      "required": false
+    },
+    {
+      "name": "create_if_missing",
+      "type": "boolean",
+      "description": "When true and the named rule is not already in the rule set, create a new enabled entry before adding the exception. Default false so typos surface as errors.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "qa manager family exception",
+    "exclude family from qa rule",
+    "exempt family type",
+    "rule exception in rule set",
+    "bespoke family override for error rule"
+  ]
+}

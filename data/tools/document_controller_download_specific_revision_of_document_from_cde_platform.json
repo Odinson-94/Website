@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_download_specific_revision_of_document_from_cde_platform",
+  "desc": "Downloads a specific revision of a document from any connected CDE platform. Returns the local file path of the downloaded PDF/DWG.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "BS 1192 document code",
+      "required": true
+    },
+    {
+      "name": "revision",
+      "type": "string",
+      "description": "Revision to download (e.g. P02, C01). Omit for latest.",
+      "required": false
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Platform to download from: vfp, asite, acc",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

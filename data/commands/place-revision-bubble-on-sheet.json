@@ -1,0 +1,59 @@
+{
+  "class": "PlaceRevisionBubbleOnSheet",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "place revision bubble",
+    "revision triangle",
+    "revision annotation on sheet"
+  ],
+  "intent_patterns": [
+    "place * revision bubble *",
+    "add * bubble * sheet *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "revisionId",
+      "type": "int",
+      "description": "Revision element ID",
+      "default": ""
+    },
+    {
+      "name": "sheetNumber",
+      "type": "string",
+      "description": "Sheet number to place the bubble on",
+      "default": ""
+    },
+    {
+      "name": "x",
+      "type": "number",
+      "description": "X position in sheet coordinates (feet)",
+      "default": "0.5"
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Y position in sheet coordinates (feet)",
+      "default": "0.5"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Placed annotation details"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

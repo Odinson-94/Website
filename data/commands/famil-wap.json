@@ -1,0 +1,76 @@
+{
+  "class": "FamilySwapCommand",
+  "desc": "Swaps one or more family instances to a target family/type.",
+  "summary": "Swaps one or more family instances to a target family/type. Uses MCPFamilySwap.Swap for the actual swap logic. Uses MEPBridge.Revit.AIChat.Services.Execution.CommandExecutor to read AI parameters. Called by AI chat or the family_swap MCP tool. Related: MCPFamilySwap for the core swap engine.",
+  "usecase": "User wants to swap a fitting or fixture to a different family. User wants to change the type of an existing family instance. AI needs to programmatically replace a family instance during a workflow.",
+  "notfor": "Swapping MEP system types (use system type commands). Batch-swapping all instances of a family (use a batch command). Loading new families into the document (use a load family command).",
+  "precondition": "Active document must be open. Target element must be a FamilyInstance. Target family must be loaded in the document.",
+  "postcondition": "The specified family instance is swapped to the target family/type. Result JSON contains previous and new family/type info.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "swap family",
+    "change family",
+    "replace family",
+    "family swap",
+    "change type"
+  ],
+  "intent_patterns": [
+    "swap * family",
+    "change * family",
+    "replace * family",
+    "swap * type"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "elementId",
+      "type": "int",
+      "description": "Element ID of the family instance to swap",
+      "default": ""
+    },
+    {
+      "name": "familyName",
+      "type": "string",
+      "description": "Target family name",
+      "default": ""
+    },
+    {
+      "name": "typeName",
+      "type": "string",
+      "description": "Optional target type name within the family",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Swap result with previous/new family and type"
+    }
+  ],
+  "related_commands": [
+    "LoadFamilyCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Swapping the family instance...",
+      "Changing family type..."
+    ],
+    "thinkingsteps": [
+      "Validating element and target family...",
+      "Performing the family swap..."
+    ],
+    "successprompts": [
+      "Swapped element {elementId} from {previousFamily} to {newFamily}.",
+      "Family swap complete — now using {newFamily}: {newType}."
+    ],
+    "failureprompts": [
+      "Family swap failed: {error}",
+      "Could not swap family — {error}"
+    ]
+  },
+  "has_restapi": false
+}

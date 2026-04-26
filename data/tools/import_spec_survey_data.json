@@ -1,0 +1,23 @@
+{
+  "name": "import_spec_survey_data",
+  "desc": "Import survey data from PDF or Excel into the project context for specification generation.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "filePath",
+      "type": "string",
+      "description": "Path to the PDF or Excel survey file",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "import survey",
+    "survey data",
+    "site survey",
+    "import PDF",
+    "import Excel"
+  ]
+}

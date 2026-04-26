@@ -1,0 +1,21 @@
+{
+  "name": "convert_linked_rooms_to_host_mep_spaces",
+  "desc": "Convert linked architectural rooms into host MEP spaces.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "linkNameContains",
+      "type": "string",
+      "description": "Optional linked model name filter.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "convert rooms to spaces",
+    "create spaces from rooms",
+    "rooms to spaces"
+  ]
+}

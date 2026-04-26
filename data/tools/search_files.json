@@ -1,0 +1,41 @@
+{
+  "name": "search_files",
+  "desc": "Search for files by name pattern or content text within allowed directories. Returns matching file paths and (for content search) the matching lines.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": "Directory to search in. Omit to search all allowed directories.",
+      "required": false
+    },
+    {
+      "name": "name_pattern",
+      "type": "string",
+      "description": "Filename pattern e.g. '*.csv', 'schedule*.xlsx', 'README*'",
+      "required": false
+    },
+    {
+      "name": "content",
+      "type": "string",
+      "description": "Text to search for inside files (case-insensitive)",
+      "required": false
+    },
+    {
+      "name": "max_results",
+      "type": "string",
+      "description": "Maximum results. Default: 20",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "search files",
+    "find files",
+    "file search",
+    "content search",
+    "grep"
+  ]
+}

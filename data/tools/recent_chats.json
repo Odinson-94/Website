@@ -1,0 +1,42 @@
+{
+  "name": "recent_chats",
+  "desc": "Retrieve recent conversation exchanges. Optionally filter by time range. Use to review what was discussed recently or during a specific period.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "count",
+      "type": "integer",
+      "description": "Number of results to return (1-20, default 5)",
+      "required": false
+    },
+    {
+      "name": "before",
+      "type": "string",
+      "description": "Only return conversations before this ISO datetime (e.g. 2026-03-20T00:00:00Z)",
+      "required": false
+    },
+    {
+      "name": "after",
+      "type": "string",
+      "description": "Only return conversations after this ISO datetime (e.g. 2026-03-01T00:00:00Z)",
+      "required": false
+    },
+    {
+      "name": "sort_order",
+      "type": "string",
+      "description": "Sort order: 'asc' (oldest first) or 'desc' (newest first, default)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "recent chats",
+    "recent conversations",
+    "chat history",
+    "latest discussions",
+    "previous conversations",
+    "what happened recently"
+  ]
+}

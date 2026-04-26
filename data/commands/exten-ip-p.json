@@ -1,0 +1,73 @@
+{
+  "class": "ExtendPipeUpCommand",
+  "desc": "Command: Extends a selected pipe upwards by radius × 5.",
+  "summary": "Command: Extends a selected pipe upwards by radius × 5. Uses ExtendPipeUp for core extension logic. WORKFLOW: 1. User selects a pipe 2. Command gets pipe properties (system, size, routing type) 3. Delegates to ExtendPipeUp.Extend for the extension 4. Reports results to user via CommandFeedback",
+  "usecase": "User needs to extend an SVP or drainage pipe upwards. User wants to quickly add a vent extension to existing pipework. User is extending vertical stacks through multiple floors.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least one pipe must exist in the model. User must select a valid pipe element.",
+  "postcondition": "A new pipe is created extending upwards from the top of the selected pipe. Extension length = pipe radius × 5. New pipe matches system, size and family routing types.",
+  "sideeffects": "Creates a new pipe element in the model.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectPipe → getSelectedPipe\rcheck: selectedElement.isPipe → continue, else → error\raction: getPipeProperties → system, size, routing\raction: calculateExtensionLength → radius × 5\raction: createExtensionPipe → ExtendPipeUp.Extend\rresolve: success → showSuccess, else → showError",
+  "keywords": [
+    "extend pipe up",
+    "pipe extension up",
+    "extend upward",
+    "grow pipe up",
+    "lengthen pipe"
+  ],
+  "intent_patterns": [
+    "extend * pipe * up",
+    "grow * pipe * up",
+    "lengthen * up"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "Pipe",
+      "type": "Pipe",
+      "description": "Pipe to extend upwards",
+      "prompt": "Select a pipe to extend upwards"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "RadiusMultiplier",
+      "type": "double",
+      "description": "Extension length as multiplier of radius",
+      "default": "5.0"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ExtensionPipe",
+      "type": "Pipe",
+      "description": "The created extension pipe"
+    }
+  ],
+  "related_commands": [
+    "ExtendPipeToNextLevelCommand",
+    "ExtendPipeDownCommand",
+    "PlaceSVPCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Extending pipe upwards...",
+      "Getting ready to extend the pipe..."
+    ],
+    "thinkingsteps": [
+      "Detecting pipe endpoint...",
+      "Calculating extension length (radius × 5)...",
+      "Creating extension pipe..."
+    ],
+    "successprompts": [
+      "Pipe extended upwards by {ExtensionPipe} mm",
+      "Done! Pipe extension created successfully."
+    ],
+    "failureprompts": [
+      "Could not extend pipe: {error}",
+      "Pipe extension failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

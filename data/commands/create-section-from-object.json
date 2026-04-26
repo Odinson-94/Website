@@ -1,0 +1,66 @@
+{
+  "class": "CreateSectionFromObjectCommand",
+  "desc": "Creates a section view from user-specified start and end points or element endpoints.",
+  "summary": "Creates a section view from user-specified start and end points or element endpoints. User picks two points (or selects a linear element) to define the section cut line. Section is created perpendicular to the line between points, looking from start towards end. Uses CreateSectionFromObject helper for the actual section creation. Related: CreateSectionFromGridlineCommand for grid-aligned sections.",
+  "usecase": "User wants to create a section view through two arbitrary points. User wants to create a section view along a linear element (pipe, duct, wall). User needs a custom section not aligned to any grid.",
+  "notfor": "Creating sections along gridlines (use CreateSectionFromGridlineCommand). Creating sections through corridors (use CreateSectionForCorridorCommand).",
+  "precondition": "Active document must be open with an active view. User must be able to pick points or select elements in the view.",
+  "postcondition": "A new ViewSection is created in the document, oriented perpendicular to the picked line. Section is NOT placed on a sheet (separate command).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create section from object",
+    "section from points",
+    "section from element",
+    "custom section",
+    "user-defined section"
+  ],
+  "intent_patterns": [
+    "create * section * object",
+    "create * section * points",
+    "section * from * element"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "Selection mode: points or elementEndpoints",
+      "default": "\"points\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedSection",
+      "type": "ViewSection",
+      "description": "The created section view"
+    }
+  ],
+  "related_commands": [
+    "CreateSectionFromGridlineCommand",
+    "PlaceViewOnSheetCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a section view from your selected points...",
+      "Setting up custom section view..."
+    ],
+    "thinkingsteps": [
+      "Getting start and end points...",
+      "Calculating section orientation...",
+      "Determining section depth and height from levels...",
+      "Creating section view box..."
+    ],
+    "successprompts": [
+      "Section created: {CreatedSection} at 1:{Scale}",
+      "Done! Custom section is ready."
+    ],
+    "failureprompts": [
+      "Couldn't create section: {error}",
+      "Section creation failed - {error}"
+    ]
+  },
+  "has_restapi": false
+}

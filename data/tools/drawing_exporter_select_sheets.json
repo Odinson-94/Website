@@ -1,0 +1,58 @@
+{
+  "name": "drawing_exporter_select_sheets",
+  "desc": "Select or deselect sheets in the Drawing Exporter. Can select by sheet numbers, prefix, discipline, group, or select/deselect all. Mode controls whether selection replaces, adds to, or removes from current selection.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 7,
+  "parameters": [
+    {
+      "name": "sheet_numbers",
+      "type": "string",
+      "description": "JSON array of sheet numbers to select, e.g. [\\",
+      "required": false
+    },
+    {
+      "name": "by_prefix",
+      "type": "string",
+      "description": "Select sheets whose number starts with this prefix, e.g. \\",
+      "required": false
+    },
+    {
+      "name": "by_discipline",
+      "type": "string",
+      "description": "Select sheets matching this discipline, e.g. \\",
+      "required": false
+    },
+    {
+      "name": "by_group",
+      "type": "string",
+      "description": "Select sheets belonging to this group name.",
+      "required": false
+    },
+    {
+      "name": "select_all",
+      "type": "string",
+      "description": "Set to \\",
+      "required": false
+    },
+    {
+      "name": "deselect_all",
+      "type": "string",
+      "description": "Set to \\",
+      "required": false
+    },
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "Selection mode: \\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "select sheets",
+    "choose sheets",
+    "pick sheets",
+    "filter sheets"
+  ]
+}

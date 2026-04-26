@@ -1,0 +1,13 @@
+{
+  "name": "cobie_sheet_list_component",
+  "desc": "List rows for the COBie Component sheet projected from Revit elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "cobie_sheet_list_component",
+    "cobie sheet list component"
+  ]
+}

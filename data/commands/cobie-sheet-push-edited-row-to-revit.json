@@ -1,0 +1,35 @@
+{
+  "class": "CobieSheetPushEditedRowToRevitCommand",
+  "desc": "Push an edited COBie row back to its source Revit element (multi-field).",
+  "summary": "Push an edited COBie row back to its source Revit element (multi-field).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "cobie sheet push edited row to revit",
+    "cobie_sheet_push_edited_row_to_revit"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running cobie sheet push edited row to revit…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "cobie sheet push edited row to revit: done."
+    ],
+    "failureprompts": [
+      "cobie sheet push edited row to revit failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

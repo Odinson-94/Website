@@ -1,0 +1,96 @@
+{
+  "class": "DesignContainmentSystemCommand",
+  "desc": "Imports containment (cable tray) systems from a MEPBridge JSON file with Neural Loading visualization.",
+  "summary": "Imports containment (cable tray) systems from a MEPBridge JSON file with Neural Loading visualization. Uses JsonModelLoader to parse the JSON DTO, then routes through MepSegmentCreator, PlaceElbowAtCorner, TakeoffPlacementService, PlaceTransitionBetweenSizes, and ImportBlocksFromLinkedDwg for element creation. Family downloads handled by LoadFamilyFromAdelphosCloud. Base point resolved via DesignSystemBasePointHelper. Related: DesignSmallPowerSystemCommand, DesignLightingSystemCommand.",
+  "usecase": "User wants to import a containment (cable tray) layout from AutoCAD via MEPBridge JSON. User needs to place high-level or low-level containment routes with fittings and accessories.",
+  "notfor": "Creating containment manually element-by-element (use Revit native tools). Importing piping or ductwork (use DesignDrainageSystemCommand or ventilation commands). Editing existing containment routes (use Revit editing tools).",
+  "precondition": "Active Revit document must be open. MEPBridge JSON file must exist at the configured path. Cable tray family types must be loaded in the model. Level must exist near the base point Z.",
+  "postcondition": "Cable tray segments, elbow fittings, tee fittings, transitions, and containment accessories are created in the model. A 3D section box is set around imported elements. A run log is written.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "design containment",
+    "design the containment",
+    "containment system",
+    "create containment",
+    "cable tray",
+    "place cable trays"
+  ],
+  "intent_patterns": [
+    "design * containment",
+    "create * containment",
+    "containment * design",
+    "cable tray * design",
+    "place * cable tray"
+  ],
+  "pillar": "Containment",
+  "pillar_raw": "Containment",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Base point for containment placement",
+      "prompt": "Pick Revit basepoint (target origin for import)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to MEPBridge JSON file",
+      "default": "null"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CurvesCreated",
+      "type": "int",
+      "description": "Number of MEP curve segments created"
+    },
+    {
+      "name": "ElbowsPlaced",
+      "type": "int",
+      "description": "Number of elbow fittings placed"
+    },
+    {
+      "name": "TeesPlaced",
+      "type": "int",
+      "description": "Number of tee fittings placed"
+    },
+    {
+      "name": "BlocksPlaced",
+      "type": "int",
+      "description": "Number of family instances placed"
+    }
+  ],
+  "related_commands": [
+    "DesignSmallPowerSystemCommand",
+    "DesignLightingSystemCommand",
+    "DesignFireAlarmSystemCommand",
+    "DesignMechPowerSystemCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Importing containment system from JSON...",
+      "Setting up cable tray layout...",
+      "Preparing containment design import..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON containment data...",
+      "Resolving MEP types and levels...",
+      "Creating cable tray segments...",
+      "Placing elbow and tee fittings...",
+      "Importing containment accessories...",
+      "Finalizing containment model..."
+    ],
+    "successprompts": [
+      "Containment imported! Created {CurvesCreated} segments, {ElbowsPlaced} elbows, {BlocksPlaced} accessories.",
+      "Done! Cable tray layout placed with {CurvesCreated} segments and {BlocksPlaced} accessories."
+    ],
+    "failureprompts": [
+      "Containment import failed: {error}",
+      "Could not complete containment design: {error}"
+    ]
+  },
+  "has_restapi": false
+}

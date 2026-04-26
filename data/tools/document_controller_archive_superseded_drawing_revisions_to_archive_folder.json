@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_archive_superseded_drawing_revisions_to_archive_folder",
+  "desc": "Moves old superseded revisions to an archive subfolder. Detects superseded files by comparing document numbers and revision codes.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "folderPath",
+      "type": "string",
+      "description": "Folder containing drawing files to scan",
+      "required": true
+    },
+    {
+      "name": "archiveFolder",
+      "type": "string",
+      "description": "Destination folder for superseded revisions",
+      "required": true
+    },
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project identifier for audit trail logging",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

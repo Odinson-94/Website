@@ -1,0 +1,24 @@
+slug: get_document_info
+title: get_document_info
+display_title: "Get document info"
+description: "Returns metadata about the active Revit document — title, file path, available levels, loaded family count. Used as the first call in most chats to ground the conversation."
+bridge_label: "Revit"
+category_label: context
+always_available: true
+what_it_returns: |
+  { "title":         "Hospital - North Wing.rvt",
+    "path":          "C:\\Projects\\...\\Hospital - North Wing.rvt",
+    "levels":        ["Ground", "Level 01", "Level 02", "Roof"],
+    "family_count":  287,
+    "is_workshared": true }
+example_prompts:
+  - "What's in this model?"
+  - "How many levels does this project have?"
+  - "Which file am I in?"
+related:
+  tools:    [list_levels, list_rooms, get_current_view]
+  skills:   []
+  demos:    []
+generated_by: claude-opus-4-20251010
+generated_at: "2026-04-21T15:30:00Z"
+source_sha: d4e5f60

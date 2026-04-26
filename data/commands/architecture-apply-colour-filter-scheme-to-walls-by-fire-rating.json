@@ -1,0 +1,37 @@
+{
+  "class": "ArchitectureApplyColourFilterSchemeToWallsByFireRatingCommand",
+  "desc": "Apply Colour Filter Scheme To Walls By Fire Rating.",
+  "summary": "Apply Colour Filter Scheme To Walls By Fire Rating.",
+  "usecase": "See plan — BUILD MEP Plan/Architecture/Rooms/Rooms Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/Architecture/Rooms/Rooms Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "colour walls by fire rating",
+    "fire rating colour walls",
+    "colour code walls",
+    "wall fire rating filter"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Apply Colour Filter Scheme To Walls By Fire Rating…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Apply Colour Filter Scheme To Walls By Fire Rating: completed."
+    ],
+    "failureprompts": [
+      "Apply Colour Filter Scheme To Walls By Fire Rating: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

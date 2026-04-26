@@ -1,0 +1,73 @@
+{
+  "class": "SnapToWallCommand",
+  "desc": "Snaps selected family instances to the nearest wall face.",
+  "summary": "Snaps selected family instances to the nearest wall face. Room-aware: prefers room boundary walls so elements stay inside their room. After importing blocks via ImportCommand, wall-mounted items may be placed at the correct XY/Z but not snapped to the wall face — this command fixes that. Uses ObtainRoomBoundaryWalls to resolve room boundary walls. Uses ElementTransformUtils for move and rotate operations.",
+  "usecase": "After importing blocks via ImportCommand, select wall-mounted items and snap them to walls.",
+  "notfor": "Snapping elements to floors, ceilings, or other surfaces. Not for elements that aren't family instances. Not for creating new elements.",
+  "precondition": "Active document; one or more family instances selected.",
+  "postcondition": "Selected family instances moved to nearest wall face and rotated to face wall normal. Z height unchanged.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "snap to wall",
+    "wall snap",
+    "snap family",
+    "wall mount",
+    "align to wall",
+    "move to wall face"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [
+    {
+      "name": "FamilyInstances",
+      "type": "FamilyInstance",
+      "description": "Family instances to snap to nearest wall",
+      "prompt": "Select family instances to snap to walls"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "snapped",
+      "type": "int",
+      "description": "Number of elements snapped to walls"
+    },
+    {
+      "name": "skipped",
+      "type": "int",
+      "description": "Number of elements with no wall nearby"
+    },
+    {
+      "name": "failed",
+      "type": "int",
+      "description": "Number of elements that failed to snap"
+    }
+  ],
+  "related_commands": [
+    "SelectByRoomCommand",
+    "SelectByLocationCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Snapping selected elements to nearest walls...",
+      "Aligning family instances to wall faces..."
+    ],
+    "thinkingsteps": [
+      "Collecting all walls from host and linked models...",
+      "Finding room for each element...",
+      "Calculating nearest wall face position...",
+      "Moving and rotating elements to wall face..."
+    ],
+    "successprompts": [
+      "Snapped {snapped} of {total} elements to walls.",
+      "Done — {snapped} elements aligned to wall faces."
+    ],
+    "failureprompts": [
+      "Snap to wall failed: {error}",
+      "Could not snap elements to walls — {error}"
+    ]
+  },
+  "has_restapi": false
+}

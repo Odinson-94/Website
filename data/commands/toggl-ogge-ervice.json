@@ -1,0 +1,56 @@
+{
+  "class": "ToggleLoggerServiceCommand",
+  "desc": "Toggles the HttpLoggerService on or off.",
+  "summary": "Toggles the HttpLoggerService on or off. Checks if HttpLoggerService.exe is running — if running, kills it (OFF); if not, starts it (ON). Uses LoggerServiceManager to manage the process lifecycle. Uses CommandFeedback to notify the user of the new state.",
+  "usecase": "User wants to enable command tracking diagnostics for debugging. User wants to disable the logger service to reduce overhead.",
+  "notfor": "Viewing logs (use the log panel or MCP tools). Configuring logger settings (use config files).",
+  "precondition": "No preconditions — works in any Revit state. LoggerServiceManager must be accessible.",
+  "postcondition": "HttpLoggerService.exe process is either started or stopped. User receives a brief ON/OFF notification via CommandFeedback.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "toggle logger",
+    "logger service",
+    "start logger",
+    "stop logger",
+    "command tracking",
+    "http logger"
+  ],
+  "intent_patterns": [
+    "toggle * logger",
+    "start * logger",
+    "stop * logger",
+    "turn * logger *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "State",
+      "type": "string",
+      "description": "New logger state: ON or OFF"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Toggling the logger service...",
+      "Switching the command tracking logger..."
+    ],
+    "thinkingsteps": [
+      "Checking if HttpLoggerService is running...",
+      "Toggling service state..."
+    ],
+    "successprompts": [
+      "Logger service is now {State}.",
+      "Done — HTTP logger toggled to {State}."
+    ],
+    "failureprompts": [
+      "Could not toggle logger service: {error}",
+      "Logger toggle failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,41 @@
+{
+  "name": "document_controller_compare_two_pdf_drawing_revisions_and_detect_changes",
+  "desc": "Compares old and new PDF revisions. Returns change regions with type (added/modified/removed), bounding boxes, and unbubbled change count.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 5,
+  "parameters": [
+    {
+      "name": "oldPdfPath",
+      "type": "string",
+      "description": "Path to previous revision PDF",
+      "required": true
+    },
+    {
+      "name": "newPdfPath",
+      "type": "string",
+      "description": "Path to current revision PDF",
+      "required": true
+    },
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "Document code for tracking",
+      "required": false
+    },
+    {
+      "name": "oldRevision",
+      "type": "string",
+      "description": "Old revision label",
+      "required": false
+    },
+    {
+      "name": "newRevision",
+      "type": "string",
+      "description": "New revision label",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

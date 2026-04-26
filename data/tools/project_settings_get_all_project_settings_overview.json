@@ -1,0 +1,13 @@
+{
+  "name": "project_settings_get_all_project_settings_overview",
+  "desc": "Aggregate read of every Project Settings card (information, units, starting view, location, shared parameter file path).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "project_settings_get_all_project_settings_overview",
+    "project settings get all project settings overview"
+  ]
+}

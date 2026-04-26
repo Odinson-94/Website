@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverMoveDeviceToWallCommand",
+  "desc": "ClashSolverMoveDeviceToWallCommand — PDF \"MOVE_TO_WALL\".",
+  "summary": "ClashSolverMoveDeviceToWallCommand — PDF \"MOVE_TO_WALL\". Wall- specialised wrapper of MOVE_TO_HOST with explicit category check.",
+  "usecase": "Solver wall re-host branch.",
+  "notfor": "Ceiling / floor re-host — use MOVE_TO_HOST.",
+  "precondition": "Active document; device is FamilyInstance; targetWall is Wall.",
+  "postcondition": "Delegates geometric move to ClashSolverMoveDeviceToNearestHostCommand.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_DeviceUniqueId + Resolver_WallUniqueId required OR two-element selection.\n2) WireError if target isn't Wall.\n3) Instantiate ClashSolverMoveDeviceToNearestHostCommand with same resolvers.\n4) Delegate Execute; pipe outputs + tag target_is_wall=true.",
+  "keywords": [
+    "clashsolvermovedevicetowall",
+    "move device to wall",
+    "solver wall re-host"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Moving device onto target wall…"
+    ],
+    "thinkingsteps": [
+      "Checking target element is a Wall…",
+      "Delegating to MoveDeviceToNearestHostCommand…"
+    ],
+    "successprompts": [
+      "Device moved onto wall."
+    ],
+    "failureprompts": [
+      "Move-to-wall failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,15 @@
+{
+  "name": "get_configured_template_project_file_path",
+  "desc": "Returns the configured template .rvt file path from three-tier config resolution (project, user, business).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "get template path",
+    "template file",
+    "firm template",
+    "configured template"
+  ]
+}

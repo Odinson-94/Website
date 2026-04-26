@@ -1,0 +1,74 @@
+{
+  "class": "ExtendPipeToNextLevelCommand",
+  "desc": "Command: Extends a selected pipe upwards to the next primary level.",
+  "summary": "Command: Extends a selected pipe upwards to the next primary level. INCLUDES LEVELS FROM LINKED MODELS (architectural links, etc.) WORKFLOW: 1. User selects a pipe endpoint 2. Command uses ListLevels.GetPrimaryLevels() to find level structure (host + linked models) 3. Determines current pipe position and next level above 4. Creates extension pipe to next primary level + 150mm offset 5. Matches all properties from source pipe 6. Optionally creates bend fitting at connection",
+  "usecase": "User needs to extend an SVP or drainage riser to the next floor. User wants to grow vertical stacks through floor plates. User is extending vent pipes through ceiling/floor assemblies.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least one pipe must exist in the model. At least two primary levels must exist (current and target). User must select a valid pipe element.",
+  "postcondition": "A new pipe is created extending from the selected pipe to the next primary level. Extension terminates at level elevation + 150mm offset. New pipe matches system, size and family routing types. Bend fitting created at connection point (optional).",
+  "sideeffects": "Creates a new pipe element in the model. May create a bend fitting element.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectPipe → getSelectedPipe\rcheck: selectedElement.isPipe → continue, else → error\raction: getPrimaryLevels → ListLevels.GetPrimaryLevels\rcheck: primaryLevels.count >= 2 → continue, else → error (need at least current + target)\raction: findCurrentLevel → LevelResolver.GetNearestLevel\raction: findNextLevelAbove → compare elevations\rcheck: nextLevel.exists → continue, else → error (already at top)\raction: calculateExtensionLength → targetLevel.elevation + offset - currentZ\raction: createExtensionPipe → ExtendPipeToNextLevel.Extend\rresolve: success → showSuccess, else → showError",
+  "keywords": [
+    "extend pipe level",
+    "pipe to next level",
+    "extend to floor",
+    "drainage riser",
+    "stack extension",
+    "SVP extend",
+    "extend pipe to level"
+  ],
+  "intent_patterns": [
+    "extend * pipe * level",
+    "extend * to * floor",
+    "grow * pipe * level",
+    "pipe * next * level"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "Pipe",
+      "type": "Pipe",
+      "description": "Pipe to extend to next level",
+      "prompt": "Select a pipe to extend to the next level"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "LevelOffset",
+      "type": "double",
+      "description": "Offset above level elevation in mm",
+      "default": "150.0"
+    },
+    {
+      "name": "CreateBend",
+      "type": "bool",
+      "description": "Whether to create bend fitting at connection",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ExtensionPipe",
+      "type": "Pipe",
+      "description": "The created extension pipe"
+    },
+    {
+      "name": "TargetLevel",
+      "type": "string",
+      "description": "Name of level extended to"
+    },
+    {
+      "name": "ExtensionLength",
+      "type": "double",
+      "description": "Length of extension in mm"
+    }
+  ],
+  "related_commands": [
+    "ExtendPipeUpCommand",
+    "ExtendPipeDownCommand",
+    "PlaceSVPCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

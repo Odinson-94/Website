@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF to 3D Model Conversion — Features — Adelphos AI</title>
+<meta name="description" content="Send a PDF drawing. Get back a Revit model. Coordinated, parameterised, and on your house template.">
+<meta name="keywords" content="Adelphos AI, PDF to 3D Model Conversion, MEP automation, Existing-building schemes, Retrofit projects, Hand-over drawings from contractors">
+<link rel="canonical" href="https://adelphos.ai/dist/features/pdf-to-3d/index.html">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="theme-color" content="#156082">
+<meta property="og:type" content="product">
+<meta property="og:title" content="PDF to 3D Model Conversion — Features — Adelphos AI">
+<meta property="og:description" content="Send a PDF drawing. Get back a Revit model. Coordinated, parameterised, and on your house template.">
+<meta property="og:url" content="https://adelphos.ai/dist/features/pdf-to-3d/index.html">
+<meta property="og:image" content="https://adelphos.ai/images/og/default.png">
+<meta property="og:site_name" content="Adelphos AI">
+<meta property="og:locale" content="en_GB">
+<meta property="article:modified_time" content="2026-04-25T17:05:03.253Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@adelphos_ai">
+<meta name="twitter:title" content="PDF to 3D Model Conversion — Features — Adelphos AI">
+<meta name="twitter:description" content="Send a PDF drawing. Get back a Revit model. Coordinated, parameterised, and on your house template.">
+<meta name="twitter:image" content="https://adelphos.ai/images/og/default.png">
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Adelphos AI",
+  "url": "https://adelphos.ai",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adelphos AI",
+    "url": "https://adelphos.ai",
+    "logo": "https://adelphos.ai/logos/Node%20Logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/adelphos-ai",
+      "https://github.com/adelphos-ai"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "JPA Designs Ltd"
+    },
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Jordan Jones"
+      }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF to 3D Model Conversion",
+  "description": "Send a 2D PDF (or a DWG, RVT, or IFC) into the conversion pipeline. The agent identifies systems by line-style, layer, and symbol, models them in 3D using your house Revit template and your house families, populates the relevant parameters, and produces a coordinated Revit model.",
+  "url": "https://adelphos.ai/dist/features/pdf-to-3d/index.html",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "BIM / MEP Engineering",
+  "operatingSystem": "Run by Adelphos — drop a PDF, get a Revit model back.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP",
+    "availability": "https://schema.org/InStock"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adelphos AI",
+    "url": "https://adelphos.ai",
+    "logo": "https://adelphos.ai/logos/Node%20Logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/company/adelphos-ai",
+      "https://github.com/adelphos-ai"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "JPA Designs Ltd"
+    },
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Jordan Jones"
+      }
+    ]
+  },
+  "featureList": "PDF input, DWG / RVT / IFC input, House template enforcement, House family substitution, Parameter population, Ambiguity flagging, Layer-by-layer review, Coordination check",
+  "softwareHelp": {
+    "@type": "CreativeWork",
+    "url": "https://adelphos.ai/dist/docs/index.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is PDF to 3D Model Conversion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Converts 2D PDF drawings (and DWGs) into a fully-modelled, parameterised Revit model — built on your office template, with your families, ready for issue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does PDF to 3D Model Conversion do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send a 2D PDF (or a DWG, RVT, or IFC) into the conversion pipeline. The agent identifies systems by line-style, layer, and symbol, models them in 3D using your house Revit template and your house families, populates the relevant parameters, and produces a coordinated Revit model."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is PDF to 3D Model Conversion different from the manual workflow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Without PDF to 3D Model Conversion: PDF-to-Revit is a junior modeller's week: trace, model, parameterise, swap to house families, fix the schedules. Most practices ship the PDF rather than re-model it because the cost is prohibitive. With PDF to 3D Model Conversion: Drop a PDF (or DWG) into the conversion pipeline. The agent recognises systems, models them on your house template with house families, populates parameters, and hands you a Revit model. Review, accept, issue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much time does PDF to 3D Model Conversion save?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Headline outcomes for PDF to 3D Model Conversion: Hours (not days for a complete Revit model); House template (honoured exactly); House families (swapped in automatically); Ambiguity-aware (asks before guessing)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is PDF to 3D Model Conversion for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Existing-building schemes; Retrofit projects; Hand-over drawings from contractors."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://adelphos.ai/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Features",
+      "item": "https://adelphos.ai/dist/features/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "PDF to 3D Model Conversion",
+      "item": "https://adelphos.ai/dist/features/pdf-to-3d/index.html"
+    }
+  ]
+}
+</script>
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  /* APP DETAIL PAGE — production template ────────────────────────────────
+     Design language: homepage tone gradients, rp-feat-item separator rows,
+     agent spinners, brand teal #156082.
+     Build: scripts/build-app-pages.mjs  ·  Data: sandbox/data/apps.json
+  */
+
+  body { background: #f5f3ef; overflow-y: auto; overflow-x: hidden; height: auto; }
+  html.dark-mode body { background: #1a1a1a; }
+
+  html.dark-mode {
+    --text: #e0e0e0;
+    --text-muted: #999;
+    --bg-card: #2a2a2a;
+    --bg-soft: #242424;
+    --border: rgba(255,255,255,0.10);
+  }
+
+  /* ── TONE GRADIENTS — identical to home.html palette ─────────────────── */
+  :root {
+    --tone-blue:       linear-gradient(135deg, #0e1c25 0%, #1a3441 50%, #156082 100%);
+    --tone-midnight:   linear-gradient(135deg, #0a0f1a 0%, #1a2740 50%, #2c3e6a 100%);
+    --tone-red:        linear-gradient(135deg, #1a0808 0%, #4a1414 50%, #c43a3a 100%);
+    --tone-green:      linear-gradient(135deg, #0a1a14 0%, #1a4030 50%, #2e8b6f 100%);
+    --tone-amber:      linear-gradient(135deg, #1a1408 0%, #4a3a14 50%, #c4923a 100%);
+    --tone-purple:     linear-gradient(135deg, #100a1f 0%, #281a4a 50%, #6a3ac4 100%);
+    --tone-teal:       linear-gradient(135deg, #082020 0%, #144a4a 50%, #2eb8b8 100%);
+  }
+
+  /* ── MOTION ──────────────────────────────────────────────────────────── */
+  @keyframes apRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .ap-reveal { animation: apRise 0.6s ease both; }
+  .ap-reveal.d1 { animation-delay: 0.05s; }
+  .ap-reveal.d2 { animation-delay: 0.12s; }
+  .ap-reveal.d3 { animation-delay: 0.20s; }
+  @media (prefers-reduced-motion: reduce) { .ap-reveal { animation: none; } }
+
+  /* ── HERO BANNER — tone-gradient, matching revit-panel design ────────── */
+  .ap-hero {
+    background: var(--tone-blue);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 0 0 var(--space-2xl);
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.16);
+  }
+  .ap-hero[data-tone="blue"]     { background: var(--tone-blue); }
+  .ap-hero[data-tone="midnight"] { background: var(--tone-midnight); }
+  .ap-hero[data-tone="red"]      { background: var(--tone-red); }
+  .ap-hero[data-tone="green"]    { background: var(--tone-green); }
+  .ap-hero[data-tone="amber"]    { background: var(--tone-amber); }
+  .ap-hero[data-tone="purple"]   { background: var(--tone-purple); }
+  .ap-hero[data-tone="teal"]     { background: var(--tone-teal); }
+
+  .ap-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 85% 15%, rgba(255,255,255,0.06), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(21,96,130,0.18), transparent 50%);
+    pointer-events: none;
+  }
+
+  .ap-hero-inner {
+    position: relative;
+    padding: 48px 56px 44px;
+    color: #fff;
+  }
+
+  .ap-crumb {
+    font-size: 12px; color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em; margin-bottom: 20px;
+  }
+  .ap-crumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+  .ap-crumb a:hover { color: #fff; text-decoration: underline; }
+
+  .ap-hero-head {
+    display: flex; align-items: center; gap: 24px;
+    margin-bottom: 24px;
+  }
+  .ap-hero-head img {
+    width: 96px; height: 96px;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    flex-shrink: 0;
+  }
+  .ap-hero-head .ap-title-block { min-width: 0; }
+
+  .ap-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.90);
+    font-size: 11px; font-weight: 700;
+    padding: 5px 12px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .ap-hero h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 600; line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  .ap-claim {
+    font-size: clamp(18px, 1.8vw, 26px);
+    font-weight: 300; line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: rgba(255,255,255,0.92);
+    margin: 0 0 12px; max-width: 760px;
+  }
+
+  .ap-tag {
+    font-size: 16px; line-height: 1.55;
+    color: rgba(255,255,255,0.70);
+    margin: 0 0 28px; max-width: 700px;
+  }
+
+  .ap-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  .ap-cta-primary {
+    background: #fff; color: #156082;
+    padding: 13px 24px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    display: inline-block;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .ap-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+  }
+
+  .ap-cta-ghost {
+    background: transparent; color: #fff;
+    padding: 13px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.22);
+    transition: background 0.18s;
+  }
+  .ap-cta-ghost:hover { background: rgba(255,255,255,0.10); }
+
+  @media (max-width: 720px) {
+    .ap-hero-inner { padding: 28px 24px 24px; }
+    .ap-hero-head { gap: 16px; }
+    .ap-hero-head img { width: 64px; height: 64px; }
+  }
+
+  /* ── OUTCOMES STRIP ──────────────────────────────────────────────────── */
+  .outcomes-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md); overflow: hidden;
+    margin: 0 0 var(--space-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+  .outcomes-strip .ostat {
+    padding: 22px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .outcomes-strip .ostat:last-child { border-right: none; }
+  .outcomes-strip .num {
+    display: block; font-size: 28px; font-weight: 600;
+    line-height: 1.1; color: var(--brand-teal);
+    letter-spacing: -0.015em;
+  }
+  .outcomes-strip .lbl {
+    display: block; font-size: 13px; color: var(--text-muted);
+    margin-top: 6px; line-height: 1.4;
+  }
+  @media (max-width: 600px) {
+    .outcomes-strip { grid-template-columns: repeat(2, 1fr); }
+    .outcomes-strip .ostat:nth-child(2n) { border-right: none; }
+  }
+
+  /* ── VIDEO ───────────────────────────────────────────────────────────── */
+  .hero-video {
+    border-radius: var(--radius-md);
+    overflow: hidden; margin-bottom: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+  }
+  .hero-video video { display: block; width: 100%; }
+
+  /* ── SECTION HEADINGS ────────────────────────────────────────────────── */
+  .docs-content > h2 {
+    font-size: 28px; font-weight: 500; letter-spacing: -0.02em;
+    line-height: 1.15; color: var(--text);
+    margin: var(--space-2xl) 0 var(--space-xs);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+  .ap-section-sub {
+    font-size: 15px; line-height: 1.6; color: var(--text-muted);
+    margin: 0 0 var(--space-lg); max-width: 700px;
+  }
+
+  /* ── DESCRIPTION — two-column: detail left, pullquote right ──────────── */
+  .ap-why {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-2xl); align-items: start;
+    margin: var(--space-md) 0 var(--space-2xl);
+  }
+  .ap-why-detail p {
+    font-size: 16px; line-height: 1.7; color: var(--text);
+    margin: 0 0 var(--space-md);
+  }
+  .ap-why-detail p:last-child { margin-bottom: 0; }
+  .ap-why-quote blockquote {
+    margin: 0; padding: 0 0 0 24px;
+    border-left: 3px solid var(--brand-teal);
+    font-size: 22px; font-weight: 400; line-height: 1.4;
+    letter-spacing: -0.01em; color: var(--text);
+  }
+  @media (max-width: 900px) {
+    .ap-why { grid-template-columns: 1fr; gap: var(--space-lg); }
+    .ap-why-quote blockquote { font-size: 20px; }
+  }
+
+  /* ── WHAT MAKES IT SPECIAL ───────────────────────────────────────────── */
+  .ap-special {
+    font-size: 17px; line-height: 1.65; color: var(--text);
+    margin: var(--space-sm) 0 var(--space-xl); max-width: 760px;
+  }
+
+  /* ── THE SHIFT — before / after comparison ───────────────────────────── */
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .shift {
+    padding: 24px 26px; border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+  .shift .lab {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; margin: 0 0 10px;
+  }
+  .shift p { font-size: 15px; line-height: 1.6; color: var(--text); margin: 0; }
+  .shift.before { background: rgba(150,30,30,0.04); border-color: rgba(150,30,30,0.18); }
+  .shift.before .lab { color: #c43a3a; }
+  .shift.after  { background: rgba(46,125,50,0.05); border-color: rgba(46,125,50,0.20); }
+  .shift.after  .lab { color: #2e7d32; }
+  html.dark-mode .shift.before { background: rgba(196,58,58,0.08); }
+  html.dark-mode .shift.after  { background: rgba(46,139,111,0.08); }
+  @media (max-width: 720px) { .shift-grid { grid-template-columns: 1fr; } }
+
+  /* ── FEATURES — rp-feat-item separator rows with agent spinner ─────── */
+  @keyframes rpAgentSpin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .rp-agent-spinner { animation: none !important; }
+  }
+
+  .rp-feat-list {
+    display: flex; flex-direction: column; gap: 0;
+    margin: var(--space-sm) 0 0;
+  }
+  .rp-feat-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 16px;
+  }
+  .rp-feat-item:last-child { border-bottom: none; }
+  .rp-feat-copy {
+    display: flex; flex-direction: column; gap: 3px;
+    min-width: 0; flex: 1 1 auto;
+  }
+  .rp-feat-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .rp-feat-desc {
+    font-size: 14px; color: var(--text-muted); line-height: 1.5;
+  }
+  .rp-agent-spinner {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 2px solid var(--border);
+    border-top-color: var(--brand-teal);
+    border-radius: 50%;
+    animation: rpAgentSpin 0.9s linear infinite;
+  }
+
+  .ap-group { margin: var(--space-xl) 0; }
+  .ap-group:first-child { margin-top: 0; }
+  .ap-group-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    color: var(--brand-teal);
+    margin: 0 0 var(--space-xs); padding: 0;
+  }
+  .ap-group-count {
+    font-weight: 500; color: var(--text-muted);
+    margin-left: 8px; letter-spacing: 0;
+  }
+
+  /* ── INSTALL ─────────────────────────────────────────────────────────── */
+  .install-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .install-strip .pname {
+    display: block; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--brand-teal); margin: 0 0 5px;
+  }
+  .install-strip .pspec {
+    display: block; font-size: 14px; line-height: 1.5; color: var(--text);
+  }
+
+  .install-meta {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl); margin-bottom: var(--space-xl);
+  }
+  @media (max-width: 800px) { .install-meta { grid-template-columns: 1fr; gap: var(--space-md); } }
+  .install-meta h4 {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.10em; color: var(--text-muted); margin: 0 0 8px;
+  }
+  .install-meta ul { list-style: none; padding: 0; margin: 0; }
+  .install-meta li {
+    font-size: 14px; line-height: 1.6; color: var(--text);
+    margin: 0 0 4px; padding-left: 14px; position: relative;
+  }
+  .install-meta li::before {
+    content: '\00b7'; position: absolute; left: 0;
+    color: var(--brand-teal); font-weight: 700; font-size: 18px; top: 1px;
+  }
+  .install-meta .auth-text {
+    font-size: 14px; line-height: 1.6; color: var(--text); margin: 0;
+  }
+
+  .install-cta-row {
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+  .install-cta-row .cta-primary {
+    background: var(--brand-teal); color: #fff;
+    padding: 13px 24px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .install-cta-row .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(21,96,130,0.25);
+  }
+  .install-cta-row .cta-secondary {
+    color: var(--brand-teal); padding: 13px 8px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+  }
+  .install-cta-row .cta-secondary:hover { text-decoration: underline; }
+
+  /* ── AUDIENCE ────────────────────────────────────────────────────────── */
+  .ap-audience {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: var(--space-sm) 0 var(--space-xl);
+  }
+  .ap-audience .ap {
+    padding: 10px 18px; background: var(--bg-soft);
+    border: 1px solid var(--border); border-radius: 999px;
+    font-size: 14px; color: var(--text);
+  }
+
+  /* ── END CTA ─────────────────────────────────────────────────────────── */
+  .ap-end-cta {
+    margin-top: var(--space-2xl); padding: 36px 40px;
+    background: linear-gradient(135deg, #156082, #1a3441);
+    color: #fff; border-radius: var(--radius-lg); text-align: center;
+  }
+  html.dark-mode .ap-end-cta {
+    background: linear-gradient(135deg, #156082, #1f7ba8);
+  }
+  .ap-end-cta h3 {
+    font-size: 26px; font-weight: 500; margin: 0 0 10px;
+    color: #fff; letter-spacing: -0.015em;
+  }
+  .ap-end-cta p {
+    color: rgba(255,255,255,0.85); margin: 0 0 20px; font-size: 15px;
+  }
+  .ap-end-cta a {
+    display: inline-block; background: #fff; color: #156082;
+    padding: 12px 26px; border-radius: 999px;
+    font-weight: 600; text-decoration: none;
+    transition: transform 0.18s;
+  }
+  .ap-end-cta a:hover { transform: translateY(-2px); }
+
+  /* ── TIMESTAMP ───────────────────────────────────────────────────────── */
+  .ap-stamp {
+    margin-top: 48px; padding: 14px 18px;
+    background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 12px; color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <!-- ═══ HERO — tone-gradient banner ═══ -->
+  <div class="ap-hero ap-reveal d1" data-tone="{{tone}}">
+    <div class="ap-hero-inner">
+      <nav class="ap-crumb"><a href="/">Home</a> &rsaquo; <a href="/dist/apps/index.html">Apps</a> &rsaquo; PDF to 3D Model Conversion</nav>
+      <div class="ap-hero-head">
+        <img src="/images/app-logos/autocad-copilot.png" alt="PDF to 3D Model Conversion" onerror="this.style.background='rgba(255,255,255,0.08)';this.removeAttribute('src');">
+        <div class="ap-title-block">
+          <span class="ap-badge">Service</span>
+          <h1 id="overview">PDF to 3D Model Conversion</h1>
+        </div>
+      </div>
+      <p class="ap-claim">Send a PDF drawing. Get back a Revit model. Coordinated, parameterised, and on your house template.</p>
+      <p class="ap-tag">Converts 2D PDF drawings (and DWGs) into a fully-modelled, parameterised Revit model — built on your office template, with your families, ready for issue.</p>
+      <div class="ap-actions">
+        <a class="ap-cta-primary" href="https://app.adelphos.ai/pdf-to-3d">Convert a PDF &rarr;</a>
+        <a class="ap-cta-ghost" href="/dist/apps/index.html">See related apps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="outcomes-strip">
+        <div class="ostat"><span class="num">Hours</span><span class="lbl">not days for a complete Revit model</span></div>
+        <div class="ostat"><span class="num">House template</span><span class="lbl">honoured exactly</span></div>
+        <div class="ostat"><span class="num">House families</span><span class="lbl">swapped in automatically</span></div>
+        <div class="ostat"><span class="num">Ambiguity-aware</span><span class="lbl">asks before guessing</span></div></div>
+
+  
+
+  <!-- ═══ DESCRIPTION ═══ -->
+  <h2 id="description">PDF to Revit model conversion for MEP engineers</h2>
+  <div class="ap-why">
+    <div class="ap-why-detail"><p>Send a 2D PDF (or a DWG, RVT, or IFC) into the conversion pipeline. The agent identifies systems by line-style, layer, and symbol, models them in 3D using your house Revit template and your house families, populates the relevant parameters, and produces a coordinated Revit model.</p>
+      <p>Where the source drawing is ambiguous (annotation overlap, unclear connections, missing system labels) the agent flags the ambiguity, proposes a resolution, and asks you to confirm — with one-click accept-all for the routine cases.</p>
+      <p>For a typical commercial floor plate this collapses what is normally 3–5 days of senior modeller time into 2–3 hours of runtime plus a 30-minute review. Most practices use this on existing-building schemes, retrofit briefs, and on hand-over drawings from contractors.</p></div>
+    <aside class="ap-why-quote"><blockquote>PDF to 3D will be the only conversion service that respects your house template, your house families, and your house parameter conventions.</blockquote></aside>
+  </div>
+
+  <!-- ═══ THE SHIFT ═══ -->
+  <h2 id="the-shift">From a junior modeller's week to two hours of agent runtime</h2>
+  <p class="ap-section-sub">What working looks like today versus with PDF to 3D Model Conversion.</p>
+  <div class="shift-grid">
+         <div class="shift before"><p class="lab">Before</p><p>PDF-to-Revit is a junior modeller's week: trace, model, parameterise, swap to house families, fix the schedules. Most practices ship the PDF rather than re-model it because the cost is prohibitive.</p></div>
+         <div class="shift after"><p class="lab">After PDF to 3D Model Conversion</p><p>Drop a PDF (or DWG) into the conversion pipeline. The agent recognises systems, models them on your house template with house families, populates parameters, and hands you a Revit model. Review, accept, issue.</p></div>
+       </div>
+
+  <!-- ═══ WHAT MAKES IT DIFFERENT ═══ -->
+  <h2 id="special">House-template, house-family conversion that asks before guessing</h2>
+  <p class="ap-special"></p>
+
+  <!-- ═══ FEATURES — rp-feat-item rows with agent spinners ═══ -->
+  <h2 id="features">Features</h2>
+  <p class="ap-section-sub">What PDF to 3D Model Conversion does. Each line is a shipped capability.</p>
+  <ul class="feat-list">
+    <li>
+      <span class="name">PDF input</span>
+      <span class="desc">Vector or scanned PDF; the agent handles both.</span>
+    </li>
+    <li>
+      <span class="name">DWG / RVT / IFC input</span>
+      <span class="desc">Same pipeline accepts CAD and BIM formats.</span>
+    </li>
+    <li>
+      <span class="name">House template enforcement</span>
+      <span class="desc">Output sits in your project template with your view templates.</span>
+    </li>
+    <li>
+      <span class="name">House family substitution</span>
+      <span class="desc">Generic geometry swapped for your office family library.</span>
+    </li>
+    <li>
+      <span class="name">Parameter population</span>
+      <span class="desc">Standard MEP parameters populated where the source supports it.</span>
+    </li>
+    <li>
+      <span class="name">Ambiguity flagging</span>
+      <span class="desc">Unclear connections / overlaps / missing labels surfaced for review, not guessed.</span>
+    </li>
+    <li>
+      <span class="name">Layer-by-layer review</span>
+      <span class="desc">Approve / refine each system layer (mech, elec, public health, fire) independently.</span>
+    </li>
+    <li>
+      <span class="name">Coordination check</span>
+      <span class="desc">Output checked against any linked structural / arch model.</span>
+    </li></ul>
+
+  <!-- ═══ INSTALL ═══ -->
+  <h2 id="install">Install &amp; system</h2>
+  <p class="ap-section-sub">Where PDF to 3D Model Conversion runs, what you need, and how to get it.</p>
+  
+    <div class="install-strip">
+      
+        <div class="platform">
+          <span class="pname">Service</span>
+          <span class="pspec">Run by Adelphos — drop a PDF, get a Revit model back.</span>
+        </div>
+        <div class="platform">
+          <span class="pname">Web dashboard</span>
+          <span class="pspec">Review and refine the conversion before download.</span>
+        </div>
+    </div>
+    <div class="install-meta">
+      
+        <div class="meta-block">
+          <h4>Requirements</h4>
+          <ul><li>An Adelphos account.</li><li>Source drawing (PDF, DWG, RVT, or IFC).</li><li>Optional: house Revit template + family library for best output.</li></ul>
+        </div>
+      
+        <div class="meta-block">
+          <h4>Sign-in</h4>
+          <p class="auth-text">Microsoft 365 SSO recommended.</p>
+        </div>
+    </div>
+    <div class="install-cta-row">
+      <a class="cta-primary" href="https://app.adelphos.ai/pdf-to-3d">Convert a PDF →</a>
+      <a class="cta-secondary" href="/dist/docs/index.html">Read the docs first</a>
+    </div>
+
+  <!-- ═══ WHO IT'S FOR ═══ -->
+  <h2 id="best-for">For retrofit, existing-building and hand-over schemes</h2>
+  <div class="ap-audience"><span class="ap">Existing-building schemes</span><span class="ap">Retrofit projects</span><span class="ap">Hand-over drawings from contractors</span></div>
+
+  
+    <section class="related-section" id="related" aria-label="Related content">
+      <h2>Related</h2>
+      <div class="related-grid"><a class="related-card" href="/dist/features/plantroom-designer-3d/index.html">
+       <span class="related-kind">Feature</span>
+       <strong>3D Plantroom Designer</strong>
+       <span class="related-desc">An agentic 3D modeller that designs the plantroom, sizes the equipment, routes the services, and hands you a Revit model ready for issue.</span>
+     </a><a class="related-card" href="/dist/apps/revit-copilot/index.html">
+       <span class="related-kind">App</span>
+       <strong>Revit Copilot</strong>
+       <span class="related-desc">Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.</span>
+     </a><a class="related-card" href="/dist/apps/adelphos-chat/index.html">
+       <span class="related-kind">App</span>
+       <strong>Adelphos Chat</strong>
+       <span class="related-desc">Same agent. Same project context. Browser, phone, or desktop. The Adelphos Chat is the agent untethered from any one tool.</span>
+     </a></div>
+    </section>
+
+  
+    <section class="faq-section" id="faq" aria-label="Frequently asked questions">
+      <h2>Frequently asked questions</h2>
+      <p style="color:var(--text-muted);max-width:880px;margin:0 0 var(--space-md);">Quick answers AI engines (and humans) can pull from.</p>
+      <div class="faq-list">
+    <details class="faq-item" open>
+      <summary>What is PDF to 3D Model Conversion?</summary>
+      <div class="faq-answer"><p>Converts 2D PDF drawings (and DWGs) into a fully-modelled, parameterised Revit model — built on your office template, with your families, ready for issue.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>What does PDF to 3D Model Conversion do?</summary>
+      <div class="faq-answer"><p>Send a 2D PDF (or a DWG, RVT, or IFC) into the conversion pipeline. The agent identifies systems by line-style, layer, and symbol, models them in 3D using your house Revit template and your house families, populates the relevant parameters, and produces a coordinated Revit model.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>How is PDF to 3D Model Conversion different from the manual workflow?</summary>
+      <div class="faq-answer"><p>Without PDF to 3D Model Conversion: PDF-to-Revit is a junior modeller's week: trace, model, parameterise, swap to house families, fix the schedules. Most practices ship the PDF rather than re-model it because the cost is prohibitive. With PDF to 3D Model Conversion: Drop a PDF (or DWG) into the conversion pipeline. The agent recognises systems, models them on your house template with house families, populates parameters, and hands you a Revit model. Review, accept, issue.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>How much time does PDF to 3D Model Conversion save?</summary>
+      <div class="faq-answer"><p>Headline outcomes for PDF to 3D Model Conversion: Hours (not days for a complete Revit model); House template (honoured exactly); House families (swapped in automatically); Ambiguity-aware (asks before guessing).</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>Who is PDF to 3D Model Conversion for?</summary>
+      <div class="faq-answer"><p>Existing-building schemes; Retrofit projects; Hand-over drawings from contractors.</p></div>
+    </details></div>
+    </section>
+
+  <div class="ap-end-cta">
+    <h3>Ready to put PDF to 3D Model Conversion to work?</h3>
+    <p>Built into the Adelphos platform. Self-serve where possible, managed where useful.</p>
+    <a href="https://app.adelphos.ai/pdf-to-3d">Convert a PDF &rarr;</a>
+  </div>
+
+  <p class="ap-stamp">
+    Auto-generated <code>2026-04-25T17:05:03.256Z</code> from <code>sandbox/data/apps.json</code>.
+    Re-run with <code>adelphos_CLI auto-all</code>.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  document.querySelectorAll('video[data-src]').forEach(function(v){ if (!v.src) v.src = v.dataset.src; });
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "preview_transferable_items_in_category_from_source",
+  "desc": "List specific named items within a single category from a source .rvt file.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "source_path",
+      "type": "string",
+      "description": "Path to the source .rvt file",
+      "required": false
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Category name (e.g. ViewFilters, ViewTemplates, LineStyles)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "preview transfer items",
+    "list items in category",
+    "what filters in template"
+  ]
+}

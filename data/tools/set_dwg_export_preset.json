@@ -1,0 +1,22 @@
+{
+  "name": "set_dwg_export_preset",
+  "desc": "Set the DWG export preset. Use drawing_exporter_get_dwg_presets to list available presets first.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "preset_name",
+      "type": "string",
+      "description": "Name of the DWG export preset to use.",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "dwg preset",
+    "dwg settings",
+    "clean dwg",
+    "autocad preset"
+  ]
+}

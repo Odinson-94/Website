@@ -1,0 +1,33 @@
+{
+  "class": "SystemInfoCommand",
+  "desc": "System Info command - displays information about the selected MEP system.",
+  "summary": "System Info command - displays information about the selected MEP system. FEATURES: - Shows system name and type - Displays total length/count of elements - Shows flow/sizing information if available",
+  "usecase": "Use when you need to run this command's workflow for the current model task.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active Revit document and required context are available.",
+  "postcondition": "The command finishes with tracked success or a handled failure state.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "info",
+    "system",
+    "system info"
+  ],
+  "intent_patterns": [
+    "* info"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Command execution result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

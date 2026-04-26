@@ -1,0 +1,46 @@
+{
+  "class": "ClashFinderRunOnSelectionAgainstRestOfModelCommand",
+  "desc": "ClashFinderRunOnSelectionAgainstRestOfModelCommand — selection vs rest-of-model pipeline invocation.",
+  "summary": "ClashFinderRunOnSelectionAgainstRestOfModelCommand — selection vs rest-of-model pipeline invocation.",
+  "usecase": "Targeted \"does this new run clash?\" probe.",
+  "notfor": "Full model or view-scoped — use the other Run commands.",
+  "precondition": "Active document; selection (resolver or active) of ≥ 1 element.",
+  "postcondition": "Clashes upserted for pairs (selection × rest).",
+  "sideeffects": "",
+  "logictree": "1) ids = Resolver_ElementIds OR current selection (active view). WireError if empty.\n2) set_a = resolve ids → Elements; drop nulls.\n3) set_b = all MEPCurves + MechanicalEquipment in doc minus set_a ids.\n4) pipeline.Run(doc, \"selection_vs_rest\", set_a, set_b).\n5) Emit per_pair + total_upserted.",
+  "keywords": [
+    "clashfinderrunonselectionagainstrestofmodel",
+    "selection vs rest",
+    "targeted clash probe"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running clashes for selection vs. rest of model…"
+    ],
+    "thinkingsteps": [
+      "Resolving selection and candidate pool…",
+      "Delegating pipeline.Run…"
+    ],
+    "successprompts": [
+      "Selection-vs-rest produced {total} clashes."
+    ],
+    "failureprompts": [
+      "Selection-vs-rest run failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

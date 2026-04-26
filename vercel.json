@@ -1,0 +1,38 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node scripts/adelphos_CLI.mjs auto-all",
+  "outputDirectory": ".",
+  "framework": null,
+  "trailingSlash": false,
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options",       "value": "nosniff" },
+        { "key": "X-Frame-Options",              "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy",              "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",           "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(png|jpg|jpeg|svg|webp|ico|woff2|woff)$",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/dist/(.*)\\.html$",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, must-revalidate" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "/dist/index.html", "permanent": false },
+    { "source": "/sitemap.xml", "destination": "/dist/sitemap.xml", "permanent": true },
+    { "source": "/robots.txt",  "destination": "/dist/robots.txt",  "permanent": true },
+    { "source": "/llms.txt",    "destination": "/dist/llms.txt",    "permanent": true }
+  ],
+  "cleanUrls": true
+}

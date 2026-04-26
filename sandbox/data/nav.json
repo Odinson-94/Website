@@ -1,0 +1,45 @@
+{
+  "_comment": "Single source of truth for the top menubar. Used by /sandbox/shell.js. Three dropdown styles: 'dropdown' (children loaded from another JSON), 'dropdown-inline' (children listed inline), 'coming-soon' (decorative).",
+  "items": [
+    { "label": "Home",     "href": "/dist/index.html" },
+    { "label": "About Us", "href": "/about/" },
+    { "label": "Roadmap",  "href": "/sandbox/roadmap/" },
+    { "label": "Contact",  "href": "/contact/" },
+    {
+      "label": "Apps",
+      "type": "dropdown",
+      "href": "/dist/apps/index.html",
+      "children_from": "sandbox/data/apps.json",
+      "children_root": "/dist/apps/"
+    },
+    {
+      "label": "Features",
+      "type": "dropdown",
+      "href": "/dist/features/index.html",
+      "children_from": "sandbox/data/features.json",
+      "children_root": "/dist/features/"
+    },
+    {
+      "label": "Agentic Services",
+      "type": "dropdown",
+      "href": "/dist/agentic-services/index.html",
+      "children_from": "sandbox/data/agentic-services.json",
+      "children_root": "/dist/agentic-services/"
+    },
+    {
+      "label": "Docs",
+      "type": "dropdown-inline",
+      "href": "/dist/docs/index.html",
+      "blurb": "Everything we ship: tools, commands, demos, workflows, resources, downloads.",
+      "children": [
+        { "title": "Docs Home",      "tagline": "Tools, commands, integrations.",                  "href": "/dist/docs/index.html" },
+        { "title": "Tools (191)",    "tagline": "Every MCP tool the agent can call.",              "href": "/dist/docs/tools/index.html" },
+        { "title": "Commands (163)", "tagline": "Every Revit command we ship.",                    "href": "/dist/docs/commands/index.html" },
+        { "title": "Demos",          "tagline": "Watch every workflow on video.",                  "href": "/dist/demos/index.html" },
+        { "title": "Workflows",      "tagline": "End-to-end recipes from skill documents.",        "href": "/dist/workflows/index.html" },
+        { "title": "Resources",      "tagline": "Free families, templates, asset data.",            "href": "/dist/resources/index.html" },
+        { "title": "Downloads",      "tagline": "Installers and core packages.",                    "href": "/dist/downloads/index.html" }
+      ]
+    }
+  ]
+}

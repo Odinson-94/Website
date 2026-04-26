@@ -1,0 +1,12 @@
+{
+  "name": "detection_find_external_unit_location_from_envelope",
+  "desc": "detection_find_external_unit_location_from_envelope — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "detection find external unit location from envelope"
+  ]
+}

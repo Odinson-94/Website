@@ -1,0 +1,31 @@
+{
+  "class": "CoolingSizeUnitsFromCalculatedGainForSpaceCommand",
+  "desc": "Picks + writes a cooling unit size from already-calculated heat-gain params.",
+  "summary": "Picks + writes a cooling unit size from already-calculated heat-gain params.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "coolingsizeunitsfromcalculatedgainforspace",
+    "size cooling from gain"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

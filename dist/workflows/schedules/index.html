@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automated Schedule Production — Workflow | Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  /* ── WORKFLOW PAGE ─────────────────────────────────────────────────── */
+  :root {
+    --wf-teal:        #156082;
+    --wf-teal-soft:   rgba(21,96,130,0.08);
+    --wf-teal-border: rgba(21,96,130,0.18);
+    --wf-bg:          #f5f3ef;
+    --wf-surface:     #fff;
+    --wf-text:        #222;
+    --wf-text-muted:  #666;
+    --wf-border:      rgba(0,0,0,0.08);
+    --wf-radius:      14px;
+  }
+  html.dark-mode {
+    --wf-bg:          #1a1a1a;
+    --wf-surface:     #242424;
+    --wf-text:        #e0e0e0;
+    --wf-text-muted:  #999;
+    --wf-border:      rgba(255,255,255,0.08);
+    --wf-teal-soft:   rgba(21,96,130,0.14);
+    --wf-teal-border: rgba(74,155,184,0.22);
+  }
+
+  body { background: var(--wf-bg); }
+
+  /* ── Breadcrumb ────────────────────────────────────────────────────── */
+  .wf-breadcrumb {
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    font-size: 13px; color: var(--wf-text-muted);
+    margin-bottom: 28px;
+  }
+  .wf-breadcrumb a {
+    color: var(--wf-teal); text-decoration: none; font-weight: 500;
+  }
+  .wf-breadcrumb a:hover { text-decoration: underline; }
+  .wf-breadcrumb .sep { opacity: 0.4; }
+
+  /* ── Hero ───────────────────────────────────────────────────────────── */
+  .wf-hero {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    align-items: center;
+    padding: 48px 0 56px;
+    border-bottom: 1px solid var(--wf-border);
+    margin-bottom: 64px;
+  }
+  .wf-hero-copy { display: flex; flex-direction: column; gap: 16px; }
+  .wf-hero-meta {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .wf-status-badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px; border-radius: 999px;
+  }
+  .wf-status-badge[data-status="live"] {
+    background: rgba(46,139,111,0.12); color: #2e8b6f;
+  }
+  .wf-status-badge[data-status="beta"] {
+    background: rgba(196,146,58,0.12); color: #c4923a;
+  }
+  .wf-status-badge[data-status="planned"] {
+    background: rgba(21,96,130,0.10); color: #156082;
+  }
+  html.dark-mode .wf-status-badge[data-status="live"] {
+    background: rgba(46,139,111,0.18); color: #5ec49e;
+  }
+  html.dark-mode .wf-status-badge[data-status="beta"] {
+    background: rgba(196,146,58,0.18); color: #d4a94e;
+  }
+  html.dark-mode .wf-status-badge[data-status="planned"] {
+    background: rgba(74,155,184,0.18); color: #6ec4e0;
+  }
+
+  .wf-phase-count {
+    font-size: 12px; color: var(--wf-text-muted); font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .wf-hero h1 {
+    margin: 0; font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 600; line-height: 1.1; letter-spacing: -0.025em;
+    color: var(--wf-text);
+  }
+  .wf-hero .wf-tagline {
+    margin: 0; font-size: clamp(15px, 1.3vw, 18px);
+    font-weight: 300; line-height: 1.55; color: var(--wf-text-muted);
+    max-width: 32em;
+  }
+  .wf-hero .wf-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+  .wf-hero .wf-cta {
+    background: var(--wf-teal); color: #fff;
+    padding: 12px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .wf-hero .wf-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(21,96,130,0.25); }
+  .wf-hero .wf-cta-sec {
+    color: var(--wf-teal); padding: 12px 18px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    border: 1px solid var(--wf-border); border-radius: 999px;
+    transition: background 0.18s;
+  }
+  .wf-hero .wf-cta-sec:hover { background: var(--wf-teal-soft); }
+
+  .wf-hero-visual {
+    background: linear-gradient(160deg, rgba(21,96,130,0.05), rgba(21,96,130,0.12));
+    border-radius: var(--wf-radius);
+    aspect-ratio: 16 / 10;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--wf-teal-border);
+  }
+  html.dark-mode .wf-hero-visual {
+    background: linear-gradient(160deg, rgba(21,96,130,0.08), rgba(21,96,130,0.20));
+  }
+  .wf-hero-visual .wf-play {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--wf-teal-soft); border: 2px solid var(--wf-teal-border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform 0.2s, background 0.2s;
+  }
+  .wf-hero-visual .wf-play:hover { transform: scale(1.08); background: rgba(21,96,130,0.16); }
+  .wf-hero-visual .wf-play svg { width: 22px; height: 22px; fill: var(--wf-teal); margin-left: 3px; }
+  .wf-hero-visual .wf-video-label {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    font-size: 12px; color: var(--wf-text-muted);
+    text-transform: uppercase; letter-spacing: 0.10em; font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .wf-hero { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ── Phase timeline ────────────────────────────────────────────────── */
+  .wf-phases { display: flex; flex-direction: column; gap: 0; margin-bottom: 64px; }
+
+  .wf-phases-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-bottom: 20px; margin-bottom: 0;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .wf-phases-header h2 {
+    margin: 0; font-size: 28px; font-weight: 500;
+    letter-spacing: -0.02em; color: var(--wf-text);
+  }
+  .wf-phases-header .wf-phase-nav {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .wf-phase-nav a {
+    font-size: 12px; font-weight: 600; color: var(--wf-teal);
+    text-decoration: none; padding: 5px 12px; border-radius: 999px;
+    border: 1px solid var(--wf-teal-border);
+    transition: background 0.18s;
+  }
+  .wf-phase-nav a:hover { background: var(--wf-teal-soft); }
+
+  /* ── Individual phase card ──────────────────────────────────────── */
+  .wf-phase {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 0; position: relative;
+  }
+
+  .wf-phase-rail {
+    display: flex; flex-direction: column; align-items: center;
+    padding-top: 36px;
+  }
+  .wf-phase-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--wf-teal); flex-shrink: 0;
+    box-shadow: 0 0 0 4px var(--wf-teal-soft);
+  }
+  .wf-phase-line {
+    width: 2px; flex: 1; background: var(--wf-border); min-height: 32px;
+  }
+  .wf-phase:last-child .wf-phase-line { display: none; }
+
+  .wf-phase-body {
+    background: var(--wf-surface);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    margin: 16px 0; padding: 0;
+    overflow: hidden;
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+  .wf-phase-body:hover {
+    box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  html.dark-mode .wf-phase-body:hover {
+    box-shadow: 0 16px 40px rgba(0,0,0,0.30);
+  }
+
+  .wf-phase-head {
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .wf-phase-head .wf-phase-kicker {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    color: var(--wf-teal); margin-bottom: 8px;
+  }
+  .wf-phase-head h3 {
+    margin: 0; font-size: 22px; font-weight: 600;
+    color: var(--wf-text); letter-spacing: -0.015em; line-height: 1.2;
+  }
+  .wf-phase-head p {
+    margin: 8px 0 0; font-size: 15px; line-height: 1.55;
+    color: var(--wf-text-muted); font-weight: 300;
+  }
+
+  .wf-phase-content {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  @media (max-width: 900px) {
+    .wf-phase-content { grid-template-columns: 1fr; }
+    .wf-phase { grid-template-columns: 40px 1fr; }
+  }
+
+  /* ── Steps list (left column) — rp-feat-item separator style ────── */
+  .wf-steps { padding: 8px 0; }
+
+  .wf-step {
+    padding: 14px 32px;
+    border-bottom: 1px solid var(--wf-border);
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .wf-step:last-child { border-bottom: none; }
+
+  .wf-step-number {
+    flex-shrink: 0; width: 26px; height: 26px;
+    border-radius: 50%; background: var(--wf-teal-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--wf-teal);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 1px;
+  }
+  .wf-step-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+  .wf-step-title {
+    font-size: 15px; font-weight: 600; color: var(--wf-text);
+    letter-spacing: -0.01em;
+  }
+  .wf-step-desc {
+    font-size: 14px; color: var(--wf-text-muted); line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* ── Right column: media + tools ────────────────────────────────── */
+  .wf-phase-aside {
+    border-left: 1px solid var(--wf-border);
+    display: flex; flex-direction: column;
+  }
+  @media (max-width: 900px) {
+    .wf-phase-aside { border-left: none; border-top: 1px solid var(--wf-border); }
+  }
+
+  .wf-phase-media {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(160deg, rgba(21,96,130,0.04), rgba(21,96,130,0.10));
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  html.dark-mode .wf-phase-media {
+    background: linear-gradient(160deg, rgba(21,96,130,0.06), rgba(21,96,130,0.16));
+  }
+  .wf-phase-media .wf-media-play {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--wf-teal-soft); border: 2px solid var(--wf-teal-border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform 0.2s;
+  }
+  .wf-phase-media .wf-media-play:hover { transform: scale(1.08); }
+  .wf-phase-media .wf-media-play svg { width: 18px; height: 18px; fill: var(--wf-teal); margin-left: 2px; }
+
+  .wf-tools-used {
+    padding: 20px 24px;
+    border-top: 1px solid var(--wf-border);
+  }
+  .wf-tools-used-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--wf-text-muted); margin-bottom: 10px;
+  }
+  .wf-tools-list {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    list-style: none; padding: 0; margin: 0;
+  }
+  .wf-tools-list li {
+    font-size: 12px; font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 10px; border-radius: 6px;
+    background: var(--wf-teal-soft);
+    color: var(--wf-teal);
+    border: 1px solid var(--wf-teal-border);
+  }
+
+  /* ── Prerequisites + outputs ────────────────────────────────────── */
+  .wf-io-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin-bottom: 64px;
+  }
+  @media (max-width: 720px) { .wf-io-row { grid-template-columns: 1fr; } }
+
+  .wf-io-card {
+    background: var(--wf-surface);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    padding: 28px 32px;
+  }
+  .wf-io-card h3 {
+    margin: 0 0 14px; font-size: 16px; font-weight: 600;
+    color: var(--wf-text); letter-spacing: -0.01em;
+  }
+  .wf-io-card ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .wf-io-card li {
+    font-size: 14px; line-height: 1.5; color: var(--wf-text-muted);
+    padding-left: 18px; position: relative; font-weight: 300;
+  }
+  .wf-io-card li::before {
+    content: ''; position: absolute; left: 0; top: 9px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--wf-teal); opacity: 0.5;
+  }
+
+  /* ── Related workflows ──────────────────────────────────────────── */
+  .wf-related {
+    padding-top: 40px; border-top: 1px solid var(--wf-border);
+    margin-bottom: 64px;
+  }
+  .wf-related h2 {
+    margin: 0 0 20px; font-size: 24px; font-weight: 500;
+    color: var(--wf-text); letter-spacing: -0.02em;
+  }
+  .wf-related-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+  }
+  @media (max-width: 900px)  { .wf-related-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 560px)  { .wf-related-grid { grid-template-columns: 1fr; } }
+
+  .wf-related-card {
+    background: var(--wf-surface);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    padding: 22px 24px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .wf-related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  }
+  html.dark-mode .wf-related-card:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.30);
+  }
+  .wf-related-card .wf-rc-title {
+    font-size: 16px; font-weight: 600; color: var(--wf-text);
+  }
+  .wf-related-card .wf-rc-desc {
+    font-size: 13px; color: var(--wf-text-muted); line-height: 1.45; font-weight: 300;
+  }
+  .wf-related-card .wf-rc-phases {
+    font-size: 12px; color: var(--wf-teal); font-weight: 600;
+    font-family: 'JetBrains Mono', monospace; margin-top: 4px;
+  }
+
+  /* ── End CTA ────────────────────────────────────────────────────── */
+  .wf-end-cta {
+    margin: 0 0 48px;
+    padding: 36px;
+    background: linear-gradient(135deg, #156082, #1a3441);
+    color: #fff; border-radius: var(--wf-radius); text-align: center;
+  }
+  html.dark-mode .wf-end-cta { background: linear-gradient(135deg, #156082, #1f7ba8); }
+  .wf-end-cta h3 { font-size: 24px; font-weight: 500; margin: 0 0 10px; color: #fff; letter-spacing: -0.015em; }
+  .wf-end-cta p { color: rgba(255,255,255,0.85); margin: 0 0 18px; font-size: 15px; font-weight: 300; }
+  .wf-end-cta a {
+    display: inline-block; background: #fff; color: #156082;
+    padding: 11px 24px; border-radius: 999px; font-weight: 600;
+    text-decoration: none; font-size: 14px;
+    transition: transform 0.18s; margin: 0 6px;
+  }
+  .wf-end-cta a.sec { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.30); }
+  .wf-end-cta a:hover { transform: translateY(-2px); }
+
+  /* ── Motion ─────────────────────────────────────────────────────── */
+  @keyframes wfRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .wf-reveal { animation: wfRise 0.55s ease both; }
+  .wf-reveal.d1 { animation-delay: 0.05s; }
+  .wf-reveal.d2 { animation-delay: 0.12s; }
+  .wf-reveal.d3 { animation-delay: 0.20s; }
+  .wf-reveal.d4 { animation-delay: 0.28s; }
+  .wf-reveal.d5 { animation-delay: 0.36s; }
+  @media (prefers-reduced-motion: reduce) { .wf-reveal { animation: none; } }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout wide">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <!-- Breadcrumb -->
+  <nav class="wf-breadcrumb wf-reveal d1">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <a href="/dist/workflows/">Workflows</a>
+    <span class="sep">/</span>
+    <span>Automated Schedule Production</span>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="wf-hero wf-reveal d1">
+    <div class="wf-hero-copy">
+      <div class="wf-hero-meta">
+        <span class="wf-status-badge" data-status="live">Live</span>
+        <span class="wf-phase-count">3 phases · 10 steps</span>
+      </div>
+      <h1>Automated Schedule Production</h1>
+      <p class="wf-tagline">Generates MEP schedules from the live Revit model — equipment, duct, pipe and cable tray schedules in one prompt, validated against project standards.</p>
+      <div class="wf-cta-row">
+        <a class="wf-cta" href="/dist/apps/revit-copilot/index.html">Try this workflow →</a>
+        <a class="wf-cta-sec" href="/dist/workflows/">All workflows</a>
+      </div>
+    </div>
+    <div class="wf-hero-visual">
+      <div class="wf-play">
+        <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+      </div>
+      <span class="wf-video-label">Schedule production walkthrough</span>
+    </div>
+  </section>
+
+  <!-- ═══ PREREQUISITES + OUTPUTS ═══ -->
+  <div class="wf-io-row wf-reveal d2">
+    <div class="wf-io-card">
+      <h3>Prerequisites</h3>
+      <ul><li>Revit model with placed MEP families</li><li>Project standards template loaded</li><li>Schedule Builder app installed</li></ul>
+    </div>
+    <div class="wf-io-card">
+      <h3>Outputs</h3>
+      <ul><li>Equipment schedules (PDF + Excel)</li><li>Duct and pipe sizing schedules</li><li>Cable tray schedules</li><li>Validation report against standards</li></ul>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE TIMELINE ═══ -->
+  <div class="wf-phases wf-reveal d3">
+    <div class="wf-phases-header">
+      <h2>Workflow phases</h2>
+      <nav class="wf-phase-nav">
+        <a href="#phase-1">Model audit</a>
+        <a href="#phase-2">Schedule generation</a>
+        <a href="#phase-3">Validation and export</a>
+      </nav>
+    </div>
+
+    
+    <div class="wf-phase" id="phase-1">
+      <div class="wf-phase-rail">
+        <div class="wf-phase-dot"></div>
+        <div class="wf-phase-line"></div>
+      </div>
+      <div class="wf-phase-body">
+        <div class="wf-phase-head">
+          <span class="wf-phase-kicker">Phase 1 of 3</span>
+          <h3>Model audit</h3>
+          <p>Scan the Revit model for placed families, parameter completeness, and naming compliance.</p>
+        </div>
+        <div class="wf-phase-content">
+          <div class="wf-steps">
+          <div class="wf-step">
+            <div class="wf-step-number">1</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Snapshot current model state</span>
+              <span class="wf-step-desc">Read all MEP elements via get_elements_in_view and build a working inventory.</span>
+            </div>
+          </div>
+          <div class="wf-step">
+            <div class="wf-step-number">2</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Check parameter coverage</span>
+              <span class="wf-step-desc">Flag any families missing required schedule parameters (size, load, circuit, etc).</span>
+            </div>
+          </div>
+          <div class="wf-step">
+            <div class="wf-step-number">3</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Validate naming conventions</span>
+              <span class="wf-step-desc">Cross-check family and type names against the project naming standard.</span>
+            </div>
+          </div>
+          </div>
+          <div class="wf-phase-aside">
+            <div class="wf-phase-media">
+              <div class="wf-media-play">
+                <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+              </div>
+            </div>
+            
+            <div class="wf-tools-used">
+              <div class="wf-tools-used-label">Tools used</div>
+              <ul class="wf-tools-list"><li>get_elements_in_view</li><li>snapshot_query</li><li>get_project_standards</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wf-phase" id="phase-2">
+      <div class="wf-phase-rail">
+        <div class="wf-phase-dot"></div>
+        <div class="wf-phase-line"></div>
+      </div>
+      <div class="wf-phase-body">
+        <div class="wf-phase-head">
+          <span class="wf-phase-kicker">Phase 2 of 3</span>
+          <h3>Schedule generation</h3>
+          <p>Build each schedule type from the validated element set, applying project formatting.</p>
+        </div>
+        <div class="wf-phase-content">
+          <div class="wf-steps">
+          <div class="wf-step">
+            <div class="wf-step-number">1</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Generate equipment schedule</span>
+              <span class="wf-step-desc">Group by system, sort by mark, populate all required columns.</span>
+            </div>
+          </div>
+          <div class="wf-step">
+            <div class="wf-step-number">2</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Generate duct schedule</span>
+              <span class="wf-step-desc">Extract duct runs, calculate total lengths, group by system abbreviation.</span>
+            </div>
+          </div>
+          <div class="wf-step">
+            <div class="wf-step-number">3</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Generate pipe schedule</span>
+              <span class="wf-step-desc">Extract pipe segments, pressures, insulation thickness by system type.</span>
+            </div>
+          </div>
+          <div class="wf-step">
+            <div class="wf-step-number">4</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Generate cable tray schedule</span>
+              <span class="wf-step-desc">List tray runs with fill ratio and circuit reference.</span>
+            </div>
+          </div>
+          </div>
+          <div class="wf-phase-aside">
+            <div class="wf-phase-media">
+              <div class="wf-media-play">
+                <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+              </div>
+            </div>
+            
+            <div class="wf-tools-used">
+              <div class="wf-tools-used-label">Tools used</div>
+              <ul class="wf-tools-list"><li>create_schedule</li><li>set_parameter_value</li><li>list_rooms</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wf-phase" id="phase-3">
+      <div class="wf-phase-rail">
+        <div class="wf-phase-dot"></div>
+        <div class="wf-phase-line"></div>
+      </div>
+      <div class="wf-phase-body">
+        <div class="wf-phase-head">
+          <span class="wf-phase-kicker">Phase 3 of 3</span>
+          <h3>Validation and export</h3>
+          <p>Run QA checks on the generated schedules and export to PDF and Excel.</p>
+        </div>
+        <div class="wf-phase-content">
+          <div class="wf-steps">
+          <div class="wf-step">
+            <div class="wf-step-number">1</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Cross-check totals</span>
+              <span class="wf-step-desc">Compare schedule totals against model element counts to catch omissions.</span>
+            </div>
+          </div>
+          <div class="wf-step">
+            <div class="wf-step-number">2</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Apply formatting template</span>
+              <span class="wf-step-desc">Set column widths, header styles and page breaks per the project standard.</span>
+            </div>
+          </div>
+          <div class="wf-step">
+            <div class="wf-step-number">3</div>
+            <div class="wf-step-copy">
+              <span class="wf-step-title">Export outputs</span>
+              <span class="wf-step-desc">Render PDF sheets and Excel workbooks to the project output folder.</span>
+            </div>
+          </div>
+          </div>
+          <div class="wf-phase-aside">
+            <div class="wf-phase-media">
+              <div class="wf-media-play">
+                <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+              </div>
+            </div>
+            
+            <div class="wf-tools-used">
+              <div class="wf-tools-used-label">Tools used</div>
+              <ul class="wf-tools-list"><li>export_schedule</li><li>qa_check</li><li>get_document_info</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RELATED WORKFLOWS ═══ -->
+  <section class="wf-related wf-reveal d4">
+    <h2>Related workflows</h2>
+    <div class="wf-related-grid">
+      <p style="color:var(--wf-text-muted);font-size:14px;">No related workflows yet.</p>
+    </div>
+  </section>
+
+  <!-- ═══ END CTA ═══ -->
+  <section class="wf-end-cta wf-reveal d5">
+    <h3>Want to automate this workflow?</h3>
+    <p>Set up once, run from chat every time.</p>
+    <a href="/dist/apps/revit-copilot/index.html">Get started →</a>
+    <a class="sec" href="/contact/">Talk to us</a>
+  </section>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+<script src="/js/supabase.js"></script>
+</body>
+</html>

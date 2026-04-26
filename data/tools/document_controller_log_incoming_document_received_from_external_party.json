@@ -1,0 +1,53 @@
+{
+  "name": "document_controller_log_incoming_document_received_from_external_party",
+  "desc": "Logs a document received from an external party. Validates naming, checks for duplicates, records in the incoming document register.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 7,
+  "parameters": [
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project identifier",
+      "required": true
+    },
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "BS 1192 document code",
+      "required": true
+    },
+    {
+      "name": "revision",
+      "type": "string",
+      "description": "Revision code (e.g. P01, C01)",
+      "required": true
+    },
+    {
+      "name": "receivedFromName",
+      "type": "string",
+      "description": "Name of the person sending the document",
+      "required": true
+    },
+    {
+      "name": "receivedFromOrg",
+      "type": "string",
+      "description": "Organisation name of the sender",
+      "required": true
+    },
+    {
+      "name": "platformSource",
+      "type": "string",
+      "description": "Platform the document was received from (e.g. email, Asite, VFP)",
+      "required": false
+    },
+    {
+      "name": "notes",
+      "type": "string",
+      "description": "Optional notes about the incoming document",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

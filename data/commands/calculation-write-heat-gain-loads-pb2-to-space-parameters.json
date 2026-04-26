@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteHeatGainLoadsPb2ToSpaceParametersCommand",
+  "desc": "CalculationWriteHeatGainLoadsPb2ToSpaceParametersCommand — writer for activity-kind-driven heat-gain.",
+  "summary": "CalculationWriteHeatGainLoadsPb2ToSpaceParametersCommand — writer for activity-kind-driven heat-gain. Delegates to Simple writer with internal loads pre-populated from GetActivityLoadsFromStandardTable.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteheatgainloadspb2tospaceparameters",
+    "write pb2 gain"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

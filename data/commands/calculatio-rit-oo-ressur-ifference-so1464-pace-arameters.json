@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteRoomPressureDifferencesIso14644ToSpacesParametersCommand",
+  "desc": "ISO 14644 cleanroom writer — standard tag = \"iso_14644\".",
+  "summary": "ISO 14644 cleanroom writer — standard tag = \"iso_14644\".",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteroompressuredifferencesiso14644tospacesparameters",
+    "write iso 14644 pressure"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clash Solver Check Angle90 Through Wall Close Issue — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Clash Solver Check Angle90 Through Wall Close Issue</div>
+
+  <h1 id="overview">Clash Solver Check Angle90 Through Wall Close Issue</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">ClashSolverCheckAngle90ThroughWallCloseIssueCommand — PDF &quot;IF_ANGLE_IS_90_CLOSE_ISSUE&quot;. Classify and auto-close qualifying perpendicular-through-wall clashes.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document; Resolver_ClashId resolves in staging DB; pair still in the model.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>No model geometry mutation; clashes table row may transition to state='ignored'.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/clash-solver-check-angle90-through-wall-close-issue/thumbnail.svg"
+           data-src="/sandbox/demo-assets/clash-solver-check-angle90-through-wall-close-issue/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop clash-solver-check-angle90-through-wall-close-issue/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>Auto-close compliant perpendicular wall penetrations without human click-per-clash.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Non-wall clashes — the helper will emit reason='not_wall_service_pair'.</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>PresetKind</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>&quot;clash_tolerances&quot;</td>
+    <td>Deterministic config preset</td>
+  </tr></tbody>
+  </table>
+
+  
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree">1) Resolver_ClashId required; load ClashRecord; WireError if missing.
+2) Resolve UidA + UidB in doc; WireError if either missing.
+3) Call KeepAngleSteppedRouteOptions.Classify(a, b, angle_tolerance_deg).
+4) If verdict.IsPerpendicular &amp;&amp; verdict.FullyThroughWall →
+     repo.TransitionState(clashId, 'ignored', &quot;angle_90_through_wall: angle={angle_deg} deg, penetration={pen_ft} ft.&quot;).
+   Else: no transition; emit diagnostic.
+5) Tracker outputs + TaskDialog on Human path.
+6) Never throws on a reason-based no-op; only WireFault on exception.</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Classifying clash as perpendicular-through-wall…</div>
+    <div class="lab">thinking</div><div class="msg">Loading clash row + pair elements…<br>Delegating to KeepAngleSteppedRouteOptions…</div>
+    <div class="lab">on success</div><div class="msg">qualifies=<span class="placeholder">{qualifies}</span> reason=<span class="placeholder">{reason}</span></div>
+    <div class="lab">on failure</div><div class="msg">Angle-90 classification failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/clash_solver_check_angle90_through_wall_close_issue</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">clashsolvercheckangle90throughwallcloseissue · close 90 through wall · auto-close perpendicular penetration</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

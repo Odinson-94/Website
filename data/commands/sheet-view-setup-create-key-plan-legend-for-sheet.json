@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupCreateKeyPlanLegendForSheetCommand",
+  "desc": "Create Key Plan Legend For Sheet.",
+  "summary": "Create Key Plan Legend For Sheet.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create key plan",
+    "key plan legend",
+    "key plan for sheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Create Key Plan Legend For Sheet…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Create Key Plan Legend For Sheet: completed."
+    ],
+    "failureprompts": [
+      "Create Key Plan Legend For Sheet: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

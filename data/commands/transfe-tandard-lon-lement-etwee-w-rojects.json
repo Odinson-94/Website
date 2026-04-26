@@ -1,0 +1,36 @@
+{
+  "class": "TransferStandardsCloneElementsBetweenTwoProjectsCommand",
+  "desc": "Clone Elements Between Two Projects.",
+  "summary": "Clone Elements Between Two Projects.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/TransferStandards/Transfer Standards Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/TransferStandards/Transfer Standards Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clone project",
+    "transfer elements between projects",
+    "clone elements to project"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Clone Elements Between Two Projects…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Clone Elements Between Two Projects: completed."
+    ],
+    "failureprompts": [
+      "Clone Elements Between Two Projects: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

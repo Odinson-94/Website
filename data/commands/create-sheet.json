@@ -1,0 +1,89 @@
+{
+  "class": "CreateSheetCommand",
+  "desc": "Phase 7 Command: Creates a new sheet with user-specified parameters.",
+  "summary": "Phase 7 Command: Creates a new sheet with user-specified parameters. Resolves titleblock from parameters (ID or name), auto-generates sheet number with \"M-\" prefix. Uses CreateSheet helper for the actual sheet creation. Uses ListSheets.GetNextAvailableNumber for auto-numbering. After creation, use CreateViewsCommand to populate with views.",
+  "usecase": "User wants to create a new drawing sheet for MEP layouts. User needs a sheet with a specific number and name. AI orchestrator needs to create sheets as part of automated sheet setup.",
+  "notfor": "Placing views on an existing sheet (use PlaceViewOnSheetCommand). Creating multiple sheets in batch (use SheetSetUpCommand).",
+  "precondition": "Active document must be open. At least one titleblock family must be loaded in the project.",
+  "postcondition": "A new ViewSheet is created in the document with the specified number and name. Titleblock is placed on the sheet. Sheet is ready for views to be placed.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create sheet",
+    "make sheet",
+    "new sheet",
+    "add sheet",
+    "drawing sheet"
+  ],
+  "intent_patterns": [
+    "create * sheet",
+    "make * sheet",
+    "new * sheet",
+    "add * sheet"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "titleblockId",
+      "type": "int",
+      "description": "Element ID of titleblock to use",
+      "default": ""
+    },
+    {
+      "name": "titleblockName",
+      "type": "string",
+      "description": "Name of titleblock family to use",
+      "default": ""
+    },
+    {
+      "name": "sheetNumber",
+      "type": "string",
+      "description": "Sheet number (auto-generated if not provided)",
+      "default": "\"auto\""
+    },
+    {
+      "name": "sheetName",
+      "type": "string",
+      "description": "Sheet name",
+      "default": "\"General Arrangement\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedSheet",
+      "type": "ViewSheet",
+      "description": "The created sheet"
+    },
+    {
+      "name": "SheetNumber",
+      "type": "string",
+      "description": "The assigned sheet number"
+    }
+  ],
+  "related_commands": [
+    "CreateViewsCommand",
+    "PlaceViewOnSheetCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a new drawing sheet...",
+      "Setting up your sheet..."
+    ],
+    "thinkingsteps": [
+      "Finding available titleblocks...",
+      "Generating next sheet number...",
+      "Creating sheet with titleblock..."
+    ],
+    "successprompts": [
+      "Sheet {SheetNumber} created: {SheetName}",
+      "Done! Sheet is ready for views."
+    ],
+    "failureprompts": [
+      "Couldn't create sheet: {error}",
+      "Sheet creation failed - {error}"
+    ]
+  },
+  "has_restapi": false
+}

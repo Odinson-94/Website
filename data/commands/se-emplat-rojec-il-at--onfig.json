@@ -1,0 +1,25 @@
+{
+  "class": "SetTemplateProjectFilePathInConfig",
+  "desc": "Sets the template .rvt file path in the project/user/business config.",
+  "summary": "Sets the template .rvt file path in the project/user/business config. Validates file exists before saving. Uses TransferStandardsConfigResolver for three-tier config persistence.",
+  "usecase": "User wants to configure which template file to use for transfer standards.",
+  "notfor": "Performing actual transfers (use TransferAllStandardsFromSourceByCategory).",
+  "precondition": "Active Revit document must be open.",
+  "postcondition": "Template path saved to the appropriate config tier.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "set template path",
+    "configure template",
+    "set transfer source"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

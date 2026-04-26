@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteRoomPressureDifferencesBs9999ToStairwellParametersCommand",
+  "desc": "BS 9999 stairwell writer — standard tag = \"bs_9999\".",
+  "summary": "BS 9999 stairwell writer — standard tag = \"bs_9999\".",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteroompressuredifferencesbs9999tostairwellparameters",
+    "write bs9999 pressure"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

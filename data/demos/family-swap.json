@@ -1,0 +1,8 @@
+{
+  "slug": "family-swap",
+  "category": "revit-utilities",
+  "title": "Family Swap",
+  "desc": "Replace one family/type with another, preserving connections and parameters.",
+  "duration": "0:57",
+  "status": "live"
+}

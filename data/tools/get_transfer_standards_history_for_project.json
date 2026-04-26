@@ -1,0 +1,15 @@
+{
+  "name": "get_transfer_standards_history_for_project",
+  "desc": "Returns the transfer history for the current project: what was transferred, when, from which source.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "transfer history",
+    "past transfers",
+    "what was transferred",
+    "transfer log"
+  ]
+}

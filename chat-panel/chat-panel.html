@@ -1,0 +1,3132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUILD X. Specification Builder</title>
+  <!-- CRITICAL: Apply dark mode IMMEDIATELY before any CSS loads to prevent flash -->
+  <!-- Uses cookies for persistence across sessions -->
+  <script>
+    // Check cookie for dark mode preference
+    function getDarkModeCookie() {
+      const match = document.cookie.match(/(?:^|; )specbuilderDarkMode=([^;]*)/);
+      return match ? match[1] === 'true' : false;
+    }
+    // Also check localStorage as fallback for migration
+    const darkModeEnabled = getDarkModeCookie() || localStorage.getItem('specbuilder-dark-mode') === 'dark';
+    if (darkModeEnabled) {
+      document.documentElement.classList.add('dark-mode');
+      // Migrate to cookie if was in localStorage
+      if (!getDarkModeCookie() && localStorage.getItem('specbuilder-dark-mode') === 'dark') {
+        document.cookie = 'specbuilderDarkMode=true; path=/; max-age=31536000; SameSite=Lax';
+      }
+    }
+  </script>
+  <!-- CRITICAL CSS: Dark mode colors applied IMMEDIATELY -->
+  <style>
+    html.dark-mode, html.dark-mode body { background: #1a1a1a !important; }
+    html.dark-mode .demo-chat-box { background: #2a2a2a !important; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600&display=swap">
+  <!-- CSS files -->
+  <link rel="stylesheet" href="css/chat-panel.css">
+  <link rel="stylesheet" href="css/thinking-animation.css">
+</head>
+<body>
+<!-- View 4: Demo Split View - Floorplans MEP (same as demos.html View 2) -->
+<div class="demo-view-overlay" id="gifOverlay">
+  <div class="demo-split-view">
+    <div class="demo-text-panel">
+      <div class="demo-text-inner">
+        <h2 class="demo-text-heading">Automated MEP Floorplan Generation.</h2>
+        <div class="demo-text-body">
+          <p>Upload your architectural floorplan and receive complete MEP service layouts in minutes, not weeks.</p>
+          <p>Our AI analyses spatial constraints, calculates optimal routing, and generates coordinated drawings for HVAC, electrical, and plumbing systems automatically.</p>
+          <a href="MEP_Coordination_Output.pdf" download class="demo-example-btn" id="seeExampleBtn">See example output</a>
+        </div>
+      </div>
+    </div>
+    <div class="demo-containers-panel">
+      <div class="demo-image-container">
+        <div class="demo-containers-stack" data-service="floorplan">
+          <!-- Chat Container with Integrated History -->
+          <div class="demo-chat-wrapper">
+            <div class="demo-chat-box">
+              <div class="demo-chat-titlebar">
+                <span class="demo-chat-titlebar-text"><span class="titlebar-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="titlebar-subtitle">Specification Builder</span></span>
+                <div class="titlebar-menu">
+                  <!-- FILE MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">File</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item" data-shortcut="Ctrl+N">New Specification</div>
+                      <div class="menu-item" data-shortcut="Ctrl+O">Open</div>
+                      <div class="menu-item">Open from Contract</div>
+                      <div class="menu-item">Open from Project</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+S">Save</div>
+                      <div class="menu-item" data-shortcut="Ctrl+Shift+S">Save As</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Export
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">Export to PDF</div>
+                          <div class="menu-item">Export to Word</div>
+                          <div class="menu-item">Export to IFC/COBie</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Import (SMART)
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu smart-menu">
+                          <div class="menu-item" title="Smart import — auto-matches to your project systems">Import Specification</div>
+                          <div class="menu-item" title="Smart import — pre-filled with your equipment and requirements">Import Section</div>
+                          <div class="menu-item" title="Smart import — auto-matched from your synced Revit model">Import Equipment Schedule</div>
+                          <div class="menu-item" title="Pull clauses already tagged to your project's Uniclass codes">Import from Project Data</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">Recent</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+P">Print</div>
+                      <div class="menu-item" data-shortcut="Ctrl+W">Close</div>
+                    </div>
+                  </div>
+                  
+                  <!-- EDIT MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Edit</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item" data-shortcut="Ctrl+Z">Undo</div>
+                      <div class="menu-item" data-shortcut="Ctrl+Y">Redo</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+X">Cut</div>
+                      <div class="menu-item" data-shortcut="Ctrl+C">Copy</div>
+                      <div class="menu-item" data-shortcut="Ctrl+V">Paste</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+H">Find & Replace</div>
+                      <div class="menu-item" data-shortcut="Ctrl+A">Select All</div>
+                      <div class="menu-item" data-shortcut="Ctrl+G">Go to Section</div>
+                    </div>
+                  </div>
+                  
+                  <!-- VIEW MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">View</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Zoom In</div>
+                      <div class="menu-item">Zoom Out</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item menu-toggle" data-toggle="nav-panel">Navigation Panel</div>
+                      <div class="menu-item menu-toggle" data-toggle="ai-assistant">AI Assistant</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item menu-toggle" data-toggle="dark-mode">Dark Mode</div>
+                      <div class="menu-item" data-shortcut="F11">Full Screen</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item menu-toggle" data-toggle="clause-codes">Show Clause Codes</div>
+                    </div>
+                  </div>
+                  
+                  <!-- INSERT MENU (SMART) -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Insert</button>
+                    <div class="menu-dropdown-content smart-menu">
+                      <div class="menu-item has-submenu smart-feature">
+                        AI Write
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Writes spec using your actual equipment, systems and requirements. Minimal input needed.">Write Specification</div>
+                          <div class="menu-item" title="Completes this section using your project's specific data. Just review and approve.">Complete Section</div>
+                          <div class="menu-item" title="Suggests content based on your project context and cursor position.">Suggest Content</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Sections
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">New Section</div>
+                          <div class="menu-item" title="Imports section pre-filled with your project's equipment. Already knows your model.">Import Entire Section</div>
+                          <div class="menu-item" title="Template auto-populated with your project-specific data.">Import from Template</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Clauses
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Shows clauses relevant to your project, filtered by your systems and equipment.">Insert Clause</div>
+                          <div class="menu-item" title="Quick access to clauses prioritised by relevance to current section.">Quick Clause</div>
+                          <div class="menu-item" title="Browse all clauses with filters based on your Uniclass codes and systems.">Browse Clause Library</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Schedules
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Pulls equipment from your synced Revit model. Auto-matched, ready to insert.">Import Equipment Schedule</div>
+                          <div class="menu-item" title="Schedule table pre-filled with your equipment. Just review columns.">Insert Schedule Table</div>
+                          <div class="menu-item" title="Links to equipment data — updates when the model changes.">Link to External Schedule</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Appendices
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Auto-suggests which specification sections it relates to.">Attach Appendix (PDF)</div>
+                          <div class="menu-item" title="Auto-links to relevant equipment and schedules in your project.">Attach Appendix (Excel)</div>
+                          <div class="menu-item" title="Identifies which systems/areas the drawing covers.">Attach Drawing</div>
+                          <div class="menu-item" title="Appendices organised by system and section automatically.">Manage Appendices</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Media
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Auto-generates figure numbers and cross-references.">Image/Drawing</div>
+                          <div class="menu-item">Hyperlink</div>
+                          <div class="menu-item" title="Suggests relevant sections to cross-reference based on content.">Cross-Reference</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Codes
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Shows Uniclass codes in your project first. Quick access to what you need.">Uniclass Code</div>
+                          <div class="menu-item" title="NRM2 codes filtered by your project's work packages.">NRM2 Code</div>
+                          <div class="menu-item" title="Data pulled from your linked NEC4 contract automatically.">Works Information Item</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- FORMAT MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Format</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item has-submenu">
+                        Text
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" data-shortcut="Ctrl+B">Bold</div>
+                          <div class="menu-item" data-shortcut="Ctrl+I">Italic</div>
+                          <div class="menu-item" data-shortcut="Ctrl+U">Underline</div>
+                          <div class="menu-item">Strikethrough</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Subscript</div>
+                          <div class="menu-item">Superscript</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Font...</div>
+                          <div class="menu-item">Font Size...</div>
+                          <div class="menu-item">Font Color...</div>
+                          <div class="menu-item">Highlight...</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Paragraph
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">Heading 1</div>
+                          <div class="menu-item">Heading 2</div>
+                          <div class="menu-item">Heading 3</div>
+                          <div class="menu-item">Heading 4</div>
+                          <div class="menu-item">Normal</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Bullet List</div>
+                          <div class="menu-item">Numbered List</div>
+                          <div class="menu-item">Multilevel List</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Alignment...</div>
+                          <div class="menu-item">Indent...</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Styles
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">Apply Style...</div>
+                          <div class="menu-item">Clause Style</div>
+                          <div class="menu-item">Note Style</div>
+                          <div class="menu-item">Table Style...</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Structure
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Automatically detects and applies document structure from imported files.">Detect Structure</div>
+                          <div class="menu-item">Apply Uniclass Structure</div>
+                          <div class="menu-item">Clear Formatting</div>
+                          <div class="menu-item">Reveal Formatting</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- TOOLS MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Tools</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Spell Check</div>
+                      <div class="menu-item">Version Compare</div>
+                      <div class="menu-item">Clash Detection</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">AI Suggestions</div>
+                      <div class="menu-item">Manage Libraries</div>
+                    </div>
+                  </div>
+                  
+                  <!-- CONTRACTS MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Contracts</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Link to Contract</div>
+                      <div class="menu-item">Contract Data</div>
+                      <div class="menu-item">Z Clauses</div>
+                      <div class="menu-item">Option Selection</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">Tender Documents</div>
+                    </div>
+                  </div>
+                  
+                  <!-- HELP MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Help</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Documentation</div>
+                      <div class="menu-item">NEC4 Guide</div>
+                      <div class="menu-item">Uniclass Reference</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">Keyboard Shortcuts</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">About</div>
+                    </div>
+                  </div>
+                  
+                  <!-- ELLIPSIS MENU (appears when menus overflow) -->
+                  <div class="menu-dropdown ellipsis-dropdown">
+                    <button class="titlebar-menu-ellipsis" title="More menus">⋯</button>
+                    <div class="menu-dropdown-content ellipsis-menu-content">
+                      <div class="menu-item">File</div>
+                      <div class="menu-item">Edit</div>
+                      <div class="menu-item">View</div>
+                      <div class="menu-item">Insert</div>
+                      <div class="menu-item">Format</div>
+                      <div class="menu-item">Tools</div>
+                      <div class="menu-item">Contracts</div>
+                      <div class="menu-item">Help</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-chat-titlebar-btns">
+                  <!-- Light/Dark Mode Toggle -->
+                  <button class="demo-titlebar-btn theme-toggle" id="darkModeToggle" title="Toggle Light/Dark Mode">
+                    <span class="theme-icon">◐</span>
+                  </button>
+                  <div class="chat-settings-wrapper">
+                    <button class="demo-titlebar-btn settings" id="chatSettingsBtn" title="Settings">⚙</button>
+                    <div class="color-palette-dropdown word-style chat-palette" id="chatColorPaletteDropdown">
+                      <div class="palette-section">
+                        <div class="palette-header">Theme Colors</div>
+                        <div class="palette-grid theme-colors">
+                          <button class="color-swatch" data-color="#FFFFFF" title="White"></button>
+                          <button class="color-swatch" data-color="#000000" title="Black"></button>
+                          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+                          <button class="color-swatch" data-color="#c55a11" title="Orange"></button>
+                          <button class="color-swatch" data-color="#2e7d32" title="Green"></button>
+                          <button class="color-swatch active" data-color="#156082" title="Teal (Default)"></button>
+                          <button class="color-swatch" data-color="#9c27b0" title="Magenta"></button>
+                          <button class="color-swatch" data-color="#00838f" title="Cyan"></button>
+                          <button class="color-swatch" data-color="#558b2f" title="Olive"></button>
+                          <button class="color-swatch" data-color="#f2f2f2" title="White 5%"></button>
+                          <button class="color-swatch" data-color="#7f7f7f" title="Black 50%"></button>
+                          <button class="color-swatch" data-color="#d6dce5" title="Dark Blue 80%"></button>
+                          <button class="color-swatch" data-color="#e1d5e7" title="Purple 80%"></button>
+                          <button class="color-swatch" data-color="#fbe5d6" title="Orange 80%"></button>
+                          <button class="color-swatch" data-color="#e2efda" title="Green 80%"></button>
+                          <button class="color-swatch" data-color="#deebf7" title="Teal 80%"></button>
+                          <button class="color-swatch" data-color="#f3e5f5" title="Magenta 80%"></button>
+                          <button class="color-swatch" data-color="#e0f7fa" title="Cyan 80%"></button>
+                          <button class="color-swatch" data-color="#f1f8e9" title="Olive 80%"></button>
+                          <button class="color-swatch" data-color="#d9d9d9" title="White 15%"></button>
+                          <button class="color-swatch" data-color="#595959" title="Black 35%"></button>
+                          <button class="color-swatch" data-color="#adb9ca" title="Dark Blue 60%"></button>
+                          <button class="color-swatch" data-color="#c3abd0" title="Purple 60%"></button>
+                          <button class="color-swatch" data-color="#f7cbac" title="Orange 60%"></button>
+                          <button class="color-swatch" data-color="#c5e0b4" title="Green 60%"></button>
+                          <button class="color-swatch" data-color="#bdd7ee" title="Teal 60%"></button>
+                          <button class="color-swatch" data-color="#e1bee7" title="Magenta 60%"></button>
+                          <button class="color-swatch" data-color="#b2ebf2" title="Cyan 60%"></button>
+                          <button class="color-swatch" data-color="#dcedc8" title="Olive 60%"></button>
+                          <button class="color-swatch" data-color="#bfbfbf" title="White 25%"></button>
+                          <button class="color-swatch" data-color="#404040" title="Black 25%"></button>
+                          <button class="color-swatch" data-color="#8497b0" title="Dark Blue 40%"></button>
+                          <button class="color-swatch" data-color="#a481b8" title="Purple 40%"></button>
+                          <button class="color-swatch" data-color="#f4b183" title="Orange 40%"></button>
+                          <button class="color-swatch" data-color="#a9d18e" title="Green 40%"></button>
+                          <button class="color-swatch" data-color="#9cc3e5" title="Teal 40%"></button>
+                          <button class="color-swatch" data-color="#ce93d8" title="Magenta 40%"></button>
+                          <button class="color-swatch" data-color="#80deea" title="Cyan 40%"></button>
+                          <button class="color-swatch" data-color="#c5e1a5" title="Olive 40%"></button>
+                          <button class="color-swatch" data-color="#a6a6a6" title="White 35%"></button>
+                          <button class="color-swatch" data-color="#262626" title="Black 15%"></button>
+                          <button class="color-swatch" data-color="#324a5f" title="Dark Blue 25%"></button>
+                          <button class="color-swatch" data-color="#6b3d7a" title="Purple 25%"></button>
+                          <button class="color-swatch" data-color="#c55a11" title="Orange 25%"></button>
+                          <button class="color-swatch" data-color="#538135" title="Green 25%"></button>
+                          <button class="color-swatch" data-color="#2e75b6" title="Teal 25%"></button>
+                          <button class="color-swatch" data-color="#8e24aa" title="Magenta 25%"></button>
+                          <button class="color-swatch" data-color="#00acc1" title="Cyan 25%"></button>
+                          <button class="color-swatch" data-color="#7cb342" title="Olive 25%"></button>
+                          <button class="color-swatch" data-color="#808080" title="White 50%"></button>
+                          <button class="color-swatch" data-color="#0d0d0d" title="Black 5%"></button>
+                          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+                          <button class="color-swatch" data-color="#974706" title="Orange Dark"></button>
+                          <button class="color-swatch" data-color="#385723" title="Green Dark"></button>
+                          <button class="color-swatch" data-color="#1f4e79" title="Teal Dark"></button>
+                          <button class="color-swatch" data-color="#6a1b9a" title="Magenta Dark"></button>
+                          <button class="color-swatch" data-color="#006064" title="Cyan Dark"></button>
+                          <button class="color-swatch" data-color="#33691e" title="Olive Dark"></button>
+                        </div>
+                      </div>
+                      <div class="palette-section">
+                        <div class="palette-header">Standard Colors</div>
+                        <div class="palette-grid standard-colors">
+                          <button class="color-swatch" data-color="#c00000" title="Dark Red"></button>
+                          <button class="color-swatch" data-color="#ff0000" title="Red"></button>
+                          <button class="color-swatch" data-color="#ffc000" title="Orange"></button>
+                          <button class="color-swatch" data-color="#ffff00" title="Yellow"></button>
+                          <button class="color-swatch" data-color="#92d050" title="Light Green"></button>
+                          <button class="color-swatch" data-color="#00b050" title="Green"></button>
+                          <button class="color-swatch" data-color="#00b0f0" title="Light Blue"></button>
+                          <button class="color-swatch" data-color="#0070c0" title="Blue"></button>
+                          <button class="color-swatch" data-color="#002060" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#7030a0" title="Purple"></button>
+                        </div>
+                      </div>
+                      <button class="more-colors-btn chat-more-colors">
+                        <span class="more-colors-icon">🎨</span>
+                        <span>More Colors...</span>
+                      </button>
+                      <input type="color" class="hidden-color-input chat-custom-color" value="#156082">
+                    </div>
+                  </div>
+                  <button class="demo-titlebar-btn min"></button>
+                  <button class="demo-titlebar-btn max"></button>
+                  <button class="demo-titlebar-btn close"></button>
+                </div>
+              </div>
+              <div class="demo-chat-body">
+                <!-- LEFT COLUMN -->
+                <div class="left-column" id="leftColumn">
+                  <div class="headings-section" id="headingsSection">
+                    <div class="section-header">Headings</div>
+                    <ul class="headings-list" id="headingsList">
+                      <!-- Auto-populated from editor content -->
+                    </ul>
+                  </div>
+                  <div class="v-resizer" id="vResizer1" data-top="headingsSection" data-bottom="projectSection"></div>
+                  <div class="project-section" id="projectSection">
+                    <div class="project-box">
+                      <div class="project-label">Project Connected</div>
+                      <div class="project-name">MEP_Floorplan_Model</div>
+                      <button class="project-ref-btn">+ Reference previous project</button>
+                    </div>
+                                      <div class="section-header" style="margin-top: 12px;">Files</div>
+                    <div class="files-list">
+                      <div class="file-tree">
+                        <!-- Project root folder -->
+                        <div class="tree-folder expanded">
+                          <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="folder-icon">▼</span> Project
+                          </div>
+                          <div class="tree-folder-content">
+                            <!-- Documents folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Documents
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <img class="file-icon" src="logos/Word.jpg" alt="DOC">
+                                  <span class="tree-file-name">Specification_v1.docx</span>
+                                </div>
+                                <div class="tree-file">
+                                  <img class="file-icon" src="logos/pdf.png" alt="PDF">
+                                  <span class="tree-file-name">MEP_Coordination.pdf</span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Drawings folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Drawings
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <img class="file-icon" src="logos/AutoCAD.jpg" alt="DWG">
+                                  <span class="tree-file-name">Floorplan_L01.dwg</span>
+                                </div>
+                                <div class="tree-file">
+                                  <img class="file-icon" src="logos/AutoCAD.jpg" alt="DWG">
+                                  <span class="tree-file-name">Floorplan_L02.dwg</span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Models folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Models
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <img class="file-icon" src="logos/Revit.jpg" alt="RVT">
+                                  <span class="tree-file-name">MEP_Model_v3.rvt</span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Schedules folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Schedules
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <img class="file-icon" src="logos/Excel.jpg" alt="XLS">
+                                  <span class="tree-file-name">Equipment_Schedule.xlsx</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- UI Options Footer -->
+                  <div class="ui-options-footer">
+                    <div class="footer-separator"></div>
+                    <div class="footer-content">
+                      <div class="ui-option-row">
+                        <label class="ui-toggle-label" title="BUILD X. senses what you're trying to achieve and auto-completes tasks based on project context, standards, and previous specifications.">
+                          <span class="toggle-text"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> Intelligent Completion</span>
+                          <label class="ui-toggle">
+                            <input type="checkbox" id="intelligentCompletionToggle" checked>
+                            <span class="toggle-slider"></span>
+                          </label>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="resizer" id="resizer1" data-left="leftColumn" data-right="centerColumn"></div>
+                
+                <!-- CENTER COLUMN -->
+                <div class="center-column" id="centerColumn">
+                  <div class="ribbon">
+                    <div class="ribbon-tabs">
+                      <button class="ribbon-tab active" data-tab="home">Home</button>
+                      <button class="ribbon-tab" data-tab="insert">Insert</button>
+                      <button class="ribbon-tab" data-tab="layout">Layout</button>
+                      <button class="ribbon-tab" data-tab="references">References</button>
+                      <button class="ribbon-tab" data-tab="review">Review</button>
+                      <button class="ribbon-tab" data-tab="contracts">Contracts</button>
+                    </div>
+                    
+                    <!-- HOME TAB CONTENT -->
+                    <div class="ribbon-content active" data-tab="home">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Paste">
+                            <span class="ribbon-icon">📋</span>
+                            <span class="ribbon-label">Paste</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Cut (Ctrl+X)">✂ Cut</button>
+                            <button class="ribbon-btn small" title="Copy (Ctrl+C)">📄 Copy</button>
+                            <button class="ribbon-btn small" title="Format Painter">🖌 Format</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Clipboard</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <select class="ribbon-select font-select" title="Font">
+                              <option>Arial</option>
+                              <option>Calibri</option>
+                              <option selected>Inter</option>
+                              <option>Times New Roman</option>
+                            </select>
+                            <select class="ribbon-select size-select" title="Font Size">
+                              <option>10</option>
+                              <option selected>11</option>
+                              <option>12</option>
+                              <option>14</option>
+                              <option>16</option>
+                            </select>
+                            <button class="ribbon-btn icon" title="Grow Font">A↑</button>
+                            <button class="ribbon-btn icon" title="Shrink Font">A↓</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn icon" title="Bold (Ctrl+B)"><strong>B</strong></button>
+                            <button class="ribbon-btn icon" title="Italic (Ctrl+I)"><em>I</em></button>
+                            <button class="ribbon-btn icon" title="Underline (Ctrl+U)"><u>U</u></button>
+                            <button class="ribbon-btn icon" title="Strikethrough"><s>S</s></button>
+                            <button class="ribbon-btn icon" title="Subscript">X₂</button>
+                            <button class="ribbon-btn icon" title="Superscript">X²</button>
+                            <button class="ribbon-btn icon color" title="Text Color" style="border-bottom: 3px solid #000;">A</button>
+                            <button class="ribbon-btn icon highlight" title="Highlight">🖍</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Font</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn icon" title="Bullets">•≡</button>
+                            <button class="ribbon-btn icon" title="Numbering">1≡</button>
+                            <button class="ribbon-btn icon" title="Multilevel">⫶≡</button>
+                            <button class="ribbon-btn icon" title="Decrease Indent">⇤</button>
+                            <button class="ribbon-btn icon" title="Increase Indent">⇥</button>
+                            <button class="ribbon-btn icon" title="Sort">↕</button>
+                            <button class="ribbon-btn icon" title="Show/Hide ¶">¶</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn icon active" title="Align Left">⫷</button>
+                            <button class="ribbon-btn icon" title="Center">⫿</button>
+                            <button class="ribbon-btn icon" title="Align Right">⫸</button>
+                            <button class="ribbon-btn icon" title="Justify">☰</button>
+                            <button class="ribbon-btn icon" title="Line Spacing">⫼</button>
+                            <button class="ribbon-btn icon" title="Shading">▧</button>
+                            <button class="ribbon-btn icon" title="Borders">⊞</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Paragraph</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content styles-gallery">
+                          <button class="ribbon-style-btn active" title="Normal">Normal</button>
+                          <button class="ribbon-style-btn h1" title="Heading 1">H1</button>
+                          <button class="ribbon-style-btn h2" title="Heading 2">H2</button>
+                          <button class="ribbon-style-btn h3" title="Heading 3">H3</button>
+                          <button class="ribbon-style-btn clause" title="Clause">Clause</button>
+                          <button class="ribbon-style-btn note" title="Note">Note</button>
+                        </div>
+                        <div class="ribbon-group-label">Styles</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Find (Ctrl+F)">🔍 Find</button>
+                            <button class="ribbon-btn small" title="Replace (Ctrl+H)">⇄ Replace</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Select All">☑ Select</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Editing</div>
+                      </div>
+                      
+                    </div>
+                    
+                    <!-- INSERT TAB CONTENT -->
+                    <div class="ribbon-content" data-tab="insert">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Create a blank section.">New Section</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Imports section pre-filled with your project's equipment.">Import ▾</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Sections</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Shows clauses relevant to your project.">Insert ▾</button>
+                            <button class="ribbon-btn small smart" title="Quick access to clauses.">Quick</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Browse all clauses.">Browse</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Clauses</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Pulls equipment from your synced Revit model.">Import ▾</button>
+                            <button class="ribbon-btn small smart" title="Schedule table pre-filled with your equipment.">Table</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Links to equipment data.">Link</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Schedules</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Attaches your file.">Attach ▾</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Manage appendices.">Manage</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Appendices</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Insert hyperlink.">🔗 Link</button>
+                            <button class="ribbon-btn small smart" title="Cross-reference.">↗ Ref</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Insert bookmark">🔖 Mark</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Links</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Uniclass codes.">Uniclass ▾</button>
+                            <button class="ribbon-btn small smart" title="NRM2 codes.">NRM2</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="CAWS classification">CAWS</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Codes</div>
+                      </div>
+                    </div>
+                    
+                    <!-- LAYOUT TAB CONTENT (Word-like) -->
+                    <div class="ribbon-content" data-tab="layout">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Page margins">
+                            <span class="ribbon-icon">▭</span>
+                            <span class="ribbon-label">Margins</span>
+                          </button>
+                          <button class="ribbon-btn large" title="Page orientation">
+                            <span class="ribbon-icon">⬍</span>
+                            <span class="ribbon-label">Orientation</span>
+                          </button>
+                          <button class="ribbon-btn large" title="Paper size">
+                            <span class="ribbon-icon">📄</span>
+                            <span class="ribbon-label">Size</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small paper-size-btn" data-size="a4" title="A4">A4</button>
+                            <button class="ribbon-btn small paper-size-btn active" data-size="a3" title="A3">A3</button>
+                            <button class="ribbon-btn small paper-orient-btn active" data-orient="landscape" title="Landscape">↔ Land</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Page Setup</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Columns">
+                            <span class="ribbon-icon">☷</span>
+                            <span class="ribbon-label">Columns</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Page break">Page Brk</button>
+                            <button class="ribbon-btn small" title="Section break">Section</button>
+                            <button class="ribbon-btn small" title="Line numbers">Line #</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Page</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content three-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Indent left">← Indent</button>
+                            <button class="ribbon-btn small" title="Indent right">Indent →</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Spacing before">↑ Space</button>
+                            <button class="ribbon-btn small" title="Spacing after">Space ↓</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Line spacing">Line ▾</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Paragraph</div>
+                      </div>
+                    </div>
+                    
+                    <!-- REFERENCES TAB CONTENT (Word-like) -->
+                    <div class="ribbon-content" data-tab="references">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Table of Contents">
+                            <span class="ribbon-icon">☰</span>
+                            <span class="ribbon-label">TOC</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Add text">Add Text</button>
+                            <button class="ribbon-btn small" title="Update table">Update</button>
+                            <button class="ribbon-btn small" title="Insert footnote">Footnote</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Table of Contents</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="NEC4 Clauses">
+                            <span class="ribbon-icon">§</span>
+                            <span class="ribbon-label">NEC4</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Core clauses">Core</button>
+                            <button class="ribbon-btn small" title="Option clauses">Options ▾</button>
+                            <button class="ribbon-btn small" title="Z Clauses">Z Clauses</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Contracts</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Uniclass">
+                            <span class="ribbon-icon">🏷</span>
+                            <span class="ribbon-label">Uniclass</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="NRM2">NRM2</button>
+                            <button class="ribbon-btn small" title="BS EN Standards">BS EN</button>
+                            <button class="ribbon-btn small" title="ISO Standards">ISO</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Classification</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Insert citation">
+                            <span class="ribbon-icon">📚</span>
+                            <span class="ribbon-label">Citation</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Manage sources">Sources</button>
+                            <button class="ribbon-btn small" title="Bibliography">Biblio</button>
+                            <button class="ribbon-btn small" title="Insert index">Index</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Citations</div>
+                      </div>
+                    </div>
+                    
+                    <!-- REVIEW TAB CONTENT (Word-like) -->
+                    <div class="ribbon-content" data-tab="review">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Spelling & Grammar">
+                            <span class="ribbon-icon">✓</span>
+                            <span class="ribbon-label">Spelling</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Thesaurus">Thesaurus</button>
+                            <button class="ribbon-btn small" title="Word count">Word Count</button>
+                            <button class="ribbon-btn small" title="Language">Language</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Proofing</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="New comment">
+                            <span class="ribbon-icon">💬</span>
+                            <span class="ribbon-label">Comment</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Previous">Previous</button>
+                            <button class="ribbon-btn small" title="Next">Next</button>
+                            <button class="ribbon-btn small" title="Delete">Delete</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Comments</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Track changes">
+                            <span class="ribbon-icon">📝</span>
+                            <span class="ribbon-label">Track</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Accept">Accept ▾</button>
+                            <button class="ribbon-btn small" title="Reject">Reject ▾</button>
+                            <button class="ribbon-btn small" title="Compare">Compare</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Tracking</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large smart" title="Compliance check">
+                            <span class="ribbon-icon">⚡</span>
+                            <span class="ribbon-label">Comply</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small smart" title="Validate NEC4">NEC4</button>
+                            <button class="ribbon-btn small smart" title="Check Standards">Standards</button>
+                            <button class="ribbon-btn small smart" title="Clash Report">Clash</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Compliance</div>
+                      </div>
+                    </div>
+                    
+                    <!-- CONTRACTS TAB CONTENT (Word-like style) -->
+                    <div class="ribbon-content" data-tab="contracts">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Connect to contract">
+                            <span class="ribbon-icon">🔗</span>
+                            <span class="ribbon-label">Connect</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="View contract">View</button>
+                            <button class="ribbon-btn small" title="Sync data">Sync</button>
+                            <button class="ribbon-btn small" title="Disconnect">Disconnect</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Contract</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Contract data">
+                            <span class="ribbon-icon">📋</span>
+                            <span class="ribbon-label">Data</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Part 1 (Client)">Part 1</button>
+                            <button class="ribbon-btn small" title="Part 2 (Contractor)">Part 2</button>
+                            <button class="ribbon-btn small" title="Activity Schedule">Schedule</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Data</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Contract options">
+                            <span class="ribbon-icon">⚙</span>
+                            <span class="ribbon-label">Options</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Main Option A-F">Main ▾</button>
+                            <button class="ribbon-btn small" title="Dispute W1/W2">Dispute ▾</button>
+                            <button class="ribbon-btn small" title="Secondary">Secondary ▾</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Options</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Works information">
+                            <span class="ribbon-icon">📄</span>
+                            <span class="ribbon-label">Works</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Works Info">Works</button>
+                            <button class="ribbon-btn small" title="Site Info">Site</button>
+                            <button class="ribbon-btn small" title="Scope">Scope</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Works Info</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Tender documents">
+                            <span class="ribbon-icon">📑</span>
+                            <span class="ribbon-label">Tender</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Link Tender">Link</button>
+                            <button class="ribbon-btn small" title="Compare">Compare</button>
+                            <button class="ribbon-btn small" title="Awarded">Awarded</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Tender</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="editor-wrapper">
+                    <div class="editor-area" id="editorArea">
+                      <!-- Title Page (grey, editable) -->
+                      <div class="editor-paper a3 landscape title-page" id="titlePage" contenteditable="true">
+                        <div class="title-page-content">
+                          <div class="title-logo-space">[Logo Space]</div>
+                          <h1 class="title-heading-1">MEP Specification</h1>
+                          <div class="title-separator"></div>
+                          <h2 class="title-heading-2">Aurora House Office Fit-Out</h2>
+                          <h3 class="title-heading-3">45 Broadgate Circle, London EC2M</h3>
+                        </div>
+                        <div class="title-date">January 2026</div>
+                      </div>
+                      
+                      <!-- Main Document Page -->
+                      <div class="editor-paper a3 landscape" id="editorPaper" contenteditable="true">
+                        <h1>MEP Specification</h1>
+                        <h2>1. Introduction</h2>
+                        <h3>1.1 Introduction</h3>
+                        <p>The work described in this document covers the supply, installation, setting to work and commissioning of the Mechanical, Electrical and Plumbing services installation for the Aurora House office fit-out works at 45 Broadgate Circle, London EC2M. The intention of the specification is to cover all MEP services for the Cat A and Cat B fit-out and will be supplemented with additional scope of works as the project develops.</p>
+                        
+                        <p class="editor-cursor-line" id="cursorLine"><span class="ghost-text-wrapper" id="ghostTextWrapper"><span class="ghost-text-inline" id="ghostTextInline">⇥ Tab to complete specification</span></span></p>
+                      </div>
+                      <div class="zoom-indicator" id="zoomIndicator">100%</div>
+                    </div>
+                    <!-- Editor Status Bar (like Word) - Fixed at bottom -->
+                    <div class="editor-status-bar">
+                      <div class="status-left">
+                        <span class="status-item page-count">Page 2 of 2</span>
+                        <span class="status-divider">|</span>
+                        <span class="status-item word-count" id="wordCount">0 words</span>
+                      </div>
+                      <div class="status-right">
+                        <span class="status-item structure-status detected">
+                          <span class="status-icon">✓</span>
+                          Structure detected
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- RESIZER 2: Center | Right -->
+                <div class="resizer" id="resizer2" data-left="centerColumn" data-right="rightColumn"></div>
+                
+                <!-- RIGHT COLUMN (chat + history) -->
+                <div class="right-column" id="rightColumn">
+                <div class="demo-chat-main">
+                  <div class="design-options-bar">
+                    <div class="design-tabs">
+                      <button class="design-tab active" data-tab="main">Option 1 <span class="tab-label">(main)</span><span class="tab-close">×</span></button>
+                      <button class="design-option-add" title="Add design option - allow the agent to run parallel design options so you can best decide which is best."><span class="plus-icon">+</span><span class="branch-icon">⑂</span></button>
+                    </div>
+                  </div>
+                  <div class="demo-chat-messages" id="chatMessagesIndex4">
+                  </div>
+                  <!-- Persistent Neural Node with Status -->
+                  <div class="chat-persistent-node-wrapper">
+                    <div class="chat-neural-node" id="chatPersistentNodeIndex4">
+                      <div class="chat-node-core"></div>
+                      <div class="chat-node-glow"></div>
+                      <div class="chat-node-pulse-ring"></div>
+                    </div>
+                    <div class="chat-node-status" id="chatNodeStatus">
+                      <span class="status-text"></span>
+                    </div>
+                  </div>
+                  <div class="demo-chat-input-row cursor-style">
+                    <div class="chat-input-wrapper">
+                      <span class="chat-input-placeholder" id="chatInputIndex4" contenteditable="true" data-placeholder="Message..." data-ghost="⇥ Tab to complete specification"></span>
+                      <div class="chat-input-controls">
+                        <div class="chat-input-left">
+                          <div class="chat-agent-dropdown">
+                            <span class="chat-agent-badge active-mode">∞ <span class="agent-mode-display">Designer</span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu agent-menu">
+                              <div class="dropdown-section-header">Mode</div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Designer">
+                                <div class="mode-info">
+                                  <span class="mode-icon">∞</span>
+                                  <span class="mode-name">Designer</span>
+                                  <span class="mode-tooltip">Full autonomous design mode - creates and places elements</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Designer" checked>
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Plan">
+                                <div class="mode-info">
+                                  <span class="mode-icon">☰</span>
+                                  <span class="mode-name">Plan</span>
+                                  <span class="mode-tooltip">Planning mode - outlines steps before executing</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Plan">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Debug">
+                                <div class="mode-info">
+                                  <span class="mode-icon">⚙</span>
+                                  <span class="mode-name">Debug</span>
+                                  <span class="mode-tooltip">Debug mode - identifies and fixes issues in existing designs</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Debug">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Query">
+                                <div class="mode-info">
+                                  <span class="mode-icon">?</span>
+                                  <span class="mode-name">Query</span>
+                                  <span class="mode-tooltip">Query the model for answers and golden thread decision making logic</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Query">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chat-model-dropdown">
+                            <span class="menu-icon" title="Model options">☰</span>
+                            <span class="chat-model-label"><span class="model-display"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> <span class="model-version-inline">0.1</span></span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu model-menu">
+                              <div class="dropdown-section-header">Model</div>
+                              <div class="dropdown-item model-option active" data-model="Build X 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Advanced premium model incorporating every service</span></div>
+                              <div class="dropdown-item model-option" data-model="Build MEP 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">MEP</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Production-ready model optimized for mechanical, electrical and plumbing systems</span></div>
+                              <div class="dropdown-item model-option" data-model="Build A 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">A</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Architectural coordination model for space planning and layout optimization</span></div>
+                              <div class="dropdown-divider"></div>
+                              <div class="dropdown-item llm-toggle-row" title="Not recommended: LLM has not been specifically trained on inputs and is likely to make more mistakes. Please only use LLM for language exercises like specification and schedule writing.">
+                                <span>LLM Mode</span>
+                                <label class="llm-toggle">
+                                  <input type="checkbox" id="llmModeToggle">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item llm-option disabled">Opus 4.5</div>
+                              <div class="dropdown-item llm-option disabled">Chat GPT 5.2</div>
+                              <div class="dropdown-item llm-option disabled">Gemini 3.0</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-input-right">
+                          <button class="chat-share-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                          <button class="chat-meeting-btn" id="meetingModeBtn" title="Activate meeting mode when in calls, so the agent can understand what the team discussion results in, allowing them to make changes instantly.">👥</button>
+                          <button class="chat-send-btn" id="chatSendIndex4" title="Send">↑</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="inner-resizer" id="innerResizer"></div>
+                <div class="demo-chat-history-sidebar">
+                  <!-- Sidebar Tab Switcher -->
+                  <div class="sidebar-tab-bar">
+                    <button class="sidebar-tab active" data-panel="agents" title="View all designer conversations">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span>Designers</span>
+                    </button>
+                    <button class="share-chat-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                  </div>
+                  
+                  <!-- Agents Panel -->
+                  <div class="sidebar-panel active" data-panel="agents">
+                    <div class="demo-history-search">
+                      <input type="text" class="history-search-input" id="agentHistorySearch" name="agentHistorySearch" placeholder="Search...">
+                    </div>
+                    <button class="new-agent-btn" title="Start a new designer conversation">+ New Designer</button>
+                    <div class="demo-history-list" id="chatHistoryIndex4">
+                      <!-- Specbuilder Manager - Always first -->
+                      <div class="demo-history-item manager-item active" data-conversation="manager" data-system="manager">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">
+                            <span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span>
+                          </div>
+                          <div class="demo-history-item-preview">Specbuilder Manager</div>
+                        </div>
+                      </div>
+                      
+                      <!-- Section Agents (spawn during onboarding) -->
+                      <div class="demo-history-item agent-item" data-conversation="introduction" data-system="introduction">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Introduction</div>
+                          <div class="demo-history-item-preview">Preparing overview...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="drainage" data-system="drainage">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Drainage</div>
+                          <div class="demo-history-item-preview">Analysing requirements...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="water" data-system="water">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Water Services</div>
+                          <div class="demo-history-item-preview">Checking systems...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="heating" data-system="heating">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Heating & Cooling</div>
+                          <div class="demo-history-item-preview">Evaluating HVAC...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="ventilation" data-system="ventilation">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Ventilation</div>
+                          <div class="demo-history-item-preview">Reviewing ventilation...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="controls" data-system="controls">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Controls & Plant</div>
+                          <div class="demo-history-item-preview">Checking BMS...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="containment" data-system="containment">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Containment</div>
+                          <div class="demo-history-item-preview">Planning routes...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="power" data-system="power">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Power</div>
+                          <div class="demo-history-item-preview">Analysing distribution...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="lighting" data-system="lighting">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Lighting</div>
+                          <div class="demo-history-item-preview">Calculating lux levels...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="firealarms" data-system="firealarms">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Fire Alarms</div>
+                          <div class="demo-history-item-preview">Checking zones...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="security" data-system="security">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Security & Access</div>
+                          <div class="demo-history-item-preview">Reviewing access points...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                    </div>
+                    <div class="sidebar-footer">
+                      <div class="agent-progress-container" id="agentProgressContainer">
+                        <svg class="agent-progress-ring" width="20" height="20" viewBox="0 0 20 20">
+                          <circle class="progress-ring-bg" cx="10" cy="10" r="8" fill="none" stroke="#e0e0e0" stroke-width="2"/>
+                          <circle class="progress-ring-fill" id="progressRingFill" cx="10" cy="10" r="8" fill="none" stroke="#156082" stroke-width="2" stroke-linecap="round" stroke-dasharray="50.27" stroke-dashoffset="50.27" transform="rotate(-90 10 10)"/>
+                        </svg>
+                        <span class="progress-percent" id="progressPercent">0%</span>
+                      </div>
+                      <span class="footer-text" id="designerCount"><span id="agentCountNum">##</span> section agents</span>
+                    </div>
+                  </div>
+                </div>
+                </div> <!-- Close right-column -->
+              </div> <!-- Close demo-chat-body -->
+              <!-- Window Resize Edges -->
+              <div class="resize-edge resize-edge-top" data-edge="n"></div>
+              <div class="resize-edge resize-edge-right" data-edge="e"></div>
+              <div class="resize-edge resize-edge-bottom" data-edge="s"></div>
+              <div class="resize-edge resize-edge-left" data-edge="w"></div>
+              <div class="resize-edge resize-edge-corner" data-edge="se"></div>
+              <div class="resize-edge resize-edge-corner-tl" data-edge="nw"></div>
+              <div class="resize-edge resize-edge-corner-tr" data-edge="ne"></div>
+              <div class="resize-edge resize-edge-corner-bl" data-edge="sw"></div>
+            </div> <!-- Close demo-chat-box -->
+          </div> <!-- Close demo-chat-wrapper -->
+        </div> <!-- Close demo-containers-stack -->
+      </div> <!-- Close demo-image-container -->
+    </div> <!-- Close demo-containers-panel -->
+    
+    <!-- TEXT PANEL - 40% on right -->
+    <div class="demo-text-panel">
+      <div class="demo-text-inner">
+        <h2 class="demo-text-heading">Automated MEP Specification Builder.</h2>
+        <div class="demo-text-body">
+          <p>Generate comprehensive MEP specifications directly from your design models. Our AI analyses your drawings, extracts equipment data, and produces compliant technical documentation automatically.</p>
+          <p>Integrate with your existing workflows — connect to Revit models, reference previous projects, and maintain consistency across your entire portfolio.</p>
+          <a href="#" class="demo-example-btn">See example output</a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Close demo-split-view -->
+</div> <!-- Close demo-view-overlay -->
+
+<script src="js/WPFapplication.js"></script>
+<script>
+// Vertical resizers for left sidebar
+(function() {
+  let activeVResizer = null;
+  let startY = 0;
+  let startHeightTop = 0;
+  let startHeightBottom = 0;
+  let topEl = null;
+  let bottomEl = null;
+
+  document.querySelectorAll(".v-resizer").forEach(resizer => {
+    resizer.addEventListener("mousedown", function(e) {
+      e.preventDefault();
+      activeVResizer = this;
+      this.classList.add("active");
+      document.body.classList.add("resizing");
+      document.body.style.cursor = "row-resize";
+      startY = e.clientY;
+
+      const topId = this.getAttribute("data-top");
+      const bottomId = this.getAttribute("data-bottom");
+      topEl = document.getElementById(topId);
+      bottomEl = document.getElementById(bottomId);
+
+      startHeightTop = topEl.offsetHeight;
+      startHeightBottom = bottomEl.offsetHeight;
+
+      document.addEventListener("mousemove", doVResize);
+      document.addEventListener("mouseup", stopVResize);
+    });
+  });
+
+  function doVResize(e) {
+    if (!activeVResizer) return;
+    const dy = e.clientY - startY;
+    const newHeightTop = startHeightTop + dy;
+    const newHeightBottom = startHeightBottom - dy;
+
+    if (newHeightTop >= 60 && newHeightBottom >= 60) {
+      topEl.style.flex = "none";
+      bottomEl.style.flex = "none";
+      topEl.style.height = newHeightTop + "px";
+      bottomEl.style.height = newHeightBottom + "px";
+    }
+  }
+
+  function stopVResize() {
+    if (activeVResizer) activeVResizer.classList.remove("active");
+    activeVResizer = null;
+    document.body.classList.remove("resizing");
+    document.body.style.cursor = "";
+    document.removeEventListener("mousemove", doVResize);
+    document.removeEventListener("mouseup", stopVResize);
+  }
+})();
+</script>
+<script>
+// Resizable panels
+(function() {
+  let activeResizer = null;
+  let startX = 0;
+  let startWidthLeft = 0;
+  let startWidthRight = 0;
+  let leftEl = null;
+  let rightEl = null;
+  
+  // Main column resizers
+  document.querySelectorAll('.resizer').forEach(resizer => {
+    resizer.addEventListener('mousedown', initResize);
+  });
+  
+  // Inner resizer (chat | history)
+  const innerResizer = document.getElementById('innerResizer');
+  if (innerResizer) {
+    innerResizer.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      activeResizer = this;
+      this.classList.add('active');
+      document.body.classList.add('resizing');
+      startX = e.clientX;
+      
+      const rightColumn = document.getElementById('rightColumn');
+      const chatMain = rightColumn.querySelector('.demo-chat-main');
+      const historySidebar = rightColumn.querySelector('.demo-chat-history-sidebar');
+      
+      leftEl = chatMain;
+      rightEl = historySidebar;
+      startWidthLeft = chatMain.offsetWidth;
+      startWidthRight = historySidebar.offsetWidth;
+      
+      document.addEventListener('mousemove', doResize);
+      document.addEventListener('mouseup', stopResize);
+    });
+  }
+  
+  function initResize(e) {
+    e.preventDefault();
+    activeResizer = this;
+    this.classList.add('active');
+    document.body.classList.add('resizing');
+    startX = e.clientX;
+    
+    const leftId = this.getAttribute('data-left');
+    const rightId = this.getAttribute('data-right');
+    leftEl = document.getElementById(leftId);
+    rightEl = document.getElementById(rightId);
+    
+    startWidthLeft = leftEl.offsetWidth;
+    startWidthRight = rightEl.offsetWidth;
+    
+    document.addEventListener('mousemove', doResize);
+    document.addEventListener('mouseup', stopResize);
+  }
+  
+  function doResize(e) {
+    if (!activeResizer) return;
+    
+    const dx = e.clientX - startX;
+    const newWidthLeft = startWidthLeft + dx;
+    const newWidthRight = startWidthRight - dx;
+    
+    // Get min/max from CSS
+    const leftStyle = window.getComputedStyle(leftEl);
+    const rightStyle = window.getComputedStyle(rightEl);
+    const minLeft = parseInt(leftStyle.minWidth) || 100;
+    const maxLeft = parseInt(leftStyle.maxWidth) || 9999;
+    const minRight = parseInt(rightStyle.minWidth) || 100;
+    const maxRight = parseInt(rightStyle.maxWidth) || 9999;
+    
+    // For center|right resizer: only change right column width, center stays flex:1
+    // History sidebar stays fixed at right edge, chat-main absorbs the change
+    if (leftEl.classList.contains("center-column")) {
+      if (newWidthRight >= minRight && newWidthRight <= maxRight) {
+        rightEl.style.flex = "none";
+        rightEl.style.width = newWidthRight + "px";
+        
+        // Reset chat-main to flex:1 so it absorbs the change, history sidebar stays fixed
+        const chatMain = rightEl.querySelector('.demo-chat-main');
+        const historySidebar = rightEl.querySelector('.demo-chat-history-sidebar');
+        if (chatMain && historySidebar) {
+          // Get current history sidebar width (keep it fixed)
+          const historyWidth = historySidebar.offsetWidth;
+          // Reset chat-main to flex, it will fill remaining space
+          chatMain.style.flex = "1 1 auto";
+          chatMain.style.width = "";
+          // Keep history sidebar at its current width
+          historySidebar.style.flex = "0 0 " + historyWidth + "px";
+          historySidebar.style.width = historyWidth + "px";
+        }
+      }
+    } else {
+      // For other resizers (inner resizer, left column): change both widths
+      if (newWidthLeft >= minLeft && newWidthLeft <= maxLeft &&
+          newWidthRight >= minRight && newWidthRight <= maxRight) {
+        leftEl.style.flex = "none";
+        leftEl.style.width = newWidthLeft + "px";
+        if (!rightEl.classList.contains("center-column")) {
+          rightEl.style.flex = "none";
+          rightEl.style.width = newWidthRight + "px";
+        }
+      }
+    }
+  }
+  
+  function stopResize() {
+    if (activeResizer) {
+      activeResizer.classList.remove('active');
+    }
+    activeResizer = null;
+    document.body.classList.remove('resizing');
+    document.removeEventListener('mousemove', doResize);
+    document.removeEventListener('mouseup', stopResize);
+  }
+})();
+
+// Ribbon tabs with content switching
+document.querySelectorAll('.ribbon-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    const tabName = this.getAttribute('data-tab');
+    const ribbon = this.closest('.ribbon');
+    
+    // Update tab active state
+    ribbon.querySelectorAll('.ribbon-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    
+    // Update content active state
+    ribbon.querySelectorAll('.ribbon-content').forEach(content => {
+      content.classList.remove('active');
+      if (content.getAttribute('data-tab') === tabName) {
+        content.classList.add('active');
+      }
+    });
+  });
+});
+
+// Headings
+document.querySelectorAll('.heading-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.heading-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+
+// ============================================
+// WINDOW DRAG AND RESIZE FUNCTIONALITY
+// ============================================
+(function() {
+  const chatBox = document.querySelector(".demo-chat-box");
+  const titlebar = chatBox ? chatBox.querySelector(".demo-chat-titlebar") : null;
+  const wrapper = chatBox ? chatBox.closest(".demo-chat-wrapper") : null;
+  
+  if (!chatBox || !titlebar) return;
+  
+  let dragState = null;
+  let resizeState = null;
+  let originalDimensions = null; // Store original size for snap-back
+  
+  // Helper to set position/size with !important (to override CSS !important rules)
+  function setBoxStyle(prop, value) {
+    if (value === "" || value === null) {
+      chatBox.style.removeProperty(prop);
+    } else {
+      chatBox.style.setProperty(prop, value, 'important');
+    }
+  }
+  function setBoxPos(left, top, width, height) {
+    setBoxStyle('left', left);
+    setBoxStyle('top', top);
+    setBoxStyle('width', width);
+    setBoxStyle('height', height);
+  }
+  
+  // Store original dimensions on load
+  function storeOriginalDimensions() {
+    const rect = chatBox.getBoundingClientRect();
+    originalDimensions = {
+      width: rect.width,
+      height: rect.height,
+      left: rect.left,
+      top: rect.top
+    };
+  }
+  storeOriginalDimensions();
+  
+  // ========== TITLEBAR DRAGGING ==========
+  titlebar.addEventListener("mousedown", function(e) {
+    // Ignore clicks on buttons
+    if (e.target.closest(".demo-titlebar-btn")) return;
+    if (e.target.closest(".titlebar-menu-btn")) return;
+    if (e.target.closest(".chat-settings-wrapper")) return;
+    
+    const rect = chatBox.getBoundingClientRect();
+    
+    // Make floating if not already
+    if (!chatBox.classList.contains("free-floating")) {
+      chatBox.classList.add("free-floating");
+      setBoxPos(rect.left + "px", rect.top + "px", rect.width + "px", rect.height + "px");
+    }
+    
+    dragState = {
+      startX: e.clientX,
+      startY: e.clientY,
+      startLeft: parseFloat(chatBox.style.left) || rect.left,
+      startTop: parseFloat(chatBox.style.top) || rect.top,
+      lastX: e.clientX,
+      lastY: e.clientY
+    };
+    
+    chatBox.classList.add("dragging");
+    document.body.classList.add("window-dragging");
+    e.preventDefault();
+  });
+  
+  // ========== EDGE/CORNER RESIZING ==========
+  document.querySelectorAll(".resize-edge").forEach(function(edge) {
+    edge.addEventListener("mousedown", function(e) {
+      const edgeType = this.getAttribute("data-edge");
+      const rect = chatBox.getBoundingClientRect();
+      
+      // Make floating if not already
+      if (!chatBox.classList.contains("free-floating")) {
+        chatBox.classList.add("free-floating");
+        setBoxPos(rect.left + "px", rect.top + "px", rect.width + "px", rect.height + "px");
+      }
+      
+      resizeState = {
+        edge: edgeType,
+        startX: e.clientX,
+        startY: e.clientY,
+        startWidth: chatBox.offsetWidth,
+        startHeight: chatBox.offsetHeight,
+        startLeft: parseFloat(chatBox.style.left),
+        startTop: parseFloat(chatBox.style.top)
+      };
+      
+      chatBox.classList.add("dragging");
+      document.body.classList.add("window-resizing");
+      document.body.style.cursor = window.getComputedStyle(this).cursor;
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+  
+  // ========== DOCUMENT MOUSEMOVE ==========
+  document.addEventListener("mousemove", function(e) {
+    // Handle dragging
+    if (dragState) {
+      const dx = e.clientX - dragState.startX;
+      const dy = e.clientY - dragState.startY;
+      setBoxStyle('left', (dragState.startLeft + dx) + "px");
+      setBoxStyle('top', (dragState.startTop + dy) + "px");
+      
+      dragState.lastX = e.clientX;
+      dragState.lastY = e.clientY;
+      
+      // Show snap indicator in top third of wrapper
+      if (wrapper) {
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const inX = e.clientX >= wrapperRect.left && e.clientX <= wrapperRect.right;
+        const topThird = wrapperRect.top + (wrapperRect.height / 3);
+        const inTopThird = e.clientY >= wrapperRect.top && e.clientY <= topThird;
+        
+        if (inX && inTopThird) {
+          wrapper.classList.add("snap-target");
+        } else {
+          wrapper.classList.remove("snap-target");
+        }
+      }
+      return;
+    }
+    
+    // Handle resizing
+    if (resizeState) {
+      const dx = e.clientX - resizeState.startX;
+      const dy = e.clientY - resizeState.startY;
+      const edge = resizeState.edge;
+      const minW = 300, minH = 200;
+      
+      // East (right edge)
+      if (edge.includes("e")) {
+        setBoxStyle('width', Math.max(minW, resizeState.startWidth + dx) + "px");
+      }
+      // West (left edge)
+      if (edge.includes("w")) {
+        const newW = Math.max(minW, resizeState.startWidth - dx);
+        setBoxStyle('width', newW + "px");
+        setBoxStyle('left', (resizeState.startLeft + resizeState.startWidth - newW) + "px");
+      }
+      // South (bottom edge)
+      if (edge.includes("s")) {
+        setBoxStyle('height', Math.max(minH, resizeState.startHeight + dy) + "px");
+      }
+      // North (top edge)
+      if (edge.includes("n")) {
+        const newH = Math.max(minH, resizeState.startHeight - dy);
+        setBoxStyle('height', newH + "px");
+        setBoxStyle('top', (resizeState.startTop + resizeState.startHeight - newH) + "px");
+      }
+    }
+  });
+  
+  // ========== DOCUMENT MOUSEUP ==========
+  document.addEventListener("mouseup", function() {
+    // Handle drag end
+    if (dragState) {
+      chatBox.classList.remove("dragging");
+      document.body.classList.remove("window-dragging");
+      
+      // Check for snap-back
+      if (wrapper) {
+        wrapper.classList.remove("snap-target");
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const inX = dragState.lastX >= wrapperRect.left && dragState.lastX <= wrapperRect.right;
+        const topThird = wrapperRect.top + (wrapperRect.height / 3);
+        const inTopThird = dragState.lastY >= wrapperRect.top && dragState.lastY <= topThird;
+        
+        if (inX && inTopThird && chatBox.classList.contains("free-floating")) {
+          // Animate snap back
+          chatBox.classList.add("snapping-back");
+          setBoxPos(wrapperRect.left + "px", wrapperRect.top + "px", wrapperRect.width + "px", wrapperRect.height + "px");
+          
+          setTimeout(function() {
+            chatBox.classList.remove("free-floating", "snapping-back");
+            setBoxPos(null, null, null, null);
+            storeOriginalDimensions();
+          }, 300);
+        }
+      }
+      dragState = null;
+    }
+    
+    // Handle resize end
+    if (resizeState) {
+      chatBox.classList.remove("dragging");
+      document.body.classList.remove("window-resizing");
+      document.body.style.cursor = "";
+      resizeState = null;
+    }
+  });
+  
+  // ========== TITLEBAR BUTTONS ==========
+  const minBtn = chatBox.querySelector(".demo-titlebar-btn.min");
+  const maxBtn = chatBox.querySelector(".demo-titlebar-btn.max");
+  const closeBtn = chatBox.querySelector(".demo-titlebar-btn.close");
+  
+  // Green button: expand 20% wider (left), 10% taller (top)
+  if (maxBtn) {
+    maxBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:greenBtn',message:'Green button clicked',data:{isExpanded:chatBox.classList.contains('expanded'),isFloating:chatBox.classList.contains('free-floating')},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+      // #endregion
+      const rect = chatBox.getBoundingClientRect();
+      
+      if (chatBox.classList.contains("expanded")) {
+        // Restore to original - animate back to docked position
+        if (wrapper) {
+          const wrapperRect = wrapper.getBoundingClientRect();
+          chatBox.classList.add("snapping-back");
+          setBoxPos(wrapperRect.left + "px", wrapperRect.top + "px", wrapperRect.width + "px", wrapperRect.height + "px");
+          
+          setTimeout(function() {
+            chatBox.classList.remove("free-floating", "snapping-back", "expanded");
+            setBoxPos(null, null, null, null);
+            storeOriginalDimensions();
+          }, 300);
+        } else {
+          // Fallback if no wrapper
+          chatBox.classList.remove("expanded", "free-floating");
+          setBoxPos(null, null, null, null);
+          storeOriginalDimensions();
+        }
+      } else {
+        // Expand: 20% wider to left, 10% taller to top
+        const newWidth = rect.width * 1.2;
+        const newHeight = rect.height * 1.1;
+        const newLeft = rect.left - (rect.width * 0.2);
+        const newTop = rect.top - (rect.height * 0.1);
+        
+        // Step 1: Set CURRENT position first (starting point for transition)
+        chatBox.classList.add("free-floating");
+        setBoxPos(rect.left + "px", rect.top + "px", rect.width + "px", rect.height + "px");
+        
+        // Step 2: Force reflow so browser registers starting position
+        chatBox.offsetHeight;
+        
+        // Step 3: Add transition class and expanded state
+        chatBox.classList.add("snapping-back", "expanded");
+        
+        // Step 4: Use requestAnimationFrame to ensure class is applied before setting target
+        requestAnimationFrame(function() {
+          setBoxPos(Math.max(0, newLeft) + "px", Math.max(0, newTop) + "px", newWidth + "px", newHeight + "px");
+        });
+        
+        // Step 5: Remove transition class after animation completes
+        setTimeout(function() {
+          chatBox.classList.remove("snapping-back");
+        }, 350);
+      }
+    });
+  }
+  
+  // Yellow button: minimize (snap back to docked)
+  if (minBtn) {
+    minBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      if (wrapper && chatBox.classList.contains("free-floating")) {
+        const wrapperRect = wrapper.getBoundingClientRect();
+        chatBox.classList.add("snapping-back");
+        setBoxPos(wrapperRect.left + "px", wrapperRect.top + "px", wrapperRect.width + "px", wrapperRect.height + "px");
+        
+        setTimeout(function() {
+          chatBox.classList.remove("free-floating", "snapping-back", "expanded");
+          setBoxPos(null, null, null, null);
+          storeOriginalDimensions();
+        }, 300);
+      }
+    });
+  }
+  
+  // ========== SCROLL TO MAIN DOCUMENT ON LOAD ==========
+  const editorArea = document.getElementById('editorArea');
+  const editorPaper = document.getElementById('editorPaper');
+  const titlePage = document.getElementById('titlePage');
+  
+  // Scroll to the main document page (past title page) on load - VERTICAL ONLY
+  // Using scrollTop instead of scrollIntoView to avoid horizontal scroll flash
+  if (editorArea && editorPaper && titlePage) {
+    setTimeout(() => {
+      // Calculate vertical position: title page height + gap
+      const titlePageHeight = titlePage.offsetHeight;
+      const gap = 20; // Gap between pages
+      const topPadding = 30; // editor-area padding-top
+      editorArea.scrollTop = titlePageHeight + gap - topPadding + 30;
+      // Keep scrollLeft at 0 to show left edge of page
+      editorArea.scrollLeft = 0;
+    }, 100);
+  }
+  
+  // ========== EDITOR CLICK = SIMULATE GREEN BUTTON ==========
+  
+  if (editorArea && maxBtn) {
+    editorArea.addEventListener('click', function(e) {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:editorClick',message:'Editor area clicked',data:{isExpanded:chatBox.classList.contains('expanded'),target:e.target.tagName},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+      // #endregion
+      // Only trigger if chat is not already expanded
+      if (!chatBox.classList.contains('expanded')) {
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:editorClick',message:'Triggering green button expand',data:{action:'maxBtn.click'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+        // #endregion
+        // Simulate green button click to expand
+        maxBtn.click();
+      }
+      // Focus editor for typing
+      if (editorPaper) {
+        editorPaper.focus();
+        // #region agent log
+        setTimeout(function() {
+          const sel = window.getSelection();
+          fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:cursorPos',message:'Cursor position after click',data:{hasSelection:sel.rangeCount>0,focusNode:sel.focusNode?sel.focusNode.nodeName:'null',focusOffset:sel.focusOffset,isCollapsed:sel.isCollapsed},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'CP4'})}).catch(()=>{});
+        }, 10);
+        // #endregion
+      }
+    });
+  }
+  
+  // ========== TITLEBAR ICON OVERLAP DETECTION ==========
+  const titlebarBtns = chatBox.querySelector('.demo-chat-titlebar-btns');
+  const themeToggle = titlebarBtns ? titlebarBtns.querySelector('.theme-toggle') : null;
+  const settingsWrapper = titlebarBtns ? titlebarBtns.querySelector('.chat-settings-wrapper') : null;
+  const titlebarMenus = chatBox.querySelectorAll('.titlebar-menu-btn');
+  
+  function checkTitlebarOverlap() {
+    if (!titlebarBtns) return;
+    const titlebarRect = chatBox.querySelector('.demo-chat-titlebar').getBoundingClientRect();
+    const btnsRect = titlebarBtns.getBoundingClientRect();
+    const availableWidth = titlebarRect.width - 20; // padding
+    
+    // Get menu buttons total width
+    let menuWidth = 0;
+    titlebarMenus.forEach(menu => {
+      if (menu.offsetParent !== null) menuWidth += menu.offsetWidth + 8;
+    });
+    
+    // Get buttons total width
+    const btnsTotalWidth = btnsRect.width;
+    const titleTextWidth = 150; // approximate title width
+    const totalNeeded = menuWidth + titleTextWidth + btnsTotalWidth;
+    const hasOverlap = totalNeeded > availableWidth;
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:titlebarOverlap',message:'Checking titlebar overlap',data:{availableWidth,menuWidth,btnsTotalWidth,totalNeeded,hasOverlap},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
+    
+    // Check if there's overlap
+    if (hasOverlap) {
+      // Hide theme toggle and settings first
+      if (themeToggle) themeToggle.style.display = 'none';
+      if (settingsWrapper) settingsWrapper.style.display = 'none';
+    } else {
+      // Show them back
+      if (themeToggle) themeToggle.style.display = '';
+      if (settingsWrapper) settingsWrapper.style.display = '';
+    }
+  }
+  
+  // Check on resize
+  window.addEventListener('resize', checkTitlebarOverlap);
+  // Initial check
+  setTimeout(checkTitlebarOverlap, 100);
+  
+  // ========== CHAT INPUT BUTTON OVERLAP DETECTION ==========
+  // Progressive hiding is now handled by CSS container queries
+  // JS only logs for debugging
+  const chatInputRow = document.querySelector('.demo-chat-input-row.cursor-style');
+  
+  function logChatInputState() {
+    if (!chatInputRow) return;
+    const rowWidth = chatInputRow.offsetWidth;
+    const modelDropdown = chatInputRow.querySelector('.chat-model-dropdown');
+    const menuIcon = modelDropdown?.querySelector('.menu-icon');
+    const modelDisplay = modelDropdown?.querySelector('.model-display');
+    const shareBtn = chatInputRow.querySelector('.chat-share-btn');
+    const meetingBtn = chatInputRow.querySelector('.chat-meeting-btn');
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:chatInputState',message:'Chat input responsive state',data:{rowWidth,menuIconVisible:menuIcon?getComputedStyle(menuIcon).display!=='none':false,modelDisplayVisible:modelDisplay?getComputedStyle(modelDisplay).display!=='none':false,shareBtnVisible:shareBtn?getComputedStyle(shareBtn).display!=='none':false,meetingBtnVisible:meetingBtn?getComputedStyle(meetingBtn).display!=='none':false},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'I'})}).catch(()=>{});
+    // #endregion
+  }
+  
+  window.addEventListener('resize', logChatInputState);
+  setTimeout(logChatInputState, 100);
+})();
+
+// ============================================
+// DARK MODE TOGGLE (uses cookies like main site)
+// ============================================
+(function() {
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  if (!darkModeToggle) return;
+  
+  // Helper to get cookie value
+  function getDarkModeCookie() {
+    const match = document.cookie.match(/(?:^|; )specbuilderDarkMode=([^;]*)/);
+    return match ? match[1] === 'true' : null;
+  }
+  
+  // Helper to set cookie
+  function setDarkModeCookie(isDark) {
+    document.cookie = `specbuilderDarkMode=${isDark}; path=/; max-age=31536000; SameSite=Lax`;
+  }
+  
+  // Dark mode already applied in head script, but check system preference if no cookie
+  const cookieValue = getDarkModeCookie();
+  if (cookieValue === null) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) {
+      document.documentElement.classList.add('dark-mode');
+      setDarkModeCookie(true);
+    }
+  }
+  
+  darkModeToggle.addEventListener('click', function() {
+    document.documentElement.classList.toggle('dark-mode');
+    const isDark = document.documentElement.classList.contains('dark-mode');
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:darkModeToggle',message:'Dark mode toggled',data:{isDark},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
+    setDarkModeCookie(isDark);
+    // Also update localStorage for backwards compatibility
+    localStorage.setItem('specbuilder-dark-mode', isDark ? 'dark' : 'light');
+  });
+})();
+
+// ============================================
+// INTELLIGENT COMPLETION TOGGLE
+// ============================================
+(function() {
+  const intelligentToggle = document.getElementById('intelligentCompletionToggle');
+  if (!intelligentToggle) return;
+  
+  // Check for saved preference (default ON)
+  const savedState = localStorage.getItem('specbuilder-intelligent-completion');
+  if (savedState === 'off') {
+    intelligentToggle.checked = false;
+  }
+  
+  intelligentToggle.addEventListener('change', function() {
+    localStorage.setItem('specbuilder-intelligent-completion', this.checked ? 'on' : 'off');
+    // Future: trigger AI completion behavior changes
+    console.log('Intelligent Completion:', this.checked ? 'ON' : 'OFF');
+  });
+})();
+
+// ============================================
+// EDITOR ZOOM (Ctrl + Scroll)
+// ============================================
+(function() {
+  const editorArea = document.getElementById('editorArea');
+  const editorPaper = document.getElementById('editorPaper');
+  const zoomIndicator = document.getElementById('zoomIndicator');
+  if (!editorArea || !editorPaper) return;
+  
+  let zoomLevel = 100;
+  const minZoom = 50;
+  const maxZoom = 200;
+  const zoomStep = 10;
+  let hideTimeout = null;
+  
+  function updateZoom() {
+    editorPaper.style.transform = `scale(${zoomLevel / 100})`;
+    zoomIndicator.textContent = `${zoomLevel}%`;
+    zoomIndicator.classList.add('visible');
+    
+    // Hide indicator after 1.5s
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      zoomIndicator.classList.remove('visible');
+    }, 1500);
+  }
+  
+  editorArea.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+      if (e.deltaY < 0 && zoomLevel < maxZoom) {
+        zoomLevel += zoomStep;
+      } else if (e.deltaY > 0 && zoomLevel > minZoom) {
+        zoomLevel -= zoomStep;
+      }
+      updateZoom();
+    }
+  }, { passive: false });
+  
+  // Keyboard shortcuts: Ctrl+Plus, Ctrl+Minus, Ctrl+0
+  document.addEventListener('keydown', function(e) {
+    if (!e.ctrlKey) return;
+    
+    if (e.key === '=' || e.key === '+') {
+      e.preventDefault();
+      if (zoomLevel < maxZoom) {
+        zoomLevel += zoomStep;
+        updateZoom();
+      }
+    } else if (e.key === '-') {
+      e.preventDefault();
+      if (zoomLevel > minZoom) {
+        zoomLevel -= zoomStep;
+        updateZoom();
+      }
+    } else if (e.key === '0') {
+      e.preventDefault();
+      zoomLevel = 100;
+      updateZoom();
+    }
+  });
+})();
+
+// ============================================
+// STYLE BUTTONS - Apply text formatting (like Word)
+// ============================================
+(function() {
+  const styleButtons = document.querySelectorAll('.ribbon-style-btn');
+  const editorPaper = document.getElementById('editorPaper');
+  if (!styleButtons.length || !editorPaper) return;
+  
+  // Selection preservation for buttons that steal focus
+  let savedSelection = null;
+  
+  function saveSelection() {
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+      savedSelection = sel.getRangeAt(0).cloneRange();
+    }
+  }
+  
+  function restoreSelection() {
+    if (savedSelection) {
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(savedSelection);
+    }
+  }
+  
+  // Style definitions - at 50% A3 scale, use half the pt sizes to appear correct
+  // Normal at 11pt on 50% page = looks like 11pt on full page (correct)
+  const styles = {
+    'Normal': { tag: 'p', styles: {} }, // Normal resets to base - NO explicit styles, inherits from CSS
+    'H1': { tag: 'h1', styles: {} }, // Let CSS handle H1 styling
+    'H2': { tag: 'h2', styles: {} }, // Let CSS handle H2 styling  
+    'H3': { tag: 'h3', styles: {} }, // Let CSS handle H3 styling
+    'Clause': { tag: 'p', styles: { color: '#156082', paddingLeft: '20px' } },
+    'Note': { tag: 'p', styles: { fontStyle: 'italic', fontSize: '10pt', color: '#666' } }
+  };
+  
+  styleButtons.forEach(btn => {
+    btn.addEventListener('mousedown', function(e) {
+      e.preventDefault(); // Prevent focus theft from editor
+      saveSelection();
+    });
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // Update active state
+      styleButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      const styleName = this.textContent.trim();
+      const styleConfig = styles[styleName];
+      if (!styleConfig) return;
+      
+      // Get current selection
+      const selection = window.getSelection();
+      if (!selection.rangeCount) return;
+      
+      const range = selection.getRangeAt(0);
+      const selectedText = range.toString().substring(0, 50);
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:styleClick',message:'Style button clicked',data:{style:styleName,tag:styleConfig.tag,selectedText:selectedText,hasSelection:!range.collapsed},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'S'})}).catch(()=>{});
+      // #endregion
+      
+      // Check if we have selected content within the editor
+      // Check if selection is in any editor page OR in the editorArea (for cross-page selections)
+      const editorArea = document.getElementById('editorArea');
+      const allPages = document.querySelectorAll('.editor-paper');
+      let inEditor = false;
+      
+      // First check if in editorArea (covers cross-page selections)
+      if (editorArea && editorArea.contains(range.commonAncestorContainer)) {
+        inEditor = true;
+      } else {
+        // Check individual pages
+        for (const page of allPages) {
+          if (page.contains(range.commonAncestorContainer)) {
+            inEditor = true;
+            break;
+          }
+        }
+      }
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:styleContainsCheck',message:'Checking if selection in editor',data:{inEditor:inEditor,ancestorNode:range.commonAncestorContainer.nodeName,ancestorParent:range.commonAncestorContainer.parentNode?range.commonAncestorContainer.parentNode.nodeName:'null'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'S2'})}).catch(()=>{});
+      // #endregion
+      if (!inEditor) {
+        // No selection in editor, just update button state
+        return;
+      }
+      
+      // Apply style to selected text or current block
+      // Find the containing block element
+      let blockNode = range.commonAncestorContainer;
+      while (blockNode && blockNode.nodeType !== 1) {
+        blockNode = blockNode.parentNode;
+      }
+      while (blockNode && !['P', 'H1', 'H2', 'H3', 'DIV'].includes(blockNode.nodeName)) {
+        blockNode = blockNode.parentNode;
+      }
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:styleBlockFound',message:'Block element found for style',data:{blockFound:!!blockNode,blockTag:blockNode?blockNode.nodeName:'null',isEditorPaper:blockNode?blockNode.classList.contains('editor-paper'):false,selectionSpansMultiple:range.startContainer!==range.endContainer,blockText:blockNode?blockNode.textContent.substring(0,50):''},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'S3'})}).catch(()=>{});
+      // #endregion
+      
+      if (blockNode && blockNode.classList && !blockNode.classList.contains('editor-paper') && !blockNode.id?.includes('editorArea')) {
+        // Single block - transform it
+        const originalTag = blockNode.nodeName;
+        applyStyleToElement(blockNode, styleConfig);
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:styleAfter',message:'Style applied to block',data:{method:'blockTransform',originalTag:originalTag,newTag:styleConfig.tag,styleName:styleName},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'CP1'})}).catch(()=>{});
+        // #endregion
+      } else {
+        // Multi-block or cursor-only case - search ALL pages for matching blocks
+        const blocksToStyle = [];
+        
+        // Search ALL editor pages for blocks that intersect or contain cursor
+        const allPages = document.querySelectorAll('.editor-paper');
+        allPages.forEach(page => {
+          // Exclude ghost text wrapper and cursor line from block searches
+          const allBlocks = page.querySelectorAll('p:not(.editor-cursor-line), h1, h2, h3, div:not(.ghost-text-wrapper):not(.editor-paper):not(.editor-cursor-line)');
+          allBlocks.forEach(child => {
+            // Skip if this contains the ghost text wrapper
+            if (child.querySelector('.ghost-text-wrapper') || child.classList.contains('ghost-text-wrapper')) {
+              return;
+            }
+            
+            // For collapsed range (cursor only), check if cursor is inside this block
+            if (range.collapsed) {
+              // Check if cursor's startContainer is inside this block, or if cursor is in the page and this block contains it
+              const startNode = range.startContainer;
+              if (child.contains(startNode) || child === startNode || 
+                  (startNode.nodeType === 3 && child.contains(startNode.parentNode))) {
+                blocksToStyle.push(child);
+              }
+            } else {
+              // For selection, check intersection
+              if (range.intersectsNode(child)) {
+                // Make sure it's not a nested element we already covered
+                let isNested = false;
+                blocksToStyle.forEach(existing => {
+                  if (existing.contains(child) && existing !== child) isNested = true;
+                });
+                if (!isNested) blocksToStyle.push(child);
+              }
+            }
+          });
+        });
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:styleMultiBlock',message:'Multi-block/cursor selection',data:{blocksCount:blocksToStyle.length,blocks:blocksToStyle.map(b=>b.nodeName),isCollapsed:range.collapsed,pagesSearched:allPages.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'S5'})}).catch(()=>{});
+        // #endregion
+        
+        if (blocksToStyle.length > 0) {
+          blocksToStyle.forEach(block => {
+            applyStyleToElement(block, styleConfig);
+          });
+        } else {
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:styleSkipped',message:'Style not applied - no blocks found',data:{isCollapsed:range.collapsed,startContainer:range.startContainer.nodeName},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'S4'})}).catch(()=>{});
+          // #endregion
+        }
+      }
+    });
+  });
+  
+  function applyStyleToElement(element, styleConfig) {
+    // Create new element with desired tag
+    const newElement = document.createElement(styleConfig.tag);
+    
+    // For Normal style (empty styles object), strip inline styles from content
+    if (Object.keys(styleConfig.styles).length === 0) {
+      // Get just the text content, preserving line breaks
+      newElement.textContent = element.textContent;
+    } else {
+      newElement.innerHTML = element.innerHTML;
+      Object.assign(newElement.style, styleConfig.styles);
+    }
+    
+    element.parentNode.replaceChild(newElement, element);
+    // Trigger headings update after style change
+    if (typeof updateHeadingsNav === 'function') updateHeadingsNav();
+  }
+})();
+
+// ============================================
+// FONT AND SIZE SELECTORS - Change editor text formatting
+// ============================================
+(function() {
+  const fontSelect = document.querySelector('.font-select');
+  const sizeSelect = document.querySelector('.size-select');
+  const editorPaper = document.getElementById('editorPaper');
+  const editorArea = document.getElementById('editorArea');
+  
+  if (!editorPaper) return;
+  
+  // Font family selector
+  if (fontSelect) {
+    fontSelect.addEventListener('change', function() {
+      const font = this.value;
+      document.execCommand('fontName', false, font);
+      editorPaper.focus();
+    });
+  }
+  
+  // Font size selector - applies 50% of selected size (for 50% scale document)
+  // User sees 10, 11, 12 etc but we apply 5pt, 5.5pt, 6pt to match A3*0.5 scale
+  if (sizeSelect) {
+    sizeSelect.addEventListener('change', function() {
+      const displaySize = parseFloat(this.value);
+      const actualSize = (displaySize / 2) + 'pt'; // 50% scale
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0 && !selection.isCollapsed) {
+        // Apply font-size to selected text using CSS custom property approach
+        // Clone the range content and wrap in a span
+        const range = selection.getRangeAt(0);
+        const contents = range.cloneContents();
+        
+        // Create a temporary container to check what we're wrapping
+        const tempDiv = document.createElement('div');
+        tempDiv.appendChild(contents);
+        
+        // Get all text nodes in the selection and wrap each in a span
+        const treeWalker = document.createTreeWalker(
+          tempDiv,
+          NodeFilter.SHOW_TEXT,
+          null,
+          false
+        );
+        
+        const textNodes = [];
+        while (treeWalker.nextNode()) {
+          textNodes.push(treeWalker.currentNode);
+        }
+        
+        // Delete the original selection and insert wrapped version
+        range.deleteContents();
+        
+        // Insert the content with font-size applied - use inline display
+        const span = document.createElement('span');
+        span.style.fontSize = actualSize;
+        span.style.display = 'inline'; // Force inline to prevent new lines
+        // Get text content only to avoid block-level element issues
+        span.textContent = tempDiv.textContent;
+        range.insertNode(span);
+        
+        // Clean up empty text nodes
+        span.normalize();
+        
+        // KEEP the selection on the inserted content (don't collapse)
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        const newRange = document.createRange();
+        newRange.selectNodeContents(span); // Select ALL content in span
+        sel.addRange(newRange); // Don't collapse - keep it selected
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:fontSizeAfter',message:'Cursor after font size change',data:{displaySize:displaySize,actualSize:actualSize,cursorInSpan:true,selectionKept:!sel.isCollapsed,textLength:span.textContent.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'CP2'})}).catch(()=>{});
+        // #endregion
+      } else {
+        // No selection - get parent block and change its font size
+        const range = selection.getRangeAt(0);
+        let node = range.startContainer;
+        while (node && node.nodeType !== 1) {
+          node = node.parentNode;
+        }
+        if (node && node !== editorPaper && editorPaper.contains(node)) {
+          node.style.fontSize = actualSize;
+        }
+      }
+      editorPaper.focus();
+    });
+  }
+  
+  // Grow/Shrink font buttons
+  const growBtn = document.querySelector('[title="Grow Font"]');
+  const shrinkBtn = document.querySelector('[title="Shrink Font"]');
+  const sizeSteps = [8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72];
+  
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:fontBtnsInit',message:'Font buttons initialized',data:{growBtnFound:!!growBtn,shrinkBtnFound:!!shrinkBtn,sizeSelectFound:!!sizeSelect},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'INIT'})}).catch(()=>{});
+  // #endregion
+  
+  function getCurrentDisplaySize() {
+    // Returns the DISPLAY size (what user sees in dropdown), not actual applied size
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      let node = range.startContainer;
+      while (node && node.nodeType !== 1) {
+        node = node.parentNode;
+      }
+      if (node) {
+        const computed = window.getComputedStyle(node);
+        const actualPx = parseFloat(computed.fontSize);
+        const actualPt = actualPx * 0.75;
+        // Actual applied is 50% of display size, so display = actual * 2
+        return Math.round(actualPt * 2);
+      }
+    }
+    return 11; // Default 11pt display size
+  }
+  
+  // Helper to apply size directly (used by grow/shrink)
+  function applyFontSizeDirectly(displayPt) {
+    const actualSize = (displayPt / 2) + 'pt'; // 50% scale
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:fontSizeDirect',message:'Applying font size directly',data:{displayPt,actualSize,hasSelection:!selection.isCollapsed},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'FS1'})}).catch(()=>{});
+    // #endregion
+    
+    // Check if selection is inside ANY editor page
+    const allPages = document.querySelectorAll('.editor-paper');
+    let inEditor = false;
+    for (const page of allPages) {
+      if (page.contains(selection.anchorNode)) {
+        inEditor = true;
+        break;
+      }
+    }
+    if (!inEditor) return;
+    
+    if (selection.isCollapsed) {
+      // No selection - apply to parent block
+      const range = selection.getRangeAt(0);
+      let node = range.startContainer;
+      while (node && node.nodeType !== 1) node = node.parentNode;
+      if (node) {
+        node.style.fontSize = actualSize;
+      }
+    } else {
+      // Has selection - wrap in span with size
+      const range = selection.getRangeAt(0);
+      const span = document.createElement('span');
+      span.style.fontSize = actualSize;
+      span.style.display = 'inline';
+      span.textContent = range.toString();
+      range.deleteContents();
+      range.insertNode(span);
+      // Keep selection
+      selection.removeAllRanges();
+      const newRange = document.createRange();
+      newRange.selectNodeContents(span);
+      selection.addRange(newRange);
+    }
+    // Update dropdown to match
+    if (sizeSelect) {
+      const option = Array.from(sizeSelect.options).find(o => parseFloat(o.value) === displayPt);
+      if (option) sizeSelect.value = option.value;
+    }
+    editorPaper.focus();
+  }
+  
+  // Store saved selection for buttons that steal focus
+  let savedSelection = null;
+  
+  function saveSelection() {
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+      savedSelection = sel.getRangeAt(0).cloneRange();
+    }
+  }
+  
+  function restoreSelection() {
+    if (savedSelection) {
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(savedSelection);
+    }
+  }
+  
+  // Prevent buttons from stealing focus
+  if (growBtn) {
+    growBtn.addEventListener('mousedown', function(e) {
+      e.preventDefault(); // Prevent focus theft
+      saveSelection();
+    });
+    growBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:growClick',message:'Grow button clicked',data:{savedSel:!!savedSelection},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'GROW'})}).catch(()=>{});
+      // #endregion
+      const currentDisplayPt = getCurrentDisplaySize();
+      const nextIndex = sizeSteps.findIndex(s => s > currentDisplayPt);
+      const newSize = nextIndex >= 0 ? sizeSteps[nextIndex] : sizeSteps[sizeSteps.length - 1];
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:growCalc',message:'Grow size calculated',data:{currentDisplayPt,nextIndex,newSize},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'GROW'})}).catch(()=>{});
+      // #endregion
+      applyFontSizeDirectly(newSize);
+    });
+  }
+  
+  if (shrinkBtn) {
+    shrinkBtn.addEventListener('mousedown', function(e) {
+      e.preventDefault(); // Prevent focus theft
+      saveSelection();
+    });
+    shrinkBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:shrinkClick',message:'Shrink button clicked',data:{savedSel:!!savedSelection},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'SHRINK'})}).catch(()=>{});
+      // #endregion
+      const currentDisplayPt = getCurrentDisplaySize();
+      const prevIndex = sizeSteps.slice().reverse().findIndex(s => s < currentDisplayPt);
+      const newSize = prevIndex >= 0 ? sizeSteps[sizeSteps.length - 1 - prevIndex] : sizeSteps[0];
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:shrinkCalc',message:'Shrink size calculated',data:{currentDisplayPt,prevIndex,newSize},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'SHRINK'})}).catch(()=>{});
+      // #endregion
+      applyFontSizeDirectly(newSize);
+    });
+  }
+  
+  // Highlight button handler
+  const highlightBtn = document.querySelector('[title="Highlight"]');
+  if (highlightBtn) {
+    highlightBtn.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      saveSelection();
+    });
+    highlightBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:highlightClick',message:'Highlight button clicked',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'HI'})}).catch(()=>{});
+      // #endregion
+      document.execCommand('backColor', false, '#FFFF00');
+    });
+  }
+})();
+
+// ============================================
+// AUTO WORD COUNT & HEADINGS NAVIGATION
+// ============================================
+(function() {
+  const editorPaper = document.getElementById('editorPaper');
+  const wordCountEl = document.getElementById('wordCount') || document.querySelector('.word-count');
+  const headingsList = document.getElementById('headingsList');
+  if (!editorPaper) return;
+  
+  // Word count function
+  function updateWordCount() {
+    if (!wordCountEl) return;
+    const text = editorPaper.innerText || editorPaper.textContent || '';
+    const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+    const count = words.length;
+    wordCountEl.textContent = `${count} word${count !== 1 ? 's' : ''}`;
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:wordCount',message:'Word count updated',data:{count},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
+    // #endregion
+  }
+  
+  // Headings navigation function
+  window.updateHeadingsNav = function() {
+    if (!headingsList) return;
+    const headings = editorPaper.querySelectorAll('h1, h2, h3');
+    headingsList.innerHTML = '';
+    
+    headings.forEach((heading, index) => {
+      const li = document.createElement('li');
+      const level = heading.tagName.toLowerCase();
+      li.className = `heading-item level-${level === 'h1' ? '1' : level === 'h2' ? '2' : '3'}`;
+      if (index === 0) li.classList.add('active');
+      li.textContent = heading.textContent;
+      li.setAttribute('data-index', index);
+      
+      // Click to scroll to heading
+      li.addEventListener('click', function() {
+        headingsList.querySelectorAll('.heading-item').forEach(item => item.classList.remove('active'));
+        this.classList.add('active');
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      
+      headingsList.appendChild(li);
+    });
+  };
+  
+  // Initial update
+  updateWordCount();
+  updateHeadingsNav();
+  
+  // Chat scroll logging
+  const chatMessages = document.getElementById('chatMessagesIndex4');
+  if (chatMessages) {
+    chatMessages.addEventListener('scroll', function() {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:chatScroll',message:'Chat messages scrolled',data:{scrollTop:chatMessages.scrollTop,scrollHeight:chatMessages.scrollHeight,clientHeight:chatMessages.clientHeight},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'F'})}).catch(()=>{});
+      // #endregion
+    });
+  }
+  
+  // Update on content change (using MutationObserver)
+  const observer = new MutationObserver(function() {
+    updateWordCount();
+    updateHeadingsNav();
+  });
+  
+  observer.observe(editorPaper, {
+    childList: true,
+    subtree: true,
+    characterData: true
+  });
+  
+  // Also update on input for immediate feedback
+  editorPaper.addEventListener('input', function() {
+    updateWordCount();
+  });
+  
+  // Count section agents dynamically
+  function updateAgentCount() {
+    const agentItems = document.querySelectorAll('.demo-history-item.agent-item');
+    const agentCountEl = document.getElementById('agentCountNum');
+    if (agentCountEl) {
+      agentCountEl.textContent = agentItems.length;
+    }
+  }
+  updateAgentCount();
+  
+  // Observe for new agents being added
+  const historyList = document.querySelector('.demo-history-list');
+  if (historyList) {
+    const historyObserver = new MutationObserver(updateAgentCount);
+    historyObserver.observe(historyList, { childList: true, subtree: true });
+  }
+})();
+
+// ============================================
+// PAPER SIZE SWITCHING
+// ============================================
+(function() {
+  const editorPaper = document.getElementById('editorPaper');
+  if (!editorPaper) return;
+  
+  const sizeBtns = document.querySelectorAll('.paper-size-btn');
+  const orientBtns = document.querySelectorAll('.paper-orient-btn');
+  
+  let currentSize = 'a3';
+  let currentOrient = 'landscape';
+  
+  function updatePaperClass() {
+    // Remove all paper size classes
+    editorPaper.classList.remove('a3', 'landscape');
+    
+    // Add current size class if A3
+    if (currentSize === 'a3') {
+      editorPaper.classList.add('a3');
+    }
+    
+    // Add landscape class if landscape
+    if (currentOrient === 'landscape') {
+      editorPaper.classList.add('landscape');
+    }
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:paperSize',message:'Paper size changed',data:{size:currentSize,orient:currentOrient,classes:editorPaper.className},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'H'})}).catch(()=>{});
+    // #endregion
+  }
+  
+  // Size button clicks
+  sizeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      sizeBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentSize = this.dataset.size;
+      updatePaperClass();
+    });
+  });
+  
+  // Orientation button clicks
+  orientBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      orientBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentOrient = this.dataset.orient;
+      updatePaperClass();
+    });
+  });
+})();
+
+// ============================================
+// INLINE GHOST TEXT - INTELLISENSE STYLE
+// ============================================
+(function() {
+  const editorPaper = document.getElementById('editorPaper');
+  const ghostTextInline = document.getElementById('ghostTextInline');
+  const ghostTextWrapper = document.getElementById('ghostTextWrapper');
+  const cursorLine = document.getElementById('cursorLine');
+  const chatInput = document.getElementById('chatInputIndex4');
+  const chatSendBtn = document.getElementById('chatSendIndex4');
+  const agentItems = document.querySelectorAll('.demo-history-item.agent-item');
+  const editorArea = document.getElementById('editorArea');
+  
+  if (!editorPaper || !ghostTextInline) return;
+  
+  // Show ghost text only when cursor is at end of line and following content is empty
+  function checkAndShowGhostText() {
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    
+    const range = selection.getRangeAt(0);
+    const node = range.startContainer;
+    const offset = range.startOffset;
+    
+    // Check if we're at or near the end of text content
+    let isAtEnd = false;
+    
+    // If in text node, check if at end
+    if (node.nodeType === Node.TEXT_NODE) {
+      const textAfterCursor = node.textContent.substring(offset).trim();
+      isAtEnd = textAfterCursor === '';
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      // If in element, check if it's empty or cursor is at the end
+      const textContent = node.textContent.trim();
+      isAtEnd = textContent === '' || offset >= node.childNodes.length;
+    }
+    
+    // Also check if we're clicking on the cursor line specifically
+    const clickedOnCursorLine = node.closest && node.closest('.editor-cursor-line');
+    
+    if (isAtEnd || clickedOnCursorLine) {
+      ghostTextInline.classList.add('visible');
+      ghostTextWrapper.classList.add('active');
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:ghostShow',message:'Ghost text shown - cursor at end',data:{isAtEnd:isAtEnd,clickedOnCursorLine:!!clickedOnCursorLine},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'K'})}).catch(()=>{});
+      // #endregion
+    } else {
+      ghostTextInline.classList.remove('visible');
+      ghostTextWrapper.classList.remove('active');
+    }
+  }
+  
+  // Check ghost text position on click
+  editorPaper.addEventListener('click', function(e) {
+    // Small delay to let selection settle
+    setTimeout(checkAndShowGhostText, 10);
+  });
+  
+  // Also check on keyup (after arrow keys, etc.)
+  editorPaper.addEventListener('keyup', function(e) {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'End', 'Home'].includes(e.key)) {
+      checkAndShowGhostText();
+    }
+  });
+  
+  // Hide ghost text when typing starts (but not on Enter)
+  editorPaper.addEventListener('input', function(e) {
+    // Don't hide if just pressed Enter (new line)
+    if (e.inputType === 'insertParagraph' || e.inputType === 'insertLineBreak') {
+      // Show ghost text after Enter - user might want to finish
+      ghostTextInline.classList.add('visible');
+      ghostTextWrapper.classList.add('active');
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:editorEnter',message:'Enter pressed - showing ghost text',data:{inputType:e.inputType},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'N1'})}).catch(()=>{});
+      // #endregion
+    } else {
+      ghostTextInline.classList.remove('visible');
+      ghostTextWrapper.classList.remove('active');
+    }
+  });
+  
+  // Hide ghost text when clicking outside editor
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#editorPaper')) {
+      ghostTextInline.classList.remove('visible');
+      ghostTextWrapper.classList.remove('active');
+    }
+  });
+  
+  // Handle Tab key anywhere in editor - accept ghost text suggestion
+  editorPaper.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab' && ghostTextInline.classList.contains('visible')) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:ghostTextTab',message:'Tab pressed - finishing specification and opening agents',data:{sendingCommand:true,agentCount:agentItems.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'J'})}).catch(()=>{});
+      // #endregion
+      
+      // Send "Finish Specification" command to chat and launch chat panel
+      if (chatInput && chatSendBtn) {
+        // First, expand the chat panel if collapsed
+        const rightColumn = document.getElementById('rightColumn');
+        const chatBox = document.querySelector('.demo-chat-box');
+        if (chatBox && !chatBox.classList.contains('expanded')) {
+          const maxBtn = document.querySelector('.demo-titlebar-btn.max');
+          if (maxBtn) maxBtn.click();
+        }
+        
+        // Set the message and send
+        chatInput.textContent = 'Finish Specification';
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+        
+        setTimeout(() => {
+          chatSendBtn.click();
+          // Focus the chat input after sending
+          chatInput.focus();
+        }, 100);
+      }
+      
+      // Open all agents (click each one to activate)
+      agentItems.forEach((agent, index) => {
+        setTimeout(() => {
+          agent.classList.add('active');
+          agent.click();
+        }, 200 + (index * 150));
+      });
+      
+      // Replace ghost text with accepted text
+      ghostTextWrapper.innerHTML = '<span style="color: #156082;">Generating specification...</span>';
+      
+      // Hide after a moment
+      setTimeout(() => {
+        ghostTextWrapper.style.display = 'none';
+      }, 2000);
+    }
+  });
+  
+  // ========== AUTO PAGE CREATION ON OVERFLOW ==========
+  // Word-like page overflow: check each element's bottom position against page boundary
+  // With box-sizing: border-box, height (561px) INCLUDES padding (40px top + 40px bottom)
+  const TOP_PADDING = 40;
+  const BOTTOM_PADDING = 40;
+  
+  // Get the usable content height (page height minus padding)
+  const getUsableHeight = (page) => page.clientHeight - TOP_PADDING - BOTTOM_PADDING;
+  
+  // Check if any element extends beyond the usable content area
+  // Uses RELATIVE positions (offsetTop/offsetHeight) for stability
+  const hasOverflowingElement = (page) => {
+    // Calculate usable height (page height minus padding)
+    const usableHeight = page.clientHeight - BOTTOM_PADDING;
+    
+    // Check each child element using relative positions
+    const children = page.children;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const childBottom = child.offsetTop + child.offsetHeight;
+      if (childBottom > usableHeight) {
+        return true;
+      }
+    }
+    return false;
+  };
+  let isCreatingPage = false; // Prevent infinite loop
+  
+  // Debounced overflow check to avoid too many calls and jumpiness
+  let overflowCheckTimeout = null;
+  let isCheckingOverflow = false;
+  function debouncedOverflowCheck() {
+    if (overflowCheckTimeout) clearTimeout(overflowCheckTimeout);
+    if (isCheckingOverflow) return; // Don't queue if already checking
+    overflowCheckTimeout = setTimeout(() => {
+      isCheckingOverflow = true;
+      checkAllPagesForOverflow();
+      setTimeout(() => { isCheckingOverflow = false; }, 200); // Cooldown
+    }, 250); // Increased debounce time
+  }
+  
+  function createNewPage() {
+    if (isCreatingPage) return null;
+    isCreatingPage = true;
+    
+    const newPage = document.createElement('div');
+    newPage.className = 'editor-paper a3 landscape overflow-page';
+    newPage.contentEditable = 'true';
+    newPage.innerHTML = '<p><br></p>';
+    
+    // Insert after the last page
+    const lastPage = editorArea.querySelector('.editor-paper:not(.title-page):last-of-type');
+    if (lastPage) {
+      lastPage.after(newPage);
+    } else if (editorPaper) {
+      editorPaper.after(newPage);
+    }
+    
+    // Update page count in status bar
+    updatePageCount();
+    
+    // Allow clicking on new page and show ghost text - DON'T scroll
+    newPage.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent scrolling to this page
+      this.focus();
+      ghostTextInline.classList.add('visible');
+      ghostTextWrapper.classList.add('active');
+    });
+    
+    // Monitor this new page for overflow too (debounced)
+    newPage.addEventListener('input', debouncedOverflowCheck);
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:newPage',message:'New page created',data:{pageCount:editorArea.querySelectorAll('.editor-paper:not(.title-page)').length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'L'})}).catch(()=>{});
+    // #endregion
+    
+    setTimeout(() => { isCreatingPage = false; }, 100);
+    return newPage;
+  }
+  
+  function updatePageCount() {
+    const pageCountEl = document.querySelector('.page-count');
+    const pages = editorArea.querySelectorAll('.editor-paper:not(.title-page)');
+    const totalPages = pages.length + 1; // +1 for title page
+    if (pageCountEl) {
+      pageCountEl.textContent = `Page 2 of ${totalPages}`;
+    }
+  }
+  
+  // Check if content overflows and create new pages automatically
+  function checkAllPagesForOverflow() {
+    if (isCreatingPage) return;
+    
+    const pages = editorArea.querySelectorAll('.editor-paper:not(.title-page)');
+    const pageIndex = Array.from(pages);
+    
+    pages.forEach((page, idx) => {
+      const usableHeight = page.clientHeight - BOTTOM_PADDING;
+      const childCount = page.children.length;
+      const lastChild = page.lastElementChild;
+      const lastChildBottom = lastChild ? lastChild.offsetTop + lastChild.offsetHeight : 0;
+      const hasOverflow = hasOverflowingElement(page);
+      
+      // Get first child text for context
+      const firstChildText = page.firstElementChild ? page.firstElementChild.textContent.substring(0,30) : '';
+      const lastChildText = lastChild ? lastChild.textContent.substring(0,30) : '';
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:overflowCheck',message:'Checking page overflow',data:{pageNum:idx+1,childCount,usableHeight:Math.round(usableHeight),lastChildBottom:Math.round(lastChildBottom),hasOverflow,firstChildText,lastChildText,pageHeight:page.clientHeight},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'O1'})}).catch(()=>{});
+      // #endregion
+      
+      // Check if any element extends past the bottom margin
+      if (hasOverflow) {
+        // Move overflow content to next page
+        moveOverflowToNextPage(page);
+      }
+    });
+  }
+  
+  function moveOverflowToNextPage(sourcePage) {
+    if (isCreatingPage) return;
+    
+    // Get all block elements in the page
+    const children = Array.from(sourcePage.children);
+    if (children.length === 0) return;
+    
+    // Calculate usable height using relative positions (stable)
+    const usableHeight = sourcePage.clientHeight - BOTTOM_PADDING;
+    
+    // Find the first element that extends past the bottom margin
+    let overflowIndex = -1;
+    
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const childBottom = child.offsetTop + child.offsetHeight;
+      if (childBottom > usableHeight) {
+        overflowIndex = i;
+        break;
+      }
+    }
+    
+    if (overflowIndex === -1) return;
+    
+    // If the FIRST element overflows, keep it (can't move everything)
+    // Just check if we need a new page for subsequent content
+    if (overflowIndex === 0 && children.length === 1) return;
+    
+    // Get or create the next page
+    let nextPage = sourcePage.nextElementSibling;
+    if (!nextPage || !nextPage.classList.contains('editor-paper')) {
+      nextPage = createNewPage();
+    }
+    if (!nextPage) return;
+    
+    // WORD-LIKE: Only move the SINGLE overflowing element to the next page
+    // This is the key difference - Word moves one element at a time
+    const elementToMove = children[overflowIndex];
+    nextPage.insertBefore(elementToMove, nextPage.firstChild);
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:moveOverflow',message:'Content moved to next page',data:{movedElement:elementToMove.tagName,movedText:elementToMove.textContent.substring(0,30)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'O2'})}).catch(()=>{});
+    // #endregion
+    
+    // After moving, check if source page STILL has overflow
+    // This creates a recursive effect - keep moving until no overflow
+    setTimeout(() => checkAllPagesForOverflow(), 10);
+  }
+  
+  // Monitor the main editor page for overflow - debounced for performance
+  editorPaper.addEventListener('input', function(e) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:editorInput',message:'Editor input detected',data:{inputType:e.inputType||'unknown',childCount:editorPaper.children.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'INP'})}).catch(()=>{});
+    // #endregion
+    debouncedOverflowCheck();
+  });
+  editorPaper.addEventListener('paste', function(e) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:editorPaste',message:'Editor paste detected',data:{childCount:editorPaper.children.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'PASTE'})}).catch(()=>{});
+    // #endregion
+    
+    // Handle paste manually to control cursor position
+    e.preventDefault();
+    const clipboardData = e.clipboardData || window.clipboardData;
+    const pastedText = clipboardData.getData('text/plain');
+    
+    // Insert text at current cursor position
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+      
+      // Insert as text node to preserve cursor
+      const textNode = document.createTextNode(pastedText);
+      range.insertNode(textNode);
+      
+      // Move cursor to END of pasted content
+      range.setStartAfter(textNode);
+      range.setEndAfter(textNode);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:pasteAfter',message:'Cursor positioned after paste',data:{pastedLength:pastedText.length,focusNode:sel.focusNode?sel.focusNode.nodeName:'null',focusOffset:sel.focusOffset},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'CP3'})}).catch(()=>{});
+      // #endregion
+    }
+    
+    debouncedOverflowCheck();
+  });
+  editorPaper.addEventListener('keyup', debouncedOverflowCheck);
+  
+  // Also check on page load after content renders
+  setTimeout(checkAllPagesForOverflow, 500);
+  
+  // Keyboard shortcut to manually add new page (Ctrl+Enter)
+  // Listen on document to catch all Ctrl+Enter regardless of focus
+  document.addEventListener('keydown', function(e) {
+    // Only handle if focus is inside editorArea
+    if (!editorArea.contains(document.activeElement)) return;
+    
+    // Ctrl+Z - Undo (use browser's native undo)
+    if (e.ctrlKey && e.key === 'z' && !e.shiftKey) {
+      // Let browser handle it, but log it
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:undo',message:'Ctrl+Z Undo',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'U'})}).catch(()=>{});
+      // #endregion
+      document.execCommand('undo', false, null);
+      e.preventDefault();
+      return;
+    }
+    
+    // Ctrl+Y or Ctrl+Shift+Z - Redo
+    if ((e.ctrlKey && e.key === 'y') || (e.ctrlKey && e.shiftKey && e.key === 'z')) {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:redo',message:'Ctrl+Y/Ctrl+Shift+Z Redo',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'U'})}).catch(()=>{});
+      // #endregion
+      document.execCommand('redo', false, null);
+      e.preventDefault();
+      return;
+    }
+    
+    if (e.ctrlKey && e.key === 'Enter') {
+      e.preventDefault();
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:ctrlEnter',message:'Ctrl+Enter pressed - creating new page',data:{},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'P2'})}).catch(()=>{});
+      // #endregion
+      
+      const newPage = createNewPage();
+      if (newPage) {
+        newPage.focus();
+        // Place cursor at start
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.setStart(newPage.firstChild || newPage, 0);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+  });
+  
+  // Expose function globally for manual page creation
+  window.createNewEditorPage = createNewPage;
+})();
+
+// ============================================
+// CHAT INPUT - Tab to complete specification
+// ============================================
+(function() {
+  const chatInput = document.getElementById('chatInputIndex4');
+  const chatSendBtn = document.getElementById('chatSendIndex4');
+  const agentItems = document.querySelectorAll('.demo-history-item.agent-item');
+  if (!chatInput) return;
+  
+  // Tab key sends "Finish Specification" command (same as editor Tab)
+  chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab' && this.textContent.trim() === '') {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:chatTab',message:'Chat Tab pressed - finishing specification',data:{sendingCommand:true,agentCount:agentItems.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'T1'})}).catch(()=>{});
+      // #endregion
+      
+      // Send "Finish Specification" command to chat
+      if (chatSendBtn) {
+        this.textContent = 'Finish Specification';
+        chatSendBtn.click();
+        
+        // Open all agents in sidebar after a delay
+        setTimeout(() => {
+          agentItems.forEach((agent, index) => {
+            setTimeout(() => {
+              agent.classList.add('active');
+            }, index * 100);
+          });
+        }, 300);
+      }
+    }
+  });
+})();
+
+// ============================================
+// DEBUG: EDITOR PADDING INVESTIGATION
+// Scroll logging removed - too noisy
+</script>
+
+<script>
+// #region agent log - Ribbon layout verification
+(function() {
+  const ribbonGroup = document.querySelector('.ribbon-group');
+  const ribbonContent = document.querySelector('.ribbon-group-content');
+  const btnStack = document.querySelector('.ribbon-btn-stack');
+  const formatBtn = document.querySelector('.ribbon-btn[title="Format Painter"]');
+  const groupLabel = document.querySelector('.ribbon-group-label');
+  
+  if (ribbonGroup && ribbonContent && btnStack && formatBtn && groupLabel) {
+    const btnStackRect = btnStack.getBoundingClientRect();
+    const formatRect = formatBtn.getBoundingClientRect();
+    const labelRect = groupLabel.getBoundingClientRect();
+    const contentRect = ribbonContent.getBoundingClientRect();
+    
+    const data = {
+      btnStackHeight: btnStackRect.height,
+      contentMaxHeight: window.getComputedStyle(ribbonContent).maxHeight,
+      formatBottom: formatRect.bottom,
+      labelTop: labelRect.top,
+      overlap: formatRect.bottom > labelRect.top,
+      gap: labelRect.top - formatRect.bottom
+    };
+    
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:ribbonLayout',message:'Ribbon layout check',data:data,timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'R1'})}).catch(()=>{});
+  }
+})();
+// #endregion
+
+// #region agent log - Chat input ghost text verification
+(function() {
+  const chatInput = document.getElementById('chatInputIndex4');
+  if (chatInput) {
+    const data = {
+      dataPlaceholder: chatInput.getAttribute('data-placeholder'),
+      dataGhost: chatInput.getAttribute('data-ghost'),
+      isEmpty: chatInput.textContent.trim() === ''
+    };
+    
+    fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:chatGhost',message:'Chat ghost text check',data:data,timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'G1'})}).catch(()=>{});
+    
+    // Log on focus/blur
+    chatInput.addEventListener('focus', function() {
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:chatGhost:focus',message:'Chat input focused',data:{isEmpty: chatInput.textContent.trim() === ''},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'G2'})}).catch(()=>{});
+    });
+    
+    chatInput.addEventListener('blur', function() {
+      fetch('http://127.0.0.1:7242/ingest/be599a50-aa80-41fe-8917-55a797a71c4e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'chat-panel.html:chatGhost:blur',message:'Chat input blurred',data:{isEmpty: chatInput.textContent.trim() === ''},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'G3'})}).catch(()=>{});
+    });
+  }
+})();
+// #endregion
+</script>
+</body>
+</html>
+

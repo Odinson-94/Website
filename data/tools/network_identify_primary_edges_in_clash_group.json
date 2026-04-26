@@ -1,0 +1,12 @@
+{
+  "name": "network_identify_primary_edges_in_clash_group",
+  "desc": "network_identify_primary_edges_in_clash_group — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "network identify primary edges in clash group"
+  ]
+}

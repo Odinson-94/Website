@@ -1,0 +1,35 @@
+{
+  "class": "ObjectStylesSetCategoryLineWeightCommand",
+  "desc": "Set the projection or cut line weight for an object-style category.",
+  "summary": "Set the projection or cut line weight for an object-style category.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "set category line weight",
+    "object_styles_set_category_line_weight"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Updating line weight…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Line weight set."
+    ],
+    "failureprompts": [
+      "Set line weight failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

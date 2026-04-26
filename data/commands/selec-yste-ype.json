@@ -1,0 +1,80 @@
+{
+  "class": "SelectBySystemTypeCommand",
+  "desc": "Selects elements where Revit MEP system type/classification matches the requested text.",
+  "summary": "Selects elements where Revit MEP system type/classification matches the requested text. Checks BuiltInParameter.RBS_SYSTEM_CLASSIFICATION_PARAM, piping/duct/electrical system type params, MEPCurve system names, FamilyInstance connector system types, and ElectricalSystem info. Uses SelectByFamilyNameCommand.BuildFamilyTypeBreakdown for result summary. Called by CommandExecutor when Claude invokes execute_command. Related: SelectByServiceTypeCommand for custom \"Service Type\" parameter search, SelectByParameterCommand for generic deep parameter search.",
+  "usecase": "Select all Domestic Hot Water elements before tagging. Select all Supply Air duct elements for a coordination check. Select all elements in a specific electrical circuit type.",
+  "notfor": "Selecting by custom \"Service Type\" parameter (use SelectByServiceTypeCommand). Generic deep parameter search across all fields (use SelectByParameterCommand). Simple category selection (use SelectByCategoryCommand).",
+  "precondition": "Active document and view must be available. Model must contain MEP elements with system assignments.",
+  "postcondition": "Revit selection is replaced with matched element IDs. Returns JSON with systemType, scope, totalSearched, totalSelected, and breakdown.",
+  "sideeffects": "",
+  "logictree": "check: parameters.systemType → required, fail if empty\rcheck: parameters.scope == \"model\" → search entire model\rdefault: search current view only\riterate: each element → extract system classification text → contains match",
+  "keywords": [
+    "select by system type",
+    "system type selection",
+    "select system",
+    "select dhw",
+    "select supply air"
+  ],
+  "intent_patterns": [
+    "select * system type",
+    "select * by system",
+    "select * dhw",
+    "select * supply air"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "systemType",
+      "type": "string",
+      "description": "System type text to match",
+      "default": ""
+    },
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "view (default) or model",
+      "default": "\"view\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Selected element IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Selection summary with counts and breakdown"
+    }
+  ],
+  "related_commands": [
+    "SelectByServiceTypeCommand",
+    "SelectByParameterCommand",
+    "FilterSelectionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Selecting elements by MEP system type...",
+      "Searching for system type matches across elements...",
+      "Looking for elements in the specified system..."
+    ],
+    "thinkingsteps": [
+      "Building element collector...",
+      "Reading system classification parameters...",
+      "Checking connector and MEP system assignments...",
+      "Applying selection to model..."
+    ],
+    "successprompts": [
+      "Selected {totalSelected} elements with system type matching \"{systemType}\" from {scope}",
+      "Found {totalSelected} of {totalSearched} elements in system \"{systemType}\""
+    ],
+    "failureprompts": [
+      "System type selection failed: {error}",
+      "Could not select by system type: {error}"
+    ]
+  },
+  "has_restapi": false
+}

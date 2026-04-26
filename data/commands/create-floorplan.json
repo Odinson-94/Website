@@ -1,0 +1,94 @@
+{
+  "class": "CreateFloorplanCommand",
+  "desc": "Command: Creates a floor plan view on a target level with optional scope box and template.",
+  "summary": "Command: Creates a floor plan view on a target level with optional scope box and template. Delegates to CreateFloorplan.GetAll for the actual view creation. Executable via execute_command (orchestrator) — not an MCP read-only tool. Called by SheetSetUpCommand during automated sheet setup. Related: CreateReflectedCeilingPlanCommand for ceiling plans.",
+  "usecase": "User wants to create a floor plan view for a level. User is setting up views during sheet setup workflow.",
+  "notfor": "Creating reflected ceiling plans (use CreateReflectedCeilingPlanCommand). Creating section views (use CreateSectionFromGridlineCommand).",
+  "precondition": "Active document must be open. Target level must exist in the model.",
+  "postcondition": "A new ViewPlan (FloorPlan) is created on the given level with optional scope box and template applied.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create floor plan",
+    "create floorplan",
+    "new floor plan",
+    "floor plan view"
+  ],
+  "intent_patterns": [
+    "create * floor plan",
+    "new * floor plan",
+    "floor plan * level"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "levelName",
+      "type": "string",
+      "description": "Target level name (required if levelId not provided).",
+      "default": ""
+    },
+    {
+      "name": "levelId",
+      "type": "integer",
+      "description": "Target level id (optional).",
+      "default": ""
+    },
+    {
+      "name": "viewName",
+      "type": "string",
+      "description": "Optional view name.",
+      "default": ""
+    },
+    {
+      "name": "scopeBoxName",
+      "type": "string",
+      "description": "Optional scope box name to apply.",
+      "default": ""
+    },
+    {
+      "name": "templateName",
+      "type": "string",
+      "description": "Optional template name to apply.",
+      "default": ""
+    },
+    {
+      "name": "scale",
+      "type": "integer",
+      "description": "Optional view scale (default 100).",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "object",
+      "description": "Created view id, name, level, type."
+    }
+  ],
+  "related_commands": [
+    "CreateReflectedCeilingPlanCommand",
+    "CopyMonitorLevelsCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating floor plan view...",
+      "Setting up a new floor plan..."
+    ],
+    "thinkingsteps": [
+      "Resolving target level...",
+      "Creating floor plan view...",
+      "Applying scope box and template..."
+    ],
+    "successprompts": [
+      "Floor plan created: {viewName}",
+      "Done! Floor plan is ready on {levelName}"
+    ],
+    "failureprompts": [
+      "Could not create floor plan: {error}",
+      "Floor plan creation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

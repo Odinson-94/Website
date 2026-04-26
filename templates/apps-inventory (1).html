@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{seo_head}}
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+{{json_ld}}
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  /* APPS INVENTORY ────────────────────────────────────────────────────────
+     Crown-jewel layout: a featured hero card for the flagship app, then a
+     premium 2-up grid for the rest. Each card carries a screenshot/poster,
+     a bold claim, and a key-outcomes strip.
+     Edit /sandbox/data/apps.json to change content.
+  */
+
+  /* Section intro */
+  .apps-intro { margin-bottom: var(--space-2xl); }
+  .apps-intro .lead {
+    font-size: 28px; font-weight: 300; line-height: 1.35; letter-spacing: -0.015em;
+    color: var(--text); margin: 0 0 var(--space-md); max-width: 900px;
+  }
+  .apps-intro p {
+    font-size: 16px; line-height: 1.65; color: var(--text-muted);
+    max-width: 760px; margin: 0;
+  }
+
+  /* Flagship hero card — bigger, cinematic, sets the tone.
+     Light mode = dark navy → brand teal (cinematic).
+     Dark mode  = brighter teal gradient (so it pops on dark bg). */
+  .flagship {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: 0;
+    background: linear-gradient(135deg, #0e1c25 0%, #1a3441 50%, #156082 100%);
+    border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: 0 20px 60px rgba(21,96,130,0.20);
+    margin-bottom: var(--space-2xl);
+    text-decoration: none; color: #fff;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .flagship:hover { transform: translateY(-4px); box-shadow: 0 28px 70px rgba(21,96,130,0.28); }
+  .flagship .copy { padding: 48px 48px 56px; display: flex; flex-direction: column; gap: 20px; }
+  .flagship .badge {
+    display: inline-block; align-self: flex-start;
+    background: rgba(255,255,255,0.16); color: #fff;
+    font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    backdrop-filter: blur(8px);
+  }
+  .flagship h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 44px; font-weight: 600; line-height: 1.1; letter-spacing: -0.025em;
+    margin: 0; color: #fff;
+  }
+  .flagship .claim {
+    font-size: 22px; font-weight: 300; line-height: 1.4; letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.92); margin: 0;
+  }
+  .flagship .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 8px; }
+  .flagship .stats .stat { color: #fff; }
+  .flagship .stats .stat .num { font-size: 28px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+  .flagship .stats .stat .lbl { display: block; font-size: 11px; color: rgba(255,255,255,0.70); margin-top: 4px; line-height: 1.35; }
+  .flagship .arrow {
+    align-self: flex-start; margin-top: 12px;
+    background: #fff; color: #156082;
+    padding: 12px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    transition: transform 0.18s;
+  }
+  .flagship:hover .arrow { transform: translateX(4px); }
+  .flagship .visual {
+    position: relative; min-height: 380px;
+    background: linear-gradient(135deg, rgba(0,0,0,0.20), rgba(0,0,0,0.45)),
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10), transparent);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .flagship .visual::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('/sandbox/app-assets/revit-copilot/hero.svg');
+    background-size: cover; background-position: center;
+    opacity: 0.55;
+  }
+  .flagship .visual .play {
+    position: relative; z-index: 2;
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(255,255,255,0.95); color: #156082;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; box-shadow: 0 12px 40px rgba(0,0,0,0.30);
+    transition: transform 0.2s;
+  }
+  .flagship:hover .visual .play { transform: scale(1.08); }
+
+  @media (max-width: 900px) {
+    .flagship { grid-template-columns: 1fr; }
+    .flagship .copy { padding: 32px; gap: 16px; }
+    .flagship h2 { font-size: 32px; }
+    .flagship .claim { font-size: 18px; }
+    .flagship .stats { grid-template-columns: repeat(2, 1fr); }
+    .flagship .visual { min-height: 220px; }
+  }
+
+  /* The remaining apps as premium tiles */
+  .apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: var(--space-xl); }
+  .app-tile {
+    display: flex; flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    overflow: hidden; text-decoration: none; color: var(--text);
+    transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-tile:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--brand-teal); }
+  .app-tile .visual {
+    height: 200px; position: relative;
+    background: linear-gradient(135deg, #1f3340, #0e1c25);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .app-tile .visual::after {
+    content: ''; position: absolute; inset: 0; opacity: 0.25;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.18), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(21,96,130,0.45), transparent 50%);
+  }
+  /* Dark mode — switch to the brighter brand-blue gradient so it pops on dark bg */
+  html.dark-mode .flagship {
+    background: linear-gradient(135deg, #156082 0%, #1f7ba8 55%, #2c9bcf 100%);
+  }
+  html.dark-mode .app-tile .visual {
+    background: linear-gradient(135deg, #156082 0%, #1f7ba8 100%);
+  }
+  .app-tile .visual img {
+    position: relative; z-index: 1;
+    width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+  }
+  .app-tile .body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .app-tile .surf {
+    font-size: 11px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+  }
+  .app-tile h3 {
+    margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .app-tile .claim {
+    font-size: 16px; line-height: 1.5; color: var(--text);
+    font-weight: 400; margin: 0;
+  }
+  .app-tile .outcomes { display: flex; flex-wrap: wrap; gap: 18px; padding-top: 12px; border-top: 1px solid var(--border); margin-top: auto; }
+  .app-tile .outcomes .stat .num { display: block; font-size: 18px; font-weight: 600; color: var(--brand-teal); line-height: 1.1; }
+  .app-tile .outcomes .stat .lbl { display: block; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .app-tile .more {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--brand-teal);
+    text-decoration: none; padding-top: 4px;
+  }
+  .app-tile:hover .more::after { content: '→'; transition: transform 0.18s; }
+  .app-tile:hover .more::after { transform: translateX(3px); }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout wide">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <div class="apps-intro">
+    <h1 style="font-size:48px;font-weight:500;letter-spacing:-0.025em;margin:0 0 12px;">{{section_lead}}</h1>
+    <p class="lead">{{section_blurb}}</p>
+  </div>
+
+  {{flagship_html}}
+
+  <div class="apps-grid">{{tiles_html}}</div>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code>{{generated_at}}</code> from <code>sandbox/data/apps.json</code> ({{count}} apps).
+    Re-run with <code>adelphos_CLI auto-all</code>.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

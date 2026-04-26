@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupRenameViewFollowingConventionCommand",
+  "desc": "Rename a view following the project naming convention.",
+  "summary": "Rename a view following the project naming convention.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup rename view following convention",
+    "sheet_view_setup_rename_view_following_convention"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup rename view following convention…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup rename view following convention: done."
+    ],
+    "failureprompts": [
+      "sheet view setup rename view following convention failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

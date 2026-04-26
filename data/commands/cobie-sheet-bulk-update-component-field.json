@@ -1,0 +1,35 @@
+{
+  "class": "CobieSheetBulkUpdateComponentFieldCommand",
+  "desc": "Bulk-update a single COBie field across many components in one transaction.",
+  "summary": "Bulk-update a single COBie field across many components in one transaction.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "cobie sheet bulk update component field",
+    "cobie_sheet_bulk_update_component_field"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running cobie sheet bulk update component field…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "cobie sheet bulk update component field: done."
+    ],
+    "failureprompts": [
+      "cobie sheet bulk update component field failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

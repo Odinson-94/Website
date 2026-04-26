@@ -1,0 +1,13 @@
+{
+  "name": "project_settings_get_starting_view",
+  "desc": "Read the configured Starting View id and name.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "project_settings_get_starting_view",
+    "project settings get starting view"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "name": "qa_manager_create_or_update_custom_error_rule_in_rule_set_json",
+  "desc": "QA Manager rule authoring: create or update an Error Manager rule inside a named RuleSet JSON. Two rule_kinds: 'expression' (parameter AND/OR chain applied to the built-in Check Custom rule) | 'property_overrides' (reuse any existing IErrorRule class and override its settings, eg minimum distance). Saves to project .mepbridge/errors/rules/<name>.json AND/OR %APPDATA%/BuildMEP/RuleSets/<name>.json. Upserts by RuleName so repeat calls update rather than duplicate.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 9,
+  "parameters": [
+    {
+      "name": "rule_set_name",
+      "type": "string",
+      "description": "Rule set name (filesystem-safe, no extension). Created if missing.",
+      "required": false
+    },
+    {
+      "name": "rule_kind",
+      "type": "string",
+      "description": "expression | property_overrides",
+      "required": false
+    },
+    {
+      "name": "rule_name",
+      "type": "string",
+      "description": "For property_overrides: class-level RuleName of the IErrorRule to reuse (e.g. 'Accessible for Maintenance'). For expression: a memorable identifier; defaults to 'Check Custom'.",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Human readable description stored alongside the rule.",
+      "required": false
+    },
+    {
+      "name": "expression_json",
+      "type": "string",
+      "description": "Only for rule_kind=expression. JSON array of {parameterName, operator, value, logicalJoin} clauses.",
+      "required": false
+    },
+    {
+      "name": "properties_json",
+      "type": "string",
+      "description": "Only for rule_kind=property_overrides. JSON object of property overrides to set on the rule instance before execution.",
+      "required": false
+    },
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": "Whether the rule is enabled in the set (default true).",
+      "required": false
+    },
+    {
+      "name": "save_to_project",
+      "type": "boolean",
+      "description": "Write into project .mepbridge/errors/rules (default true).",
+      "required": false
+    },
+    {
+      "name": "save_to_user",
+      "type": "boolean",
+      "description": "Write into %APPDATA%/BuildMEP/RuleSets (default true).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "qa manager create custom error rule",
+    "author qa rule",
+    "add rule to rule set",
+    "bespoke error rule",
+    "expression rule upsert"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "class": "PlantroomPresetSaveToLocalStoreCommand",
+  "desc": "PlantroomPresetSaveToLocalStoreCommand — validate + write a preset to %APPDATA%/MEPBridge/presets/plantroom_layout/.",
+  "summary": "PlantroomPresetSaveToLocalStoreCommand — validate + write a preset to %APPDATA%/MEPBridge/presets/plantroom_layout/.",
+  "usecase": "Wizard-driven preset save.",
+  "notfor": "Supabase sync — use the Sync command.",
+  "precondition": "Resolver_Name + Resolver_PresetJson set.",
+  "postcondition": "One preset file on disk.",
+  "sideeffects": "",
+  "logictree": "1) Validate Resolver_Name + Resolver_PresetJson.\n2) Delegate to SavePlantroomConfigToLocalFile.Save with schema validation.\n3) Emit ok + file path.",
+  "keywords": [
+    "plantroompresetsavetolocalstore",
+    "save plantroom preset",
+    "preset save local"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Saving preset to local store…"
+    ],
+    "thinkingsteps": [
+      "Validating schema + writing to disk…"
+    ],
+    "successprompts": [
+      "Preset saved: {path}."
+    ],
+    "failureprompts": [
+      "Save failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

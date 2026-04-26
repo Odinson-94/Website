@@ -1,0 +1,35 @@
+{
+  "class": "TaggingPreferencesBatchTagAllElementsInCurrentViewCommand",
+  "desc": "Tag every taggable MEP element in the current view using the resolved default tag families.",
+  "summary": "Tag every taggable MEP element in the current view using the resolved default tag families. Skips already-tagged elements.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tagging preferences batch tag all elements in current view",
+    "tagging_preferences_batch_tag_all_elements_in_current_view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running tagging preferences batch tag all elements in current view…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "tagging preferences batch tag all elements in current view: done."
+    ],
+    "failureprompts": [
+      "tagging preferences batch tag all elements in current view failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

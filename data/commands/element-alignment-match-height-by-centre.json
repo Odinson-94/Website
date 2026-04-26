@@ -1,0 +1,37 @@
+{
+  "class": "ElementAlignmentMatchHeightByCentreCommand",
+  "desc": "Aligns the vertical centre (bbox mid-Z) of every moving element to the reference element's bbox centre, in a single Revit transaction.",
+  "summary": "Aligns the vertical centre (bbox mid-Z) of every moving element to the reference element's bbox centre, in a single Revit transaction.",
+  "usecase": "Align adjacent pipes / ducts / luminaires to a datum element's centre.",
+  "notfor": "Top-face alignment (use ByTop). Underside (use ByUnderside). Horizontal moves.",
+  "precondition": "Active document. Reference + at least one mover resolved. All elements expose a bounding box.",
+  "postcondition": "Each mover translated by (0, 0, dz) feet to match reference centre. Audit entry written.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot supplies reference + mover ids. 2) Validate both resolvers. 3) Open Transaction, compute ΔZ via CalculateElementAlignment, call ElementTransformUtils.MoveElement per mover. 4) Commit, log move summary. 5) Any failure → WireFault + rollback (Transaction dispose rolls back on uncommitted).",
+  "keywords": [
+    "elementalignmentmatchheightbycentre"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running ElementAlignmentMatchHeightByCentreCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "ElementAlignmentMatchHeightByCentreCommand completed successfully."
+    ],
+    "failureprompts": [
+      "ElementAlignmentMatchHeightByCentreCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

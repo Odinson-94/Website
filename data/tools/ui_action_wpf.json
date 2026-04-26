@@ -1,0 +1,40 @@
+{
+  "name": "ui_action_wpf",
+  "desc": "Trigger a WPF UI action programmatically. window = type name substring; element = x:Name. action: click | toggle | select | set_text. value: required for select (index) and set_text.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "window",
+      "type": "string",
+      "description": "Substring of Window class name",
+      "required": true
+    },
+    {
+      "name": "element",
+      "type": "string",
+      "description": "x:Name of target element",
+      "required": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "description": "click | toggle | select | set_text",
+      "required": true
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "For select: index. For set_text: text.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "click wpf",
+    "toggle checkbox",
+    "set text wpf",
+    "ui automation"
+  ]
+}

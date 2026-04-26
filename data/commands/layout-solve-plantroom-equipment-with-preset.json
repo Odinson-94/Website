@@ -1,0 +1,46 @@
+{
+  "class": "LayoutSolvePlantroomEquipmentWithPresetCommand",
+  "desc": "LayoutSolvePlantroomEquipmentWithPresetCommand — run solver + stage placements into pending_placements.",
+  "summary": "LayoutSolvePlantroomEquipmentWithPresetCommand — run solver + stage placements into pending_placements.",
+  "usecase": "Plantroom layout generation.",
+  "notfor": "Applying to Revit — that's LayoutApplyPendingPlacementsToRevitCommand.",
+  "precondition": "Resolver_PresetJson + Resolver_EquipmentJson + room dims required.",
+  "postcondition": "Zero or more pending_placements rows + one solver_runs row.",
+  "sideeffects": "",
+  "logictree": "1) Validate resolvers.\n2) Build CpSatRoom from room dims.\n3) Parse equipment JSON.\n4) CpSatPlantroomLayoutSolver.Solve (records solver_runs).\n5) For each placement, PendingPlacementsRepository.Enqueue under a new change.\n6) Emit run_id + placements_staged + diagnostics.",
+  "keywords": [
+    "layoutsolveplantroomequipmentwithpreset",
+    "solve plantroom layout",
+    "cp-sat plantroom solve"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Solving plantroom layout…"
+    ],
+    "thinkingsteps": [
+      "Running CpSatPlantroomLayoutSolver…",
+      "Staging placements into pending_placements…"
+    ],
+    "successprompts": [
+      "Staged {placements_staged} placements."
+    ],
+    "failureprompts": [
+      "Solve failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

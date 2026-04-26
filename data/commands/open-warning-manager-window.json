@@ -1,0 +1,44 @@
+{
+  "class": "OpenWarningManagerWindowCommand",
+  "desc": "Opens the Warning Manager window — a WebView2 panel showing Revit model warnings side by side with BUILD X command warnings, plus a tool errors section below.",
+  "summary": "Opens the Warning Manager window — a WebView2 panel showing Revit model warnings side by side with BUILD X command warnings, plus a tool errors section below. Supports element highlighting, section box creation, and auto-resolve from within the panel. Uses WarningManagerWindow.ShowSingleton for singleton modeless behaviour.",
+  "usecase": "User wants to review model health, dismiss warnings, or investigate errors.",
+  "notfor": "Running error checking rules (use QA Manager / ErrorManagerRunErrorCheckCommand).",
+  "precondition": "Active document must be open.",
+  "postcondition": "Warning Manager window is visible and populated with current warnings.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "warning manager",
+    "model warnings",
+    "revit warnings",
+    "warning panel",
+    "model health",
+    "show warnings",
+    "open warnings"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [
+    "QAManagerCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Opening the Warning Manager..."
+    ],
+    "thinkingsteps": [
+      "Loading model warnings..."
+    ],
+    "successprompts": [
+      "Warning Manager is now open."
+    ],
+    "failureprompts": [
+      "Failed to open Warning Manager: {error}"
+    ]
+  },
+  "has_restapi": false
+}

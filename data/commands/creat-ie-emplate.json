@@ -1,0 +1,81 @@
+{
+  "class": "CreateViewTemplateCommand",
+  "desc": "Creates a new view template.",
+  "summary": "Creates a new view template. When sourceViewName is set, duplicates settings from that view via CreateTemplate.FromView. Otherwise builds a coordinated MEP template using CreateTemplate.CreateMepStandard with templateName, serviceType, and scale.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Writable document; valid parameter combination (see remarks).",
+  "postcondition": "New view template element exists when the helper returns a non-null view.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create template",
+    "new view template",
+    "make template"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "templateName",
+      "type": "string",
+      "description": "Name for the new view template",
+      "default": ""
+    },
+    {
+      "name": "sourceViewName",
+      "type": "string",
+      "description": "Optional seed view (exact name) for FromView",
+      "default": ""
+    },
+    {
+      "name": "serviceType",
+      "type": "string",
+      "description": "For CreateMepStandard: drainage|mechanical|electrical|fire|plumbing",
+      "default": ""
+    },
+    {
+      "name": "scale",
+      "type": "int",
+      "description": "View scale denominator (default 100)",
+      "default": "100"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "templateId",
+      "type": "int",
+      "description": "New template element id"
+    }
+  ],
+  "related_commands": [
+    "ConfigureViewTemplateCommand",
+    "AddFilterToTemplateCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating the view template...",
+      "Preparing template from your parameters...",
+      "Choosing between duplicate-from-view and MEP standard template paths..."
+    ],
+    "thinkingsteps": [
+      "Read templateName, optional sourceViewName, optional serviceType, and scale.",
+      "If sourceViewName is set, resolve it with ListViews.FindByExactName and call CreateTemplate.FromView.",
+      "If no source view, require serviceType and call CreateTemplate.CreateMepStandard.",
+      "Validate the seed view is not a template before FromView.",
+      "Parse scale with recoverable fallback to 100 when invalid.",
+      "Run the chosen factory inside a manual transaction; roll back on null result."
+    ],
+    "successprompts": [
+      "View template '{templateName}' was created (id {templateId}).",
+      "Template creation finished successfully."
+    ],
+    "failureprompts": [
+      "Create view template failed: {error}",
+      "Could not create template — {error}"
+    ]
+  },
+  "has_restapi": false
+}

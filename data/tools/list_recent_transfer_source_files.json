@@ -1,0 +1,14 @@
+{
+  "name": "list_recent_transfer_source_files",
+  "desc": "Returns the last 5 source .rvt files used for transfer, with existence validation.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "recent transfer sources",
+    "last transfer files",
+    "transfer history files"
+  ]
+}

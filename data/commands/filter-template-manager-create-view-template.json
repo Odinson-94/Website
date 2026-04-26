@@ -1,0 +1,39 @@
+{
+  "class": "FilterTemplateManagerCreateViewTemplateCommand",
+  "desc": "Creates a view template named after the active view.",
+  "summary": "Creates a view template named after the active view.",
+  "usecase": "User wants to convert \"the way this view looks\" into a template they can re-apply.",
+  "notfor": "Cloning an existing template (use FilterTemplateManagerDuplicateViewTemplateCommand).",
+  "precondition": "Active view must be a non-template graphic view.",
+  "postcondition": "A new view template is created in the document.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create view template",
+    "filter_template_manager_create_view_template",
+    "make template from view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a view template…"
+    ],
+    "thinkingsteps": [
+      "Reading the active view's graphic settings…",
+      "Creating the new template…"
+    ],
+    "successprompts": [
+      "Template created: {TemplateName}"
+    ],
+    "failureprompts": [
+      "Couldn't create template: {error}"
+    ]
+  },
+  "has_restapi": false
+}

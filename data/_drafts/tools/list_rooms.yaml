@@ -1,0 +1,18 @@
+slug: list_rooms
+title: list_rooms
+display_title: List rooms
+description: "List all rooms in the model with name, number, level, area."
+category_label: context
+always_available: false
+what_it_returns: |
+  Array of rooms objects.
+  Each row carries id, name, and the key properties of a room.
+  Empty array when no rooms match the filter.
+example_prompts: [Corridor section, Cross section, Corridor view]
+related:
+  tools: []
+  skills: []
+  demos: []
+generated_by: stub-deterministic-v1
+generated_at: "2026-04-21T08:38:15.669Z"
+source_sha: 4d73f23

@@ -1,0 +1,40 @@
+{
+  "name": "qa_manager_run_smoke_test_for_error_check_capture_and_export_pipeline",
+  "desc": "QA Manager smoke test: runs the Error Manager rule engine → captures screenshots → exports every report format (Excel, XML, HTML, PDF, Word) → validates every artefact landed on disk. Returns a matrix of step/status/path/duration so the AI can diagnose broken wiring.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "run_error_check",
+      "type": "boolean",
+      "description": "Run the Error Manager rule engine first (default: true). Set false to reuse existing .mepbridge/qa/results.xml.",
+      "required": false
+    },
+    {
+      "name": "capture_images",
+      "type": "boolean",
+      "description": "Capture hidden-view screenshots for every result (default: true). Set false for a fast text-only test.",
+      "required": false
+    },
+    {
+      "name": "exports",
+      "type": "string",
+      "description": "Comma-separated export formats to exercise: excel,xml,html,pdf,word. Default: all.",
+      "required": false
+    },
+    {
+      "name": "rule_set",
+      "type": "string",
+      "description": "Optional rule set name to pass to the error check (default: all discoverable rules).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "qa manager smoke test",
+    "qa manager pipeline smoke test",
+    "qa end to end",
+    "qa workflow test"
+  ]
+}

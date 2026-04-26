@@ -1,0 +1,13 @@
+{
+  "name": "family_swap_list_parameter_mapping",
+  "desc": "Returns the source→target parameter mapping that FamilySwapParameterMapper proposes for a given pair (name match + fuzzy + user overrides).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "family_swap_list_parameter_mapping",
+    "family swap list parameter mapping"
+  ]
+}

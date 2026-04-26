@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverCheckAngle90ThroughWallCloseIssueCommand",
+  "desc": "ClashSolverCheckAngle90ThroughWallCloseIssueCommand — PDF \"IF_ANGLE_IS_90_CLOSE_ISSUE\".",
+  "summary": "ClashSolverCheckAngle90ThroughWallCloseIssueCommand — PDF \"IF_ANGLE_IS_90_CLOSE_ISSUE\". Classify and auto-close qualifying perpendicular-through-wall clashes.",
+  "usecase": "Auto-close compliant perpendicular wall penetrations without human click-per-clash.",
+  "notfor": "Non-wall clashes — the helper will emit reason='not_wall_service_pair'.",
+  "precondition": "Active document; Resolver_ClashId resolves in staging DB; pair still in the model.",
+  "postcondition": "No model geometry mutation; clashes table row may transition to state='ignored'.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ClashId required; load ClashRecord; WireError if missing.\n2) Resolve UidA + UidB in doc; WireError if either missing.\n3) Call KeepAngleSteppedRouteOptions.Classify(a, b, angle_tolerance_deg).\n4) If verdict.IsPerpendicular && verdict.FullyThroughWall →\n     repo.TransitionState(clashId, 'ignored', \"angle_90_through_wall: angle={angle_deg} deg, penetration={pen_ft} ft.\").\n   Else: no transition; emit diagnostic.\n5) Tracker outputs + TaskDialog on Human path.\n6) Never throws on a reason-based no-op; only WireFault on exception.",
+  "keywords": [
+    "clashsolvercheckangle90throughwallcloseissue",
+    "close 90 through wall",
+    "auto-close perpendicular penetration"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Classifying clash as perpendicular-through-wall…"
+    ],
+    "thinkingsteps": [
+      "Loading clash row + pair elements…",
+      "Delegating to KeepAngleSteppedRouteOptions…"
+    ],
+    "successprompts": [
+      "qualifies={qualifies} reason={reason}"
+    ],
+    "failureprompts": [
+      "Angle-90 classification failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

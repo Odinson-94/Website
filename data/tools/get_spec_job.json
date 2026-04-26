@@ -1,0 +1,21 @@
+{
+  "name": "get_spec_job",
+  "desc": "Read a specification job's status, agent states, and output summary.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "jobId",
+      "type": "string",
+      "description": "The job ID to retrieve",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "spec job",
+    "job status",
+    "generation status"
+  ]
+}

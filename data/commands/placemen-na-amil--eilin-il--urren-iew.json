@@ -1,0 +1,31 @@
+{
+  "class": "PlacementSnapFamilyToCeilingTileInCurrentViewCommand",
+  "desc": "Snap a family to the nearest ceiling above — direction = +Z.",
+  "summary": "Snap a family to the nearest ceiling above — direction = +Z.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "placementsnapfamilytoceilingtileincurrentview",
+    "snap family ceiling tile"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

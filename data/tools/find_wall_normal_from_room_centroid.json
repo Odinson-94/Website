@@ -1,0 +1,23 @@
+{
+  "name": "find_wall_normal_from_room_centroid",
+  "desc": "Find wall normal and section direction from a room centroid.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "roomId",
+      "type": "integer",
+      "description": "Room ID to analyze.",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "wall normal",
+    "corridor section orientation",
+    "room wall direction",
+    "section direction",
+    "corridor width"
+  ]
+}

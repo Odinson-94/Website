@@ -1,0 +1,40 @@
+{
+  "class": "ArchitectureCreateElevationViewOfSelectedWallCommand",
+  "desc": "Create an elevation view of a selected wall.",
+  "summary": "Create an elevation view of a selected wall.",
+  "usecase": "Wall elevation sheets for tile / cladding / IPS layouts.",
+  "notfor": "Interior elevations requiring rooms (use the room-elevation command when built).",
+  "precondition": "Active document open; wall id resolves; parent plan view exists or active view is a ViewPlan; project has an Elevation ViewFamilyType.",
+  "postcondition": "One new ElevationMarker + one Elevation View added. One committed Transaction. Audit entry recorded.",
+  "sideeffects": "",
+  "logictree": "1) Resolvers: Resolver_WallId (required), Resolver_ParentViewId (optional, default=active plan view), Resolver_StandoffMm (default 1000). 2) Validate — wall id → Wall; parent view id → ViewPlan; else WireError + abort. 3) Compute marker placement via GetElevationMarkerPlacementFromWall.Compute(wall, standoffFt). If null → abort. 4) Find Elevation ViewFamilyType id; if none → WireError + abort. 5) Open Transaction 'Create elevation of wall'. 6) marker = ElevationMarker.CreateElevationMarker(doc, vftId, origin, scale). 7) view = marker.CreateElevation(doc, parentView.Id, 0). Rotate marker to face the wall if necessary via ElementTransformUtils.RotateElement. 8) Commit. 9) Bot: JSON {ok, marker_id, view_id, wall_id}. User: toast 'Elevation view '{view.Name}' created.' 10) Any exception → tracker.Fail(ex); WireFault {wall_id, parent_view_id, standoff_mm}.",
+  "keywords": [
+    "architecturecreateelevationviewofselectedwall",
+    "elevation",
+    "wall",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating elevation view of selected wall…"
+    ],
+    "thinkingsteps": [
+      "Computing elevation marker placement…",
+      "Creating marker + elevation view…"
+    ],
+    "successprompts": [
+      "Elevation view '{view_name}' created for wall {wall_id}."
+    ],
+    "failureprompts": [
+      "Could not create elevation view: {error}."
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,14 @@
+slug: list_rooms
+title: list_rooms
+display_title: List rooms
+description: "List all rooms in the model (host + linked). Returns name, number, level, area for each room."
+category_label: context
+always_available: false
+example_prompts: [List rooms, Show rooms, What rooms are in this model?]
+related:
+  tools: []
+  skills: []
+  demos: []
+generated_by: stub-deterministic-v1
+generated_at: "2026-04-21T07:41:24.242Z"
+source_sha: 4d73f23

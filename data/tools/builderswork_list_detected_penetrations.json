@@ -1,0 +1,13 @@
+{
+  "name": "builderswork_list_detected_penetrations",
+  "desc": "List penetrations detected by DetectBuildersworkPenetrations for the current model + scope.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "builderswork_list_detected_penetrations",
+    "builderswork list detected penetrations"
+  ]
+}

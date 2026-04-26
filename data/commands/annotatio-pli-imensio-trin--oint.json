@@ -1,0 +1,41 @@
+{
+  "class": "AnnotationSplitDimensionStringAtPointCommand",
+  "desc": "Split a Dimension at a supplied point on its curve.",
+  "summary": "Split a Dimension at a supplied point on its curve.",
+  "usecase": "Visual cleanup — breaking a long running dimension into per-area strings.",
+  "notfor": "Non-linear dimension curves.",
+  "precondition": "Active document open; dimension id resolves to a Dimension with a linear curve; split point projects cleanly onto it and produces two sides each with ≥ 2 references.",
+  "postcondition": "Original dimension deleted; two new dimensions exist. One committed Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolvers: Resolver_DimensionId, Resolver_Split(X,Y,Z) in feet. 2) Resolve dimension; verify curve is a Line; project split point onto line. 3) Transaction 'Split dimension string'. 4) Partition References by bbox-centroid X vs. projected X into leftRefs / rightRefs; each side must have ≥ 2 references. 5) NewDimension(left) + NewDimension(right); delete original. 6) Commit. 7) Bot JSON / User toast. 8) Exception → tracker.Fail + WireFault.",
+  "keywords": [
+    "annotationsplitdimensionstringatpoint",
+    "dimension",
+    "split",
+    "annotation",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Splitting dimension string at point…"
+    ],
+    "thinkingsteps": [
+      "Projecting split point onto dimension line…",
+      "Partitioning references…"
+    ],
+    "successprompts": [
+      "Dimension split — left {left_dimension_id}, right {right_dimension_id}."
+    ],
+    "failureprompts": [
+      "Could not split dimension: {error}."
+    ]
+  },
+  "has_restapi": false
+}

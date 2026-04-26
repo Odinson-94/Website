@@ -1,0 +1,38 @@
+{
+  "class": "DrawingExporterCommand",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "drawing exporter",
+    "export drawings",
+    "batch export",
+    "print drawings",
+    "plot sheets",
+    "pdf export",
+    "dwg export"
+  ],
+  "intent_patterns": [
+    "export * drawings",
+    "open * drawing exporter",
+    "batch * export",
+    "print * sheets",
+    "plot * drawings"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [
+    "CreateRevisionCommand",
+    "BatchRenameSheets"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

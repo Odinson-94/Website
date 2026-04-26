@@ -1,0 +1,13 @@
+{
+  "name": "workset_manager_get_active_workset",
+  "desc": "Return the active workset id and name.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "workset_manager_get_active_workset",
+    "workset manager get active workset"
+  ]
+}

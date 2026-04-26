@@ -1,0 +1,24 @@
+{
+  "name": "set_parameters",
+  "desc": "Set parameter values on any Revit element(s). Call get_parameters first to see what's available, then use your judgement to pick the parameter that best matches the user's intent. For titleblocks, sheet-level parameters like Checked By or Designed By are resolved automatically. Input is a JSON array of updates with elementId and parameter name:value pairs.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "updates",
+      "type": "string",
+      "description": "JSON array: [{\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "set parameters",
+    "write parameters",
+    "update parameters",
+    "change parameter",
+    "edit parameter",
+    "modify parameter value"
+  ]
+}

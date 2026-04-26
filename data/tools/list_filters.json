@@ -1,0 +1,12 @@
+{
+  "name": "list_filters",
+  "desc": "List all view filters in the document.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list filters"
+  ]
+}

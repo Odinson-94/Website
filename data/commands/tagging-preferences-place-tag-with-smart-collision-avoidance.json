@@ -1,0 +1,35 @@
+{
+  "class": "TaggingPreferencesPlaceTagWithSmartCollisionAvoidanceCommand",
+  "desc": "Place a tag on a chosen element using the AnnotationPlacementEngine 8-quadrant collision-avoiding placer.",
+  "summary": "Place a tag on a chosen element using the AnnotationPlacementEngine 8-quadrant collision-avoiding placer. After placement, automatically runs leader uncross if AnnotationDetectTagAlignment reports crossings (Agent 6 improvement).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tagging preferences place tag with smart collision avoidance",
+    "tagging_preferences_place_tag_with_smart_collision_avoidance"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running tagging preferences place tag with smart collision avoidance…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "tagging preferences place tag with smart collision avoidance: done."
+    ],
+    "failureprompts": [
+      "tagging preferences place tag with smart collision avoidance failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

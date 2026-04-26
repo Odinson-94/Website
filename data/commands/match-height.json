@@ -1,0 +1,73 @@
+{
+  "class": "MatchHeightCommand",
+  "desc": "Command: Matches the elevation (Z height) of one pipe's endpoint to another.",
+  "summary": "Command: Matches the elevation (Z height) of one pipe's endpoint to another. WORKFLOW: 1. User selects source pipe (this pipe will be moved) 2. User selects target pipe (elevation reference) 3. Source pipe is moved vertically so endpoints align in elevation",
+  "usecase": "Aligning drain pipes for proper connections. Matching branch drain elevation to main drain. Leveling pipe endpoints for fitting placement.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least two pipes must exist in the model. User must select two valid pipe elements.",
+  "postcondition": "Source pipe endpoint matches target pipe endpoint elevation. Source pipe is moved vertically by the elevation difference.",
+  "sideeffects": "Moves the source pipe element vertically.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectSourcePipe → getSourcePipe\raction: promptUserToSelectTargetPipe → getTargetPipe\rcheck: bothPipesValid → continue, else → error\raction: calculateElevationDifference → delta\raction: moveSourcePipe → updateModel\rresolve: success → showSuccess, else → showError",
+  "keywords": [
+    "match height",
+    "align elevation",
+    "pipe level",
+    "match z",
+    "same height",
+    "align pipes"
+  ],
+  "intent_patterns": [
+    "match * height",
+    "align * elevation",
+    "same * height"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "SourcePipe",
+      "type": "Pipe",
+      "description": "Pipe to move (will be modified)",
+      "prompt": "Select SOURCE pipe (this pipe will be moved)"
+    },
+    {
+      "name": "TargetPipe",
+      "type": "Pipe",
+      "description": "Pipe to match elevation to (stays in place)",
+      "prompt": "Select TARGET pipe (source will match this elevation)"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "ElevationDelta",
+      "type": "double",
+      "description": "The elevation change applied"
+    }
+  ],
+  "related_commands": [
+    "ExtendPipeUpCommand",
+    "ExtendPipeDownCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Matching pipe endpoint elevations...",
+      "Preparing to align pipe heights..."
+    ],
+    "thinkingsteps": [
+      "Identifying source pipe endpoint...",
+      "Identifying target pipe endpoint...",
+      "Calculating elevation difference...",
+      "Moving source pipe to target elevation..."
+    ],
+    "successprompts": [
+      "Pipe height matched — moved {ElevationDelta} to align.",
+      "Elevation aligned successfully between the two pipes."
+    ],
+    "failureprompts": [
+      "Height matching failed: {error}",
+      "Could not match pipe heights: {error}"
+    ]
+  },
+  "has_restapi": false
+}

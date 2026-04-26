@@ -1,0 +1,46 @@
+{
+  "class": "PlantroomAddCracUnitsToRoomByPresetCommand",
+  "desc": "PlantroomAddCracUnitsToRoomByPresetCommand — CRAC quick-build.",
+  "summary": "PlantroomAddCracUnitsToRoomByPresetCommand — CRAC quick-build.",
+  "usecase": "Quick provisioning for a comms-room.",
+  "notfor": "Custom equipment mixes.",
+  "precondition": "Resolvers set; preset valid.",
+  "postcondition": "pending_placements populated via staging.",
+  "sideeffects": "",
+  "logictree": "1) Validate. 2) PositionCracUnitsInRoom solve+audit. 3) Stage via Layout command. 4) Emit.",
+  "keywords": [
+    "plantroomaddcracunitstoroombypreset",
+    "add crac units",
+    "plantroom crac quick-build"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Quick-adding CRAC units…"
+    ],
+    "thinkingsteps": [
+      "Building CRAC manifest…",
+      "Delegating to Layout solve…"
+    ],
+    "successprompts": [
+      "CRAC add staged."
+    ],
+    "failureprompts": [
+      "Add CRAC failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

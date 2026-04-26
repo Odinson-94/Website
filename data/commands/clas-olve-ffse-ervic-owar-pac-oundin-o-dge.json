@@ -1,0 +1,47 @@
+{
+  "class": "ClashSolverOffsetServiceTowardSpaceByBoundingBoxEdgeCommand",
+  "desc": "ClashSolverOffsetServiceTowardSpaceByBoundingBoxEdgeCommand — PDF \"OFFSET_SERVICE_TOWARD_SPACE\".",
+  "summary": "ClashSolverOffsetServiceTowardSpaceByBoundingBoxEdgeCommand — PDF \"OFFSET_SERVICE_TOWARD_SPACE\". Best-cardinal offset by BB edge length + envelope.",
+  "usecase": "Best-fit cardinal offset when direction is not pre-committed.",
+  "notfor": "Non-cardinal offsets — use Voxel routing.",
+  "precondition": "Active document; one service resolvable with BoundingBox; default 3D view.",
+  "postcondition": "Zero or one MoveElement inside inner Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve element. 2) Read BoundingBox; compute edge lengths (X, Y, Z).\n3) CastSixDirections capped at max edge*2.\n4) Build axis table: each direction's step = its corresponding edge length + envelope; clearance from probe.\n5) If Resolver_PreferHorizontal=true, filter out ±Z first; else consider all.\n6) Pick the axis with largest clearance &gt;= threshold + step (room for the offset + envelope).\n7) If found, delegate to TryDirectionalMoveOnService.ProbeAndMove with (axis, step, threshold, centreFallback=false).\n8) If not, emit { applied=false, reason=\\\"no_axis_over_threshold\\\" }.",
+  "keywords": [
+    "clashsolveroffsetservicetowardspacebyboundingboxedge",
+    "offset best cardinal",
+    "solver bb-edge offset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Picking best cardinal offset by BB edge + envelope…"
+    ],
+    "thinkingsteps": [
+      "Reading BB edges and six-direction clearances…",
+      "Picking best axis…",
+      "Delegating to DirectionalMoveService…"
+    ],
+    "successprompts": [
+      "Offset on {picked_axis} by {applied_delta_ft} ft."
+    ],
+    "failureprompts": [
+      "BB-edge offset failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

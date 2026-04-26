@@ -1,0 +1,46 @@
+{
+  "name": "drawing_exporter_add_revision",
+  "desc": "Add a revision to sheets before export. Creates a Revit revision and optionally assigns it to specific sheets.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 5,
+  "parameters": [
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Revision description, e.g. \\",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "string",
+      "description": "Optional revision date, e.g. \\",
+      "required": false
+    },
+    {
+      "name": "issued_by",
+      "type": "string",
+      "description": "Optional name of person issuing the revision.",
+      "required": false
+    },
+    {
+      "name": "issued_to",
+      "type": "string",
+      "description": "Optional recipient of the revision.",
+      "required": false
+    },
+    {
+      "name": "sheet_numbers",
+      "type": "string",
+      "description": "Optional JSON array of sheet numbers to apply revision to. If omitted, applies to selected sheets.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "add revision",
+    "new revision",
+    "issue revision",
+    "rev"
+  ]
+}

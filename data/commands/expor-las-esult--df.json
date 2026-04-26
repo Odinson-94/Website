@@ -1,0 +1,42 @@
+{
+  "class": "ExportClashResultsToPdf",
+  "desc": "Exports clash results to a print-to-PDF-ready HTML report with embedded screenshots.",
+  "summary": "Exports clash results to a print-to-PDF-ready HTML report with embedded screenshots. Launches the default browser so the user can print to PDF directly. Uses ReadWriteClashResultsToXml to load data and BuildSelfContainedClashReportHtml to render.",
+  "usecase": "User wants a formatted PDF-style report of QA results for a coordination review.",
+  "notfor": "Exporting raw data — use CSV or XML exports for that.",
+  "precondition": "Active document must be saved with QA results available.",
+  "postcondition": "HTML file created at .mepbridge/qa/exports/clash_report_pdf_{timestamp}.html.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export clashes pdf",
+    "clash report pdf",
+    "QA report pdf",
+    "export errors pdf",
+    "print to pdf"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Building PDF-ready clash report (self-contained HTML)…"
+    ],
+    "thinkingsteps": [
+      "Loading latest clash results…",
+      "Embedding screenshots as base64…",
+      "Launching browser for Print-to-PDF…"
+    ],
+    "successprompts": [
+      "Report saved to {path}. Browser opened — press Ctrl+P then Save as PDF."
+    ],
+    "failureprompts": [
+      "PDF-ready export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

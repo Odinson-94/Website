@@ -1,0 +1,45 @@
+{
+  "class": "QaManagerLaunchOnlineModelViewerInWebAppCommand",
+  "desc": "QaManagerLaunchOnlineModelViewerInWebAppCommand — open the Adelphos web viewer URL in the default browser.",
+  "summary": "QaManagerLaunchOnlineModelViewerInWebAppCommand — open the Adelphos web viewer URL in the default browser.",
+  "usecase": "Hand-off from Revit coordinator to web-app field team.",
+  "notfor": "Rendering the viewer in-process — different workstream.",
+  "precondition": "Active document; internet connectivity.",
+  "postcondition": "Shell launches default browser pointing at the viewer URL.",
+  "sideeffects": "",
+  "logictree": "1) base_url = Resolver_BaseUrl ?? env MEPBRIDGE_WEB_VIEWER_BASE ?? 'https://app.adelphos.ai/viewer'.\n2) Build url = `{base_url}?project={project_id}&clash={clash_id}` trimming nulls.\n3) Process.Start with UseShellExecute=true.\n4) Emit ok + url.",
+  "keywords": [
+    "qamanagerlaunchonlinemodelviewerinwebapp",
+    "open web viewer",
+    "qa web handoff"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Launching Adelphos web viewer…"
+    ],
+    "thinkingsteps": [
+      "Building URL from resolvers / env…"
+    ],
+    "successprompts": [
+      "Browser opened: {url}."
+    ],
+    "failureprompts": [
+      "Launch failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

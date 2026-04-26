@@ -1,0 +1,31 @@
+{
+  "class": "PlacementSnapFamilyToHostInActiveDocumentCommand",
+  "desc": "Snap a family to the nearest host surface along resolver direction.",
+  "summary": "Snap a family to the nearest host surface along resolver direction.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "placementsnapfamilytohostinactivedocument",
+    "snap family to host"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

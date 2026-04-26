@@ -1,0 +1,15 @@
+{
+  "name": "detect_project_folder_from_model_path",
+  "desc": "Detect the project folder path based on the current Revit model location. Returns the detected path or an error if detection fails.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "project folder",
+    "detect folder",
+    "issued folder",
+    "export path"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverExtendAllUnusedConnectorsBy100mmCommand",
+  "desc": "ClashSolverExtendAllUnusedConnectorsBy100mmCommand — PDF \"EXTEND_CONNECTORS\".",
+  "summary": "ClashSolverExtendAllUnusedConnectorsBy100mmCommand — PDF \"EXTEND_CONNECTORS\". Thin wrapper over ExtendAllConnectors for the clash-solver audit trail.",
+  "usecase": "Prepare end-runs before the resolve step calls CONNECT_INTO_NEAREST.",
+  "notfor": "Bulk operations across the whole model — run once per element.",
+  "precondition": "Active document; target element resolvable; has MEP connectors.",
+  "postcondition": "New pipes created inside one Transaction; tracker records summary.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId (Bot) OR single selection (Human); WireError if absent.\n2) Resolve element; WireError if not resolvable.\n3) length_mm = Resolver_LengthMm ?? 100.0; compute length_ft = length_mm/304.8.\n4) Open Transaction \"ClashSolver::ExtendConnectors\"; new ExtendAllConnectors(doc, el)\n   with ExtensionLength=length_ft + OnlyUnconnected=true; helper.Execute().\n5) Commit iff any pipes created; otherwise RollBack.\n6) Emit connectors_processed + pipes_created + created_pipe_ids.",
+  "keywords": [
+    "clashsolverextendallunusedconnectorsby100mm",
+    "extend connectors",
+    "solver prep for connect into nearest"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Extending unconnected connectors by 100 mm…"
+    ],
+    "thinkingsteps": [
+      "Resolving target element…",
+      "Calling ExtendAllConnectors logic helper…"
+    ],
+    "successprompts": [
+      "Created {pipes_created} new pipes from {connectors_processed} connectors."
+    ],
+    "failureprompts": [
+      "Extend failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

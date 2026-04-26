@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupCreateCeilingPlanForLevelCommand",
+  "desc": "Create a new ceiling plan view tied to a level.",
+  "summary": "Create a new ceiling plan view tied to a level.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup create ceiling plan for level",
+    "sheet_view_setup_create_ceiling_plan_for_level"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup create ceiling plan for level…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup create ceiling plan for level: done."
+    ],
+    "failureprompts": [
+      "sheet view setup create ceiling plan for level failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

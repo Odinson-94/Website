@@ -1,0 +1,25 @@
+{
+  "class": "TransferAllStandardsFromSourceByCategory",
+  "desc": "Transfers all items in selected categories from a source .rvt to the current project.",
+  "summary": "Transfers all items in selected categories from a source .rvt to the current project. Opens source detached via TransferStandardsSourceDocumentManager. Executes via TransferStandardsExecutor.",
+  "usecase": "User wants to apply firm template standards to a new project.",
+  "notfor": "Transferring specific named items (use TransferSpecificNamedStandardItemsFromSource).",
+  "precondition": "Active Revit document must be open. Source file must exist.",
+  "postcondition": "Selected standard categories transferred from source to target.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "transfer all standards",
+    "transfer from template",
+    "import standards"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

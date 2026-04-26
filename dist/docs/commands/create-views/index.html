@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Views — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp; General &nbsp;›&nbsp; Create Views</div>
+
+  <h1 id="overview">Create Views</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">General</span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Phase 7 Command: Creates plan views based on detected MEP services, levels, and scope boxes. Detects active service types using ListServices, gets levels via ListLevels.GetPrimaryLevels. Creates floor or ceiling plans per service type using CreateViews helper. Scope boxes from ListScopeBoxes.GetAll are optionally assigned to views. Related: CreateSimilarViewsForLevelsCommand for replicating a single view. Related: CreateSheetCommand for sheet creation. Scale: 1:50 default.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open. At least one MEP service must be detected in the model. At least one primary level must exist.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Plan views are created for each combination of service type, level, and scope box. Views are named as &quot;{ServiceType} - {Level} - {ScopeBox}&quot;. Scope boxes are assigned to views when useScopeBoxes is true.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/create-views/thumbnail.svg"
+           data-src="/sandbox/demo-assets/create-views/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop create-views/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to create all MEP plan views for a project in one operation.</li>
+    <li>AI orchestrator needs to batch-create views for specific services and levels.</li>
+    <li>User wants views auto-assigned to scope boxes for consistent sheet layouts.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Creating a single view for one level (use CreateSimilarViewsForLevelsCommand). Creating sections (use CreateSectionFromGridlineCommand).</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>serviceTypes</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>JSON array of service type names to process</td>
+  </tr><tr>
+    <td><code>levelNames</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>JSON array of level names to process</td>
+  </tr><tr>
+    <td><code>useScopeBoxes</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>bool</code></td>
+    <td class="req-no">no</td>
+    <td>true</td>
+    <td>If true, create per-scope-box views</td>
+  </tr><tr>
+    <td><code>scopeBoxNames</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>JSON array of scope box names to use</td>
+  </tr><tr>
+    <td><code>scale</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>int</code></td>
+    <td class="req-no">no</td>
+    <td>50</td>
+    <td>View scale</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>CreatedViews</code></td><td><code>List&lt;ViewPlan&gt;</code></td><td>List of created view plans</td></tr><tr><td><code>ViewCount</code></td><td><code>int</code></td><td>Number of views created</td></tr></tbody>
+  </table>
+
+  
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Creating MEP plan views for your project...<br>Setting up views for all services and levels...</div>
+    <div class="lab">thinking</div><div class="msg">Detecting active MEP services...<br>Getting primary levels...<br>Collecting scope boxes...<br>Creating views for each service × level × scope box...</div>
+    <div class="lab">on success</div><div class="msg">Created <span class="placeholder">{count}</span> views across <span class="placeholder">{services}</span> services and <span class="placeholder">{levels}</span> levels.</div>
+    <div class="lab">on failure</div><div class="msg">View creation failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/create_views</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">create views · make views · batch views · MEP views · service views · plan views<br><span style="font-size:12px;">Patterns: <code>create * views</code> · <code>make * views</code> · <code>batch * views</code> · <code>create * MEP * views</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>CreateSimilarViewsForLevelsCommand</code> · <code>CreateSheetCommand</code></td></tr><tr><th>Pillar</th><td>General</td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

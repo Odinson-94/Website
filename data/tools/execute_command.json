@@ -1,0 +1,27 @@
+{
+  "name": "execute_command",
+  "desc": "Execute a Revit command by its ID. Use this when you need to perform an action in the user's Revit model.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "command_id",
+      "type": "string",
+      "description": "The command ID to execute (e.g., 'CreateSectionFromGridlineCommand')",
+      "required": true
+    },
+    {
+      "name": "parameters",
+      "type": "string",
+      "description": "JSON object of parameters for the command (e.g., {\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "execute command",
+    "run command",
+    "revit command"
+  ]
+}

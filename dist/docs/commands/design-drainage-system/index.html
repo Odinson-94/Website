@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Drainage System — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp; Drainage &nbsp;›&nbsp; Design Drainage System</div>
+
+  <h1 id="overview">Design Drainage System</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">Drainage</span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Design Drainage System Command: Imports drainage/sanitary systems from a MEPBridge JSON file with Neural Loading visualization. User selects TWO inputs: 1. JSON file path 2. Base point for placement. Uses silent Excel auto-mapping for blocks (no manual mapping UI). Creates pipes, fittings (elbows, tees, transitions), and places notes for SVPs and fixtures.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open. User must have MEPBridge JSON file. At least one level must exist in the model. Appropriate pipe types (Soil, PVC, Cast Iron) must be loaded in the model.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>MEP elements (pipes), fittings (elbows, tees, transitions), and notes are created. Log file is written next to the JSON file with .drainage.log.txt extension. Neural Loading dialog shows completion summary.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/design-drainage-system/thumbnail.svg"
+           data-src="/sandbox/demo-assets/design-drainage-system/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop design-drainage-system/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to design the drainage system from AutoCAD JSON export.</li>
+    <li>User wants to import drainage pipework from coordinated model.</li>
+    <li>User wants automated drainage routing from a coordinated JSON model.</li>
+    <li>User says &quot;design the drainage&quot; or &quot;create drainage system&quot;.</li>
+    <li>User says &quot;design sanitary&quot; or &quot;design soil&quot; or &quot;design waste&quot;.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Creating drainage from scratch without JSON input. Manual pipe routing (use standard Revit tools). Editing existing drainage systems.</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>BasePoint</code></td>
+    <td><span class="pill pill-category">selection</span></td>
+    <td><code>XYZ</code></td>
+    <td class="req-yes">yes</td>
+    <td>—</td>
+    <td>Base point for drainage placement<br><em style="font-size:12px;color:var(--text-muted);">"Pick Revit basepoint (target origin for import)"</em></td>
+  </tr><tr>
+    <td><code>JsonPath</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>Path to MEPBridge JSON file</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>PipesCreated</code></td><td><code>int</code></td><td>Number of MEP pipe segments created</td></tr><tr><td><code>ElbowsPlaced</code></td><td><code>int</code></td><td>Number of elbow fittings placed</td></tr><tr><td><code>TeesPlaced</code></td><td><code>int</code></td><td>Number of tee fittings placed</td></tr><tr><td><code>TransitionsPlaced</code></td><td><code>int</code></td><td>Number of transitions placed</td></tr><tr><td><code>BlocksPlaced</code></td><td><code>int</code></td><td>Number of family instances placed</td></tr><tr><td><code>PipeNotesPlaced</code></td><td><code>int</code></td><td>Number of pipe notes placed</td></tr><tr><td><code>FixtureNotesPlaced</code></td><td><code>int</code></td><td>Number of fixture notes placed</td></tr></tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree"><span class="lt-check">check:</span> jsonPath.isValid → proceed
+<span class="lt-check">check:</span> basePoint.isSelected → proceed
+<span class="lt-check">check:</span> dto.Edges.count &gt; 0 → proceed
+<span class="lt-resolve">resolve:</span> excelMapper.exists → autoMap silently</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Designing your drainage system...<br>Setting up drainage import...<br>Preparing to create your drainage pipework...</div>
+    <div class="lab">thinking</div><div class="msg">Reading JSON file...<br>Loading block mapper...<br>Downloading cloud families...<br>Exporting room context to JSON...<br>Reading context JSON...<br>Identifying fixtures (WHB, WC, Sink)...<br>Calculating room centroids...<br>Finding model group bounding boxes...<br>Resolving types and levels...<br>Building node coordinates...<br>Creating pipe segments...<br>Building fitting index...<br>Placing elbow fittings...<br>Placing tee fittings...<br>Placing transitions...<br>Calculating drainage system bounds...<br>Placing pipe notes (SVP, slopes)...<br>Placing fixture notes (WC, WHB, Sink)...</div>
+    <div class="lab">on success</div><div class="msg">Drainage system created successfully! <span class="placeholder">{PipesCreated}</span> pipes, <span class="placeholder">{ElbowsPlaced}</span> elbows, <span class="placeholder">{PipeNotesPlaced}</span> notes placed.</div>
+    <div class="lab">on failure</div><div class="msg">Couldn't create drainage system: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/design_drainage_system</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">design drain · design drainage · design the drain system · design the drainage · design the drainage system · can you please design the drainage · please design the drain · design the drainage please<br><span style="font-size:12px;">Patterns: <code>design * drainage</code> · <code>create * drainage</code> · <code>design * drain</code> · <code>drainage * design</code> · <code>drain * system</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>ImportCommand</code> · <code>DesignVentilationCommand</code> · <code>DesignContainmentCommand</code></td></tr><tr><th>Pillar</th><td>Drainage</td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

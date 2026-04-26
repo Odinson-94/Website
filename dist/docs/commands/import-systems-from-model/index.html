@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Import Systems From Model — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Import Systems From Model</div>
+
+  <h1 id="overview">Import Systems From Model</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Command: Migrates a piping system from another open Revit model. This is the main &quot;Migrate System&quot; command that: 1. Opens dialog to select another already-open Revit model 2. Displays available systems in that model 3. On system selection, imports associated routing preference families 4. Imports the system type and configures routing preferences</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>At least two project documents must be open in Revit. Active document must not be read-only. Source model must contain piping systems with routing preferences.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Selected system type is created/updated in current document. All associated families are imported (overwriting if needed). Routing preferences are configured with the imported families.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/import-systems-from-model/thumbnail.svg"
+           data-src="/sandbox/demo-assets/import-systems-from-model/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop import-systems-from-model/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to copy a drainage system setup from a template model.</li>
+    <li>User needs to bring in pipe types and fittings from another project.</li>
+    <li>User wants to standardize system configurations across projects.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Custom UI required for manual system/family browsing. AI path is JSON-first and dialog-free.</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>ImportFamilies</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>bool</code></td>
+    <td class="req-no">no</td>
+    <td>true</td>
+    <td>Import associated families</td>
+  </tr><tr>
+    <td><code>OverwriteParameters</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>bool</code></td>
+    <td class="req-no">no</td>
+    <td>true</td>
+    <td>Overwrite existing parameter values</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>ImportedSystem</code></td><td><code>PipingSystemType</code></td><td>System that was imported/created</td></tr><tr><td><code>ImportedFamilies</code></td><td><code>List&lt;FamilyImportInfo&gt;</code></td><td>Families that were imported</td></tr><tr><td><code>RoutingPreferencesSet</code></td><td><code>bool</code></td><td>Whether routing preferences were configured</td></tr></tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree"><span class="lt-check">check:</span> openDocuments.count &gt; 1 → continue<span class="lt-check">check:</span> sourceDoc != targetDoc → continue<span class="lt-check">check:</span> sourceSystems.count &gt; 0 → showSystemList<span class="lt-check">check:</span> selectedSystem.hasRoutingPreferences → importRoutingPreferences<span class="lt-resolve">resolve:</span> transaction.success → showResults</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Preparing to migrate piping system from another model...<br>Setting up system import from source model...</div>
+    <div class="lab">thinking</div><div class="msg">Scanning open documents for source models...<br>Loading available piping systems...<br>Extracting routing preference families...<br>Importing system and configuring routing preferences...</div>
+    <div class="lab">on success</div><div class="msg">System &quot;<span class="placeholder">{ImportedSystem}</span>&quot; migrated successfully with <span class="placeholder">{ImportedFamilies}</span> families.</div>
+    <div class="lab">on failure</div><div class="msg">System migration failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/import_systems_from_model</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">migrate system · import system · copy system · transfer system · piping system · routing preferences · drainage system<br><span style="font-size:12px;">Patterns: <code>migrate * system * model</code> · <code>import * system * from</code> · <code>copy * system * from</code> · <code>transfer * routing * preferences</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>ImportFamiliesFromModelCommand</code> · <code>ListSystems</code></td></tr><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

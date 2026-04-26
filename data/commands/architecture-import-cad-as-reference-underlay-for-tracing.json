@@ -1,0 +1,37 @@
+{
+  "class": "ArchitectureImportCadAsReferenceUnderlayForTracingCommand",
+  "desc": "ArchitectureImportCadAsReferenceUnderlayForTracingCommand — auto-generated CMD skeleton.",
+  "summary": "ArchitectureImportCadAsReferenceUnderlayForTracingCommand — auto-generated CMD skeleton. Fill workflow body per plan §8.",
+  "usecase": "Deterministic action per the workflow below — User or Bot path.",
+  "notfor": "Read-only queries (use the matching MCP tool).",
+  "precondition": "Active document must be open. User has selection or resolvers are filled.",
+  "postcondition": "Model state changed inside a Transaction. Audit entry recorded.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot selects target/context (resolvers filled from chat input or UI). 2) Validate preconditions; WireError + abort if missing required state. 3) Open Transaction, perform deterministic steps, WireRecoverable on any fallback. 4) Bot → MCP success summary. User → ribbon toast + chat + audit trail. 5) Failure on either path → `ErrorWire.WireFault` + `CentralWarningLogger.LogError` with structured payload.",
+  "keywords": [
+    "architectureimportcadasreferenceunderlayfortracing"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running ArchitectureImportCadAsReferenceUnderlayForTracingCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "ArchitectureImportCadAsReferenceUnderlayForTracingCommand completed successfully."
+    ],
+    "failureprompts": [
+      "ArchitectureImportCadAsReferenceUnderlayForTracingCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

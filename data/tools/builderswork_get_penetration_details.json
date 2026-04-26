@@ -1,0 +1,13 @@
+{
+  "name": "builderswork_get_penetration_details",
+  "desc": "Return full details of a single detected penetration: host, service, OD, clearance, fire-seal annulus, fire rating, sleeve type, status.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "builderswork_get_penetration_details",
+    "builderswork get penetration details"
+  ]
+}

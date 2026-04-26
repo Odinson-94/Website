@@ -1,0 +1,14 @@
+{
+  "name": "tagging_preferences_list_auto_tag_rules",
+  "desc": "Return all currently configured auto-tag rules from %APPDATA%/MEPBridge/auto_tag_rules.json. Each rule has Id, CategoryKey, FilterParameter/FilterValue, TagFamilyName, PlacementStrategy, WithLeader, CreatedUtc.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "tagging_preferences_list_auto_tag_rules",
+    "list auto tag rules",
+    "show auto tag rules"
+  ]
+}

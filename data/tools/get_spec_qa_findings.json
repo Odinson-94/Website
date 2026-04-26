@@ -1,0 +1,23 @@
+{
+  "name": "get_spec_qa_findings",
+  "desc": "Get all QA findings: cross-section inconsistencies, parameter conflicts, standards mismatches. Shows status (open, accepted, overridden, flagged).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Filter by status: Open, Accepted, Overridden, FlaggedForReview, Resolved",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "QA findings",
+    "inconsistencies",
+    "QA manager",
+    "cross-section",
+    "consistency check"
+  ]
+}

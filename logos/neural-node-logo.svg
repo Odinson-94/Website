@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Adelphos AI - Neural Node Logo (SVG)
+  Static snapshot of the animated chat-neural-node, captured mid-pulse
+  so the ring sits as a clean halo around the core (with a visible gap),
+  matching the look of the live animation.
+  Canvas: 300 x 300.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 300 300"
+     width="300" height="300">
+  <defs>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#1a7a9e"/>
+      <stop offset="100%" stop-color="#156082"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+
+    <filter id="ringBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+
+    <filter id="coreShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dx="0" dy="0" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.45"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer soft glow halo -->
+  <circle cx="150" cy="150" r="115"
+          fill="#156082" fill-opacity="0.22"
+          filter="url(#softGlow)"/>
+
+  <!-- Outer pulse ring (further along the animation, very faint) -->
+  <circle cx="150" cy="150" r="118"
+          fill="none"
+          stroke="#156082" stroke-opacity="0.18"
+          stroke-width="6"
+          filter="url(#ringBlur)"/>
+
+  <!-- Inner pulse ring (mid-pulse, sits in the gap around the core) -->
+  <circle cx="150" cy="150" r="88"
+          fill="none"
+          stroke="#156082" stroke-opacity="0.35"
+          stroke-width="8"
+          filter="url(#ringBlur)"/>
+
+  <!-- Core -->
+  <circle cx="150" cy="150" r="60"
+          fill="url(#coreGrad)"
+          filter="url(#coreShadow)"/>
+</svg>

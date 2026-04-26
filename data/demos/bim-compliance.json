@@ -1,0 +1,8 @@
+{
+  "slug": "bim-compliance",
+  "category": "bim",
+  "title": "BIM Compliance",
+  "desc": "Check the model against the BEP and report gaps.",
+  "duration": "1:31",
+  "status": "live"
+}

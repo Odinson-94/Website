@@ -1,0 +1,29 @@
+{
+  "name": "discover_tools",
+  "desc": "Search for MCP action tools by describing your objective. Returns tool names and descriptions. Call execute_tool(tool_name, params_json) to use any returned tool. Example: discover_tools('check clashes') returns check_clashes, navigate_to_clash etc.",
+  "bridge": "",
+  "category": "context",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "objective",
+      "type": "string",
+      "description": "Describe what you need to do — e.g. 'check for clashes between elements' or 'export drawings to PDF'",
+      "required": true
+    },
+    {
+      "name": "max_results",
+      "type": "string",
+      "description": "Maximum number of results (default 15)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "discover",
+    "find tools",
+    "search tools",
+    "available tools",
+    "what tools"
+  ]
+}

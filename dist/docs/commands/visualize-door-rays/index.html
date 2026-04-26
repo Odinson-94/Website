@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visualize Door Rays — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp; General &nbsp;›&nbsp; Visualize Door Rays</div>
+
+  <h1 id="overview">Visualize Door Rays</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">General</span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Debug command that visualizes corridor width measurement from doors. User selects a room, then rays are drawn from each door into the room to measure distance to the opposite wall. Draws detail curves in the active plan view: lines for rays, circles at hit points, crosses at doors. Uses ListDoors.GetDoorsForRoom to find doors for the room.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active view must be a plan view (Floor Plan, Ceiling Plan, Engineering Plan, or Area Plan). At least one room must exist in the model for selection. The room must have at least one door for ray visualization.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Detail curves are drawn in the active view showing door-to-wall rays. Cross markers appear at door locations, circles at wall hit points. Summary dialog shows measurements and corridor classification.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/visualize-door-rays/thumbnail.svg"
+           data-src="/sandbox/demo-assets/visualize-door-rays/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop visualize-door-rays/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to debug corridor width measurement logic.</li>
+    <li>User needs to verify door-to-wall distance calculations visually.</li>
+    <li>User wants to classify a room as corridor vs circulation based on width.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Not for production documentation — debug visualization only. Not for creating permanent annotations on sheets. Not for autonomous AI execution — requires interactive room selection.</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>Room</code></td>
+    <td><span class="pill pill-category">selection</span></td>
+    <td><code>Room</code></td>
+    <td class="req-yes">yes</td>
+    <td>—</td>
+    <td>Room to visualize door rays for<br><em style="font-size:12px;color:var(--text-muted);">"Select a room to visualize door rays"</em></td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>RaysDrawn</code></td><td><code>int</code></td><td>Number of measurement rays drawn</td></tr><tr><td><code>MinWidth</code></td><td><code>double</code></td><td>Minimum corridor width in metres</td></tr><tr><td><code>Classification</code></td><td><code>string</code></td><td>Room classification based on width</td></tr></tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree"><span class="lt-check">check:</span> activeView.isPlanView → proceed<span class="lt-check">check:</span> activeView.isNotPlan → fail &quot;Run from a Floor Plan view&quot;<span class="lt-action">action:</span> userPicksRoom → getRoomDoors<span class="lt-check">check:</span> doors.count == 0 → report &quot;No doors found&quot;<span class="lt-action">action:</span> fireRaysFromDoors → drawVisualization → reportMeasurements</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Visualizing door-to-wall measurement rays...<br>Setting up corridor width debug visualization...</div>
+    <div class="lab">thinking</div><div class="msg">Waiting for room selection...<br>Finding doors for selected room...<br>Firing rays from doors to opposite walls...<br>Drawing visualization markers...</div>
+    <div class="lab">on success</div><div class="msg">Drew <span class="placeholder">{RaysDrawn}</span> rays. Min width: <span class="placeholder">{MinWidth}</span>m. Classification: <span class="placeholder">{Classification}</span>.</div>
+    <div class="lab">on failure</div><div class="msg">Door ray visualization failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/visualize_door_rays</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">visualize door rays · door ray debug · corridor width · door measurement · ray visualization · debug rays<br><span style="font-size:12px;">Patterns: <code>visualize * door * rays</code> · <code>debug * door * rays</code> · <code>show * corridor * width</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td>General</td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

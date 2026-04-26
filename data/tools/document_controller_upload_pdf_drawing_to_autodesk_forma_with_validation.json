@@ -1,0 +1,35 @@
+{
+  "name": "document_controller_upload_pdf_drawing_to_autodesk_forma_with_validation",
+  "desc": "Uploads a PDF drawing to Autodesk Forma/ACC. Validates naming, checks title block, pushes to APS Data Management API.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "pdfPath",
+      "type": "string",
+      "description": "Local path to the PDF file to upload",
+      "required": true
+    },
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "ACC/Forma project identifier",
+      "required": true
+    },
+    {
+      "name": "folderId",
+      "type": "string",
+      "description": "Target folder ID within ACC",
+      "required": false
+    },
+    {
+      "name": "skipValidation",
+      "type": "boolean",
+      "description": "Skip naming and title block validation",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

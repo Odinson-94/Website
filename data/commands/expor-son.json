@@ -1,0 +1,73 @@
+{
+  "class": "ExportJSON",
+  "desc": "Exports ALL selected Revit elements to a comprehensive JSON file.",
+  "summary": "Exports ALL selected Revit elements to a comprehensive JSON file. Includes geometry (centerline nodes), parameters, MEP connectors, bounding boxes, and a 3D polyline graph for routing analysis. Uses ComprehensiveGeometryExporter for element extraction. Uses Polyline3DGraphBuilder for 3D graph generation.",
+  "usecase": "User wants to export MEP model data for external analysis or import. User needs a JSON snapshot of selected elements with connector data. User wants a 3D graph representation of MEP routing.",
+  "notfor": "Exporting entire models (select specific elements first). Exporting to IFC, DWG, or other Revit-native formats. Importing JSON back into Revit (use ImportCommand instead).",
+  "precondition": "Active document must be open. User must select elements and pick a base point. At least one MEP curve or FamilyInstance must be selected.",
+  "postcondition": "A JSON file is written to the user-chosen path with full element data. A companion .export.log.txt file is also written alongside.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export json",
+    "export elements",
+    "export mep",
+    "json export",
+    "export connectors",
+    "export geometry"
+  ],
+  "intent_patterns": [
+    "export * json",
+    "export * elements",
+    "json * export",
+    "export * mep"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [
+    {
+      "name": "Elements",
+      "type": "Element",
+      "description": "Elements to export",
+      "prompt": "Select elements to export"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to the exported JSON file"
+    },
+    {
+      "name": "ElementCount",
+      "type": "int",
+      "description": "Number of elements exported"
+    }
+  ],
+  "related_commands": [
+    "ImportCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting selected elements to JSON...",
+      "Preparing MEP export..."
+    ],
+    "thinkingsteps": [
+      "Picking export base point...",
+      "Selecting elements to export...",
+      "Extracting geometry and connectors...",
+      "Building 3D graph...",
+      "Serializing to JSON..."
+    ],
+    "successprompts": [
+      "Exported {count} elements to JSON successfully.",
+      "JSON export complete — {count} ducts, pipes, trays, and families written."
+    ],
+    "failureprompts": [
+      "Export failed: {error}",
+      "Could not export to JSON — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,35 @@
+{
+  "name": "set_parameter_values",
+  "desc": "Set parameter values on elements. Call get_family_parameters_and_values first to see available parameters and pick the right one contextually. For titleblocks, sheet parameters like Checked By and Designed By are resolved automatically.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "updates",
+      "type": "string",
+      "description": "JSON array: [{\\",
+      "required": false
+    },
+    {
+      "name": "validateOnly",
+      "type": "boolean",
+      "description": "Only validate without applying changes (default false).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "set parameters",
+    "edit parameters",
+    "change parameter",
+    "update parameter",
+    "set checked by",
+    "set designed by",
+    "set drawn by",
+    "modify parameters",
+    "write parameter",
+    "update value",
+    "change value"
+  ]
+}

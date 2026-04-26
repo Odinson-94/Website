@@ -1,0 +1,23 @@
+{
+  "name": "document_controller_get_full_metadata_and_revision_history_for_document",
+  "desc": "Returns complete document detail: metadata, every revision with dates and uploaders, all issue records, audit trail.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "BS 1192 document code",
+      "required": true
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Platform to query: vfp, asite, acc",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

@@ -1,0 +1,36 @@
+{
+  "class": "ClashManagerAnnotateClashResultsInCurrentViewCommand",
+  "desc": "Annotate Clash Results In Current View.",
+  "summary": "Annotate Clash Results In Current View.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Coordination/Clash Manager/Clash Manager Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Coordination/Clash Manager/Clash Manager Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "annotate clashes",
+    "clash annotations in view",
+    "mark clashes in view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Annotate Clash Results In Current View…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Annotate Clash Results In Current View: completed."
+    ],
+    "failureprompts": [
+      "Annotate Clash Results In Current View: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

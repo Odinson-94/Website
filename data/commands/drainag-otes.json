@@ -1,0 +1,68 @@
+{
+  "class": "DrainageNotesCommand",
+  "desc": "Command: Places drainage annotation notes on pipes in the current plan view.",
+  "summary": "Command: Places drainage annotation notes on pipes in the current plan view. Collects all pipes in view, calculates system bounds via GetDrainageContext.CalculateDrainageSystemBounds, then delegates note creation to GetDrainageNotes.PlaceNotesOnDrainage. Related: DrainageDesignOrchestrator for the full design-and-annotate workflow.",
+  "usecase": "User has placed drainage pipes and wants to annotate them with pipe-size notes. User wants to add notes after running DesignDrainageSystemCommand. User wants to re-annotate an existing drainage layout.",
+  "notfor": "Not for placing pipes (use PlaceSVPCommand or DesignDrainageSystemCommand). Not for placing fixture notes (handled by GetFixtureNotes within the orchestrator).",
+  "precondition": "Active document must be open. User must be in a plan view. At least one drainage pipe must exist in the current view.",
+  "postcondition": "Text notes are placed next to drainage pipes showing size and slope. Note positions are calculated relative to the drainage system bounding region.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "drainage notes",
+    "place drainage notes",
+    "annotate drainage",
+    "mep notes",
+    "pipe notes",
+    "drainage annotation"
+  ],
+  "intent_patterns": [
+    "place * drainage notes",
+    "annotate * drainage",
+    "add * pipe notes",
+    "note * drainage"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "Drainage",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "NotesPlaced",
+      "type": "int",
+      "description": "Number of notes placed"
+    },
+    {
+      "name": "PipeCount",
+      "type": "int",
+      "description": "Number of drainage pipes found in view"
+    }
+  ],
+  "related_commands": [
+    "DesignDrainageSystemCommand",
+    "PlaceSVPCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Placing drainage notes on your pipes...",
+      "Annotating drainage system in current view...",
+      "Adding pipe size and slope notes..."
+    ],
+    "thinkingsteps": [
+      "Collecting drainage pipes in view...",
+      "Calculating drainage system bounds...",
+      "Determining note positions...",
+      "Placing annotation notes..."
+    ],
+    "successprompts": [
+      "Done! Placed {NotesPlaced} drainage notes.",
+      "Drainage annotation complete — {NotesPlaced} notes added.",
+      "Notes placed successfully on {PipeCount} pipes."
+    ],
+    "failureprompts": [
+      "Could not place drainage notes: {error}",
+      "Drainage annotation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

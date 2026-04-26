@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupCreateElevationMarkerAtPointCommand",
+  "desc": "Create an elevation marker at a chosen point.",
+  "summary": "Create an elevation marker at a chosen point.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup create elevation marker at point",
+    "sheet_view_setup_create_elevation_marker_at_point"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup create elevation marker at point…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup create elevation marker at point: done."
+    ],
+    "failureprompts": [
+      "sheet view setup create elevation marker at point failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

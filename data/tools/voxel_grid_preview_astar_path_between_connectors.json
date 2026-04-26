@@ -1,0 +1,12 @@
+{
+  "name": "voxel_grid_preview_astar_path_between_connectors",
+  "desc": "voxel_grid_preview_astar_path_between_connectors — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "voxel grid preview astar path between connectors"
+  ]
+}

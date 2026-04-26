@@ -1,0 +1,65 @@
+{
+  "class": "SelectByIdsCommand",
+  "desc": "Sets the Revit selection to the given element IDs.",
+  "summary": "Sets the Revit selection to the given element IDs. Use after MEPBridge.Revit.AIChat.Services.CustomTools.SelectByIdsTool exports IDs, or after get_selection to work through IDs one at a time in a cross-off workflow. Called by MEPBridge.Revit.AIChat.Services.CustomTools.SelectByIdsTool via execute_command. Related: SelectByLocationCommand for coordinate-based selection, SelectByRoomCommand for room-based selection.",
+  "usecase": "Cross-off workflow: list rads → get IDs → select_by_ids(one id) → act → next.",
+  "notfor": "Selecting by category/family/room — use SelectByRoomCommand or other selection commands first, then this with their IDs.",
+  "precondition": "Active document; elementIds = JSON array [1,2,3] or comma-separated numbers.",
+  "postcondition": "Selection is set to valid IDs; result returns success and count.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "select by id",
+    "select by ids",
+    "set selection",
+    "element ids"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "JSON array of IDs [1,2,3] or comma-separated numbers",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "success",
+      "type": "bool",
+      "description": "Whether selection was set"
+    },
+    {
+      "name": "count",
+      "type": "int",
+      "description": "Number of elements selected"
+    }
+  ],
+  "related_commands": [
+    "SelectByLocationCommand",
+    "SelectByRoomCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Setting selection to the specified element IDs...",
+      "Selecting elements by ID..."
+    ],
+    "thinkingsteps": [
+      "Parsing element IDs from input...",
+      "Validating IDs against the model...",
+      "Setting Revit selection..."
+    ],
+    "successprompts": [
+      "Selected {count} element(s) by ID.",
+      "Done — {count} elements now selected."
+    ],
+    "failureprompts": [
+      "Could not select elements: {error}",
+      "Selection failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

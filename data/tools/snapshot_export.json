@@ -1,0 +1,56 @@
+{
+  "name": "snapshot_export",
+  "desc": "Export the Revit model to a local SQLite database for fast parallel queries. Use this before bulk context lookups or when employing sub-agents. Supports scoped exports: 'model' (full), 'level', 'levels', 'view', 'scope_box', 'category', 'selection', 'sheet'. Takes 3-60 seconds depending on scope and model size. After export, use snapshot_query for reads (<5ms each).",
+  "bridge": "RevitContext",
+  "category": "snapshot",
+  "always": false,
+  "param_count": 6,
+  "parameters": [
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "Export scope: 'model' (default), 'level', 'levels', 'view', 'scope_box', 'category', 'selection', 'sheet'",
+      "required": false
+    },
+    {
+      "name": "level_name",
+      "type": "string",
+      "description": "Level name (for scope='level')",
+      "required": false
+    },
+    {
+      "name": "level_names",
+      "type": "string",
+      "description": "Comma-separated level names (for scope='levels')",
+      "required": false
+    },
+    {
+      "name": "scope_box_name",
+      "type": "string",
+      "description": "Scope box name (for scope='scope_box')",
+      "required": false
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Revit category name (for scope='category')",
+      "required": false
+    },
+    {
+      "name": "sheet_number",
+      "type": "string",
+      "description": "Sheet number (for scope='sheet')",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "snapshot export",
+    "export snapshot",
+    "create snapshot",
+    "model snapshot",
+    "sqlite export",
+    "export model",
+    "snapshot database",
+    "bulk export"
+  ]
+}

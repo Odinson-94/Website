@@ -1,0 +1,35 @@
+{
+  "name": "export_spec_to_word",
+  "desc": "Export the specification to a .docx Word document with WSP-format styling.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "jobId",
+      "type": "string",
+      "description": "The job ID to export",
+      "required": true
+    },
+    {
+      "name": "outputPath",
+      "type": "string",
+      "description": "Full output file path (defaults to Desktop)",
+      "required": false
+    },
+    {
+      "name": "draft",
+      "type": "boolean",
+      "description": "Add DRAFT watermark",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "export word",
+    "export docx",
+    "download spec",
+    "word document",
+    "specification export"
+  ]
+}

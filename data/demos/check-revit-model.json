@@ -1,0 +1,8 @@
+{
+  "slug": "check-revit-model",
+  "category": "qa",
+  "title": "Check Revit Model",
+  "desc": "Model health pass — broken refs, orphaned elements, naming, links.",
+  "duration": "1:46",
+  "status": "live"
+}

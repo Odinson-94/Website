@@ -1,0 +1,23 @@
+{
+  "name": "execute_drawing_export_to_pdf_or_dwg",
+  "desc": "Execute the drawing export with the current settings and selected sheets. Requires explicit confirmation. Returns export results including success/failure per sheet.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "confirm",
+      "type": "string",
+      "description": "Must be \\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "export",
+    "batch export",
+    "print",
+    "plot",
+    "run export"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "class": "OpenTransferStandardsFromExistingWindowCommand",
+  "desc": "Opens the Transfer from Existing window — a WebView2 tool window for transferring view templates, filters, families, system types, object styles, annotation families, shared parameters, schedule types, and materials from a source .rvt into the current project.",
+  "summary": "Opens the Transfer from Existing window — a WebView2 tool window for transferring view templates, filters, families, system types, object styles, annotation families, shared parameters, schedule types, and materials from a source .rvt into the current project. Uses TransferStandardsFromExistingWindow.ShowSingleton to enforce singleton pattern.",
+  "usecase": "User wants to import project standards from a firm template into a new or existing project.",
+  "notfor": "Transferring individual elements between open projects (use copy/paste or Transfer Project Standards dialog).",
+  "precondition": "Active document must be open. WebView2 runtime must be installed.",
+  "postcondition": "Transfer from Existing window is displayed as a modeless WPF window.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "transfer standards",
+    "transfer from existing",
+    "import template",
+    "project standards",
+    "template transfer",
+    "transfer filters",
+    "transfer view templates",
+    "transfer families",
+    "import standards from template"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening Transfer from Existing…"
+    ],
+    "thinkingsteps": [
+      "Preparing WebView2 window…"
+    ],
+    "successprompts": [
+      "Transfer from Existing window is now open."
+    ],
+    "failureprompts": [
+      "Failed to open Transfer from Existing: {error}"
+    ]
+  },
+  "has_restapi": false
+}

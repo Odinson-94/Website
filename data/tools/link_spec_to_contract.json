@@ -1,0 +1,29 @@
+{
+  "name": "link_spec_to_contract",
+  "desc": "Link specification sections to NEC4, JCT, or FIDIC contract items.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "contractType",
+      "type": "string",
+      "description": "NEC4, JCT, FIDIC, or Bespoke",
+      "required": true
+    },
+    {
+      "name": "contractId",
+      "type": "string",
+      "description": "Contract reference number",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "link contract",
+    "NEC4",
+    "JCT",
+    "FIDIC",
+    "contract linkage"
+  ]
+}

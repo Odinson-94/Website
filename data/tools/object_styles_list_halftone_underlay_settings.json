@@ -1,0 +1,14 @@
+{
+  "name": "object_styles_list_halftone_underlay_settings",
+  "desc": "Return the project's halftone / underlay graphic settings (line weight, line pattern, halftone toggle, brightness, applies-to halftone).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list halftone underlay",
+    "underlay settings",
+    "object_styles_list_halftone_underlay_settings"
+  ]
+}

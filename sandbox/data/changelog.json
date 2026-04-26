@@ -1,0 +1,47 @@
+{
+  "_comment": "Release history. Each entry becomes a section on /dist/changelog/ with SoftwareApplication JSON-LD.",
+  "releases": [
+    {
+      "version": "0.4.0",
+      "date": "2026-04-20",
+      "title": "Apps + Agentic Services + grouped commands",
+      "items": [
+        "New: 7 apps (Revit Copilot, Adelphos Chat, Specbuilder, Report Builder, Document Controller, QA Manager, Schedule Builder) with crown-jewel page layouts.",
+        "New: 3 agentic services (Finances, Project Management, managed Document Controller) with maturity ladder + outcomes.",
+        "New: Apps + Agentic Services dropdowns in the menubar; Demos / Workflows / Resources / Downloads nested under Docs.",
+        "New: Per-page detail paragraphs (3-paragraph readable) + per-app pull-quotes.",
+        "New: Features section per page (flat or grouped — QA Manager has 6 grouped categories with 33 checks).",
+        "New: Commands index grouped by mini-project (pillar) with filter dropdown.",
+        "New: SEO/AEO suite — meta + OG + Twitter + JSON-LD + sitemap + robots + llms.txt + auto-FAQ + related blocks."
+      ]
+    },
+    {
+      "version": "0.3.0",
+      "date": "2026-04-12",
+      "title": "Workflows + Schedules pipeline",
+      "items": [
+        "New: Workflow page type with hero video + 'How it flows' narrative + settings table.",
+        "New: First end-to-end workflow page generated from skill markdown (Schedules)."
+      ]
+    },
+    {
+      "version": "0.2.0",
+      "date": "2026-04-05",
+      "title": "Tools + Commands inventories at scale",
+      "items": [
+        "Auto-generated inventory pages for 191 MCP tools and 163 Revit commands.",
+        "Demo gallery with 14 categories and 60 demos."
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-04-01",
+      "title": "Site shell + sandbox infrastructure",
+      "items": [
+        "Three-column docs layout (left rail nav, content, right rail anchors).",
+        "adelphos_CLI introduced with extract → draft → promote → build pipeline.",
+        "Local Node-based dev server on port 8765."
+      ]
+    }
+  ]
+}

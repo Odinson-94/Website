@@ -1,0 +1,22 @@
+{
+  "name": "get_warnings_for_specific_element_ids",
+  "desc": "Get warnings affecting specific element IDs. Returns all warnings where the given elements are involved.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "Comma-separated element IDs to check for warnings",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "element warnings",
+    "warnings for element",
+    "check element warnings",
+    "warnings on selection"
+  ]
+}

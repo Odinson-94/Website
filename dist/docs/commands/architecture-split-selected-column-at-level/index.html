@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture Split Selected Column At Level — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Architecture Split Selected Column At Level</div>
+
+  <h1 id="overview">Architecture Split Selected Column At Level</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Splits a column FamilyInstance into two segments at a supplied Level. Pure validation and level-lookup delegated to GetColumnBaseAndTopLevels.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document open; column id resolves to a FamilyInstance with FAMILY_BASE_LEVEL_PARAM + FAMILY_TOP_LEVEL_PARAM; split level id resolves to a Level strictly between base and top.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>One additional column exists in the model; the original now spans base→split and the copy spans split→top. One committed Transaction. Audit entry recorded.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/architecture-split-selected-column-at-level/thumbnail.svg"
+           data-src="/sandbox/demo-assets/architecture-split-selected-column-at-level/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop architecture-split-selected-column-at-level/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>Convert floor-to-floor-to-floor single-column modelling into per-level segments for schedule / QA.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Structural splits that require axis changes or rotations (use the structural variant, not yet built).</p></div>
+  
+
+  
+
+  
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree">1) User or Bot supplies Resolver_ColumnId + Resolver_SplitLevelId. 2) Resolve both — the element must be a FamilyInstance whose category is OST_Columns or OST_StructuralColumns; the split level must be a Level. Else WireError + abort. 3) Read bounds via GetColumnBaseAndTopLevels.Read(doc, column); if null → abort. 4) Validate via GetColumnBaseAndTopLevels.ValidateSplitLevel(bounds, splitLevel); if false → WireError 'split_level_not_between_base_and_top' + abort. 5) Open Transaction 'Split column at level'. 6) Set original column's TOP_LEVEL_PARAM to splitLevelId (now original = bottom segment). 7) Copy via ElementTransformUtils.CopyElement(doc, column.Id, XYZ.Zero); set copy's BASE_LEVEL_PARAM = splitLevelId and TOP_LEVEL_PARAM = original top level id. 8) Commit. 9) Bot: JSON {ok, bottom_column_id, top_column_id, split_level_id}. User: toast 'Column split at '{level.Name}'.' 10) Any exception → tracker.Fail(ex); WireFault {column_id, split_level_id}.</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Splitting column at level…</div>
+    <div class="lab">thinking</div><div class="msg">Reading column base + top levels…<br>Validating split level is strictly between…<br>Mutating original + creating copy…</div>
+    <div class="lab">on success</div><div class="msg">Column split at '<span class="placeholder">{level_name}</span>'. Bottom id <span class="placeholder">{bottom_column_id}</span>, top id <span class="placeholder">{top_column_id}</span>.</div>
+    <div class="lab">on failure</div><div class="msg">Could not split column: <span class="placeholder">{error}</span>.</div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/architecture_split_selected_column_at_level</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">architecturesplitselectedcolumnatlevel · column · split · level · architecture</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

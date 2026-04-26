@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_rooms_with_region_and_colour_scheme_status",
+  "desc": "ArchitectureListRoomsWithRegionAndColourSchemeStatus — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureListRoomsWithRegionAndColourSchemeStatus"
+  ]
+}

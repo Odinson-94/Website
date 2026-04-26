@@ -1,0 +1,31 @@
+{
+  "class": "PlacementPlaceFamilyOnFloorInCurrentViewCommand",
+  "desc": "Place a family on an active-view floor at (x,y,z).",
+  "summary": "Place a family on an active-view floor at (x,y,z).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "placementplacefamilyonfloorincurrentview",
+    "place family on floor"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

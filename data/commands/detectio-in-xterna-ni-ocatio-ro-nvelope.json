@@ -1,0 +1,45 @@
+{
+  "class": "DetectionFindExternalUnitLocationFromEnvelopeCommand",
+  "desc": "DetectionFindExternalUnitLocationFromEnvelopeCommand — ribbon wrapper over the envelope analyser MCP.",
+  "summary": "DetectionFindExternalUnitLocationFromEnvelopeCommand — ribbon wrapper over the envelope analyser MCP.",
+  "usecase": "Positioning hint for external plant unit.",
+  "notfor": "Placement — that's a Placement command.",
+  "precondition": "Active doc; linked architecture or host roof/floor elements present.",
+  "postcondition": "No mutation; tracker records ranked candidate list.",
+  "sideeffects": "",
+  "logictree": "1) Delegate to DetectionFindExternalUnitLocationFromEnvelope.GetAll(doc, noise_buffer_mm).\n2) Tracker output + TaskDialog on Human path.",
+  "keywords": [
+    "detectionfindexternalunitlocationfromenvelope",
+    "find external unit location",
+    "envelope plant zones"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"detection_rules\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Analysing envelope for external plant unit locations…"
+    ],
+    "thinkingsteps": [
+      "Delegating to envelope analyser…"
+    ],
+    "successprompts": [
+      "Ranked envelope candidates in tracker output."
+    ],
+    "failureprompts": [
+      "Envelope detection failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

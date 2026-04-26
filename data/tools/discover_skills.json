@@ -1,0 +1,30 @@
+{
+  "name": "discover_skills",
+  "desc": "Search for workflow skills — complete recipes that bundle commands, tools, and step-by-step instructions for complex tasks. Skills are the primary authority for how to accomplish a task. Example: 'set up model filters and templates' returns the Filters skill with all steps.",
+  "bridge": "",
+  "category": "context",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "objective",
+      "type": "string",
+      "description": "Describe what you want to accomplish — e.g. 'set up drainage for the building' or 'export drawing register to Excel'",
+      "required": true
+    },
+    {
+      "name": "max_results",
+      "type": "string",
+      "description": "Maximum number of skills to return (default 5)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "discover skills",
+    "find skills",
+    "workflow",
+    "recipe",
+    "how to",
+    "skill search"
+  ]
+}

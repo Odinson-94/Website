@@ -1,0 +1,41 @@
+{
+  "class": "AnnotationMergeAdjacentDimensionStringsCommand",
+  "desc": "Merge adjacent dimension strings into one, preserving every anchor Reference.",
+  "summary": "Merge adjacent dimension strings into one, preserving every anchor Reference.",
+  "usecase": "Cleaning up multiple collinear dimensions into a single running dimension for drawing presentation.",
+  "notfor": "Non-collinear / disjoint dimension groups.",
+  "precondition": "Active document open; active view is a View; at least two Dimension ids supplied.",
+  "postcondition": "One new Dimension added; input Dimensions deleted. One committed Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_DimensionIdsCsv → list of ids (≥ 2). 2) Resolve each to a Dimension on the active view; validate at least two survive. Else WireError + abort. 3) Open Transaction 'Merge dimension strings'. 4) Order by curve start-X; collect each dimension's References into a single ReferenceArray; pick the first dimension's line as the merged dimension line. 5) merged = doc.Create.NewDimension(view, line, refs). 6) Delete every original dimension. 7) Commit. 8) Bot JSON / User toast. 9) Exception → tracker.Fail + WireFault.",
+  "keywords": [
+    "annotationmergeadjacentdimensionstrings",
+    "dimension",
+    "merge",
+    "annotation",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Merging adjacent dimension strings…"
+    ],
+    "thinkingsteps": [
+      "Resolving dimensions + collecting references…",
+      "Creating merged dimension and deleting originals…"
+    ],
+    "successprompts": [
+      "Merged {merged_count} dimensions into {merged_dimension_id}."
+    ],
+    "failureprompts": [
+      "Could not merge dimensions: {error}."
+    ]
+  },
+  "has_restapi": false
+}

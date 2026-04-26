@@ -1,0 +1,2201 @@
+
+// Vertical resizers for left sidebar (View 8 / specWritingOverlay only)
+(function() {
+  const view8 = document.getElementById('specWritingOverlay');
+  if (!view8) return;
+  
+  let activeVResizer = null;
+  let startY = 0;
+  let startHeightTop = 0;
+  let startHeightBottom = 0;
+  let topEl = null;
+  let bottomEl = null;
+
+  view8.querySelectorAll(".v-resizer").forEach(resizer => {
+    resizer.addEventListener("mousedown", function(e) {
+      e.preventDefault();
+      activeVResizer = this;
+      this.classList.add("active");
+      document.body.classList.add("resizing");
+      document.body.style.cursor = "row-resize";
+      startY = e.clientY;
+
+      const topId = this.getAttribute("data-top");
+      const bottomId = this.getAttribute("data-bottom");
+      topEl = document.getElementById(topId);
+      bottomEl = document.getElementById(bottomId);
+
+      startHeightTop = topEl.offsetHeight;
+      startHeightBottom = bottomEl.offsetHeight;
+
+      document.addEventListener("mousemove", doVResize);
+      document.addEventListener("mouseup", stopVResize);
+    });
+  });
+
+  function doVResize(e) {
+    if (!activeVResizer) return;
+    const dy = e.clientY - startY;
+    const newHeightTop = startHeightTop + dy;
+    const newHeightBottom = startHeightBottom - dy;
+
+    if (newHeightTop >= 60 && newHeightBottom >= 60) {
+      topEl.style.flex = "none";
+      bottomEl.style.flex = "none";
+      topEl.style.height = newHeightTop + "px";
+      bottomEl.style.height = newHeightBottom + "px";
+    }
+  }
+
+  function stopVResize() {
+    if (activeVResizer) activeVResizer.classList.remove("active");
+    activeVResizer = null;
+    document.body.classList.remove("resizing");
+    document.body.style.cursor = "";
+    document.removeEventListener("mousemove", doVResize);
+    document.removeEventListener("mouseup", stopVResize);
+  }
+})();
+
+
+// Resizable panels (View 8 / specWritingOverlay only)
+(function() {
+  const view8 = document.getElementById('specWritingOverlay');
+  if (!view8) return;
+  
+  let activeResizer = null;
+  let startX = 0;
+  let startWidthLeft = 0;
+  let startWidthRight = 0;
+  let leftEl = null;
+  let rightEl = null;
+  
+  // Main column resizers
+  view8.querySelectorAll('.resizer').forEach(resizer => {
+    resizer.addEventListener('mousedown', initResize);
+  });
+  
+  // Inner resizer (chat | history)
+  const innerResizer = view8.querySelector('#innerResizer');
+  if (innerResizer) {
+    innerResizer.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      activeResizer = this;
+      this.classList.add('active');
+      document.body.classList.add('resizing');
+      startX = e.clientX;
+      
+      const rightColumn = document.getElementById('rightColumn');
+      const chatMain = rightColumn.querySelector('.demo-chat-main');
+      const historySidebar = rightColumn.querySelector('.demo-chat-history-sidebar');
+      
+      leftEl = chatMain;
+      rightEl = historySidebar;
+      startWidthLeft = chatMain.offsetWidth;
+      startWidthRight = historySidebar.offsetWidth;
+      
+      document.addEventListener('mousemove', doResize);
+      document.addEventListener('mouseup', stopResize);
+    });
+  }
+  
+  function initResize(e) {
+    e.preventDefault();
+    activeResizer = this;
+    this.classList.add('active');
+    document.body.classList.add('resizing');
+    startX = e.clientX;
+    
+    const leftId = this.getAttribute('data-left');
+    const rightId = this.getAttribute('data-right');
+    leftEl = document.getElementById(leftId);
+    rightEl = document.getElementById(rightId);
+    
+    startWidthLeft = leftEl.offsetWidth;
+    startWidthRight = rightEl.offsetWidth;
+    
+    document.addEventListener('mousemove', doResize);
+    document.addEventListener('mouseup', stopResize);
+  }
+  
+  function doResize(e) {
+    if (!activeResizer) return;
+    
+    const dx = e.clientX - startX;
+    const newWidthLeft = startWidthLeft + dx;
+    const newWidthRight = startWidthRight - dx;
+    
+    // Get min/max from CSS
+    const leftStyle = window.getComputedStyle(leftEl);
+    const rightStyle = window.getComputedStyle(rightEl);
+    const minLeft = parseInt(leftStyle.minWidth) || 100;
+    const maxLeft = parseInt(leftStyle.maxWidth) || 9999;
+    const minRight = parseInt(rightStyle.minWidth) || 100;
+    const maxRight = parseInt(rightStyle.maxWidth) || 9999;
+    
+    // For center|right resizer: only change right column width, center stays flex:1
+    // History sidebar stays fixed at right edge, chat-main absorbs the change
+    if (leftEl.classList.contains("center-column")) {
+      if (newWidthRight >= minRight && newWidthRight <= maxRight) {
+        rightEl.style.flex = "none";
+        rightEl.style.width = newWidthRight + "px";
+        
+        // Reset chat-main to flex:1 so it absorbs the change, history sidebar stays fixed
+        const chatMain = rightEl.querySelector('.demo-chat-main');
+        const historySidebar = rightEl.querySelector('.demo-chat-history-sidebar');
+        if (chatMain && historySidebar) {
+          // Get current history sidebar width (keep it fixed)
+          const historyWidth = historySidebar.offsetWidth;
+          // Reset chat-main to flex, it will fill remaining space
+          chatMain.style.flex = "1 1 auto";
+          chatMain.style.width = "";
+          // Keep history sidebar at its current width
+          historySidebar.style.flex = "0 0 " + historyWidth + "px";
+          historySidebar.style.width = historyWidth + "px";
+        }
+      }
+    } else {
+      // For other resizers (inner resizer, left column): change both widths
+      if (newWidthLeft >= minLeft && newWidthLeft <= maxLeft &&
+          newWidthRight >= minRight && newWidthRight <= maxRight) {
+        leftEl.style.flex = "none";
+        leftEl.style.width = newWidthLeft + "px";
+        if (!rightEl.classList.contains("center-column")) {
+          rightEl.style.flex = "none";
+          rightEl.style.width = newWidthRight + "px";
+        }
+      }
+    }
+  }
+  
+  function stopResize() {
+    if (activeResizer) {
+      activeResizer.classList.remove('active');
+    }
+    activeResizer = null;
+    document.body.classList.remove('resizing');
+    document.removeEventListener('mousemove', doResize);
+    document.removeEventListener('mouseup', stopResize);
+  }
+})();
+
+// Ribbon tabs with content switching
+document.querySelectorAll('.ribbon-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    const tabName = this.getAttribute('data-tab');
+    const ribbon = this.closest('.ribbon');
+    
+    // Update tab active state
+    ribbon.querySelectorAll('.ribbon-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    
+    // Update content active state
+    ribbon.querySelectorAll('.ribbon-content').forEach(content => {
+      content.classList.remove('active');
+      if (content.getAttribute('data-tab') === tabName) {
+        content.classList.add('active');
+      }
+    });
+  });
+});
+
+// Headings
+document.querySelectorAll('.heading-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.heading-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+
+// ============================================
+// WINDOW DRAG AND RESIZE FUNCTIONALITY (View 8 / specWritingOverlay only)
+// ============================================
+(function() {
+  console.log('[specbuilder.js] INIT - Window drag/resize functionality');
+  const view8 = document.getElementById('specWritingOverlay');
+  console.log('[specbuilder.js] view8 element:', view8 ? 'FOUND' : 'NOT FOUND');
+  if (!view8) return;
+  
+  const chatBox = view8.querySelector(".demo-chat-box");
+  const titlebar = chatBox ? chatBox.querySelector(".demo-chat-titlebar") : null;
+  const wrapper = chatBox ? chatBox.closest(".demo-chat-wrapper") : null;
+  console.log('[specbuilder.js] chatBox:', chatBox ? 'FOUND' : 'NOT FOUND');
+  console.log('[specbuilder.js] titlebar:', titlebar ? 'FOUND' : 'NOT FOUND');
+  console.log('[specbuilder.js] wrapper:', wrapper ? 'FOUND' : 'NOT FOUND');
+  
+  if (!chatBox || !titlebar) return;
+  console.log('[specbuilder.js] All elements found, setting up handlers');
+  
+  // DEBUG: Log ALL mousedown events on chatBox to see what's capturing clicks
+  chatBox.addEventListener("mousedown", function(e) {
+    const rect = chatBox.getBoundingClientRect();
+    const relX = e.clientX - rect.left;
+    const relY = e.clientY - rect.top;
+    console.log('[specbuilder.js] CHATBOX MOUSEDOWN at', relX.toFixed(0), ',', relY.toFixed(0), 
+      '- target:', e.target.className.substring(0, 50),
+      '- chatBox size:', rect.width.toFixed(0), 'x', rect.height.toFixed(0));
+  }, true); // Use capture phase to see it first
+  
+  let dragState = null;
+  let resizeState = null;
+  let originalDimensions = null; // Store original size for snap-back
+  
+  // Helper to set position/size with !important (to override CSS !important rules)
+  function setBoxStyle(prop, value) {
+    if (value === "" || value === null) {
+      chatBox.style.removeProperty(prop);
+      console.log('[specbuilder.js] setBoxStyle REMOVE:', prop);
+    } else {
+      chatBox.style.setProperty(prop, value, 'important');
+      console.log('[specbuilder.js] setBoxStyle SET:', prop, '=', value, '| actual inline:', chatBox.style.getPropertyValue(prop));
+    }
+  }
+  function setBoxPos(left, top, width, height) {
+    setBoxStyle('left', left);
+    setBoxStyle('top', top);
+    setBoxStyle('width', width);
+    setBoxStyle('height', height);
+  }
+  
+  // Store original dimensions on load
+  function storeOriginalDimensions() {
+    const rect = chatBox.getBoundingClientRect();
+    originalDimensions = {
+      width: rect.width,
+      height: rect.height,
+      left: rect.left,
+      top: rect.top
+    };
+  }
+  storeOriginalDimensions();
+  
+  // ========== TITLEBAR DRAGGING ==========
+  titlebar.addEventListener("mousedown", function(e) {
+    console.log('[specbuilder.js] TITLEBAR MOUSEDOWN - target:', e.target.className);
+    // Ignore clicks on buttons
+    if (e.target.closest(".demo-titlebar-btn")) {
+      console.log('[specbuilder.js] Ignoring - clicked on titlebar button');
+      return;
+    }
+    if (e.target.closest(".titlebar-menu-btn")) {
+      console.log('[specbuilder.js] Ignoring - clicked on menu button');
+      return;
+    }
+    if (e.target.closest(".chat-settings-wrapper")) {
+      console.log('[specbuilder.js] Ignoring - clicked on settings wrapper');
+      return;
+    }
+    
+    console.log('[specbuilder.js] >>> STARTING DRAG <<<');
+    const rect = chatBox.getBoundingClientRect();
+    
+    // #region agent log - Column sizes BEFORE undocking
+    const leftCol = document.querySelector('#specWritingOverlay .v8-text-left');
+    const rightCol = document.querySelector('#specWritingOverlay .v8-text-right');
+    const centerPanel = document.querySelector('#specWritingOverlay .v8-center-panel');
+    const wrapperEl = chatBox.closest('.demo-chat-wrapper');
+    if (leftCol && rightCol && centerPanel) {
+      const lcRect = leftCol.getBoundingClientRect();
+      const rcRect = rightCol.getBoundingClientRect();
+      const cpRect = centerPanel.getBoundingClientRect();
+      const wRect = wrapperEl ? wrapperEl.getBoundingClientRect() : null;
+      fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:drag-start',message:'Column sizes BEFORE undock',data:{leftW:lcRect.width.toFixed(0),rightW:rcRect.width.toFixed(0),centerW:cpRect.width.toFixed(0),wrapperW:wRect?wRect.width.toFixed(0):'null',chatBoxW:rect.width.toFixed(0),isFloating:chatBox.classList.contains('free-floating')},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+    }
+    // #endregion
+    
+    // Make floating if not already
+    if (!chatBox.classList.contains("free-floating")) {
+      const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+      chatBox.classList.add("free-floating");
+      setBoxPos((rect.left / zoom) + "px", (rect.top / zoom) + "px", (rect.width / zoom) + "px", (rect.height / zoom) + "px");
+      
+      // #region agent log - Column sizes AFTER undocking
+      setTimeout(function() {
+        const lcRect2 = leftCol ? leftCol.getBoundingClientRect() : null;
+        const rcRect2 = rightCol ? rightCol.getBoundingClientRect() : null;
+        const cpRect2 = centerPanel ? centerPanel.getBoundingClientRect() : null;
+        const wRect2 = wrapperEl ? wrapperEl.getBoundingClientRect() : null;
+        if (lcRect2 && rcRect2 && cpRect2) {
+          fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:drag-start-after',message:'Column sizes AFTER undock',data:{leftW:lcRect2.width.toFixed(0),rightW:rcRect2.width.toFixed(0),centerW:cpRect2.width.toFixed(0),wrapperW:wRect2?wRect2.width.toFixed(0):'null'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+        }
+      }, 50);
+      // #endregion
+    }
+    
+    dragState = {
+      startX: e.clientX,
+      startY: e.clientY,
+      startLeft: parseFloat(chatBox.style.left) || rect.left,
+      startTop: parseFloat(chatBox.style.top) || rect.top,
+      lastX: e.clientX,
+      lastY: e.clientY
+    };
+    
+    chatBox.classList.add("dragging");
+    document.body.classList.add("window-dragging");
+    e.preventDefault();
+  });
+  
+  // ========== EDGE/CORNER RESIZING (View 8 specific - v8-resize-*) ==========
+  const resizeEdges = chatBox.querySelectorAll(".v8-resize-edge");
+  console.log('[specbuilder.js] Found', resizeEdges.length, 'V8 resize edges in View 8 chatBox');
+  
+  // Debug: Log chatBox dimensions and titlebar dimensions
+  const titlebarRect = titlebar.getBoundingClientRect();
+  const chatBoxRect = chatBox.getBoundingClientRect();
+  console.log('[specbuilder.js] ChatBox size:', chatBoxRect.width, 'x', chatBoxRect.height);
+  console.log('[specbuilder.js] Titlebar size:', titlebarRect.width, 'x', titlebarRect.height);
+  
+  // #region agent log - verify editor font sizes
+  const editorP = document.querySelector('#editorPaper p');
+  const editorH1 = document.querySelector('#editorPaper h1');
+  if (editorP && editorH1) {
+    const pFontSize = window.getComputedStyle(editorP).fontSize;
+    const h1FontSize = window.getComputedStyle(editorH1).fontSize;
+    fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:font-check',message:'Editor font sizes',data:{pFontSize:pFontSize,h1FontSize:h1FontSize},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'FONT'})}).catch(()=>{});
+    console.log('[specbuilder.js] Editor p font-size:', pFontSize, 'h1 font-size:', h1FontSize);
+  }
+  // #endregion
+  
+  // #region agent log - verify percentage-based panel sizing and column layout
+  const screenW = window.innerWidth;
+  const screenH = window.innerHeight;
+  const threeColumn = document.querySelector('#specWritingOverlay .v8-three-column');
+  const leftCol = document.querySelector('#specWritingOverlay .v8-text-left');
+  const centerPanel = document.querySelector('#specWritingOverlay .v8-center-panel');
+  const rightCol = document.querySelector('#specWritingOverlay .v8-text-right');
+  
+  console.log('[specbuilder.js] === V8 LAYOUT DEBUG ===');
+  console.log('[specbuilder.js] Screen:', screenW, 'x', screenH);
+  
+  if (threeColumn) {
+    const tcRect = threeColumn.getBoundingClientRect();
+    const leftIndent = tcRect.left;
+    const rightIndent = screenW - tcRect.right;
+    const leftIndentPct = ((leftIndent / screenW) * 100).toFixed(1);
+    const rightIndentPct = ((rightIndent / screenW) * 100).toFixed(1);
+    console.log('[specbuilder.js] Three-column container:', tcRect.width.toFixed(0), 'x', tcRect.height.toFixed(0));
+    console.log('[specbuilder.js] Left indent:', leftIndent.toFixed(0), 'px (', leftIndentPct, '%)');
+    console.log('[specbuilder.js] Right indent:', rightIndent.toFixed(0), 'px (', rightIndentPct, '%)');
+  }
+  
+  if (leftCol) {
+    const lRect = leftCol.getBoundingClientRect();
+    console.log('[specbuilder.js] Left column:', lRect.width.toFixed(0), 'x', lRect.height.toFixed(0), 'at x:', lRect.left.toFixed(0));
+  }
+  
+  if (centerPanel) {
+    const panelRect = centerPanel.getBoundingClientRect();
+    const widthPct = ((panelRect.width / screenW) * 100).toFixed(1);
+    const heightPct = ((panelRect.height / screenH) * 100).toFixed(1);
+    fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:panel-size',message:'V8 layout',data:{screenW:screenW,screenH:screenH,panelW:panelRect.width,panelH:panelRect.height,widthPct:widthPct+'%',heightPct:heightPct+'%',left:panelRect.left,top:panelRect.top},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'SIZE'})}).catch(()=>{});
+    console.log('[specbuilder.js] Center panel:', panelRect.width.toFixed(0), 'x', panelRect.height.toFixed(0), 
+      '(', widthPct, '% x', heightPct, '%) at x:', panelRect.left.toFixed(0));
+  }
+  
+  if (rightCol) {
+    const rRect = rightCol.getBoundingClientRect();
+    console.log('[specbuilder.js] Right column:', rRect.width.toFixed(0), 'x', rRect.height.toFixed(0), 'at x:', rRect.left.toFixed(0));
+  }
+  console.log('[specbuilder.js] === END LAYOUT DEBUG ===');
+  // #endregion
+  
+  resizeEdges.forEach(function(edge, idx) {
+    const edgeRect = edge.getBoundingClientRect();
+    console.log('[specbuilder.js] V8 Resize edge', idx, ':', edge.className, 
+      'data-v8-edge=', edge.getAttribute('data-v8-edge'),
+      'size:', edgeRect.width.toFixed(1), 'x', edgeRect.height.toFixed(1),
+      'pos:', edgeRect.left.toFixed(1), ',', edgeRect.top.toFixed(1));
+  });
+  
+  resizeEdges.forEach(function(edge) {
+    edge.addEventListener("mousedown", function(e) {
+      const edgeType = this.getAttribute("data-v8-edge");
+      console.log('[specbuilder.js] V8 RESIZE MOUSEDOWN - edge:', edgeType, 'class:', this.className);
+      console.log('[specbuilder.js] Edge element size:', this.offsetWidth, 'x', this.offsetHeight);
+      
+      const rect = chatBox.getBoundingClientRect();
+      
+      // Make floating if not already
+      if (!chatBox.classList.contains("free-floating")) {
+        console.log('[specbuilder.js] Adding free-floating class for resize');
+        const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:resize-floating',message:'Adding free-floating for resize',data:{rectW:rect.width,rectH:rect.height,rectL:rect.left,rectT:rect.top,zoom:zoom},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
+        chatBox.classList.add("free-floating");
+        setBoxPos((rect.left / zoom) + "px", (rect.top / zoom) + "px", (rect.width / zoom) + "px", (rect.height / zoom) + "px");
+        // #region agent log
+        const afterRect = chatBox.getBoundingClientRect();
+        fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:resize-after-floating',message:'After adding free-floating',data:{afterW:afterRect.width,afterH:afterRect.height,computedW:window.getComputedStyle(chatBox).width,computedH:window.getComputedStyle(chatBox).height},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
+      }
+      
+      resizeState = {
+        edge: edgeType,
+        startX: e.clientX,
+        startY: e.clientY,
+        startWidth: chatBox.offsetWidth,
+        startHeight: chatBox.offsetHeight,
+        startLeft: parseFloat(chatBox.style.left),
+        startTop: parseFloat(chatBox.style.top)
+      };
+      console.log('[specbuilder.js] resizeState:', resizeState);
+      
+      chatBox.classList.add("dragging");
+      document.body.classList.add("window-resizing");
+      document.body.style.cursor = window.getComputedStyle(this).cursor;
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+  
+  // ========== DOCUMENT MOUSEMOVE ==========
+  document.addEventListener("mousemove", function(e) {
+    // Handle dragging
+    if (dragState) {
+      const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+      const dx = (e.clientX - dragState.startX) / zoom;
+      const dy = (e.clientY - dragState.startY) / zoom;
+      setBoxStyle('left', (dragState.startLeft + dx) + "px");
+      setBoxStyle('top', (dragState.startTop + dy) + "px");
+      
+      dragState.lastX = e.clientX;
+      dragState.lastY = e.clientY;
+      
+      // Show snap indicator in top third of wrapper
+      if (wrapper) {
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const inX = e.clientX >= wrapperRect.left && e.clientX <= wrapperRect.right;
+        const topThird = wrapperRect.top + (wrapperRect.height / 3);
+        const inTopThird = e.clientY >= wrapperRect.top && e.clientY <= topThird;
+        
+        if (inX && inTopThird) {
+          wrapper.classList.add("snap-target");
+        } else {
+          wrapper.classList.remove("snap-target");
+        }
+      }
+      return;
+    }
+    
+    // Handle resizing
+    if (resizeState) {
+      const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+      const dx = (e.clientX - resizeState.startX) / zoom;
+      const dy = (e.clientY - resizeState.startY) / zoom;
+      const edge = resizeState.edge;
+      const minW = 300, minH = 200;
+      
+      // East (right edge)
+      if (edge.includes("e")) {
+        setBoxStyle('width', Math.max(minW, resizeState.startWidth + dx) + "px");
+      }
+      // West (left edge)
+      if (edge.includes("w")) {
+        const newW = Math.max(minW, resizeState.startWidth - dx);
+        setBoxStyle('width', newW + "px");
+        setBoxStyle('left', (resizeState.startLeft + resizeState.startWidth - newW) + "px");
+      }
+      // South (bottom edge)
+      if (edge.includes("s")) {
+        setBoxStyle('height', Math.max(minH, resizeState.startHeight + dy) + "px");
+      }
+      // North (top edge)
+      if (edge.includes("n")) {
+        const newH = Math.max(minH, resizeState.startHeight - dy);
+        setBoxStyle('height', newH + "px");
+        setBoxStyle('top', (resizeState.startTop + resizeState.startHeight - newH) + "px");
+      }
+    }
+  });
+  
+  // ========== DOCUMENT MOUSEUP ==========
+  document.addEventListener("mouseup", function() {
+    // Handle drag end
+    if (dragState) {
+      console.log('[specbuilder.js] MOUSEUP with dragState - ending drag');
+      chatBox.classList.remove("dragging");
+      document.body.classList.remove("window-dragging");
+      
+      // Check for snap-back
+      if (wrapper) {
+        wrapper.classList.remove("snap-target");
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const inX = dragState.lastX >= wrapperRect.left && dragState.lastX <= wrapperRect.right;
+        const topThird = wrapperRect.top + (wrapperRect.height / 3);
+        const inTopThird = dragState.lastY >= wrapperRect.top && dragState.lastY <= topThird;
+        
+        console.log('[specbuilder.js] Snap check: inX=', inX, 'inTopThird=', inTopThird, 'isFloating=', chatBox.classList.contains("free-floating"));
+        
+        if (inX && inTopThird && chatBox.classList.contains("free-floating")) {
+          console.log('[specbuilder.js] >>> TRIGGERING SNAP-BACK <<<');
+          // Animate snap back - compensate for zoom
+          const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+          chatBox.classList.add("snapping-back");
+          setBoxPos((wrapperRect.left / zoom) + "px", (wrapperRect.top / zoom) + "px", (wrapperRect.width / zoom) + "px", (wrapperRect.height / zoom) + "px");
+          
+          setTimeout(function() {
+            console.log('[specbuilder.js] Snap-back complete - removing classes');
+            chatBox.classList.remove("free-floating", "snapping-back");
+            setBoxPos(null, null, null, null);
+            storeOriginalDimensions();
+          }, 300);
+        }
+      }
+      dragState = null;
+    }
+    
+    // Handle resize end
+    if (resizeState) {
+      console.log('[specbuilder.js] MOUSEUP with resizeState - ending resize');
+      chatBox.classList.remove("dragging");
+      document.body.classList.remove("window-resizing");
+      document.body.style.cursor = "";
+      resizeState = null;
+    }
+  });
+  
+  // ========== TITLEBAR BUTTONS ==========
+  const minBtn = chatBox.querySelector(".demo-titlebar-btn.min");
+  const maxBtn = chatBox.querySelector(".demo-titlebar-btn.max");
+  const closeBtn = chatBox.querySelector(".demo-titlebar-btn.close");
+  console.log('[specbuilder.js] TITLEBAR BUTTONS - minBtn:', !!minBtn, 'maxBtn:', !!maxBtn, 'closeBtn:', !!closeBtn);
+  
+  // Green button: expand 20% wider (left), 10% taller (top)
+  if (maxBtn) {
+    console.log('[specbuilder.js] Adding click handler to maxBtn');
+    maxBtn.addEventListener("click", function(e) {
+      console.log('[specbuilder.js] MAX BUTTON CLICKED');
+      e.stopPropagation();
+      
+      // #region agent log - Column sizes BEFORE expand
+      const leftCol = document.querySelector('#specWritingOverlay .v8-text-left');
+      const rightCol = document.querySelector('#specWritingOverlay .v8-text-right');
+      const centerPanel = document.querySelector('#specWritingOverlay .v8-center-panel');
+      if (leftCol && rightCol && centerPanel) {
+        const lcRect = leftCol.getBoundingClientRect();
+        const rcRect = rightCol.getBoundingClientRect();
+        const cpRect = centerPanel.getBoundingClientRect();
+        fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:max-click-before',message:'Column sizes BEFORE expand/restore',data:{leftW:lcRect.width.toFixed(0),rightW:rcRect.width.toFixed(0),centerW:cpRect.width.toFixed(0),isExpanded:chatBox.classList.contains('expanded'),isFloating:chatBox.classList.contains('free-floating')},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+      }
+      // #endregion
+      
+      const rect = chatBox.getBoundingClientRect();
+      console.log('[specbuilder.js] Current rect:', rect.width, 'x', rect.height, 'at', rect.left, ',', rect.top);
+      console.log('[specbuilder.js] Is expanded?', chatBox.classList.contains("expanded"));
+      console.log('[specbuilder.js] Is free-floating?', chatBox.classList.contains("free-floating"));
+      
+      if (chatBox.classList.contains("expanded")) {
+        // Restore to original - animate back to docked position
+        if (wrapper) {
+          const wrapperRect = wrapper.getBoundingClientRect();
+          const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+          chatBox.classList.add("snapping-back");
+          setBoxPos((wrapperRect.left / zoom) + "px", (wrapperRect.top / zoom) + "px", (wrapperRect.width / zoom) + "px", (wrapperRect.height / zoom) + "px");
+          
+          setTimeout(function() {
+            chatBox.classList.remove("free-floating", "snapping-back", "expanded");
+            setBoxPos(null, null, null, null);
+            storeOriginalDimensions();
+          }, 300);
+        } else {
+          // Fallback if no wrapper
+          chatBox.classList.remove("expanded", "free-floating");
+          setBoxPos(null, null, null, null);
+          storeOriginalDimensions();
+        }
+      } else {
+        // Expand: 20% wider to left, 10% taller to top - compensate for zoom
+        const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+        const newWidth = (rect.width / zoom) * 1.2;
+        const newHeight = (rect.height / zoom) * 1.1;
+        const newLeft = (rect.left / zoom) - ((rect.width / zoom) * 0.2);
+        const newTop = (rect.top / zoom) - ((rect.height / zoom) * 0.1);
+        console.log('[specbuilder.js] EXPANDING to:', newWidth, 'x', newHeight, 'at', newLeft, ',', newTop);
+        
+        // Step 1: Set CURRENT position first (starting point for transition)
+        chatBox.classList.add("free-floating");
+        setBoxPos((rect.left / zoom) + "px", (rect.top / zoom) + "px", (rect.width / zoom) + "px", (rect.height / zoom) + "px");
+        console.log('[specbuilder.js] Step 1 - set initial pos, classes:', chatBox.className);
+        
+        // Step 2: Force reflow so browser registers starting position
+        chatBox.offsetHeight;
+        
+        // Step 3: Add transition class and expanded state
+        chatBox.classList.add("snapping-back", "expanded");
+        console.log('[specbuilder.js] Step 3 - added expanded, classes:', chatBox.className);
+        
+        // Step 4: Use requestAnimationFrame to ensure class is applied before setting target
+        requestAnimationFrame(function() {
+          console.log('[specbuilder.js] Step 4 - setting target pos');
+          setBoxPos(Math.max(0, newLeft) + "px", Math.max(0, newTop) + "px", newWidth + "px", newHeight + "px");
+          console.log('[specbuilder.js] Final computed style:', window.getComputedStyle(chatBox).width, 'x', window.getComputedStyle(chatBox).height);
+          
+          // #region agent log - Column sizes AFTER expand
+          setTimeout(function() {
+            const leftCol2 = document.querySelector('#specWritingOverlay .v8-text-left');
+            const rightCol2 = document.querySelector('#specWritingOverlay .v8-text-right');
+            const centerPanel2 = document.querySelector('#specWritingOverlay .v8-center-panel');
+            if (leftCol2 && rightCol2 && centerPanel2) {
+              const lcRect2 = leftCol2.getBoundingClientRect();
+              const rcRect2 = rightCol2.getBoundingClientRect();
+              const cpRect2 = centerPanel2.getBoundingClientRect();
+              const computedW = window.getComputedStyle(chatBox).width;
+              const computedH = window.getComputedStyle(chatBox).height;
+              fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'specbuilder.js:max-click-after',message:'Column sizes AFTER expand',data:{leftW:lcRect2.width.toFixed(0),rightW:rcRect2.width.toFixed(0),centerW:cpRect2.width.toFixed(0),chatBoxComputedW:computedW,chatBoxComputedH:computedH},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+            }
+          }, 100);
+          // #endregion
+        });
+        
+        // Step 5: Remove transition class after animation completes
+        setTimeout(function() {
+          chatBox.classList.remove("snapping-back");
+          console.log('[specbuilder.js] Step 5 - animation complete, final classes:', chatBox.className);
+        }, 350);
+      }
+    });
+  }
+  
+  // Yellow button: minimize (snap back to docked)
+  if (minBtn) {
+    minBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      if (wrapper && chatBox.classList.contains("free-floating")) {
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+        chatBox.classList.add("snapping-back");
+        setBoxPos((wrapperRect.left / zoom) + "px", (wrapperRect.top / zoom) + "px", (wrapperRect.width / zoom) + "px", (wrapperRect.height / zoom) + "px");
+        
+        setTimeout(function() {
+          chatBox.classList.remove("free-floating", "snapping-back", "expanded");
+          setBoxPos(null, null, null, null);
+          storeOriginalDimensions();
+        }, 300);
+      }
+    });
+  }
+  
+  // ========== SCROLL TO MAIN DOCUMENT ON LOAD ==========
+  const editorArea = document.getElementById('editorArea');
+  const editorPaper = document.getElementById('editorPaper');
+  const titlePage = document.getElementById('titlePage');
+  
+  // Scroll to the main document page (past title page) on load - VERTICAL ONLY
+  // Using scrollTop instead of scrollIntoView to avoid horizontal scroll flash
+  if (editorArea && editorPaper && titlePage) {
+    setTimeout(() => {
+      // Calculate vertical position: title page height + gap
+      const titlePageHeight = titlePage.offsetHeight;
+      const gap = 20; // Gap between pages
+      const topPadding = 30; // editor-area padding-top
+      editorArea.scrollTop = titlePageHeight + gap - topPadding + 30;
+      // Keep scrollLeft at 0 to show left edge of page
+      editorArea.scrollLeft = 0;
+    }, 100);
+  }
+  
+  // ========== EDITOR CLICK = SIMULATE GREEN BUTTON ==========
+  
+  if (editorArea && maxBtn) {
+    editorArea.addEventListener('click', function(e) {
+      // Get click position relative to the editor paper to debug column issues
+      const paper = document.getElementById('editorPaper');
+      const paperRect = paper ? paper.getBoundingClientRect() : null;
+      const computedStyle = paper ? window.getComputedStyle(paper) : null;
+      const clickX = paperRect ? Math.round(e.clientX - paperRect.left) : -1;
+      const clickY = paperRect ? Math.round(e.clientY - paperRect.top) : -1;
+      const paperWidth = paperRect ? Math.round(paperRect.width) : -1;
+      const columnCount = computedStyle ? computedStyle.columnCount : 'unknown';
+      
+      // #region agent log
+      const overflowX = computedStyle ? computedStyle.overflowX : 'unknown';
+      const overflowY = computedStyle ? computedStyle.overflowY : 'unknown';
+      const columnWidth = computedStyle ? computedStyle.columnWidth : 'unknown';
+      const columnGap = computedStyle ? computedStyle.columnGap : 'unknown';
+      const paddingLeft = computedStyle ? computedStyle.paddingLeft : 'unknown';
+      const paddingRight = computedStyle ? computedStyle.paddingRight : 'unknown';
+      // Calculate column boundaries
+      const pl = parseInt(paddingLeft) || 0;
+      const pr = parseInt(paddingRight) || 0;
+      const cg = parseInt(columnGap) || 15;
+      const contentWidth = paperWidth - pl - pr;
+      const colW = (contentWidth - cg) / 2;
+      const col1End = pl + colW;
+      const col2Start = col1End + cg;
+      const col2End = col2Start + colW;
+      const clickColumn = clickX < col1End ? 1 : (clickX < col2Start ? 'gap' : (clickX <= col2End ? 2 : 'overflow'));
+      // #endregion
+      // Only trigger if chat is not already expanded
+      if (!chatBox.classList.contains('expanded')) {
+        // #region agent log
+        // #endregion
+        // Simulate green button click to expand
+        maxBtn.click();
+      }
+      // Focus editor for typing
+      if (editorPaper) {
+        editorPaper.focus();
+        // #region agent log
+        setTimeout(function() {
+          const sel = window.getSelection();
+        }, 10);
+        // #endregion
+      }
+    });
+  }
+  
+  // ========== TITLEBAR ICON OVERLAP DETECTION ==========
+  const titlebarBtns = chatBox.querySelector('.demo-chat-titlebar-btns');
+  const themeToggle = titlebarBtns ? titlebarBtns.querySelector('.theme-toggle') : null;
+  const settingsWrapper = titlebarBtns ? titlebarBtns.querySelector('.chat-settings-wrapper') : null;
+  const titlebarMenus = chatBox.querySelectorAll('.titlebar-menu-btn');
+  
+  function checkTitlebarOverlap() {
+    if (!titlebarBtns) return;
+    const titlebarRect = chatBox.querySelector('.demo-chat-titlebar').getBoundingClientRect();
+    const btnsRect = titlebarBtns.getBoundingClientRect();
+    const availableWidth = titlebarRect.width - 20; // padding
+    
+    // Get menu buttons total width
+    let menuWidth = 0;
+    titlebarMenus.forEach(menu => {
+      if (menu.offsetParent !== null) menuWidth += menu.offsetWidth + 8;
+    });
+    
+    // Get buttons total width
+    const btnsTotalWidth = btnsRect.width;
+    const titleTextWidth = 150; // approximate title width
+    const totalNeeded = menuWidth + titleTextWidth + btnsTotalWidth;
+    const hasOverlap = totalNeeded > availableWidth;
+    
+    // #region agent log
+    // #endregion
+    
+    // Check if there's overlap
+    if (hasOverlap) {
+      // Hide theme toggle and settings first
+      if (themeToggle) themeToggle.style.display = 'none';
+      if (settingsWrapper) settingsWrapper.style.display = 'none';
+    } else {
+      // Show them back
+      if (themeToggle) themeToggle.style.display = '';
+      if (settingsWrapper) settingsWrapper.style.display = '';
+    }
+  }
+  
+  // Check on resize
+  window.addEventListener('resize', checkTitlebarOverlap);
+  // Initial check
+  setTimeout(checkTitlebarOverlap, 100);
+  
+  // ========== CHAT INPUT BUTTON OVERLAP DETECTION ==========
+  // Progressive hiding is now handled by CSS container queries
+  // JS only logs for debugging
+  const chatInputRow = document.querySelector('.demo-chat-input-row.cursor-style');
+  
+  function logChatInputState() {
+    if (!chatInputRow) return;
+    const rowWidth = chatInputRow.offsetWidth;
+    const modelDropdown = chatInputRow.querySelector('.chat-model-dropdown');
+    const menuIcon = modelDropdown?.querySelector('.menu-icon');
+    const modelDisplay = modelDropdown?.querySelector('.model-display');
+    const shareBtn = chatInputRow.querySelector('.chat-share-btn');
+    const meetingBtn = chatInputRow.querySelector('.chat-meeting-btn');
+    
+    // #region agent log
+    // #endregion
+  }
+  
+  window.addEventListener('resize', logChatInputState);
+  setTimeout(logChatInputState, 100);
+})();
+
+// ============================================
+// DARK MODE TOGGLE (uses cookies like main site)
+// ============================================
+(function() {
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  if (!darkModeToggle) return;
+  
+  // Helper to get cookie value
+  function getDarkModeCookie() {
+    const match = document.cookie.match(/(?:^|; )specbuilderDarkMode=([^;]*)/);
+    return match ? match[1] === 'true' : null;
+  }
+  
+  // Helper to set cookie
+  function setDarkModeCookie(isDark) {
+    document.cookie = `specbuilderDarkMode=${isDark}; path=/; max-age=31536000; SameSite=Lax`;
+  }
+  
+  // Dark mode already applied in head script, but check system preference if no cookie
+  const cookieValue = getDarkModeCookie();
+  if (cookieValue === null) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) {
+      document.documentElement.classList.add('dark-mode');
+      setDarkModeCookie(true);
+    }
+  }
+  
+  darkModeToggle.addEventListener('click', function() {
+    document.documentElement.classList.toggle('dark-mode');
+    const isDark = document.documentElement.classList.contains('dark-mode');
+    // #region agent log
+    // #endregion
+    setDarkModeCookie(isDark);
+    // Also update localStorage for backwards compatibility
+    localStorage.setItem('specbuilder-dark-mode', isDark ? 'dark' : 'light');
+  });
+})();
+
+// ============================================
+// INTELLIGENT COMPLETION TOGGLE
+// ============================================
+(function() {
+  const intelligentToggle = document.getElementById('intelligentCompletionToggle');
+  if (!intelligentToggle) return;
+  
+  // Check for saved preference (default ON)
+  const savedState = localStorage.getItem('specbuilder-intelligent-completion');
+  if (savedState === 'off') {
+    intelligentToggle.checked = false;
+  }
+  
+  intelligentToggle.addEventListener('change', function() {
+    localStorage.setItem('specbuilder-intelligent-completion', this.checked ? 'on' : 'off');
+    // Future: trigger AI completion behavior changes
+    console.log('Intelligent Completion:', this.checked ? 'ON' : 'OFF');
+  });
+})();
+
+// ============================================
+// EDITOR ZOOM (Ctrl + Scroll)
+// ============================================
+(function() {
+  const editorArea = document.getElementById('editorArea');
+  const editorPaper = document.getElementById('editorPaper');
+  const zoomIndicator = document.getElementById('zoomIndicator');
+  if (!editorArea || !editorPaper) return;
+  
+  let zoomLevel = 100;
+  const minZoom = 50;
+  const maxZoom = 200;
+  const zoomStep = 10;
+  let hideTimeout = null;
+  
+  function updateZoom() {
+    // Apply zoom to ALL pages (like Word does)
+    const allPages = editorArea.querySelectorAll('.editor-paper');
+    const scale = zoomLevel / 100;
+    const baseGap = 20; // Visual gap we want between pages in pixels
+    
+    allPages.forEach((page, index) => {
+      page.style.transform = `scale(${scale})`;
+      page.style.transformOrigin = 'top center';
+      
+      // CSS transform doesn't affect layout box size
+      // At 50% zoom, a 561px page renders as 280px visually but box is still 561px
+      // Negative margin pulls the next page up by the "empty" space
+      const pageHeight = page.offsetHeight || 561;
+      const emptySpace = pageHeight * (1 - scale);
+      
+      // Pull up by empty space, then add desired visual gap
+      page.style.marginBottom = `${-emptySpace + baseGap}px`;
+    });
+    
+    zoomIndicator.textContent = `${zoomLevel}%`;
+    zoomIndicator.classList.add('visible');
+    
+    // Hide indicator after 1.5s
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      zoomIndicator.classList.remove('visible');
+    }, 1500);
+  }
+  
+  editorArea.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+      if (e.deltaY < 0 && zoomLevel < maxZoom) {
+        zoomLevel += zoomStep;
+      } else if (e.deltaY > 0 && zoomLevel > minZoom) {
+        zoomLevel -= zoomStep;
+      }
+      updateZoom();
+    }
+  }, { passive: false });
+  
+  // Keyboard shortcuts: Ctrl+Plus, Ctrl+Minus, Ctrl+0
+  document.addEventListener('keydown', function(e) {
+    if (!e.ctrlKey) return;
+    
+    if (e.key === '=' || e.key === '+') {
+      e.preventDefault();
+      if (zoomLevel < maxZoom) {
+        zoomLevel += zoomStep;
+        updateZoom();
+      }
+    } else if (e.key === '-') {
+      e.preventDefault();
+      if (zoomLevel > minZoom) {
+        zoomLevel -= zoomStep;
+        updateZoom();
+      }
+    } else if (e.key === '0') {
+      e.preventDefault();
+      zoomLevel = 100;
+      updateZoom();
+    }
+  });
+})();
+
+// ============================================
+// STYLE BUTTONS - Apply text formatting (like Word)
+// ============================================
+(function() {
+  const styleButtons = document.querySelectorAll('.ribbon-style-btn');
+  const editorPaper = document.getElementById('editorPaper');
+  if (!styleButtons.length || !editorPaper) return;
+  
+  // Selection preservation for buttons that steal focus
+  let savedSelection = null;
+  
+  function saveSelection() {
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+      savedSelection = sel.getRangeAt(0).cloneRange();
+    }
+  }
+  
+  function restoreSelection() {
+    if (savedSelection) {
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(savedSelection);
+    }
+  }
+  
+  // Style definitions - at 50% A3 scale, use half the pt sizes to appear correct
+  // Normal at 11pt on 50% page = looks like 11pt on full page (correct)
+  const styles = {
+    'Normal': { tag: 'p', styles: {} }, // Normal resets to base - NO explicit styles, inherits from CSS
+    'H1': { tag: 'h1', styles: {} }, // Let CSS handle H1 styling
+    'H2': { tag: 'h2', styles: {} }, // Let CSS handle H2 styling  
+    'H3': { tag: 'h3', styles: {} }, // Let CSS handle H3 styling
+    'Clause': { tag: 'p', styles: { color: '#156082', paddingLeft: '20px' } },
+    'Note': { tag: 'p', styles: { fontStyle: 'italic', fontSize: '10pt', color: '#666' } }
+  };
+  
+  styleButtons.forEach(btn => {
+    btn.addEventListener('mousedown', function(e) {
+      e.preventDefault(); // Prevent focus theft from editor
+      saveSelection();
+    });
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // Update active state
+      styleButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      const styleName = this.textContent.trim();
+      const styleConfig = styles[styleName];
+      if (!styleConfig) return;
+      
+      // Get current selection
+      const selection = window.getSelection();
+      if (!selection.rangeCount) return;
+      
+      const range = selection.getRangeAt(0);
+      const selectedText = range.toString().substring(0, 50);
+      
+      // #region agent log
+      // #endregion
+      
+      // Check if we have selected content within the editor
+      // Check if selection is in any editor page OR in the editorArea (for cross-page selections)
+      const editorArea = document.getElementById('editorArea');
+      const allPages = document.querySelectorAll('.editor-paper');
+      let inEditor = false;
+      
+      // First check if in editorArea (covers cross-page selections)
+      if (editorArea && editorArea.contains(range.commonAncestorContainer)) {
+        inEditor = true;
+      } else {
+        // Check individual pages
+        for (const page of allPages) {
+          if (page.contains(range.commonAncestorContainer)) {
+            inEditor = true;
+            break;
+          }
+        }
+      }
+      // #region agent log
+      // #endregion
+      if (!inEditor) {
+        // No selection in editor, just update button state
+        return;
+      }
+      
+      // Apply style to selected text or current block
+      // Find the containing block element
+      let blockNode = range.commonAncestorContainer;
+      while (blockNode && blockNode.nodeType !== 1) {
+        blockNode = blockNode.parentNode;
+      }
+      while (blockNode && !['P', 'H1', 'H2', 'H3', 'DIV'].includes(blockNode.nodeName)) {
+        blockNode = blockNode.parentNode;
+      }
+      
+      // #region agent log
+      // #endregion
+      
+      if (blockNode && blockNode.classList && !blockNode.classList.contains('editor-paper') && !blockNode.id?.includes('editorArea')) {
+        // Single block - transform it
+        const originalTag = blockNode.nodeName;
+        applyStyleToElement(blockNode, styleConfig);
+        // #region agent log
+        // #endregion
+        // Check overflow after style change (headings take more space)
+        debouncedOverflowCheck();
+      } else {
+        // Multi-block or cursor-only case - search ALL pages for matching blocks
+        const blocksToStyle = [];
+        
+        // Search ALL editor pages for blocks that intersect or contain cursor
+        const allPages = document.querySelectorAll('.editor-paper');
+        allPages.forEach(page => {
+          // Exclude ghost text wrapper and cursor line from block searches
+          const allBlocks = page.querySelectorAll('p:not(.editor-cursor-line), h1, h2, h3, div:not(.ghost-text-wrapper):not(.editor-paper):not(.editor-cursor-line)');
+          allBlocks.forEach(child => {
+            // Skip if this contains the ghost text wrapper
+            if (child.querySelector('.ghost-text-wrapper') || child.classList.contains('ghost-text-wrapper')) {
+              return;
+            }
+            
+            // For collapsed range (cursor only), check if cursor is inside this block
+            if (range.collapsed) {
+              // Check if cursor's startContainer is inside this block, or if cursor is in the page and this block contains it
+              const startNode = range.startContainer;
+              if (child.contains(startNode) || child === startNode || 
+                  (startNode.nodeType === 3 && child.contains(startNode.parentNode))) {
+                blocksToStyle.push(child);
+              }
+            } else {
+              // For selection, check intersection
+              if (range.intersectsNode(child)) {
+                // Make sure it's not a nested element we already covered
+                let isNested = false;
+                blocksToStyle.forEach(existing => {
+                  if (existing.contains(child) && existing !== child) isNested = true;
+                });
+                if (!isNested) blocksToStyle.push(child);
+              }
+            }
+          });
+        });
+        
+        // #region agent log
+        // #endregion
+        
+        if (blocksToStyle.length > 0) {
+          blocksToStyle.forEach(block => {
+            applyStyleToElement(block, styleConfig);
+          });
+        } else {
+          // #region agent log
+          // #endregion
+        }
+      }
+    });
+  });
+  
+  function applyStyleToElement(element, styleConfig) {
+    // Create new element with desired tag
+    const newElement = document.createElement(styleConfig.tag);
+    
+    // For Normal style (empty styles object), strip inline styles from content
+    if (Object.keys(styleConfig.styles).length === 0) {
+      // Get just the text content, preserving line breaks
+      newElement.textContent = element.textContent;
+    } else {
+      newElement.innerHTML = element.innerHTML;
+      Object.assign(newElement.style, styleConfig.styles);
+    }
+    
+    element.parentNode.replaceChild(newElement, element);
+    // Trigger headings update after style change
+    if (typeof updateHeadingsNav === 'function') updateHeadingsNav();
+  }
+})();
+
+// ============================================
+// FONT AND SIZE SELECTORS - Change editor text formatting
+// ============================================
+(function() {
+  const fontSelect = document.querySelector('.font-select');
+  const sizeSelect = document.querySelector('.size-select');
+  const editorPaper = document.getElementById('editorPaper');
+  const editorArea = document.getElementById('editorArea');
+  
+  if (!editorPaper) return;
+  
+  // Font family selector
+  if (fontSelect) {
+    fontSelect.addEventListener('change', function() {
+      const font = this.value;
+      document.execCommand('fontName', false, font);
+      editorPaper.focus();
+    });
+  }
+  
+  // Font size selector - applies 50% of selected size (for 50% scale document)
+  // User sees 10, 11, 12 etc but we apply 5pt, 5.5pt, 6pt to match A3*0.5 scale
+  if (sizeSelect) {
+    sizeSelect.addEventListener('change', function() {
+      const displaySize = parseFloat(this.value);
+      const actualSize = (displaySize / 2) + 'pt'; // 50% scale
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0 && !selection.isCollapsed) {
+        // Apply font-size to selected text using CSS custom property approach
+        // Clone the range content and wrap in a span
+        const range = selection.getRangeAt(0);
+        const contents = range.cloneContents();
+        
+        // Create a temporary container to check what we're wrapping
+        const tempDiv = document.createElement('div');
+        tempDiv.appendChild(contents);
+        
+        // Get all text nodes in the selection and wrap each in a span
+        const treeWalker = document.createTreeWalker(
+          tempDiv,
+          NodeFilter.SHOW_TEXT,
+          null,
+          false
+        );
+        
+        const textNodes = [];
+        while (treeWalker.nextNode()) {
+          textNodes.push(treeWalker.currentNode);
+        }
+        
+        // Delete the original selection and insert wrapped version
+        range.deleteContents();
+        
+        // Insert the content with font-size applied - use inline display
+        const span = document.createElement('span');
+        span.style.fontSize = actualSize;
+        span.style.display = 'inline'; // Force inline to prevent new lines
+        // Get text content only to avoid block-level element issues
+        span.textContent = tempDiv.textContent;
+        range.insertNode(span);
+        
+        // Clean up empty text nodes
+        span.normalize();
+        
+        // KEEP the selection on the inserted content (don't collapse)
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        const newRange = document.createRange();
+        newRange.selectNodeContents(span); // Select ALL content in span
+        sel.addRange(newRange); // Don't collapse - keep it selected
+        // #region agent log
+        // #endregion
+      } else {
+        // No selection - get parent block and change its font size
+        const range = selection.getRangeAt(0);
+        let node = range.startContainer;
+        while (node && node.nodeType !== 1) {
+          node = node.parentNode;
+        }
+        if (node && node !== editorPaper && editorPaper.contains(node)) {
+          node.style.fontSize = actualSize;
+        }
+      }
+      editorPaper.focus();
+    });
+  }
+  
+  // Grow/Shrink font buttons
+  const growBtn = document.querySelector('[title="Grow Font"]');
+  const shrinkBtn = document.querySelector('[title="Shrink Font"]');
+  const sizeSteps = [8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72];
+  
+  // #region agent log
+  // #endregion
+  
+  function getCurrentDisplaySize() {
+    // Returns the DISPLAY size (what user sees in dropdown), not actual applied size
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      let node = range.startContainer;
+      while (node && node.nodeType !== 1) {
+        node = node.parentNode;
+      }
+      if (node) {
+        const computed = window.getComputedStyle(node);
+        const actualPx = parseFloat(computed.fontSize);
+        const actualPt = actualPx * 0.75;
+        // Actual applied is 50% of display size, so display = actual * 2
+        return Math.round(actualPt * 2);
+      }
+    }
+    return 11; // Default 11pt display size
+  }
+  
+  // Helper to apply size directly (used by grow/shrink)
+  function applyFontSizeDirectly(displayPt) {
+    const actualSize = (displayPt / 2) + 'pt'; // 50% scale
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    
+    // #region agent log
+    // #endregion
+    
+    // Check if selection is inside ANY editor page
+    const allPages = document.querySelectorAll('.editor-paper');
+    let inEditor = false;
+    for (const page of allPages) {
+      if (page.contains(selection.anchorNode)) {
+        inEditor = true;
+        break;
+      }
+    }
+    if (!inEditor) return;
+    
+    if (selection.isCollapsed) {
+      // No selection - apply to parent block
+      const range = selection.getRangeAt(0);
+      let node = range.startContainer;
+      while (node && node.nodeType !== 1) node = node.parentNode;
+      if (node) {
+        node.style.fontSize = actualSize;
+      }
+    } else {
+      // Has selection - wrap in span with size
+      const range = selection.getRangeAt(0);
+      const span = document.createElement('span');
+      span.style.fontSize = actualSize;
+      span.style.display = 'inline';
+      span.textContent = range.toString();
+      range.deleteContents();
+      range.insertNode(span);
+      // Keep selection
+      selection.removeAllRanges();
+      const newRange = document.createRange();
+      newRange.selectNodeContents(span);
+      selection.addRange(newRange);
+    }
+    // Update dropdown to match
+    if (sizeSelect) {
+      const option = Array.from(sizeSelect.options).find(o => parseFloat(o.value) === displayPt);
+      if (option) sizeSelect.value = option.value;
+    }
+    editorPaper.focus();
+  }
+  
+  // Store saved selection for buttons that steal focus
+  let savedSelection = null;
+  
+  function saveSelection() {
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+      savedSelection = sel.getRangeAt(0).cloneRange();
+    }
+  }
+  
+  function restoreSelection() {
+    if (savedSelection) {
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(savedSelection);
+    }
+  }
+  
+  // Prevent buttons from stealing focus
+  if (growBtn) {
+    growBtn.addEventListener('mousedown', function(e) {
+      e.preventDefault(); // Prevent focus theft
+      saveSelection();
+    });
+    growBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // #region agent log
+      // #endregion
+      const currentDisplayPt = getCurrentDisplaySize();
+      const nextIndex = sizeSteps.findIndex(s => s > currentDisplayPt);
+      const newSize = nextIndex >= 0 ? sizeSteps[nextIndex] : sizeSteps[sizeSteps.length - 1];
+      // #region agent log
+      // #endregion
+      applyFontSizeDirectly(newSize);
+    });
+  }
+  
+  if (shrinkBtn) {
+    shrinkBtn.addEventListener('mousedown', function(e) {
+      e.preventDefault(); // Prevent focus theft
+      saveSelection();
+    });
+    shrinkBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // #region agent log
+      // #endregion
+      const currentDisplayPt = getCurrentDisplaySize();
+      const prevIndex = sizeSteps.slice().reverse().findIndex(s => s < currentDisplayPt);
+      const newSize = prevIndex >= 0 ? sizeSteps[sizeSteps.length - 1 - prevIndex] : sizeSteps[0];
+      // #region agent log
+      // #endregion
+      applyFontSizeDirectly(newSize);
+    });
+  }
+  
+  // Highlight button handler
+  const highlightBtn = document.querySelector('[title="Highlight"]');
+  if (highlightBtn) {
+    highlightBtn.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      saveSelection();
+    });
+    highlightBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      restoreSelection();
+      // #region agent log
+      // #endregion
+      document.execCommand('backColor', false, '#FFFF00');
+    });
+  }
+})();
+
+// ============================================
+// AUTO WORD COUNT & HEADINGS NAVIGATION
+// ============================================
+(function() {
+  const editorPaper = document.getElementById('editorPaper');
+  const wordCountEl = document.getElementById('wordCount') || document.querySelector('.word-count');
+  const headingsList = document.getElementById('headingsList');
+  if (!editorPaper) return;
+  
+  // Word count function - counts ALL pages, not just the first
+  function updateWordCount() {
+    if (!wordCountEl) return;
+    
+    // Get text from ALL editor pages
+    const allPages = document.querySelectorAll('.editor-paper:not(.title-page)');
+    let allText = '';
+    allPages.forEach(page => {
+      allText += (page.innerText || page.textContent || '') + ' ';
+    });
+    
+    const words = allText.trim().split(/\s+/).filter(w => w.length > 0);
+    const count = words.length;
+    wordCountEl.textContent = `${count} word${count !== 1 ? 's' : ''}`;
+    // #region agent log
+    // #endregion
+  }
+  
+  // Headings navigation function - searches ALL pages, not just page 1
+  window.updateHeadingsNav = function() {
+    if (!headingsList) return;
+    
+    // Search ALL editor pages for headings (h1-h4, not just h1-h3)
+    const allPages = document.querySelectorAll('.editor-paper:not(.title-page)');
+    const headings = [];
+    allPages.forEach(page => {
+      page.querySelectorAll('h1, h2, h3, h4').forEach(h => headings.push(h));
+    });
+    
+    // #region agent log
+    // #endregion
+    
+    headingsList.innerHTML = '';
+    
+    headings.forEach((heading, index) => {
+      const li = document.createElement('li');
+      const level = heading.tagName.toLowerCase();
+      // Support h1, h2, h3, h4 with proper indentation levels
+      li.className = `heading-item level-${level === 'h1' ? '1' : level === 'h2' ? '2' : level === 'h3' ? '3' : '4'}`;
+      if (index === 0) li.classList.add('active');
+      li.textContent = heading.textContent;
+      li.setAttribute('data-index', index);
+      
+      // Click to scroll to heading
+      li.addEventListener('click', function() {
+        headingsList.querySelectorAll('.heading-item').forEach(item => item.classList.remove('active'));
+        this.classList.add('active');
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      
+      headingsList.appendChild(li);
+    });
+  };
+  
+  // Initial update
+  updateWordCount();
+  updateHeadingsNav();
+  
+  // Chat scroll logging
+  const chatMessages = document.getElementById('chatMessagesIndex8');
+  if (chatMessages) {
+    chatMessages.addEventListener('scroll', function() {
+      // #region agent log
+      // #endregion
+    });
+  }
+  
+  // Update on content change (using MutationObserver)
+  // Watch the entire editorArea to catch changes on ALL pages
+  const editorArea = document.getElementById('editorArea');
+  const observer = new MutationObserver(function() {
+    updateWordCount();
+    updateHeadingsNav();
+  });
+  
+  if (editorArea) {
+    observer.observe(editorArea, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  }
+  
+  // Also update on input for immediate feedback
+  editorPaper.addEventListener('input', function() {
+    updateWordCount();
+  });
+  
+  // Count section agents dynamically
+  function updateAgentCount() {
+    const agentItems = document.querySelectorAll('.demo-history-item.agent-item');
+    const agentCountEl = document.getElementById('agentCountNum');
+    if (agentCountEl) {
+      agentCountEl.textContent = agentItems.length;
+    }
+  }
+  updateAgentCount();
+  
+  // Observe for new agents being added
+  const historyList = document.querySelector('.demo-history-list');
+  if (historyList) {
+    const historyObserver = new MutationObserver(updateAgentCount);
+    historyObserver.observe(historyList, { childList: true, subtree: true });
+  }
+})();
+
+// ============================================
+// PAPER SIZE SWITCHING
+// ============================================
+(function() {
+  const editorPaper = document.getElementById('editorPaper');
+  if (!editorPaper) return;
+  
+  const sizeBtns = document.querySelectorAll('.paper-size-btn');
+  const orientBtns = document.querySelectorAll('.paper-orient-btn');
+  
+  let currentSize = 'a3';
+  let currentOrient = 'landscape';
+  
+  function updatePaperClass() {
+    // Remove all paper size classes
+    editorPaper.classList.remove('a3', 'landscape');
+    
+    // Add current size class if A3
+    if (currentSize === 'a3') {
+      editorPaper.classList.add('a3');
+    }
+    
+    // Add landscape class if landscape
+    if (currentOrient === 'landscape') {
+      editorPaper.classList.add('landscape');
+    }
+    
+    // #region agent log
+    // #endregion
+  }
+  
+  // Size button clicks
+  sizeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      sizeBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentSize = this.dataset.size;
+      updatePaperClass();
+    });
+  });
+  
+  // Orientation button clicks
+  orientBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      orientBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentOrient = this.dataset.orient;
+      updatePaperClass();
+    });
+  });
+})();
+
+// ============================================
+// INLINE GHOST TEXT - INTELLISENSE STYLE
+// ============================================
+(function() {
+  const editorPaper = document.getElementById('editorPaper');
+  const ghostTextInline = document.getElementById('ghostTextInline');
+  const ghostTextWrapper = document.getElementById('ghostTextWrapper');
+  const cursorLine = document.getElementById('cursorLine');
+  const chatInput = document.getElementById('chatInputIndex8');
+  const chatSendBtn = document.getElementById('chatSendIndex8');
+  const agentItems = document.querySelectorAll('.demo-history-item.agent-item');
+  const editorArea = document.getElementById('editorArea');
+  
+  if (!editorPaper || !ghostTextInline) return;
+  
+  // Show ghost text only when cursor is at end of line and following content is empty
+  function checkAndShowGhostText() {
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    
+    const range = selection.getRangeAt(0);
+    const node = range.startContainer;
+    const offset = range.startOffset;
+    
+    // Check if we're at or near the end of text content
+    let isAtEnd = false;
+    
+    // If in text node, check if at end
+    if (node.nodeType === Node.TEXT_NODE) {
+      const textAfterCursor = node.textContent.substring(offset).trim();
+      isAtEnd = textAfterCursor === '';
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      // If in element, check if it's empty or cursor is at the end
+      const textContent = node.textContent.trim();
+      isAtEnd = textContent === '' || offset >= node.childNodes.length;
+    }
+    
+    // Also check if we're clicking on the cursor line specifically
+    const clickedOnCursorLine = node.closest && node.closest('.editor-cursor-line');
+    
+    if (isAtEnd || clickedOnCursorLine) {
+      ghostTextInline.classList.add('visible');
+      ghostTextWrapper.classList.add('active');
+      
+      // #region agent log
+      // #endregion
+    } else {
+      ghostTextInline.classList.remove('visible');
+      ghostTextWrapper.classList.remove('active');
+    }
+  }
+  
+  // Check ghost text position on click
+  editorPaper.addEventListener('click', function(e) {
+    // Small delay to let selection settle
+    setTimeout(checkAndShowGhostText, 10);
+  });
+  
+  // Also check on keyup (after arrow keys, etc.)
+  editorPaper.addEventListener('keyup', function(e) {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'End', 'Home'].includes(e.key)) {
+      checkAndShowGhostText();
+    }
+  });
+  
+  // Hide ghost text when typing starts (but not on Enter)
+  editorPaper.addEventListener('input', function(e) {
+    // Don't hide if just pressed Enter (new line)
+    if (e.inputType === 'insertParagraph' || e.inputType === 'insertLineBreak') {
+      // Show ghost text after Enter - user might want to finish
+      ghostTextInline.classList.add('visible');
+      ghostTextWrapper.classList.add('active');
+      
+      // #region agent log
+      // #endregion
+    } else {
+      ghostTextInline.classList.remove('visible');
+      ghostTextWrapper.classList.remove('active');
+    }
+  });
+  
+  // Hide ghost text when clicking outside editor
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#editorPaper')) {
+      ghostTextInline.classList.remove('visible');
+      ghostTextWrapper.classList.remove('active');
+    }
+  });
+  
+  // Handle Tab key anywhere in editor - accept ghost text suggestion
+  editorPaper.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab' && ghostTextInline.classList.contains('visible')) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // #region agent log
+      // #endregion
+      
+      // Send "Finish Specification" command to chat and launch chat panel
+      if (chatInput && chatSendBtn) {
+        // First, expand the chat panel if collapsed
+        const rightColumn = document.getElementById('rightColumn');
+        const chatBox = document.querySelector('.demo-chat-box');
+        if (chatBox && !chatBox.classList.contains('expanded')) {
+          const maxBtn = document.querySelector('.demo-titlebar-btn.max');
+          if (maxBtn) maxBtn.click();
+        }
+        
+        // Set the message and send
+        chatInput.textContent = 'Finish Specification';
+        chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+        
+        setTimeout(() => {
+          chatSendBtn.click();
+          // Focus the chat input after sending
+          chatInput.focus();
+        }, 100);
+      }
+      
+      // Open all agents (click each one to activate)
+      agentItems.forEach((agent, index) => {
+        setTimeout(() => {
+          agent.classList.add('active');
+          agent.click();
+        }, 200 + (index * 150));
+      });
+      
+      // Replace ghost text with accepted text
+      ghostTextWrapper.innerHTML = '<span style="color: #156082;">Generating specification...</span>';
+      
+      // Hide after a moment
+      setTimeout(() => {
+        ghostTextWrapper.style.display = 'none';
+      }, 2000);
+    }
+  });
+  
+  // ========== AUTO PAGE CREATION ON OVERFLOW ==========
+  // Word-like page overflow: check each element's bottom position against page boundary
+  // With box-sizing: border-box, height (561px) INCLUDES padding (40px top + 40px bottom)
+  const TOP_PADDING = 20;  // CSS padding-top: 20px
+  const BOTTOM_PADDING = 20;  // CSS padding-bottom: 20px
+  
+  // Get the usable content height (page height minus padding)
+  const getUsableHeight = (page) => page.clientHeight - TOP_PADDING - BOTTOM_PADDING;
+  
+  // Check if any element extends beyond the usable content area
+  // KEY INSIGHT: CSS columns don't split elements - if one <p> exceeds column height, it bleeds!
+  const hasOverflowingElement = (page) => {
+    // Column height is the usable height of each column
+    const fixedPageHeight = page.clientHeight;
+    const columnHeight = fixedPageHeight - TOP_PADDING - BOTTOM_PADDING;
+    const twoColumnCapacity = columnHeight * 2;
+    
+    // Save original styles
+    const originalOverflow = page.style.overflow;
+    const originalColumnCount = page.style.columnCount;
+    const originalHeight = page.style.height;
+    
+    // Temporarily disable columns to measure true element heights
+    page.style.overflow = 'visible';
+    page.style.columnCount = '1';
+    page.style.height = 'auto';
+    page.style.minHeight = '0';
+    page.style.maxHeight = 'none';
+    
+    // Force reflow
+    void page.offsetHeight;
+    
+    // Check each child element
+    const children = page.children;
+    let totalContentHeight = 0;
+    let tallestElement = 0;
+    let tallestElementExceedsColumn = false;
+    
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const childHeight = child.offsetHeight;
+      const childBottom = child.offsetTop + childHeight;
+      
+      if (childBottom > totalContentHeight) {
+        totalContentHeight = childBottom;
+      }
+      
+      // CSS columns can't split elements - if ANY element exceeds column height, it bleeds
+      if (childHeight > columnHeight) {
+        tallestElement = childHeight;
+        tallestElementExceedsColumn = true;
+      }
+    }
+    
+    // Restore original styles
+    page.style.overflow = originalOverflow || '';
+    page.style.columnCount = originalColumnCount || '';
+    page.style.height = originalHeight || '';
+    page.style.minHeight = '';
+    page.style.maxHeight = '';
+    
+    // AGGRESSIVE overflow detection: trigger at 95% capacity to prevent visual overflow
+    // CSS columns create 3rd column when content exceeds 2-column capacity
+    const safeCapacity = twoColumnCapacity * 0.95; // 95% threshold (was 90%, too aggressive)
+    const hasOverflow = totalContentHeight > safeCapacity || tallestElementExceedsColumn;
+    
+    // #region agent log
+    // #endregion
+    
+    return hasOverflow;
+  };
+  let isCreatingPage = false; // Prevent infinite loop
+  
+  // Debounced overflow check to avoid too many calls and jumpiness
+  let overflowCheckTimeout = null;
+  function debouncedOverflowCheck() {
+    if (overflowCheckTimeout) clearTimeout(overflowCheckTimeout);
+    overflowCheckTimeout = setTimeout(() => {
+      checkAllPagesForOverflow();
+    }, 150); // Reduced debounce - faster response
+  }
+  
+  // Immediate overflow check - no debounce, for content simulation
+  function immediateOverflowCheck() {
+    // No guard - immediate check should ALWAYS run after paste/input
+    checkAllPagesForOverflow();
+  }
+  
+  // Expose to window for WPFapplication.js to trigger page creation
+  window.scheduleOverflowCheck = debouncedOverflowCheck;
+  window.immediateOverflowCheck = immediateOverflowCheck;
+  window.findOrCreatePageWithRoom = findOrCreatePageWithRoom;
+  window.pageHasRoom = pageHasRoom;
+  
+  function createNewPage() {
+    if (isCreatingPage) return null;
+    isCreatingPage = true;
+    
+    const newPage = document.createElement('div');
+    newPage.className = 'editor-paper a3 landscape'; // Same classes as first page
+    newPage.contentEditable = 'true';
+    newPage.innerHTML = '<p><br></p>';
+    
+    // Insert after the last page
+    const lastPage = editorArea.querySelector('.editor-paper:not(.title-page):last-of-type');
+    if (lastPage) {
+      lastPage.after(newPage);
+    } else if (editorPaper) {
+      editorPaper.after(newPage);
+    }
+    
+    // Update page count in status bar
+    updatePageCount();
+    
+    // Allow clicking on new page and show ghost text - DON'T scroll
+    newPage.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent scrolling to this page
+      this.focus();
+      ghostTextInline.classList.add('visible');
+      ghostTextWrapper.classList.add('active');
+    });
+    
+    // Monitor this new page for overflow too (debounced)
+    newPage.addEventListener('input', debouncedOverflowCheck);
+    
+    // Setup paste handler for new page (same as initial page)
+    setupPagePasteHandler(newPage);
+    
+    // #region agent log
+    // #endregion
+    
+    setTimeout(() => { isCreatingPage = false; }, 100);
+    return newPage;
+  }
+  
+  function updatePageCount() {
+    const pageCountEl = document.querySelector('.page-count');
+    const pages = editorArea.querySelectorAll('.editor-paper:not(.title-page)');
+    const totalPages = pages.length + 1; // +1 for title page
+    if (pageCountEl) {
+      pageCountEl.textContent = `Page 2 of ${totalPages}`;
+    }
+  }
+  
+  // Check if content overflows and create new pages automatically
+  function checkAllPagesForOverflow() {
+    if (isCreatingPage) return;
+    
+    const pages = editorArea.querySelectorAll('.editor-paper:not(.title-page)');
+    const pageIndex = Array.from(pages);
+    
+    pages.forEach((page, idx) => {
+      const usableHeight = page.clientHeight - BOTTOM_PADDING;
+      const childCount = page.children.length;
+      const lastChild = page.lastElementChild;
+      const lastChildBottom = lastChild ? lastChild.offsetTop + lastChild.offsetHeight : 0;
+      const hasOverflow = hasOverflowingElement(page);
+      
+      // Get first child text for context
+      const firstChildText = page.firstElementChild ? page.firstElementChild.textContent.substring(0,30) : '';
+      const lastChildText = lastChild ? lastChild.textContent.substring(0,30) : '';
+      
+      // #region agent log
+      // #endregion
+      
+      // Check if any element extends past the bottom margin
+      if (hasOverflow) {
+        // Move overflow content to next page
+        moveOverflowToNextPage(page);
+      }
+    });
+  }
+  
+  function moveOverflowToNextPage(sourcePage) {
+    if (isCreatingPage) return;
+    
+    // Get all block elements in the page
+    const children = Array.from(sourcePage.children);
+    if (children.length === 0) return;
+    
+    // Calculate column height (usable height of each column)
+    const fixedPageHeight = sourcePage.clientHeight;
+    const columnHeight = fixedPageHeight - TOP_PADDING - BOTTOM_PADDING;
+    const twoColumnCapacity = columnHeight * 2;
+    
+    // Save original styles
+    const originalOverflow = sourcePage.style.overflow;
+    const originalColumnCount = sourcePage.style.columnCount;
+    const originalHeight = sourcePage.style.height;
+    
+    // Temporarily switch to single column AND auto height to measure true positions
+    sourcePage.style.overflow = 'visible';
+    sourcePage.style.columnCount = '1';
+    sourcePage.style.height = 'auto';
+    sourcePage.style.minHeight = '0';
+    sourcePage.style.maxHeight = 'none';
+    
+    // Force reflow
+    void sourcePage.offsetHeight;
+    
+    // Use 95% capacity threshold to prevent 3rd column
+    const safeCapacity = twoColumnCapacity * 0.95;
+    
+    // Find element to move - either:
+    // 1. First element whose BOTTOM exceeds safe capacity (95%)
+    // 2. OR any element whose HEIGHT alone exceeds column height
+    let overflowIndex = -1;
+    let overflowReason = '';
+    
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const childHeight = child.offsetHeight;
+      const childBottom = child.offsetTop + childHeight;
+      
+      // If this element is taller than a column, it needs to move
+      if (childHeight > columnHeight) {
+        overflowIndex = i;
+        overflowReason = 'element_exceeds_column';
+        break;
+      }
+      
+      // If cumulative content exceeds safe capacity (95%)
+      if (childBottom > safeCapacity) {
+        overflowIndex = i;
+        overflowReason = 'exceeds_safe_capacity';
+        break;
+      }
+    }
+    
+    // Restore original styles
+    sourcePage.style.overflow = originalOverflow || '';
+    sourcePage.style.columnCount = originalColumnCount || '';
+    sourcePage.style.height = originalHeight || '';
+    sourcePage.style.minHeight = '';
+    sourcePage.style.maxHeight = '';
+    
+    // #region agent log
+    // #endregion
+    
+    if (overflowIndex === -1) return;
+    
+    // If the FIRST element overflows, keep it (can't move everything)
+    // Just check if we need a new page for subsequent content
+    if (overflowIndex === 0 && children.length === 1) return;
+    
+    // Get or create the next page
+    let nextPage = sourcePage.nextElementSibling;
+    if (!nextPage || !nextPage.classList.contains('editor-paper')) {
+      nextPage = createNewPage();
+    }
+    if (!nextPage) return;
+    
+    // WORD-LIKE: Only move the SINGLE overflowing element to the next page
+    // This is the key difference - Word moves one element at a time
+    const elementToMove = children[overflowIndex];
+    
+    // Save cursor position if it's in the element being moved
+    const sel = window.getSelection();
+    let cursorWasInElement = false;
+    let cursorOffset = 0;
+    if (sel && sel.rangeCount > 0) {
+      const range = sel.getRangeAt(0);
+      if (elementToMove.contains(range.startContainer) || elementToMove === range.startContainer) {
+        cursorWasInElement = true;
+        cursorOffset = range.startOffset;
+      }
+    }
+    
+    nextPage.insertBefore(elementToMove, nextPage.firstChild);
+    
+    // Restore cursor if it was in the moved element
+    if (cursorWasInElement && sel) {
+      const newRange = document.createRange();
+      const textNode = elementToMove.firstChild || elementToMove;
+      try {
+        newRange.setStart(textNode, Math.min(cursorOffset, textNode.length || 0));
+        newRange.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(newRange);
+        elementToMove.focus();
+      } catch (e) {
+        // If cursor restore fails, focus the element
+        nextPage.focus();
+      }
+    }
+    
+    // #region agent log
+    // #endregion
+    
+    // After moving, check if source page STILL has overflow
+    // This creates a recursive effect - keep moving until no overflow
+    setTimeout(() => checkAllPagesForOverflow(), 10);
+  }
+  
+  // Monitor the main editor page for overflow - debounced for performance
+  editorPaper.addEventListener('input', function(e) {
+    // #region agent log
+    // #endregion
+    debouncedOverflowCheck();
+  });
+  // Check if a page has room for more content (quick check without DOM manipulation)
+  function pageHasRoom(page) {
+    // Simple heuristic: max 10 children per page to leave buffer
+    return page.children.length < 10;
+  }
+  
+  // Find the LAST page that has room, or create a new one
+  // This ensures content flows forward, not backfilling earlier pages
+  function findOrCreatePageWithRoom() {
+    const allPages = editorArea.querySelectorAll('.editor-paper:not(.title-page)');
+    if (allPages.length === 0) return createNewPage();
+    
+    // ALWAYS use the LAST page to maintain content order
+    // The overflow system will handle creating new pages if needed
+    const lastPage = allPages[allPages.length - 1];
+    
+    // Only create new page if last page is truly full
+    if (!pageHasRoom(lastPage)) {
+      return createNewPage();
+    }
+    return lastPage;
+  }
+  
+  // Reusable paste handler for all editor pages
+  function setupPagePasteHandler(page) {
+    page.addEventListener('paste', function(e) {
+      e.preventDefault();
+      const clipboardData = e.clipboardData || window.clipboardData;
+      const pastedText = clipboardData.getData('text/plain');
+      
+      // Create a new paragraph for the pasted content
+      const newParagraph = document.createElement('p');
+      newParagraph.textContent = pastedText;
+      
+      // Find the current page from cursor position
+      const sel = window.getSelection();
+      let targetPage = page;
+      
+      if (sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        let currentNode = range.startContainer;
+        while (currentNode && currentNode !== document.body) {
+          if (currentNode.classList && currentNode.classList.contains('editor-paper')) {
+            targetPage = currentNode;
+            break;
+          }
+          currentNode = currentNode.parentNode;
+        }
+      }
+      
+      // CHECK CAPACITY BEFORE INSERT - if page is full, find one with room
+      if (!pageHasRoom(targetPage)) {
+        targetPage = findOrCreatePageWithRoom();
+      }
+      
+      // #region agent log
+      // #endregion
+      
+      // Always append to end of target page (simpler, more predictable)
+      targetPage.appendChild(newParagraph);
+      
+      // Move cursor to the new paragraph
+      const newRange = document.createRange();
+      newRange.selectNodeContents(newParagraph);
+      newRange.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(newRange);
+      
+      // Focus the target page
+      targetPage.focus();
+      
+      // #region agent log
+      // #endregion
+    });
+  }
+  
+  // Setup paste handler for the initial page
+  setupPagePasteHandler(editorPaper);
+  editorPaper.addEventListener('keyup', debouncedOverflowCheck);
+  
+  // Also check on page load after content renders
+  setTimeout(checkAllPagesForOverflow, 500);
+  
+  // Keyboard shortcut to manually add new page (Ctrl+Enter)
+  // Listen on document to catch all Ctrl+Enter regardless of focus
+  document.addEventListener('keydown', function(e) {
+    // Only handle if focus is inside editorArea
+    if (!editorArea.contains(document.activeElement)) return;
+    
+    // Ctrl+Z - Undo (use browser's native undo)
+    if (e.ctrlKey && e.key === 'z' && !e.shiftKey) {
+      // Let browser handle it, but log it
+      // #region agent log
+      // #endregion
+      document.execCommand('undo', false, null);
+      e.preventDefault();
+      return;
+    }
+    
+    // Ctrl+Y or Ctrl+Shift+Z - Redo
+    if ((e.ctrlKey && e.key === 'y') || (e.ctrlKey && e.shiftKey && e.key === 'z')) {
+      // #region agent log
+      // #endregion
+      document.execCommand('redo', false, null);
+      e.preventDefault();
+      return;
+    }
+    
+    if (e.ctrlKey && e.key === 'Enter') {
+      e.preventDefault();
+      
+      // #region agent log
+      // #endregion
+      
+      const newPage = createNewPage();
+      if (newPage) {
+        newPage.focus();
+        // Place cursor at start
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.setStart(newPage.firstChild || newPage, 0);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+  });
+  
+  // Expose function globally for manual page creation
+  window.createNewEditorPage = createNewPage;
+})();
+
+// ============================================
+// CHAT INPUT - Tab to complete specification
+// ============================================
+(function() {
+  const chatInput = document.getElementById('chatInputIndex8');
+  const chatSendBtn = document.getElementById('chatSendIndex8');
+  const agentItems = document.querySelectorAll('.demo-history-item.agent-item');
+  if (!chatInput) return;
+  
+  // Tab key sends "Finish Specification" command (same as editor Tab)
+  chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab' && this.textContent.trim() === '') {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // #region agent log
+      // #endregion
+      
+      // Send "Finish Specification" command to chat
+      if (chatSendBtn) {
+        this.textContent = 'Finish Specification';
+        chatSendBtn.click();
+        
+        // Open all agents in sidebar after a delay
+        setTimeout(() => {
+          agentItems.forEach((agent, index) => {
+            setTimeout(() => {
+              agent.classList.add('active');
+            }, index * 100);
+          });
+        }, 300);
+      }
+    }
+  });
+})();
+
+// ============================================
+// DEBUG: EDITOR PADDING INVESTIGATION
+// Scroll logging removed - too noisy
+
+
+
+// #region agent log - Ribbon layout verification
+(function() {
+  const ribbonGroup = document.querySelector('.ribbon-group');
+  const ribbonContent = document.querySelector('.ribbon-group-content');
+  const btnStack = document.querySelector('.ribbon-btn-stack');
+  const formatBtn = document.querySelector('.ribbon-btn[title="Format Painter"]');
+  const groupLabel = document.querySelector('.ribbon-group-label');
+  
+  if (ribbonGroup && ribbonContent && btnStack && formatBtn && groupLabel) {
+    const btnStackRect = btnStack.getBoundingClientRect();
+    const formatRect = formatBtn.getBoundingClientRect();
+    const labelRect = groupLabel.getBoundingClientRect();
+    const contentRect = ribbonContent.getBoundingClientRect();
+    
+    const data = {
+      btnStackHeight: btnStackRect.height,
+      contentMaxHeight: window.getComputedStyle(ribbonContent).maxHeight,
+      formatBottom: formatRect.bottom,
+      labelTop: labelRect.top,
+      overlap: formatRect.bottom > labelRect.top,
+      gap: labelRect.top - formatRect.bottom
+    };
+    
+  }
+})();
+// #endregion
+
+// #region agent log - Chat input ghost text verification
+(function() {
+  const chatInput = document.getElementById('chatInputIndex8');
+  if (chatInput) {
+    const data = {
+      dataPlaceholder: chatInput.getAttribute('data-placeholder'),
+      dataGhost: chatInput.getAttribute('data-ghost'),
+      isEmpty: chatInput.textContent.trim() === ''
+    };
+    
+    
+    // Log on focus/blur
+    chatInput.addEventListener('focus', function() {
+    });
+    
+    chatInput.addEventListener('blur', function() {
+    });
+  }
+})();
+// #endregion
+

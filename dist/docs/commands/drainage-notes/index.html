@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drainage Notes — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp; Drainage &nbsp;›&nbsp; Drainage Notes</div>
+
+  <h1 id="overview">Drainage Notes</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">Drainage</span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Command: Places drainage annotation notes on pipes in the current plan view. Collects all pipes in view, calculates system bounds via GetDrainageContext.CalculateDrainageSystemBounds, then delegates note creation to GetDrainageNotes.PlaceNotesOnDrainage. Related: DrainageDesignOrchestrator for the full design-and-annotate workflow.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open. User must be in a plan view. At least one drainage pipe must exist in the current view.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Text notes are placed next to drainage pipes showing size and slope. Note positions are calculated relative to the drainage system bounding region.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/drainage-notes/thumbnail.svg"
+           data-src="/sandbox/demo-assets/drainage-notes/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop drainage-notes/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User has placed drainage pipes and wants to annotate them with pipe-size notes.</li>
+    <li>User wants to add notes after running DesignDrainageSystemCommand.</li>
+    <li>User wants to re-annotate an existing drainage layout.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Not for placing pipes (use PlaceSVPCommand or DesignDrainageSystemCommand). Not for placing fixture notes (handled by GetFixtureNotes within the orchestrator).</p></div>
+  
+
+  
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>NotesPlaced</code></td><td><code>int</code></td><td>Number of notes placed</td></tr><tr><td><code>PipeCount</code></td><td><code>int</code></td><td>Number of drainage pipes found in view</td></tr></tbody>
+  </table>
+
+  
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Placing drainage notes on your pipes...<br>Annotating drainage system in current view...<br>Adding pipe size and slope notes...</div>
+    <div class="lab">thinking</div><div class="msg">Collecting drainage pipes in view...<br>Calculating drainage system bounds...<br>Determining note positions...<br>Placing annotation notes...</div>
+    <div class="lab">on success</div><div class="msg">Done! Placed <span class="placeholder">{NotesPlaced}</span> drainage notes.</div>
+    <div class="lab">on failure</div><div class="msg">Could not place drainage notes: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/drainage_notes</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">drainage notes · place drainage notes · annotate drainage · mep notes · pipe notes · drainage annotation<br><span style="font-size:12px;">Patterns: <code>place * drainage notes</code> · <code>annotate * drainage</code> · <code>add * pipe notes</code> · <code>note * drainage</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>DesignDrainageSystemCommand</code> · <code>PlaceSVPCommand</code></td></tr><tr><th>Pillar</th><td>Drainage</td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

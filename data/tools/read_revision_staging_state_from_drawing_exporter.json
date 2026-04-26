@@ -1,0 +1,15 @@
+{
+  "name": "read_revision_staging_state_from_drawing_exporter",
+  "desc": "Returns the current revision staging state from the Drawing Exporter: selected revision, staged sheet count, checklist summary, and form field values.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "revision staging",
+    "export revision state",
+    "drawing exporter revision",
+    "staged revision"
+  ]
+}

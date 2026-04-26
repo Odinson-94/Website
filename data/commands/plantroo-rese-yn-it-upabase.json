@@ -1,0 +1,46 @@
+{
+  "class": "PlantroomPresetSyncWithSupabaseCommand",
+  "desc": "PlantroomPresetSyncWithSupabaseCommand — two-way sync entry.",
+  "summary": "PlantroomPresetSyncWithSupabaseCommand — two-way sync entry.",
+  "usecase": "Team-level preset publication.",
+  "notfor": "Acquiring the bearer — DocumentController OAuth handles that.",
+  "precondition": "Supabase URL + API key + user bearer token resolvable.",
+  "postcondition": "Local store + remote table reconciled for the given scope.",
+  "sideeffects": "",
+  "logictree": "1) Validate resolvers.\n2) Instantiate SyncPlantroomConfigWithAdelphos.\n3) Await SyncAsync(scope).\n4) Emit counts + errors.",
+  "keywords": [
+    "plantroompresetsyncwithsupabase",
+    "sync plantroom presets",
+    "supabase preset sync"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Syncing plantroom presets with Supabase…"
+    ],
+    "thinkingsteps": [
+      "Validating + migrating each local preset…",
+      "Pushing + pulling via REST…"
+    ],
+    "successprompts": [
+      "Pushed {pushed}, pulled {pulled}, skipped {skipped}."
+    ],
+    "failureprompts": [
+      "Sync failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

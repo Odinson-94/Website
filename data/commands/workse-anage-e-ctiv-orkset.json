@@ -1,0 +1,35 @@
+{
+  "class": "WorksetManagerSetActiveWorksetCommand",
+  "desc": "Set the active workset by id.",
+  "summary": "Set the active workset by id.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager set active workset",
+    "workset_manager_set_active_workset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running workset manager set active workset…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "workset manager set active workset: done."
+    ],
+    "failureprompts": [
+      "workset manager set active workset failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

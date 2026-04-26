@@ -1,0 +1,24 @@
+{
+  "name": "get_view_filter_settings",
+  "desc": "Get all filters applied to a view with their complete settings including visibility, graphic overrides, categories, and filter rules.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "viewName",
+      "type": "string",
+      "description": "Optional: view name to query. If omitted, uses the active view.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "get view filters",
+    "view filter settings",
+    "download filters",
+    "export filters",
+    "filter overrides",
+    "filter settings in view"
+  ]
+}

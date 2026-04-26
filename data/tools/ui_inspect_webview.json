@@ -1,0 +1,28 @@
+{
+  "name": "ui_inspect_webview",
+  "desc": "Execute JavaScript in a BUILD X chat WebView2 and return the result. Target: Main (default), DrawingExporter, ParameterEditor.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "js",
+      "type": "string",
+      "description": "JavaScript expression or IIFE to evaluate.",
+      "required": true
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "description": "Which WebView2 to target: Main (default), DrawingExporter, ParameterEditor.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "inspect webview",
+    "dom inspect",
+    "chat ui inspect",
+    "execute script webview"
+  ]
+}

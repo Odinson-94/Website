@@ -1,0 +1,42 @@
+{
+  "class": "ExportClashResultsToWord",
+  "desc": "Exports clash results to a Word-ready HTML report with embedded screenshots.",
+  "summary": "Exports clash results to a Word-ready HTML report with embedded screenshots. The HTML file can be opened directly in Microsoft Word (File → Open → .html) and retained as .docx via Word's native save. A parallel .doc copy is written alongside for double-click-open compatibility (Word opens .doc files natively, including HTML-flavoured .doc from this writer).",
+  "usecase": "User wants a formatted Word document of QA results for coordination review.",
+  "notfor": "Raw data export — use CSV or XML for that.",
+  "precondition": "Active document must be saved with QA results available.",
+  "postcondition": "Files created at .mepbridge/qa/exports/clash_report_word_{timestamp}.html and .doc.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export clashes word",
+    "clash report word",
+    "QA report word",
+    "export errors word",
+    "export clashes docx"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Building Word-ready clash report…"
+    ],
+    "thinkingsteps": [
+      "Loading latest clash results…",
+      "Embedding screenshots as base64…",
+      "Writing .html and .doc copies for Word…"
+    ],
+    "successprompts": [
+      "Word report saved to {path}. Open with Word → File → Open."
+    ],
+    "failureprompts": [
+      "Word export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

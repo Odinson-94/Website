@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverFindCeilingVoidAtPointCommand",
+  "desc": "ClashSolverFindCeilingVoidAtPointCommand — PDF FUNCTION \"FIND_CEILING_VOID\".",
+  "summary": "ClashSolverFindCeilingVoidAtPointCommand — PDF FUNCTION \"FIND_CEILING_VOID\". Report ceiling height + structural obstruction height above a point, with void depth in mm.",
+  "usecase": "Solver branch decision for \"can I offset this service upward\".",
+  "notfor": "Actual movement — Offset*Up commands do that.",
+  "precondition": "Active document; at least one non-template View3D; either (x,y,z) resolvers or a single-element selection.",
+  "postcondition": "No model mutation — this is a read-only inspection recorded in CommandTracker.",
+  "sideeffects": "",
+  "logictree": "1) Resolve point: (Resolver_X, Resolver_Y, Resolver_Z) if provided; otherwise take top-centre of selected element's BB.\n2) WireError if neither source yields a valid point.\n3) Delegate to SpaceAnalysisFindCeilingVoidAbovePoint.GetAll(doc, x, y, z, max_distance_ft) — single source of truth.\n4) Record ceiling_z, obstruction_z, void_height_mm, is_beam into tracker outputs.\n5) Human path shows TaskDialog summary; Bot path emits only the JSON.\n6) WireError on no-3d-view / no-hits; WireFault on exception.",
+  "keywords": [
+    "clashsolverfindceilingvoidatpoint",
+    "find ceiling void",
+    "clash solver offset up probe"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Probing ceiling void at point…"
+    ],
+    "thinkingsteps": [
+      "Resolving point from resolvers or active selection…",
+      "Raycasting +Z via SpaceAnalysisFindCeilingVoidAbovePoint…"
+    ],
+    "successprompts": [
+      "Void {void_height_mm} mm between ceiling {ceiling_z} ft and obstruction {obstruction_z} ft."
+    ],
+    "failureprompts": [
+      "Void probe failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

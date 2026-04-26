@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverIfAvailableMoveServiceIntoSpaceCommand",
+  "desc": "ClashSolverIfAvailableMoveServiceIntoSpaceCommand — PDF \"IF_AVAILABLE_MOVE_SERVICE_INTO_SPACE\".",
+  "summary": "ClashSolverIfAvailableMoveServiceIntoSpaceCommand — PDF \"IF_AVAILABLE_MOVE_SERVICE_INTO_SPACE\". Conditional guarded variant of MOVE_SERVICE_INTO_SPACE.",
+  "usecase": "Solver probe step: \"move only if there's somewhere to go\".",
+  "notfor": "Unconditional moves — use MoveServiceIntoDetectedSpace.",
+  "precondition": "Active document; one service element resolvable; default 3D view available.",
+  "postcondition": "Either a move (inner Transaction) or a no-op with a structured reason.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId required OR single selection.\n2) Probe point = LocationPoint else BB centroid.\n3) CastRayFromPoint.CastSixDirections(max=threshold_mm/304.8).\n4) available = any direction reports null hit (meaning cleared beyond cap) OR distance_mm ≥ threshold_mm.\n5) If !available → emit { available=false, reason=\"no_direction_over_threshold\" }. Exit without mutation.\n6) If available → delegate to PlacementMoveElementIntoDetectedSpaceCommand with one-element scope + resolver overrides.\n7) Emit { available=true, moved=true, delegated_to }.",
+  "keywords": [
+    "clashsolverifavailablemoveserviceintospace",
+    "conditional move service",
+    "solver probe move"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Probing whether space is available for move…"
+    ],
+    "thinkingsteps": [
+      "Casting six rays from element centroid…",
+      "If &ge; one direction over threshold, delegating to PlacementMoveElementIntoDetectedSpaceCommand…"
+    ],
+    "successprompts": [
+      "available={available}, moved={moved}."
+    ],
+    "failureprompts": [
+      "Conditional move failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

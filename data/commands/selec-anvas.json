@@ -1,0 +1,54 @@
+{
+  "class": "SelectInCanvasCommand",
+  "desc": "Selects elements visible in the current canvas viewport (what the user sees on screen).",
+  "summary": "Selects elements visible in the current canvas viewport (what the user sees on screen). Uses the view's crop box or visible corners to scope the selection spatially.",
+  "usecase": "User is zoomed into a corridor and says \"select all lights here\". User wants to act on only the visible portion of a large floor plan. User wants to select elements \"on screen\" not the whole view.",
+  "notfor": "Selecting across entire view (use SelectByCategoryCommand with view scope). Selecting across entire model (use SelectByCategoryCommand with allViews=true).",
+  "precondition": "Active document must be open with a valid active view (floor plan, ceiling plan, or section).",
+  "postcondition": "Revit selection is replaced with elements visible in the canvas viewport. Returns JSON with totalSelected and breakdown.",
+  "sideeffects": "",
+  "logictree": "check: view.CropBoxActive → use crop box bounds\rfallback: use UIView.GetZoomCorners() for actual viewport bounds\rfilter: optional category parameter to narrow results",
+  "keywords": [
+    "select on screen",
+    "select visible",
+    "select in canvas",
+    "select zoomed",
+    "select what I see"
+  ],
+  "intent_patterns": [
+    "select * visible *",
+    "select * on screen *",
+    "select * here",
+    "select * zoomed"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Optional category filter",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Selected element IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Breakdown and bounds info"
+    }
+  ],
+  "related_commands": [
+    "SelectByCategoryCommand",
+    "SelectByFamilyNameCommand",
+    "FilterSelectionCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

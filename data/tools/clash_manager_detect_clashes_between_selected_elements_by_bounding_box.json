@@ -1,0 +1,22 @@
+{
+  "name": "clash_manager_detect_clashes_between_selected_elements_by_bounding_box",
+  "desc": "Check clashes between selected elements (or explicit elementIds). Returns clashing ID pairs and overlap bounds.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "Optional JSON array of element IDs. Defaults to current selection.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "check clashes",
+    "clash detection",
+    "interference check",
+    "find clashes"
+  ]
+}

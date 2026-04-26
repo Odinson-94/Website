@@ -1,0 +1,20 @@
+slug: extendallconnectors
+class_display: ExtendAllConnectors
+title: ExtendAllConnectors
+pillar: Drainage
+pillar_slug: drainage
+status_pills:
+  - label: writes to model
+  kind: category
+  - label: Public API · not yet exposed
+  kind: coming
+lead: "Command: Extends pipes from all connectors on selected fitting(s)/object(s)."
+before_you_run: Active document must be open. Selected element(s) must have pipe connectors (FamilyInstance with MEPModel or MEPCurve).
+after_it_runs: Pipes created from all unconnected connectors on each selected element. Each pipe uses ExtensionLength (default 100 mm). Pipes are connected to the fitting.
+side_effects: Creates new pipe elements. Connects pipes to the selected fitting.
+dont_use_when: "When selection is empty and run from MCP, command will prompt for pick â€” pre-select via select_by_ids first."
+when_to_use: [Quick pipe stub creation from fittings., Batch extend multiple fittings (pre-select then run)., "MCP: select_by_ids then extend_all_connectors for non-interactive execution."]
+keywords_pills: [extend connectors, pipe stubs, fitting pipes, all connectors, extend all]
+generated_by: stub-deterministic-v1
+generated_at: "2026-04-21T08:01:03.626Z"
+source_sha: 4d73f23

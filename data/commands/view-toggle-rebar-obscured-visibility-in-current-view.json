@@ -1,0 +1,37 @@
+{
+  "class": "ViewToggleRebarObscuredVisibilityInCurrentViewCommand",
+  "desc": "Toggle Rebar Obscured Visibility In Current View.",
+  "summary": "Toggle Rebar Obscured Visibility In Current View.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Views/View Setup Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Views/View Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "rebar visibility",
+    "obscured rebar",
+    "toggle rebar view",
+    "rebar show hide"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Toggle Rebar Obscured Visibility In Current View…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Toggle Rebar Obscured Visibility In Current View: completed."
+    ],
+    "failureprompts": [
+      "Toggle Rebar Obscured Visibility In Current View: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

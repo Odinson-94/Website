@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_doors_in_current_project_with_spec_match",
+  "desc": "ArchitectureListDoorsInCurrentProjectWithSpecMatch — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureListDoorsInCurrentProjectWithSpecMatch"
+  ]
+}

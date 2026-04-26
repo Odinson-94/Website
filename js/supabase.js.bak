@@ -1,0 +1,493 @@
+// ============================================
+// SUPABASE INTEGRATION
+// Handles signups and map visualization data
+// ============================================
+
+(function() {
+  'use strict';
+
+  // Supabase configuration
+  const SUPABASE_URL = 'https://owebjrorrthysyeodkku.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93ZWJqcm9ycnRoeXN5ZW9ka2t1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc2ODU4MzUsImV4cCI6MjA4MzI2MTgzNX0.yOT4BM3TNV9wJ4KZnRV4Po7WDERuYiPxN-KDrN2z8XE';
+
+  // ============================================
+  // GEOLOCATION - Get user's country
+  // ============================================
+  async function getUserCountry() {
+    try {
+      // Use ip-api.com (free, no API key needed)
+      const response = await fetch('http://ip-api.com/json/?fields=countryCode,country');
+      if (response.ok) {
+        const data = await response.json();
+        return {
+          country_code: data.countryCode,
+          country_name: data.country
+        };
+      }
+    } catch (err) {
+      console.log('Could not detect location, using default');
+    }
+    // Fallback
+    return { country_code: 'XX', country_name: 'Unknown' };
+  }
+
+  // ============================================
+  // SIGNUP FUNCTIONS
+  // ============================================
+  
+  async function submitSignup(email, name, company, signupType, countryCode, countryName) {
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/signups`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          email: email,
+          name: name || null,
+          company: company || null,
+          country_code: countryCode,
+          country_name: countryName,
+          signup_type: signupType // 'early_access' or 'news'
+        })
+      });
+
+      if (response.ok) {
+        return { success: true };
+      } else if (response.status === 409) {
+        return { success: false, error: 'This email is already registered!' };
+      } else {
+        const errorData = await response.json();
+        return { success: false, error: errorData.message || 'Signup failed. Please try again.' };
+      }
+    } catch (err) {
+      console.error('Signup error:', err);
+      return { success: false, error: 'Network error. Please try again.' };
+    }
+  }
+
+  // ============================================
+  // GET SIGNUP COUNTS BY COUNTRY (for map)
+  // ============================================
+  async function getSignupCountsByCountry() {
+    try {
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/signup_counts_by_country?select=*`,
+        {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        }
+      );
+      
+      if (response.ok) {
+        return await response.json();
+      }
+    } catch (err) {
+      console.error('Error fetching signup counts:', err);
+    }
+    return [];
+  }
+
+  // ============================================
+  // COUNTRY LIST - Matches map nodes exactly
+  // ============================================
+  const countries = [
+    // Europe
+    { code: 'GB', name: 'United Kingdom' },
+    { code: 'IE', name: 'Ireland' },
+    { code: 'FR', name: 'France' },
+    { code: 'DE', name: 'Germany' },
+    { code: 'ES', name: 'Spain' },
+    { code: 'IT', name: 'Italy' },
+    { code: 'PT', name: 'Portugal' },
+    { code: 'NL', name: 'Netherlands' },
+    { code: 'BE', name: 'Belgium' },
+    { code: 'CH', name: 'Switzerland' },
+    { code: 'AT', name: 'Austria' },
+    { code: 'PL', name: 'Poland' },
+    { code: 'CZ', name: 'Czechia' },
+    { code: 'SE', name: 'Sweden' },
+    { code: 'NO', name: 'Norway' },
+    { code: 'FI', name: 'Finland' },
+    { code: 'DK', name: 'Denmark' },
+    { code: 'GR', name: 'Greece' },
+    { code: 'TR', name: 'Turkey' },
+    { code: 'RU', name: 'Russia' },
+    { code: 'UA', name: 'Ukraine' },
+    { code: 'HU', name: 'Hungary' },
+    { code: 'RO', name: 'Romania' },
+    { code: 'BG', name: 'Bulgaria' },
+    { code: 'RS', name: 'Serbia' },
+    { code: 'HR', name: 'Croatia' },
+    { code: 'SK', name: 'Slovakia' },
+    { code: 'LT', name: 'Lithuania' },
+    { code: 'LV', name: 'Latvia' },
+    { code: 'EE', name: 'Estonia' },
+    { code: 'BY', name: 'Belarus' },
+    // Asia
+    { code: 'JP', name: 'Japan' },
+    { code: 'CN', name: 'China' },
+    { code: 'IN', name: 'India' },
+    { code: 'KR', name: 'South Korea' },
+    { code: 'VN', name: 'Vietnam' },
+    { code: 'TH', name: 'Thailand' },
+    { code: 'ID', name: 'Indonesia' },
+    { code: 'MY', name: 'Malaysia' },
+    { code: 'SG', name: 'Singapore' },
+    { code: 'PH', name: 'Philippines' },
+    { code: 'PK', name: 'Pakistan' },
+    { code: 'BD', name: 'Bangladesh' },
+    { code: 'MM', name: 'Myanmar' },
+    { code: 'KH', name: 'Cambodia' },
+    { code: 'LA', name: 'Laos' },
+    { code: 'NP', name: 'Nepal' },
+    { code: 'LK', name: 'Sri Lanka' },
+    { code: 'KZ', name: 'Kazakhstan' },
+    { code: 'UZ', name: 'Uzbekistan' },
+    // Oceania
+    { code: 'AU', name: 'Australia' },
+    { code: 'NZ', name: 'New Zealand' },
+    // Americas
+    { code: 'US', name: 'United States' },
+    { code: 'CA', name: 'Canada' },
+    { code: 'MX', name: 'Mexico' },
+    { code: 'BR', name: 'Brazil' },
+    { code: 'AR', name: 'Argentina' },
+    { code: 'CL', name: 'Chile' },
+    { code: 'CO', name: 'Colombia' },
+    { code: 'PE', name: 'Peru' },
+    { code: 'VE', name: 'Venezuela' },
+    { code: 'EC', name: 'Ecuador' },
+    { code: 'BO', name: 'Bolivia' },
+    { code: 'PY', name: 'Paraguay' },
+    { code: 'UY', name: 'Uruguay' },
+    { code: 'PA', name: 'Panama' },
+    { code: 'CR', name: 'Costa Rica' },
+    { code: 'GT', name: 'Guatemala' },
+    { code: 'CU', name: 'Cuba' },
+    { code: 'DO', name: 'Dominican Republic' },
+    { code: 'JM', name: 'Jamaica' },
+    // Africa
+    { code: 'ZA', name: 'South Africa' },
+    { code: 'EG', name: 'Egypt' },
+    { code: 'NG', name: 'Nigeria' },
+    { code: 'KE', name: 'Kenya' },
+    { code: 'MA', name: 'Morocco' },
+    { code: 'ZW', name: 'Zimbabwe' },
+    { code: 'ZM', name: 'Zambia' },
+    { code: 'ET', name: 'Ethiopia' },
+    { code: 'GH', name: 'Ghana' },
+    { code: 'TZ', name: 'Tanzania' },
+    { code: 'UG', name: 'Uganda' },
+    { code: 'SN', name: 'Senegal' },
+    { code: 'CI', name: "Côte d'Ivoire" },
+    { code: 'AO', name: 'Angola' },
+    { code: 'MZ', name: 'Mozambique' },
+    { code: 'DZ', name: 'Algeria' },
+    { code: 'LY', name: 'Libya' },
+    { code: 'TN', name: 'Tunisia' },
+    // Middle East
+    { code: 'SA', name: 'Saudi Arabia' },
+    { code: 'AE', name: 'UAE' },
+    { code: 'IL', name: 'Israel' },
+    { code: 'YE', name: 'Yemen' },
+    { code: 'IQ', name: 'Iraq' },
+    { code: 'IR', name: 'Iran' },
+    { code: 'SY', name: 'Syria' },
+    { code: 'JO', name: 'Jordan' },
+    { code: 'LB', name: 'Lebanon' },
+    { code: 'KW', name: 'Kuwait' },
+    { code: 'QA', name: 'Qatar' },
+    { code: 'BH', name: 'Bahrain' },
+    { code: 'OM', name: 'Oman' },
+    { code: 'AF', name: 'Afghanistan' }
+  ];
+
+  // ============================================
+  // SIGNUP MODAL
+  // ============================================
+  function createSignupModal() {
+    // Check if modal already exists
+    if (document.getElementById('signupModal')) return;
+
+    // Build country options HTML
+    const countryOptions = countries.map(c => 
+      `<option value="${c.code}" data-name="${c.name}">${c.name}</option>`
+    ).join('');
+
+    const modal = document.createElement('div');
+    modal.id = 'signupModal';
+    modal.className = 'signup-modal';
+    modal.innerHTML = `
+      <div class="signup-modal-overlay"></div>
+      <div class="signup-modal-content">
+        <button class="signup-modal-close">&times;</button>
+        <h2 class="signup-modal-title">Sign Up</h2>
+        <p class="signup-modal-subtitle"></p>
+        
+        <form id="signupForm" class="signup-form">
+          <input type="hidden" id="signupType" value="news">
+          
+          <div class="signup-field">
+            <label for="signupEmail">Email *</label>
+            <input type="email" id="signupEmail" required placeholder="your@email.com">
+          </div>
+          
+          <div class="signup-field">
+            <label for="signupName">Name</label>
+            <input type="text" id="signupName" placeholder="Your name (optional)">
+          </div>
+          
+          <div class="signup-field">
+            <label for="signupCompany">Company</label>
+            <input type="text" id="signupCompany" placeholder="Your company (optional)">
+          </div>
+          
+          <div class="signup-field">
+            <label for="signupCountry">Country *</label>
+            <select id="signupCountry" required>
+              <option value="">Detecting location...</option>
+              ${countryOptions}
+            </select>
+            <span class="signup-field-hint">Auto-detected, but you can change it</span>
+          </div>
+          
+          <button type="submit" class="signup-submit-btn">
+            <span class="signup-btn-text">Sign Up</span>
+            <span class="signup-btn-loading" style="display: none;">Signing up...</span>
+          </button>
+          
+          <p class="signup-message"></p>
+        </form>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Event listeners
+    const overlay = modal.querySelector('.signup-modal-overlay');
+    const closeBtn = modal.querySelector('.signup-modal-close');
+    const form = modal.querySelector('#signupForm');
+
+    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('signupEmail').value;
+      const name = document.getElementById('signupName').value;
+      const company = document.getElementById('signupCompany').value;
+      const signupType = document.getElementById('signupType').value;
+      const countrySelect = document.getElementById('signupCountry');
+      const countryCode = countrySelect.value;
+      const countryName = countrySelect.options[countrySelect.selectedIndex].dataset.name || countrySelect.options[countrySelect.selectedIndex].text;
+      const message = modal.querySelector('.signup-message');
+      const btnText = modal.querySelector('.signup-btn-text');
+      const btnLoading = modal.querySelector('.signup-btn-loading');
+      const submitBtn = modal.querySelector('.signup-submit-btn');
+      
+      // Validate country selected
+      if (!countryCode) {
+        message.textContent = 'Please select your country';
+        message.className = 'signup-message error';
+        return;
+      }
+      
+      // Show loading state
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      submitBtn.disabled = true;
+      message.textContent = '';
+      message.className = 'signup-message';
+
+      const result = await submitSignup(email, name, company, signupType, countryCode, countryName);
+
+      // Reset button
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      submitBtn.disabled = false;
+
+      if (result.success) {
+        message.textContent = signupType === 'early_access' 
+          ? '🎉 Thank you! You\'ll receive 6 months free when early access launches!'
+          : '✓ You\'re signed up for news updates!';
+        message.className = 'signup-message success';
+        
+        // Clear form
+        form.reset();
+        
+        // Close modal after delay
+        setTimeout(() => {
+          closeModal();
+          // Refresh map if on contact page
+          if (typeof window.refreshMapColors === 'function') {
+            window.refreshMapColors();
+          }
+        }, 3000);
+      } else {
+        message.textContent = result.error;
+        message.className = 'signup-message error';
+      }
+    });
+  }
+
+  async function openModal(type) {
+    createSignupModal();
+    const modal = document.getElementById('signupModal');
+    const title = modal.querySelector('.signup-modal-title');
+    const subtitle = modal.querySelector('.signup-modal-subtitle');
+    const signupTypeInput = document.getElementById('signupType');
+    const submitBtn = modal.querySelector('.signup-btn-text');
+    const countrySelect = document.getElementById('signupCountry');
+
+    if (type === 'early_access') {
+      title.textContent = 'Early Access - 6 Months Free';
+      subtitle.textContent = 'Be first to access Adelphos AI when we launch. Early access members receive 6 months free.';
+      signupTypeInput.value = 'early_access';
+      submitBtn.textContent = 'Get Early Access';
+    } else {
+      title.textContent = 'Stay Updated';
+      subtitle.textContent = 'Get news and updates about Adelphos AI development.';
+      signupTypeInput.value = 'news';
+      submitBtn.textContent = 'Sign Up for News';
+    }
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus email input
+    setTimeout(() => {
+      document.getElementById('signupEmail').focus();
+    }, 100);
+    
+    // Auto-detect country and pre-select (user can change it)
+    try {
+      const location = await getUserCountry();
+      if (location.country_code && location.country_code !== 'XX') {
+        // Find and select the detected country
+        const option = countrySelect.querySelector(`option[value="${location.country_code}"]`);
+        if (option) {
+          countrySelect.value = location.country_code;
+        }
+      }
+      // Update the first option to show "Select your country" instead of "Detecting..."
+      const firstOption = countrySelect.querySelector('option[value=""]');
+      if (firstOption) {
+        firstOption.textContent = 'Select your country';
+      }
+    } catch (err) {
+      // If detection fails, just let user select manually
+      const firstOption = countrySelect.querySelector('option[value=""]');
+      if (firstOption) {
+        firstOption.textContent = 'Select your country';
+      }
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('signupModal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      // Clear message
+      const message = modal.querySelector('.signup-message');
+      if (message) {
+        message.textContent = '';
+        message.className = 'signup-message';
+      }
+    }
+  }
+
+  // ============================================
+  // ATTACH TO SIGNUP BUTTONS
+  // ============================================
+  function attachSignupButtons() {
+    // Early Access buttons
+    document.querySelectorAll('.signup-btn.primary, .buildx-signup-btn.primary, a[href*="contact"]').forEach(btn => {
+      if (btn.textContent.toLowerCase().includes('early access')) {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal('early_access');
+        });
+      }
+    });
+
+    // News buttons  
+    document.querySelectorAll('.signup-btn.secondary, .buildx-signup-btn.secondary').forEach(btn => {
+      if (btn.textContent.toLowerCase().includes('news')) {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal('news');
+        });
+      }
+    });
+  }
+
+  // ============================================
+  // MAP SIGNUP DATA - Global storage for map nodes to use
+  // 200 signups = 100% red intensity
+  // ============================================
+  const MAX_SIGNUPS_FOR_FULL_RED = 200;
+  
+  // Store signup counts globally so map nodes can access them
+  window.signupCountsByCountry = {};
+
+  async function updateMapWithSignups() {
+    const counts = await getSignupCountsByCountry();
+    
+    if (!counts || counts.length === 0) {
+      console.log('No signups yet - map showing default colors');
+      window.signupCountsByCountry = {};
+      return;
+    }
+
+    // Store counts in global object for map nodes to use
+    counts.forEach(country => {
+      window.signupCountsByCountry[country.country_code] = {
+        count: country.signup_count,
+        intensity: Math.min(country.signup_count / MAX_SIGNUPS_FOR_FULL_RED, 1)
+      };
+    });
+    
+    console.log(`Signup data loaded: ${counts.length} countries`, window.signupCountsByCountry);
+    
+    // Trigger map redraw if the function exists
+    if (window.redrawMapNodes) {
+      window.redrawMapNodes();
+    }
+  }
+
+  // Expose for refresh after signup
+  window.refreshMapColors = updateMapWithSignups;
+
+  // ============================================
+  // INITIALIZE
+  // ============================================
+  document.addEventListener('DOMContentLoaded', () => {
+    attachSignupButtons();
+    
+    // Update map colors if map exists
+    const mapObject = document.getElementById('mapObject');
+    if (mapObject) {
+      mapObject.addEventListener('load', () => {
+        setTimeout(updateMapWithSignups, 500);
+      });
+    }
+  });
+
+  // Expose functions globally
+  window.adelphosSignup = {
+    openModal,
+    closeModal,
+    submitSignup,
+    getSignupCountsByCountry
+  };
+
+})();
+

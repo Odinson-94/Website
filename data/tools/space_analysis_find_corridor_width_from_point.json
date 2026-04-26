@@ -1,0 +1,39 @@
+{
+  "name": "space_analysis_find_corridor_width_from_point",
+  "desc": "Fire ±X and ±Y rays to the nearest walls, return wall-to-wall widths on both axes, the narrow (corridor) width in mm, and the corridor long-axis.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "x",
+      "type": "number",
+      "description": "X of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Y of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "z",
+      "type": "number",
+      "description": "Z of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "max_distance_ft",
+      "type": "number",
+      "description": "Optional max cast per side (feet). Default 100 ft.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "space analysis find corridor width from point",
+    "corridor width",
+    "how wide is this corridor"
+  ]
+}

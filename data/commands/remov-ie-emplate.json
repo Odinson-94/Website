@@ -1,0 +1,56 @@
+{
+  "class": "RemoveViewTemplateCommand",
+  "desc": "Removes the applied view template from a specified view (or the active view).",
+  "summary": "Removes the applied view template from a specified view (or the active view). Uses SetTemplate to detach the template assignment. Called by Claude when the user wants to free a view from template control.",
+  "usecase": "User wants to detach a view template so they can manually adjust visibility/graphics. User wants to remove a template before applying a different one.",
+  "notfor": "Deleting view templates from the project (use Purge or delete directly). Applying a different template (use ApplyViewTemplateCommand instead).",
+  "precondition": "Active document must be open. Target view must not itself be a template.",
+  "postcondition": "The view's ViewTemplateId is set to InvalidElementId. The view reverts to manual graphic overrides.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "remove view template",
+    "unapply template",
+    "detach template",
+    "clear view template"
+  ],
+  "intent_patterns": [],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "viewId",
+      "type": "integer",
+      "description": "Optional target view id (defaults to active view)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Remove template result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Removing the view template from the target view...",
+      "Detaching template assignment..."
+    ],
+    "thinkingsteps": [
+      "Resolving target view...",
+      "Removing template assignment..."
+    ],
+    "successprompts": [
+      "Template removed from view {viewId}.",
+      "View template detached successfully."
+    ],
+    "failureprompts": [
+      "Could not remove template: {error}",
+      "Template removal failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

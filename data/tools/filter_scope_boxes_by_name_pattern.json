@@ -1,0 +1,28 @@
+{
+  "name": "filter_scope_boxes_by_name_pattern",
+  "desc": "Filter scope boxes by name contains pattern.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "contains",
+      "type": "string",
+      "description": "Text to match in scope box names.",
+      "required": true
+    },
+    {
+      "name": "caseSensitive",
+      "type": "boolean",
+      "description": "Case-sensitive matching (default false).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "filter scope boxes by name",
+    "scope box name",
+    "find scope box",
+    "plant scope box"
+  ]
+}

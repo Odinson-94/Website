@@ -1,0 +1,14 @@
+{
+  "name": "ui_clipboard_read",
+  "desc": "Read plain text from the Windows clipboard. Use after UI debug Report bug copies JSON to validate payloads.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clipboard",
+    "read clipboard",
+    "paste buffer"
+  ]
+}

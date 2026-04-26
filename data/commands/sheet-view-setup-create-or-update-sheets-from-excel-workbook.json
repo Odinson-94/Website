@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupCreateOrUpdateSheetsFromExcelWorkbookCommand",
+  "desc": "Create Or Update Sheets From Excel Workbook.",
+  "summary": "Create Or Update Sheets From Excel Workbook.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheets from excel",
+    "create sheets from spreadsheet",
+    "update sheets from excel"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Create Or Update Sheets From Excel Workbook…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Create Or Update Sheets From Excel Workbook: completed."
+    ],
+    "failureprompts": [
+      "Create Or Update Sheets From Excel Workbook: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

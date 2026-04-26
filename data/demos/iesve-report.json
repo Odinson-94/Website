@@ -1,0 +1,8 @@
+{
+  "slug": "iesve-report",
+  "category": "reports",
+  "title": "IESVE Report Creator",
+  "desc": "Single SQL DB → IESVE outputs with cover sheet, charts and narrative.",
+  "duration": "2:14",
+  "status": "live"
+}

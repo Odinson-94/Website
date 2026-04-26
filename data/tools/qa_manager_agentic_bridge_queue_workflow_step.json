@@ -1,0 +1,40 @@
+{
+  "name": "qa_manager_agentic_bridge_queue_workflow_step",
+  "desc": "Queue a single QA Manager command (run_error_check / clash detection / capture / export / import etc.) into the Supabase agentic_qa_queue table for a remote Revit session running the polling bridge to execute. Requires env vars MEPBRIDGE_AGENTIC_SUPABASE_URL, MEPBRIDGE_AGENTIC_SUPABASE_KEY, MEPBRIDGE_AGENTIC_BRIDGE_SECRET. Returns the correlation_id immediately; when wait_seconds > 0 the tool polls agentic_qa_results until the remote session posts the outcome.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "command_id",
+      "type": "string",
+      "description": "Revit command class name to queue. Must be on the bridge allowlist (QA / clash / error / export classes).",
+      "required": false
+    },
+    {
+      "name": "parameters_json",
+      "type": "string",
+      "description": "Optional JSON object of parameters the command expects (e.g. {\\",
+      "required": false
+    },
+    {
+      "name": "correlation_id",
+      "type": "string",
+      "description": "Optional caller-supplied correlation id. When omitted a new GUID is generated.",
+      "required": false
+    },
+    {
+      "name": "wait_seconds",
+      "type": "integer",
+      "description": "Poll the results table for up to N seconds and return the outcome when ready. 0 = fire-and-forget (default 60).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "queue qa workflow remote",
+    "run qa remote revit",
+    "agentic qa dispatch",
+    "remote qa manager step"
+  ]
+}

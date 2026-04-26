@@ -1,0 +1,77 @@
+{
+  "class": "Create3DSectionBoxCommand",
+  "desc": "Creates a 3D section box from user-selected elements or rooms.",
+  "summary": "Creates a 3D section box from user-selected elements or rooms. Supports pre-selection and linked model rooms. Uses Create3DSectionBox for bounding box calculation and application.",
+  "usecase": "User wants to isolate a portion of the 3D model by creating a section box around selected elements or rooms.",
+  "notfor": "Creating 2D section views (use CreateSectionFromGridlineCommand). Clearing section boxes (use Create3DSectionBox.ClearSectionBox directly).",
+  "precondition": "Active document must be open. A 3D view must exist in the model.",
+  "postcondition": "The active 3D view has a section box applied around the selected geometry.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create 3D section box",
+    "3D section box",
+    "section box from elements",
+    "section box from rooms",
+    "isolate 3D view"
+  ],
+  "intent_patterns": [
+    "create * 3D section box",
+    "section box * elements",
+    "section box * rooms",
+    "3D * section box"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [
+    {
+      "name": "Elements",
+      "type": "Element",
+      "description": "Elements or rooms to enclose in section box",
+      "prompt": "Select elements for section box"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "Mode",
+      "type": "string",
+      "description": "Selection mode: 'elements' or 'rooms'",
+      "default": "\"elements\""
+    },
+    {
+      "name": "Margin",
+      "type": "double",
+      "description": "Margin around selection in feet",
+      "default": "1.0"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "SectionBoxResult",
+      "description": "Section box creation result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a 3D section box around your selection...",
+      "Setting up the section box for the 3D view..."
+    ],
+    "thinkingsteps": [
+      "Checking for a 3D view...",
+      "Gathering selected elements...",
+      "Calculating bounding box...",
+      "Applying section box to view..."
+    ],
+    "successprompts": [
+      "Section box created from {ElementCount} element(s).",
+      "3D section box applied successfully."
+    ],
+    "failureprompts": [
+      "Could not create section box: {error}",
+      "Section box failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

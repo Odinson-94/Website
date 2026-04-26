@@ -1,0 +1,37 @@
+{
+  "class": "ParameterEditorSetGridIntersectionLabelOnGridlineInstanceCommand",
+  "desc": "Set Grid Intersection Label On Gridline Instance.",
+  "summary": "Set Grid Intersection Label On Gridline Instance.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Parameters/Parameters Setup Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Parameters/Parameters Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "grid intersection label",
+    "gridline intersection parameter",
+    "grid label",
+    "intersection label"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Set Grid Intersection Label On Gridline Instance…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Set Grid Intersection Label On Gridline Instance: completed."
+    ],
+    "failureprompts": [
+      "Set Grid Intersection Label On Gridline Instance: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

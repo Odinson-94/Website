@@ -1,0 +1,8 @@
+{
+  "slug": "snap-objects-to-wall",
+  "category": "revit-utilities",
+  "title": "Snap Objects to Wall",
+  "desc": "Batch-snap a set of objects to walls without picking each one.",
+  "duration": "0:52",
+  "status": "live"
+}

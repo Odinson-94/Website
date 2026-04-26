@@ -1,0 +1,28 @@
+{
+  "name": "drawing_exporter_set_merge_compress",
+  "desc": "Set merge (combine PDFs into one file) and compress (zip output) options for the Drawing Exporter.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "merge",
+      "type": "string",
+      "description": "\\",
+      "required": false
+    },
+    {
+      "name": "compress",
+      "type": "string",
+      "description": "\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "merge pdf",
+    "compress pdf",
+    "pdf24",
+    "combine pdf"
+  ]
+}

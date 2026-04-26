@@ -1,0 +1,15 @@
+{
+  "name": "error_manager_list_saved_rule_sets_in_project_and_user_folders",
+  "desc": "List all available error rule sets (project and user level).",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "rule sets",
+    "error rules",
+    "QA rules",
+    "list rules"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "get_warnings_with_available_auto_resolutions",
+  "desc": "Get only warnings that have auto-fix resolutions available from Revit.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "resolvable warnings",
+    "auto fix warnings",
+    "fixable warnings",
+    "warnings with resolution"
+  ]
+}

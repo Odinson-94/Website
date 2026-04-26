@@ -1,0 +1,47 @@
+{
+  "class": "ClashSolverAssessClashPostMoveCommand",
+  "desc": "ClashSolverAssessClashPostMoveCommand — PDF \"ASSESS_CLASH\".",
+  "summary": "ClashSolverAssessClashPostMoveCommand — PDF \"ASSESS_CLASH\". After a move, verify the originating clash is gone and no new clashes were introduced on the moved element.",
+  "usecase": "Single gate used after Resolve* commits or a human manual move.",
+  "notfor": "Reverting a move — that's Restore state.",
+  "precondition": "Active document; clash id + moved element resolvable.",
+  "postcondition": "No mutation; tracker + repo state updated if auto-resolved.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ClashId required; fetch ClashRecord; WireError if missing.\n2) Resolver_MovedUniqueId (Bot) OR single selection (Human); WireError if missing.\n3) Resolve UidA + UidB in the doc; WireError if either gone.\n4) clash_still_active = ElementIntersectsElementFilter(A→B) returns a hit.\n5) new_clash_count = ForecastClashesAfterMove.ForecastMove(doc, moved, XYZ.Zero).ClashCount,\n   excluding the original pair (that's counted by step 4).\n6) If clash_still_active == false && new_clash_count == 0 → repo.TransitionState(resolved).\n   Else emit detail for human review; do NOT auto-transition.\n7) Tracker outputs + Human TaskDialog when on that path.",
+  "keywords": [
+    "clashsolverassessclashpostmove",
+    "assess clash post move",
+    "clash solver verify"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Assessing clash state after move…"
+    ],
+    "thinkingsteps": [
+      "Loading clash row and both elements…",
+      "Running pairwise ElementIntersectsElementFilter…",
+      "Running zero-move forecast on the moved element…"
+    ],
+    "successprompts": [
+      "clash_still_active={still_active}, new_clash_count={new_clash_count}."
+    ],
+    "failureprompts": [
+      "Post-move assess failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

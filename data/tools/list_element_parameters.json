@@ -1,0 +1,33 @@
+{
+  "name": "list_element_parameters",
+  "desc": "Stage 2: list parameter names available on each element (instance + optional type/family).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "Optional JSON array of element IDs. Defaults to current selection.",
+      "required": false
+    },
+    {
+      "name": "includeTypeParams",
+      "type": "boolean",
+      "description": "Include type/family parameters in discovery (default true).",
+      "required": false
+    },
+    {
+      "name": "maxParamsPerElement",
+      "type": "integer",
+      "description": "Cap names returned per element (default 150).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "list element parameters",
+    "parameter names",
+    "discover element parameters"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "name": "upload_company_brand_profile",
+  "desc": "Upload or update company brand standards: name, logo, template, fonts, colours, approved manufacturers. All subsequent specs use this branding.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 9,
+  "parameters": [
+    {
+      "name": "companyName",
+      "type": "string",
+      "description": "Company name",
+      "required": true
+    },
+    {
+      "name": "templatePath",
+      "type": "string",
+      "description": "Path to .dotx company Word template with {{placeholders}}",
+      "required": false
+    },
+    {
+      "name": "logoPath",
+      "type": "string",
+      "description": "Path to company logo image",
+      "required": false
+    },
+    {
+      "name": "fontFamily",
+      "type": "string",
+      "description": "Primary font family (default: Calibri)",
+      "required": false
+    },
+    {
+      "name": "primaryColour",
+      "type": "string",
+      "description": "Primary brand colour hex (e.g. #1B3A5C)",
+      "required": false
+    },
+    {
+      "name": "approvedManufacturers",
+      "type": "string",
+      "description": "Comma-separated list of approved manufacturers",
+      "required": false
+    },
+    {
+      "name": "address",
+      "type": "string",
+      "description": "Company address for cover page",
+      "required": false
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "description": "Company email",
+      "required": false
+    },
+    {
+      "name": "website",
+      "type": "string",
+      "description": "Company website",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "brand",
+    "company profile",
+    "upload brand",
+    "brand standards",
+    "company template",
+    "logo"
+  ]
+}

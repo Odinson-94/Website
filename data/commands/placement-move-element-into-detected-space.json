@@ -1,0 +1,37 @@
+{
+  "class": "PlacementMoveElementIntoDetectedSpaceCommand",
+  "desc": "Space-aware move.",
+  "summary": "Space-aware move. Casts six rays per element and steps into the direction with the largest clearance &gt; 500 mm (200 mm step by default). Falls back to axial centring when no direction meets the clearance threshold.",
+  "usecase": "Bulk \"push these services into the nearest breathing room\" cleanup.",
+  "notfor": "Precise alignment (use ElementAlignment*). Absolute vector moves (use ByDumbVector).",
+  "precondition": "Active document. Document has a non-template 3D view. ≥1 element resolved.",
+  "postcondition": "Each element translated into detected space. Audit entry + per-element evidence log.",
+  "sideeffects": "",
+  "logictree": "1) Resolve element ids + thresholds. 2) Resolve default 3D view. 3) Transaction: per element cast 6 rays, pick best direction or centring axis, MoveElement. 4) Commit, log per-element result. 5) Failure → WireFault + rollback.",
+  "keywords": [
+    "placementmoveelementintodetectedspace"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running PlacementMoveElementIntoDetectedSpaceCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "PlacementMoveElementIntoDetectedSpaceCommand completed successfully."
+    ],
+    "failureprompts": [
+      "PlacementMoveElementIntoDetectedSpaceCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

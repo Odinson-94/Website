@@ -1,0 +1,32 @@
+{
+  "name": "web_search",
+  "desc": "Search the web for current information. Returns top results with titles, snippets, and URLs. Use for standards updates, product data, regulations, Revit issues, MEP pricing, manufacturer specs.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "query",
+      "type": "string",
+      "description": "The search query",
+      "required": true
+    },
+    {
+      "name": "count",
+      "type": "string",
+      "description": "Number of results to return (1-10, default 5)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "web search",
+    "search web",
+    "brave search",
+    "find online",
+    "standards",
+    "regulations",
+    "product data",
+    "manufacturer specs"
+  ]
+}

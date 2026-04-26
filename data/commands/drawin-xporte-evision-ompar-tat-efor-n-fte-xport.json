@@ -1,0 +1,35 @@
+{
+  "class": "DrawingExporterRevisionsCompareStateBeforeAndAfterExportCommand",
+  "desc": "Capture pre-export and post-export revision state and produce a diff report.",
+  "summary": "Capture pre-export and post-export revision state and produce a diff report. Used by the Export-and-Check-Over flow.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "drawing exporter revisions compare state before and after export",
+    "drawing_exporter_revisions_compare_state_before_and_after_export"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running drawing exporter revisions compare state before and after export…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "drawing exporter revisions compare state before and after export: done."
+    ],
+    "failureprompts": [
+      "drawing exporter revisions compare state before and after export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,28 @@
+{
+  "name": "reject_fix",
+  "desc": "Reject the cloud agent's fix. With followup_text, sends new instructions. Without it, deletes the agent.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "agent_id",
+      "type": "string",
+      "description": "The agent ID. Defaults to active agent.",
+      "required": false
+    },
+    {
+      "name": "followup_text",
+      "type": "string",
+      "description": "New instructions for the agent. If empty, agent is deleted.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "reject fix",
+    "followup",
+    "discard fix",
+    "self debug reject"
+  ]
+}

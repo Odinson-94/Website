@@ -1,0 +1,65 @@
+{
+  "class": "CreateBatchMepFiltersCommand",
+  "desc": "Runs CreateMepFilterSet.ForProject for one or more service keys, then CreateMepFilterSet.ApplyToAllTemplates to add filters with coordinated overrides to plan templates.",
+  "summary": "Runs CreateMepFilterSet.ForProject for one or more service keys, then CreateMepFilterSet.ApplyToAllTemplates to add filters with coordinated overrides to plan templates. Service keys default to a full MEP bundle when serviceTypes is omitted (drainage, mechanical, electrical, fire, plumbing).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Writable document.",
+  "postcondition": "New filters may be created; plan templates may gain filters and overrides.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create mep filters",
+    "batch filters",
+    "project filters",
+    "standard filters"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "serviceTypes",
+      "type": "string",
+      "description": "Optional comma-separated: drainage,mechanical,electrical,fire,plumbing",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "filterCount",
+      "type": "int",
+      "description": "Number of filter elements created or resolved in the batch"
+    }
+  ],
+  "related_commands": [
+    "AddFilterToTemplateCommand",
+    "CreateFilterCommand",
+    "CreateViewTemplateCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating standard MEP filters for the project...",
+      "Batch-applying filters across plan templates...",
+      "Detecting service scope from parameters or default bundle..."
+    ],
+    "thinkingsteps": [
+      "Parse serviceTypes as comma-separated keys; trim and deduplicate case-insensitively.",
+      "If serviceTypes is empty, use the default five-discipline bundle and wire recoverable guidance.",
+      "Instantiate CreateMepFilterSet and call CreateMepFilterSet.ForProject.",
+      "Call CreateMepFilterSet.ApplyToAllTemplates so plan templates receive filters and overrides.",
+      "Run inside one manual transaction; commit after both steps.",
+      "Return filter count and service list for orchestration feedback."
+    ],
+    "successprompts": [
+      "Batch MEP filters created and applied ({filterCount} filters).",
+      "Finished creating filters and updating templates."
+    ],
+    "failureprompts": [
+      "Batch MEP filters failed: {error}",
+      "Create batch MEP filters aborted — {error}"
+    ]
+  },
+  "has_restapi": false
+}

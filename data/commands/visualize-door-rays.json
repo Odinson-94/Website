@@ -1,0 +1,73 @@
+{
+  "class": "VisualizeDoorRaysCommand",
+  "desc": "Debug command that visualizes corridor width measurement from doors.",
+  "summary": "Debug command that visualizes corridor width measurement from doors. User selects a room, then rays are drawn from each door into the room to measure distance to the opposite wall. Draws detail curves in the active plan view: lines for rays, circles at hit points, crosses at doors. Uses ListDoors.GetDoorsForRoom to find doors for the room.",
+  "usecase": "User wants to debug corridor width measurement logic. User needs to verify door-to-wall distance calculations visually. User wants to classify a room as corridor vs circulation based on width.",
+  "notfor": "Not for production documentation — debug visualization only. Not for creating permanent annotations on sheets. Not for autonomous AI execution — requires interactive room selection.",
+  "precondition": "Active view must be a plan view (Floor Plan, Ceiling Plan, Engineering Plan, or Area Plan). At least one room must exist in the model for selection. The room must have at least one door for ray visualization.",
+  "postcondition": "Detail curves are drawn in the active view showing door-to-wall rays. Cross markers appear at door locations, circles at wall hit points. Summary dialog shows measurements and corridor classification.",
+  "sideeffects": "",
+  "logictree": "check: activeView.isPlanView → proceed\rcheck: activeView.isNotPlan → fail \"Run from a Floor Plan view\"\raction: userPicksRoom → getRoomDoors\rcheck: doors.count == 0 → report \"No doors found\"\raction: fireRaysFromDoors → drawVisualization → reportMeasurements",
+  "keywords": [
+    "visualize door rays",
+    "door ray debug",
+    "corridor width",
+    "door measurement",
+    "ray visualization",
+    "debug rays"
+  ],
+  "intent_patterns": [
+    "visualize * door * rays",
+    "debug * door * rays",
+    "show * corridor * width"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [
+    {
+      "name": "Room",
+      "type": "Room",
+      "description": "Room to visualize door rays for",
+      "prompt": "Select a room to visualize door rays"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "RaysDrawn",
+      "type": "int",
+      "description": "Number of measurement rays drawn"
+    },
+    {
+      "name": "MinWidth",
+      "type": "double",
+      "description": "Minimum corridor width in metres"
+    },
+    {
+      "name": "Classification",
+      "type": "string",
+      "description": "Room classification based on width"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Visualizing door-to-wall measurement rays...",
+      "Setting up corridor width debug visualization..."
+    ],
+    "thinkingsteps": [
+      "Waiting for room selection...",
+      "Finding doors for selected room...",
+      "Firing rays from doors to opposite walls...",
+      "Drawing visualization markers..."
+    ],
+    "successprompts": [
+      "Drew {RaysDrawn} rays. Min width: {MinWidth}m. Classification: {Classification}.",
+      "Door ray visualization complete — {RaysDrawn} rays drawn."
+    ],
+    "failureprompts": [
+      "Door ray visualization failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

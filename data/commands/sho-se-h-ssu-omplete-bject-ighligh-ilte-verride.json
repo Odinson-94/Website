@@ -1,0 +1,32 @@
+{
+  "class": "ShowUserTheIssueOrCompletedObjectsByHighlightFilterOverrideCommand",
+  "desc": "Highlight selected elements via view graphics override (yellow + halftone others).",
+  "summary": "Highlight selected elements via view graphics override (yellow + halftone others).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "showusertheissueorcompletedobjectsbyhighlightfilteroverride",
+    "highlight elements",
+    "filter override"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"showme_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

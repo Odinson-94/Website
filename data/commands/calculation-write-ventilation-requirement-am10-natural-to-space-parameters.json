@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteVentilationRequirementAm10NaturalToSpaceParametersCommand",
+  "desc": "Writes AM10 natural ventilation l/s + openable area m².",
+  "summary": "Writes AM10 natural ventilation l/s + openable area m².",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteventilationrequirementam10naturaltospaceparameters",
+    "write am10 natural ventilation"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,35 @@
+{
+  "class": "WorksetManagerDeleteWorksetCommand",
+  "desc": "Delete a workset by id (must be empty + unowned).",
+  "summary": "Delete a workset by id (must be empty + unowned).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager delete workset",
+    "workset_manager_delete_workset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running workset manager delete workset…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "workset manager delete workset: done."
+    ],
+    "failureprompts": [
+      "workset manager delete workset failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

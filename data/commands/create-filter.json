@@ -1,0 +1,90 @@
+{
+  "class": "CreateFilterCommand",
+  "desc": "Creates a ParameterFilterElement (view filter) in the active document.",
+  "summary": "Creates a ParameterFilterElement (view filter) in the active document. Supports two modes: category-only filter or parameter-based filter with a string rule. Uses CreateFilters.CreateParameterFilter for parameter rules and CreateFilters.CreateCategoryFilter for category-only filters. After creation, use ApplyFilterToViewCommand to apply to a view.",
+  "usecase": "User wants to create a view filter to isolate specific MEP categories. User needs a parameter-based filter (e.g. \"System Type contains Domestic\"). AI needs to set up view filters as part of automated view setup.",
+  "notfor": "Applying filters to views (use ApplyFilterToViewCommand). Deleting or modifying existing filters. Creating sheet filters or schedule filters.",
+  "precondition": "Active document must be open. At least one valid BuiltInCategory must be provided. For parameter filters, the BuiltInParameter must exist on the target categories.",
+  "postcondition": "A new ParameterFilterElement is created in the document. Result JSON stored in LastQueryResult with success flag, filterId, filterName.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create filter",
+    "create view filter",
+    "create parameter filter",
+    "view filter",
+    "MEP filter"
+  ],
+  "intent_patterns": [
+    "create * filter",
+    "create * view filter",
+    "make * filter",
+    "new * filter"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "filterName",
+      "type": "string",
+      "description": "New filter name",
+      "default": ""
+    },
+    {
+      "name": "categories",
+      "type": "string",
+      "description": "Comma-separated BuiltInCategory names",
+      "default": ""
+    },
+    {
+      "name": "parameter",
+      "type": "string",
+      "description": "Optional BuiltInParameter name for string rule",
+      "default": ""
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Optional string value for parameter rule",
+      "default": ""
+    },
+    {
+      "name": "rule",
+      "type": "string",
+      "description": "Optional rule: equals|contains|beginswith|endswith|notequals",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Filter creation result with success, filterId, filterName"
+    }
+  ],
+  "related_commands": [
+    "ApplyFilterToViewCommand",
+    "ListFiltersCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a new view filter...",
+      "Setting up the filter now..."
+    ],
+    "thinkingsteps": [
+      "Parsing category list...",
+      "Checking parameter rule configuration...",
+      "Creating filter element in document..."
+    ],
+    "successprompts": [
+      "Filter \"{filterName}\" created successfully (ID: {filterId}).",
+      "Done — view filter \"{filterName}\" is ready to apply."
+    ],
+    "failureprompts": [
+      "Filter creation failed: {error}",
+      "Could not create filter — {error}"
+    ]
+  },
+  "has_restapi": false
+}

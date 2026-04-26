@@ -1,0 +1,37 @@
+{
+  "class": "ElementAlignmentCentreAdjacentNodesAroundKeptElementCommand",
+  "desc": "Centres adjacent mover elements around a kept reference element by translating them along the kept element's direction axis.",
+  "summary": "Centres adjacent mover elements around a kept reference element by translating them along the kept element's direction axis.",
+  "usecase": "Re-centre a group of services on a kept plant item.",
+  "notfor": "Height / slope alignment (use the Match* commands). Rotation.",
+  "precondition": "Active document. 1 kept + ≥1 mover resolved. Kept element has a recoverable direction.",
+  "postcondition": "Each mover translated along kept axis. Kept element untouched.",
+  "sideeffects": "",
+  "logictree": "1) Resolve kept + movers. 2) Compute kept centroid + direction. 3) Project mover centroid offsets onto kept axis, compute mean. 4) Transaction: translate each mover by −mean along kept axis. 5) Commit, log. 6) Failure → WireFault + rollback.",
+  "keywords": [
+    "elementalignmentcentreadjacentnodesaroundkeptelement"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running ElementAlignmentCentreAdjacentNodesAroundKeptElementCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "ElementAlignmentCentreAdjacentNodesAroundKeptElementCommand completed successfully."
+    ],
+    "failureprompts": [
+      "ElementAlignmentCentreAdjacentNodesAroundKeptElementCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

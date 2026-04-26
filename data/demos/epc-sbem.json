@@ -1,0 +1,8 @@
+{
+  "slug": "epc-sbem",
+  "category": "epcs-sbem-sap",
+  "title": "EPC / SBEM",
+  "desc": "Generate SBEM-compliant inputs from the model.",
+  "duration": "1:42",
+  "status": "live"
+}

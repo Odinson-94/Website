@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverMoveObjectDownOrCentreInSpaceCommand",
+  "desc": "ClashSolverMoveObjectDownOrCentreInSpaceCommand — PDF \"MOVE_OBJECT_DOWN\".",
+  "summary": "ClashSolverMoveObjectDownOrCentreInSpaceCommand — PDF \"MOVE_OBJECT_DOWN\". Shift -Z by step if clearance ≥ threshold, else centre on Z.",
+  "usecase": "Solver -Z nudge when void below is deeper.",
+  "notfor": "Up moves — use the mirror command.",
+  "precondition": "Active document; one service/element resolvable; default 3D view.",
+  "postcondition": "Zero or one ElementTransformUtils.MoveElement inside the service's Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId required OR single selection.\n2) Delegate to TryDirectionalMoveOnService.ProbeAndMove(doc, el, -Z, step_ft, threshold_ft, centre_fallback).\n3) Emit outcome + clash_id audit linkage.",
+  "keywords": [
+    "clashsolvermoveobjectdownorcentreinspace",
+    "move down or centre",
+    "solver down nudge"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Attempting -Z nudge or centre…"
+    ],
+    "thinkingsteps": [
+      "Probing -Z clearance…",
+      "Forecasting before apply…"
+    ],
+    "successprompts": [
+      "Strategy={strategy}, applied_delta_ft={applied_delta}."
+    ],
+    "failureprompts": [
+      "Down-or-centre failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

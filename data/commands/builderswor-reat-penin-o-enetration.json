@@ -1,0 +1,35 @@
+{
+  "class": "BuildersworkCreateOpeningForPenetrationCommand",
+  "desc": "Create a model opening (void family) for a detected penetration.",
+  "summary": "Create a model opening (void family) for a detected penetration.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "builderswork create opening for penetration",
+    "builderswork_create_opening_for_penetration"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running builderswork create opening for penetration…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "builderswork create opening for penetration: done."
+    ],
+    "failureprompts": [
+      "builderswork create opening for penetration failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

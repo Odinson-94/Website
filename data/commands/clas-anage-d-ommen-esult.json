@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerAddCommentToResultCommand",
+  "desc": "ClashManagerAddCommentToResultCommand — append a timestamped comment to a clash's `comment` column via the staging repo.",
+  "summary": "ClashManagerAddCommentToResultCommand — append a timestamped comment to a clash's `comment` column via the staging repo.",
+  "usecase": "QA review comment append.",
+  "notfor": "Changing state or fix_status — use the dedicated commands.",
+  "precondition": "Resolver_ClashId resolvable in staging DB; Resolver_Comment non-empty.",
+  "postcondition": "Single SQLite UPDATE inside the repo; no Revit Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ClashId + Resolver_Comment required. WireError otherwise.\n2) Load ClashRecord; WireError if missing.\n3) Build appended_line = \"[YYYY-MM-DD HH:MM:SSZ] [author] comment\".\n4) Call repo.TransitionState(id, current_state, comment=new_comment) — repo merges into existing comment.\n5) Emit ok + appended_line.",
+  "keywords": [
+    "clashmanageraddcommenttoresult",
+    "add comment to clash",
+    "qa comment append"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Appending comment to clash result…"
+    ],
+    "thinkingsteps": [
+      "Loading clash row…",
+      "Merging timestamped comment line…"
+    ],
+    "successprompts": [
+      "Comment appended."
+    ],
+    "failureprompts": [
+      "Comment append failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

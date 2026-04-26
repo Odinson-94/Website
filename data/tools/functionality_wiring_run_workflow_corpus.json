@@ -1,0 +1,30 @@
+{
+  "name": "functionality_wiring_run_workflow_corpus",
+  "desc": "Run the 300-workflow × 10-agent simulator over the Functionality Wiring corpus. Returns consensus totals (passed/flaky/failed) and the JSON + Markdown report paths. This corpus is separately registered and deletable: see tools/tests/wiring/workflows/README.md.",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "agent",
+      "type": "string",
+      "description": "Optional: simulate only the named agent (e.g. \\",
+      "required": false
+    },
+    {
+      "name": "agents",
+      "type": "integer",
+      "description": "Number of simulated agents (default 10).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "wiring workflow corpus",
+    "run wiring workflow corpus",
+    "run 10 agent simulation",
+    "functionality wiring workflow simulation",
+    "10 agent corpus",
+    "300 workflow corpus"
+  ]
+}

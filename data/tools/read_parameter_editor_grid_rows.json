@@ -1,0 +1,22 @@
+{
+  "name": "read_parameter_editor_grid_rows",
+  "desc": "Read rows from the Parameter Editor grid. Returns items and selectedRows.",
+  "bridge": "ParameterEditor",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "filter",
+      "type": "string",
+      "description": "Optional JSON filter: familyName, familyType, level, isDirty.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "parameter editor",
+    "read parameters",
+    "grid rows",
+    "parameter editor read"
+  ]
+}

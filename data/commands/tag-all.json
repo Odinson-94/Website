@@ -1,0 +1,31 @@
+{
+  "class": "TagAllCommand",
+  "desc": "Tag All command - adds tags to all selected MEP elements using intelligent placement.",
+  "summary": "Tag All command - adds tags to all selected MEP elements using intelligent placement. FEATURES: - Category-specific tag placement rules - Vertical elements (risers/drops) tagged 12.7mm left/right based on room centroid - Horizontal elements tagged at midpoint with no leader - Grilles and other elements use intelligent clutter detection - Mechanical equipment tagged at center with no leader - Fittings are not tagged TAG RULES: | Category | Behavior | |-----------------------------|-----------------------------------------------| | SVP/Sanitary Pipes | Horizontal only, >500mm, collision-free, 1000mm clusters | | Vertical Ducts/Pipes/Trays | 12.7mm offset L/R based on room centroid | | Horizontal Ducts/Pipes/Trays| Midpoint, no leader | | Short segments (<250mm) | Not tagged | | Grilles (Duct Terminals) | Intelligent: least cluttered direction | | Mechanical Equipment | Center, no leader | | Accessories/Sprinklers/etc | Intelligent: least cluttered direction | | Fittings | Not tagged |",
+  "usecase": "Use when you need to run this command's workflow for the current model task.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active Revit document and required context are available.",
+  "postcondition": "The command finishes with tracked success or a handled failure state.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tag all"
+  ],
+  "intent_patterns": [
+    "* tag all"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Command execution result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,12 @@
+{
+  "name": "clash_manager_get_result_history_across_runs",
+  "desc": "clash_manager_get_result_history_across_runs — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash manager get result history across runs"
+  ]
+}

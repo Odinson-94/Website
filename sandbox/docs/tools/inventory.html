@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All MCP tools — Adelphos AI Docs</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/shared-styles.css">
+<link rel="stylesheet" href="/sandbox/sandbox.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout wide">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <div class="crumbs"><a href="#">Docs</a> &nbsp;›&nbsp; Tools</div>
+  <h1>All MCP tools</h1>
+  <p style="font-size:16px;color:var(--text-muted);max-width:760px;margin-bottom:8px;">
+    Auto-generated from every <code>[McpTool]</code> attribute in the codebase.
+    Total: <span id="totalCount">…</span> tools.
+  </p>
+
+  <div class="inv-counts" id="counts"></div>
+
+  <div class="filter-row">
+    <select id="bridgeFilter"><option value="">All bridges</option></select>
+    <select id="categoryFilter"><option value="">All categories</option></select>
+    <select id="alwaysFilter"><option value="">All</option><option value="true">Always available</option><option value="false">On demand</option></select>
+    <input type="search" id="search" placeholder="Filter by name or description…">
+    <span class="row-count" id="rowCount"></span>
+  </div>
+
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Description</th><th>Context</th><th>Type</th><th>Always</th><th>Params</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+async function load(){
+  const r = await fetch('/sandbox/data/tools.json');
+  const tools = await r.json();
+  document.getElementById('totalCount').textContent = tools.length;
+
+  const bridges = [...new Set(tools.map(t => t.bridge || '(generic)'))].sort();
+  bridges.forEach(b => { const o = document.createElement('option'); o.value = b === '(generic)' ? '' : b; o.textContent = b; document.getElementById('bridgeFilter').appendChild(o); });
+  const cats = [...new Set(tools.map(t => t.category))].sort();
+  cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; document.getElementById('categoryFilter').appendChild(o); });
+
+  const counts = [
+    { n: tools.length, l: 'Tools' },
+    { n: tools.filter(t => t.always).length, l: 'Always available' },
+    { n: tools.filter(t => t.category === 'context').length, l: 'Context (read)' },
+    { n: tools.filter(t => t.category === 'action').length, l: 'Action (write)' },
+    { n: bridges.length, l: 'Bridges' },
+  ];
+  document.getElementById('counts').innerHTML = counts.map(c => `<div class="inv-count"><strong>${c.n}</strong><span class="label">${c.l}</span></div>`).join('');
+
+  function render(){
+    const fb = document.getElementById('bridgeFilter').value;
+    const fc = document.getElementById('categoryFilter').value;
+    const fa = document.getElementById('alwaysFilter').value;
+    const fs = document.getElementById('search').value.toLowerCase();
+    const filtered = tools.filter(t =>
+      (fb === '' || t.bridge === fb) &&
+      (fc === '' || t.category === fc) &&
+      (fa === '' || String(t.always) === fa) &&
+      (fs === '' || (t.name.toLowerCase().includes(fs) || (t.desc || '').toLowerCase().includes(fs)))
+    );
+    document.getElementById('rowCount').textContent = `${filtered.length} of ${tools.length}`;
+    document.getElementById('rows').innerHTML = filtered.map(t => `
+      <tr>
+        <td><a href="${ t.name === 'list_rooms' ? 'list_rooms.html' : '#' }"><code>${t.name}</code></a></td>
+        <td style="color:var(--text-muted);">${esc(t.desc)}</td>
+        <td>${t.bridge ? `<span class="pill pill-bridge">${prettyBridge(t.bridge)}</span>` : '<span style="color:var(--text-muted);">—</span>'}</td>
+        <td><span class="pill pill-category">${t.category}</span></td>
+        <td>${t.always ? '<span class="pill pill-always">always</span>' : '<span style="color:var(--text-muted);">on demand</span>'}</td>
+        <td style="color:var(--text-muted);">${t.param_count}</td>
+      </tr>
+    `).join('');
+  }
+  function esc(s){ return (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function prettyBridge(b){ return ({ 'RevitContext':'Revit', 'DrawingExporter':'Drawing exporter', 'ParameterEditor':'Parameter editor', 'SelfDebug':'Debug', 'Snapshot':'Snapshot' })[b] || b; }
+  ['bridgeFilter','categoryFilter','alwaysFilter','search'].forEach(id => document.getElementById(id).addEventListener('input', render));
+  render();
+}
+load();
+</script>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

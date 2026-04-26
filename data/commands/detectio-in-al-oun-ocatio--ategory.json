@@ -1,0 +1,46 @@
+{
+  "class": "DetectionFindWallMountLocationByCategoryCommand",
+  "desc": "DetectionFindWallMountLocationByCategoryCommand — ribbon wrapper over the wall-mount MCP reader.",
+  "summary": "DetectionFindWallMountLocationByCategoryCommand — ribbon wrapper over the wall-mount MCP reader.",
+  "usecase": "Positioning hint for a wall-mounted device.",
+  "notfor": "Placement — that's a Placement command.",
+  "precondition": "Active document; room resolvable; target_kind supplied.",
+  "postcondition": "No mutation; tracker records recommendation.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_RoomId required OR single Room selection.\n2) Resolver_TargetKind required; validate against strategy registry.\n3) Delegate to DetectionFindWallMountLocationByCategory.GetAll(doc, roomId, targetKind).\n4) Tracker output + TaskDialog on Human path.",
+  "keywords": [
+    "detectionfindwallmountlocationbycategory",
+    "wall mount position",
+    "detect device location"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"detection_rules\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Finding wall-mount location…"
+    ],
+    "thinkingsteps": [
+      "Resolving room + kind…",
+      "Delegating to MCP reader…"
+    ],
+    "successprompts": [
+      "Recommendation returned for kind {target_kind}."
+    ],
+    "failureprompts": [
+      "Wall-mount detection failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

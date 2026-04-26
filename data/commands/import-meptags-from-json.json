@@ -1,0 +1,74 @@
+{
+  "class": "ImportMEPTagsFromJsonCommand",
+  "desc": "Debug command: Re-import MEP tags from JSON file.",
+  "summary": "Debug command: Re-import MEP tags from JSON file. Recreates tags at the exact same positions exported by ExportMEPTagsToJsonCommand. MATCHING STRATEGY: 1. ElementId match - fastest, works if same model 2. UniqueId match - works across models if element preserved 3. Category + Location match - works if element moved but type same",
+  "usecase": "User wants to restore tags after model changes. User needs to transfer tags between views. User wants to apply saved tag positions to updated model.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active view must be a plan, section, or 3D view. JSON file from ExportMEPTagsToJsonCommand must exist. Elements referenced in JSON should exist in current model.",
+  "postcondition": "Tags are created at the exact positions specified in the JSON. Elements are tagged using the matching strategy.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "import mep tags from json",
+    "import tags",
+    "restore tags",
+    "apply tags from json"
+  ],
+  "intent_patterns": [
+    "import * tags * json",
+    "restore * tags",
+    "* import tags",
+    "apply tags from *"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "JsonFilePath",
+      "type": "string",
+      "description": "Path to the JSON file",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "TagsCreated",
+      "type": "int",
+      "description": "Number of tags successfully created"
+    },
+    {
+      "name": "TagsSkipped",
+      "type": "int",
+      "description": "Number of tags skipped (element not found)"
+    },
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Command execution result"
+    }
+  ],
+  "related_commands": [
+    "ExportMEPTagsToJsonCommand",
+    "TagAllCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Importing MEP tags from JSON...",
+      "Restoring tag positions from saved file..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON file...",
+      "Matching elements to tag data...",
+      "Creating tags at saved positions..."
+    ],
+    "successprompts": [
+      "Successfully created {TagCount} tags!",
+      "Done! Restored tags from JSON file."
+    ],
+    "failureprompts": [
+      "Couldn't import tags: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,37 @@
+{
+  "class": "PlantroomPlaceFamilyInstancesFromSolverResultInActiveDocumentCommand",
+  "desc": "PlantroomPlaceFamilyInstancesFromSolverResultInActiveDocumentCommand — see Features Plan §8 Plantroom bucket for full workflow.",
+  "summary": "PlantroomPlaceFamilyInstancesFromSolverResultInActiveDocumentCommand — see Features Plan §8 Plantroom bucket for full workflow.",
+  "usecase": "See §Why and §Bot/Human in plan.",
+  "notfor": "Cross-cutting responsibilities outside this class's stated purpose.",
+  "precondition": "See §Preconditions in plan.",
+  "postcondition": "See §Outputs in plan.",
+  "sideeffects": "",
+  "logictree": "below.\n// CALLS:   ErrorManager, CentralWarningLogger, CommandTracker; see §Helpers\n//          in the plan for the specific Plantroom helper classes this calls.\n// CALLED BY: ribbon / Bot execute_command or upstream orchestrator command\n//            (see §CalledBy in plan).\n\nusing System;\nusing JetBrains.Annotations;\nusing Autodesk.Revit.Attributes;\nusing Autodesk.Revit.UI;\nusing Nice3point.Revit.Toolkit.External;\nusing MEPBridge.Revit.Tracking;\nusing MEPBridge.Revit.ErrorWiring;\nusing MEPBridge.Revit.WarningManager.Services;\nusing ErrorWire = MEPBridge.Revit.ErrorWiring.ErrorManager;\n\nnamespace MEPBridge.Revit.Plantroom.Commands\n{\n<summary>\nPlantroomPlaceFamilyInstancesFromSolverResultInActiveDocumentCommand — see Features Plan §8 Plantroom bucket for full workflow.\n</summary>\n<precondition>See §Preconditions in plan.</precondition>\n<postcondition>See §Outputs in plan.</postcondition>\n<usecase>See §Why and §Bot/Human in plan.</usecase>\n<notfor>Cross-cutting responsibilities outside this class's stated purpose.</notfor>\n<keywords>plantroom, plantroomplacefamilyinstancesfromsolverresultinactivedocumentcommand</keywords>\n<logictree>\n1. Transaction open. 2. For each placement: `doc.Create.NewFamilyInstance(position, symbol, level, NonStructural)` then `ElementTransformUtils.RotateElement` for orientation. 3. Write audit shared params via `StampConfigAuditParametersOnPlacedFamily`. 4. Optionally draw detail-line clearance halos via `PlantroomDrawClearanceHalosAsDetailLinesCommand`. 5. Commit Transaction.",
+  "keywords": [
+    "plantroomplacefamilyinstancesfromsolverresultinactivedocument"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running PlantroomPlaceFamilyInstancesFromSolverResultInActiveDocumentCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps per plan §8..."
+    ],
+    "successprompts": [
+      "PlantroomPlaceFamilyInstancesFromSolverResultInActiveDocumentCommand completed."
+    ],
+    "failureprompts": [
+      "PlantroomPlaceFamilyInstancesFromSolverResultInActiveDocumentCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

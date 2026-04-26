@@ -1,0 +1,36 @@
+{
+  "class": "WorksetManagerBatchRenameAndAssignElementsByCategoryCommand",
+  "desc": "Batch Rename Worksets And Assign Elements By Category.",
+  "summary": "Batch Rename Worksets And Assign Elements By Category.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Worksets/Worksets Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Worksets/Worksets Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "batch rename worksets",
+    "assign elements to workset by category",
+    "workset rename assign"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Batch Rename Worksets And Assign Elements By Category…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Batch Rename Worksets And Assign Elements By Category: completed."
+    ],
+    "failureprompts": [
+      "Batch Rename Worksets And Assign Elements By Category: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

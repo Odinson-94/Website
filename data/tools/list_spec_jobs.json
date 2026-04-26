@@ -1,0 +1,15 @@
+{
+  "name": "list_spec_jobs",
+  "desc": "List all specification generation jobs for the current project with status and timestamps.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "spec jobs",
+    "specification jobs",
+    "job list",
+    "generation jobs"
+  ]
+}

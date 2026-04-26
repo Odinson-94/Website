@@ -1,0 +1,59 @@
+{
+  "class": "ErrorManagerRunErrorCheckCommand",
+  "desc": "Runs the Error Manager rule engine for the active document and exports QA XML compatible with the clash navigator.",
+  "summary": "Runs the Error Manager rule engine for the active document and exports QA XML compatible with the clash navigator.",
+  "usecase": "User or AI triggers a full QA sweep before coordination review.",
+  "notfor": "Editing rule JSON (use dedicated authoring flows) or manipulating individual clash rows in the navigator.",
+  "precondition": "Active document should be saved so .mepbridge/qa/results.xml can be written beside the RVT. Shared parameter file must be writable when first binding Error / Error Type.",
+  "postcondition": "results.xml is refreshed (or an error JSON is stored in LastQueryResult).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "run error check",
+    "check errors",
+    "QA check",
+    "run QA",
+    "error manager"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "ruleSetName",
+      "type": "string",
+      "description": "Optional rule set name (without .json) from project or user RuleSets folder",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Summary counts and output path"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Error Manager checks…",
+      "Starting QA rule sweep for this model…"
+    ],
+    "thinkingsteps": [
+      "Ensuring Error / Error Type shared parameters are bound…",
+      "Loading the requested rule set (or all discoverable rules)…",
+      "Executing rules and aggregating findings…",
+      "Writing QA results to results.xml…"
+    ],
+    "successprompts": [
+      "Error check finished — {count} findings written to QA XML.",
+      "QA sweep complete with summary: total {total}, active {active}, new {newCount}, resolved {resolved}."
+    ],
+    "failureprompts": [
+      "Error Manager run failed: {error}",
+      "Could not complete QA check — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,23 @@
+{
+  "name": "drawing_exporter_read_sheets",
+  "desc": "Read sheets from the Drawing Exporter. Returns sheet list and selected sheets. Supports filtering by revision, prefix, discipline, group, selection status, or export status.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "filter",
+      "type": "string",
+      "description": "Optional JSON filter object with keys: filter_by_revision, filter_by_prefix, filter_by_discipline, filter_by_group, filter_by_selected, filter_by_status.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "sheets",
+    "list sheets",
+    "read sheets",
+    "sheet list",
+    "export sheets"
+  ]
+}

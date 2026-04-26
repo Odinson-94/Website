@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverFindCorridorFromPointCommand",
+  "desc": "ClashSolverFindCorridorFromPointCommand — PDF FUNCTION \"FIND_CORRIDOR\".",
+  "summary": "ClashSolverFindCorridorFromPointCommand — PDF FUNCTION \"FIND_CORRIDOR\". Thin wrapper over SpaceAnalysisFindCorridorWidthFromPoint that records the solver context in CommandTracker.",
+  "usecase": "Solver branch decision for lateral service moves along a corridor.",
+  "notfor": "Actual movement — MoveHorizontallyIntoSpace command does that.",
+  "precondition": "Active document; default 3D view; either (x,y,z) or a single-element selection.",
+  "postcondition": "No model mutation; audit entry recorded.",
+  "sideeffects": "",
+  "logictree": "1) Resolve point: (Resolver_X, Resolver_Y, Resolver_Z) if Bot; else BB centre of single selected element.\n2) WireError if no valid point.\n3) Delegate to SpaceAnalysisFindCorridorWidthFromPoint.GetAll(doc, x, y, z, max_distance_ft).\n4) Save probe + result into tracker outputs.\n5) Human path pops a TaskDialog; Bot emits JSON only.\n6) WireError on no-3d-view / no-walls-both-axes; WireFault on exception.",
+  "keywords": [
+    "clashsolverfindcorridorfrompoint",
+    "find corridor width",
+    "clash solver lateral move probe"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Probing corridor width at point…"
+    ],
+    "thinkingsteps": [
+      "Resolving point source…",
+      "Delegating to SpaceAnalysisFindCorridorWidthFromPoint…"
+    ],
+    "successprompts": [
+      "Corridor {corridor_width_mm} mm; long axis {corridor_long_axis}."
+    ],
+    "failureprompts": [
+      "Corridor probe failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

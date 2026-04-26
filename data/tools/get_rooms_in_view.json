@@ -1,0 +1,15 @@
+{
+  "name": "get_rooms_in_view",
+  "desc": "Get all rooms visible in the current view. Returns room name, number, level, area.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "rooms in view",
+    "visible rooms",
+    "rooms on screen",
+    "current view rooms"
+  ]
+}

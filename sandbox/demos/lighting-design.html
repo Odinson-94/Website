@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lighting Design — Demos — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/shared-styles.css">
+<link rel="stylesheet" href="/sandbox/sandbox.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+
+<main class="docs-content demo-detail">
+
+  <div class="crumbs">
+    <a href="/sandbox/demos/">Demos</a>
+    &nbsp;›&nbsp; <a href="/sandbox/demos/#cat-discipline-design">Discipline Design</a>
+    &nbsp;›&nbsp; Lighting Design
+  </div>
+
+  <h1 id="overview">Lighting Design</h1>
+
+  <div class="meta-row">
+    <span class="pill pill-pillar">Discipline Design</span>
+    <span class="pill pill-live">Live</span>
+    <span class="pill pill-category">1:18</span>
+  </div>
+
+  <p class="lead">Lux-driven layout, then placement of every fitting on the ceiling grid.</p>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/lighting-design/thumbnail.svg"
+           data-src="/sandbox/demo-assets/lighting-design/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'placeholder · drop lighting-design/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="what-it-does">What it does</h2>
+  <p>
+    Lighting Design is part of the <strong>Discipline Design</strong> set in BUILD MEP. Lux-driven layout, then placement of every fitting on the ceiling grid.
+    The video above shows the workflow end-to-end against a sample model.
+  </p>
+
+  <h2 id="steps">How it works</h2>
+  <ol id="steps-list">
+    <li>Open the chat panel and ask &quot;lighting design&quot;</li>
+    <li>BUILD MEP shows what it's about to do, then runs it against the active model</li>
+    <li>Review the result inline; commit, undo, or refine with a follow-up prompt</li>
+  </ol>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <p>
+    BUILD MEP narrates each step as it happens. Pre-prompts, thinking steps,
+    success and failure prompts are all defined per command (see the
+    <a href="/sandbox/docs/commands/extend-all-connectors.html">command documentation</a>
+    for an example of the underlying structure).
+  </p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table">
+    <tbody>
+      <tr><th style="width:140px;">Category</th><td><a href="/sandbox/demos/#cat-discipline-design">Discipline Design</a></td></tr>
+      <tr><th>Tools</th><td><a href="/sandbox/docs/tools/inventory.html">Browse the 191 MCP tools</a></td></tr>
+      <tr><th>Commands</th><td><a href="/sandbox/docs/commands/inventory.html">Browse the 163 Revit commands</a></td></tr>
+      <tr><th>Asset folder</th><td><code>sandbox/demo-assets/lighting-design/</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="nav-prev-next">
+    <a href="/sandbox/demos/fire-alarm-design.html"><span class="arrow">←</span> Fire Alarm Design</a>
+    <a href="/sandbox/demos/">All demos</a>
+    <a href="/sandbox/demos/ventilation-design.html">Ventilation Design <span class="arrow">→</span></a>
+  </div>
+
+</main>
+
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  // Lazy-attach src so the page is light until the user actually plays
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

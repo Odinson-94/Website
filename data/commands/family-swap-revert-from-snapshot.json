@@ -1,0 +1,35 @@
+{
+  "class": "FamilySwapRevertFromSnapshotCommand",
+  "desc": "Revert a previous family swap using the snapshot recorded by Snapshot infra.",
+  "summary": "Revert a previous family swap using the snapshot recorded by Snapshot infra.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "family swap revert from snapshot",
+    "family_swap_revert_from_snapshot"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running family swap revert from snapshot…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "family swap revert from snapshot: done."
+    ],
+    "failureprompts": [
+      "family swap revert from snapshot failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

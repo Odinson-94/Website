@@ -1,0 +1,37 @@
+{
+  "class": "PlantroomDrawClearanceHalosAsDetailLinesCommand",
+  "desc": "PlantroomDrawClearanceHalosAsDetailLinesCommand — see Features Plan §8 Plantroom bucket for full workflow.",
+  "summary": "PlantroomDrawClearanceHalosAsDetailLinesCommand — see Features Plan §8 Plantroom bucket for full workflow.",
+  "usecase": "See §Why and §Bot/Human in plan.",
+  "notfor": "Cross-cutting responsibilities outside this class's stated purpose.",
+  "precondition": "See §Preconditions in plan.",
+  "postcondition": "See §Outputs in plan.",
+  "sideeffects": "",
+  "logictree": "below.\n// CALLS:   ErrorManager, CentralWarningLogger, CommandTracker; see §Helpers\n//          in the plan for the specific Plantroom helper classes this calls.\n// CALLED BY: ribbon / Bot execute_command or upstream orchestrator command\n//            (see §CalledBy in plan).\n\nusing System;\nusing JetBrains.Annotations;\nusing Autodesk.Revit.Attributes;\nusing Autodesk.Revit.UI;\nusing Nice3point.Revit.Toolkit.External;\nusing MEPBridge.Revit.Tracking;\nusing MEPBridge.Revit.ErrorWiring;\nusing MEPBridge.Revit.WarningManager.Services;\nusing ErrorWire = MEPBridge.Revit.ErrorWiring.ErrorManager;\n\nnamespace MEPBridge.Revit.Plantroom.Commands\n{\n<summary>\nPlantroomDrawClearanceHalosAsDetailLinesCommand — see Features Plan §8 Plantroom bucket for full workflow.\n</summary>\n<precondition>See §Preconditions in plan.</precondition>\n<postcondition>See §Outputs in plan.</postcondition>\n<usecase>See §Why and §Bot/Human in plan.</usecase>\n<notfor>Cross-cutting responsibilities outside this class's stated purpose.</notfor>\n<keywords>plantroom, plantroomdrawclearancehalosasdetaillinescommand</keywords>\n<logictree>\nSee plan §8 for workflow.",
+  "keywords": [
+    "plantroomdrawclearancehalosasdetaillines"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running PlantroomDrawClearanceHalosAsDetailLinesCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps per plan §8..."
+    ],
+    "successprompts": [
+      "PlantroomDrawClearanceHalosAsDetailLinesCommand completed."
+    ],
+    "failureprompts": [
+      "PlantroomDrawClearanceHalosAsDetailLinesCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

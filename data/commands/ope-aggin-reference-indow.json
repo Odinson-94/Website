@@ -1,0 +1,41 @@
+{
+  "class": "OpenTaggingPreferencesWindowCommand",
+  "desc": "Opens the Tagging Preferences window for managing auto-tag settings and tag placement rules.",
+  "summary": "Opens the Tagging Preferences window for managing auto-tag settings and tag placement rules. Uses TaggingPreferencesWindow.ShowSingleton for singleton behaviour.",
+  "usecase": "User wants to view or edit tagging preferences, auto-tag settings, or tag placement rules.",
+  "notfor": "Placing individual tags on elements (use Tag commands instead).",
+  "precondition": "Revit is running.",
+  "postcondition": "Tagging Preferences window is visible.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tagging preferences",
+    "tag settings",
+    "auto tag",
+    "open tagging preferences"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening Tagging Preferences…",
+      "Loading tag settings…"
+    ],
+    "thinkingsteps": [
+      "Reading tagging preferences from project…",
+      "Loading tag families and placement rules…"
+    ],
+    "successprompts": [
+      "Tagging Preferences window is open."
+    ],
+    "failureprompts": [
+      "Could not open Tagging Preferences: {error}"
+    ]
+  },
+  "has_restapi": false
+}

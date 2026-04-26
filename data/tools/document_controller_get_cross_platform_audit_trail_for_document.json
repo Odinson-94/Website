@@ -1,0 +1,23 @@
+{
+  "name": "document_controller_get_cross_platform_audit_trail_for_document",
+  "desc": "Returns complete audit trail for a document: uploads, downloads, status changes, comparisons, issues across all platforms.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "BS 1192 document code",
+      "required": true
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "description": "Maximum number of audit entries to return (default 50)",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

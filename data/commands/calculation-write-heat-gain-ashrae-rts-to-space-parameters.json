@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteHeatGainAshraeRtsToSpaceParametersCommand",
+  "desc": "CalculationWriteHeatGainAshraeRtsToSpaceParametersCommand — ASHRAE RTS writer.",
+  "summary": "CalculationWriteHeatGainAshraeRtsToSpaceParametersCommand — ASHRAE RTS writer. Baseline = Simple peak + method=\"ashrae_rts_baseline_peak\" tag. Extend with RTS coefficient table when loaded.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteheatgainashraertstospaceparameters",
+    "write ashrae rts gain"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

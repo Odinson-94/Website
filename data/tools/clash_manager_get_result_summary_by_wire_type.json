@@ -1,0 +1,12 @@
+{
+  "name": "clash_manager_get_result_summary_by_wire_type",
+  "desc": "clash_manager_get_result_summary_by_wire_type — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash manager get result summary by wire type"
+  ]
+}

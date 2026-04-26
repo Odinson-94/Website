@@ -1,0 +1,32 @@
+{
+  "class": "DrainageAddWashHandBasinPipingFromConfigCommand",
+  "desc": "DrainageAddWashHandBasinPipingFromConfigCommand — WHB variant.",
+  "summary": "DrainageAddWashHandBasinPipingFromConfigCommand — WHB variant. Identical contract to the bathroom variant; different default ChangeGroup so audit trails separate.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "drainageaddwashhandbasinpipingfromconfig",
+    "add whb piping",
+    "drainage whb stage"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

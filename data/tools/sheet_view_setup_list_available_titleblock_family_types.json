@@ -1,0 +1,13 @@
+{
+  "name": "sheet_view_setup_list_available_titleblock_family_types",
+  "desc": "List available titleblock family types loaded in the document, plus those discoverable in the user/business family folders.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "sheet_view_setup_list_available_titleblock_family_types",
+    "sheet view setup list available titleblock family types"
+  ]
+}

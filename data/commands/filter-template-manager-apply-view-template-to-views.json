@@ -1,0 +1,36 @@
+{
+  "class": "FilterTemplateManagerApplyViewTemplateToViewsCommand",
+  "desc": "Applies a view template to a list of view IDs.",
+  "summary": "Applies a view template to a list of view IDs.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "apply view template",
+    "filter_template_manager_apply_view_template_to_views",
+    "set template on views"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Applying template to views…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Template applied to {AppliedCount} view(s)."
+    ],
+    "failureprompts": [
+      "Apply failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

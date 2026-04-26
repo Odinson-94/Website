@@ -1,0 +1,15 @@
+{
+  "name": "commit_parameter_editor_changes_to_model",
+  "desc": "Commit dirty Parameter Editor rows to the Revit model.",
+  "bridge": "ParameterEditor",
+  "category": "action",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "apply parameters",
+    "commit parameters",
+    "save parameters",
+    "parameter editor apply"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "class": "ElementAlignmentMatchSlopeFromReferenceCommand",
+  "desc": "Rotates each moving element about its start point so its direction vector matches the reference element's direction.",
+  "summary": "Rotates each moving element about its start point so its direction vector matches the reference element's direction. Planar cases rotate about Z (safer for hosted families).",
+  "usecase": "Align a pipe / duct / tray to match a reference direction.",
+  "notfor": "Intersection-point-based slope alignment (use MatchSlopeIntersection). Height-only alignment.",
+  "precondition": "Active document. 1 reference + ≥1 mover resolved. Both have recoverable directions.",
+  "postcondition": "Each mover rotated in place so |dir − refDir| ≈ 0.",
+  "sideeffects": "",
+  "logictree": "1) Resolve reference + movers. 2) Extract reference direction. 3) Transaction: per mover compute rotation about Z (or full 3D if Z component ≠ 0) and call RotateElement. 4) Commit, log. 5) Failure → WireFault + rollback.",
+  "keywords": [
+    "elementalignmentmatchslopefromreference"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running ElementAlignmentMatchSlopeFromReferenceCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "ElementAlignmentMatchSlopeFromReferenceCommand completed successfully."
+    ],
+    "failureprompts": [
+      "ElementAlignmentMatchSlopeFromReferenceCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

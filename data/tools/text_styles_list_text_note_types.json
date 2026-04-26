@@ -1,0 +1,14 @@
+{
+  "name": "text_styles_list_text_note_types",
+  "desc": "List every TextNoteType in the document with id, name, font name, text size mm, bold/italic/underline flags, width factor, and background.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "text_styles_list_text_note_types",
+    "list text note types",
+    "list text styles"
+  ]
+}

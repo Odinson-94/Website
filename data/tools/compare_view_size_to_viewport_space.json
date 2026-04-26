@@ -1,0 +1,39 @@
+{
+  "name": "compare_view_size_to_viewport_space",
+  "desc": "Check whether a view size fits inside available viewport space.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "viewWidthMm",
+      "type": "number",
+      "description": "View width in mm.",
+      "required": true
+    },
+    {
+      "name": "viewHeightMm",
+      "type": "number",
+      "description": "View height in mm.",
+      "required": true
+    },
+    {
+      "name": "availableWidthMm",
+      "type": "number",
+      "description": "Available width in mm.",
+      "required": true
+    },
+    {
+      "name": "availableHeightMm",
+      "type": "number",
+      "description": "Available height in mm.",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "view fits",
+    "viewport fit check",
+    "compare view size"
+  ]
+}

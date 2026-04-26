@@ -1,0 +1,89 @@
+{
+  "class": "PlaceSVPCommand",
+  "desc": "Command: Places a Soil Vent Pipe (SVP) at a user-selected location.",
+  "summary": "Command: Places a Soil Vent Pipe (SVP) at a user-selected location. Uses PlaceSVP for core placement logic. Uses MEPBridge.Revit.SheetSetup.Utilities.ListLevels for level fallback. Uses DrawPipe for pipe geometry creation. WORKFLOW: 1. Lists available piping systems via PlaceSVP.GetAvailableSystems 2. Gets current level from active view 3. Matches and sets drainage system type (Soil/SVP) 4. Prompts user to select placement location 5. Draws 3m vertical pipe upward from selected point 6. Draws 300mm extension downward from selected point",
+  "usecase": "User needs to place a soil vent pipe stack at a specific location. User wants to quickly add an SVP to a bathroom or WC location. User is laying out drainage system with vertical stacks.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least one piping system type must exist. User must be in a plan view to select the placement location. A level must exist in the model (used for Z elevation).",
+  "postcondition": "Two connected vertical pipes are created at the selected location: - Main SVP: 3000mm upward from level elevation - Extension: 300mm downward from level elevation Pipes use the drainage/soil piping system type.",
+  "sideeffects": "Creates pipe elements in the model that persist after command completion.",
+  "logictree": "check: document.isOpen → continue\rcheck: pipingSystemTypes.any → continue, else → error \"No piping systems\"\rcheck: activeView.isPlan → getLevel, else → promptForLevel\raction: findDrainageSystem → setSoilDrainageActive\raction: promptUserForLocation → getXYPoint\raction: createUpwardPipe(3000mm) → addToModel\raction: createDownwardExtension(300mm) → addToModel\rresolve: success → showSuccess, else → showError",
+  "keywords": [
+    "svp",
+    "soil vent pipe",
+    "drainage stack",
+    "soil stack",
+    "vent stack",
+    "vertical pipe"
+  ],
+  "intent_patterns": [
+    "place * svp",
+    "add * soil vent",
+    "create * drainage stack",
+    "insert * vent pipe"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "InsertionPoint",
+      "type": "XYZ",
+      "description": "Location to place the SVP",
+      "prompt": "Select a point to place the SVP"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "UpwardLength",
+      "type": "double",
+      "description": "Height of main SVP in mm",
+      "default": "3000"
+    },
+    {
+      "name": "DownwardLength",
+      "type": "double",
+      "description": "Extension below level in mm",
+      "default": "300"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "MainPipe",
+      "type": "Pipe",
+      "description": "The main upward SVP pipe"
+    },
+    {
+      "name": "ExtensionPipe",
+      "type": "Pipe",
+      "description": "The downward extension pipe"
+    }
+  ],
+  "related_commands": [
+    "PlacePipeCommand",
+    "PlaceDrainageFixtureCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Placing a Soil Vent Pipe at your selected location...",
+      "Setting up SVP placement...",
+      "Preparing to place your drainage stack..."
+    ],
+    "thinkingsteps": [
+      "Checking available piping systems...",
+      "Detecting current level from active view...",
+      "Setting drainage system type active...",
+      "Waiting for insertion point selection...",
+      "Creating vertical SVP pipes..."
+    ],
+    "successprompts": [
+      "SVP placed successfully! Created {MainPipe} and {ExtensionPipe}.",
+      "Done! Drainage stack is ready at the selected location.",
+      "SVP created — 3m up, 300mm down from level."
+    ],
+    "failureprompts": [
+      "Could not place SVP: {error}",
+      "SVP placement failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

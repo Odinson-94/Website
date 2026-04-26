@@ -1,0 +1,94 @@
+{
+  "class": "CreateReflectedCeilingPlanCommand",
+  "desc": "Command: Creates a reflected ceiling plan view on a target level with optional scope box and template.",
+  "summary": "Command: Creates a reflected ceiling plan view on a target level with optional scope box and template. Delegates to CreateReflectedCeilingPlan.GetAll for the actual view creation. Executable via execute_command (orchestrator) — not an MCP read-only tool. Called by SheetSetUpCommand during automated sheet setup. Related: CreateFloorplanCommand for floor plans.",
+  "usecase": "User wants to create an RCP/ceiling plan view for a level. User is setting up views during sheet setup workflow.",
+  "notfor": "Creating floor plans (use CreateFloorplanCommand). Creating section views (use CreateSectionFromGridlineCommand).",
+  "precondition": "Active document must be open. Target level must exist in the model.",
+  "postcondition": "A new ViewPlan (ReflectedCeilingPlan) is created on the given level with optional scope box and template applied.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create reflected ceiling plan",
+    "create rcp",
+    "create ceiling plan",
+    "ceiling plan view"
+  ],
+  "intent_patterns": [
+    "create * ceiling plan",
+    "create * rcp",
+    "reflected ceiling plan * level"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "levelName",
+      "type": "string",
+      "description": "Target level name (required if levelId not provided).",
+      "default": ""
+    },
+    {
+      "name": "levelId",
+      "type": "integer",
+      "description": "Target level id (optional).",
+      "default": ""
+    },
+    {
+      "name": "viewName",
+      "type": "string",
+      "description": "Optional view name.",
+      "default": ""
+    },
+    {
+      "name": "scopeBoxName",
+      "type": "string",
+      "description": "Optional scope box name to apply.",
+      "default": ""
+    },
+    {
+      "name": "templateName",
+      "type": "string",
+      "description": "Optional template name to apply.",
+      "default": ""
+    },
+    {
+      "name": "scale",
+      "type": "integer",
+      "description": "Optional view scale (default 100).",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "object",
+      "description": "Created view id, name, level, type."
+    }
+  ],
+  "related_commands": [
+    "CreateFloorplanCommand",
+    "CopyMonitorLevelsCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating reflected ceiling plan...",
+      "Setting up a new RCP view..."
+    ],
+    "thinkingsteps": [
+      "Resolving target level...",
+      "Creating reflected ceiling plan view...",
+      "Applying scope box and template..."
+    ],
+    "successprompts": [
+      "Reflected ceiling plan created: {viewName}",
+      "Done! RCP is ready on {levelName}"
+    ],
+    "failureprompts": [
+      "Could not create reflected ceiling plan: {error}",
+      "RCP creation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

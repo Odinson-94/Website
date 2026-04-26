@@ -1,0 +1,35 @@
+{
+  "class": "ProjectSettingsSetProjectInformationFieldCommand",
+  "desc": "Set a single Project Information field by name.",
+  "summary": "Set a single Project Information field by name.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings set project information field",
+    "project_settings_set_project_information_field"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running project settings set project information field…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "project settings set project information field: done."
+    ],
+    "failureprompts": [
+      "project settings set project information field failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

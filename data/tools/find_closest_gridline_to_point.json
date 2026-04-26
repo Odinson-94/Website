@@ -1,0 +1,35 @@
+{
+  "name": "find_closest_gridline_to_point",
+  "desc": "Find the closest gridline to a point or room centroid.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "xMm",
+      "type": "number",
+      "description": "X coordinate in mm (used when roomId not provided).",
+      "required": false
+    },
+    {
+      "name": "yMm",
+      "type": "number",
+      "description": "Y coordinate in mm (used when roomId not provided).",
+      "required": false
+    },
+    {
+      "name": "roomId",
+      "type": "integer",
+      "description": "Optional room ID to use room centroid as point.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "closest gridline",
+    "nearest grid",
+    "grid to point",
+    "find grid",
+    "grid distance"
+  ]
+}

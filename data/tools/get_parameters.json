@@ -1,0 +1,31 @@
+{
+  "name": "get_parameters",
+  "desc": "Read all parameters from any Revit element(s) by ElementId. Returns every parameter with its name, current value, type, and whether it's writable. For titleblocks, also returns the owning sheet's parameters (Checked By, Designed By, etc.). Always call this first before setting parameters so you can see what's actually available and pick the right one contextually.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "element_ids",
+      "type": "string",
+      "description": "Comma-separated ElementIds (e.g. '12345' or '12345,67890'). Max 50 elements.",
+      "required": true
+    },
+    {
+      "name": "parameter_names",
+      "type": "string",
+      "description": "Optional comma-separated filter. Omit this to return ALL parameters — you should usually omit it so you can see everything available and pick the right one.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "get parameters",
+    "read parameters",
+    "element parameters",
+    "parameter values",
+    "what parameters",
+    "show parameters",
+    "check parameter"
+  ]
+}

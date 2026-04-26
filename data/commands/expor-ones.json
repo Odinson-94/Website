@@ -1,0 +1,60 @@
+{
+  "class": "ExportZonesCommand",
+  "desc": "Command: Exports all room boundaries to JSON files for AutoCAD import.",
+  "summary": "Command: Exports all room boundaries to JSON files for AutoCAD import. Creates one JSON file per level in the same folder as the Revit model. WORKFLOW: 1. User picks a base point (export origin) 2. Command retrieves all rooms from host + linked models 3. Creates ZoneDataStorage for each room with boundary coordinates 4. Uses ContextZones to filter and format export data 5. Exports one JSON file per level to model folder",
+  "usecase": "User wants to export room boundaries for use in AutoCAD. User needs zone layouts for 2D coordination drawings. User wants to transfer spatial data between Revit and AutoCAD.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open and saved (for export path). At least one room must exist in the model or linked models.",
+  "postcondition": "JSON files created in the Revit model folder, one per level. Files named: Zones_{LevelName}.json Coordinates are in mm, relative to the selected base point.",
+  "sideeffects": "Creates JSON files in the model folder. Does not modify any Revit elements.",
+  "logictree": "check: document.isSaved → continue, else → error (need save location)\raction: promptUserToPickBasePoint → getBasePoint\raction: getAllRoomsIncludingLinks → SearchInsideCurrentModel.GetAllRoomsIncludingLinks\rcheck: rooms.count > 0 → continue, else → error (no rooms found)\rloop: foreach room → create ZoneDataStorage\raction: groupByLevel → ContextZones.CreateExportModelsForAllLevels\rloop: foreach level → saveJsonFile\rresolve: success → showSuccess, else → showError",
+  "keywords": [
+    "export zones",
+    "export rooms",
+    "room boundaries",
+    "zone JSON",
+    "AutoCAD zones",
+    "room export",
+    "export room boundaries"
+  ],
+  "intent_patterns": [
+    "export * zones",
+    "export * rooms * AutoCAD",
+    "export * room * boundaries",
+    "zones * JSON"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Origin point for coordinate transformation",
+      "prompt": "Pick a base point (export origin)"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "ExportedFiles",
+      "type": "List<string>",
+      "description": "Paths to exported JSON files"
+    },
+    {
+      "name": "ZoneCount",
+      "type": "int",
+      "description": "Total number of zones exported"
+    },
+    {
+      "name": "LevelCount",
+      "type": "int",
+      "description": "Number of levels exported"
+    }
+  ],
+  "related_commands": [
+    "ExportJSON",
+    "DrawZonesFromJSON"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

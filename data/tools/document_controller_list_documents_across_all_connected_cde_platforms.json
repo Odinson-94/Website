@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_list_documents_across_all_connected_cde_platforms",
+  "desc": "Returns unified document list from all connected CDE platforms with code, title, revision, suitability, platform, date, originator.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project identifier to scope the listing",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

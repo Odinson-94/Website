@@ -1,0 +1,39 @@
+{
+  "name": "read_memory",
+  "desc": "Read Claude's persistent memory. Scopes: 'global' (user prefs, business logic, skillset), 'domain' (discipline-specific — provide domain key like '63_lighting'), 'chat' (this conversation), 'all'. Use 'list_domains' scope to see available domain folders.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "Scope: 'global', 'domain', 'chat', 'all' (default), or 'list_domains'",
+      "required": false
+    },
+    {
+      "name": "file",
+      "type": "string",
+      "description": "For global scope: user_preferences, business_logic, or skillset",
+      "required": false
+    },
+    {
+      "name": "domain",
+      "type": "string",
+      "description": "For domain scope: folder name e.g. '63_lighting', '52_drainage', '57_ventilation'",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "read memory",
+    "memory",
+    "recall",
+    "preferences",
+    "business logic",
+    "skillset",
+    "domain memory",
+    "chat notes",
+    "persistent memory"
+  ]
+}

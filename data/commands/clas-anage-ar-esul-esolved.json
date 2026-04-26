@@ -1,0 +1,45 @@
+{
+  "class": "ClashManagerMarkResultResolvedCommand",
+  "desc": "ClashManagerMarkResultResolvedCommand — shortcut for state → \"resolved\" with standard audit comment.",
+  "summary": "ClashManagerMarkResultResolvedCommand — shortcut for state → \"resolved\" with standard audit comment.",
+  "usecase": "Most frequent state transition — closing a reviewed clash.",
+  "notfor": "Non-resolved transitions — use UpdateResultStatusCommand.",
+  "precondition": "Resolver_ClashId resolvable; current state permits transition to resolved.",
+  "postcondition": "Delegates to ClashManagerUpdateResultStatusCommand.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ClashId required. 2) Build audit comment \"Resolved by {user} at {utc}.\" + optional justification. 3) Delegate to UpdateResultStatusCommand with to_state=resolved. 4) Emit result.",
+  "keywords": [
+    "clashmanagermarkresultresolved",
+    "mark clash resolved",
+    "qa done shortcut"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Marking clash resolved…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ClashManagerUpdateResultStatusCommand…"
+    ],
+    "successprompts": [
+      "Clash marked resolved."
+    ],
+    "failureprompts": [
+      "Mark resolved failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

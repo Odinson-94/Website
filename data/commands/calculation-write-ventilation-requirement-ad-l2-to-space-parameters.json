@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteVentilationRequirementAdL2ToSpaceParametersCommand",
+  "desc": "Writes AD L2 max(per-person, per-area) ventilation.",
+  "summary": "Writes AD L2 max(per-person, per-area) ventilation.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteventilationrequirementadl2tospaceparameters",
+    "write ad l2 ventilation"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

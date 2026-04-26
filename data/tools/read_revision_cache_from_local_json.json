@@ -1,0 +1,15 @@
+{
+  "name": "read_revision_cache_from_local_json",
+  "desc": "Reads the local JSON revision cache (sheets + revisions) without needing the model open. Returns cached data or null if no cache exists.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "revision cache",
+    "cached revisions",
+    "offline revisions",
+    "quick revision check"
+  ]
+}

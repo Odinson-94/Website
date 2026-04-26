@@ -1,0 +1,12 @@
+{
+  "name": "architecture_get_client_comment_detail_by_record_id",
+  "desc": "architecture_get_client_comment_detail_by_record_id — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "architecture get client comment detail by record id"
+  ]
+}

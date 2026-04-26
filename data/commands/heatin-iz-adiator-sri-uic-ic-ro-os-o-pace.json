@@ -1,0 +1,32 @@
+{
+  "class": "HeatingSizeRadiatorsBsriaQuickPickFromLossForSpaceCommand",
+  "desc": "HeatingSizeRadiatorsBsriaQuickPickFromLossForSpaceCommand — quick-pick sizing without EN 442 correction.",
+  "summary": "HeatingSizeRadiatorsBsriaQuickPickFromLossForSpaceCommand — quick-pick sizing without EN 442 correction.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "heatingsizeradiatorsbsriaquickpickfromlossforspace",
+    "bsria quick pick radiator",
+    "scheme radiator sizing"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

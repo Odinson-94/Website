@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupSetSheetParameterCommand",
+  "desc": "Set a parameter value on a sheet.",
+  "summary": "Set a parameter value on a sheet.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup set sheet parameter",
+    "sheet_view_setup_set_sheet_parameter"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup set sheet parameter…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup set sheet parameter: done."
+    ],
+    "failureprompts": [
+      "sheet view setup set sheet parameter failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

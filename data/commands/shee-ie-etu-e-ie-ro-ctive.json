@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupSetViewCropActiveCommand",
+  "desc": "Toggle the crop region active state on a view.",
+  "summary": "Toggle the crop region active state on a view.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup set view crop active",
+    "sheet_view_setup_set_view_crop_active"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup set view crop active…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup set view crop active: done."
+    ],
+    "failureprompts": [
+      "sheet view setup set view crop active failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

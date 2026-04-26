@@ -1,0 +1,17 @@
+{
+  "name": "list_grids",
+  "desc": "List all grids in the document with name and direction.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list grids",
+    "grid list",
+    "what grids",
+    "show grids",
+    "all grids",
+    "structural grids"
+  ]
+}

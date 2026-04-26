@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteVentilationRequirementCibsePerPersonToSpaceParametersCommand",
+  "desc": "CalculationWriteVentilationRequirementCibsePerPersonToSpaceParametersCommand — writes VentilationRequiredLs on Room via per-person calc.",
+  "summary": "CalculationWriteVentilationRequirementCibsePerPersonToSpaceParametersCommand — writes VentilationRequiredLs on Room via per-person calc.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteventilationrequirementcibseperpersontospaceparameters",
+    "write cibse per person ventilation"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

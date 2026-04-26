@@ -1,0 +1,8 @@
+{
+  "slug": "place-fan-coil-units",
+  "category": "revit-utilities",
+  "title": "Place Fan Coil Units in Room",
+  "desc": "Place FCUs in every room based on heat load and clearances.",
+  "duration": "0:44",
+  "status": "live"
+}

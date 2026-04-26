@@ -1,0 +1,35 @@
+{
+  "name": "ui_toggle_press",
+  "desc": "Press a UI button/toggle in any open BUILD X WebView2 by data-test-id or bridge action name. The press routes through the React handler → postMessage → C# bridge so the wire fires identically to a human click.",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "window",
+      "type": "string",
+      "description": "Target WebView2 key (e.g. Main, DrawingExporter, ParameterEditor, sheet-view-setup, error-warning-manager).",
+      "required": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "description": "Bridge action name (e.g. createSheetWithNumberAndTitleblock) OR data-test-id selector value (e.g. btn-refresh-all).",
+      "required": true
+    },
+    {
+      "name": "payload_json",
+      "type": "string",
+      "description": "Optional JSON string of arguments. Passed as the second arg to the bridge function or merged into the postMessage payload.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "press ui toggle",
+    "ui toggle press",
+    "click button webview",
+    "fire react handler",
+    "simulate button click"
+  ]
+}

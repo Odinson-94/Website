@@ -1,0 +1,111 @@
+{
+  "class": "FilterSelectionCommand",
+  "desc": "Filters the current selection, keeping only elements matching the filter criteria.",
+  "summary": "Filters the current selection, keeping only elements matching the filter criteria. Supports keep/remove by category, family, type, and deep parameter search. Uses SearchParameterValue for deep parameter matching. Uses CommandExecutor to read filter parameters from Claude. Follow up with SelectByCategoryCommand or SelectByFamilyNameCommand for initial selection. Related: SelectAllInstancesCommand for model-wide family selection.",
+  "usecase": "User selected all lights, now wants to keep only emergency lights (keepParameter=\"emergency\"). User selected all electrical fixtures, now wants to remove exit signs (removeFamily=\"exit\"). User wants to narrow selection by type name (keepType=\"Type A\").",
+  "notfor": "Initial element selection (use SelectByCategoryCommand, SelectByFamilyNameCommand first). Selecting by parameter search from scratch (use SelectByParameterCommand).",
+  "precondition": "Elements must be selected in Revit. Use SelectByCategoryCommand or SelectByFamilyNameCommand first.",
+  "postcondition": "Revit selection is narrowed to only elements passing the filter. Returns JSON with originalCount, filteredCount, removed count, and breakdown.",
+  "sideeffects": "",
+  "logictree": "check: currentSelection.count == 0 → error with suggestion\rapply: keepCategory, keepFamily, keepType, keepParameter → AND logic (all must pass)\rapply: removeFamily, removeCategory → exclude matching\rcheck: invert == \"true\" → swap kept/removed",
+  "keywords": [
+    "filter selection",
+    "narrow selection",
+    "refine selection",
+    "keep only",
+    "remove from selection",
+    "filter by"
+  ],
+  "intent_patterns": [
+    "filter * selection",
+    "keep only *",
+    "remove * from selection",
+    "narrow * selection"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "keepCategory",
+      "type": "string",
+      "description": "Keep only elements of this category",
+      "default": ""
+    },
+    {
+      "name": "keepFamily",
+      "type": "string",
+      "description": "Keep only elements whose family name contains this",
+      "default": ""
+    },
+    {
+      "name": "keepType",
+      "type": "string",
+      "description": "Keep only elements whose type name contains this",
+      "default": ""
+    },
+    {
+      "name": "keepParameter",
+      "type": "string",
+      "description": "Keep elements where ANY parameter contains this text (deep search)",
+      "default": ""
+    },
+    {
+      "name": "removeFamily",
+      "type": "string",
+      "description": "Remove elements whose family name contains this",
+      "default": ""
+    },
+    {
+      "name": "removeCategory",
+      "type": "string",
+      "description": "Remove elements of this category",
+      "default": ""
+    },
+    {
+      "name": "invert",
+      "type": "bool",
+      "description": "Invert the filter result",
+      "default": "false"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Filtered element IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Before/after counts and breakdown"
+    }
+  ],
+  "related_commands": [
+    "SelectByCategoryCommand",
+    "SelectByFamilyNameCommand",
+    "SelectByParameterCommand",
+    "TagAllCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Filtering your current selection...",
+      "Narrowing down the selected elements..."
+    ],
+    "thinkingsteps": [
+      "Reading current selection...",
+      "Applying keep filters...",
+      "Applying remove filters...",
+      "Updating Revit selection..."
+    ],
+    "successprompts": [
+      "Filtered selection: {filteredCount} of {originalCount} elements kept.",
+      "Done — kept {filteredCount} elements, removed {removed}."
+    ],
+    "failureprompts": [
+      "Filter failed: {error}",
+      "Could not filter selection — {error}"
+    ]
+  },
+  "has_restapi": false
+}

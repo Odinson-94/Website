@@ -1,0 +1,60 @@
+{
+  "class": "DebugVoidHeightsCommand",
+  "desc": "Debug command for testing ceiling void height calculations.",
+  "summary": "Debug command for testing ceiling void height calculations. Picks a point and displays all related measurements: room detection via DetectRoomFromServiceStartPoint, ceiling via DetectCeilingHeightFromRoom, slab via DetectSlabAboveHeight, void depth via CalculateVoidHeightFromCeilingAndSlab, centre-of-void via CalculateMiddleOfVoid, and 3D raycast via RayTrace3D.",
+  "usecase": "User wants to verify void-height calculations at a specific point.",
+  "notfor": "Production use. Use CalculateMiddleOfVoid directly for runtime logic.",
+  "precondition": "Active document must be open with a valid plan or 3D view.",
+  "postcondition": "Debug results are displayed via CommandFeedback. No model changes.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "debug void",
+    "ceiling void debug",
+    "void heights",
+    "test void"
+  ],
+  "intent_patterns": [
+    "debug * void",
+    "test void heights",
+    "void height debug"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "VoidDepth",
+      "type": "string",
+      "description": "Void depth in mm"
+    },
+    {
+      "name": "CenterHeight",
+      "type": "string",
+      "description": "Centre-of-void height from floor in mm"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Analysing void heights at the selected point...",
+      "Running void height debug analysis..."
+    ],
+    "thinkingsteps": [
+      "Detecting room at click point...",
+      "Measuring ceiling and slab heights...",
+      "Calculating void depth and centre elevation...",
+      "Running 3D raycast analysis..."
+    ],
+    "successprompts": [
+      "Void analysis complete — depth {VoidDepth}, centre at {CenterHeight}.",
+      "Debug results ready. Void is {VoidDepth} deep."
+    ],
+    "failureprompts": [
+      "Void debug failed: {error}",
+      "Could not complete void analysis: {error}"
+    ]
+  },
+  "has_restapi": false
+}

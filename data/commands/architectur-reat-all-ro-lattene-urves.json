@@ -1,0 +1,41 @@
+{
+  "class": "ArchitectureCreateWallsFromFlattenedCurvesCommand",
+  "desc": "Create Walls from a batch of ModelCurve element ids at a given Level.",
+  "summary": "Create Walls from a batch of ModelCurve element ids at a given Level.",
+  "usecase": "Batch wall tracing from CAD-traced curves or detail lines.",
+  "notfor": "Creating a single wall manually (use Revit's native Wall tool).",
+  "precondition": "Active document open; level id resolves; at least one curve id resolves to a ModelCurve / DetailLine / Line-like element.",
+  "postcondition": "N Walls added where N = usable curves. Skipped count returned. One committed Transaction. Audit entry recorded.",
+  "sideeffects": "",
+  "logictree": "1) Resolvers: Resolver_CurveElementIdsCsv, Resolver_LevelId, Resolver_WallTypeId?, Resolver_HeightMm (default 3000). 2) Validate — level id resolves to a Level; height &gt; 0; at least one curve id present. Else WireError + abort. 3) Resolve wall type id (explicit → validate; else doc.GetDefaultElementTypeId(WallType); if none → WireError + abort). 4) Open Transaction 'Create walls from curves'. 5) For each curve id: resolve element; if not a ModelCurve-like → WireRecoverable + skipped++. Otherwise flatten via FlattenCurveToLevelElevation.ToZ(curve, level.Elevation); if null → WireRecoverable + skipped++; else Wall.Create and accumulate id. 6) Commit. 7) Bot: JSON {ok, wall_ids, skipped, level_id, height_mm}. User: toast 'Created {n} wall(s) (skipped {m}).' 8) Any exception → tracker.Fail(ex); WireFault payload.",
+  "keywords": [
+    "architecturecreatewallsfromflattenedcurves",
+    "wall",
+    "curve",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating walls from flattened curves…"
+    ],
+    "thinkingsteps": [
+      "Validating level + wall type + height…",
+      "Flattening each curve to level elevation…",
+      "Calling Wall.Create per curve…"
+    ],
+    "successprompts": [
+      "Created {wall_count} wall(s); skipped {skipped}."
+    ],
+    "failureprompts": [
+      "Could not create walls: {error}."
+    ]
+  },
+  "has_restapi": false
+}

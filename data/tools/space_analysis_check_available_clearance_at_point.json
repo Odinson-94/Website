@@ -1,0 +1,39 @@
+{
+  "name": "space_analysis_check_available_clearance_at_point",
+  "desc": "Per-direction horizontal clearance (±X, ±Y) at a point, capped at a caller-supplied maximum. Returns mm + hit-element per axis.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "x",
+      "type": "number",
+      "description": "X of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Y of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "z",
+      "type": "number",
+      "description": "Z of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "cap_mm",
+      "type": "number",
+      "description": "Clearance cap in millimetres. Default 2000 mm.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "space analysis check available clearance at point",
+    "clearance",
+    "room around point"
+  ]
+}

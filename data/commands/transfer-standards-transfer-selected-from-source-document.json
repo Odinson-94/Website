@@ -1,0 +1,35 @@
+{
+  "class": "TransferStandardsTransferSelectedFromSourceDocumentCommand",
+  "desc": "Transfer selected project standards from a chosen source document.",
+  "summary": "Transfer selected project standards from a chosen source document. Pre-flight diff + post-transfer verification + conflict resolution.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "transfer standards transfer selected from source document",
+    "transfer_standards_transfer_selected_from_source_document"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running transfer standards transfer selected from source document…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "transfer standards transfer selected from source document: done."
+    ],
+    "failureprompts": [
+      "transfer standards transfer selected from source document failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

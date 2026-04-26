@@ -1,0 +1,128 @@
+{
+  "class": "DesignFireAlarmSystemCommand",
+  "desc": "Imports fire alarm systems from a MEPBridge JSON file with Neural Loading visualization.",
+  "summary": "Imports fire alarm systems from a MEPBridge JSON file with Neural Loading visualization. Uses JsonModelLoader to parse the JSON DTO, then routes through MepSegmentCreator, PlaceElbowAtCorner, TakeoffPlacementService, PlaceTransitionBetweenSizes, and FamilyHostingResolver for intelligent device placement. Includes hardcoded fire alarm block-to-family mappings for smoke detectors, call points, beacons, etc. Family downloads handled by LoadFamilyFromAdelphosCloud with background prefetch. Also imports polylines and MText via ImportDetailLinesFromLinkedDwg and ImportTextFromLinkedDwg. Base point resolved via DesignSystemBasePointHelper. Related: DesignContainmentSystemCommand, DesignLightingSystemCommand.",
+  "usecase": "User wants to import a fire alarm layout from AutoCAD via MEPBridge JSON. User needs to place smoke/heat detectors, manual call points, beacons, and sounders.",
+  "notfor": "Creating fire alarm systems manually. Importing lighting or small power systems. Editing existing fire alarm device positions.",
+  "precondition": "Active Revit document must be open. MEPBridge JSON file must exist. Cable tray types must be loaded. Level must exist near base point Z. For hosting resolution, ceiling elements or 2700mm fake ceiling height is used.",
+  "postcondition": "MEP segments, fittings, fire alarm devices (detectors, call points, beacons, sounders), detail lines, and text notes are created. A placement report is written.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "design fire alarm system",
+    "design fire alarm systems",
+    "design the fire alarm system",
+    "fire alarm",
+    "fire alarms",
+    "fire alarm system",
+    "fire alarm systems",
+    "design fire alarm",
+    "design fire alarms",
+    "design the fire alarm",
+    "design the fire alarms",
+    "create fire alarm",
+    "create fire alarms",
+    "create fire alarm system",
+    "place fire alarm",
+    "place fire alarms",
+    "place fire alarm devices",
+    "import fire alarm",
+    "import fire alarms",
+    "import fire alarm system",
+    "place detectors",
+    "place smoke detectors",
+    "place heat detectors",
+    "design detectors",
+    "create detectors",
+    "place call points",
+    "place manual call points",
+    "place sounders",
+    "place beacons"
+  ],
+  "intent_patterns": [
+    "design * fire alarm",
+    "design * fire alarms",
+    "design * fire alarm system",
+    "design * fire alarm systems",
+    "create * fire alarm",
+    "create * fire alarms",
+    "fire alarm * design",
+    "fire alarms * design",
+    "place * fire alarm",
+    "place * detectors",
+    "place * call points",
+    "place * sounders",
+    "import * fire alarm",
+    "import * fire alarms"
+  ],
+  "pillar": "Fire  Alarm",
+  "pillar_raw": "Fire Alarm",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Base point for fire alarm placement",
+      "prompt": "Pick Revit basepoint (target origin for import)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to MEPBridge JSON file",
+      "default": "null"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CurvesCreated",
+      "type": "int",
+      "description": "Number of MEP curve segments created"
+    },
+    {
+      "name": "ElbowsPlaced",
+      "type": "int",
+      "description": "Number of elbow fittings placed"
+    },
+    {
+      "name": "TeesPlaced",
+      "type": "int",
+      "description": "Number of tee fittings placed"
+    },
+    {
+      "name": "BlocksPlaced",
+      "type": "int",
+      "description": "Number of family instances placed"
+    }
+  ],
+  "related_commands": [
+    "DesignContainmentSystemCommand",
+    "DesignLightingSystemCommand",
+    "DesignSmallPowerSystemCommand",
+    "DesignMechPowerSystemCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Importing fire alarm system from JSON...",
+      "Setting up fire alarm device layout...",
+      "Preparing fire detection system import..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON fire alarm data...",
+      "Resolving MEP types and levels...",
+      "Creating MEP segments...",
+      "Placing fire alarm devices...",
+      "Importing polylines and text annotations...",
+      "Finalizing fire alarm model..."
+    ],
+    "successprompts": [
+      "Fire alarm imported! Created {CurvesCreated} segments, {ElbowsPlaced} elbows, {BlocksPlaced} devices.",
+      "Done! Fire alarm layout placed with {BlocksPlaced} devices and {CurvesCreated} cable tray segments."
+    ],
+    "failureprompts": [
+      "Fire alarm import failed: {error}",
+      "Could not complete fire alarm design: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,38 @@
+{
+  "class": "PlanClashSolutionsStub",
+  "desc": "Stub entry point for future AI-assisted clash resolution planning.",
+  "summary": "Stub entry point for future AI-assisted clash resolution planning.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "solve clashes",
+    "plan clash solutions",
+    "AI solve clashes"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Planning clash solutions…"
+    ],
+    "thinkingsteps": [
+      "Check solver availability flag…"
+    ],
+    "successprompts": [
+      "Solver stub responded — feature not yet enabled."
+    ],
+    "failureprompts": [
+      "Clash solver command failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

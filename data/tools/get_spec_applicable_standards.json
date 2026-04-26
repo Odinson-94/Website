@@ -1,0 +1,30 @@
+{
+  "name": "get_spec_applicable_standards",
+  "desc": "Look up applicable British Standards, CIBSE guides, Building Regulations, and HTM guidance for a discipline or building type.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "discipline",
+      "type": "string",
+      "description": "Filter by discipline name",
+      "required": false
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Filter by standard category (BritishStandard, CIBSEGuide, BuildingRegulations, HTM, BSRIA)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "standards",
+    "British Standards",
+    "CIBSE",
+    "building regulations",
+    "HTM",
+    "applicable standards"
+  ]
+}

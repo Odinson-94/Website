@@ -1,0 +1,22 @@
+{
+  "name": "drawing_exporter_set_format",
+  "desc": "Set the export format for the Drawing Exporter. Valid values: \\",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "format",
+      "type": "string",
+      "description": "Export format: \\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "export format",
+    "pdf",
+    "dwg",
+    "set format"
+  ]
+}

@@ -1,0 +1,63 @@
+slug: schedules
+title: Automated Schedule Production
+description: Generates MEP schedules from the live Revit model — equipment, duct, pipe and cable tray schedules in one prompt, validated against project standards.
+status: live
+sort_order: 1
+try_url: /dist/apps/revit-copilot/index.html
+hero_video_label: Schedule production walkthrough
+
+prerequisites:
+  - Revit model with placed MEP families
+  - Project standards template loaded
+  - Schedule Builder app installed
+
+outputs:
+  - Equipment schedules (PDF + Excel)
+  - Duct and pipe sizing schedules
+  - Cable tray schedules
+  - Validation report against standards
+
+phases:
+  - title: Model audit
+    description: Scan the Revit model for placed families, parameter completeness, and naming compliance.
+    steps:
+      - title: Snapshot current model state
+        description: Read all MEP elements via get_elements_in_view and build a working inventory.
+      - title: Check parameter coverage
+        description: Flag any families missing required schedule parameters (size, load, circuit, etc).
+      - title: Validate naming conventions
+        description: Cross-check family and type names against the project naming standard.
+    tools:
+      - get_elements_in_view
+      - snapshot_query
+      - get_project_standards
+
+  - title: Schedule generation
+    description: Build each schedule type from the validated element set, applying project formatting.
+    steps:
+      - title: Generate equipment schedule
+        description: Group by system, sort by mark, populate all required columns.
+      - title: Generate duct schedule
+        description: Extract duct runs, calculate total lengths, group by system abbreviation.
+      - title: Generate pipe schedule
+        description: Extract pipe segments, pressures, insulation thickness by system type.
+      - title: Generate cable tray schedule
+        description: List tray runs with fill ratio and circuit reference.
+    tools:
+      - create_schedule
+      - set_parameter_value
+      - list_rooms
+
+  - title: Validation and export
+    description: Run QA checks on the generated schedules and export to PDF and Excel.
+    steps:
+      - title: Cross-check totals
+        description: Compare schedule totals against model element counts to catch omissions.
+      - title: Apply formatting template
+        description: Set column widths, header styles and page breaks per the project standard.
+      - title: Export outputs
+        description: Render PDF sheets and Excel workbooks to the project output folder.
+    tools:
+      - export_schedule
+      - qa_check
+      - get_document_info

@@ -1,0 +1,14 @@
+{
+  "name": "list_region_types",
+  "desc": "List filled region types available in the document.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "region types",
+    "filled region types",
+    "list region styles"
+  ]
+}

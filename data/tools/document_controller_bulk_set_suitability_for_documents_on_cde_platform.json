@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_bulk_set_suitability_for_documents_on_cde_platform",
+  "desc": "Sets suitability code (S0-S7) on multiple documents at once. Validates transition rules for each document before making API calls.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "documentCodes",
+      "type": "string",
+      "description": "Comma-separated document codes",
+      "required": true
+    },
+    {
+      "name": "targetStatus",
+      "type": "string",
+      "description": "Target suitability code (e.g. S2)",
+      "required": true
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Platform to update on",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

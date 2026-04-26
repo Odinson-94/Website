@@ -1,0 +1,13 @@
+{
+  "name": "tagging_preferences_get_smart_tag_placement_diagnostics",
+  "desc": "Return per-quadrant confidence-scorer breakdown for the most recent placements made via the AnnotationPlacementEngine. Lets the AI explain why a quadrant was chosen.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "tagging_preferences_get_smart_tag_placement_diagnostics",
+    "tagging preferences get smart tag placement diagnostics"
+  ]
+}

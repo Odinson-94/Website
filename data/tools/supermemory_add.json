@@ -1,0 +1,31 @@
+{
+  "name": "supermemory_add",
+  "desc": "Store information in persistent memory. Use this to save important facts, user preferences, project rules, and instructions that should be remembered across sessions.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "content",
+      "type": "string",
+      "description": "The information to remember",
+      "required": true
+    },
+    {
+      "name": "container_tag",
+      "type": "string",
+      "description": "Memory scope — defaults to user ID",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "remember",
+    "save memory",
+    "store memory",
+    "supermemory add",
+    "remember this",
+    "save preference",
+    "store fact"
+  ]
+}

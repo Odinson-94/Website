@@ -1,0 +1,16 @@
+{
+  "name": "get_current_view",
+  "desc": "Get the current active view name, type (floor plan/ceiling plan/section/3D), associated level name and elevation. Does not recognise sheets — switch to a floor plan or section.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "current view",
+    "active view",
+    "what view",
+    "which view",
+    "view info"
+  ]
+}

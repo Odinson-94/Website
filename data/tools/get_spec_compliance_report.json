@@ -1,0 +1,22 @@
+{
+  "name": "get_spec_compliance_report",
+  "desc": "Read compliance validation results: overall score, discipline scores, findings, and QA items.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "jobId",
+      "type": "string",
+      "description": "The job ID to read compliance for",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "compliance report",
+    "compliance score",
+    "standards check",
+    "spec compliance"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupImportCadFileAsLegendViewCommand",
+  "desc": "Import CAD File As Legend View.",
+  "summary": "Import CAD File As Legend View.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "import cad legend",
+    "cad to legend view",
+    "legend from dwg"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Import CAD File As Legend View…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Import CAD File As Legend View: completed."
+    ],
+    "failureprompts": [
+      "Import CAD File As Legend View: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerCaptureAllImagesInBackgroundCommand",
+  "desc": "ClashManagerCaptureAllImagesInBackgroundCommand — bulk-capture every clash matching the filter.",
+  "summary": "ClashManagerCaptureAllImagesInBackgroundCommand — bulk-capture every clash matching the filter.",
+  "usecase": "QA dashboard image refresh before an export.",
+  "notfor": "Per-clash capture — use CaptureImageForSingleResult.",
+  "precondition": "Active document; staging DB has ≥ 1 matching clash; non-template View3D exists.",
+  "postcondition": "0-N PNGs on disk; no Revit view switch for the user.",
+  "sideeffects": "",
+  "logictree": "1) Pull clashes from repo.ListByState(state_filter ?? \"*\").\n2) For each, resolve pair; skip with WireRecoverable on missing.\n3) Delegate to HiddenViewImageCaptureService.Capture (own Transaction per call).\n4) Aggregate captured vs failed counts.\n5) Emit per_clash list + summary.",
+  "keywords": [
+    "clashmanagercaptureallimagesinbackground",
+    "capture all clash images",
+    "qa image refresh"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Bulk-capturing clash images in background…"
+    ],
+    "thinkingsteps": [
+      "Listing matching clashes…",
+      "Capturing each pair…"
+    ],
+    "successprompts": [
+      "Captured {captured}/{total}."
+    ],
+    "failureprompts": [
+      "Bulk capture failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

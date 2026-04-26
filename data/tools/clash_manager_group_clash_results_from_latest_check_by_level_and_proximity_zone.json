@@ -1,0 +1,14 @@
+{
+  "name": "clash_manager_group_clash_results_from_latest_check_by_level_and_proximity_zone",
+  "desc": "Group clash results by level/room/grid zone using XYZ proximity.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "group clashes location",
+    "clashes by level",
+    "clashes by room"
+  ]
+}

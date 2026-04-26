@@ -1,0 +1,13 @@
+{
+  "name": "transfer_standards_detect_conflicts",
+  "desc": "Detect conflicts (duplicate names, type mismatches) between source and target standards.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "transfer_standards_detect_conflicts",
+    "transfer standards detect conflicts"
+  ]
+}

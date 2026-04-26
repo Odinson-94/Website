@@ -1,0 +1,72 @@
+{
+  "class": "AddFilterToTemplateCommand",
+  "desc": "Adds an existing view filter to a view template by name.",
+  "summary": "Adds an existing view filter to a view template by name. Resolves the template via ListTemplates.GetByName and the filter via ListFilters.GetByName. Delegates the actual filter addition to AddFilterToTemplate. Visibility of the filter on the template can be controlled via the 'visible' parameter. Related: ApplyViewTemplateCommand for applying a template to a view.",
+  "usecase": "User wants to add a discipline-specific filter to a standard template. AI is configuring view templates as part of automated sheet setup.",
+  "notfor": "Creating new filters (use a dedicated CreateFilterCommand). Applying templates to views (use ApplyViewTemplateCommand). Removing filters from templates.",
+  "precondition": "Active document must be open. Both the target view template and the filter must already exist in the project.",
+  "postcondition": "The specified filter is added to the template's filter list with the given visibility setting. If the filter was already present, it remains (idempotent).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add filter to template",
+    "apply filter to template",
+    "template filter",
+    "view filter template",
+    "assign filter template"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "templateName",
+      "type": "string",
+      "description": "Target view template name",
+      "default": ""
+    },
+    {
+      "name": "filterName",
+      "type": "string",
+      "description": "Filter name to add",
+      "default": ""
+    },
+    {
+      "name": "visible",
+      "type": "boolean",
+      "description": "Optional visibility flag (default true)",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Add filter to template result"
+    }
+  ],
+  "related_commands": [
+    "ApplyViewTemplateCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Adding filter to the view template...",
+      "Assigning the filter to your template now..."
+    ],
+    "thinkingsteps": [
+      "Resolving template by name...",
+      "Resolving filter by name...",
+      "Adding filter to template with visibility setting..."
+    ],
+    "successprompts": [
+      "Filter '{filterName}' added to template '{templateName}' successfully.",
+      "Done — filter is now on the template."
+    ],
+    "failureprompts": [
+      "Could not add filter to template: {error}",
+      "Filter-to-template assignment failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

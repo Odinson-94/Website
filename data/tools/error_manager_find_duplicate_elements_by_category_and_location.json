@@ -1,0 +1,12 @@
+{
+  "name": "error_manager_find_duplicate_elements_by_category_and_location",
+  "desc": "error_manager_find_duplicate_elements_by_category_and_location — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "error manager find duplicate elements by category and location"
+  ]
+}

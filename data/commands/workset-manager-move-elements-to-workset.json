@@ -1,0 +1,35 @@
+{
+  "class": "WorksetManagerMoveElementsToWorksetCommand",
+  "desc": "Move a list of element ids to a target workset.",
+  "summary": "Move a list of element ids to a target workset.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager move elements to workset",
+    "workset_manager_move_elements_to_workset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running workset manager move elements to workset…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "workset manager move elements to workset: done."
+    ],
+    "failureprompts": [
+      "workset manager move elements to workset failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

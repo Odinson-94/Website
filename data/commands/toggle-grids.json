@@ -1,0 +1,61 @@
+{
+  "class": "ToggleGridsCommand",
+  "desc": "Toggles pin state of all host grids in open worksets (pin ↔ unpin).",
+  "summary": "Toggles pin state of all host grids in open worksets (pin ↔ unpin). Linked grids are skipped because they cannot be edited from the host model. Uses Pin.ToggleGridsInOpenWorksets for the toggle logic. Called from ribbon or via AI orchestration.",
+  "usecase": "User wants to quickly toggle all grid pin states before editing grid positions. User needs to unpin grids that were batch-pinned after setup. User wants to re-pin grids after repositioning.",
+  "notfor": "Not for unpinning only (use UnpinAllGridsCommand instead). Not for toggling grids in linked models. Not for autonomous AI execution — requires interactive Revit UI context.",
+  "precondition": "Active document must be open. At least one grid must exist in the model. Worksets containing grids must be open for modification.",
+  "postcondition": "All host grids on open worksets have their pin state toggled. Previously pinned grids are now unpinned, and vice versa. Linked grids and grids on closed worksets are unchanged.",
+  "sideeffects": "",
+  "logictree": "check: document.isValid → proceed\rcheck: grids.count > 0 → proceed\raction: toggleGridsInOpenWorksets → report results",
+  "keywords": [
+    "toggle grids",
+    "pin grids",
+    "unpin grids",
+    "grid pin toggle",
+    "switch grid pins"
+  ],
+  "intent_patterns": [
+    "toggle * grids",
+    "pin * grids",
+    "switch * grid * pin"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "ToggledToPinned",
+      "type": "int",
+      "description": "Number of grids toggled to pinned state"
+    },
+    {
+      "name": "ToggledToUnpinned",
+      "type": "int",
+      "description": "Number of grids toggled to unpinned state"
+    }
+  ],
+  "related_commands": [
+    "UnpinAllGridsCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Toggling pin state on all host grids...",
+      "Switching grid pin states in open worksets..."
+    ],
+    "thinkingsteps": [
+      "Finding all host grids in open worksets...",
+      "Toggling pin state for each grid..."
+    ],
+    "successprompts": [
+      "Toggled {ToggledToPinned} grids to pinned, {ToggledToUnpinned} to unpinned.",
+      "Grid pin states switched successfully."
+    ],
+    "failureprompts": [
+      "Grid toggle failed: {error}",
+      "Could not toggle grids — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,22 @@
+{
+  "name": "get_sheets_containing_revision",
+  "desc": "Returns all sheets that have a specific revision assigned. Reverse lookup: given a revision ID, which sheets include it?",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "revisionId",
+      "type": "integer",
+      "description": "Element ID of the revision to look up",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "sheets with revision",
+    "which sheets have revision",
+    "reverse revision lookup",
+    "revision on sheets"
+  ]
+}

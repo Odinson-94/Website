@@ -1,0 +1,27 @@
+{
+  "name": "find_walls_from_room_boundary",
+  "desc": "Get boundary walls for a room with facing-direction hints.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "roomId",
+      "type": "integer",
+      "description": "Room ID to analyze.",
+      "required": true
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "description": "Max wall rows returned (default 50).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "room boundary walls",
+    "find room walls",
+    "wall facing directions"
+  ]
+}

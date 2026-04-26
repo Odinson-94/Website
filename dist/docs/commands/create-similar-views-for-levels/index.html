@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Similar Views For Levels — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp; Combined &nbsp;›&nbsp; Create Similar Views For Levels</div>
+
+  <h1 id="overview">Create Similar Views For Levels</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">Combined</span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Command: Creates similar views for each primary level based on current view. Extracts settings from the active view and replicates to all other levels. Uses ListLevels.GetPrimaryLevels for level discovery. Uses ListViews to check for existing views. Related: CreateViewsCommand for service-based view creation. Related: CreateSheetCommand for placing views on sheets. WORKFLOW: 1. Gets the current active view (must be a ViewPlan) 2. Extracts view settings: template, scope box, scale, crop region, detail level, etc. 3. Gets all primary levels using ListLevels.GetPrimaryLevels 4. For each level (except current), creates a new view with same settings 5. Names views consistently based on source view pattern 6. Reports success with list of created views</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open with an active ViewPlan. At least two primary levels must exist (current + targets). ViewPlan must be a floor plan or ceiling plan.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>New views are created for each primary level (except the source level). All views match the source view's template, scope box, scale, and other settings. View names follow consistent pattern based on source view name.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/create-similar-views-for-levels/thumbnail.svg"
+           data-src="/sandbox/demo-assets/create-similar-views-for-levels/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop create-similar-views-for-levels/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User has set up a view for one level and wants identical views on all floors.</li>
+    <li>User needs to create consistent MEP plan views across all levels.</li>
+    <li>User wants to propagate view setup from one floor to all others.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Custom UI required for preview/confirmation only. AI path is JSON-first and dialog-free.</p></div>
+  <div class="callout callout-side"><strong>Side effects</strong><p>Creates new ViewPlan elements in the document.</p></div>
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>SourceView</code></td>
+    <td><span class="pill pill-category">selection</span></td>
+    <td><code>ViewPlan</code></td>
+    <td class="req-yes">yes</td>
+    <td>—</td>
+    <td>Source view to copy settings from<br><em style="font-size:12px;color:var(--text-muted);">"Active view is used as source"</em></td>
+  </tr><tr>
+    <td><code>IncludeSourceLevel</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>bool</code></td>
+    <td class="req-no">no</td>
+    <td>false</td>
+    <td>Whether to skip or include the source level</td>
+  </tr><tr>
+    <td><code>NamePattern</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>&quot;auto&quot;</td>
+    <td>Pattern for naming views, use {Level} for level name</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>CreatedViews</code></td><td><code>List&lt;ViewPlan&gt;</code></td><td>List of created views</td></tr><tr><td><code>ViewCount</code></td><td><code>int</code></td><td>Number of views created</td></tr></tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree"><span class="lt-check">check:</span> document.isOpen → continue<span class="lt-check">check:</span> activeView.isViewPlan → continue, else → error<span class="lt-action">action:</span> extractViewSettings → template, scopeBox, scale, crop, etc.<span class="lt-action">action:</span> getPrimaryLevels → ListLevels.GetPrimaryLevels<span class="lt-check">check:</span> primaryLevels.count &gt;= 2 → continue, else → error<span class="lt-action">action:</span> filterLevels → exclude source level<span class="lt-action">action:</span> createViewsForEachLevel → CreateViews helper<span class="lt-action">action:</span> applySettings → match all properties<span class="lt-resolve">resolve:</span> success → showSuccess with created views</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Replicating your view settings across all levels...<br>Creating matching views for each floor...</div>
+    <div class="lab">thinking</div><div class="msg">Extracting view settings from source view...<br>Getting primary levels from model...<br>Creating views for each target level...<br>Applying template, scope box, and scale settings...</div>
+    <div class="lab">on success</div><div class="msg">Created <span class="placeholder">{ViewCount}</span> views matching your source view settings.</div>
+    <div class="lab">on failure</div><div class="msg">View replication failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/create_similar_views_for_levels</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">create similar views · copy view levels · duplicate view · propagate view · view for all levels<br><span style="font-size:12px;">Patterns: <code>create * similar * views * levels</code> · <code>copy * view * all * levels</code> · <code>duplicate * view * levels</code> · <code>create * views * each * level</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>CreateViewsCommand</code> · <code>SetTemplateCommand</code> · <code>SetViewToScopeBoxCommand</code></td></tr><tr><th>Pillar</th><td>Combined</td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

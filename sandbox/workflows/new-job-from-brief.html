@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New job from brief to Stage 2 — Workflows — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/shared-styles.css">
+<link rel="stylesheet" href="/sandbox/sandbox.css">
+<style>
+  .phase { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); padding:22px 26px; margin-bottom:18px; }
+  .phase h3 { font-size:18px; margin:0 0 6px; font-weight:600; }
+  .phase .video-wrap { aspect-ratio:16/9; background:#000; border-radius:var(--radius-sm); overflow:hidden; margin:12px 0; }
+  .phase .video-wrap video { width:100%; height:100%; display:block; }
+  .phase .video-wrap .ph { width:100%; height:100%; display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);font-size:13px;background:linear-gradient(135deg,#1f3340,#0e1c25); }
+  .phase .tools-used { font-size:13px; color:var(--text-muted); margin-top:10px; }
+  .phase .tools-used code { font-family:'JetBrains Mono',ui-monospace,monospace; background:var(--bg-soft); padding:1px 6px; border-radius:3px; color:var(--brand-teal); }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <div class="crumbs"><a href="#">Workflows</a> &nbsp;›&nbsp; New job from brief to Stage 2</div>
+
+  <h1>New job from brief to Stage 2</h1>
+  <p style="font-size:17px;max-width:760px;color:var(--text-muted);margin-bottom:18px;">
+    From a fresh client brief to a coordinated Stage 2 model in one afternoon.
+    This workflow chains seven demos and twelve tools end to end.
+  </p>
+
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;">
+    <span class="pill pill-pillar">Workflow</span>
+    <span class="pill pill-category">5 phases</span>
+    <span class="pill pill-live">Live</span>
+  </div>
+
+  <h2 id="phases">Phases</h2>
+
+  <div class="phase">
+    <h3 id="phase-1">1. Set up the project from template</h3>
+    <p>Open BUILD MEP, pick the JPA master template for your discipline mix, point it at the project folder.</p>
+    <div class="video-wrap"><div class="ph">video placeholder · workflows/new-job-from-brief/phase-1.mp4</div></div>
+    <ol>
+      <li>Pick the master template</li>
+      <li>Confirm project info (number, address, RIBA stage)</li>
+      <li>Templates, filters, sheet sizes auto-applied</li>
+    </ol>
+    <div class="tools-used">Tools: <code>setup_project_from_template</code> · <code>list_filters</code> · <code>apply_view_template_to_views_by_filter</code></div>
+  </div>
+
+  <div class="phase">
+    <h3 id="phase-2">2. Pull in the briefing data</h3>
+    <p>Drop the client brief PDF, the architect's plan PDF, and any site survey notes into the project intake folder.</p>
+    <div class="video-wrap"><div class="ph">video placeholder · workflows/new-job-from-brief/phase-2.mp4</div></div>
+    <ol>
+      <li>Drop PDFs into <code>/01 Intake/</code></li>
+      <li>BUILD MEP extracts room schedules, fixture counts, design intent</li>
+      <li>Open Briefing → review and confirm</li>
+    </ol>
+    <div class="tools-used">Tools: <code>parse_brief_pdf</code> · <code>extract_room_schedule_from_pdf</code> · <code>seed_briefing_module</code></div>
+  </div>
+
+  <div class="phase">
+    <h3 id="phase-3">3. Generate the MEP strategy report</h3>
+    <p>One prompt, one document. The strategy report is drafted from the brief, ready to review and issue.</p>
+    <div class="video-wrap"><div class="ph">video placeholder · workflows/new-job-from-brief/phase-3.mp4</div></div>
+    <ol>
+      <li>Ask: "Generate the MEP Strategy report for this project"</li>
+      <li>Review draft, edit inline</li>
+      <li>Export to .docx and PDF</li>
+    </ol>
+    <div class="tools-used">Tools: <code>generate_mep_strategy_report</code> · <code>export_report_to_word</code></div>
+  </div>
+
+  <div class="phase">
+    <h3 id="phase-4">4. Set up the model — views, sheets, schedules</h3>
+    <p>Run the model-setup demos in sequence: views, then templates. Sheets and schedules are wired from the discipline mix.</p>
+    <div class="video-wrap"><div class="ph">video placeholder · workflows/new-job-from-brief/phase-4.mp4</div></div>
+    <ol>
+      <li>"Set up views for all disciplines on all levels"</li>
+      <li>"Apply standard view templates"</li>
+      <li>"Generate the Stage 2 sheet set"</li>
+    </ol>
+    <div class="tools-used">Tools: <code>setup_views_per_discipline_per_level</code> · <code>apply_view_template_to_views_by_filter</code> · <code>generate_sheet_set_for_stage</code></div>
+  </div>
+
+  <div class="phase">
+    <h3 id="phase-5">5. Run end-of-stage QA pack</h3>
+    <p>Before issue, run the full QA: drawings, specification, schedules, model warnings, clashes. Output is one PDF + one BCF.</p>
+    <div class="video-wrap"><div class="ph">video placeholder · workflows/new-job-from-brief/phase-5.mp4</div></div>
+    <ol>
+      <li>"Run the Stage 2 QA pack"</li>
+      <li>Review issues, mark false positives</li>
+      <li>Export QA report and BCF</li>
+    </ol>
+    <div class="tools-used">Tools: <code>run_qa_pack_for_stage</code> · <code>export_clash_results_to_xml</code> (REST) · <code>export_qa_report_to_pdf</code></div>
+  </div>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table">
+    <tbody>
+      <tr><th style="width:120px;">Demos</th><td><a href="/sandbox/demos/#cat-model-set-up">Set up Views</a> · <a href="/sandbox/demos/#cat-qa">QA Manager</a> · <a href="/sandbox/demos/#cat-specifications">MEP Specification</a></td></tr>
+      <tr><th>Commands</th><td><a href="/sandbox/docs/commands/extend-all-connectors.html"><code>ExtendAllConnectorsCommand</code></a> (drainage routing during phase 4)</td></tr>
+      <tr><th>Tools inventory</th><td><a href="/sandbox/docs/tools/inventory.html">All 191 tools</a></td></tr>
+    </tbody>
+  </table>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

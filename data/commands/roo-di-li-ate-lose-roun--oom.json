@@ -1,0 +1,31 @@
+{
+  "class": "RoomEditFlipWaterClosetAroundInRoomCommand",
+  "desc": "Rotate the WC family instance 180° around its LocationPoint.",
+  "summary": "Rotate the WC family instance 180° around its LocationPoint.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "roomeditflipwaterclosetaroundinroom",
+    "flip wc in room"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

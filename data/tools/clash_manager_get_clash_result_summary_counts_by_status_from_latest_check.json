@@ -1,0 +1,21 @@
+{
+  "name": "clash_manager_get_clash_result_summary_counts_by_status_from_latest_check",
+  "desc": "Summary of clash results: total, new, active, resolved, by group, by severity.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": "Optional full path to a specific results_*.xml (defaults to latest under .mepbridge/qa).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "clash summary",
+    "QA summary",
+    "clash count"
+  ]
+}

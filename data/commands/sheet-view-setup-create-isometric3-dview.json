@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupCreateIsometric3DViewCommand",
+  "desc": "Create an isometric 3D view oriented to the active project.",
+  "summary": "Create an isometric 3D view oriented to the active project.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup create isometric 3d view",
+    "sheet_view_setup_create_isometric_3d_view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup create isometric 3d view…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup create isometric 3d view: done."
+    ],
+    "failureprompts": [
+      "sheet view setup create isometric 3d view failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

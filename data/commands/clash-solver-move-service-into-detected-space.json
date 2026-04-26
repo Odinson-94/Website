@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverMoveServiceIntoDetectedSpaceCommand",
+  "desc": "ClashSolverMoveServiceIntoDetectedSpaceCommand — PDF \"MOVE_SERVICE_INTO_SPACE\".",
+  "summary": "ClashSolverMoveServiceIntoDetectedSpaceCommand — PDF \"MOVE_SERVICE_INTO_SPACE\". Single-service wrapper around the canonical space-aware move.",
+  "usecase": "Solver step 3 move-into-space for a single service secondary.",
+  "notfor": "Bulk moves — call in a loop if needed; each call is its own audit line.",
+  "precondition": "Active document; one service element resolvable; has a default 3D view for raycasting.",
+  "postcondition": "ElementTransformUtils.MoveElement inside the inner Transaction; tracker audit.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId required (Bot) OR single selection (Human).\n2) Resolve element; WireError if not.\n3) Instantiate PlacementMoveElementIntoDetectedSpaceCommand with one-element Resolver_ElementIds + optional threshold/step.\n4) Delegate Execute; pipe its tracker outputs.\n5) Tag tracker with delegated_to + solver context (Resolver_ClashId optional for audit linkage).",
+  "keywords": [
+    "clashsolvermoveserviceintodetectedspace",
+    "move service into space",
+    "solver step 3 move"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Moving one service into detected space…"
+    ],
+    "thinkingsteps": [
+      "Resolving target service element…",
+      "Delegating to PlacementMoveElementIntoDetectedSpaceCommand…"
+    ],
+    "successprompts": [
+      "Service move delegated; outcome in tracker outputs."
+    ],
+    "failureprompts": [
+      "Move service failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

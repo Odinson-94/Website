@@ -1,0 +1,35 @@
+{
+  "class": "ObjectStylesCreateLinePatternCommand",
+  "desc": "Create a new LinePatternElement from a list of dash/space segments (mm).",
+  "summary": "Create a new LinePatternElement from a list of dash/space segments (mm).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create line pattern",
+    "object_styles_create_line_pattern"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating line pattern…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Line pattern created."
+    ],
+    "failureprompts": [
+      "Create line pattern failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

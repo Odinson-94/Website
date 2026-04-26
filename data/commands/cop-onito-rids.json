@@ -1,0 +1,65 @@
+{
+  "class": "CopyMonitorGridsCommand",
+  "desc": "Phase 6 Command: Copies grids from a linked structural/architectural model to the host MEP model.",
+  "summary": "Phase 6 Command: Copies grids from a linked structural/architectural model to the host MEP model. Skips grids that already exist in the host (by name match). Uses CopyMonitorGrids for the actual copy logic and SearchInsideCurrentModel to discover linked models.",
+  "usecase": "User wants to copy grids from a structural or architectural link into the MEP model. User needs grids for section/elevation creation but does not have them in the host.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open with at least one RevitLinkInstance loaded. The linked model must contain Grid elements.",
+  "postcondition": "Grids from the linked model are copied into the host document. Existing grids with matching names are skipped (no duplicates).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "copy monitor grids",
+    "copy grids",
+    "grid sync",
+    "grids from link",
+    "monitor grids"
+  ],
+  "intent_patterns": [
+    "copy * grids",
+    "copy monitor grids",
+    "sync * grids * link"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "GridsCopied",
+      "type": "int",
+      "description": "Number of grids copied"
+    },
+    {
+      "name": "GridsSkipped",
+      "type": "int",
+      "description": "Number of duplicate grids skipped"
+    }
+  ],
+  "related_commands": [
+    "ApplyLinkedViewSettingsToTemplatesCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Copying grids from linked model...",
+      "Setting up grid copy/monitor...",
+      "Syncing grids from structural model..."
+    ],
+    "thinkingsteps": [
+      "Finding linked models...",
+      "Scanning for grids in source...",
+      "Checking for existing duplicates...",
+      "Copying grid geometry..."
+    ],
+    "successprompts": [
+      "Copied {count} grids from linked model",
+      "Grid sync complete — {count} new grids added",
+      "Done! Grids are now in your MEP model"
+    ],
+    "failureprompts": [
+      "Couldn't copy grids: {error}",
+      "Grid copy failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

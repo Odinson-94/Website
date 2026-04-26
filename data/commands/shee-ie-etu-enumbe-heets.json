@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupRenumberSheetsCommand",
+  "desc": "Renumber a list of sheets following a numbering convention.",
+  "summary": "Renumber a list of sheets following a numbering convention.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup renumber sheets",
+    "sheet_view_setup_renumber_sheets"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup renumber sheets…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup renumber sheets: done."
+    ],
+    "failureprompts": [
+      "sheet view setup renumber sheets failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

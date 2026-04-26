@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverMatchOffsetHeightByTopCommand",
+  "desc": "ClashSolverMatchOffsetHeightByTopCommand — PDF \"MATCH_OFFSET_HEIGHT_TOP\".",
+  "summary": "ClashSolverMatchOffsetHeightByTopCommand — PDF \"MATCH_OFFSET_HEIGHT_TOP\".",
+  "usecase": "Top-face alignment of a group to a reference.",
+  "notfor": "Centre / underside alignment — use the sibling commands.",
+  "precondition": "Active document; reference + mover(s) resolvable; BBs exist.",
+  "postcondition": "Delegates to ElementAlignmentMatchHeightByTopCommand.",
+  "sideeffects": "",
+  "logictree": "1) Resolve reference + movers (resolvers or selection first=reference).\n2) Delegate to ElementAlignmentMatchHeightByTopCommand.\n3) Tag tracker.",
+  "keywords": [
+    "clashsolvermatchoffsetheightbytop",
+    "match top alignment",
+    "solver height top"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Matching top alignment…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ElementAlignmentMatchHeightByTopCommand…"
+    ],
+    "successprompts": [
+      "Top alignment delegated."
+    ],
+    "failureprompts": [
+      "Top alignment failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

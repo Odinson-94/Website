@@ -1,0 +1,29 @@
+{
+  "name": "list_all_active_revit_model_warnings",
+  "desc": "List all active Revit model warnings with message, severity, element IDs, category, and resolution availability.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Filter warnings to a Revit category (Pipes, Ducts, Rooms, etc.)",
+      "required": false
+    },
+    {
+      "name": "severity",
+      "type": "string",
+      "description": "Filter by severity: 'warning' or 'error'",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "model warnings",
+    "revit warnings",
+    "active warnings",
+    "model health",
+    "warning list"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "class": "CobieSheetExportWorkbookToExcelCommand",
+  "desc": "Export the full COBie workbook (all 16 sheets) to Excel.",
+  "summary": "Export the full COBie workbook (all 16 sheets) to Excel. REST API exposed.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "cobie sheet export workbook to excel",
+    "cobie_sheet_export_workbook_to_excel"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running cobie sheet export workbook to excel…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "cobie sheet export workbook to excel: done."
+    ],
+    "failureprompts": [
+      "cobie sheet export workbook to excel failed: {error}"
+    ]
+  },
+  "has_restapi": true
+}

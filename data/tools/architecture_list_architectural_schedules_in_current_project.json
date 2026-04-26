@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_architectural_schedules_in_current_project",
+  "desc": "architecture_list_architectural_schedules_in_current_project — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "architecture list architectural schedules in current project"
+  ]
+}

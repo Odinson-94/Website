@@ -1,0 +1,12 @@
+{
+  "name": "clash_manager_get_all_results_with_optional_filter",
+  "desc": "clash_manager_get_all_results_with_optional_filter — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash manager get all results with optional filter"
+  ]
+}

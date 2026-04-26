@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerExportResultsToWordReportCommand",
+  "desc": "ClashManagerExportResultsToWordReportCommand — HTML-as-Word exporter (.doc/.docx extension, HTML payload).",
+  "summary": "ClashManagerExportResultsToWordReportCommand — HTML-as-Word exporter (.doc/.docx extension, HTML payload).",
+  "usecase": "Coordination distribution as editable Word document.",
+  "notfor": "True OOXML docx — blocked until docx-mcp lands.",
+  "precondition": "Active doc; clash XML present.",
+  "postcondition": "Single file on disk with Word extension.",
+  "sideeffects": "",
+  "logictree": "1) Read clash XML. 2) Resolve output path (default .mepbridge/qa/reports/clashes_{ts}.doc). 3) Build HTML payload via BuildSelfContainedClashReportHtml. 4) Open in shell on Human. 5) Emit result with mode=html_as_word.",
+  "keywords": [
+    "clashmanagerexportresultstowordreport",
+    "export clash word",
+    "qa word report"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Building clash Word report (HTML-as-Word)…"
+    ],
+    "thinkingsteps": [
+      "Loading clash XML…",
+      "Writing self-contained HTML payload…"
+    ],
+    "successprompts": [
+      "Word report written at {output_path}."
+    ],
+    "failureprompts": [
+      "Word export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,30 @@
+{
+  "class": "ClashSolverResolveDeviceClashEndToEndCommand",
+  "desc": "Six-step device-clash resolver (host → move → assess → shift → verify → stamp).",
+  "summary": "Six-step device-clash resolver (host → move → assess → shift → verify → stamp).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Active document; clash row exists in state='active'.",
+  "postcondition": "Model mutated inside one Transaction; clash row transitions to resolved|failed.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clashsolverresolvedeviceclashendtoend"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

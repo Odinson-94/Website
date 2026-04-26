@@ -1,0 +1,57 @@
+{
+  "name": "snapshot_query",
+  "desc": "Query the model snapshot (SQLite). Returns in <5ms, no Revit thread needed. Use after snapshot_export. Accepts structured queries (table + filters) or raw SQL. Available tables: elements, parameters, rooms, levels, grids, views, sheets, families, family_types, scope_boxes, filters, worksets. Join parameters to elements on element_id for parameter lookups.",
+  "bridge": "Snapshot",
+  "category": "snapshot",
+  "always": false,
+  "param_count": 6,
+  "parameters": [
+    {
+      "name": "sql",
+      "type": "string",
+      "description": "Raw SQL query. Use this for complex joins and aggregations. Tables: elements, parameters, rooms, levels, grids, views, sheets, families, family_types, scope_boxes, filters, worksets.",
+      "required": false
+    },
+    {
+      "name": "table",
+      "type": "string",
+      "description": "Table to query (alternative to raw SQL): elements, parameters, rooms, levels, grids, views, sheets, families, family_types",
+      "required": false
+    },
+    {
+      "name": "filters",
+      "type": "string",
+      "description": "JSON object of column=value filters for structured query, e.g. {\\",
+      "required": false
+    },
+    {
+      "name": "include_parameters",
+      "type": "string",
+      "description": "Comma-separated parameter names to join from the parameters table (only when table='elements')",
+      "required": false
+    },
+    {
+      "name": "limit",
+      "type": "string",
+      "description": "Max rows to return (default 200)",
+      "required": false
+    },
+    {
+      "name": "info",
+      "type": "string",
+      "description": "Set to 'true' to get snapshot metadata instead of query results",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "snapshot query",
+    "query snapshot",
+    "sqlite query",
+    "model snapshot",
+    "snapshot data",
+    "elements query",
+    "parameters query",
+    "rooms query",
+    "levels query"
+  ]
+}

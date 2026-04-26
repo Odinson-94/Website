@@ -1,0 +1,98 @@
+{
+  "class": "ExtendAndConnectPipesCommand",
+  "desc": "Command: Extends a selected pipe endpoint to find and connect to a nearby pipe of the same system.",
+  "summary": "Command: Extends a selected pipe endpoint to find and connect to a nearby pipe of the same system. Uses ExtendAndConnectPipes for the core search-extend-connect logic. Uses GetMEPCurve for pipe geometry queries. Uses ExtendMEPCurve and FilletMEPCurve for extension. Related: ExtendAndConnectManualCommand for manual two-pick variant. WORKFLOW: 1. User selects a pipe endpoint to extend 2. System searches for nearby pipes of the same piping system type 3. Finds the closest unconnected endpoint within search radius 4. Extends source pipe to match X/Y center of target 5. Extends source pipe to match Z elevation of target 6. Creates elbow fitting to connect the pipes",
+  "usecase": "Connecting branch drains to main horizontal runs. Connecting horizontal pipes to vertical risers. Rapid connection during preliminary pipe layout. Auto-connecting pipes during MEP routing.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least one other pipe of the same system must exist within search radius with an unconnected endpoint.",
+  "postcondition": "Source pipe is extended to meet the target pipe. An elbow fitting connects the two pipes.",
+  "sideeffects": "Modifies source pipe geometry (extends endpoint). Creates a new FamilyInstance (elbow fitting).",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectPipe → getSourcePipe\rcheck: pipeSelected → continue, else → error\raction: getSelectionPoint → determineEndpoint\raction: executeExtendAndConnect → processConnection\rresolve: success → showSuccess, else → showError",
+  "keywords": [
+    "extend pipe",
+    "connect pipe",
+    "auto connect",
+    "pipe connection",
+    "extend and connect",
+    "auto fillet"
+  ],
+  "intent_patterns": [
+    "extend * pipe * connect",
+    "connect * pipes * together",
+    "extend * to * pipe",
+    "auto * connect * pipe"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "SourcePipe",
+      "type": "Pipe",
+      "description": "Pipe to extend and connect",
+      "prompt": "Select pipe to extend (click near endpoint to connect)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "SearchRadius",
+      "type": "double",
+      "description": "Search radius for target pipes (mm)",
+      "default": "3000.0"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedFitting",
+      "type": "FamilyInstance",
+      "description": "The elbow fitting created"
+    },
+    {
+      "name": "ConnectionMade",
+      "type": "bool",
+      "description": "Whether connection was successful"
+    },
+    {
+      "name": "XOffset",
+      "type": "double",
+      "description": "X offset applied in mm"
+    },
+    {
+      "name": "YOffset",
+      "type": "double",
+      "description": "Y offset applied in mm"
+    },
+    {
+      "name": "ZOffset",
+      "type": "double",
+      "description": "Z offset applied in mm"
+    }
+  ],
+  "related_commands": [
+    "ExtendAndConnectManualCommand",
+    "MEPSystemFilletCommand",
+    "MatchHeightAndFilletCommand",
+    "MatchPipeCentersCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Extending and auto-connecting pipe to nearest same-system pipe...",
+      "Finding nearby pipe to connect to..."
+    ],
+    "thinkingsteps": [
+      "Waiting for pipe selection...",
+      "Searching for nearby pipes of the same system within radius...",
+      "Calculating extension path to target pipe...",
+      "Extending source pipe to match target position...",
+      "Creating elbow fitting at junction..."
+    ],
+    "successprompts": [
+      "Connected! Extended pipe by X:{XOffset}mm Y:{YOffset}mm Z:{ZOffset}mm with elbow fitting.",
+      "Pipe extended and connected to target — elbow created."
+    ],
+    "failureprompts": [
+      "Failed to extend and connect: {error}",
+      "No connectable pipe found — {error}"
+    ]
+  },
+  "has_restapi": false
+}

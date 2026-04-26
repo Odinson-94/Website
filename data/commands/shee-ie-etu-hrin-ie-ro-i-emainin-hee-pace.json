@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupShrinkViewCropToFitRemainingSheetSpaceCommand",
+  "desc": "Shrink View Crop To Fit Remaining Sheet Space.",
+  "summary": "Shrink View Crop To Fit Remaining Sheet Space.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "shrink view crop",
+    "crop to fit sheet",
+    "reduce crop region for sheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Shrink View Crop To Fit Remaining Sheet Space…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Shrink View Crop To Fit Remaining Sheet Space: completed."
+    ],
+    "failureprompts": [
+      "Shrink View Crop To Fit Remaining Sheet Space: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

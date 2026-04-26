@@ -1,0 +1,28 @@
+{
+  "class": "PlaceDrainageNotesCommand",
+  "desc": "Places MEP notes on drainage systems in the current view.",
+  "summary": "Places MEP notes on drainage systems in the current view. Notes include SVP annotations, pipe run slopes, and fixture connections. Leaders are placed with 45° angles or horizontal, avoiding intersections. Uses GetDrainageNotes for note placement logic and UntangleOverlappingNotes for crossover verification.",
+  "usecase": "Use when you need to run this command's workflow for the current model task.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active Revit document and required context are available.",
+  "postcondition": "The command finishes with tracked success or a handled failure state.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "place drainage notes",
+    "drainage notes",
+    "mep notes",
+    "pipe notes",
+    "svp notes",
+    "annotate drainage"
+  ],
+  "intent_patterns": [],
+  "pillar": "Drainage",
+  "pillar_raw": "Drainage",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

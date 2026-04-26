@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerCaptureImageForSingleResultCommand",
+  "desc": "ClashManagerCaptureImageForSingleResultCommand — one-clash PNG via HiddenViewImageCaptureService.",
+  "summary": "ClashManagerCaptureImageForSingleResultCommand — one-clash PNG via HiddenViewImageCaptureService.",
+  "usecase": "Per-clash image capture without switching the user's active view.",
+  "notfor": "Bulk capture — use CaptureAllImagesInBackground.",
+  "precondition": "Resolver_ClashId resolvable; pair in doc; non-template View3D exists.",
+  "postcondition": "One PNG written to disk; audit recorded.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ClashId required; load ClashRecord.\n2) Resolve pair; WireError on missing.\n3) Instantiate service with optional resolver overrides for pixel width / margin / output root.\n4) Delegate Capture(doc, clashId, [a,b]).\n5) Emit ok + image_path + reason.",
+  "keywords": [
+    "clashmanagercaptureimageforsingleresult",
+    "capture image for clash",
+    "qa image one"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Capturing clash image (hidden view)…"
+    ],
+    "thinkingsteps": [
+      "Loading clash + pair…",
+      "Delegating to HiddenViewImageCaptureService…"
+    ],
+    "successprompts": [
+      "Image written: {image_path}."
+    ],
+    "failureprompts": [
+      "Capture failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

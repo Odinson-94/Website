@@ -1,0 +1,47 @@
+{
+  "class": "DismissAllRevitWarningsOfSameType",
+  "desc": "Dismisses all Revit warnings matching a specified failure definition type.",
+  "summary": "Dismisses all Revit warnings matching a specified failure definition type. Use MCP.GetRevitWarningsByFailureType to identify the type first. Requires user confirmation — never auto-execute without explicit approval.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Active document must have warnings of the specified type.",
+  "postcondition": "All warnings of the specified type are dismissed.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "dismiss all warnings type",
+    "clear all duplicate warnings",
+    "batch dismiss warnings",
+    "dismiss warnings by type"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "FailureDefinitionId",
+      "type": "string",
+      "description": "GUID of the failure definition type to dismiss",
+      "default": ""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Dismissing all warnings of this type..."
+    ],
+    "thinkingsteps": [
+      "Finding all warnings matching the failure type...",
+      "Dismissing {count} warnings..."
+    ],
+    "successprompts": [
+      "Dismissed {count} warnings of type \"{type}\". {remaining} warnings remain."
+    ],
+    "failureprompts": [
+      "Could not dismiss warnings: {error}"
+    ]
+  },
+  "has_restapi": false
+}

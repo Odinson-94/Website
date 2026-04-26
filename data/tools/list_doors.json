@@ -1,0 +1,12 @@
+{
+  "name": "list_doors",
+  "desc": "List all doors with family, type, host wall, and room from/to.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list doors"
+  ]
+}

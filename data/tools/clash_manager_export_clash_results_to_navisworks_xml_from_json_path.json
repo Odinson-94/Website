@@ -1,0 +1,30 @@
+{
+  "name": "clash_manager_export_clash_results_to_navisworks_xml_from_json_path",
+  "desc": "Export clash detection results to XML format. Reads from a clash JSON file and produces an XML report compatible with Navisworks and BIM 360.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "input_path",
+      "type": "string",
+      "description": "Path to clash results JSON file",
+      "required": true
+    },
+    {
+      "name": "output_path",
+      "type": "string",
+      "description": "Path for the output XML file (default: same directory as input with .xml extension)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "clash",
+    "export",
+    "xml",
+    "navisworks",
+    "bim360",
+    "report"
+  ]
+}

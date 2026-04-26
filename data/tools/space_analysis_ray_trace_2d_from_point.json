@@ -1,0 +1,12 @@
+{
+  "name": "space_analysis_ray_trace_2d_from_point",
+  "desc": "space_analysis_ray_trace_2d_from_point — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "space analysis ray trace 2d from point"
+  ]
+}

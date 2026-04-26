@@ -1,0 +1,22 @@
+{
+  "name": "qa_manager_agentic_bridge_control",
+  "desc": "QA Manager agentic bridge control: start / stop / status of the polling loop that lets external agents (Cursor Cloud, CI, any MCP client) drive QA workflows against this Revit session via a Supabase queue. Requires env vars MEPBRIDGE_AGENTIC_SUPABASE_URL, MEPBRIDGE_AGENTIC_SUPABASE_KEY, MEPBRIDGE_AGENTIC_BRIDGE_SECRET. Only the allowlist of QA / error / clash / export commands can be dispatched — arbitrary execute_command is rejected.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "status (default) | start | stop",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "qa manager agentic bridge",
+    "start qa agent bridge",
+    "stop qa agent bridge",
+    "agentic qa status"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "annotation_preferences_list_available_annotations",
+  "desc": "List annotation families available across the model and the configured user / business family folders, plus the most recently used picks.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Optional BuiltInCategory name (e.g. OST_PipeTags) to filter results.",
+      "required": false
+    },
+    {
+      "name": "user_folder",
+      "type": "string",
+      "description": "Optional override for the user family folder; defaults to %APPDATA%/MEPBridge/Families/Tags.",
+      "required": false
+    },
+    {
+      "name": "business_folder",
+      "type": "string",
+      "description": "Optional override for the business family folder.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "list available annotations",
+    "annotation preferences list",
+    "what tag families are available",
+    "annotation discovery chain"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "clash_manager_group_clash_results_from_latest_check_by_mep_category",
+  "desc": "Group clash results by MEP category (pipes, ducts, cable tray, etc).",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "group clashes category",
+    "clashes by category"
+  ]
+}

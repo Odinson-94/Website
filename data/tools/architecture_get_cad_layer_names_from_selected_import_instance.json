@@ -1,0 +1,12 @@
+{
+  "name": "architecture_get_cad_layer_names_from_selected_import_instance",
+  "desc": "ArchitectureGetCadLayerNamesFromSelectedImportInstance — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureGetCadLayerNamesFromSelectedImportInstance"
+  ]
+}

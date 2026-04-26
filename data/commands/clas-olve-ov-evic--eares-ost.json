@@ -1,0 +1,48 @@
+{
+  "class": "ClashSolverMoveDeviceToNearestHostCommand",
+  "desc": "ClashSolverMoveDeviceToNearestHostCommand — PDF \"MOVE_TO_HOST\".",
+  "summary": "ClashSolverMoveDeviceToNearestHostCommand — PDF \"MOVE_TO_HOST\". Project device location onto the target host surface and move the device to the projection point.",
+  "usecase": "Solver geometric re-host without changing Host reference.",
+  "notfor": "Full host-reassignment — separate workflow (delete + recreate).",
+  "precondition": "Active document; device + target host resolvable; device is FamilyInstance with LocationPoint; host category matches device's current host family.",
+  "postcondition": "One MoveElement inside a single Transaction if projection succeeds.",
+  "sideeffects": "",
+  "logictree": "1) Resolve device (FamilyInstance) and targetHost (HostObject subclass: Wall, Ceiling, Floor, RoofBase).\n2) WireError if device not FamilyInstance or host not HostObject.\n3) Read device LocationPoint; WireError if missing.\n4) Collect side faces of targetHost via HostObjectUtils.GetSideFaces (wall) / .GetBottomFaces (ceiling) / .GetTopFaces (floor).\n5) Project device point onto every face; pick projection with smallest distance.\n6) delta = projection - devicePoint. If delta zero → no-op.\n7) Forecast gate with the delta; if introduces new clashes → WireError + no-op.\n8) Transaction \"ClashSolver::MoveToHost\"; MoveElement(doc, device.Id, delta); commit.",
+  "keywords": [
+    "clashsolvermovedevicetonearesthost",
+    "move device to host",
+    "solver re-host move"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Projecting device onto target host surface…"
+    ],
+    "thinkingsteps": [
+      "Resolving device + host…",
+      "Gathering target host faces…",
+      "Choosing nearest projection and delta…",
+      "Forecasting before move…"
+    ],
+    "successprompts": [
+      "Moved device by {delta_ft} ft onto host."
+    ],
+    "failureprompts": [
+      "Move-to-host failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

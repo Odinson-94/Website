@@ -1,0 +1,32 @@
+{
+  "class": "HeatingSizeRadiatorsAltitudeDeltaTCorrectionForSpaceCommand",
+  "desc": "HeatingSizeRadiatorsAltitudeDeltaTCorrectionForSpaceCommand — altitude-corrected sizing.",
+  "summary": "HeatingSizeRadiatorsAltitudeDeltaTCorrectionForSpaceCommand — altitude-corrected sizing.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "1) altitude_correction = max(0.5, 1 - 0.05 * altitude_m / 1000).\n2) Delegate to HeatingSizeRadiatorsFromCalculatedLossForSpaceCommand with AltitudeCorrection = factor.\n3) Tag tracker.",
+  "keywords": [
+    "heatingsizeradiatorsaltitudedeltatcorrectionforspace",
+    "altitude radiator sizing",
+    "en442 altitude"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

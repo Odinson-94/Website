@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverOffsetServiceTowardSpaceDownCommand",
+  "desc": "ClashSolverOffsetServiceTowardSpaceDownCommand — PDF \"OFFSET_SERVICE_TOWARD_SPACE_DOWN\".",
+  "summary": "ClashSolverOffsetServiceTowardSpaceDownCommand — PDF \"OFFSET_SERVICE_TOWARD_SPACE_DOWN\". Step = service height + envelope.",
+  "usecase": "Solver pushes service toward floor.",
+  "notfor": "Fixed-step nudge — use MoveObjectDownOrCentreInSpace.",
+  "precondition": "Active document; one service resolvable with BoundingBox; default 3D view.",
+  "postcondition": "Zero or one MoveElement inside inner Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve element. 2) height from BB. 3) step = height + envelope/304.8. 4) Delegate to DirectionalMoveService with -Z, centreFallback=false. 5) Emit.",
+  "keywords": [
+    "clashsolveroffsetservicetowardspacedown",
+    "offset toward space down",
+    "solver -Z offset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Offsetting service downward…"
+    ],
+    "thinkingsteps": [
+      "Reading BB height…",
+      "Delegating to DirectionalMoveService…"
+    ],
+    "successprompts": [
+      "Offset -{applied_delta_ft} ft."
+    ],
+    "failureprompts": [
+      "Offset down failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

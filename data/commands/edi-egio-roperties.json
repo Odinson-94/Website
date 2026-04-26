@@ -1,0 +1,69 @@
+{
+  "class": "EditRegionPropertiesCommand",
+  "desc": "Edits properties on an existing FilledRegion — currently supports changing its FilledRegionType via FilledRegion.ChangeTypeId.",
+  "summary": "Edits properties on an existing FilledRegion — currently supports changing its FilledRegionType via FilledRegion.ChangeTypeId. Inputs are resolved from element IDs provided by the AI orchestrator via CommandExecutor.GetParameter.",
+  "usecase": "User wants to change the hatch pattern or fill type of a filled region on a view.",
+  "notfor": "Creating new filled regions. Not for editing detail lines or detail groups.",
+  "precondition": "Active document must be open. Target FilledRegion must exist by element ID.",
+  "postcondition": "The FilledRegion element has its type changed to the specified FilledRegionType.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "edit region properties",
+    "change region type",
+    "update filled region",
+    "set region type",
+    "modify filled region"
+  ],
+  "intent_patterns": [
+    "edit * region",
+    "change * region type",
+    "update * filled region",
+    "set * region *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "regionId",
+      "type": "integer",
+      "description": "FilledRegion element id",
+      "default": ""
+    },
+    {
+      "name": "regionTypeId",
+      "type": "integer",
+      "description": "Optional target FilledRegionType id",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Filled region edit result including regionId and regionTypeId"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Updating filled region properties...",
+      "Changing region type..."
+    ],
+    "thinkingsteps": [
+      "Looking up FilledRegion element by ID...",
+      "Resolving target FilledRegionType...",
+      "Applying type change..."
+    ],
+    "successprompts": [
+      "Filled region {regionId} updated to type {regionTypeId}",
+      "Done — region type changed successfully"
+    ],
+    "failureprompts": [
+      "Could not edit filled region: {error}",
+      "Region edit failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

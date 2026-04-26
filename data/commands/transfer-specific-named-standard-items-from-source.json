@@ -1,0 +1,25 @@
+{
+  "class": "TransferSpecificNamedStandardItemsFromSource",
+  "desc": "Transfers specific named items within a category from a source .rvt to the current project.",
+  "summary": "Transfers specific named items within a category from a source .rvt to the current project. For example, transfer only \"MEP - Duct\" and \"MEP - Pipe\" filters from the source. Opens source detached via TransferStandardsSourceDocumentManager. Executes via TransferStandardsExecutor.",
+  "usecase": "User wants to selectively transfer specific filters or templates.",
+  "notfor": "Bulk category transfers (use TransferAllStandardsFromSourceByCategory).",
+  "precondition": "Active Revit document must be open. Source file and named items must exist.",
+  "postcondition": "Specified named items transferred from source to target.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "transfer specific items",
+    "transfer named filters",
+    "selective transfer"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,40 @@
+{
+  "name": "clash_manager_detect_clashes_between_host_and_linked_model_by_bounding_box",
+  "desc": "Clash detection between linked model elements and host MEP services. Returns clashes and host element IDs for section box.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "linkName",
+      "type": "string",
+      "description": "Optional link name filter (partial match). If empty, all links.",
+      "required": false
+    },
+    {
+      "name": "linkedFilter",
+      "type": "string",
+      "description": "Category filter: 'structural' (default), 'all', or comma-separated category names.",
+      "required": false
+    },
+    {
+      "name": "hostElementIds",
+      "type": "string",
+      "description": "Optional JSON array of host element IDs. If empty, uses all MEP elements in host.",
+      "required": false
+    },
+    {
+      "name": "useSelectionForHost",
+      "type": "boolean",
+      "description": "If true and hostElementIds empty, use current selection as host set. Default false.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "clash linked",
+    "structural clash",
+    "link vs host",
+    "clash detection linked"
+  ]
+}

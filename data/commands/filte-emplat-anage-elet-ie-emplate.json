@@ -1,0 +1,36 @@
+{
+  "class": "FilterTemplateManagerDeleteViewTemplateCommand",
+  "desc": "Deletes a view template.",
+  "summary": "Deletes a view template.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "delete view template",
+    "filter_template_manager_delete_view_template",
+    "remove template"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Deleting template…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Template deleted."
+    ],
+    "failureprompts": [
+      "Delete failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

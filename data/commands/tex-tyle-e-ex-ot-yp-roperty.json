@@ -1,0 +1,35 @@
+{
+  "class": "TextStylesSetTextNoteTypePropertyCommand",
+  "desc": "Set a single property on a TextNoteType (font, size, colour, bold, italic, underline, border, leader, width factor).",
+  "summary": "Set a single property on a TextNoteType (font, size, colour, bold, italic, underline, border, leader, width factor).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "text styles set text note type property",
+    "text_styles_set_text_note_type_property"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running text styles set text note type property…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "text styles set text note type property: done."
+    ],
+    "failureprompts": [
+      "text styles set text note type property failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

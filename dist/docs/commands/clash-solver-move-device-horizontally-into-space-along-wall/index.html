@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clash Solver Move Device Horizontally Into Space Along Wall — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Clash Solver Move Device Horizontally Into Space Along Wall</div>
+
+  <h1 id="overview">Clash Solver Move Device Horizontally Into Space Along Wall</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">ClashSolverMoveDeviceHorizontallyIntoSpaceAlongWallCommand — PDF &quot;MOVE_HORIZONTALLY_INTO_SPACE&quot;. Slide along wall tangent.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document; device is FamilyInstance with Wall host.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Zero or one MoveElement inside inner Transaction.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/clash-solver-move-device-horizontally-into-space-along-wall/thumbnail.svg"
+           data-src="/sandbox/demo-assets/clash-solver-move-device-horizontally-into-space-along-wall/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop clash-solver-move-device-horizontally-into-space-along-wall/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>Slide wall-hosted device to new position along the same wall.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Off-wall moves — use MOVE_TO_HOST or MOVE_TO_WALL.</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>PresetKind</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>&quot;clash_tolerances&quot;</td>
+    <td>Deterministic config preset</td>
+  </tr></tbody>
+  </table>
+
+  
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree">1) Resolver_DeviceUniqueId required OR single selection.
+2) Resolve device; WireError if not FamilyInstance with Wall host.
+3) wall = fi.Host as Wall; tangent = wall.LocationCurve tangent direction (projected onto XY).
+4) If Resolver_PreferForward=false, flip tangent.
+5) Delegate TryDirectionalMoveOnService.ProbeAndMove(doc, fi, tangent, step_ft, threshold_ft, centreFallback=false).
+6) Emit outcome + wall_tangent_ft.</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Sliding wall-hosted device along wall tangent…</div>
+    <div class="lab">thinking</div><div class="msg">Resolving wall host + tangent…<br>Delegating to DirectionalMoveService…</div>
+    <div class="lab">on success</div><div class="msg">Slide along wall: applied=<span class="placeholder">{applied}</span>.</div>
+    <div class="lab">on failure</div><div class="msg">Slide-along-wall failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/clash_solver_move_device_horizontally_into_space_along_wall</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">clashsolvermovedevicehorizontallyintospacealongwall · slide along wall · solver lateral wall move</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

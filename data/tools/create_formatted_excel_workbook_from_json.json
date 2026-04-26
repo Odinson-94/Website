@@ -1,0 +1,34 @@
+{
+  "name": "create_formatted_excel_workbook_from_json",
+  "desc": "Create a formatted Excel workbook (.xlsx) from structured JSON. ",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "content_json",
+      "type": "string",
+      "description": "JSON object: { title?, sheets: [{ name, headers: [], rows: [[]], autoFilter?, freezeHeader? }] }",
+      "required": true
+    },
+    {
+      "name": "output_path",
+      "type": "string",
+      "description": "Output .xlsx file path. If omitted, writes to MEPBridge/exports/",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "create excel report",
+    "excel export",
+    "xlsx report",
+    "generate report excel",
+    "clash report excel",
+    "QA report excel",
+    "export report xlsx",
+    "create spreadsheet",
+    "export schedule excel",
+    "data export excel"
+  ]
+}

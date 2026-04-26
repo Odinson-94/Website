@@ -1,0 +1,21 @@
+{
+  "name": "object_styles_list_category_graphic_styles",
+  "desc": "List Object Styles for every model + annotation + import category. Returns per-category line weight (projection/cut), line colour, line pattern name, material name. Mirror of the Revit Manage > Object Styles dialog.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "category_type",
+      "type": "string",
+      "description": "Optional filter: Model, Annotation, Import.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "object styles list",
+    "list category graphic styles",
+    "object_styles_list_category_graphic_styles"
+  ]
+}

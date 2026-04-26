@@ -1,0 +1,76 @@
+{
+  "class": "ImportRadCommand",
+  "desc": "Imports radiators from a JSON file (positions) and an Excel schedule (family/type by length).",
+  "summary": "Imports radiators from a JSON file (positions) and an Excel schedule (family/type by length). Each radiator block in the JSON is matched to a schedule row via the REFERENCE attribute. Uses JsonModelLoader.Load to parse the JSON model. Uses GetRadiatorsFromScheduleCatalogue.LoadFromExcel to read the Excel schedule. Uses GetCurrentViewLevel.Get and LevelResolver.GetNearestLevel for level resolution. Uses UnitsHelper.RelativeMmToFeet_XY_UseBaseZ for coordinate conversion. Called by the ribbon or AI chat via MEPBridge.Revit.AIChat.Services.Execution.CommandExecutor. Related: ImportCommand for full MEP import.",
+  "usecase": "User wants to place radiators in Revit from a design tool export. User has a JSON with radiator positions and an Excel schedule with sizing data. User needs to match radiator types to positions via reference attributes.",
+  "notfor": "Importing full MEP layouts with pipes, ducts, trays (use ImportCommand). Manually placing individual radiators (use Revit's family placement). Editing existing radiator parameters (use parameter editing commands).",
+  "precondition": "Active document must be open. A JSON file with radiator blocks and an Excel schedule with Length/Family/Type columns must be available. At least one level must exist.",
+  "postcondition": "Radiator family instances are placed at JSON coordinates with types from the Excel schedule. Match results are exported to a rad-matches.json file alongside the source JSON. Schedule input is exported to rad-schedule-input.json for comparison.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "import radiators",
+    "place radiators",
+    "radiator import",
+    "rad import",
+    "radiator schedule"
+  ],
+  "intent_patterns": [
+    "import * radiator*",
+    "place * radiator*",
+    "rad * import"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "jsonPath",
+      "type": "string",
+      "description": "Path to JSON file with radiator positions",
+      "default": ""
+    },
+    {
+      "name": "schedulePath",
+      "type": "string",
+      "description": "Path to Excel schedule with Length/Family/Type columns",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Placed",
+      "type": "int",
+      "description": "Number of radiators placed"
+    },
+    {
+      "name": "Skipped",
+      "type": "int",
+      "description": "Number of radiators skipped"
+    }
+  ],
+  "related_commands": [
+    "ImportCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Importing radiators from JSON and schedule...",
+      "Placing radiators from your design data..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON radiator positions...",
+      "Loading Excel radiator schedule...",
+      "Matching blocks to schedule rows by reference...",
+      "Placing family instances..."
+    ],
+    "successprompts": [
+      "Placed {placed} radiators, skipped {skipped}.",
+      "Radiator import complete — {placed} placed successfully."
+    ],
+    "failureprompts": [
+      "Radiator import failed: {error}",
+      "Could not import radiators — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,40 @@
+{
+  "class": "ArchitectureCreateEnclosureWallsAroundRectangleCommand",
+  "desc": "Materialises an EnclosureRectangle as four walls on a specified Level + WallType.",
+  "summary": "Materialises an EnclosureRectangle as four walls on a specified Level + WallType. Pure rectangle maths are upstream.",
+  "usecase": "Materialise an enclosure rectangle (IPS, services-boxing, beam boxing) in one atomic step.",
+  "notfor": "Computing the rectangle itself (use GetEnclosureRectangle).",
+  "precondition": "Active document open; Level exists; WallType resolves (or default-wall-type is available); height &gt; 0; four corners present.",
+  "postcondition": "Four Wall elements added to the model inside one committed Transaction. Their ids returned in tracker output.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot supplies four corner XYZ values (feet) + Resolver_HeightMm + Resolver_LevelId + Resolver_WallTypeId?. 2) Validate preconditions — level exists; height &gt; 0; wallTypeId valid (fall back to Doc.GetDefaultElementTypeId(ElementTypeGroup.WallType) only if Resolver_WallTypeId is null — never silently). 3) Open Transaction 'Create enclosure walls'. 4) For each of (A→B, B→C, C→D, D→A) call Wall.Create(doc, Line.CreateBound(p0_on_level, p1_on_level), wallTypeId, levelId, heightFt, 0, false, false) and collect the result. 5) If any Wall.Create returns null → tracker.Fail + WireError + rollback. 6) Commit. 7) Bot: JSON {ok, wall_ids, level_id, height_mm}. User: toast 'Placed 4 enclosure walls on level {level.Name}.' 8) Any exception → tracker.Fail(ex); WireFault {corners, level_id, height_mm, wall_type_id}.",
+  "keywords": [
+    "architecturecreateenclosurewallsaroundrectangle",
+    "enclosure",
+    "wall",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Placing four walls around enclosure rectangle…"
+    ],
+    "thinkingsteps": [
+      "Validating level + wall type + height…",
+      "Creating Wall A→B, B→C, C→D, D→A…"
+    ],
+    "successprompts": [
+      "Placed 4 enclosure walls on level {level_name}."
+    ],
+    "failureprompts": [
+      "Could not place enclosure walls: {error}."
+    ]
+  },
+  "has_restapi": false
+}

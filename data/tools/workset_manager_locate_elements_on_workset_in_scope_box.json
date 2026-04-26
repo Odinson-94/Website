@@ -1,0 +1,13 @@
+{
+  "name": "workset_manager_locate_elements_on_workset_in_scope_box",
+  "desc": "Locate every element on a chosen workset that lies inside a scope box. Returns ids + bounding boxes for the React UI to highlight.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "workset_manager_locate_elements_on_workset_in_scope_box",
+    "workset manager locate elements on workset in scope box"
+  ]
+}

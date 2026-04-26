@@ -1,0 +1,8 @@
+{
+  "slug": "automated-qa-checks",
+  "category": "qa",
+  "title": "Automated QA Checks",
+  "desc": "Configure stage-based QA gates that run on every save.",
+  "duration": "1:30",
+  "status": "live"
+}

@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerCycleThroughAllResultsInOrderCommand",
+  "desc": "ClashManagerCycleThroughAllResultsInOrderCommand — advance the QA cursor by one, navigate, return context.",
+  "summary": "ClashManagerCycleThroughAllResultsInOrderCommand — advance the QA cursor by one, navigate, return context.",
+  "usecase": "QA walk-through of the clash list.",
+  "notfor": "Bulk export — use the Export commands.",
+  "precondition": "Active document; ≥ 1 clash in staging DB matching state filter.",
+  "postcondition": "Active view set to a 3D view with section box around the next pair.",
+  "sideeffects": "",
+  "logictree": "1) state_filter = Resolver_StateFilter ?? \"active\". If \"active\" yields zero rows, fall back to \"new\".\n2) Snapshot the id list; if the current process-scoped cursor refers to an id not in this list (or Resolver_Reset=true), reset cursor to 0 and set wrapped=true.\n3) Pick clash at cursor; increment cursor (wraps at end, emits wrapped=true on wrap).\n4) Resolve pair in doc; WireError if missing.\n5) CycleViewToNextClashResult.ZoomTo(uidoc, [a,b], margin_ft).\n6) Emit { clash_id, index, total, wrapped, view_id }.",
+  "keywords": [
+    "clashmanagercyclethroughallresultsinorder",
+    "cycle through clashes",
+    "qa next clash"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Advancing QA clash cursor…"
+    ],
+    "thinkingsteps": [
+      "Listing clashes matching state filter…",
+      "Zooming to next pair…"
+    ],
+    "successprompts": [
+      "Cycled to clash {clash_id} (index {index} / {total})."
+    ],
+    "failureprompts": [
+      "Cycle failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

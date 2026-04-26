@@ -1,0 +1,29 @@
+{
+  "name": "functionality_wiring_run_live_workflow_demo",
+  "desc": "Run a curated workflow demo against the live BridgeRegistry, wiring each step through ErrorManager so the error panel shows the timeline. Demos: swvs-demo-create-floor-plan, epm-demo-summary-dashboard, tag-demo-smart-place-tag, ws-demo-list-with-degrade, cobie-demo-list-component.",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "workflow_id",
+      "type": "string",
+      "description": "One of: swvs-demo-create-floor-plan, epm-demo-summary-dashboard, tag-demo-smart-place-tag, ws-demo-list-with-degrade, cobie-demo-list-component. Default: swvs-demo-create-floor-plan.",
+      "required": false
+    },
+    {
+      "name": "dry_run",
+      "type": "boolean",
+      "description": "If true, walk the steps without invoking bridges (still surfaces WireRecoverable entries). Default false.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "wiring live demo",
+    "run wiring live demo",
+    "functionality wiring live workflow",
+    "live workflow demo",
+    "demo wiring workflow"
+  ]
+}

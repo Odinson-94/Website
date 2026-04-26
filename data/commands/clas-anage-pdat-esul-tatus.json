@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerUpdateResultStatusCommand",
+  "desc": "ClashManagerUpdateResultStatusCommand — sole state-transition write point for the `clashes.state` column.",
+  "summary": "ClashManagerUpdateResultStatusCommand — sole state-transition write point for the `clashes.state` column.",
+  "usecase": "QA workflow progression.",
+  "notfor": "fix_status transitions — separate command.",
+  "precondition": "Resolver_ClashId resolvable; Resolver_ToState is a valid transition.",
+  "postcondition": "Single SQLite UPDATE via repo.TransitionState.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ClashId + Resolver_ToState required; validate to_state ∈ {new, active, reviewed, resolved, ignored}.\n2) Load row; compare from_state to enforce a valid transition path (ValidTransitions table).\n3) repo.TransitionState(id, to_state, comment?).\n4) Emit ok + from/to.",
+  "keywords": [
+    "clashmanagerupdateresultstatus",
+    "update clash state",
+    "qa state transition"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Transitioning clash state…"
+    ],
+    "thinkingsteps": [
+      "Validating transition against allowed set…",
+      "Writing via ClashesRepository…"
+    ],
+    "successprompts": [
+      "State {from_state} → {to_state}."
+    ],
+    "failureprompts": [
+      "State update failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

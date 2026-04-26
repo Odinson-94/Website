@@ -1,0 +1,1075 @@
+/* ============================================================================
+ *  SANDBOX CSS  ·  Adelphos AI sandbox preview pages
+ * ============================================================================
+ *  Sits ON TOP of /css/shared-styles.css (the live site CSS).
+ *  Adds only what the sandbox needs: layout, components, theming, motion.
+ *
+ * ----------------------------------------------------------------------------
+ *  SECTION INDEX (search for "§N." to jump to a section)
+ * ----------------------------------------------------------------------------
+ *  §1.  TOKENS               brand · spacing · typography · radius · shadow
+ *  §2.  TOKENS · DARK MODE   per-token overrides for html.dark-mode
+ *  §3.  INHERITED FIXES      patches for /css/shared-styles.css quirks
+ *  §4.  LAYOUT               .docs-layout (3-col), .docs-layout.wide, sandbox-bar
+ *  §5.  NAV LEFT             .docs-left  (site-wide section nav)
+ *  §6.  NAV RIGHT            .docs-right (in-page anchors / "On this page")
+ *  §7.  TYPOGRAPHY           h1/h2/h3/p inside .docs-content + .crumbs
+ *  §8.  TABLES               .ref-table, .inv-counts, .filter-row
+ *  §9.  PILLS                base + 3 themes (muted | outline | dot)
+ *  §10. CALLOUTS             base + 3 themes (muted | outline | editorial)
+ *  §11. THEME SWITCHER       floating top-right A/B picker
+ *  §12. DEMO CARD            gallery card (thumbnail · title · desc · meta)
+ *  §13. DEMO DETAIL PAGE     hero video + content sections
+ *  §14. SANDBOX TILE         sandbox jump-off tiles
+ *  §15. CODE & DIALOGUE      .logictree, .ai-dialogue
+ *  §16. FOOTER               .sandbox-footer
+ *  §17. MOTION & A11Y        prefers-reduced-motion, transition tokens
+ *
+ * ----------------------------------------------------------------------------
+ *  RE-SKINNING (what to edit + what command will do it)
+ * ----------------------------------------------------------------------------
+ *
+ *  | Goal                                | Edit                        | Automation cmd        |
+ *  |-------------------------------------|-----------------------------|-----------------------|
+ *  | Change brand colour                 | §1   --brand-teal           | `set-brand-color X`   |
+ *  | Change accent colour everywhere     | §1   --brand-teal + §10/§9  | `set-brand-color X`   |
+ *  | Switch pill theme                   | (HTML) [data-pill-theme]    | `set-pill-theme X`    |
+ *  | Switch callout theme                | (HTML) [data-callout-theme] | `set-callout-theme X` |
+ *  | Add a new pill type (e.g. "beta")   | §9 .pill-beta               | `add-pill beta blue`  |
+ *  | Add a new callout type              | §10 .callout-X + icon SVG   | `add-callout X color` |
+ *  | Adjust spacing scale                | §1   --space-*              | `set-spacing N`       |
+ *  | Change content max width            | §1   --max-content          | `set-content-width N` |
+ *  | Change all hover transitions        | §17  --motion-*             | `set-motion N`        |
+ *  | Reskin to a different brand entirely| §1 + §2 only                | `apply-brand-tokens X`|
+ *
+ *  Every section header below repeats this metadata so a script (or LLM) can
+ *  parse it and apply changes deterministically.
+ * ============================================================================ */
+
+
+/* ============================================================================
+ * §1. TOKENS  ·  the design surface
+ * ----------------------------------------------------------------------------
+ *  WHAT:   All design primitives. Every other rule in this file references one
+ *          of these. Editing a token here re-skins the entire sandbox.
+ *  CHANGE: Hand-edit the value, OR run `set-brand-color X` / `set-spacing N` /
+ *          `set-content-width N` / `apply-brand-tokens X`.
+ * ============================================================================ */
+:root {
+  /* --- BRAND ---------------------------------------------------------- */
+  --brand-teal:        #156082;          /* primary accent */
+  --brand-teal-dark:   #0e4560;          /* hover/active */
+
+  /* --- SURFACES ------------------------------------------------------- */
+  --bg-soft:           #f6f7f9;          /* sectioned panels */
+  --bg-card:           #ffffff;          /* card / table / panel fill */
+  --border:            rgba(0,0,0,0.08); /* default border */
+  --border-strong:     rgba(0,0,0,0.16); /* hover / focused border */
+
+  /* --- TEXT ---------------------------------------------------------- */
+  --text:              #1a1a1a;          /* body text */
+  --text-muted:        #6b7280;          /* secondary text */
+
+  /* --- TYPOGRAPHY ---------------------------------------------------- */
+  --font-sans:         'Inter', sans-serif;
+  --font-mono:         'JetBrains Mono', ui-monospace, monospace;
+  --font-display:      'Gotham Medium', 'Inter', sans-serif;
+
+  /* --- SPACING (4pt scale — see frontend-design/spatial-design.md) --- */
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* --- RADIUS -------------------------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* --- ELEVATION ----------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-lg: 0 6px 12px rgba(0,0,0,0.08), 0 18px 36px rgba(0,0,0,0.10);
+
+  /* --- LAYOUT -------------------------------------------------------- */
+  --max-content: 1640px;                 /* default page max width */
+  --rail-left-w: 260px;
+  --rail-right-w: 240px;
+  --shell-padding-top: 120px;            /* clears fixed top menubar */
+
+  /* --- MOTION (see §17) --------------------------------------------- */
+  --ease-out:  cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-fast:  150ms;
+  --motion-base:  220ms;
+  --motion-slow:  850ms;                 /* shine sweep */
+
+  /* --- PILL TOKENS (consumed by §9 themes) -------------------------- */
+  --pill-bg-info:    oklch(95% 0.024 240);
+  --pill-fg-info:    oklch(38% 0.10  240);
+  --pill-bg-success: oklch(95% 0.025 150);
+  --pill-fg-success: oklch(38% 0.09  150);
+  --pill-bg-warn:    oklch(95% 0.030 80);
+  --pill-fg-warn:    oklch(38% 0.10  60);
+  --pill-bg-danger:  oklch(95% 0.025 25);
+  --pill-fg-danger:  oklch(40% 0.13  25);
+  --pill-bg-neutral: oklch(96% 0.005 240);
+  --pill-fg-neutral: oklch(38% 0.01  240);
+
+  /* --- CALLOUT TOKENS (consumed by §10 themes) ---------------------- */
+  --co-bg-info:    oklch(97% 0.014 240);
+  --co-bg-success: oklch(97% 0.014 150);
+  --co-bg-warn:    oklch(97% 0.018 80);
+  --co-bg-danger:  oklch(97% 0.014 25);
+  --co-rule-info:    oklch(55% 0.13 240);
+  --co-rule-success: oklch(55% 0.12 150);
+  --co-rule-warn:    oklch(60% 0.12 70);
+  --co-rule-danger:  oklch(58% 0.16 25);
+}
+
+
+/* ============================================================================
+ * §2. TOKENS · DARK MODE
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Per-token overrides triggered by html.dark-mode (set by the cookie
+ *          bootstrap script in the page <head>).
+ *  CHANGE: Mirror any §1 token here if dark mode needs a different value.
+ * ============================================================================ */
+html.dark-mode {
+  --bg-soft:         #232629;
+  --bg-card:         #232629;
+  --border:          rgba(255,255,255,0.08);
+  --border-strong:   rgba(255,255,255,0.18);
+  --text:            #e8eaed;
+  --text-muted:      #999;
+
+  --pill-bg-info:    oklch(28% 0.025 240);
+  --pill-fg-info:    oklch(82% 0.08  240);
+  --pill-bg-success: oklch(28% 0.025 150);
+  --pill-fg-success: oklch(82% 0.10  150);
+  --pill-bg-warn:    oklch(30% 0.030 70);
+  --pill-fg-warn:    oklch(85% 0.12  70);
+  --pill-bg-danger:  oklch(28% 0.030 25);
+  --pill-fg-danger:  oklch(82% 0.12  25);
+  --pill-bg-neutral: oklch(24% 0.006 240);
+  --pill-fg-neutral: oklch(75% 0.01  240);
+
+  --co-bg-info:    oklch(24% 0.022 240);
+  --co-bg-success: oklch(24% 0.022 150);
+  --co-bg-warn:    oklch(26% 0.025 70);
+  --co-bg-danger:  oklch(24% 0.025 25);
+}
+html.dark-mode body { background: #1a1a1a; }
+
+
+/* ============================================================================
+ * §3. INHERITED FIXES  ·  patches to /css/shared-styles.css behaviour
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Two patches the sandbox needs because the live site CSS makes
+ *          assumptions that don't hold for the docs preview.
+ *  CHANGE: Don't normally — these are surgical fixes.
+ * ============================================================================ */
+/* Live site uses zoom: 0.90 on body; sandbox content reads better at 100% */
+body { zoom: 1 !important; }
+
+/* Coming-Soon dropdowns: hide-by-default styles live INLINE in real index.html.
+   Replicate them here so the menubar dropdowns work the same in the sandbox. */
+.menu-item-coming-soon { position: relative; display: flex; align-items: center; }
+.menu-item-coming-soon .menu-link { cursor: default; opacity: 0.6; }
+.coming-soon-dropdown {
+  position: absolute; top: 100%; left: 0;
+  background: #fff; border: 1px solid rgba(0,0,0,0.10); border-radius: 8px;
+  padding: 12px 16px; min-width: 200px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.18s, visibility 0.18s;
+  z-index: 10001; margin-top: 10px; text-align: left;
+  pointer-events: none;
+}
+.menu-item-coming-soon:hover .coming-soon-dropdown {
+  opacity: 1; visibility: visible; pointer-events: auto;
+}
+.coming-soon-dropdown .badge {
+  display: inline-block; background: var(--brand-teal); color: #fff;
+  font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 12px;
+  margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.coming-soon-dropdown .blurb { font-size: 12px; color: #444; margin: 0 0 8px; line-height: 1.4; }
+.coming-soon-dropdown ul { list-style: disc; margin: 0; padding-left: 18px; }
+.coming-soon-dropdown li { font-size: 12px; color: #666; line-height: 1.8; }
+html.dark-mode .coming-soon-dropdown { background: #2a2a2a; border-color: rgba(255,255,255,0.10); }
+html.dark-mode .coming-soon-dropdown .blurb { color: #aaa; }
+html.dark-mode .coming-soon-dropdown li { color: #999; }
+
+/* Live dropdowns (Apps, Agentic Services, Docs).
+   FIX:  long taglines used to overflow the white panel and bleed onto
+         the hero card behind it. Solution = explicit fixed width on
+         the panel, box-sizing border-box, and word-wrap on the items. */
+.menu-item-dropdown { position: relative; display: flex; align-items: center; }
+.menu-item-dropdown > .menu-link { cursor: pointer; }
+
+/* Invisible hover-bridge — sits in the dead space between the menubar
+   item and the dropdown panel so the cursor never falls into "no man's
+   land" while moving down. Without this, the panel disappears the moment
+   the cursor leaves the <a>. */
+.menu-item-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: -8px; right: -8px;
+  height: 16px;            /* > the panel's margin-top */
+  background: transparent;
+  pointer-events: none;
+}
+.menu-item-dropdown:hover::after,
+.menu-item-dropdown:focus-within::after { pointer-events: auto; }
+
+.menu-item-dropdown .dropdown-panel {
+  position: absolute; top: 100%; left: 0;
+  background: #fff; border: 1px solid rgba(0,0,0,0.10); border-radius: 10px;
+  padding: 14px 16px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  box-sizing: border-box;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.18s ease, visibility 0s linear 0.18s;   /* delay hide */
+  z-index: 10001; margin-top: 10px; text-align: left;
+  pointer-events: none;
+  overflow: hidden;
+  /* Force brand font on every descendant — kills Times New Roman on hover */
+  font-family: var(--font-sans);
+}
+.menu-item-dropdown .dropdown-panel * { font-family: var(--font-sans); }
+.menu-item-dropdown:hover .dropdown-panel,
+.menu-item-dropdown:focus-within .dropdown-panel {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transition: opacity 0.18s ease, visibility 0s linear 0s;       /* show immediately */
+}
+.menu-item-dropdown .dropdown-panel .blurb {
+  font-size: 12px; color: var(--text-muted);
+  margin: 0 0 10px; line-height: 1.4;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  word-wrap: break-word; overflow-wrap: break-word;
+}
+.menu-item-dropdown .dropdown-list { list-style: none; margin: 0; padding: 0; }
+.menu-item-dropdown .dropdown-list li { margin: 0; }
+.menu-item-dropdown .dropdown-list a {
+  display: block; padding: 10px 12px; border-radius: 6px;
+  text-decoration: none; color: var(--text);
+  transition: background 0.12s;
+  word-wrap: break-word; overflow-wrap: break-word;
+}
+.menu-item-dropdown .dropdown-list a:hover { background: var(--bg-soft); }
+.menu-item-dropdown .dropdown-list a strong {
+  display: block; font-size: 14px; font-weight: 600; color: var(--brand-teal);
+  margin-bottom: 2px;
+}
+.menu-item-dropdown .dropdown-list a .ds {
+  display: block; font-size: 12px; color: var(--text-muted); line-height: 1.4;
+  white-space: normal;                   /* let long taglines wrap */
+}
+html.dark-mode .menu-item-dropdown .dropdown-panel { background: #2a2a2a; border-color: rgba(255,255,255,0.10); }
+
+/* ============================================================================
+ * FAQ + RELATED — SEO/AEO surface, used by every detail page
+ * Source: scripts/lib/seo.mjs (renderFaqBlock, renderRelatedBlock)
+ * ========================================================================= */
+.faq-section { margin: var(--space-2xl) 0 var(--space-xl); }
+.faq-section h2 { font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 var(--space-sm); }
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 14px 18px; transition: border-color 0.15s;
+}
+.faq-item:hover { border-color: var(--brand-teal); }
+.faq-item summary {
+  cursor: pointer; font-weight: 600; font-size: 15px; color: var(--text);
+  list-style: none; outline: none;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; font-size: 22px; color: var(--brand-teal); font-weight: 400;
+  margin-left: 12px; transition: transform 0.18s;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item .faq-answer { padding-top: 10px; }
+.faq-item .faq-answer p { font-size: 14px; line-height: 1.6; color: var(--text-muted); margin: 0; }
+
+.related-section { margin: var(--space-2xl) 0 var(--space-xl); }
+.related-section h2 { font-size: 24px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 var(--space-sm); }
+.related-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-sm);
+}
+.related-card {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 14px 16px; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); text-decoration: none; color: var(--text);
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.related-card:hover { transform: translateY(-2px); border-color: var(--brand-teal); box-shadow: var(--shadow-sm); }
+.related-card .related-kind {
+  font-size: 11px; color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: 0.06em; font-weight: 600;
+}
+.related-card strong { font-size: 15px; font-weight: 600; color: var(--brand-teal); }
+.related-card .related-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+
+/* ============================================================================
+ * §4. LAYOUT  ·  three-column docs shell
+ * ----------------------------------------------------------------------------
+ *  WHAT:   The Cursor-docs style 3-column grid.
+ *          left rail · center content · right rail (in-page anchors)
+ *          .docs-layout       — bounded by --max-content
+ *          .docs-layout.wide  — full viewport width minus padding (gallery)
+ *  CHANGE: Width → §1 --max-content. Rail widths → §1 --rail-*-w.
+ * ============================================================================ */
+.docs-layout {
+  display: grid;
+  grid-template-columns: var(--rail-left-w) minmax(0, 1fr) var(--rail-right-w);
+  gap: var(--space-2xl);
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 140px var(--space-xl) var(--space-3xl);
+  font-family: var(--font-sans);
+}
+.docs-layout.wide {
+  max-width: none;
+  padding-left: var(--space-2xl);
+  padding-right: var(--space-2xl);
+}
+
+/* center content */
+.docs-content { min-width: 0; }
+.docs-content > h1:first-child { margin-top: 0; }
+
+/* Sandbox banner pushes layout down 28px */
+.sandbox-bar ~ .docs-layout { padding-top: 158px; }
+
+/* Mobile: stack everything */
+@media (max-width: 1100px) {
+  .docs-layout { grid-template-columns: minmax(0,1fr); padding-top: 110px; }
+  .docs-left,
+  .docs-right { display: none; }
+}
+
+/* Sandbox banner — small persistent header marking these as preview pages */
+.sandbox-bar {
+  position: sticky; top: 0; z-index: 10005;
+  background: var(--brand-teal); color: #fff;
+  padding: 8px 22px;
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 500;
+  display: flex; gap: 16px; align-items: center;
+}
+.sandbox-bar strong { font-weight: 700; letter-spacing: 0.04em; }
+.sandbox-bar a { color: #fff; text-decoration: underline; }
+.sandbox-bar .spacer { flex: 1; }
+
+
+/* ============================================================================
+ * §5. NAV LEFT  ·  site-wide section navigation
+ * ----------------------------------------------------------------------------
+ *  WHAT:   The left rail. Built dynamically by /sandbox/docs-shell.js from
+ *          /sandbox/data/demos.json + a static config.
+ *  CHANGE: Items → docs-shell.js  ·  visuals → here.
+ * ============================================================================ */
+.docs-left { font-size: 13px; padding-right: 8px; }
+.docs-left,
+.docs-right {
+  position: sticky; top: 120px; align-self: start;
+  max-height: calc(100vh - 140px); overflow-y: auto; scrollbar-width: thin;
+}
+.docs-left .nav-section { margin-bottom: 22px; }
+.docs-left .nav-section-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 10px;
+}
+.docs-left .nav-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 10px; border-radius: 5px;
+  color: var(--text); text-decoration: none;
+  line-height: 1.4; font-weight: 400;
+  transition: background var(--motion-fast), color var(--motion-fast);
+}
+.docs-left .nav-link:hover {
+  background: var(--bg-soft); color: var(--brand-teal); text-decoration: none;
+}
+.docs-left .nav-link.active {
+  background: rgba(21,96,130,0.10); color: var(--brand-teal); font-weight: 500;
+}
+.docs-left .nav-link .nav-count {
+  font-size: 11px; color: var(--text-muted);
+  background: var(--bg-soft); padding: 1px 7px; border-radius: 999px;
+  margin-left: 8px;
+}
+.docs-left .nav-link.active .nav-count {
+  background: rgba(21,96,130,0.12); color: var(--brand-teal);
+}
+.docs-left .nav-sub { padding-left: 14px; }
+
+
+/* ============================================================================
+ * §6. NAV RIGHT  ·  "On this page" anchors
+ * ----------------------------------------------------------------------------
+ *  WHAT:   The right rail. Built dynamically by /sandbox/docs-shell.js from
+ *          H2[id], H3[id], and [data-toc] elements in .docs-content.
+ *  CHANGE: Don't usually need to. Highlight colour → §1 --brand-teal.
+ * ============================================================================ */
+.docs-right {
+  font-size: 12.5px; padding-left: 8px;
+  border-left: 1px solid var(--border);
+}
+.docs-right .toc-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-muted); margin: 0 0 10px 12px;
+}
+.docs-right .toc-link {
+  display: block; padding: 4px 12px; border-radius: 4px;
+  color: var(--text-muted); text-decoration: none; line-height: 1.45;
+  border-left: 2px solid transparent; margin-left: -2px;
+  transition: color var(--motion-fast), border-color var(--motion-fast);
+}
+.docs-right .toc-link:hover { color: var(--text); text-decoration: none; }
+.docs-right .toc-link.active {
+  color: var(--brand-teal);
+  border-left-color: var(--brand-teal);
+  font-weight: 500;
+}
+.docs-right .toc-link.toc-h3 { padding-left: 22px; font-size: 12px; }
+
+
+/* ============================================================================
+ * §7. TYPOGRAPHY  ·  inside .docs-content
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Default heading + body type for sandbox pages. Overridden by
+ *          §13 (.demo-detail) for the bigger Cursor-style hero pages.
+ *  CHANGE: Sizes/weights inline; family → §1 --font-sans.
+ * ============================================================================ */
+main.sandbox-main {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 140px 28px 100px;
+  font-family: var(--font-sans);
+}
+main.sandbox-main h1,
+.docs-content > h1 {
+  font-family: var(--font-sans);
+  font-size: 38px; font-weight: 500; letter-spacing: -0.01em;
+  color: var(--text); margin-bottom: 8px;
+}
+main.sandbox-main h2,
+.docs-content > h2 {
+  font-family: var(--font-sans);
+  font-size: 22px; font-weight: 500; letter-spacing: -0.005em;
+  color: var(--text); margin: 32px 0 12px;
+}
+main.sandbox-main h3 { font-size: 16px; font-weight: 500; color: var(--text); margin: 16px 0 6px; }
+main.sandbox-main p  { font-size: 15px; line-height: 1.65; color: var(--text-muted); }
+main.sandbox-main a  { color: var(--brand-teal); }
+
+.crumbs { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+.crumbs a { color: var(--text-muted); }
+
+
+/* ============================================================================
+ * §8. TABLES  ·  reference + inventory tables
+ * ----------------------------------------------------------------------------
+ *  WHAT:   .ref-table        — generic reference table (params, returns)
+ *          .inv-counts       — dashboard chip row above an inventory table
+ *          .filter-row       — filter dropdowns + search row
+ *  CHANGE: Borders/shadows → §1 tokens. Layout inline.
+ * ============================================================================ */
+.ref-table {
+  width: 100%; border-collapse: collapse;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  font-size: 13px;
+}
+.ref-table th, .ref-table td {
+  padding: 9px 12px; border-bottom: 1px solid var(--border);
+  text-align: left; vertical-align: top;
+}
+.ref-table th {
+  background: var(--bg-soft); font-weight: 600;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); position: sticky; top: 100px; z-index: 1;
+}
+.docs-content .ref-table th { top: 0; }
+.ref-table tr:hover td { background: var(--bg-soft); }
+.ref-table code {
+  font-family: var(--font-mono); font-size: 12px; color: var(--brand-teal);
+}
+
+.req-yes { color: #c5384b; font-weight: 600; }
+.req-no  { color: var(--text-muted); }
+.check   { color: #1d6b3a; font-weight: 700; }
+.cross   { color: #c5384b; font-weight: 700; }
+
+.inv-counts { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0 24px; }
+.inv-count {
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px 18px; min-width: 130px;
+}
+.inv-count strong { font-size: 24px; font-weight: 600; display: block; line-height: 1; }
+.inv-count strong span { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+.inv-count span.label {
+  font-size: 11px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  display: block; margin-top: 4px;
+}
+
+.filter-row {
+  display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+  margin-bottom: 14px;
+}
+.filter-row select, .filter-row input[type=search] {
+  padding: 7px 10px; font-size: 13px;
+  border: 1px solid var(--border-strong); border-radius: 6px;
+  background: var(--bg-card); color: var(--text);
+  font-family: inherit;
+}
+.filter-row input[type=search] { flex: 1; min-width: 220px; }
+.row-count { color: var(--text-muted); font-size: 13px; }
+
+
+/* ============================================================================
+ * §9. PILLS  ·  small status / category labels
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Inline labels (e.g. "Drainage" · "Live" · "Public API").
+ *          Three switchable visual themes via [data-pill-theme] on <html>.
+ *
+ *  THEMES: muted    — soft tinted background (Notion / Linear)
+ *          outline  — border only, no fill (Vercel / Stripe Docs)
+ *          dot      — small status dot + label (GitBook / Mintlify)
+ *
+ *  ADD A NEW PILL TYPE:
+ *    1. add a class .pill-mything to your HTML
+ *    2. assign tokens in this section for each theme block
+ *  Or run `add-pill mything <hue>` to scaffold.
+ * ============================================================================ */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 500;
+  font-family: var(--font-sans);
+  letter-spacing: 0; text-transform: none;       /* sentence case, never SHOUTY */
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+/* --- Theme: muted (default) ----------------------------------------- */
+[data-pill-theme="muted"] .pill-bridge,
+.pill-bridge   { background: var(--pill-bg-info);    color: var(--pill-fg-info); }
+[data-pill-theme="muted"] .pill-pillar,
+.pill-pillar   { background: var(--pill-bg-info);    color: var(--pill-fg-info); }
+[data-pill-theme="muted"] .pill-always,
+.pill-always   { background: var(--pill-bg-success); color: var(--pill-fg-success); }
+[data-pill-theme="muted"] .pill-live,
+.pill-live     { background: var(--pill-bg-success); color: var(--pill-fg-success); }
+[data-pill-theme="muted"] .pill-coming,
+.pill-coming   { background: var(--pill-bg-warn);    color: var(--pill-fg-warn); }
+[data-pill-theme="muted"] .pill-category,
+.pill-category { background: var(--pill-bg-neutral); color: var(--pill-fg-neutral); }
+
+/* --- Theme: outline -------------------------------------------------- */
+[data-pill-theme="outline"] .pill {
+  background: transparent;
+  border-color: oklch(85% 0.01 240); color: oklch(38% 0.01 240);
+}
+[data-pill-theme="outline"] .pill-bridge,
+[data-pill-theme="outline"] .pill-pillar { border-color: oklch(70% 0.10 240); color: oklch(40% 0.13 240); }
+[data-pill-theme="outline"] .pill-always,
+[data-pill-theme="outline"] .pill-live   { border-color: oklch(70% 0.10 150); color: oklch(40% 0.11 150); }
+[data-pill-theme="outline"] .pill-coming { border-color: oklch(75% 0.10 80);  color: oklch(45% 0.10 60);  }
+
+/* --- Theme: dot ------------------------------------------------------ */
+[data-pill-theme="dot"] .pill {
+  background: oklch(98% 0.003 240);
+  border-color: oklch(90% 0.005 240);
+  color: oklch(35% 0.01 240);
+}
+[data-pill-theme="dot"] .pill::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; flex: 0 0 6px;
+  background: oklch(60% 0.01 240);
+}
+[data-pill-theme="dot"] .pill-bridge::before,
+[data-pill-theme="dot"] .pill-pillar::before { background: oklch(55% 0.18 240); }
+[data-pill-theme="dot"] .pill-always::before,
+[data-pill-theme="dot"] .pill-live::before   { background: oklch(60% 0.18 150); }
+[data-pill-theme="dot"] .pill-coming::before { background: oklch(70% 0.16 70);  }
+
+
+/* ============================================================================
+ * §10. CALLOUTS  ·  highlighted prose blocks
+ * ----------------------------------------------------------------------------
+ *  WHAT:   .callout              — base
+ *          .callout-pre          — info     (Before you run this)   blue rule
+ *          .callout-post         — success  (After it runs)          green rule
+ *          .callout-side         — warn     (Side effects)           amber rule
+ *          .callout-warn         — danger   (Don't use this when)    red rule
+ *
+ *  THEMES: muted    — tinted background, thin left rule, icon
+ *          outline  — 1px border, no fill
+ *          editorial— no box, just a thick left border + sentence-case text
+ *
+ *  HOVER:  transform translateY(-2px) + soft glow + diagonal shine sweep
+ *          (suppressed in editorial; respects prefers-reduced-motion)
+ *
+ *  ADD A NEW CALLOUT TYPE:
+ *    1. add class .callout-X in HTML
+ *    2. add `--co-bg-X` and `--co-rule-X` tokens to §1 / §2
+ *    3. add the muted/outline/editorial colour rules in this section
+ *    4. add an icon (inline SVG data URI) in the icon block at the bottom
+ *  Or run `add-callout X <hue>` to scaffold.
+ * ============================================================================ */
+
+/* --- base ----------------------------------------------------------- */
+.callout {
+  position: relative;
+  padding: 18px 24px 18px 52px;
+  margin: 18px 0;
+  border-radius: var(--radius-md);
+  font-size: 15px; line-height: 1.65;
+  color: var(--text);
+  overflow: hidden;
+  cursor: default;
+  transition: transform var(--motion-base) var(--ease-out),
+              box-shadow var(--motion-base) var(--ease-out),
+              border-color var(--motion-base) ease;
+  will-change: transform;
+}
+.callout::before {                                /* icon */
+  content: ''; position: absolute;
+  left: 20px; top: 21px;
+  width: 18px; height: 18px;
+  background-repeat: no-repeat; background-position: center; background-size: contain;
+  pointer-events: none;
+}
+.callout > strong {
+  display: block;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0; text-transform: none;
+  color: var(--text); margin-bottom: 4px;
+}
+.callout p { margin: 0; }
+.callout code {
+  font-family: var(--font-mono); font-size: 13px;
+  padding: 1px 5px; border-radius: 3px;
+  background: rgba(0,0,0,0.05);
+}
+html.dark-mode .callout code { background: rgba(255,255,255,0.08); }
+
+/* --- hover: lift + glow + shine sweep ------------------------------ */
+.callout:hover { transform: translateY(-2px); }
+.callout-pre:hover  { box-shadow: 0 4px 12px oklch(70% 0.13 240 / 0.18), 0 1px 3px oklch(50% 0.10 240 / 0.10); }
+.callout-post:hover { box-shadow: 0 4px 12px oklch(70% 0.12 150 / 0.20), 0 1px 3px oklch(50% 0.10 150 / 0.10); }
+.callout-side:hover { box-shadow: 0 4px 12px oklch(75% 0.12 70  / 0.22), 0 1px 3px oklch(55% 0.10 70  / 0.10); }
+.callout-warn:hover { box-shadow: 0 4px 12px oklch(70% 0.16 25  / 0.22), 0 1px 3px oklch(50% 0.13 25  / 0.10); }
+
+.callout::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.55) 50%, transparent 65%);
+  transform: translateX(-110%) skewX(-12deg);
+  transition: transform var(--motion-slow) var(--ease-out);
+  pointer-events: none; opacity: 0.7;
+}
+html.dark-mode .callout::after {
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.10) 50%, transparent 65%);
+}
+.callout:hover::after { transform: translateX(110%) skewX(-12deg); }
+
+/* --- Theme: muted (default) ----------------------------------------- */
+[data-callout-theme="muted"] .callout-pre,
+.docs-content .callout-pre  { background: var(--co-bg-info);    box-shadow: inset 3px 0 0 var(--co-rule-info); }
+[data-callout-theme="muted"] .callout-post,
+.docs-content .callout-post { background: var(--co-bg-success); box-shadow: inset 3px 0 0 var(--co-rule-success); }
+[data-callout-theme="muted"] .callout-side,
+.docs-content .callout-side { background: var(--co-bg-warn);    box-shadow: inset 3px 0 0 var(--co-rule-warn); }
+[data-callout-theme="muted"] .callout-warn,
+.docs-content .callout-warn { background: var(--co-bg-danger);  box-shadow: inset 3px 0 0 var(--co-rule-danger); }
+
+/* --- Theme: outline -------------------------------------------------- */
+[data-callout-theme="outline"] .callout {
+  background: transparent;
+  border: 1px solid oklch(88% 0.01 240);
+  box-shadow: none; padding-left: 16px;
+}
+[data-callout-theme="outline"] .callout-pre  { border-color: oklch(80% 0.06 240); }
+[data-callout-theme="outline"] .callout-post { border-color: oklch(80% 0.06 150); }
+[data-callout-theme="outline"] .callout-side { border-color: oklch(82% 0.06 70);  }
+[data-callout-theme="outline"] .callout-warn { border-color: oklch(80% 0.07 25);  }
+
+/* --- Theme: editorial (no box, thick border + sentence type) -------- */
+[data-callout-theme="editorial"] .callout {
+  background: transparent; border-radius: 0; box-shadow: none !important;
+  border-left: 3px solid;
+  padding: 6px 0 6px 22px; margin: 28px 0; overflow: visible;
+}
+[data-callout-theme="editorial"] .callout::before { display: none; }
+[data-callout-theme="editorial"] .callout::after  { display: none; }
+[data-callout-theme="editorial"] .callout:hover   { transform: translateX(2px); }
+[data-callout-theme="editorial"] .callout > strong { font-size: 14px; }
+[data-callout-theme="editorial"] .callout-pre  { border-color: oklch(55% 0.13 240); }
+[data-callout-theme="editorial"] .callout-post { border-color: oklch(55% 0.12 150); }
+[data-callout-theme="editorial"] .callout-side { border-color: oklch(60% 0.12 70);  }
+[data-callout-theme="editorial"] .callout-warn { border-color: oklch(58% 0.16 25);  }
+
+/* --- icons (monochrome inline SVG via data URI) --------------------- */
+.callout-pre::before  { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16' stroke='%23156082' stroke-width='1.6'><circle cx='8' cy='8' r='6.5'/><path d='M8 5v3.5l2.2 1.4'/></svg>"); }
+.callout-post::before { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16' stroke='%231d6b3a' stroke-width='1.8'><path d='M3 8.5l3.2 3 6.8-7'/></svg>"); }
+.callout-side::before { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16' stroke='%23996800' stroke-width='1.6'><circle cx='8' cy='8' r='6.5'/><path d='M8 4v5'/><circle cx='8' cy='11.5' r='0.7' fill='%23996800'/></svg>"); }
+.callout-warn::before { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16' stroke='%23a83247' stroke-width='1.6'><path d='M8 1.5L15 14H1z'/><path d='M8 6v3.5'/><circle cx='8' cy='12' r='0.7' fill='%23a83247'/></svg>"); }
+
+
+/* ============================================================================
+ * §11. THEME SWITCHER  ·  floating top-right A/B picker
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Small fixed control on detail pages so you can preview the three
+ *          callout/pill themes side-by-side without editing CSS.
+ *  CHANGE: Hide on production: drop the .theme-switcher element from the page.
+ * ============================================================================ */
+.theme-switcher {
+  position: fixed; top: 130px; right: 24px; z-index: 9999;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 12px; font-family: var(--font-sans);
+  display: flex; align-items: center; gap: var(--space-md);
+  max-width: 360px;
+}
+.theme-switcher strong {
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);
+}
+.theme-switcher .ts-group {
+  display: flex; gap: 2px;
+  background: var(--bg-soft); border-radius: 5px; padding: 2px;
+}
+.theme-switcher button {
+  appearance: none; border: none; background: transparent;
+  font: inherit; font-size: 12px;
+  padding: 4px 10px; border-radius: 4px; cursor: pointer; color: var(--text-muted);
+}
+.theme-switcher button.active {
+  background: var(--bg-card); color: var(--brand-teal);
+  font-weight: 500; box-shadow: var(--shadow-sm);
+}
+@media (max-width: 1100px) { .theme-switcher { display: none; } }
+
+
+/* ============================================================================
+ * §12. DEMO CARD  ·  gallery card on /sandbox/demos/
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Anchor card with thumbnail · title · description · meta-pills.
+ *          Hover: lift + glow + shine. Links to per-demo detail page.
+ *  CHANGE: Card width   → .demo-cat-grid grid-template-columns
+ *          Hover speed  → §1 --motion-base / --motion-slow
+ * ============================================================================ */
+.demo-cat-section {
+  scroll-margin-top: 110px;
+  margin: var(--space-3xl) 0 var(--space-md);
+  padding-top: var(--space-lg);
+}
+.demo-cat-section:first-of-type { padding-top: 0; }
+.demo-cat-section h2 {
+  font-family: var(--font-sans);
+  font-size: 28px; font-weight: 500; letter-spacing: -0.015em;
+  margin-bottom: var(--space-2xs); color: var(--text);
+}
+.demo-cat-section .cat-blurb {
+  color: var(--text-muted); font-size: 15px;
+  margin-bottom: var(--space-xl); max-width: 760px;
+}
+.demo-cat-grid {
+  display: grid; gap: var(--space-xl);
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+}
+
+.demo-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  transition: transform var(--motion-base) var(--ease-out),
+              box-shadow var(--motion-base) var(--ease-out),
+              border-color var(--motion-base) ease;
+  will-change: transform;
+}
+.demo-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.55) 50%, transparent 65%);
+  transform: translateX(-110%) skewX(-12deg);
+  transition: transform var(--motion-slow) var(--ease-out);
+  pointer-events: none; z-index: 2; mix-blend-mode: screen;
+}
+html.dark-mode .demo-card::after {
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.10) 50%, transparent 65%);
+}
+.demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px oklch(50% 0.10 240 / 0.14), 0 4px 8px rgba(0,0,0,0.06);
+  border-color: oklch(70% 0.10 240 / 0.4);
+  text-decoration: none;
+}
+.demo-card:hover::after { transform: translateX(110%) skewX(-12deg); }
+
+.demo-card .video-wrap { aspect-ratio: 16/9; background: #0d1117; position: relative; overflow: hidden; }
+.demo-card video       { width: 100%; height: 100%; display: block; object-fit: cover; background: #0d1117; }
+.demo-card .video-wrap .poster-fallback {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.55); font-size: 13px;
+  background: linear-gradient(135deg, #1f3340 0%, #0e1c25 100%);
+}
+.demo-card .duration {
+  position: absolute; bottom: var(--space-sm); right: var(--space-sm);
+  background: rgba(0,0,0,0.78); color: #fff;
+  font-size: 11px; font-weight: 500;
+  padding: 3px 8px; border-radius: 4px;
+  font-family: var(--font-mono);
+}
+.demo-card .body {
+  padding: var(--space-lg);
+  display: flex; flex-direction: column; gap: var(--space-xs); flex: 1;
+}
+.demo-card .title {
+  font-size: 17px; font-weight: 600; line-height: 1.35;
+  color: var(--text); letter-spacing: -0.005em;
+}
+.demo-card .desc { font-size: 14px; color: var(--text-muted); line-height: 1.55; }
+.demo-card .meta {
+  display: flex; gap: var(--space-2xs); flex-wrap: wrap;
+  margin-top: auto; padding-top: var(--space-xs);
+}
+.demo-card.coming-soon { opacity: 0.55; pointer-events: none; }
+.demo-card.coming-soon .video-wrap .poster-fallback { filter: saturate(0.4); }
+
+
+/* ============================================================================
+ * §13. DEMO DETAIL PAGE  ·  /sandbox/demos/<slug>.html
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Cursor-docs style hero video page. Generated by build-demos.mjs
+ *          from data/demos.json + demos/_template.html.
+ *  CHANGE: Hero radius → §1 --radius-lg.  Headings → here.
+ * ============================================================================ */
+.demo-detail h1 {
+  font-size: 44px; font-weight: 500; letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm); color: var(--text);
+}
+.demo-detail .lead {
+  font-size: 19px; line-height: 1.55; color: var(--text);
+  max-width: 760px; margin-bottom: var(--space-xl);
+}
+.demo-detail p,
+.demo-detail ul,
+.demo-detail ol { max-width: 760px; }
+.demo-detail .hero-video {
+  width: 100%; max-width: 760px;        /* sit inside the prose container */
+  aspect-ratio: 16/9;
+  background: #0d1117;
+  border-radius: var(--radius-lg); overflow: hidden;
+  margin-bottom: var(--space-2xl); box-shadow: var(--shadow-md);
+}
+.demo-detail .hero-video video,
+.demo-detail .hero-video img,
+.demo-detail .hero-video .poster-fallback {
+  width: 100%; height: 100%; display: block; object-fit: cover;
+}
+.demo-detail .hero-video .poster-fallback {
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.55); font-size: 14px;
+  background: linear-gradient(135deg, #1f3340 0%, #0e1c25 100%);
+}
+.demo-detail .meta-row { display: flex; gap: var(--space-xs); flex-wrap: wrap; margin-bottom: var(--space-md); }
+/* Section H2s match the brand-quote scale (36 / 500 / -0.025em).
+   Editorial headers, not utilitarian. */
+.demo-detail h2 {
+  font-size: 36px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.2;
+  margin: var(--space-2xl) 0 var(--space-md); color: var(--text);
+}
+.demo-detail h3 {
+  font-size: 22px; font-weight: 500; letter-spacing: -0.015em;
+  margin: var(--space-xl) 0 var(--space-sm); color: var(--text);
+}
+.demo-detail p  { font-size: 16px; line-height: 1.65; color: var(--text); }
+.demo-detail ul, .demo-detail ol { padding-left: 24px; margin: var(--space-sm) 0; }
+.demo-detail li { font-size: 16px; line-height: 1.65; color: var(--text); margin-bottom: var(--space-2xs); }
+
+.demo-detail .nav-prev-next {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: var(--space-3xl); padding-top: var(--space-xl);
+  border-top: 1px solid var(--border); font-size: 14px;
+}
+.demo-detail .nav-prev-next a {
+  display: inline-flex; gap: var(--space-xs); align-items: center;
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm);
+  background: var(--bg-soft); color: var(--text); border: 1px solid var(--border);
+}
+.demo-detail .nav-prev-next a:hover {
+  text-decoration: none;
+  background: rgba(21,96,130,0.08); color: var(--brand-teal);
+  border-color: rgba(21,96,130,0.20);
+}
+.demo-detail .nav-prev-next .arrow { font-size: 18px; opacity: 0.6; }
+
+
+/* ============================================================================
+ * §14. SANDBOX TILE  ·  the jump-off cards on /sandbox/
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Anchor cards with a coloured header band + body text.
+ *          Hover: lift + glow + shine (same recipe as demo card).
+ *  CHANGE: Header gradient → inline (override per tile via style attribute).
+ * ============================================================================ */
+.sandbox-grid {
+  display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.sandbox-tile {
+  position: relative; display: block; text-decoration: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+  transition: transform var(--motion-base) var(--ease-out),
+              box-shadow var(--motion-base) var(--ease-out),
+              border-color var(--motion-base) ease;
+  will-change: transform;
+}
+.sandbox-tile::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.55) 50%, transparent 65%);
+  transform: translateX(-110%) skewX(-12deg);
+  transition: transform var(--motion-slow) var(--ease-out);
+  pointer-events: none; z-index: 2; mix-blend-mode: screen;
+}
+html.dark-mode .sandbox-tile::after {
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.10) 50%, transparent 65%);
+}
+.sandbox-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px oklch(50% 0.10 240 / 0.14), 0 4px 8px rgba(0,0,0,0.06);
+  border-color: oklch(70% 0.10 240 / 0.4);
+}
+.sandbox-tile:hover::after { transform: translateX(110%) skewX(-12deg); }
+.sandbox-tile .head {
+  padding: 22px 18px; color: #fff; font-weight: 600; font-size: 15px;
+  background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+}
+.sandbox-tile .body { padding: 14px 18px 18px; }
+.sandbox-tile .body .title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.sandbox-tile .body .desc  { font-size: 13px; color: var(--text-muted); }
+
+
+/* ============================================================================
+ * §15. CODE & DIALOGUE  ·  presentation of code blocks + "what you'll see"
+ * ----------------------------------------------------------------------------
+ *  WHAT:   .logictree   — coloured <logictree> XML rendering
+ *          .ai-dialogue — two-column "label / message" strip
+ * ============================================================================ */
+.logictree {
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px; line-height: 1.7;
+  white-space: pre; overflow-x: auto;
+}
+.logictree .lt-check  { color: var(--brand-teal); }
+.logictree .lt-action { color: #1d6b3a; }
+.logictree .lt-resolve{ color: #c08300; }
+
+.ai-dialogue {
+  display: grid; grid-template-columns: 110px 1fr; gap: 8px 14px;
+  padding: 14px 18px; background: var(--bg-soft);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+}
+.ai-dialogue .lab {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); padding-top: 2px;
+}
+.ai-dialogue .msg { font-size: 14px; }
+.ai-dialogue .placeholder {
+  background: rgba(21,96,130,0.10); padding: 1px 5px; border-radius: 3px;
+  font-family: var(--font-mono); font-size: 12px; color: var(--brand-teal);
+}
+
+
+/* ============================================================================
+ * §16. FOOTER  ·  full-width site footer (sits OUTSIDE .docs-layout)
+ * ----------------------------------------------------------------------------
+ *  WHAT:   5-column link footer, brand block + Product/Resources/Company/Plans.
+ *          Injected by /sandbox/shell.js after DOMContentLoaded.
+ *  CHANGE: Columns/links → shell.js. Visual style → here.
+ * ============================================================================ */
+.sandbox-footer {
+  margin-top: var(--space-4xl);
+  padding: var(--space-3xl) var(--space-2xl) var(--space-2xl);
+  background: var(--bg-soft); border-top: 1px solid var(--border);
+  font-family: var(--font-sans); color: var(--text-muted);
+}
+.sandbox-footer .footer-inner { max-width: var(--max-content); margin: 0 auto; }
+.sandbox-footer .footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: var(--space-2xl); margin-bottom: var(--space-2xl);
+}
+.sandbox-footer .footer-brand {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 500;
+  color: var(--text); margin-bottom: var(--space-md);
+  letter-spacing: 0.04em;
+}
+.sandbox-footer .footer-brand .ai { color: var(--brand-teal); }
+.sandbox-footer .footer-tag { font-size: 13px; line-height: 1.55; max-width: 280px; }
+.sandbox-footer h4 {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text); margin-bottom: var(--space-md);
+}
+.sandbox-footer ul { list-style: none; padding: 0; margin: 0; }
+.sandbox-footer li { margin-bottom: var(--space-xs); }
+.sandbox-footer a {
+  font-size: 13px; color: var(--text-muted); text-decoration: none;
+  transition: color var(--motion-fast);
+}
+.sandbox-footer a:hover { color: var(--brand-teal); text-decoration: none; }
+.sandbox-footer .footer-bottom {
+  border-top: 1px solid var(--border); padding-top: var(--space-lg);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; flex-wrap: wrap; gap: var(--space-md);
+}
+.sandbox-footer .footer-bottom .legal a { margin-left: var(--space-md); }
+@media (max-width: 900px) {
+  .sandbox-footer .footer-grid { grid-template-columns: 1fr 1fr; }
+  .sandbox-footer .footer-brand { grid-column: 1 / -1; }
+}
+
+
+/* ============================================================================
+ * §17. MOTION & A11Y  ·  reduced-motion overrides
+ * ----------------------------------------------------------------------------
+ *  WHAT:   Disable transforms + transitions for users with the OS preference.
+ *  CHANGE: Don't normally — this is the accessibility floor.
+ * ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .callout, .callout::after,
+  .demo-card, .demo-card::after,
+  .sandbox-tile, .sandbox-tile::after { transition: none !important; }
+
+  .callout:hover,
+  .demo-card:hover,
+  .sandbox-tile:hover { transform: none; box-shadow: none; }
+
+  .callout:hover::after,
+  .demo-card:hover::after,
+  .sandbox-tile:hover::after { transform: translateX(-110%) skewX(-12deg); }
+}

@@ -1,0 +1,499 @@
+{
+  "slug": "schedules",
+  "title": "Schedules",
+  "lead": "Use this skill when the user asks to create, edit, or query Revit schedules. Covers schedule creation (custom, from template, duplicate), column management (add, remove, reorder, rename, hide), row filtering, sorting and grouping (headers, footers, grand totals, itemize), column formatting (alignment, units, totals), appearance (text styles, grid lines, outline, row striping), placing schedules on sheets, and reading schedule data. Also use when the user mentions ViewSchedule, schedule fields, or schedule formatting.",
+  "category_label": "Workflow",
+  "source_skill": "BUILD MEP Plan/Skills/schedules.md",
+  "prerequisites": [
+    "Document is open and modifiable",
+    "For schedule creation: elements of that category must exist (or schedule will be empty)",
+    "For schedule data reads: schedule must already exist",
+    "For appearance: text styles should be set up first (see Object Styles Skill)"
+  ],
+  "phases": [
+    {
+      "title": "Discover Existing Schedules",
+      "when_triggers": "Before creating schedules, or when user asks \"what schedules do we have?\", \"show me the equipment schedule\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "LIST ALL SCHEDULES",
+          "tools_called": [
+            "list_revit_schedules"
+          ],
+          "agent_quote": "Model has {N} schedules: - Mechanical Equipment Schedule (24 rows, 6 columns) - Duct Schedule (156 rows, 8 columns) - Space Schedule (89 rows, 10 columns) ...",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2",
+          "title": "GET SCHEDULE STRUCTURE (if user asks for details)",
+          "tools_called": [
+            "GetRevitScheduleColumnAndFilterDefinition"
+          ],
+          "agent_quote": "Equipment schedule structure: Fields: Family, Type, Count, Level, Space, System Type Filters: Level = 'Level 01' Sort: Level (ascending, with headers) → Type (ascending) Appearance: B&W_2.5mm body text, grid lines on",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3",
+          "title": "GET SCHEDULE DATA (if user asks to see the data)",
+          "tools_called": [
+            "GetRevitScheduleRowAndCellData"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Create a New Schedule",
+      "when_triggers": "User asks \"create an equipment schedule\", \"make me a duct schedule\", \"I need a space schedule\", or during model setup.",
+      "steps": [
+        {
+          "num": "1",
+          "title": "DETERMINE CATEGORY",
+          "tools_called": [],
+          "agent_quote": "",
+          "user_prompt": "create a mechanical equipment schedule",
+          "conditions": []
+        },
+        {
+          "num": "2",
+          "title": "CHECK FOR EXISTING",
+          "tools_called": [
+            "list_revit_schedules"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3A",
+          "title": "USE PRE-CONFIGURED TEMPLATE",
+          "tools_called": [
+            "execute_command",
+            "CreateMepRevitSchedule"
+          ],
+          "agent_quote": "Created 'Mechanical Equipment Schedule' with 6 columns.",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3B",
+          "title": "CREATE CUSTOM",
+          "tools_called": [
+            "GetAvailableFieldsForRevitScheduleCategory",
+            "execute_command",
+            "CreateRevitScheduleCommand"
+          ],
+          "agent_quote": "Available fields for Mechanical Equipment: Family, Type, Mark, Level, Space, System Type, System Name, Comments, Description, Manufacturer, Model, Count...",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3C",
+          "title": "DUPLICATE EXISTING",
+          "tools_called": [
+            "execute_command",
+            "DuplicateExistingRevitSchedule",
+            "SetRowFilterOnRevitSchedule"
+          ],
+          "agent_quote": "",
+          "user_prompt": "copy the equipment schedule and filter it for Level 02",
+          "conditions": []
+        },
+        {
+          "num": "4",
+          "title": "REPORT",
+          "tools_called": [],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Add, Remove, and Reorder Columns",
+      "when_triggers": "User asks \"add a zone column\", \"remove the comments field\", \"move level to the first column\", \"rename the heading\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "IDENTIFY SCHEDULE",
+          "tools_called": [
+            "list_revit_schedules"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2",
+          "title": "READ CURRENT STRUCTURE",
+          "tools_called": [
+            "GetRevitScheduleColumnAndFilterDefinition"
+          ],
+          "agent_quote": "Current columns: Family | Type | Count | Level | Space | System Type",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3A",
+          "title": "ADD COLUMN",
+          "tools_called": [
+            "GetAvailableFieldsForRevitScheduleCategory",
+            "execute_command",
+            "AddColumnToRevitSchedule"
+          ],
+          "agent_quote": "Added 'Zone' column.",
+          "user_prompt": "add a Zone column",
+          "conditions": []
+        },
+        {
+          "num": "3B",
+          "title": "REMOVE COLUMN",
+          "tools_called": [
+            "execute_command",
+            "RemoveColumnFromRevitSchedule"
+          ],
+          "agent_quote": "Removed 'Comments' column.",
+          "user_prompt": "remove the comments column",
+          "conditions": []
+        },
+        {
+          "num": "3C",
+          "title": "REORDER",
+          "tools_called": [
+            "execute_command",
+            "ReorderColumnsInRevitSchedule"
+          ],
+          "agent_quote": "Moved 'Level' to first position.",
+          "user_prompt": "move Level to the first column",
+          "conditions": []
+        },
+        {
+          "num": "3D",
+          "title": "RENAME HEADING",
+          "tools_called": [
+            "execute_command",
+            "RenameColumnHeadingInRevitSchedule"
+          ],
+          "agent_quote": "Renamed column heading to 'Service'.",
+          "user_prompt": "rename 'System Type' to 'Service'",
+          "conditions": []
+        },
+        {
+          "num": "3E",
+          "title": "HIDE COLUMN",
+          "tools_called": [
+            "execute_command",
+            "HideColumnInRevitSchedule"
+          ],
+          "agent_quote": "Hidden 'Mark' column (still available for filters and sorts).",
+          "user_prompt": "hide the Mark column but keep it for filtering",
+          "conditions": []
+        },
+        {
+          "num": "3F",
+          "title": "ADD CALCULATED FIELD",
+          "tools_called": [
+            "execute_command",
+            "AddCalculatedColumnToRevitSchedule"
+          ],
+          "agent_quote": "Added 'Count' calculated field.",
+          "user_prompt": "add a count column",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Filter Schedule Rows",
+      "when_triggers": "User asks \"filter to only show LTHW pipes\", \"show only Level 01 equipment\", \"remove the filter\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "IDENTIFY SCHEDULE",
+          "tools_called": [
+            "list_revit_schedules"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2",
+          "title": "READ CURRENT FILTERS",
+          "tools_called": [
+            "GetRevitScheduleColumnAndFilterDefinition"
+          ],
+          "agent_quote": "Current filters: none",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3A",
+          "title": "ADD FILTER",
+          "tools_called": [
+            "execute_command",
+            "SetRowFilterOnRevitSchedule"
+          ],
+          "agent_quote": "Filtered by System Type contains 'LTHW'. {M} rows now visible.",
+          "user_prompt": "filter to only show LTHW pipes",
+          "conditions": []
+        },
+        {
+          "num": "3B",
+          "title": "MULTIPLE FILTERS",
+          "tools_called": [
+            "execute_command",
+            "SetRowFilterOnRevitSchedule"
+          ],
+          "agent_quote": "Added filter: Level = Level 01. Filters are AND — both must match.",
+          "user_prompt": "also filter to Level 01 only",
+          "conditions": []
+        },
+        {
+          "num": "3C",
+          "title": "CLEAR FILTERS",
+          "tools_called": [
+            "execute_command",
+            "ClearAllFiltersOnRevitSchedule"
+          ],
+          "agent_quote": "Cleared all filters. {M} rows now showing.",
+          "user_prompt": "remove all filters",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Sort and Group Rows",
+      "when_triggers": "User asks \"sort by level\", \"group by system type\", \"add totals\", \"show a count\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "IDENTIFY SCHEDULE",
+          "tools_called": [
+            "list_revit_schedules"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2A",
+          "title": "SORT",
+          "tools_called": [
+            "execute_command",
+            "SetSortOrderOnRevitSchedule",
+            "Level"
+          ],
+          "agent_quote": "Sorted by Level (with group headers) then by Type.",
+          "user_prompt": "sort by Level then by Type",
+          "conditions": []
+        },
+        {
+          "num": "2B",
+          "title": "GROUP WITH FOOTERS",
+          "tools_called": [
+            "execute_command",
+            "SetSortOrderOnRevitSchedule"
+          ],
+          "agent_quote": "Grouped by System Type with header and footer rows.",
+          "user_prompt": "group by System Type with subtotals",
+          "conditions": []
+        },
+        {
+          "num": "2C",
+          "title": "GRAND TOTALS",
+          "tools_called": [
+            "execute_command",
+            "SetRevitScheduleGrandTotalRow"
+          ],
+          "agent_quote": "Grand total row added.",
+          "user_prompt": "show a grand total at the bottom",
+          "conditions": []
+        },
+        {
+          "num": "2D",
+          "title": "ITEMIZE",
+          "tools_called": [
+            "execute_command",
+            "SetRevitScheduleItemizeEveryInstance"
+          ],
+          "agent_quote": "Grouped identical rows — showing count per unique combination.",
+          "user_prompt": "don't list every instance, just show counts",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Format Columns",
+      "when_triggers": "User asks \"centre the count column\", \"change the length units\", \"add totals to the length column\", \"right-align the numbers\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "IDENTIFY SCHEDULE AND FIELD",
+          "tools_called": [
+            "list_revit_schedules",
+            "GetRevitScheduleColumnAndFilterDefinition"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2A",
+          "title": "ALIGNMENT",
+          "tools_called": [
+            "execute_command",
+            "SetColumnFormatInRevitSchedule"
+          ],
+          "agent_quote": "Count column centred.",
+          "user_prompt": "centre the Count column",
+          "conditions": []
+        },
+        {
+          "num": "2B",
+          "title": "FIELD TOTALS",
+          "tools_called": [
+            "execute_command",
+            "SetColumnTotalsInRevitSchedule"
+          ],
+          "agent_quote": "Length column now shows sum in footer.",
+          "user_prompt": "show total length at the bottom",
+          "conditions": []
+        },
+        {
+          "num": "2C",
+          "title": "FORMAT OPTIONS",
+          "tools_called": [
+            "execute_command",
+            "SetColumnFormatInRevitSchedule"
+          ],
+          "agent_quote": "Length formatted as metres (2 d.p.).",
+          "user_prompt": "show length in metres with 2 decimal places",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Set Schedule Appearance",
+      "when_triggers": "User asks \"change the text style\", \"add grid lines\", \"turn on stripe rows\", \"hide the title\", \"make headers bold\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "IDENTIFY SCHEDULE",
+          "tools_called": [
+            "list_revit_schedules"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2",
+          "title": "SET APPEARANCE",
+          "tools_called": [
+            "execute_command",
+            "SetRevitScheduleAppearance"
+          ],
+          "agent_quote": "Updated appearance: title 5mm Bold, headers 3.5mm Bold, body 2.5mm, grid lines on, outline on.",
+          "user_prompt": "",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Place Schedule on Sheet",
+      "when_triggers": "User asks \"put the equipment schedule on sheet M-00-01\", \"place all schedules on their sheets\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "IDENTIFY SCHEDULE AND SHEET",
+          "tools_called": [
+            "list_revit_schedules",
+            "list_sheets"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2",
+          "title": "CHECK SPACE",
+          "tools_called": [
+            "FreeViewportSpaceCalculator"
+          ],
+          "agent_quote": "Sheet M-00-01 has 400x250mm free space.",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3",
+          "title": "CHECK NOT ALREADY PLACED",
+          "tools_called": [],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "4",
+          "title": "PLACE",
+          "tools_called": [
+            "execute_command",
+            "PlaceRevitScheduleOnSheet"
+          ],
+          "agent_quote": "Placed 'Mechanical Equipment Schedule' on sheet M-00-01.",
+          "user_prompt": "",
+          "conditions": []
+        }
+      ]
+    },
+    {
+      "title": "Read Schedule Data",
+      "when_triggers": "User asks about quantities, counts, or data: \"how many AHUs are there?\", \"what's on Level 02?\", \"show me the pipe schedule data\".",
+      "steps": [
+        {
+          "num": "1",
+          "title": "FIND THE RIGHT SCHEDULE",
+          "tools_called": [
+            "list_revit_schedules"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "2",
+          "title": "READ DATA",
+          "tools_called": [
+            "GetRevitScheduleRowAndCellData"
+          ],
+          "agent_quote": "",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "3",
+          "title": "ANSWER THE QUESTION",
+          "tools_called": [],
+          "agent_quote": "There are 24 mechanical equipment items: - 8 x AHU-01 on Level 01 - 4 x FCU-01 on Level 02 - 12 x VAV Box on Levels 01-03",
+          "user_prompt": "",
+          "conditions": []
+        },
+        {
+          "num": "4",
+          "title": "FOR SPECIFIC QUESTIONS",
+          "tools_called": [],
+          "agent_quote": "How many ducts on Level 01?",
+          "user_prompt": "",
+          "conditions": []
+        }
+      ]
+    }
+  ],
+  "generated_by": "stub-deterministic-v1",
+  "generated_at": "2026-04-21T08:38:17.338Z",
+  "source_sha": "4d73f23"
+}

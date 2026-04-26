@@ -1,0 +1,12 @@
+{
+  "name": "list_linked_rooms",
+  "desc": "List rooms from linked architectural models.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list linked rooms"
+  ]
+}

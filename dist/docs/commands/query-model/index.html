@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Query Model — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp; General &nbsp;›&nbsp; Query Model</div>
+
+  <h1 id="overview">Query Model</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">General</span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Generic query command for Claude to call [McpTool] utilities via reflection. Uses CommandExecutor parameters to identify the target utility class, locates it by name, invokes its entry method, and serializes the result to JSON. Parameters (via CommandExecutor.GetParameter or JSON): - utility: Class name to call (e.g., &quot;ListLevels&quot;, &quot;GetCurrentView&quot;, &quot;ListRooms&quot;) - method: Method name to call (optional, defaults from [McpTool] EntryMethod or &quot;GetAll&quot;/&quot;Get&quot;) - filter: Optional JSON string of parameters to pass to the method</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open. The specified utility class must exist and have a compatible static entry method.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Query result JSON is stored in LastQueryResult for consumption by the command system. No model modifications are made.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/query-model/thumbnail.svg"
+           data-src="/sandbox/demo-assets/query-model/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop query-model/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>Claude needs model context data (rooms, levels, views) via the execute_command path.</li>
+    <li>User asks a question about the model and Claude routes through this command.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Direct MCP tool calls (Claude calls those via GenericContextTool, not this). Model-modifying operations (use a dedicated ExternalCommand instead).</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>utility</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>Class name of the McpTool utility to invoke</td>
+  </tr><tr>
+    <td><code>method</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>Optional method name (defaults to GetAll or Get)</td>
+  </tr><tr>
+    <td><code>filter</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>Optional JSON parameters for the method</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>Result</code></td><td><code>JSON</code></td><td>Query result data</td></tr></tbody>
+  </table>
+
+  
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Querying the model for {utility} data...<br>Running context query...</div>
+    <div class="lab">thinking</div><div class="msg">Locating utility class...<br>Invoking method and serializing results...</div>
+    <div class="lab">on success</div><div class="msg">Query returned results from <span class="placeholder">{utility}</span>.</div>
+    <div class="lab">on failure</div><div class="msg">Query failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/query_model</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">query model · list data · get info · model query · context query</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td>General</td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

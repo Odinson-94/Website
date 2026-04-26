@@ -1,0 +1,23 @@
+{
+  "name": "calculate_height_to_level",
+  "desc": "Calculate the height of a family instance relative to its reference level in mm.",
+  "bridge": "",
+  "category": "calculator",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "elementId",
+      "type": "integer",
+      "description": "Element ID of the family instance to measure",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "height to level",
+    "family height",
+    "element elevation",
+    "calculate height",
+    "distance to level"
+  ]
+}

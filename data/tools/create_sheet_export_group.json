@@ -1,0 +1,34 @@
+{
+  "name": "create_sheet_export_group",
+  "desc": "Create a new sheet group in the Drawing Exporter. Groups can contain explicit sheet numbers or use auto-filter rules.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the new group.",
+      "required": true
+    },
+    {
+      "name": "sheet_numbers",
+      "type": "string",
+      "description": "Optional JSON array of sheet numbers to include, e.g. [\\",
+      "required": false
+    },
+    {
+      "name": "auto_filter",
+      "type": "string",
+      "description": "Optional JSON object defining auto-filter rules, e.g. {\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "create group",
+    "new group",
+    "sheet group",
+    "add group"
+  ]
+}

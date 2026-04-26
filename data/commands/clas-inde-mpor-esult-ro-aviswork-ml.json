@@ -1,0 +1,46 @@
+{
+  "class": "ClashFinderImportResultsFromNavisworksXmlCommand",
+  "desc": "ClashFinderImportResultsFromNavisworksXmlCommand — stage an NW export XML into the staging DB.",
+  "summary": "ClashFinderImportResultsFromNavisworksXmlCommand — stage an NW export XML into the staging DB.",
+  "usecase": "NW→Revit data bridge.",
+  "notfor": "Re-running detection — this is purely ingestion.",
+  "precondition": "Resolver_FilePath points to a valid NW exchange XML.",
+  "postcondition": "Zero or more ClashRecord upserts.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_FilePath required; file must exist.\n2) Read text + delegate parsing to ImportClashesFromNavisworksFile.Read.\n3) For each row, build ClashRecord with id = row.Id (or SHA-256 over rule + sorted guids if blank); state already normalised by the reader.\n4) ClashesRepository.Upsert; count inserts vs updates.\n5) Emit imported + upserted + skipped.",
+  "keywords": [
+    "clashfinderimportresultsfromnavisworksxml",
+    "import nw clash xml",
+    "nw bridge import"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Importing NW XML into staging DB…"
+    ],
+    "thinkingsteps": [
+      "Reading file and parsing…",
+      "Upserting each clashresult…"
+    ],
+    "successprompts": [
+      "Imported {imported}; upserted {upserted}."
+    ],
+    "failureprompts": [
+      "Import failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

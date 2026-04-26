@@ -1,0 +1,82 @@
+{
+  "class": "SetViewToScopeBoxCommand",
+  "desc": "Sets the current view to use a selected scope box for its crop region, or removes the existing scope box assignment.",
+  "summary": "Sets the current view to use a selected scope box for its crop region, or removes the existing scope box assignment. Resolves scope box by ID, name, or auto-selects when only one exists. Uses SetViewToScopeBox for assignment/removal logic and ListScopeBoxes to enumerate available scope boxes. Related: SetCropViewCommand for manual crop rectangles.",
+  "usecase": "User wants to align a view's crop to a named scope box for consistent sheet output.",
+  "notfor": "Manual crop rectangles (use SetCropViewCommand). Creating new scope boxes.",
+  "precondition": "Active view must support scope box assignment (plan, section, elevation — not sheet or schedule).",
+  "postcondition": "View crop region is controlled by the assigned scope box, or scope box is removed.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "scope box",
+    "set view scope box",
+    "assign scope box",
+    "remove scope box",
+    "view scope"
+  ],
+  "intent_patterns": [
+    "set view to scope box",
+    "assign * scope box",
+    "scope box * view"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "scopeBoxId",
+      "type": "int",
+      "description": "Element ID of the scope box to assign",
+      "default": "null"
+    },
+    {
+      "name": "scopeBoxName",
+      "type": "string",
+      "description": "Name of the scope box to assign",
+      "default": "null"
+    },
+    {
+      "name": "removeScopeBox",
+      "type": "bool",
+      "description": "If true, removes the current scope box",
+      "default": "false"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ScopeBoxName",
+      "type": "string",
+      "description": "Name of assigned scope box"
+    },
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Summary message"
+    }
+  ],
+  "related_commands": [
+    "SetCropViewCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Assigning scope box to the current view...",
+      "Setting up scope box for this view..."
+    ],
+    "thinkingsteps": [
+      "Checking view supports scope boxes...",
+      "Finding available scope boxes...",
+      "Resolving scope box selection...",
+      "Applying scope box to view..."
+    ],
+    "successprompts": [
+      "Scope box '{ScopeBoxName}' applied to the view.",
+      "Done — view is now using the selected scope box."
+    ],
+    "failureprompts": [
+      "Failed to set scope box: {error}",
+      "Scope box assignment failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

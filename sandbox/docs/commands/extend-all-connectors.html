@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extend All Connectors — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/shared-styles.css">
+<link rel="stylesheet" href="/sandbox/sandbox.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<!-- Live theme switcher — try the three callout/pill aesthetics side by side -->
+<div class="theme-switcher">
+  <strong>Theme</strong>
+  <div class="ts-group" data-target="callout">
+    <button class="active" data-val="muted">Muted</button>
+    <button data-val="outline">Outline</button>
+    <button data-val="editorial">Editorial</button>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.theme-switcher .ts-group button').forEach(b => {
+    b.addEventListener('click', () => {
+      const grp  = b.parentElement;
+      const tgt  = grp.dataset.target;
+      const main = document.querySelector('.docs-content');
+      const html = document.documentElement;
+      grp.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      if (tgt === 'callout') { main.dataset.calloutTheme = b.dataset.val; html.dataset.pillTheme = b.dataset.val; }
+      try { localStorage.setItem('sandbox.theme.' + tgt, b.dataset.val); } catch {}
+    });
+  });
+  // restore previously-chosen theme
+  try {
+    const saved = localStorage.getItem('sandbox.theme.callout');
+    if (saved) {
+      document.querySelector('.docs-content').dataset.calloutTheme = saved;
+      document.documentElement.dataset.pillTheme = saved;
+      document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.toggle('active', b.dataset.val === saved));
+    }
+  } catch {}
+</script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content" data-callout-theme="muted">
+
+  <div class="crumbs">
+    <a href="#">Docs</a> &nbsp;›&nbsp; <a href="inventory.html">Commands</a> &nbsp;›&nbsp; Drainage &nbsp;›&nbsp; Extend All Connectors
+  </div>
+
+  <h1>Extend All Connectors</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">Drainage</span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead" style="margin-bottom:32px;">
+    Extends pipes from all unconnected connectors on the selected fitting(s) or MEP object(s).
+    If you already have elements selected, it uses them; otherwise it asks you to pick one.
+    A natural follow-up to placing a fitting and a fast way to stub out a network.
+  </p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong>
+    Active document must be open. Selected element(s) must have pipe connectors
+    (<code>FamilyInstance</code> with <code>MEPModel</code>, or <code>MEPCurve</code>).
+  </div>
+  <div class="callout callout-post"><strong>After it runs</strong>
+    Pipes are created from all unconnected connectors on each selected element. Each pipe uses
+    <code>ExtensionLength</code> (default 100 mm) and is connected to the fitting.
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>Quick pipe stub creation from fittings.</li>
+    <li>Batch extend multiple fittings — pre-select then run.</li>
+    <li>Via MCP: call <code>select_by_ids</code> then <code>extend_all_connectors</code> for non-interactive execution.</li>
+  </ul>
+
+  <div class="callout callout-warn"><strong>Don't use this when</strong>
+    Selection is empty AND you're running from MCP — the command will prompt for a pick.
+    Pre-select via <code>select_by_ids</code> first.
+  </div>
+
+  <div class="callout callout-side"><strong>Side effects</strong>
+    Creates new <code>Pipe</code> elements. Connects pipes to the selected fitting.
+  </div>
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description &amp; resolver prompt</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>Element</code></td>
+        <td><span class="pill pill-category">selection</span></td>
+        <td><code>Element</code></td>
+        <td class="req-yes">yes</td>
+        <td>—</td>
+        <td>
+          Fitting or MEP object with connectors. Supports linked models: <strong>no</strong>.<br>
+          <strong>Prompt:</strong> "Select the fitting or MEP object to extend pipes from."<br>
+          <em style="color:var(--text-muted);">Example: click on an elbow, tee, or equipment.</em>
+        </td>
+      </tr>
+      <tr>
+        <td><code>ExtensionLength</code></td>
+        <td><span class="pill pill-category">config</span></td>
+        <td><code>double</code> (mm)</td>
+        <td class="req-no">no</td>
+        <td><code>100</code></td>
+        <td>
+          Length of pipe extensions in mm.<br>
+          <strong>Prompt:</strong> "How long should the pipe extensions be? (default: 100 mm)"
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Nullable</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>CreatedPipes</code></td><td><code>List&lt;Pipe&gt;</code></td><td class="req-no">no</td><td>The pipes created.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <div class="logictree"><span class="lt-check">check:</span>   document.isOpen                  → continue
+<span class="lt-action">action:</span>  promptUserToSelectElement        → getElement
+<span class="lt-check">check:</span>   elementHasConnectors             → continue, else → error
+<span class="lt-action">action:</span>  getUnconnectedPipeConnectors     → connectorList
+<span class="lt-action">action:</span>  createPipeFromEachConnector      → pipeList
+<span class="lt-action">action:</span>  connectPipesToFitting            → connect
+<span class="lt-resolve">resolve:</span> success                          → complete, else → showError</div>
+
+  <h2 id="what-youll-see">What you'll see</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">"Extending pipes from all connectors on your selection..."</div>
+    <div class="lab">thinking</div><div class="msg">"Checking selection for valid fittings..."<br>"Identifying unconnected pipe connectors..."<br>"Creating extension pipes and connecting to fittings..."</div>
+    <div class="lab">on success</div><div class="msg">"Created <span class="placeholder">{totalPipesCreated}</span> pipe(s) from <span class="placeholder">{elementsWithPipes}</span> element(s)."</div>
+    <div class="lab">on failure</div><div class="msg">"Failed to extend connectors: <span class="placeholder">{error}</span>"</div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn"><strong>Not yet exposed</strong>
+    This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/extend_all_connectors_on_selected_elements</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+    See <a href="/BUILD%20WEB%20Plan/Codebase%20Coverage%20Report.md">Codebase Coverage Report</a> — this is the "Priority 1" gap across all 163 commands.
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">
+    extend connectors · pipe stubs · fitting pipes · all connectors · extend all<br>
+    <span style="font-size:12px;">Patterns:
+      <code>extend * connectors</code> · <code>pipe stubs * fitting</code> · <code>create pipes * connectors</code>
+    </span>
+  </p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table">
+    <tbody>
+      <tr><th style="width:120px;">Tools</th><td><a href="../tools/list_rooms.html"><code>extend_all_connectors</code></a> · <code>select_by_ids</code></td></tr>
+      <tr><th>Skills</th><td>routing-preferences</td></tr>
+      <tr><th>Demos</th><td><a href="/sandbox/demos/#cat-revit-utilities">Place SVP</a> · <a href="/sandbox/demos/#cat-revit-utilities">Extend Connectors</a></td></tr>
+      <tr><th>Pillar</th><td>Revit Modelling → Drainage</td></tr>
+    </tbody>
+  </table>
+
+
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "list_views",
+  "desc": "List all views in the document with name, type, and level.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list views"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "class": "AddRevisionToSheetCommand",
+  "desc": "Adds an existing Revision to a target ViewSheet's additional revisions list.",
+  "summary": "Adds an existing Revision to a target ViewSheet's additional revisions list. The sheet can be resolved by sheet number (preferred) or by element ID. Uses CommandExecutor to retrieve parameters from the AI orchestrator. If the revision is already present on the sheet, the operation is idempotent. Related: ApplyViewTemplateCommand for template-level view configuration.",
+  "usecase": "User wants to mark a sheet as part of a specific revision issue. AI is updating multiple sheets with a new revision during drawing issue preparation.",
+  "notfor": "Creating new revisions (use Revision.Create or a dedicated CreateRevisionCommand). Removing revisions from sheets. Managing revision clouds or tags.",
+  "precondition": "Active document must be open. The target revision element must exist in the project. Either sheetNumber or sheetId must be provided to resolve the target sheet.",
+  "postcondition": "The revision is added to the sheet's additional revisions list. If already present, the list remains unchanged (idempotent).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add revision to sheet",
+    "apply revision to sheet",
+    "set sheet revision",
+    "sheet revision",
+    "revision on sheet"
+  ],
+  "intent_patterns": [
+    "add * revision * sheet",
+    "apply * revision * sheet",
+    "sheet * revision *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "revisionId",
+      "type": "int",
+      "description": "Revision element id",
+      "default": ""
+    },
+    {
+      "name": "sheetNumber",
+      "type": "string",
+      "description": "Sheet number (preferred)",
+      "default": ""
+    },
+    {
+      "name": "sheetId",
+      "type": "int",
+      "description": "Sheet element id (optional if sheetNumber provided)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Result summary with sheet and revision details"
+    }
+  ],
+  "related_commands": [
+    "ApplyViewTemplateCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Adding revision to the target sheet...",
+      "Assigning the revision to your sheet now..."
+    ],
+    "thinkingsteps": [
+      "Resolving target sheet by number or ID...",
+      "Validating revision element exists...",
+      "Updating sheet's additional revision list..."
+    ],
+    "successprompts": [
+      "Revision added to sheet {sheetNumber} successfully.",
+      "Done — sheet now includes the specified revision."
+    ],
+    "failureprompts": [
+      "Could not add revision to sheet: {error}",
+      "Revision assignment failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

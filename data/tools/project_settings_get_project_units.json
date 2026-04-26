@@ -1,0 +1,13 @@
+{
+  "name": "project_settings_get_project_units",
+  "desc": "Read the project's units. Returns the FormatOptions for each SpecTypeId (length, area, volume, mass, etc.).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "project_settings_get_project_units",
+    "project settings get project units"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverMoveDeviceVerticallyIntoSpaceAlongWallCommand",
+  "desc": "ClashSolverMoveDeviceVerticallyIntoSpaceAlongWallCommand — PDF \"MOVE_VERTICALLY_INTO_SPACE\".",
+  "summary": "ClashSolverMoveDeviceVerticallyIntoSpaceAlongWallCommand — PDF \"MOVE_VERTICALLY_INTO_SPACE\". Slide along wall's vertical axis.",
+  "usecase": "Wall-device vertical nudge that stays on the wall.",
+  "notfor": "Off-wall vertical moves — use MOVE_OBJECT_UP/DOWN.",
+  "precondition": "Active document; device FamilyInstance with Wall host.",
+  "postcondition": "Zero or one MoveElement inside inner Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_DeviceUniqueId required OR single selection.\n2) Must be FamilyInstance with Wall host.\n3) axis = Resolver_PreferUp ? +Z : -Z (walls are world-vertical in Revit's standard).\n4) Delegate TryDirectionalMoveOnService.ProbeAndMove(doc, fi, axis, step_ft, threshold_ft, centreFallback=false).\n5) Emit outcome.",
+  "keywords": [
+    "clashsolvermovedeviceverticallyintospacealongwall",
+    "slide vertically along wall",
+    "solver vertical wall move"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Raising or lowering wall-hosted device along wall vertical…"
+    ],
+    "thinkingsteps": [
+      "Confirming Wall host…",
+      "Delegating to DirectionalMoveService…"
+    ],
+    "successprompts": [
+      "Vertical move on wall: applied={applied}."
+    ],
+    "failureprompts": [
+      "Vertical-on-wall move failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

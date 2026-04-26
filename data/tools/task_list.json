@@ -1,0 +1,25 @@
+{
+  "name": "task_list",
+  "desc": "Show or update a task checklist in the chat UI. Use for multi-step workflows (3+ steps). Call once with all steps pending, then call again with updated statuses as you complete each step. Send the FULL task array each time.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "tasks",
+      "type": "string",
+      "description": "JSON array of tasks: [{\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "task list",
+    "checklist",
+    "workflow steps",
+    "progress tracker",
+    "multi-step",
+    "task status",
+    "task update"
+  ]
+}

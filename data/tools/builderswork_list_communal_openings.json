@@ -1,0 +1,13 @@
+{
+  "name": "builderswork_list_communal_openings",
+  "desc": "List communal-opening groupings produced by BuildersworkCommunalOpeningGrouper (BS EN 1366-3 spacing rules).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "builderswork_list_communal_openings",
+    "builderswork list communal openings"
+  ]
+}

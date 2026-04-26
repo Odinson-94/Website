@@ -1,0 +1,78 @@
+{
+  "class": "ExtendAndConnectManualCommand",
+  "desc": "Command: Manual two-pick extend and connect for MEP elements.",
+  "summary": "Command: Manual two-pick extend and connect for MEP elements. User explicitly selects: 1. Source element (pipe, fitting, or component) — click near connector to extend 2. Target element (pipe, fitting, or component) — click near connector to connect to Extends source by LINE INTERSECTION — finds where the two lines would meet if extended. Works with pipes, fittings, and equipment with connectors. Uses ExtendMEPCurve for pipe extension logic. Uses GetMEPCurve for pipe geometry queries. Uses HealConnectors for post-connection cleanup. Related: ExtendAndConnectPipesCommand for automatic (non-manual) variant.",
+  "usecase": "Connecting pipe to fitting connector. Connecting pipe to equipment connector. Extending two pipes to meet at intersection. Manual control over which connectors to use.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. Both selected elements must have valid connectors. The connector directions must intersect (not parallel).",
+  "postcondition": "Source element is extended to meet the target element's line. An elbow fitting connects the two elements.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "manual connect",
+    "two pick connect",
+    "extend line",
+    "line intersection",
+    "connector connect"
+  ],
+  "intent_patterns": [
+    "manually * connect * pipes",
+    "extend * to * meet",
+    "connect * to * fitting"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "SourceElement",
+      "type": "Element",
+      "description": "Source element to extend (pipe, fitting, equipment)",
+      "prompt": "Select SOURCE element - click near the connector you want to extend"
+    },
+    {
+      "name": "TargetElement",
+      "type": "Element",
+      "description": "Target element to connect to (pipe, fitting, equipment)",
+      "prompt": "Select TARGET element - click near the connector to connect to"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "CreatedFitting",
+      "type": "FamilyInstance",
+      "description": "The elbow fitting created"
+    },
+    {
+      "name": "ExtensionDistance",
+      "type": "double",
+      "description": "Distance extended in mm"
+    }
+  ],
+  "related_commands": [
+    "ExtendAndConnectPipesCommand",
+    "MEPSystemFilletCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Ready for manual two-pick extend and connect...",
+      "Starting manual pipe connection — pick source then target..."
+    ],
+    "thinkingsteps": [
+      "Waiting for source element selection...",
+      "Waiting for target element selection...",
+      "Calculating line intersection between connectors...",
+      "Extending source pipe along its direction...",
+      "Creating elbow fitting at junction..."
+    ],
+    "successprompts": [
+      "Connected! Extended {ExtensionDistance} mm and created elbow fitting.",
+      "Source extended to meet target — elbow created at junction."
+    ],
+    "failureprompts": [
+      "Extend &amp; connect failed: {error}",
+      "Could not connect elements: {error}"
+    ]
+  },
+  "has_restapi": false
+}

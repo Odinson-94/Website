@@ -1,0 +1,14 @@
+{
+  "name": "error_warning_manager_get_summary_dashboard",
+  "desc": "Aggregate dashboard for the Warnings + Error Manager UI (NOT QA Manager). Returns counts per wire-type, top 5 sources, severity breakdown, and recent unresolved entries. Combines ErrorWire.GetSummary with Document.GetWarnings.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "error_warning_manager_get_summary_dashboard",
+    "error warning summary",
+    "warnings dashboard"
+  ]
+}

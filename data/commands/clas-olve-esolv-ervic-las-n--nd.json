@@ -1,0 +1,30 @@
+{
+  "class": "ClashSolverResolveServiceClashEndToEndCommand",
+  "desc": "Generic service-vs-service resolver.",
+  "summary": "Generic service-vs-service resolver. Check space → primary → offset → verify.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clashsolverresolveserviceclashendtoend"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

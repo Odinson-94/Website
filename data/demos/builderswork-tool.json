@@ -1,0 +1,8 @@
+{
+  "slug": "builderswork-tool",
+  "category": "revit-utilities",
+  "title": "Builderswork Tool",
+  "desc": "Auto-detect penetrations through walls/floors and place builderswork openings.",
+  "duration": "1:48",
+  "status": "live"
+}

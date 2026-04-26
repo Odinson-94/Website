@@ -1,0 +1,23 @@
+{
+  "name": "get_spec_change_log",
+  "desc": "Read the golden thread audit trail: decisions, changes, QA resolutions, exports.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "limit",
+      "type": "integer",
+      "description": "Maximum entries to return (default 50)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "change log",
+    "audit trail",
+    "golden thread",
+    "decision log",
+    "spec history"
+  ]
+}

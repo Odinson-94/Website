@@ -1,0 +1,36 @@
+{
+  "class": "BuildersworkCreateLegendViewOfOpeningSymbolsCommand",
+  "desc": "Create Legend View Of Opening Symbols.",
+  "summary": "Create Legend View Of Opening Symbols.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Builderswork/Builderswork Plan.md.",
+  "notfor": "Workflows covered by other plans.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Builderswork/Builderswork Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "builderswork legend view",
+    "opening symbols legend",
+    "builders work legend"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Create Legend View Of Opening Symbols…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Create Legend View Of Opening Symbols: completed."
+    ],
+    "failureprompts": [
+      "Create Legend View Of Opening Symbols: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

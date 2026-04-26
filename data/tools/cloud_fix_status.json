@@ -1,0 +1,22 @@
+{
+  "name": "cloud_fix_status",
+  "desc": "Poll the Cursor Cloud Agent for status. Returns CREATING/RUNNING/FINISHED/ERROR. When FINISHED, includes conversation summary.",
+  "bridge": "SelfDebug",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "agent_id",
+      "type": "string",
+      "description": "The agent ID to check. Defaults to the active agent.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "cloud fix status",
+    "agent status",
+    "cloud agent status",
+    "self debug status"
+  ]
+}

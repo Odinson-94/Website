@@ -1,0 +1,47 @@
+{
+  "class": "OpenProjectSettingsWindowCommand",
+  "desc": "Opens the Project Settings window — a WebView2 + AI Chat split-panel for viewing and editing project information, units, location, starting view, shared parameters, and BUILD X settings.",
+  "summary": "Opens the Project Settings window — a WebView2 + AI Chat split-panel for viewing and editing project information, units, location, starting view, shared parameters, and BUILD X settings.",
+  "usecase": "User wants to review or edit project information (name, number, client, address). User wants to change unit system (metric/imperial). User wants to set the starting view. User wants to configure shared parameter file. User wants to check project health (errors, clashes, warnings).",
+  "notfor": "Changing object styles, line weights, or visual standards (use Object Styles window). Editing MEP system routing preferences (use Routing Preferences window).",
+  "precondition": "Active document must be open.",
+  "postcondition": "A singleton modeless ProjectSettingsWindow is shown. If already open, it is brought to front.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings",
+    "project info",
+    "project information",
+    "units",
+    "metric",
+    "imperial",
+    "starting view",
+    "shared parameters",
+    "location",
+    "project number",
+    "client name",
+    "address",
+    "issue date",
+    "project status"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening Project Settings…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Project Settings window is now open."
+    ],
+    "failureprompts": [
+      "Failed to open Project Settings: {error}"
+    ]
+  },
+  "has_restapi": false
+}

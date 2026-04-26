@@ -1,0 +1,13 @@
+{
+  "name": "cobie_sheet_list_job",
+  "desc": "List rows for the COBie Job sheet projected from Revit elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "cobie_sheet_list_job",
+    "cobie sheet list job"
+  ]
+}

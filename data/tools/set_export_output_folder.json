@@ -1,0 +1,22 @@
+{
+  "name": "set_export_output_folder",
+  "desc": "Set the output folder for exported drawings. Use \\",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": "Output folder path, or \\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "output folder",
+    "export path",
+    "save location",
+    "destination"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "class": "ElementAlignmentMatchSlopeIntersectionCommand",
+  "desc": "Rotates each moving element about the closest-approach point of its extended axis and the reference's extended axis, so the two axes end up intersecting with the reference direction.",
+  "summary": "Rotates each moving element about the closest-approach point of its extended axis and the reference's extended axis, so the two axes end up intersecting with the reference direction.",
+  "usecase": "Converging pipe / duct runs whose axes must meet at a specific apex.",
+  "notfor": "Simple parallel slope matching (use MatchSlopeFromReferenceCommand).",
+  "precondition": "Active document. 1 reference + ≥1 mover resolved. Both have directional geometry.",
+  "postcondition": "Each mover rotated so its axis meets the reference axis at a common apex.",
+  "sideeffects": "",
+  "logictree": "1) Resolve reference + movers. 2) Extract reference direction + start. 3) Transaction: per mover compute closest-approach point of axes, compute ΔZ-rotation, RotateElement about axis Z through that apex. 4) Commit, log. 5) Failure → WireFault + rollback.",
+  "keywords": [
+    "elementalignmentmatchslopeintersection"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running ElementAlignmentMatchSlopeIntersectionCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "ElementAlignmentMatchSlopeIntersectionCommand completed successfully."
+    ],
+    "failureprompts": [
+      "ElementAlignmentMatchSlopeIntersectionCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

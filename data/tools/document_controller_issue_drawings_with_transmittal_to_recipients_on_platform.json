@@ -1,0 +1,41 @@
+{
+  "name": "document_controller_issue_drawings_with_transmittal_to_recipients_on_platform",
+  "desc": "Full issue workflow: select documents, generate transmittal PDF and Excel register, distribute to recipients on platform, log issue history.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 5,
+  "parameters": [
+    {
+      "name": "documentCodes",
+      "type": "string",
+      "description": "Comma-separated list of document codes to issue",
+      "required": true
+    },
+    {
+      "name": "recipientEmails",
+      "type": "string",
+      "description": "Comma-separated recipient emails",
+      "required": true
+    },
+    {
+      "name": "purpose",
+      "type": "string",
+      "description": "Issue purpose: For Information, For Comment, For Approval, For Construction",
+      "required": true
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Platform to issue on",
+      "required": true
+    },
+    {
+      "name": "notes",
+      "type": "string",
+      "description": "Additional notes for the transmittal",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

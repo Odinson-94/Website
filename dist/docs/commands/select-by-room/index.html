@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Select By Room — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Select By Room</div>
+
+  <h1 id="overview">Select By Room</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Returns elements inside an architectural room (by number or name). Optionally sets Revit selection to those elements. Uses GetElementsInRoomHelper.ResolveRoom to find the room and GetElementsInRoomHelper.GetElementsInRoom to collect elements within it. Called by MEPBridge.Revit.AIChat.Services.CustomTools.SelectByRoomTool via execute_command. Related: SelectByIdsCommand for ID-based selection, SelectByLocationCommand for coordinate-based selection.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document; roomNumber or roomName required.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Returns { success, count, room, items }; optionally selection set.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/select-by-room/thumbnail.svg"
+           data-src="/sandbox/demo-assets/select-by-room/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop select-by-room/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>List/filter elements in a room; then use get_selection or SelectByIdsCommand for cross-off.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Selecting by coordinates — use SelectByLocationCommand. Selecting by ID — use SelectByIdsCommand.</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>roomNumber</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>Room number (e.g. 101)</td>
+  </tr><tr>
+    <td><code>roomName</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>Room name (e.g. Office)</td>
+  </tr><tr>
+    <td><code>setSelection</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>bool</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>If true, set Revit selection to elements in room</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>count</code></td><td><code>int</code></td><td>Number of elements in room</td></tr><tr><td><code>items</code></td><td><code>JSON</code></td><td>Lightweight list: id, category, name</td></tr></tbody>
+  </table>
+
+  
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Finding elements in the specified room...<br>Searching room for elements...</div>
+    <div class="lab">thinking</div><div class="msg">Resolving room by number or name...<br>Collecting elements within room boundary...<br>Building result set...</div>
+    <div class="lab">on success</div><div class="msg">Found <span class="placeholder">{count}</span> element(s) in room <span class="placeholder">{room}</span>.</div>
+    <div class="lab">on failure</div><div class="msg">Could not find elements in room: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/select_by_room</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">select by room · elements in room · room filter · room elements · room contents</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>SelectByIdsCommand</code> · <code>SelectByLocationCommand</code></td></tr><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

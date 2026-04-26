@@ -1,0 +1,38 @@
+{
+  "class": "CaptureSingleClashResultImage",
+  "desc": "Captures a single PNG for the clash identified by clashId and updates the clashresults export.",
+  "summary": "Captures a single PNG for the clash identified by clashId and updates the clashresults export. Uses CaptureClashScreenshotsFromHiddenView.CaptureImageForResult.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "capture single clash image",
+    "screenshot clash"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Capturing clash screenshot…"
+    ],
+    "thinkingsteps": [
+      "Locate clash row and frame elements in the QA capture view…",
+      "Export PNG and patch clashresults XML…"
+    ],
+    "successprompts": [
+      "Clash image saved for {clashId}."
+    ],
+    "failureprompts": [
+      "Single clash image capture failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

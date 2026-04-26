@@ -1,0 +1,12 @@
+{
+  "name": "clash_finder_preview_clashes_between_filters_without_xml_write",
+  "desc": "clash_finder_preview_clashes_between_filters_without_xml_write — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash finder preview clashes between filters without xml write"
+  ]
+}

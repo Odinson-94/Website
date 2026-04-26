@@ -1,0 +1,22 @@
+{
+  "name": "set_spec_manufacturer_preferences",
+  "desc": "Set approved manufacturers and clause preferences for the specification.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "approvedManufacturers",
+      "type": "string",
+      "description": "Comma-separated list of approved manufacturer names",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "set preferences",
+    "approved manufacturers",
+    "manufacturer list",
+    "spec preferences"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "class": "HeatingSizeRadiatorsEn442NExponentFromLossForSpaceCommand",
+  "desc": "HeatingSizeRadiatorsEn442NExponentFromLossForSpaceCommand — wraps FromCalculatedLoss with a blanket n-exponent override.",
+  "summary": "HeatingSizeRadiatorsEn442NExponentFromLossForSpaceCommand — wraps FromCalculatedLoss with a blanket n-exponent override.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "1) Parse Resolver_ScheduleJson. 2) Apply n-exponent override to every entry. 3) Re-emit new schedule JSON. 4) Delegate to HeatingSizeRadiatorsFromCalculatedLossForSpaceCommand.",
+  "keywords": [
+    "heatingsizeradiatorsen442nexponentfromlossforspace",
+    "en442 n override",
+    "radiator n exponent override"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

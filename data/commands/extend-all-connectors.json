@@ -1,0 +1,21 @@
+{
+  "class": "ExtendAllConnectorsCommand",
+  "desc": "Declares one concrete feature of a command, tool or app surface.",
+  "summary": "Declares one concrete feature of a command, tool or app surface. Multiple FeatureAttribute instances are allowed per class; they're emitted in declaration order to features[] in the registry JSON, which the website renders as a grid of labelled tiles on the page. USAGE: [Feature(\"Workshare-aware\", \"Works on local + central models; respects worksets.\")] [Feature(\"Audited transactions\", \"Every write wrapped as a Revit transaction with one-click undo.\")] [Transaction(TransactionMode.Manual)] public class ExtendAllConnectorsCommand : ExternalCommand { ... } GROUPING (optional): For richer, grouped feature lists (e.g. QA Manager's drawing / schedule / spec / model groups) set Group. The website will render one subsection per distinct group name.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

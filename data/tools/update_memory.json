@@ -1,0 +1,50 @@
+{
+  "name": "update_memory",
+  "desc": "Update Claude's persistent memory. Scopes: 'global' (provide 'file': user_preferences/business_logic/skillset), 'domain' (provide 'domain': e.g. '63_lighting' — Claude decides the right domain from context), 'chat' (this conversation's notes). Mode 'append' adds a bullet line, 'replace' overwrites content.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 5,
+  "parameters": [
+    {
+      "name": "content",
+      "type": "string",
+      "description": "The content to write.",
+      "required": true
+    },
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "Scope: 'global', 'domain', or 'chat' (default: 'global')",
+      "required": false
+    },
+    {
+      "name": "file",
+      "type": "string",
+      "description": "For global scope: user_preferences, business_logic, or skillset",
+      "required": false
+    },
+    {
+      "name": "domain",
+      "type": "string",
+      "description": "For domain scope: folder name e.g. '63_lighting', '52_drainage'",
+      "required": false
+    },
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "Write mode: 'append' (default) or 'replace'",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "update memory",
+    "save memory",
+    "write memory",
+    "remember",
+    "persist",
+    "update preferences",
+    "update business logic",
+    "domain notes"
+  ]
+}

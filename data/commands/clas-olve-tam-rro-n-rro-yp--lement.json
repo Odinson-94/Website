@@ -1,0 +1,44 @@
+{
+  "class": "ClashSolverStampErrorAndErrorTypeOnElementCommand",
+  "desc": "ClashSolverStampErrorAndErrorTypeOnElementCommand — PDF FUNCTION \"IF_ERROR_APPEND_WITH_ERROR\".",
+  "summary": "ClashSolverStampErrorAndErrorTypeOnElementCommand — PDF FUNCTION \"IF_ERROR_APPEND_WITH_ERROR\". Stamp the canonical `Error` + `Error Type` shared params on one element.",
+  "usecase": "Manual escalation step from the clash-solver logic tree when no fix is possible.",
+  "notfor": "Read-only queries — use the QA Manager dashboard.",
+  "precondition": "Active document; target element resolvable; shared params bound to its category.",
+  "postcondition": "Shared params written inside one Transaction; WireError on missing-binding / read-only.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId (Bot) OR single active selection (Human) must resolve to an Element; WireError if not.\n2) Resolver_ErrorType must be one of StampClashFixReasonOnElement.Types; WireError otherwise.\n3) Resolver_Message required, non-empty.\n4) Open Transaction \"ClashSolver::Stamp\"; call StampClashFixReasonOnElement.Stamp(); commit.\n5) On success: CentralWarningLogger.LogWarning + tracker.SetOutput(stamped=true).\n6) On failure: stamp returns false → WireError already fired inside the service; tracker.SetOutput(stamped=false).",
+  "keywords": [
+    "clashsolverstamperroranderrortypeonelement"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Stamping element with solver error…"
+    ],
+    "thinkingsteps": [
+      "Resolving target element…",
+      "Validating error type against Types taxonomy…"
+    ],
+    "successprompts": [
+      "Stamped {errorType} on element {elementId}."
+    ],
+    "failureprompts": [
+      "Stamp failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

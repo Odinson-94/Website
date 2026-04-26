@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteHeatGainTm52ToSpaceParametersCommand",
+  "desc": "CalculationWriteHeatGainTm52ToSpaceParametersCommand — TM52 damped peak writer.",
+  "summary": "CalculationWriteHeatGainTm52ToSpaceParametersCommand — TM52 damped peak writer.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteheatgaintm52tospaceparameters",
+    "write tm52 gain"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

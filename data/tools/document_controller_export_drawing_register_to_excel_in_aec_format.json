@@ -1,0 +1,35 @@
+{
+  "name": "document_controller_export_drawing_register_to_excel_in_aec_format",
+  "desc": "Exports a drawing register in standard AEC format to Excel. Columns: Drawing No, Title, Rev, Suitability, Date, Format, Scale.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "projectName",
+      "type": "string",
+      "description": "Project name for the register header",
+      "required": true
+    },
+    {
+      "name": "projectNumber",
+      "type": "string",
+      "description": "Project number",
+      "required": true
+    },
+    {
+      "name": "outputPath",
+      "type": "string",
+      "description": "Output file path for the Excel file",
+      "required": true
+    },
+    {
+      "name": "purpose",
+      "type": "string",
+      "description": "Issue purpose",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

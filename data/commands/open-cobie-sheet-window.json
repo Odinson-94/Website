@@ -1,0 +1,43 @@
+{
+  "class": "OpenCobieSheetWindowCommand",
+  "desc": "Opens the COBie Sheet Manager — a WebView2 + AI Chat split-panel for viewing and editing COBie data across all 20 COBie v2.4 sheets with compliance tracking.",
+  "summary": "Opens the COBie Sheet Manager — a WebView2 + AI Chat split-panel for viewing and editing COBie data across all 20 COBie v2.4 sheets with compliance tracking.",
+  "usecase": "User wants to view or edit COBie facility management data for handover. User wants to check COBie compliance against BEP or BS 1192-4. User wants to export COBie .xlsx spreadsheet. User wants to populate COBie parameters from the Revit model.",
+  "notfor": "Editing Revit schedules directly (use Parameter Editor). Creating shared parameters (use Shared Parameters setup).",
+  "precondition": "Active document must be open.",
+  "postcondition": "A singleton modeless CobieSheetWindow is shown. If already open, it is brought to front.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "cobie",
+    "cobie sheet",
+    "facility management",
+    "handover",
+    "data exchange",
+    "BS 1192-4",
+    "asset data",
+    "cobie export",
+    "cobie compliance",
+    "cobie spreadsheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening COBie Sheet Manager…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "COBie Sheet Manager is now open."
+    ],
+    "failureprompts": [
+      "Failed to open COBie Sheet Manager: {error}"
+    ]
+  },
+  "has_restapi": false
+}

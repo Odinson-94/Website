@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_build_date_matrix_drawing_issue_sheet_from_issued_folders",
+  "desc": "Builds a JPA-format date-matrix drawing issue sheet (.xlsx) from scanned issued folders. Rows = documents, columns = issue dates, cells = revision at that date.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "folderPath",
+      "type": "string",
+      "description": "Root path to scan",
+      "required": true
+    },
+    {
+      "name": "outputPath",
+      "type": "string",
+      "description": "Where to save the .xlsx file",
+      "required": false
+    },
+    {
+      "name": "projectName",
+      "type": "string",
+      "description": "Project name for the sheet header",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

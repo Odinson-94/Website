@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_get_master_document_register_for_project",
+  "desc": "Returns the full master document register combining all CDE platforms, local scans, and incoming documents. Single source of truth.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project identifier",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

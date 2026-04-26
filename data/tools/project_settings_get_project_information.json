@@ -1,0 +1,14 @@
+{
+  "name": "project_settings_get_project_information",
+  "desc": "Read all editable Project Information fields: number, name, client name, status, building name, address, organization name + description, project issue date.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "project_settings_get_project_information",
+    "project information",
+    "get project info"
+  ]
+}

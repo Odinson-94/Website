@@ -1,0 +1,41 @@
+{
+  "class": "RunClashDetectionByFiltersCommand",
+  "desc": "Executes a paired text-filter clash sweep on the active Document, appends coordination IErrorRule findings, and writes timestamped clashresults XML beside the RVT.",
+  "summary": "Executes a paired text-filter clash sweep on the active Document, appends coordination IErrorRule findings, and writes timestamped clashresults XML beside the RVT.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "run clash check filters",
+    "clash detection filters",
+    "find clashes by filter"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running clash detection by filters…"
+    ],
+    "thinkingsteps": [
+      "Resolve project path and load tolerance JSON…",
+      "Collect elements for filter A and filter B…",
+      "Run coordination Error Manager rules…",
+      "Merge geometric clashes with rule rows and export QA XML…"
+    ],
+    "successprompts": [
+      "Clash run finished — {total} rows exported ({geometric} geometric, {rules} from rules)."
+    ],
+    "failureprompts": [
+      "Clash finder by filters failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

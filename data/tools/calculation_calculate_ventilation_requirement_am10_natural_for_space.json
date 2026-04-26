@@ -1,0 +1,12 @@
+{
+  "name": "calculation_calculate_ventilation_requirement_am10_natural_for_space",
+  "desc": "calculation_calculate_ventilation_requirement_am10_natural_for_space — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation calculate ventilation requirement am10 natural for space"
+  ]
+}

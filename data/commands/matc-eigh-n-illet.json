@@ -1,0 +1,73 @@
+{
+  "class": "MatchHeightAndFilletCommand",
+  "desc": "Command: Matches pipe elevation, extends, and connects with a fitting.",
+  "summary": "Command: Matches pipe elevation, extends, and connects with a fitting. WORKFLOW: 1. User selects source pipe (this pipe will be moved and extended) 2. User selects target pipe (elevation reference) 3. Source pipe is moved to match target elevation 4. Source pipe is extended to meet target 5. Elbow fitting is placed at junction",
+  "usecase": "Connecting branch drains to main drains. Joining pipes at different elevations with proper fitting. Quick pipe connections with automatic elevation matching.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least two pipes must exist. User must select two valid pipe elements.",
+  "postcondition": "Source pipe endpoint matches target pipe endpoint elevation. Source pipe extended to meet target. Elbow fitting placed at connection point.",
+  "sideeffects": "Moves the source pipe element vertically. Extends the source pipe geometry. Creates a fitting element.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectSourcePipe → getSourcePipe\raction: promptUserToSelectTargetPipe → getTargetPipe\rcheck: bothPipesValid → continue, else → error\raction: matchElevation → moveSource\raction: extendToMeet → extendSource\raction: placeFitting → createElbow\rresolve: success → complete, else → showError",
+  "keywords": [
+    "match height fillet",
+    "connect pipes",
+    "join elevation",
+    "pipe fitting",
+    "match and connect"
+  ],
+  "intent_patterns": [
+    "match * height * fillet",
+    "connect * pipes",
+    "join * elevation"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "SourcePipe",
+      "type": "Pipe",
+      "description": "Pipe to move and extend (will be modified)",
+      "prompt": "Select SOURCE pipe (this pipe will be moved and extended)"
+    },
+    {
+      "name": "TargetPipe",
+      "type": "Pipe",
+      "description": "Pipe to connect to (stays in place)",
+      "prompt": "Select TARGET pipe (source will connect to this)"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "CreatedFitting",
+      "type": "FamilyInstance",
+      "description": "The elbow fitting created"
+    }
+  ],
+  "related_commands": [
+    "MatchHeightCommand",
+    "ExtendPipeUpCommand",
+    "ExtendPipeDownCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Matching pipe elevation and connecting with fitting...",
+      "Preparing to match height and place elbow..."
+    ],
+    "thinkingsteps": [
+      "Getting source pipe endpoint...",
+      "Getting target pipe endpoint...",
+      "Matching elevation and extending pipe...",
+      "Placing elbow fitting at junction..."
+    ],
+    "successprompts": [
+      "Pipes connected with fitting — elevation matched by {ElevationDelta}.",
+      "Height matched and elbow fitting placed successfully."
+    ],
+    "failureprompts": [
+      "Match height and fillet failed: {error}",
+      "Could not connect pipes: {error}"
+    ]
+  },
+  "has_restapi": false
+}

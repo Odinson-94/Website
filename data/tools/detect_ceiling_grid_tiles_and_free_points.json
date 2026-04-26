@@ -1,0 +1,27 @@
+{
+  "name": "detect_ceiling_grid_tiles_and_free_points",
+  "desc": "Detect ceiling tiles and likely-free tile points in current/active view.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "tileSizeMm",
+      "type": "number",
+      "description": "Assumed ceiling tile size in mm (default 600).",
+      "required": false
+    },
+    {
+      "name": "maxPoints",
+      "type": "integer",
+      "description": "Cap returned points (default 200).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "detect ceiling grid",
+    "free ceiling tiles",
+    "ceiling tile points"
+  ]
+}

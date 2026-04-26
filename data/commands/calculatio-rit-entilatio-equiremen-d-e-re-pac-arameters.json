@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteVentilationRequirementAdfPerAreaToSpaceParametersCommand",
+  "desc": "Writes ADF per-area ventilation l/s.",
+  "summary": "Writes ADF per-area ventilation l/s. Method tag = \"adf_per_area\".",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteventilationrequirementadfperareatospaceparameters",
+    "write adf per area ventilation"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

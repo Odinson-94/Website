@@ -1,0 +1,21 @@
+{
+  "name": "clash_manager_group_clash_results_from_latest_check_by_clash_test_name",
+  "desc": "Group results by the clash test that found them.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": "Optional full path to a specific results_*.xml (defaults to latest under .mepbridge/qa).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "group by test",
+    "clash tests",
+    "clash test groups"
+  ]
+}

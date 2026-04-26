@@ -1,0 +1,60 @@
+{
+  "class": "MEPSystemFilletCommand",
+  "desc": "Command: Forces a fillet connection between two pipes.",
+  "summary": "Command: Forces a fillet connection between two pipes. Uses MEPSystemFillet for the core alignment and fitting logic. Calls MatchPipeCenters for X/Y alignment, ChangeElevationOfObject for Z alignment, and FilletMEPCurve / GetMEPCurve for fitting placement. Related: MEPSystemTeeCommand for mid-pipe tee connections. WORKFLOW: 1. User selects reference pipe (stays in place) 2. User selects target pipe (will be moved to connect) 3. Target pipe centers are matched to reference (X/Y) 4. Target pipe elevation is matched to reference (Z) 5. Elbow fitting is placed at connection",
+  "usecase": "Forcing connections between misaligned pipes. Quick pipe connections with automatic alignment. Connecting branch pipes to main runs.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least two pipes must exist in the model.",
+  "postcondition": "Target pipe is aligned to reference pipe in X, Y, and Z. Elbow fitting connects the two pipes.",
+  "sideeffects": "Moves the target pipe element. Creates a fitting element.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectReferencePipe → getReferencePipe\raction: promptUserToSelectTargetPipe → getTargetPipe\rcheck: bothPipesValid → continue, else → error\raction: matchCenters → alignXY\raction: matchElevation → alignZ\raction: createFitting → connect\rresolve: success → complete, else → showError",
+  "keywords": [
+    "force fillet",
+    "connect pipes",
+    "align and connect",
+    "forced connection",
+    "MEP fillet",
+    "force connect"
+  ],
+  "intent_patterns": [
+    "force * fillet",
+    "force * connect",
+    "align * connect"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "ReferencePipe",
+      "type": "Pipe",
+      "description": "Reference pipe (stays in place)",
+      "prompt": "Select REFERENCE pipe (stays in place)"
+    },
+    {
+      "name": "TargetPipe",
+      "type": "Pipe",
+      "description": "Target pipe (will be moved and connected)",
+      "prompt": "Select TARGET pipe (will be moved to connect)"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "CreatedFitting",
+      "type": "FamilyInstance",
+      "description": "The elbow fitting created"
+    },
+    {
+      "name": "Offset",
+      "type": "XYZ",
+      "description": "Total offset applied (X, Y, Z)"
+    }
+  ],
+  "related_commands": [
+    "MatchPipeCentersCommand",
+    "MatchHeightCommand",
+    "MatchHeightAndFilletCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

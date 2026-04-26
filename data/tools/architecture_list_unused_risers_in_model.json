@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_unused_risers_in_model",
+  "desc": "ArchitectureListUnusedRisersInModel — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureListUnusedRisersInModel"
+  ]
+}

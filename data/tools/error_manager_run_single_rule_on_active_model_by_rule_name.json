@@ -1,0 +1,31 @@
+{
+  "name": "error_manager_run_single_rule_on_active_model_by_rule_name",
+  "desc": "Run a single error checking rule by name and return results as JSON. ",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "rule_name",
+      "type": "string",
+      "description": "Exact rule name (from list_available_error_rules) or partial match. ",
+      "required": false
+    },
+    {
+      "name": "config_overrides",
+      "type": "string",
+      "description": "Optional JSON object to override rule property values. ",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "run single rule",
+    "test rule",
+    "run error rule",
+    "check rule",
+    "single error check",
+    "run one rule",
+    "test single check"
+  ]
+}

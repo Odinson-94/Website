@@ -1,0 +1,96 @@
+{
+  "class": "CreateViewsCommand",
+  "desc": "Phase 7 Command: Creates plan views based on detected MEP services, levels, and scope boxes.",
+  "summary": "Phase 7 Command: Creates plan views based on detected MEP services, levels, and scope boxes. Detects active service types using ListServices, gets levels via ListLevels.GetPrimaryLevels. Creates floor or ceiling plans per service type using CreateViews helper. Scope boxes from ListScopeBoxes.GetAll are optionally assigned to views. Related: CreateSimilarViewsForLevelsCommand for replicating a single view. Related: CreateSheetCommand for sheet creation. Scale: 1:50 default.",
+  "usecase": "User wants to create all MEP plan views for a project in one operation. AI orchestrator needs to batch-create views for specific services and levels. User wants views auto-assigned to scope boxes for consistent sheet layouts.",
+  "notfor": "Creating a single view for one level (use CreateSimilarViewsForLevelsCommand). Creating sections (use CreateSectionFromGridlineCommand).",
+  "precondition": "Active document must be open. At least one MEP service must be detected in the model. At least one primary level must exist.",
+  "postcondition": "Plan views are created for each combination of service type, level, and scope box. Views are named as \"{ServiceType} - {Level} - {ScopeBox}\". Scope boxes are assigned to views when useScopeBoxes is true.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create views",
+    "make views",
+    "batch views",
+    "MEP views",
+    "service views",
+    "plan views"
+  ],
+  "intent_patterns": [
+    "create * views",
+    "make * views",
+    "batch * views",
+    "create * MEP * views"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "serviceTypes",
+      "type": "string",
+      "description": "JSON array of service type names to process",
+      "default": ""
+    },
+    {
+      "name": "levelNames",
+      "type": "string",
+      "description": "JSON array of level names to process",
+      "default": ""
+    },
+    {
+      "name": "useScopeBoxes",
+      "type": "bool",
+      "description": "If true, create per-scope-box views",
+      "default": "true"
+    },
+    {
+      "name": "scopeBoxNames",
+      "type": "string",
+      "description": "JSON array of scope box names to use",
+      "default": ""
+    },
+    {
+      "name": "scale",
+      "type": "int",
+      "description": "View scale",
+      "default": "50"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedViews",
+      "type": "List<ViewPlan>",
+      "description": "List of created view plans"
+    },
+    {
+      "name": "ViewCount",
+      "type": "int",
+      "description": "Number of views created"
+    }
+  ],
+  "related_commands": [
+    "CreateSimilarViewsForLevelsCommand",
+    "CreateSheetCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating MEP plan views for your project...",
+      "Setting up views for all services and levels..."
+    ],
+    "thinkingsteps": [
+      "Detecting active MEP services...",
+      "Getting primary levels...",
+      "Collecting scope boxes...",
+      "Creating views for each service × level × scope box..."
+    ],
+    "successprompts": [
+      "Created {count} views across {services} services and {levels} levels.",
+      "Done! All MEP plan views are ready."
+    ],
+    "failureprompts": [
+      "View creation failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

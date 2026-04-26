@@ -1,0 +1,46 @@
+{
+  "class": "VoxelGridBuildForScopeAtResolutionCommand",
+  "desc": "VoxelGridBuildForScopeAtResolutionCommand — build + obstruction- stamp + cache a VoxelGrid for subsequent A* queries.",
+  "summary": "VoxelGridBuildForScopeAtResolutionCommand — build + obstruction- stamp + cache a VoxelGrid for subsequent A* queries.",
+  "usecase": "Prime the cache before a routing run.",
+  "notfor": "Actual routing — use the Route command.",
+  "precondition": "Scope resolvable (scope_box / room / min-max).",
+  "postcondition": "In-process voxel cache updated; no Revit mutation.",
+  "sideeffects": "",
+  "logictree": "1) Resolve scope from resolvers. WireError if none.\n2) BuildVoxelGridForVolume.BuildFrom* with cell size.\n3) StampObstructionsOntoVoxelGrid.StampFromDocument to mark obstructed cells.\n4) Register in VoxelGridCache keyed by scope signature.\n5) Emit grid metadata.",
+  "keywords": [
+    "voxelgridbuildforscopeatresolution",
+    "build voxel grid",
+    "voxel prime cache"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"voxel_routing\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Building voxel grid for scope…"
+    ],
+    "thinkingsteps": [
+      "Resolving scope…",
+      "Building + stamping obstructions…"
+    ],
+    "successprompts": [
+      "Grid built: {total_cells} cells."
+    ],
+    "failureprompts": [
+      "Voxel build failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

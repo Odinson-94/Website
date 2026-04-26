@@ -1,0 +1,15 @@
+{
+  "name": "debug_status",
+  "desc": "Get the current self-debug state: enabled, API key present, active agent, last test results, build server status.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "debug status",
+    "self debug info",
+    "debug mode",
+    "self debug state"
+  ]
+}

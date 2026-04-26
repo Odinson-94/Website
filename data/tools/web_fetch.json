@@ -1,0 +1,31 @@
+{
+  "name": "web_fetch",
+  "desc": "Fetch a URL and return its readable text content. Strips HTML. Use after web_search to read a specific page.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "url",
+      "type": "string",
+      "description": "The URL to fetch",
+      "required": true
+    },
+    {
+      "name": "max_length",
+      "type": "integer",
+      "description": "Maximum characters to return (default 8000)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "web fetch",
+    "url",
+    "http",
+    "read page",
+    "web content",
+    "fetch url",
+    "get webpage"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "network_identify_end_run_connectors_in_system",
+  "desc": "network_identify_end_run_connectors_in_system — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "network identify end run connectors in system"
+  ]
+}

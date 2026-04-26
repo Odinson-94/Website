@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverConnectIntoNearestNode2dByRevitNativeCommand",
+  "desc": "ClashSolverConnectIntoNearestNode2dByRevitNativeCommand — strict 2D variant of CONNECT_INTO_NEAREST_NODE with elbow fallback.",
+  "summary": "ClashSolverConnectIntoNearestNode2dByRevitNativeCommand — strict 2D variant of CONNECT_INTO_NEAREST_NODE with elbow fallback.",
+  "usecase": "Solver 2D wire-up after a plan-view move.",
+  "notfor": "3D connects — use ConnectIntoNearestNodeBySystemMatch.",
+  "precondition": "Active document; source element resolvable; at least one candidate in 2D radius at same Z.",
+  "postcondition": "Either one ConnectTo / NewElbowFitting or no change.",
+  "sideeffects": "",
+  "logictree": "1) Validate Resolver_ElementUniqueId.\n2) Instantiate ConnectorOpsConnectIntoNearestNodeIn2dCommand, copy resolvers,\n   set AllowCrossSystemWithWarning=false.\n3) Delegate Execute.\n4) Tag tracker with strict_system_match=true + delegated_to.",
+  "keywords": [
+    "clashsolverconnectintonearestnode2dbyrevitnative",
+    "2d connect revit native",
+    "plan view strict connect"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Plan-view connect with strict system match…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ConnectorOpsConnectIntoNearestNodeIn2dCommand…"
+    ],
+    "successprompts": [
+      "2D connect delegated, strict gate enforced."
+    ],
+    "failureprompts": [
+      "Plan-view connect failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

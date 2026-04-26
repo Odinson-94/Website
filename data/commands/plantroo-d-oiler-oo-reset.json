@@ -1,0 +1,46 @@
+{
+  "class": "PlantroomAddBoilersToRoomByPresetCommand",
+  "desc": "PlantroomAddBoilersToRoomByPresetCommand — quick-build \"N boilers + pumps + buffer\" delegating to the canonical solver pipeline.",
+  "summary": "PlantroomAddBoilersToRoomByPresetCommand — quick-build \"N boilers + pumps + buffer\" delegating to the canonical solver pipeline.",
+  "usecase": "Ribbon quick-build for a new plantroom.",
+  "notfor": "Custom equipment lists — use PlantroomLayoutSolveRoomWithPresetCommand.",
+  "precondition": "Resolver fields set; preset valid; room dims positive.",
+  "postcondition": "pending_placements populated + pending_changes row created.",
+  "sideeffects": "",
+  "logictree": "1) Validate resolvers.\n2) Build manifest + run PositionBoilers via V2 service (records solver_runs).\n3) Stage placements via LayoutSolvePlantroomEquipmentWithPresetCommand (re-run with same manifest for staging).\n4) Emit change_id + placements_staged.",
+  "keywords": [
+    "plantroomaddboilerstoroombypreset",
+    "add boilers to plantroom",
+    "plantroom quick-build boilers"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Quick-adding boilers to a room…"
+    ],
+    "thinkingsteps": [
+      "Building manifest via PositionBoilersInRowUsingPreset…",
+      "Delegating to LayoutSolvePlantroomEquipmentWithPresetCommand…"
+    ],
+    "successprompts": [
+      "Staged {placements_staged} placements."
+    ],
+    "failureprompts": [
+      "Add boilers failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

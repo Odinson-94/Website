@@ -1,0 +1,42 @@
+{
+  "class": "SheetViewSetupCreateCalloutOnViewAtBoundingBoxCommand",
+  "desc": "Creates a Detail callout inside the active plan view at a supplied (min, max) bounding box.",
+  "summary": "Creates a Detail callout inside the active plan view at a supplied (min, max) bounding box. Pure maths delegated to GetCalloutRectangle. View-family-type lookup via ResolveDetailViewFamilyTypeId.",
+  "usecase": "Frame an arbitrary region for a detail drawing or evidence capture.",
+  "notfor": "Frame-a-room callouts (use SheetViewSetupCreateCalloutWrappingRoomOrSpaceBoundaryCommand).",
+  "precondition": "Active document open; active view is a plan/section; Project contains at least one Detail ViewFamilyType; BoundingBoxXYZ supplied via resolvers is valid (min &lt; max on X and Y).",
+  "postcondition": "Exactly one new callout View added as a child of the parent view, inside a single committed Transaction, audit trail recorded.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot supplies Resolver_ParentViewId (defaults to active view) + Resolver_MinX/Y/Z + Resolver_MaxX/Y/Z in feet. 2) Validate — parent view exists and supports callouts; min &lt; max on X and Y; else WireError + abort. 3) Resolve Detail ViewFamilyType id via ResolveDetailViewFamilyTypeId.FindFirstInDocument(doc); if invalid WireError + abort. 4) Open Transaction 'Create callout (bbox)'. 5) Build rect via GetCalloutRectangle.FromBoundingBox(bb). 6) callout = ViewSection.CreateCallout(doc, parentViewId, vftId, rect.min, rect.max); commit. 7) Bot: JSON {ok, callout_view_id, parent_view_id, min, max}. User: ribbon toast 'Callout placed in {parentView.Name}.' 8) Any exception → tracker.Fail(ex); WireFault {parent_view_id, min, max}.",
+  "keywords": [
+    "sheetviewsetupcreatecalloutonviewatboundingbox",
+    "callout",
+    "detail",
+    "view",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating callout in parent view at supplied bounding box…"
+    ],
+    "thinkingsteps": [
+      "Validating parent view + bounding box…",
+      "Resolving Detail view family type…",
+      "Calling ViewSection.CreateCallout…"
+    ],
+    "successprompts": [
+      "Callout view {callout_view_id} placed in {parent_view_name}."
+    ],
+    "failureprompts": [
+      "Could not create callout: {error}."
+    ]
+  },
+  "has_restapi": false
+}

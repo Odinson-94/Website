@@ -1,0 +1,10 @@
+slug: schedules
+title: Schedules
+lead: "Use this skill when the user asks to create, edit, or query Revit schedules. Covers schedule creation (custom, from template, duplicate), column management (add, remove, reorder, rename, hide), row filtering, sorting and grouping (headers, footers, grand totals, itemize), column formatting (alignment, units, totals), appearance (text styles, grid lines, outline, row striping), placing schedules on sheets, and reading schedule data. Also use when the user mentions ViewSchedule, schedule fields, or schedule formatting."
+category_label: Workflow
+source_skill: BUILD MEP Plan/Skills/schedules.md
+prerequisites: [Document is open and modifiable, "For schedule creation: elements of that category must exist (or schedule will be empty)", "For schedule data reads: schedule must already exist", "For appearance: text styles should be set up first (see Object Styles Skill)"]
+phases: []
+generated_by: stub-deterministic-v1
+generated_at: "2026-04-21T08:27:57.679Z"
+source_sha: 4d73f23

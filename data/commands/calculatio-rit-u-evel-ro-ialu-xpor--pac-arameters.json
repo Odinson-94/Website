@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteLuxLevelsFromDialuxExportToSpaceParametersCommand",
+  "desc": "Writes every matched DIALux row to its Revit Room.",
+  "summary": "Writes every matched DIALux row to its Revit Room.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteluxlevelsfromdialuxexporttospaceparameters",
+    "write dialux lux"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

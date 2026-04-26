@@ -1,0 +1,13 @@
+{
+  "name": "text_styles_get_text_note_type_definition",
+  "desc": "Return the full definition of a TextNoteType: font, size, colour, bold/italic/underline, border, leader, width factor.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "text_styles_get_text_note_type_definition",
+    "text styles get text note type definition"
+  ]
+}

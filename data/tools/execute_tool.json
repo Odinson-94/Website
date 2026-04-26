@@ -1,0 +1,28 @@
+{
+  "name": "execute_tool",
+  "desc": "Call any MCP tool by name. Use after discover_tools returns tool names. Pass the tool name and a JSON object of parameters. Example: execute_tool(tool_name='check_clashes', params_json='{\\",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "tool_name",
+      "type": "string",
+      "description": "The tool name from discover_tools results — e.g. 'check_clashes', 'navigate_to_clash'",
+      "required": true
+    },
+    {
+      "name": "params_json",
+      "type": "string",
+      "description": "JSON object of parameters to pass — e.g. '{\\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "execute tool",
+    "call tool",
+    "run tool",
+    "invoke tool"
+  ]
+}

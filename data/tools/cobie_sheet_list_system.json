@@ -1,0 +1,13 @@
+{
+  "name": "cobie_sheet_list_system",
+  "desc": "List rows for the COBie System sheet projected from Revit elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "cobie_sheet_list_system",
+    "cobie sheet list system"
+  ]
+}

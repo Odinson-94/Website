@@ -1,0 +1,72 @@
+{
+  "class": "ExtendFromConnectorCommand",
+  "desc": "Command: Extends a pipe outward from a selected connector.",
+  "summary": "Command: Extends a pipe outward from a selected connector. User selects a pipe, then picks a connector end to extend from. Uses ExtendFromConnector for the core extension logic. Uses ExtendFromConnector.GetOpenConnectors to find available connectors. Related: ExtendPipeDownCommand for downward extension. Suppresses \"not enough room for fittings\" warnings via MEPWarningSwallower.",
+  "usecase": "User wants to extend a pipe from a specific end. User needs to add a pipe segment to an open connector. User wants to avoid the \"not enough room\" warning dialog.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least one pipe must exist with an open connector.",
+  "postcondition": "A new pipe segment is created extending from the selected connector. The new pipe matches the source pipe's system, type, and diameter.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "extend pipe",
+    "connector",
+    "extend from connector",
+    "pipe extension",
+    "extend outward"
+  ],
+  "intent_patterns": [
+    "extend * from * connector",
+    "extend * pipe * outward",
+    "add * pipe * connector"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [
+    {
+      "name": "Pipe",
+      "type": "Pipe",
+      "description": "Pipe to extend from",
+      "prompt": "Select a pipe"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "ExtensionLength",
+      "type": "double",
+      "description": "Length to extend in feet",
+      "default": "2.0"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedPipe",
+      "type": "Pipe",
+      "description": "The new pipe segment"
+    }
+  ],
+  "related_commands": [
+    "ExtendPipeUpCommand",
+    "ExtendPipeDownCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Extending pipe from selected connector...",
+      "Preparing to extend outward from connector end..."
+    ],
+    "thinkingsteps": [
+      "Identifying open connectors on selected element...",
+      "Calculating extension length from connector radius...",
+      "Creating extension pipe with warning suppression..."
+    ],
+    "successprompts": [
+      "Pipe extended successfully from connector.",
+      "Done! New pipe segment created from selected connector."
+    ],
+    "failureprompts": [
+      "Couldn't extend pipe: {error}",
+      "Extension from connector failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

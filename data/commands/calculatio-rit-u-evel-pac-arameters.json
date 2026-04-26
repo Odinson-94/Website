@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteLuxLevelsToSpaceParametersCommand",
+  "desc": "Umbrella lux writer — defaults to zonal-cavity.",
+  "summary": "Umbrella lux writer — defaults to zonal-cavity.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteluxlevelstospaceparameters",
+    "write lux"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

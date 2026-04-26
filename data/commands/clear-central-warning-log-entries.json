@@ -1,0 +1,36 @@
+{
+  "class": "ClearCentralWarningLogEntries",
+  "desc": "Clears all entries from CentralWarningLogger.",
+  "summary": "Clears all entries from CentralWarningLogger. This only affects the in-memory log — persisted JSON and Supabase entries are not modified. Requires user confirmation before execution.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Central warning log should have entries to clear.",
+  "postcondition": "In-memory warning log is empty.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clear warning log",
+    "reset warning log",
+    "clear central log"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Clearing the central warning log..."
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Warning log cleared. {count} entries removed."
+    ],
+    "failureprompts": [
+      "Failed to clear log: {error}"
+    ]
+  },
+  "has_restapi": false
+}

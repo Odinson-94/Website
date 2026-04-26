@@ -1,0 +1,55 @@
+{
+  "class": "RemoveRevisionFromSingleSheet",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "remove revision from sheet",
+    "delete revision from sheet",
+    "unassign revision"
+  ],
+  "intent_patterns": [
+    "remove * revision * sheet",
+    "delete * revision * sheet"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "revisionId",
+      "type": "int",
+      "description": "Revision element ID to remove",
+      "default": ""
+    },
+    {
+      "name": "sheetNumber",
+      "type": "string",
+      "description": "Sheet number (preferred)",
+      "default": ""
+    },
+    {
+      "name": "sheetId",
+      "type": "int",
+      "description": "Sheet element ID (optional)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Result with remaining revision count"
+    }
+  ],
+  "related_commands": [
+    "AddRevisionToSheetCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

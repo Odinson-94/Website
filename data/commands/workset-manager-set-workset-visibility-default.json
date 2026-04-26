@@ -1,0 +1,35 @@
+{
+  "class": "WorksetManagerSetWorksetVisibilityDefaultCommand",
+  "desc": "Set IsVisibleByDefault for a workset.",
+  "summary": "Set IsVisibleByDefault for a workset.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager set workset visibility default",
+    "workset_manager_set_workset_visibility_default"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running workset manager set workset visibility default…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "workset manager set workset visibility default: done."
+    ],
+    "failureprompts": [
+      "workset manager set workset visibility default failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

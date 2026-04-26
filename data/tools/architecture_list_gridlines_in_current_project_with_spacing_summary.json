@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_gridlines_in_current_project_with_spacing_summary",
+  "desc": "architecture_list_gridlines_in_current_project_with_spacing_summary — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "architecture list gridlines in current project with spacing summary"
+  ]
+}

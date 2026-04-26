@@ -1,0 +1,29 @@
+{
+  "name": "export_spec_to_cobie",
+  "desc": "Export equipment data to COBie spreadsheet for BIM handover.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "jobId",
+      "type": "string",
+      "description": "The job ID to export",
+      "required": true
+    },
+    {
+      "name": "outputPath",
+      "type": "string",
+      "description": "Full output file path",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "COBie",
+    "export COBie",
+    "BIM handover",
+    "equipment export",
+    "IFC"
+  ]
+}

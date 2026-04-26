@@ -1,0 +1,81 @@
+{
+  "class": "ImportCommand",
+  "desc": "Imports a full MEP model from JSON into the active Revit document.",
+  "summary": "Imports a full MEP model from JSON into the active Revit document. Creates pipes, ducts, cable trays with correct sizes and systems, then places fittings (elbows, tees, transitions) and family blocks. Uses JsonModelLoader for JSON parsing. Uses TypeResolver for Revit type resolution. Uses MepSegmentCreator for MEP curve creation. Uses PlaceElbowAtCorner, TakeoffPlacementService, PlaceTransitionBetweenSizes for fitting placement. Uses ImportBlocksFromLinkedDwg for family block placement. Uses GetCurrentViewLevel and LevelResolver for level resolution. Related: ExportJSON for exporting, ImportRadCommand for radiators.",
+  "usecase": "User wants to import a full MEP layout from a JSON design tool export. User wants to recreate MEP routing from a 2D/3D design into Revit. User needs to import pipes, ducts, trays, and equipment from JSON.",
+  "notfor": "Importing only radiators (use ImportRadCommand). Importing IFC, DWG, or native Revit formats. Exporting from Revit (use ExportJSON).",
+  "precondition": "Active document must be open. A valid JSON export file must exist. Required pipe/duct/tray types must be loaded in the model. At least one level must exist in the document.",
+  "postcondition": "MEP curves, fittings, and family blocks are created in the document. A companion .import.log.txt file is written alongside the JSON file. Smart mapping and family export files are created for debugging.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "import json",
+    "import mep",
+    "json import",
+    "import pipes",
+    "import ducts",
+    "import layout"
+  ],
+  "intent_patterns": [
+    "import * json",
+    "import * mep",
+    "json * import",
+    "import * layout"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "heightMode",
+      "type": "string",
+      "description": "Height mode: 'smart' (level-based) or 'json' (hardcoded Z)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CurvesCreated",
+      "type": "int",
+      "description": "Number of MEP curves created"
+    },
+    {
+      "name": "Elbows",
+      "type": "int",
+      "description": "Number of elbows placed"
+    },
+    {
+      "name": "FamiliesPlaced",
+      "type": "int",
+      "description": "Number of family blocks placed"
+    }
+  ],
+  "related_commands": [
+    "ExportJSON",
+    "ImportRadCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Importing MEP layout from JSON...",
+      "Starting MEP import workflow..."
+    ],
+    "thinkingsteps": [
+      "Parsing JSON file...",
+      "Resolving levels and MEP types...",
+      "Building node coordinates...",
+      "Creating MEP curves...",
+      "Placing elbows and fittings...",
+      "Importing family blocks...",
+      "Finalizing import..."
+    ],
+    "successprompts": [
+      "Import complete — {curvesCreated} curves, {elbows} elbows, {familiesPlaced} families placed.",
+      "MEP import finished successfully with {totalItems} elements."
+    ],
+    "failureprompts": [
+      "Import failed: {error}",
+      "Could not import MEP layout — {error}"
+    ]
+  },
+  "has_restapi": false
+}

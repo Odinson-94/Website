@@ -1,0 +1,21 @@
+{
+  "name": "cancel_spec_generation_job",
+  "desc": "Cancel a running specification generation job.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "jobId",
+      "type": "string",
+      "description": "The job ID to cancel",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "cancel job",
+    "stop generation",
+    "abort spec"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "ui_toggle_assert_wire",
+  "desc": "Press a UI toggle (via MCPUiTogglePress) then poll the ErrorManager for an expected wire entry. Returns wire_observed=true/false plus the observed entries within the timeout.",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 6,
+  "parameters": [
+    {
+      "name": "window",
+      "type": "string",
+      "description": "Target WebView2 key.",
+      "required": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "description": "Bridge action name or data-test-id.",
+      "required": true
+    },
+    {
+      "name": "payload_json",
+      "type": "string",
+      "description": "Optional JSON string of arguments.",
+      "required": false
+    },
+    {
+      "name": "expect_source_class",
+      "type": "string",
+      "description": "C# class name expected to wire (matches ErrorWireEntry.SourceClass).",
+      "required": true
+    },
+    {
+      "name": "expect_wire_type",
+      "type": "string",
+      "description": "recoverable | error | fault | any. Default any.",
+      "required": false
+    },
+    {
+      "name": "timeout_ms",
+      "type": "integer",
+      "description": "Max wait for the expected wire entry. Default 3000.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "ui toggle assert wire",
+    "press and assert wire",
+    "verify ui toggle fires wire",
+    "live ui assertion"
+  ]
+}

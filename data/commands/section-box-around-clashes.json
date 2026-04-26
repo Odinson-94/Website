@@ -1,0 +1,73 @@
+{
+  "class": "SectionBoxAroundClashesCommand",
+  "desc": "Creates a 3D section box tightly fitted around a set of clashing element IDs.",
+  "summary": "Creates a 3D section box tightly fitted around a set of clashing element IDs. Uses Create3DSectionBox to find the target 3D view and calculate/apply the bounding box with configurable margin. Selects the clash elements after boxing so follow-up commands can target them.",
+  "usecase": "User wants to zoom into a set of clashing elements to inspect them in 3D. Clash manager highlights a clash group and user wants a focused 3D view.",
+  "notfor": "Creating section boxes around arbitrary points (use manual section box instead). Running clash detection (use clash detection command first to get element IDs).",
+  "precondition": "Active document must be open. At least one valid element ID must be provided or selected. A non-template 3D view must exist in the document.",
+  "postcondition": "The active 3D view has a section box tightly enclosing the clashing elements. The clashing elements are selected in the UI.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "section box clashes",
+    "zoom to clashes",
+    "create clash section box",
+    "3d section box around clashes"
+  ],
+  "intent_patterns": [
+    "section box * clashes",
+    "zoom * clash *",
+    "create * clash * box"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "JSON array of clashing element IDs",
+      "default": ""
+    },
+    {
+      "name": "marginMm",
+      "type": "number",
+      "description": "Section box margin in millimeters",
+      "default": "200"
+    },
+    {
+      "name": "marginFt",
+      "type": "number",
+      "description": "Optional margin override in feet (legacy)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Section box creation result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a section box around the clashing elements...",
+      "Focusing 3D view on the clash zone..."
+    ],
+    "thinkingsteps": [
+      "Resolving element IDs for the clash set...",
+      "Calculating bounding box with margin...",
+      "Applying section box to 3D view..."
+    ],
+    "successprompts": [
+      "Section box created around {count} elements in {view}.",
+      "3D view focused on clash zone with {marginMm}mm margin."
+    ],
+    "failureprompts": [
+      "Could not create section box: {error}",
+      "Section box failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

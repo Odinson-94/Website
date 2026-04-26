@@ -1,0 +1,41 @@
+{
+  "class": "ConnectorOpsConnectIntoNearestNodeIn3dCommand",
+  "desc": "ConnectorOpsConnectIntoNearestNodeIn3dCommand — the solver's 3D connect-into-nearest.",
+  "summary": "ConnectorOpsConnectIntoNearestNodeIn3dCommand — the solver's 3D connect-into-nearest. Uses the system-match resolver as a gate and the canonical ConnectTo API for the actual join.",
+  "usecase": "Wire up a specific unconnected end to the nearest compatible candidate.",
+  "notfor": "Bulk connection — use it per end.",
+  "precondition": "Active document; source element + connector resolvable; at least one candidate connector within radius.",
+  "postcondition": "Exactly one Connector.ConnectTo call inside one Transaction; no other mutation.",
+  "sideeffects": "",
+  "logictree": "1) Resolve source: Resolver_ElementUniqueId required. If Resolver_ConnectorId given, use it; else pick the single unconnected connector (WireError if 0 or multiple).\n2) Build candidate pool: every element with a ConnectorManager in the doc, every connector on those, filtered to same Domain + IsConnected=false + not on source element, within MaxSearchRadiusMm.\n3) For each candidate, call MatchSystemByName.Evaluate. Drop Abort decisions. Keep Proceed directly; keep ProceedWithWarning only if Resolver_AllowCrossSystemWithWarning == true.\n4) Rank by source→candidate Euclidean distance (feet). If empty, WireError \"no_candidate\".\n5) Open Transaction \"ConnectorOps::ConnectNearest3d\"; source.ConnectTo(nearest); commit. WireRecoverable + RollBack on API throw.\n6) Emit connected, target_element_id, target_connector_id, distance_mm, match_decision, reason.",
+  "keywords": [
+    "connectoropsconnectintonearestnodein3d",
+    "connect into nearest node 3d",
+    "clash solver connect"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Searching for nearest compatible connector…"
+    ],
+    "thinkingsteps": [
+      "Resolving source connector…",
+      "Scanning candidate pool within radius…",
+      "Filtering via MatchSystemByName…",
+      "Ranking by distance; calling Connector.ConnectTo…"
+    ],
+    "successprompts": [
+      "Connected to element {target_element_id} / connector {target_connector_id} at {distance_mm} mm."
+    ],
+    "failureprompts": [
+      "Connect-nearest (3D) failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerExportResultsToHtmlReportCommand",
+  "desc": "ClashManagerExportResultsToHtmlReportCommand — self-contained HTML report exporter (images inlined).",
+  "summary": "ClashManagerExportResultsToHtmlReportCommand — self-contained HTML report exporter (images inlined).",
+  "usecase": "One-click HTML export for coordination meetings / email.",
+  "notfor": "Excel / PDF / Word — separate commands.",
+  "precondition": "Active document with a saved clash XML at the canonical path.",
+  "postcondition": "Single .html file on disk.",
+  "sideeffects": "",
+  "logictree": "1) Load clash XML via ReadWriteClashResultsToXml().ReadResults(). WireError if empty/missing.\n2) Resolve output path (resolver or default under doc directory / .mepbridge/qa/reports/).\n3) Call BuildSelfContainedClashReportHtml.WriteReport(file, output_path, title, embed_images).\n4) Launch default browser (Process.Start) on Human path, skip on Bot.\n5) Emit ok + output_path + result_count.",
+  "keywords": [
+    "clashmanagerexportresultstohtmlreport",
+    "export clash html",
+    "qa html report"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Building self-contained HTML clash report…"
+    ],
+    "thinkingsteps": [
+      "Loading clash XML…",
+      "Writing HTML via BuildSelfContainedClashReportHtml…"
+    ],
+    "successprompts": [
+      "HTML report at {output_path}."
+    ],
+    "failureprompts": [
+      "HTML export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

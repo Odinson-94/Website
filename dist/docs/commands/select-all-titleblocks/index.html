@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Select All Titleblocks — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Select All Titleblocks</div>
+
+  <h1 id="overview">Select All Titleblocks</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Selects all titleblock instances in the project. Uses FilteredElementCollector to find all OST_TitleBlocks elements. Uses CommandExecutor for result reporting. Related: SelectByCategoryCommand for generic category selection. Related: SelectAllInstancesCommand for family-specific selection.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open. At least one sheet with a titleblock must exist.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Revit selection is replaced with all titleblock instances in the project. Returns JSON with success flag, count, and element IDs.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/select-all-titleblocks/thumbnail.svg"
+           data-src="/sandbox/demo-assets/select-all-titleblocks/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop select-all-titleblocks/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to select all titleblocks to verify they are the correct type.</li>
+    <li>User wants to bulk-edit titleblock parameters (project name, number, etc.).</li>
+    <li>User wants to audit which sheets have titleblocks.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Selecting a specific titleblock family (use SelectAllInstancesCommand with familyName). Selecting sheets (titleblocks are not sheets — use a sheet selection command). Editing titleblock type (use a type-swap command).</p></div>
+  
+
+  
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>Result</code></td><td><code>JSON</code></td><td>Selected titleblock IDs and count</td></tr></tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree">collect: FilteredElementCollector → OST_TitleBlocks → instances onlyset: UIDocument.Selection → all collected IDsreturn: JSON with count and IDs</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Selecting all titleblocks in the project...<br>Finding every titleblock instance...</div>
+    <div class="lab">thinking</div><div class="msg">Scanning project for titleblock instances...<br>Setting Revit selection...</div>
+    <div class="lab">on success</div><div class="msg">Selected <span class="placeholder">{count}</span> titleblocks across the project.</div>
+    <div class="lab">on failure</div><div class="msg">Could not select titleblocks: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/select_all_titleblocks</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">select all titleblocks · select title blocks · select all sheet titleblocks · titleblock selection · find titleblocks<br><span style="font-size:12px;">Patterns: <code>select * all titleblocks</code> · <code>select * title blocks</code> · <code>find * titleblocks</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>SelectByCategoryCommand</code> · <code>SelectAllInstancesCommand</code></td></tr><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

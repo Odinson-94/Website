@@ -1,0 +1,40 @@
+{
+  "name": "space_analysis_classify_floor_type_at_point",
+  "desc": "Vertical raycast downward, find the first Floor, inspect its CompoundStructure layers + regex the names → one of {Structural | ScreededStructural | RaisedAccess | Timber | Finish | Unknown}.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "x",
+      "type": "number",
+      "description": "X of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Y of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "z",
+      "type": "number",
+      "description": "Z of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "max_distance_ft",
+      "type": "number",
+      "description": "Optional max downward cast (feet). Default 20 ft.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "space analysis classify floor type at point",
+    "floor type",
+    "raised access",
+    "timber floor"
+  ]
+}

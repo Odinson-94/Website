@@ -1,0 +1,8 @@
+{
+  "slug": "snap-to-wall",
+  "category": "revit-utilities",
+  "title": "Snap to Wall",
+  "desc": "Snap any element flush to the nearest wall with the right offset.",
+  "duration": "0:35",
+  "status": "live"
+}

@@ -1,0 +1,73 @@
+{
+  "class": "CreateRoomElevationViewsCommand",
+  "desc": "Phase 7 Command: Creates interior elevation views for a selected room.",
+  "summary": "Phase 7 Command: Creates interior elevation views for a selected room. User selects a room (typically a plant room) and 4 elevation views are created looking at each wall from the room centre. Uses CreateRoomElevationViews helper for actual view creation. Uses FindCentroidOfRoom.GetCentroid for linked room centroid transformation. Called by SheetSetUpCommand during automated sheet setup. Related: CreateSectionForCorridorCommand for corridor sections.",
+  "usecase": "User wants to create elevation views inside a plant room. User needs interior elevations showing MEP services on room walls.",
+  "notfor": "Creating sections through corridors (use CreateSectionForCorridorCommand). Creating exterior elevations. Creating floor plans or ceiling plans.",
+  "precondition": "Active document must be open. At least one room must exist in the model (host or linked). User must have interactive access to select elements.",
+  "postcondition": "Four interior elevation views are created around the selected room centre. Views are NOT placed on sheets (separate command).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "room elevation",
+    "create room elevation",
+    "elevation views",
+    "plant room elevation",
+    "interior elevation"
+  ],
+  "intent_patterns": [
+    "create * room elevation*",
+    "create room elevation views",
+    "* elevation * room"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [
+    {
+      "name": "Room",
+      "type": "Room",
+      "description": "Room to create elevation views for",
+      "prompt": "Select a room"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "Scale",
+      "type": "int",
+      "description": "View scale for the elevations",
+      "default": "20"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedViews",
+      "type": "List<ViewSection>",
+      "description": "The created elevation views"
+    }
+  ],
+  "related_commands": [
+    "CreateSectionForCorridorCommand",
+    "CreateFloorplanCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating room elevation views...",
+      "Setting up interior elevations for your room..."
+    ],
+    "thinkingsteps": [
+      "Waiting for room selection...",
+      "Calculating room centroid...",
+      "Creating 4 elevation views...",
+      "Applying scale and naming..."
+    ],
+    "successprompts": [
+      "Created {count} elevation views for '{roomName}'",
+      "Done! Room elevations ready at 1:{scale}"
+    ],
+    "failureprompts": [
+      "Couldn't create elevations: {error}",
+      "Elevation creation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

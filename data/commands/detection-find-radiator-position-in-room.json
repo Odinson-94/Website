@@ -1,0 +1,46 @@
+{
+  "class": "DetectionFindRadiatorPositionInRoomCommand",
+  "desc": "DetectionFindRadiatorPositionInRoomCommand — ribbon/bot wrapper over the canonical MCP read.",
+  "summary": "DetectionFindRadiatorPositionInRoomCommand — ribbon/bot wrapper over the canonical MCP read.",
+  "usecase": "Detection-driven positioning hint anchored to a room.",
+  "notfor": "Actually placing a radiator — that's a Placement command.",
+  "precondition": "Active document; room resolvable (resolver or single-element selection).",
+  "postcondition": "No mutation; tracker records recommended position.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_RoomId required OR single selected Room.\n2) Delegate to DetectionFindRadiatorPositionInRoom.GetAll(doc, roomId).\n3) Tracker output + TaskDialog on Human path.",
+  "keywords": [
+    "detectionfindradiatorpositioninroom",
+    "find radiator position",
+    "radiator rule hierarchy"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"detection_rules\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Finding recommended radiator position…"
+    ],
+    "thinkingsteps": [
+      "Resolving target room…",
+      "Delegating to DetectionFindRadiatorPositionInRoom…"
+    ],
+    "successprompts": [
+      "Recommended position in tracker output."
+    ],
+    "failureprompts": [
+      "Detection failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

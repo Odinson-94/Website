@@ -1,0 +1,31 @@
+{
+  "name": "adelphos_domain_sign_in_with_jwt_for_user",
+  "desc": "Store an Adelphos / LibreChat JWT on this machine so MEPBridge can call chat.adelphos.ai/domain/*. The token is encrypted at rest with Windows DPAPI (CurrentUser scope). Obtain the JWT by signing in at chat.adelphos.ai — Settings → Account → 'Show access token'.",
+  "bridge": "",
+  "category": "adelphos",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "access_token",
+      "type": "string",
+      "description": "The LibreChat access JWT",
+      "required": false
+    },
+    {
+      "name": "refresh_token",
+      "type": "string",
+      "description": "Optional refresh token for silent renewal on 401",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "adelphos sign in",
+    "adelphos login",
+    "set token",
+    "paste jwt",
+    "adelphos credentials",
+    "librechat token",
+    "authenticate adelphos"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_detect_unbubbled_changes_and_add_revision_clouds_to_pdf",
+  "desc": "Compares two PDF revisions, detects changes without revision clouds, and adds ISO 7200 revision cloud annotations to the new revision.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "oldPdfPath",
+      "type": "string",
+      "description": "Path to previous revision PDF",
+      "required": true
+    },
+    {
+      "name": "newPdfPath",
+      "type": "string",
+      "description": "Path to current revision PDF",
+      "required": true
+    },
+    {
+      "name": "revisionLetter",
+      "type": "string",
+      "description": "Revision letter for the cloud markers (e.g. C)",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

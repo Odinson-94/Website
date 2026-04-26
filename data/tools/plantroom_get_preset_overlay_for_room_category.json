@@ -1,0 +1,12 @@
+{
+  "name": "plantroom_get_preset_overlay_for_room_category",
+  "desc": "plantroom_get_preset_overlay_for_room_category — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "plantroom get preset overlay for room category"
+  ]
+}

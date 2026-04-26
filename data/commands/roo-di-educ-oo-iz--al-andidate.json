@@ -1,0 +1,31 @@
+{
+  "class": "RoomEditReduceRoomSizeByWallCandidateCommand",
+  "desc": "Shrink a room by picking a candidate boundary wall and offsetting its LocationCurve inward by `offset_mm`.",
+  "summary": "Shrink a room by picking a candidate boundary wall and offsetting its LocationCurve inward by `offset_mm`. Uses Wall.Location.Move along the wall's inward normal.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "roomeditreduceroomsizebywallcandidate",
+    "reduce room size by wall"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

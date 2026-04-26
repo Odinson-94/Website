@@ -1,0 +1,75 @@
+{
+  "class": "SelectByWorksetCommand",
+  "desc": "Selects all model elements that belong to a named workset.",
+  "summary": "Selects all model elements that belong to a named workset. Uses ListWorksets to resolve the workset by name, then applies ElementWorksetFilter to a collector scoped to the active view or the whole model. Called by CommandExecutor when triggered from AI chat. Related: SelectByCategoryCommand for category-based selection.",
+  "usecase": "User says \"select all elements on the drainage workset\". User wants to isolate a specific workset's elements for review. User needs to count or inspect elements assigned to a workset.",
+  "notfor": "Changing workset assignments (use MoveToWorksetCommand). Creating or deleting worksets. Selecting by category (use SelectByCategoryCommand).",
+  "precondition": "Document must be workshared. Target workset must exist.",
+  "postcondition": "Revit selection is replaced with elements from the matching workset. Returns JSON summary with count and scope.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "select by workset",
+    "select workset",
+    "workset selection",
+    "select mep workset"
+  ],
+  "intent_patterns": [
+    "select * workset",
+    "select by * workset",
+    "select elements * workset"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "worksetName",
+      "type": "string",
+      "description": "Workset name to match",
+      "default": ""
+    },
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "view (default) or model",
+      "default": "\"view\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Selected IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Selection summary"
+    }
+  ],
+  "related_commands": [
+    "SelectByCategoryCommand",
+    "FilterSelectionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Selecting elements from the requested workset...",
+      "Finding elements on that workset..."
+    ],
+    "thinkingsteps": [
+      "Resolving workset name...",
+      "Collecting elements on workset...",
+      "Updating selection..."
+    ],
+    "successprompts": [
+      "Selected {totalSelected} elements from workset \"{workset}\"",
+      "Done — {totalSelected} elements on \"{workset}\" are now selected"
+    ],
+    "failureprompts": [
+      "Couldn't select by workset: {error}",
+      "Workset selection failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

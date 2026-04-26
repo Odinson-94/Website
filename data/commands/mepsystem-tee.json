@@ -1,0 +1,53 @@
+{
+  "class": "MEPSystemTeeCommand",
+  "desc": "Command: Creates a tee fitting connection between pipes.",
+  "summary": "Command: Creates a tee fitting connection between pipes. Delegates to MEPSystemTee for the core break-and-insert logic. Uses GetMEPCurve for pipe geometry extraction. Related: MEPSystemFilletCommand for endpoint fillet connections. WORKFLOW: 1. User selects reference pipe (where tee will be inserted) 2. User selects target pipe (branch to connect) 3. Reference pipe is broken at selection point 4. Tee fitting is inserted 5. Target pipe connects to tee branch",
+  "usecase": "Creating branch connections mid-pipe. Adding drainage branches to main runs. T-junction connections.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least two pipes must exist.",
+  "postcondition": "Tee fitting inserted at selection point. Target pipe connected to tee branch.",
+  "sideeffects": "Breaks the reference pipe. Moves target pipe. Creates tee fitting.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectReferencePipe → getReferencePipe\raction: promptUserToSelectTargetPipe → getTargetPipe\rcheck: bothPipesValid → continue, else → error\raction: breakReferenceAtPoint → createBreak\raction: insertTeeFitting → createTee\raction: connectTargetToBranch → connect\rresolve: success → complete, else → showError",
+  "keywords": [
+    "tee fitting",
+    "branch connection",
+    "t-junction",
+    "insert tee",
+    "mid-pipe connect"
+  ],
+  "intent_patterns": [
+    "insert * tee",
+    "create * tee",
+    "branch * connection"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "ReferencePipe",
+      "type": "Pipe",
+      "description": "Pipe to insert tee into",
+      "prompt": "Select REFERENCE pipe (where tee will be inserted)"
+    },
+    {
+      "name": "TargetPipe",
+      "type": "Pipe",
+      "description": "Branch pipe to connect",
+      "prompt": "Select TARGET pipe (branch to connect)"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "CreatedTee",
+      "type": "FamilyInstance",
+      "description": "The tee fitting created"
+    }
+  ],
+  "related_commands": [
+    "MEPSystemFilletCommand",
+    "MEPSystemAutoFilletCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

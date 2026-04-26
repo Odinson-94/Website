@@ -1,0 +1,47 @@
+{
+  "name": "document_controller_generate_transmittal_issue_sheet_pdf_for_drawing_package",
+  "desc": "Generates an A4 transmittal/issue sheet PDF with project header, document table, distribution list, and signature block.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 6,
+  "parameters": [
+    {
+      "name": "projectName",
+      "type": "string",
+      "description": "Project name for the header",
+      "required": true
+    },
+    {
+      "name": "projectNumber",
+      "type": "string",
+      "description": "Project number",
+      "required": true
+    },
+    {
+      "name": "originator",
+      "type": "string",
+      "description": "Originator organisation name",
+      "required": true
+    },
+    {
+      "name": "purpose",
+      "type": "string",
+      "description": "Issue purpose (e.g. For Information, For Construction)",
+      "required": true
+    },
+    {
+      "name": "outputPath",
+      "type": "string",
+      "description": "Output file path for the generated PDF",
+      "required": true
+    },
+    {
+      "name": "notes",
+      "type": "string",
+      "description": "Additional notes for the transmittal",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

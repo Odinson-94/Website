@@ -1,0 +1,35 @@
+{
+  "class": "ProjectSettingsSetProjectLocationCommand",
+  "desc": "Set the active SiteLocation latitude, longitude, time zone, elevation.",
+  "summary": "Set the active SiteLocation latitude, longitude, time zone, elevation. Requires transaction on ActiveProjectLocation.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings set project location",
+    "project_settings_set_project_location"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running project settings set project location…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "project settings set project location: done."
+    ],
+    "failureprompts": [
+      "project settings set project location failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

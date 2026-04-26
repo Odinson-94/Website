@@ -1,0 +1,13 @@
+{
+  "name": "cobie_sheet_list_attribute_sheet",
+  "desc": "List rows for the COBie Attribute sheet projected from Revit elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "cobie_sheet_list_attribute_sheet",
+    "cobie sheet list attribute"
+  ]
+}

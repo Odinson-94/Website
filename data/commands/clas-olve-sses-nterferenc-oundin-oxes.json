@@ -1,0 +1,47 @@
+{
+  "class": "ClashSolverAssessInterferenceOfBoundingBoxesCommand",
+  "desc": "ClashSolverAssessInterferenceOfBoundingBoxesCommand — PDF \"ASSESS_INTERFERENCE\".",
+  "summary": "ClashSolverAssessInterferenceOfBoundingBoxesCommand — PDF \"ASSESS_INTERFERENCE\". Pairwise BB overlap between two elements.",
+  "usecase": "Pre/post-move interference check driven by a resolver step.",
+  "notfor": "Running a full category-pair clash pass — that's ClashFinderRunByFilterPairsWithTolerancesCommand.",
+  "precondition": "Active document; uidA + uidB resolvers or exactly two selected elements.",
+  "postcondition": "No mutation; audit recorded.",
+  "sideeffects": "",
+  "logictree": "1) Resolve pair — Resolver_UidA + Resolver_UidB if Bot; else the two currently selected elements (Human).\n2) WireError if pair cannot be resolved or they are the same element.\n3) Read BoundingBoxXYZ of each via Element.get_BoundingBox(null); WireError if either is null.\n4) Call CheckBoundingBoxOverlap.AxisAligned(bbA, bbB, tolerance_mm) by default,\n   or OrientedSat(bbA, Transform.Identity, bbB, Transform.Identity, tolerance_mm) if Resolver_UseSat.\n5) Emit { overlaps, volume_mm3, reason, tolerance_mm, uidA, uidB, mode }.\n6) Human path: TaskDialog with the same fields.",
+  "keywords": [
+    "clashsolverassessinterferenceofboundingboxes",
+    "assess interference",
+    "bb overlap pair"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Assessing bounding-box interference for the pair…"
+    ],
+    "thinkingsteps": [
+      "Resolving the two elements…",
+      "Reading bounding boxes…",
+      "Calling CheckBoundingBoxOverlap…"
+    ],
+    "successprompts": [
+      "Overlaps={overlaps}, volume={volume_mm3} mm³, reason={reason}."
+    ],
+    "failureprompts": [
+      "Interference check failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,35 @@
+{
+  "class": "BuildersworkGroupNearbyPenetrationsIntoCommunalOpeningCommand",
+  "desc": "Group nearby penetrations into a single communal opening per BS EN 1366-3 spacing.",
+  "summary": "Group nearby penetrations into a single communal opening per BS EN 1366-3 spacing.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "builderswork group nearby penetrations into communal opening",
+    "builderswork_group_nearby_penetrations_into_communal_opening"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running builderswork group nearby penetrations into communal opening…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "builderswork group nearby penetrations into communal opening: done."
+    ],
+    "failureprompts": [
+      "builderswork group nearby penetrations into communal opening failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

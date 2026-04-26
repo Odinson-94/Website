@@ -1,0 +1,31 @@
+{
+  "class": "CalculationWriteRoomPressureDifferencesBetweenSpacesParametersCommand",
+  "desc": "Writes PressureDifferentialPa + PressureStandard per Room from orifice engine.",
+  "summary": "Writes PressureDifferentialPa + PressureStandard per Room from orifice engine.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteroompressuredifferencesbetweenspacesparameters",
+    "write room pressure differential"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

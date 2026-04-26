@@ -1,0 +1,89 @@
+{
+  "class": "EditTextNoteCommand",
+  "desc": "Edits an existing text note in the active document: content, position, and/or type.",
+  "summary": "Edits an existing text note in the active document: content, position, and/or type. Uses ListText.GetTextNoteType to resolve text type by name. Uses CommandExecutor.GetParameter to read AI-supplied parameters. Called by AI chat via CommandExecutor or from the ribbon.",
+  "usecase": "User wants to change the text of an annotation note. User wants to reposition a text note on a sheet or view. User wants to change the text type/style of a note.",
+  "notfor": "Creating new text notes (use a create text note command instead). Editing keynotes or tags (different element types). Batch-editing multiple text notes at once.",
+  "precondition": "Active document must be open. A valid TextNote element ID must be provided.",
+  "postcondition": "The specified TextNote is updated with new content, position, and/or type. LastQueryResult contains a JSON summary of the edit.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "edit text note",
+    "update text",
+    "move text note",
+    "change text type",
+    "modify annotation"
+  ],
+  "intent_patterns": [
+    "edit * text",
+    "update * text note",
+    "move * text",
+    "change * text type"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "elementId",
+      "type": "int",
+      "description": "Text note element id",
+      "default": ""
+    },
+    {
+      "name": "content",
+      "type": "string",
+      "description": "Optional new content",
+      "default": ""
+    },
+    {
+      "name": "x",
+      "type": "number",
+      "description": "Optional new X coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Optional new Y coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "textType",
+      "type": "string",
+      "description": "Optional new text type name",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Edit result with id, text, position"
+    }
+  ],
+  "related_commands": [
+    "CreateTextNoteCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Editing the text note...",
+      "Updating your text annotation..."
+    ],
+    "thinkingsteps": [
+      "Locating the text note element...",
+      "Applying content and position changes...",
+      "Resolving text type..."
+    ],
+    "successprompts": [
+      "Text note {elementId} updated successfully.",
+      "Done — text note content and position applied."
+    ],
+    "failureprompts": [
+      "Could not edit text note: {error}",
+      "Text note edit failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

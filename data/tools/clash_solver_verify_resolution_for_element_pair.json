@@ -1,0 +1,12 @@
+{
+  "name": "clash_solver_verify_resolution_for_element_pair",
+  "desc": "clash_solver_verify_resolution_for_element_pair — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash solver verify resolution for element pair"
+  ]
+}

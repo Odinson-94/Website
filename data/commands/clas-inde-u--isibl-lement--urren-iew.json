@@ -1,0 +1,46 @@
+{
+  "class": "ClashFinderRunOnVisibleElementsInCurrentViewCommand",
+  "desc": "ClashFinderRunOnVisibleElementsInCurrentViewCommand — view-scoped pipeline invocation.",
+  "summary": "ClashFinderRunOnVisibleElementsInCurrentViewCommand — view-scoped pipeline invocation.",
+  "usecase": "Coordinator quick-scan of what they can currently see.",
+  "notfor": "Full-model detection — use the main Run command.",
+  "precondition": "Active document + active view; at least one MEP category populated in the view.",
+  "postcondition": "Clashes upserted into the staging DB per category pair in-view.",
+  "sideeffects": "",
+  "logictree": "1) view = Resolver_ViewId-resolved OR active view.\n2) Iterate canonical category pairs (same set as main Run command).\n3) Set A = FilteredElementCollector(doc, view.Id).OfCategory(catA).WhereElementIsNotElementType().\n4) Set B = FilteredElementCollector(doc, view.Id).OfCategory(catB).WhereElementIsNotElementType().\n5) Delegate pipeline.Run(doc, rule, setA, setB).\n6) Aggregate + emit per_pair summary + totals.",
+  "keywords": [
+    "clashfinderrunonvisibleelementsincurrentview",
+    "run clashes visible only",
+    "view scoped clash finder"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running clash detection on current view only…"
+    ],
+    "thinkingsteps": [
+      "Collecting visible elements per category pair…",
+      "Delegating to FindClashesBetweenTwoElementSets…"
+    ],
+    "successprompts": [
+      "View-scoped detection wrote/updated {total} clashes."
+    ],
+    "failureprompts": [
+      "View-scoped run failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

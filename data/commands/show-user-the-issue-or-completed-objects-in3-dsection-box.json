@@ -1,0 +1,32 @@
+{
+  "class": "ShowUserTheIssueOrCompletedObjectsIn3DSectionBoxCommand",
+  "desc": "Show selected elements inside a section-boxed 3D view.",
+  "summary": "Show selected elements inside a section-boxed 3D view.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "showusertheissueorcompletedobjectsin3dsectionbox",
+    "show issue 3d section",
+    "view element 3d box"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"showme_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

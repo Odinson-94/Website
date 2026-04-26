@@ -1,0 +1,46 @@
+{
+  "class": "PipeworkAddValveSetToPipeByDefinitionCommand",
+  "desc": "PipeworkAddValveSetToPipeByDefinitionCommand — insert an ordered valve set on a pipe from a JSON definition.",
+  "summary": "PipeworkAddValveSetToPipeByDefinitionCommand — insert an ordered valve set on a pipe from a JSON definition.",
+  "usecase": "Adding an isolation assembly to a distribution pipe.",
+  "notfor": "Single fitting insert — use ConnectorOpsInsertFittingOnCurveAtStationCommand.",
+  "precondition": "Pipe resolvable; station within pipe length; valve-set JSON parses.",
+  "postcondition": "N fittings + (N+1) pipe segments inside one Transaction, or rollback.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_PipeUniqueId + Resolver_StationMm + Resolver_ValveSetJson required.\n2) Parse JSON as [{ \"symbol_unique_id\": \"...\", \"offset_mm\": 50, \"kind\": \"Union|Elbow|Tee|Transition\" }].\n3) Open Transaction \"Pipework::AddValveSet\".\n4) Split pipe at station. For each entry i, split the right pipe at offset and insert fitting.\n5) If any step fails, rollback + WireError.\n6) Emit inserted_count + fitting ids.",
+  "keywords": [
+    "pipeworkaddvalvesettopipebydefinition",
+    "add valve set",
+    "pipework valve set insert"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Inserting valve set on pipe…"
+    ],
+    "thinkingsteps": [
+      "Parsing valve set definition…",
+      "Splitting + inserting per entry…"
+    ],
+    "successprompts": [
+      "Inserted {inserted_count} fittings."
+    ],
+    "failureprompts": [
+      "Valve set insert failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

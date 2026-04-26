@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverExtendSelectedNodeBy100mmCommand",
+  "desc": "ClashSolverExtendSelectedNodeBy100mmCommand — PDF \"EXTEND_NODE\".",
+  "summary": "ClashSolverExtendSelectedNodeBy100mmCommand — PDF \"EXTEND_NODE\". Extend one specific connector by 100 mm.",
+  "usecase": "Prepare a single named end-run to meet the next node.",
+  "notfor": "Extending every connector at once — use the other Extend* command.",
+  "precondition": "Active document; element + connector id resolvable; connector is not already connected.",
+  "postcondition": "Exactly one new Pipe created inside one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId + Resolver_ConnectorId required.\n2) Resolve element + ConnectorManager; fetch the connector by Id; WireError if any missing.\n3) If connector.IsConnected → WireRecoverable + no-op + tracker output says already_connected.\n4) length_mm = Resolver_LengthMm ?? 100; direction = connector.CoordinateSystem.BasisZ.\n5) Resolve PipeTypeId + SystemTypeId + LevelId from the source element / connector.\n6) Open Transaction \"ClashSolver::ExtendNode\"; Pipe.Create(doc, systemTypeId, pipeTypeId, levelId, origin, origin + dir*length); set diameter from connector; commit.\n7) Emit created_pipe_id, length_mm, origin_ft, direction.",
+  "keywords": [
+    "clashsolverextendselectednodeby100mm",
+    "extend node",
+    "extend single connector"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Extending one named connector by 100 mm…"
+    ],
+    "thinkingsteps": [
+      "Resolving element + connector id…",
+      "Creating a single Pipe along the connector axis…"
+    ],
+    "successprompts": [
+      "Created pipe {pipe_id} ({length_mm} mm) from connector {connectorId}."
+    ],
+    "failureprompts": [
+      "Extend-node failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

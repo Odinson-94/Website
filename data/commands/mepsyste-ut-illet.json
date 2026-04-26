@@ -1,0 +1,83 @@
+{
+  "class": "MEPSystemAutoFilletCommand",
+  "desc": "Command: Auto-detects and creates appropriate fitting (elbow or tee).",
+  "summary": "Command: Auto-detects and creates appropriate fitting (elbow or tee). Delegates to MEPSystemAutoFillet which internally uses MEPSystemFillet for elbows and MEPSystemTee for tees. Related: MEPSystemFilletCommand for forced elbow, MatchPipeCentersCommand for alignment only. WORKFLOW: 1. User selects reference pipe 2. User selects target pipe 3. Command checks if reference selection is within 25 mm of unconnected endpoint 4. If within 25 mm: creates elbow fitting (aligns and connects) 5. If beyond 25 mm: creates tee fitting (breaks pipe and inserts tee)",
+  "usecase": "Smart pipe connections without manual fitting selection. Creating either endpoint or mid-pipe connections. General-purpose pipe connection tool.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least two pipes must exist.",
+  "postcondition": "Appropriate fitting created based on selection proximity. Pipes are connected.",
+  "sideeffects": "May move target pipe. May break reference pipe (for tee). Creates fitting element.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectReferencePipe → getReferencePipe\raction: promptUserToSelectTargetPipe → getTargetPipe\rcheck: bothPipesValid → continue, else → error\rdecision: distanceToEndpoint ≤ 25mm → useElbow, else → useTee\raction: createFitting → connect\rresolve: success → complete, else → showError",
+  "keywords": [
+    "auto fillet",
+    "smart connect",
+    "auto fitting",
+    "connect pipes auto",
+    "smart fillet"
+  ],
+  "intent_patterns": [
+    "auto * connect",
+    "smart * fillet",
+    "connect * auto"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "ReferencePipe",
+      "type": "Pipe",
+      "description": "Reference pipe (endpoint or mid-pipe)",
+      "prompt": "Select REFERENCE pipe (click near endpoint for elbow, mid-pipe for tee)"
+    },
+    {
+      "name": "TargetPipe",
+      "type": "Pipe",
+      "description": "Target pipe to connect",
+      "prompt": "Select TARGET pipe to connect"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "EndpointThreshold",
+      "type": "double",
+      "description": "Distance threshold for endpoint detection",
+      "default": "25.0"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedFitting",
+      "type": "FamilyInstance",
+      "description": "The fitting created (elbow or tee)"
+    },
+    {
+      "name": "FittingType",
+      "type": "string",
+      "description": "Type of fitting used"
+    }
+  ],
+  "related_commands": [
+    "MEPSystemFilletCommand",
+    "MEPSystemTeeCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Auto-detecting fitting type...",
+      "Choosing elbow or tee based on selection..."
+    ],
+    "thinkingsteps": [
+      "Checking distance to nearest unconnected endpoint...",
+      "Determining elbow vs tee (threshold: 25 mm)...",
+      "Creating fitting and connecting pipes..."
+    ],
+    "successprompts": [
+      "{FittingType} fitting placed successfully.",
+      "Connected with {FittingType} — selection was {DistanceToEndpoint} from endpoint."
+    ],
+    "failureprompts": [
+      "Auto-fillet failed: {error}",
+      "Could not create fitting: {error}"
+    ]
+  },
+  "has_restapi": false
+}

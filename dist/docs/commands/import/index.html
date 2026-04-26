@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Import — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Import</div>
+
+  <h1 id="overview">Import</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Imports a full MEP model from JSON into the active Revit document. Creates pipes, ducts, cable trays with correct sizes and systems, then places fittings (elbows, tees, transitions) and family blocks. Uses JsonModelLoader for JSON parsing. Uses TypeResolver for Revit type resolution. Uses MepSegmentCreator for MEP curve creation. Uses PlaceElbowAtCorner, TakeoffPlacementService, PlaceTransitionBetweenSizes for fitting placement. Uses ImportBlocksFromLinkedDwg for family block placement. Uses GetCurrentViewLevel and LevelResolver for level resolution. Related: ExportJSON for exporting, ImportRadCommand for radiators.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open. A valid JSON export file must exist. Required pipe/duct/tray types must be loaded in the model. At least one level must exist in the document.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>MEP curves, fittings, and family blocks are created in the document. A companion .import.log.txt file is written alongside the JSON file. Smart mapping and family export files are created for debugging.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/import/thumbnail.svg"
+           data-src="/sandbox/demo-assets/import/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop import/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to import a full MEP layout from a JSON design tool export.</li>
+    <li>User wants to recreate MEP routing from a 2D/3D design into Revit.</li>
+    <li>User needs to import pipes, ducts, trays, and equipment from JSON.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Importing only radiators (use ImportRadCommand). Importing IFC, DWG, or native Revit formats. Exporting from Revit (use ExportJSON).</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>heightMode</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>—</td>
+    <td>Height mode: 'smart' (level-based) or 'json' (hardcoded Z)</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>CurvesCreated</code></td><td><code>int</code></td><td>Number of MEP curves created</td></tr><tr><td><code>Elbows</code></td><td><code>int</code></td><td>Number of elbows placed</td></tr><tr><td><code>FamiliesPlaced</code></td><td><code>int</code></td><td>Number of family blocks placed</td></tr></tbody>
+  </table>
+
+  
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Importing MEP layout from JSON...<br>Starting MEP import workflow...</div>
+    <div class="lab">thinking</div><div class="msg">Parsing JSON file...<br>Resolving levels and MEP types...<br>Building node coordinates...<br>Creating MEP curves...<br>Placing elbows and fittings...<br>Importing family blocks...<br>Finalizing import...</div>
+    <div class="lab">on success</div><div class="msg">Import complete — <span class="placeholder">{curvesCreated}</span> curves, <span class="placeholder">{elbows}</span> elbows, <span class="placeholder">{familiesPlaced}</span> families placed.</div>
+    <div class="lab">on failure</div><div class="msg">Import failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/import</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">import json · import mep · json import · import pipes · import ducts · import layout<br><span style="font-size:12px;">Patterns: <code>import * json</code> · <code>import * mep</code> · <code>json * import</code> · <code>import * layout</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>ExportJSON</code> · <code>ImportRadCommand</code></td></tr><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

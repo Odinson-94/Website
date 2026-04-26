@@ -1,0 +1,35 @@
+{
+  "class": "FamilySwapBatchAcrossCurrentViewCommand",
+  "desc": "Batch-swap matching family instances across the current view.",
+  "summary": "Batch-swap matching family instances across the current view.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "family swap batch across current view",
+    "family_swap_batch_across_current_view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running family swap batch across current view…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "family swap batch across current view: done."
+    ],
+    "failureprompts": [
+      "family swap batch across current view failed: {error}"
+    ]
+  },
+  "has_restapi": true
+}

@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_callouts_on_current_view",
+  "desc": "ArchitectureListCalloutsOnCurrentView — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureListCalloutsOnCurrentView"
+  ]
+}

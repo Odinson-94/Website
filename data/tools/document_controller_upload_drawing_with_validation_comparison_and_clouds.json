@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_upload_drawing_with_validation_comparison_and_clouds",
+  "desc": "Complete upload workflow: validate naming, detect title block, compare with previous revision, add revision clouds if unbubbled changes found, then upload to platform.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "filePath",
+      "type": "string",
+      "description": "Local path to the PDF file to upload",
+      "required": true
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Target platform: vfp, asite, acc",
+      "required": true
+    },
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project ID on the target platform",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

@@ -1,0 +1,22 @@
+{
+  "name": "run_spec_compliance_check",
+  "desc": "Run full compliance validation against 60+ standards. Returns overall score 0-100, per-discipline scores, and findings.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "jobId",
+      "type": "string",
+      "description": "The job ID to validate",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "compliance check",
+    "run compliance",
+    "standards validation",
+    "spec validation"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_detected_client_comments_in_current_project",
+  "desc": "ArchitectureListDetectedClientCommentsInCurrentProject — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureListDetectedClientCommentsInCurrentProject"
+  ]
+}

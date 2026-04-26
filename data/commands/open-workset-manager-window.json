@@ -1,0 +1,39 @@
+{
+  "class": "OpenWorksetManagerWindowCommand",
+  "desc": "Opens the Workset Manager window for managing Revit worksets.",
+  "summary": "Opens the Workset Manager window for managing Revit worksets. Uses WorksetManagerWindow.ShowSingleton for singleton behaviour.",
+  "usecase": "User wants to view or manage worksets in the current project.",
+  "notfor": "Creating new worksets programmatically without UI (use MCP tools instead).",
+  "precondition": "Active document must be open.",
+  "postcondition": "Workset Manager window is visible.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager",
+    "worksets",
+    "manage worksets",
+    "open workset manager"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening Workset Manager…"
+    ],
+    "thinkingsteps": [
+      "Loading workset data from project…"
+    ],
+    "successprompts": [
+      "Workset Manager window is open."
+    ],
+    "failureprompts": [
+      "Could not open Workset Manager: {error}"
+    ]
+  },
+  "has_restapi": false
+}

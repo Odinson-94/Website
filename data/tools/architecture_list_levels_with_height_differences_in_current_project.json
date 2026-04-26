@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_levels_with_height_differences_in_current_project",
+  "desc": "ArchitectureListLevelsWithHeightDifferencesInCurrentProject — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureListLevelsWithHeightDifferencesInCurrentProject"
+  ]
+}

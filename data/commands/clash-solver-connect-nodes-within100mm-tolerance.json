@@ -1,0 +1,47 @@
+{
+  "class": "ClashSolverConnectNodesWithin100mmToleranceCommand",
+  "desc": "ClashSolverConnectNodesWithin100mmToleranceCommand — PDF \"CONNECT_INTO_NEAREST\".",
+  "summary": "ClashSolverConnectNodesWithin100mmToleranceCommand — PDF \"CONNECT_INTO_NEAREST\". Bulk-heal every unconnected connector pair whose Euclidean distance is ≤ tolerance_mm.",
+  "usecase": "Bulk healing after batch moves.",
+  "notfor": "Pair-level fine-grained connects — use the per-pair ConnectorOps commands.",
+  "precondition": "Active document.",
+  "postcondition": "Zero or more ConnectTo calls each inside their own Transaction so one failure doesn't roll back the batch.",
+  "sideeffects": "",
+  "logictree": "1) tolerance_mm = Resolver_ToleranceMm ?? 100.0.\n2) Enumerate every connector in the doc that is IsConnected=false and not Logical. Collect into a list.\n3) Produce candidate pairs (i, j) where i&lt;j and Domain matches and distance &lt;= tolerance_ft; sort by distance ascending.\n4) Greedy consume: skip pairs whose connector has been used by an earlier accepted pair.\n5) For each accepted pair, system-match gate. Skip if Abort; skip ProceedWithWarning unless allow_cross_system_with_warning=true.\n6) Open a Transaction per pair; ConnectTo; Commit on success, RollBack + WireRecoverable on throw.\n7) Aggregate per-pair outcomes; emit summary + per_pair list.",
+  "keywords": [
+    "clashsolverconnectnodeswithin100mmtolerance",
+    "bulk heal connectors",
+    "solver connect nearest"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Bulk-connecting nodes within tolerance envelope…"
+    ],
+    "thinkingsteps": [
+      "Enumerating unconnected connectors…",
+      "Sorting candidate pairs by distance…",
+      "Running ConnectTo per pair (own Transaction each)…"
+    ],
+    "successprompts": [
+      "Connected {pairs_connected}/{pairs_attempted} pairs within {tolerance_mm} mm."
+    ],
+    "failureprompts": [
+      "Bulk connect failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

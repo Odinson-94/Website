@@ -1,0 +1,31 @@
+{
+  "class": "OperationsRotatePipeFittingAroundReferencePipeAxisCommand",
+  "desc": "Rotate a fitting around a reference pipe's LocationCurve.",
+  "summary": "Rotate a fitting around a reference pipe's LocationCurve.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "operationsrotatepipefittingaroundreferencepipeaxis",
+    "rotate fitting around pipe axis"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,23 @@
+{
+  "name": "document_controller_scan_local_issued_folder_for_drawings_by_date",
+  "desc": "Scans a local or network folder for dated issued drawing subfolders. Returns files grouped by issue date with parsed document numbers and revisions.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "folderPath",
+      "type": "string",
+      "description": "Root path to the issued drawings folder",
+      "required": true
+    },
+    {
+      "name": "maxDepth",
+      "type": "integer",
+      "description": "Maximum subfolder depth to scan (default 2)",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

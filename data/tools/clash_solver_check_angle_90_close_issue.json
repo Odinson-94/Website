@@ -1,0 +1,12 @@
+{
+  "name": "clash_solver_check_angle_90_close_issue",
+  "desc": "clash_solver_check_angle_90_close_issue — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash solver check angle 90 close issue"
+  ]
+}

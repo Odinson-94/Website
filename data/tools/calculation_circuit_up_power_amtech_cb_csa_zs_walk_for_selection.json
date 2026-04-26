@@ -1,0 +1,12 @@
+{
+  "name": "calculation_circuit_up_power_amtech_cb_csa_zs_walk_for_selection",
+  "desc": "calculation_circuit_up_power_amtech_cb_csa_zs_walk_for_selection — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation circuit up power amtech cb csa zs walk for selection"
+  ]
+}

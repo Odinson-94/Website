@@ -1,0 +1,40 @@
+{
+  "class": "ConnectorOpsConnectIntoNearestTerminalViaFlexCommand",
+  "desc": "ConnectorOpsConnectIntoNearestTerminalViaFlexCommand — route one flex segment between a main-run unconnected connector and the nearest terminal connector.",
+  "summary": "ConnectorOpsConnectIntoNearestTerminalViaFlexCommand — route one flex segment between a main-run unconnected connector and the nearest terminal connector.",
+  "usecase": "Grille / diffuser / FCU link-up, field-style flex connection.",
+  "notfor": "Rigid pipe runs — use the 3D or 2D connect commands.",
+  "precondition": "Active document; source + terminal resolvable; same Domain; both connectors currently unconnected.",
+  "postcondition": "Exactly one FlexDuct or FlexPipe created inside one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_SourceUniqueId + Resolver_TerminalUniqueId required.\n2) Resolve source + terminal elements + pick one unconnected connector each (by Resolver_*ConnectorId or single-unconnected rule).\n3) MatchSystemByName.Evaluate on the pair; abort if Abort.\n4) Build 4-point waypoints: source.Origin, source.Origin + source.BasisZ * stub, terminal.Origin - terminal.BasisZ * stub, terminal.Origin.\n5) Transaction \"ConnectorOps::FlexTerminal\"; per Domain, call FlexDuct.Create / FlexPipe.Create with waypoints and type defaults. Commit on success.\n6) Emit flex_element_id, length_mm, waypoints_ft.",
+  "keywords": [
+    "connectoropsconnectintonearestterminalviaflex",
+    "flex terminal connect",
+    "grille link via flex"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Routing flex between source and nearest terminal…"
+    ],
+    "thinkingsteps": [
+      "Resolving both elements + connectors…",
+      "Building 4-point flex waypoints…",
+      "Creating FlexDuct or FlexPipe…"
+    ],
+    "successprompts": [
+      "Flex created, id={flex_element_id} length={length_mm} mm."
+    ],
+    "failureprompts": [
+      "Flex terminal connect failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

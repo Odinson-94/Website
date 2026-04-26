@@ -1,0 +1,33 @@
+{
+  "name": "get_elements_by_filter",
+  "desc": "Query lightweight element summaries for a named view filter.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "filterName",
+      "type": "string",
+      "description": "Filter name to match.",
+      "required": true
+    },
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "view (default) or model.",
+      "required": false
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "description": "Max results returned (default 200, max 500).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "get elements by filter",
+    "filter query",
+    "elements matching filter"
+  ]
+}

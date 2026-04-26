@@ -1,0 +1,38 @@
+{
+  "class": "ExecuteApprovedClashPlanStub",
+  "desc": "Stub entry point for applying an approved clash resolution plan.",
+  "summary": "Stub entry point for applying an approved clash resolution plan.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "execute clash plan",
+    "apply clash fixes",
+    "run clash solutions"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Executing approved clash plan…"
+    ],
+    "thinkingsteps": [
+      "Check solver availability flag…"
+    ],
+    "successprompts": [
+      "Solver stub responded — feature not yet enabled."
+    ],
+    "failureprompts": [
+      "Clash solver execution failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

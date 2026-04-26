@@ -1,0 +1,46 @@
+{
+  "class": "ClashManagerExportResultsToPdfReportCommand",
+  "desc": "ClashManagerExportResultsToPdfReportCommand — HTML-as-PDF exporter until a native PDF renderer is wired.",
+  "summary": "ClashManagerExportResultsToPdfReportCommand — HTML-as-PDF exporter until a native PDF renderer is wired.",
+  "usecase": "Coordination distribution as PDF.",
+  "notfor": "Actual PDF binary — blocked until Chromium headless lands; structure unchanged when it does.",
+  "precondition": "Active doc; clash XML present.",
+  "postcondition": "Single file on disk with .pdf extension but HTML payload.",
+  "sideeffects": "",
+  "logictree": "1) Read clash XML. 2) Resolve output path (default .mepbridge/qa/reports/clashes_{ts}.pdf). 3) Write HTML payload via BuildSelfContainedClashReportHtml. 4) Open in browser on Human. 5) Emit result with mode=html_as_pdf flag so callers know the artifact format.",
+  "keywords": [
+    "clashmanagerexportresultstopdfreport",
+    "export clash pdf",
+    "qa pdf report"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Building clash PDF report (HTML-as-PDF)…"
+    ],
+    "thinkingsteps": [
+      "Loading clash XML…",
+      "Writing self-contained HTML payload…"
+    ],
+    "successprompts": [
+      "PDF written at {output_path}."
+    ],
+    "failureprompts": [
+      "PDF export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,64 @@
+{
+  "class": "PinAllGridsCommand",
+  "desc": "Pins all grids that are on open worksets in the active document.",
+  "summary": "Pins all grids that are on open worksets in the active document. Linked grids are skipped because they cannot be edited from the host model. Uses Pin utility (Pin.GridsInOpenWorksets) for the pinning logic. Called by SheetSetUpCommand during automated sheet setup workflows.",
+  "usecase": "User wants to lock down grid positions before issuing sheets or coordinating with other disciplines.",
+  "notfor": "Pinning linked model grids (not possible from host). Unpinning grids (separate command).",
+  "precondition": "Active document must be open with at least one grid in an open workset.",
+  "postcondition": "All host grids on open worksets are pinned. Linked and closed-workset grids unchanged.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "pin all grids",
+    "pin grids",
+    "lock grids",
+    "freeze grids",
+    "secure grids"
+  ],
+  "intent_patterns": [
+    "pin all grids",
+    "pin * grids",
+    "lock * grids"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Pinned",
+      "type": "int",
+      "description": "Number of grids pinned"
+    },
+    {
+      "name": "AlreadyPinned",
+      "type": "int",
+      "description": "Number already pinned"
+    },
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Summary message"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Pinning all grids on open worksets...",
+      "Locking grids in place..."
+    ],
+    "thinkingsteps": [
+      "Collecting grids from open worksets...",
+      "Pinning unpinned grids..."
+    ],
+    "successprompts": [
+      "Pinned {Pinned} grid(s). {AlreadyPinned} already pinned.",
+      "Done — all grids on open worksets are now pinned."
+    ],
+    "failureprompts": [
+      "Failed to pin grids: {error}",
+      "Grid pinning failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

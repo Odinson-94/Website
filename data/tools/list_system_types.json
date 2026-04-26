@@ -1,0 +1,15 @@
+{
+  "name": "list_system_types",
+  "desc": "List MEP system type definitions (pipe, duct, electrical).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list system types",
+    "mep system definitions",
+    "pipe system types",
+    "duct system types"
+  ]
+}

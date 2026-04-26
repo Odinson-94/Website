@@ -1,0 +1,55 @@
+{
+  "class": "OpenRoutingPreferencesWindowCommand",
+  "desc": "Opens the Routing Preferences window — a WebView2 + AI Chat split-panel for configuring pipe types, duct types, fitting families, sizing rules, and routing preference rules per system type.",
+  "summary": "Opens the Routing Preferences window — a WebView2 + AI Chat split-panel for configuring pipe types, duct types, fitting families, sizing rules, and routing preference rules per system type.",
+  "usecase": "User wants to configure which pipe types, fittings, and sizing rules are used for each MEP system type before running service design commands. AI agent needs to check or set routing preferences via the window.",
+  "notfor": "Directly modifying routing preferences without UI (use SetRoutingPreferences). Running service design commands (use DesignDrainageSystemCommand etc.).",
+  "precondition": "Active document must be open. PipeType and DuctType elements must exist.",
+  "postcondition": "RoutingPreferencesWindow is shown as a modeless singleton. No model changes — the window reads and displays current preferences.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "routing preferences",
+    "pipe type",
+    "duct type",
+    "fittings",
+    "routing rules",
+    "sizing rules",
+    "elbow",
+    "tee",
+    "transition",
+    "fitting assignment",
+    "pipe routing",
+    "duct routing",
+    "cable tray",
+    "routing preference manager"
+  ],
+  "intent_patterns": [
+    "open * routing * preferences",
+    "routing * preferences * window",
+    "configure * pipe * type",
+    "configure * duct * type",
+    "set * fittings",
+    "manage * routing * rules",
+    "open * fitting * assignment"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening Routing Preferences…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Routing Preferences window is now open."
+    ],
+    "failureprompts": [
+      "Failed to open Routing Preferences: {error}"
+    ]
+  },
+  "has_restapi": false
+}

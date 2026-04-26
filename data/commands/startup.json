@@ -1,0 +1,39 @@
+{
+  "class": "StartupCommand",
+  "desc": "Opens the Import Settings dialog (ImportSettingsView).",
+  "summary": "Opens the Import Settings dialog (ImportSettingsView). This is the application entry point for configuring import settings before running import commands. Uses Host service locator to resolve ImportSettingsView.",
+  "usecase": "User clicks the ribbon button to open import settings before importing CAD/DWG blocks.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation). Use specific import commands instead for AI-driven workflows.",
+  "precondition": "Revit is running and the MEPBridge add-in is loaded.",
+  "postcondition": "The ImportSettingsView dialog is displayed modally. User configures settings or cancels.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "startup",
+    "import settings",
+    "settings dialog",
+    "configure import"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening import settings dialog..."
+    ],
+    "thinkingsteps": [
+      "Loading import settings view..."
+    ],
+    "successprompts": [
+      "Import settings dialog opened."
+    ],
+    "failureprompts": [
+      "Could not open settings dialog: {error}"
+    ]
+  },
+  "has_restapi": false
+}

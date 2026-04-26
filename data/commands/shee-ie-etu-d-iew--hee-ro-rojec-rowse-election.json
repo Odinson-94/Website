@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupAddViewsToSheetFromProjectBrowserSelectionCommand",
+  "desc": "Add Views To Sheet From Project Browser Selection.",
+  "summary": "Add Views To Sheet From Project Browser Selection.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add views from browser",
+    "project browser to sheet",
+    "add selected views to sheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Add Views To Sheet From Project Browser Selection…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Add Views To Sheet From Project Browser Selection: completed."
+    ],
+    "failureprompts": [
+      "Add Views To Sheet From Project Browser Selection: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

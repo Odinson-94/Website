@@ -1,0 +1,68 @@
+{
+  "class": "ChangeTextTypeCommand",
+  "desc": "Changes the TextNoteType of a target TextNote element.",
+  "summary": "Changes the TextNoteType of a target TextNote element. Resolves the target element via textNoteId and the desired type via textType name. Uses ListText.GetTextNoteType to find the matching type in the document. Called by the AI orchestrator when a user asks to change text formatting.",
+  "usecase": "User wants to change the font/style of a specific text note. User wants to standardise text note types across a sheet. AI needs to batch-update text formatting after a template change.",
+  "notfor": "Creating new text notes (use PlaceTextNoteCommand). Changing text content (use EditTextNoteContentCommand). Changing all text notes in view at once (use ChangeAllTextTypesInViewCommand).",
+  "precondition": "Active document must be open. A valid TextNote element must exist with the given ID. The target TextNoteType must exist in the document.",
+  "postcondition": "The TextNote's type is changed to the specified TextNoteType. Result JSON is stored in LastQueryResult.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "change text type",
+    "set text style",
+    "text note type",
+    "text formatting",
+    "update text type"
+  ],
+  "intent_patterns": [
+    "change * text * type",
+    "set * text * style",
+    "update * text * type"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "textNoteId",
+      "type": "integer",
+      "description": "TextNote element ID to change",
+      "default": ""
+    },
+    {
+      "name": "textType",
+      "type": "string",
+      "description": "Target text type name",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Text type change result with success flag, textNoteId, textType"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Changing the text note type...",
+      "Updating text style now..."
+    ],
+    "thinkingsteps": [
+      "Resolving text note element...",
+      "Finding target text type in document...",
+      "Applying type change..."
+    ],
+    "successprompts": [
+      "Text note type changed to {textType} successfully.",
+      "Done — text note {textNoteId} is now using {textType}."
+    ],
+    "failureprompts": [
+      "Could not change text type: {error}",
+      "Text type change failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

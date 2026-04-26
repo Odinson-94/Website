@@ -1,0 +1,13 @@
+{
+  "name": "plantroom_preset_extraction_mcp_tool_service",
+  "desc": "Plantroom read tool — see Features Plan §8 Plantroom bucket.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "plantroom",
+    "ExtractPlantroomConfigShapeForMcp"
+  ]
+}

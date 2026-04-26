@@ -1,0 +1,28 @@
+{
+  "name": "get_spec_version_diff",
+  "desc": "Compare two specification versions showing added, removed, and modified clauses, standards, and parameters.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "jobIdA",
+      "type": "string",
+      "description": "First (older) job ID",
+      "required": true
+    },
+    {
+      "name": "jobIdB",
+      "type": "string",
+      "description": "Second (newer) job ID",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "version diff",
+    "compare specs",
+    "spec comparison",
+    "what changed"
+  ]
+}

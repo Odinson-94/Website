@@ -1,0 +1,12 @@
+{
+  "name": "layout_preview_plantroom_solve_with_preset",
+  "desc": "layout_preview_plantroom_solve_with_preset — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "layout preview plantroom solve with preset"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "mep-spec-from-revit",
+  "category": "specifications",
+  "title": "MEP Specification from Revit",
+  "desc": "Generate an NBS-style spec direct from the modelled elements.",
+  "duration": "1:38",
+  "status": "live"
+}

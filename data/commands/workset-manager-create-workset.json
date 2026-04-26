@@ -1,0 +1,35 @@
+{
+  "class": "WorksetManagerCreateWorksetCommand",
+  "desc": "Create a new workset by name.",
+  "summary": "Create a new workset by name.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager create workset",
+    "workset_manager_create_workset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running workset manager create workset…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "workset manager create workset: done."
+    ],
+    "failureprompts": [
+      "workset manager create workset failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

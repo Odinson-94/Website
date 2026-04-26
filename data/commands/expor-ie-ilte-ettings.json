@@ -1,0 +1,57 @@
+{
+  "class": "ExportViewFilterSettingsCommand",
+  "desc": "Exports all filters applied to the active view (with their complete settings) to a JSON file at a user-chosen destination.",
+  "summary": "Exports all filters applied to the active view (with their complete settings) to a JSON file at a user-chosen destination. Uses GetViewFilterSettings to extract filter data. For model-wide filter export, use ExportModelFiltersCommand instead.",
+  "usecase": "User wants to export/backup view filter settings for review or comparison.",
+  "notfor": "Modifying filters (use CreateFilters/AddFilterToView). Model-wide export (use ExportModelFiltersCommand).",
+  "precondition": "Active document and view must be open.",
+  "postcondition": "JSON file written to disk with full filter settings.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export view filters",
+    "save filters json",
+    "download filter settings",
+    "backup filters"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "totalFilters",
+      "type": "int",
+      "description": "Total filters exported from the active view"
+    },
+    {
+      "name": "filePath",
+      "type": "string",
+      "description": "File path the JSON was saved to"
+    }
+  ],
+  "related_commands": [
+    "ExportModelFiltersCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting view filter settings to JSON...",
+      "Saving filter settings from the active view..."
+    ],
+    "thinkingsteps": [
+      "Reading filters from the active view...",
+      "Extracting graphic overrides and rules...",
+      "Serializing to JSON..."
+    ],
+    "successprompts": [
+      "Exported {totalFilters} filters to {filePath}",
+      "Done — view filter settings saved to {filePath}."
+    ],
+    "failureprompts": [
+      "Filter export failed: {error}",
+      "Could not export view filters — {error}"
+    ]
+  },
+  "has_restapi": false
+}

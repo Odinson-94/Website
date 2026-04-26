@@ -1,0 +1,9 @@
+slug: place-svp
+title: Place SVP
+desc: "Drop a soil & vent pipe through every floor in three clicks."
+duration: "0:47"
+category: revit-utilities
+steps: ["Open the chat panel and ask \"place svp\"", "BUILD MEP previews what it's about to do, then runs it against the active model", "Review the result inline; commit, undo, or refine with a follow-up prompt"]
+generated_by: stub-deterministic-v1
+generated_at: "2026-04-21T08:38:17.787Z"
+source_sha: 4d73f23

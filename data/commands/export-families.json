@@ -1,0 +1,21 @@
+{
+  "class": "ExportFamiliesCommand",
+  "desc": "No-op placeholder for the legacy Export Families debug button on the ribbon.",
+  "summary": "No-op placeholder for the legacy Export Families debug button on the ribbon. Originally dumped every family in the document to a .json file. Retained as a shim so Application.AddPushButton&lt;ExportFamiliesCommand&gt;() compiles.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

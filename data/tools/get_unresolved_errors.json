@@ -1,0 +1,15 @@
+{
+  "name": "get_unresolved_errors",
+  "desc": "Get all unresolved errors that need attention. Returns errors not yet acknowledged.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "unresolved errors",
+    "pending errors",
+    "open errors",
+    "errors to fix"
+  ]
+}

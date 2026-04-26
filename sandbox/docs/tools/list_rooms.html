@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>list_rooms — Tools — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/shared-styles.css">
+<link rel="stylesheet" href="/sandbox/sandbox.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <div class="crumbs"><a href="#">Docs</a> &nbsp;›&nbsp; <a href="inventory.html">Tools</a> &nbsp;›&nbsp; list_rooms</div>
+
+  <h1 style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:30px;letter-spacing:-0.01em;">list_rooms</h1>
+
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 18px;">
+    <span class="pill pill-bridge">bridge: RevitContext</span>
+    <span class="pill pill-category">category: context</span>
+    <span class="pill pill-always">always available</span>
+  </div>
+
+  <p style="font-size:17px;max-width:760px;color:var(--text);margin-bottom:24px;">
+    Returns all rooms in the document, optionally filtered by level or minimum area. Used by the agent
+    whenever a question mentions rooms, spaces, or per-room outputs (schedules, tagging, fixture counts).
+  </p>
+
+  <h2 id="parameters">Parameters</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><code>level</code></td><td><code>string</code></td><td class="req-no">no</td><td>Filter by level name. Exact match.</td></tr>
+      <tr><td><code>min_area_m2</code></td><td><code>number</code></td><td class="req-no">no</td><td>Lower bound, square metres.</td></tr>
+      <tr><td><code>include_unplaced</code></td><td><code>boolean</code></td><td class="req-no">no</td><td>Include rooms with no boundary. Default <code>false</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <pre class="logictree" style="background:#0d1117;color:#e6edf3;border-color:#0d1117;">[
+  { "id": 345621, "name": "Office",  "number": "02-014", "area_m2": 18.4, "level": "Level 02" },
+  { "id": 345629, "name": "Meeting", "number": "02-015", "area_m2":  9.7, "level": "Level 02" }
+]</pre>
+
+  <h2 id="example-prompts">Example prompts</h2>
+  <ul style="padding-left:22px;">
+    <li>"List all rooms on Level 02"</li>
+    <li>"Which rooms on the ground floor are larger than 25 m²?"</li>
+    <li>"Show me every meeting room in the model"</li>
+  </ul>
+
+  <h2 id="keywords">Keywords</h2>
+  <p style="color:var(--text-muted);font-size:14px;">rooms · list rooms · spaces · level · room schedule · area</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table">
+    <tbody>
+      <tr><th style="width:120px;">Tools</th><td><code>list_levels</code> · <code>snapshot_query</code> · <code>get_current_view_level</code></td></tr>
+      <tr><th>Skills</th><td>schedules · filters &amp; templates</td></tr>
+      <tr><th>Demos</th><td><a href="/sandbox/demos/#cat-qa">QA Manager</a> · <a href="/sandbox/demos/#cat-model-set-up">Set up Views</a></td></tr>
+    </tbody>
+  </table>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

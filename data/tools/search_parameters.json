@@ -1,0 +1,29 @@
+{
+  "name": "search_parameters",
+  "desc": "Search all parameters on elements for a text value. Checks element name, family name, type name, and all parameter values.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "searchTerm",
+      "type": "string",
+      "description": "Text to search for in parameter values",
+      "required": true
+    },
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "JSON array of element IDs to search (optional, defaults to current selection)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "search parameters",
+    "find parameter",
+    "search elements",
+    "parameter value",
+    "contains text"
+  ]
+}

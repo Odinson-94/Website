@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverMoveDeviceHorizontallyIntoSpaceAlongWallCommand",
+  "desc": "ClashSolverMoveDeviceHorizontallyIntoSpaceAlongWallCommand — PDF \"MOVE_HORIZONTALLY_INTO_SPACE\".",
+  "summary": "ClashSolverMoveDeviceHorizontallyIntoSpaceAlongWallCommand — PDF \"MOVE_HORIZONTALLY_INTO_SPACE\". Slide along wall tangent.",
+  "usecase": "Slide wall-hosted device to new position along the same wall.",
+  "notfor": "Off-wall moves — use MOVE_TO_HOST or MOVE_TO_WALL.",
+  "precondition": "Active document; device is FamilyInstance with Wall host.",
+  "postcondition": "Zero or one MoveElement inside inner Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_DeviceUniqueId required OR single selection.\n2) Resolve device; WireError if not FamilyInstance with Wall host.\n3) wall = fi.Host as Wall; tangent = wall.LocationCurve tangent direction (projected onto XY).\n4) If Resolver_PreferForward=false, flip tangent.\n5) Delegate TryDirectionalMoveOnService.ProbeAndMove(doc, fi, tangent, step_ft, threshold_ft, centreFallback=false).\n6) Emit outcome + wall_tangent_ft.",
+  "keywords": [
+    "clashsolvermovedevicehorizontallyintospacealongwall",
+    "slide along wall",
+    "solver lateral wall move"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Sliding wall-hosted device along wall tangent…"
+    ],
+    "thinkingsteps": [
+      "Resolving wall host + tangent…",
+      "Delegating to DirectionalMoveService…"
+    ],
+    "successprompts": [
+      "Slide along wall: applied={applied}."
+    ],
+    "failureprompts": [
+      "Slide-along-wall failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,31 @@
+{
+  "class": "PlacementRotateFamilyInActiveDocumentCommand",
+  "desc": "Rotate a family instance around its LocationPoint by N degrees (Z-axis).",
+  "summary": "Rotate a family instance around its LocationPoint by N degrees (Z-axis).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "placementrotatefamilyinactivedocument",
+    "rotate family"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

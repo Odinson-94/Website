@@ -1,0 +1,60 @@
+{
+  "class": "ApplyLinkedViewSettingsToTemplatesCommand",
+  "desc": "Command: Applies linked model display settings from current view's template to all templates.",
+  "summary": "Command: Applies linked model display settings from current view's template to all templates. WORKFLOW: 1. Gets the current active view 2. Gets the view template applied to that view 3. Extracts all RevitLinkInstance visibility/graphics overrides from the template 4. Applies those overrides to all other view templates in the document 5. Reports success with count of updated templates",
+  "usecase": "User has set up linked model visibility in one template and wants to match all others. User wants consistent linked model display across all views. User needs to propagate architectural link settings to all MEP templates.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open with at least one view template. Current view should have a view template assigned. At least one RevitLinkInstance should exist in the model.",
+  "postcondition": "All view templates in the document have the same linked model display settings as the source template from the current view.",
+  "sideeffects": "Modifies all view templates in the document. Changes RevitLinkInstance visibility/graphics settings in templates.",
+  "logictree": "check: document.isOpen → continue\rcheck: activeView.hasTemplate → continue, else → error\raction: getSourceTemplate → from activeView.ViewTemplateId\raction: getLinkedInstances → collect RevitLinkInstances\raction: getSourceSettings → GetLinkOverrides for each link\raction: getAllTemplates → ListTemplates.GetAll\raction: applyToAllTemplates → SetLinkOverrides for each template\rresolve: success → showSuccess with count",
+  "keywords": [
+    "linked model settings",
+    "template link settings",
+    "copy link display",
+    "apply template settings",
+    "revit link visibility"
+  ],
+  "intent_patterns": [
+    "apply * link * settings * templates",
+    "copy * template * link",
+    "match * linked * display",
+    "sync * link * templates"
+  ],
+  "pillar": "Combined",
+  "pillar_raw": "Combined",
+  "selection_inputs": [
+    {
+      "name": "SourceView",
+      "type": "View",
+      "description": "Source view with template to copy from",
+      "prompt": "Active view is used as source"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "ApplyToAllTemplates",
+      "type": "bool",
+      "description": "Whether to apply to all templates or same type only",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "TemplatesUpdated",
+      "type": "int",
+      "description": "Number of templates updated"
+    },
+    {
+      "name": "LinksProcessed",
+      "type": "int",
+      "description": "Number of linked models processed"
+    }
+  ],
+  "related_commands": [
+    "CreateViewsCommand",
+    "SetTemplateCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

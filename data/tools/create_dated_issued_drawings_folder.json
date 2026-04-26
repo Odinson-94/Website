@@ -1,0 +1,28 @@
+{
+  "name": "create_dated_issued_drawings_folder",
+  "desc": "Create a dated folder for issued drawings, e.g. \\",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Issue description, e.g. \\",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "string",
+      "description": "Optional date string, e.g. \\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "create folder",
+    "issued folder",
+    "date folder",
+    "export folder"
+  ]
+}

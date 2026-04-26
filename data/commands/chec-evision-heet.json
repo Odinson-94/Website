@@ -1,0 +1,72 @@
+{
+  "class": "CheckRevisionsOnSheetCommand",
+  "desc": "Returns the revision state for a target ViewSheet.",
+  "summary": "Returns the revision state for a target ViewSheet. Resolves the sheet by sheetNumber or sheetId parameter. Returns sequence, date, description, and issued flag for each revision. Useful for QA checks before issuing or printing sheets.",
+  "usecase": "User wants to check which revisions are on a specific sheet. QA review before issuing a sheet for construction. AI needs revision data to verify sheet compliance.",
+  "notfor": "Adding revisions to sheets (use AddRevisionToSheetCommand). Creating new revisions (use CreateRevisionCommand). Listing all sheets (use list_sheets MCP tool).",
+  "precondition": "Active document must be open. The target sheet must exist (by number or ID). At least one revision must exist in the document.",
+  "postcondition": "Result JSON stored in LastQueryResult with sheet info and ordered revision list. No model modifications — read-only query.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "check sheet revisions",
+    "list revisions on sheet",
+    "sheet revision status",
+    "revision check",
+    "sheet QA"
+  ],
+  "intent_patterns": [
+    "check * revisions * sheet",
+    "list * revisions * sheet",
+    "what revisions * sheet",
+    "revision * status"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "sheetNumber",
+      "type": "string",
+      "description": "Sheet number to look up",
+      "default": ""
+    },
+    {
+      "name": "sheetId",
+      "type": "int",
+      "description": "Sheet element ID (alternative to sheetNumber)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Sheet revisions summary with sequence, date, description, issued flag"
+    }
+  ],
+  "related_commands": [
+    "AddRevisionToSheetCommand",
+    "CreateRevisionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Checking revisions on the sheet...",
+      "Looking up revision status..."
+    ],
+    "thinkingsteps": [
+      "Resolving target sheet...",
+      "Collecting revision data...",
+      "Ordering by sequence number..."
+    ],
+    "successprompts": [
+      "Found {count} revisions on sheet {sheet}.",
+      "Sheet {sheet} has {count} revisions — latest: {date}."
+    ],
+    "failureprompts": [
+      "Could not check revisions: {error}",
+      "Revision check failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

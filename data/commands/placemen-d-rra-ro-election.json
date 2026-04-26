@@ -1,0 +1,31 @@
+{
+  "class": "PlacementAddArrayFromSelectionCommand",
+  "desc": "Create a rectangular array of the selected element — ElementTransformUtils.CopyElements.",
+  "summary": "Create a rectangular array of the selected element — ElementTransformUtils.CopyElements.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "placementaddarrayfromselection",
+    "placement add array"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

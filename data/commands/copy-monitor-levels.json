@@ -1,0 +1,67 @@
+{
+  "class": "CopyMonitorLevelsCommand",
+  "desc": "Phase 6 Command: Copies levels from a linked architectural model to the host MEP model.",
+  "summary": "Phase 6 Command: Copies levels from a linked architectural model to the host MEP model. Uses CopyMonitorLevels with primary level logic (500mm tolerance) to avoid duplicates. Gets available links via SearchInsideCurrentModel.GetAllLinks. Called by SheetSetUpCommand during automated sheet setup. Related: CreateFloorplanCommand (create floor plan on copied level).",
+  "usecase": "User wants to copy levels from the architectural model into their MEP model. User is setting up a new MEP model and needs matching levels from the architect.",
+  "notfor": "Creating levels manually (use Revit native level tool). Copying levels between two host models (only linked → host).",
+  "precondition": "Active document must be open. At least one Revit link must be loaded containing levels.",
+  "postcondition": "Primary levels from the linked model are created in the host model. Clashing levels (within 500mm) and non-primary levels (mezzanines) are skipped.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "copy monitor levels",
+    "copy levels",
+    "sync levels",
+    "level copy",
+    "monitor levels"
+  ],
+  "intent_patterns": [
+    "copy monitor levels",
+    "copy * levels",
+    "sync * levels"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "LevelsCopied",
+      "type": "int",
+      "description": "Number of levels successfully copied"
+    },
+    {
+      "name": "ClashingSkipped",
+      "type": "int",
+      "description": "Number of clashing levels skipped"
+    }
+  ],
+  "related_commands": [
+    "CreateFloorplanCommand",
+    "CreateReflectedCeilingPlanCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Copying levels from linked model...",
+      "Setting up level copy/monitor...",
+      "Syncing levels from architectural model..."
+    ],
+    "thinkingsteps": [
+      "Finding linked models...",
+      "Scanning for levels in source...",
+      "Applying primary level logic (500mm tolerance)...",
+      "Checking for elevation clashes...",
+      "Creating levels in host model..."
+    ],
+    "successprompts": [
+      "Copied {count} levels from linked model",
+      "Level sync complete — {count} primary levels added",
+      "Done! Levels are now in your MEP model"
+    ],
+    "failureprompts": [
+      "Couldn't copy levels: {error}",
+      "Level copy failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

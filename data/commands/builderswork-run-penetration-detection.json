@@ -1,0 +1,35 @@
+{
+  "class": "BuildersworkRunPenetrationDetectionCommand",
+  "desc": "Run penetration detection across structural hosts and MEP services in scope.",
+  "summary": "Run penetration detection across structural hosts and MEP services in scope.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "builderswork run penetration detection",
+    "builderswork_run_penetration_detection"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running builderswork run penetration detection…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "builderswork run penetration detection: done."
+    ],
+    "failureprompts": [
+      "builderswork run penetration detection failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

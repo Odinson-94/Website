@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_match_revit_sheets_to_exported_pdf_files_in_folder",
+  "desc": "Cross-references Revit sheet numbers with exported PDF/DWG files in a folder. Shows which sheets are missing exports and which files have no matching sheet.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "folderPath",
+      "type": "string",
+      "description": "Folder containing exported drawing files",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

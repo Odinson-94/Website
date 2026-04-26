@@ -1,0 +1,40 @@
+{
+  "class": "AutoResolveRevitWarningsWithDefaultFix",
+  "desc": "Applies default Revit resolution to warnings that have available auto-fixes.",
+  "summary": "Applies default Revit resolution to warnings that have available auto-fixes. Use MCP.GetWarningsWithAvailableAutoResolutions to preview first. IMPORTANT: Some resolutions DELETE elements — always describe the fix to user first.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Active document must have warnings with available resolutions.",
+  "postcondition": "Resolvable warnings are fixed. Some elements may be deleted.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "auto resolve warnings",
+    "fix warnings automatically",
+    "apply default resolution",
+    "auto fix warnings"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Auto-resolving warnings with available fixes..."
+    ],
+    "thinkingsteps": [
+      "Finding warnings with default resolutions...",
+      "Applying fixes to {count} warnings..."
+    ],
+    "successprompts": [
+      "Resolved {resolved} of {total} warnings. {remaining} remain."
+    ],
+    "failureprompts": [
+      "Auto-resolve failed: {error}. Some warnings may need manual review."
+    ]
+  },
+  "has_restapi": false
+}

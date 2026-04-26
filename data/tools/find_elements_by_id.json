@@ -1,0 +1,21 @@
+{
+  "name": "find_elements_by_id",
+  "desc": "Find elements by id list and return lightweight metadata.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "JSON array of integer element ids.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "find elements by id",
+    "lookup element ids",
+    "element id search"
+  ]
+}

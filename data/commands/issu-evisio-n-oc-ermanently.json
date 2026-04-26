@@ -1,0 +1,46 @@
+{
+  "class": "IssueRevisionAndLockPermanently",
+  "desc": "Marks a Revision as issued (Revision.Issued = true).",
+  "summary": "Marks a Revision as issued (Revision.Issued = true). WARNING: This permanently locks the revision — it can never be edited again. The AI MUST warn the user before calling this command.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "issue revision",
+    "mark revision issued",
+    "lock revision",
+    "finalize revision"
+  ],
+  "intent_patterns": [
+    "issue * revision",
+    "mark * revision * issued",
+    "finalize * revision"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "revisionId",
+      "type": "int",
+      "description": "Revision element ID to mark as issued",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Result with issued status"
+    }
+  ],
+  "related_commands": [
+    "CreateRevisionCommand",
+    "EditRevisionCommand"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

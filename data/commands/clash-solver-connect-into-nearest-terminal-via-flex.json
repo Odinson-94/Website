@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverConnectIntoNearestTerminalViaFlexCommand",
+  "desc": "ClashSolverConnectIntoNearestTerminalViaFlexCommand — PDF \"CONNECT_INTO_NEAREST_TERMINAL\".",
+  "summary": "ClashSolverConnectIntoNearestTerminalViaFlexCommand — PDF \"CONNECT_INTO_NEAREST_TERMINAL\". Strict-gate wrapper.",
+  "usecase": "Clash solver terminal wire-up after a move.",
+  "notfor": "Cross-system terminal connects — use ConnectorOps direct with AllowCrossSystemWithWarning=true.",
+  "precondition": "Active document; source + terminal resolvable; matching system types.",
+  "postcondition": "One FlexDuct/FlexPipe inside one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Validate both resolvers.\n2) Instantiate ConnectorOpsConnectIntoNearestTerminalViaFlexCommand with strict gate.\n3) Delegate Execute; pipe outputs.",
+  "keywords": [
+    "clashsolverconnectintonearestterminalviaflex",
+    "strict flex terminal",
+    "solver terminal connect"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Flex-connecting terminal with strict system-match…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ConnectorOpsConnectIntoNearestTerminalViaFlexCommand…"
+    ],
+    "successprompts": [
+      "Flex terminal connect delegated, strict gate enforced."
+    ],
+    "failureprompts": [
+      "Flex terminal connect failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

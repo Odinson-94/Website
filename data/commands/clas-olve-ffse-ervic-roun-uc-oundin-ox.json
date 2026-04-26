@@ -1,0 +1,47 @@
+{
+  "class": "ClashSolverOffsetServiceAroundDuctBoundingBoxCommand",
+  "desc": "ClashSolverOffsetServiceAroundDuctBoundingBoxCommand — PDF \"OFFSET_SERVICE_AROUND_DUCT\".",
+  "summary": "ClashSolverOffsetServiceAroundDuctBoundingBoxCommand — PDF \"OFFSET_SERVICE_AROUND_DUCT\". Offset the service by the duct's BB extent on the chosen axis + envelope.",
+  "usecase": "Big-thing-wins service offset when clashing with a duct.",
+  "notfor": "Non-duct obstructions — use OFFSET_SERVICE_TOWARD_SPACE variants.",
+  "precondition": "Active document; service + duct resolvable; both have BoundingBox; default 3D view.",
+  "postcondition": "Zero or one ElementTransformUtils.MoveElement inside inner Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve service + duct (resolvers or two-element selection in order).\n2) Read both BoundingBoxes; WireError if either missing.\n3) Determine vertical relationship: if service centre Z ≤ duct centre Z → axis = -Z (offset below); else +Z (above). \"auto\" default.\n4) step_ft = duct.Max.{axis} - duct.Min.{axis} (duct's extent on that axis) + envelope_mm/304.8.\n5) Delegate TryDirectionalMoveOnService.ProbeAndMove(doc, service, axis, step_ft, threshold_ft, centreFallback=false).\n6) Emit outcome + picked_axis + step_mm.",
+  "keywords": [
+    "clashsolveroffsetservicearoundductboundingbox",
+    "offset around duct",
+    "pipe-under-duct offset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Offsetting service around duct BB…"
+    ],
+    "thinkingsteps": [
+      "Reading both BBs…",
+      "Picking axis (above or below duct)…",
+      "Delegating to DirectionalMoveService…"
+    ],
+    "successprompts": [
+      "Offset around duct by {step_mm} mm on {picked_axis}."
+    ],
+    "failureprompts": [
+      "Offset around duct failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

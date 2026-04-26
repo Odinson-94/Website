@@ -1,0 +1,57 @@
+{
+  "class": "OpenFilterAndTemplateManagerCommand",
+  "desc": "Opens the Filter and Template Manager window — a WebView2 + AI Chat split-panel for creating/editing view filters (15 types including cross-system Error Manager and Clash Detection integration), managing view templates with full 22-property graphic overrides (projection/cut lines, surface/cut fills, halftone, transparency, detail level), and importing/exporting filter+template preset bundles.",
+  "summary": "Opens the Filter and Template Manager window — a WebView2 + AI Chat split-panel for creating/editing view filters (15 types including cross-system Error Manager and Clash Detection integration), managing view templates with full 22-property graphic overrides (projection/cut lines, surface/cut fills, halftone, transparency, detail level), and importing/exporting filter+template preset bundles.",
+  "usecase": "User wants to create, edit, or review view filters and templates.",
+  "notfor": "Running error checks (use QAManagerCommand). Creating views (use view creation commands).",
+  "precondition": "Active document must be open.",
+  "postcondition": "FilterAndTemplateManagerWindow is shown as a modeless singleton.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "filter manager",
+    "template manager",
+    "view filters",
+    "view templates",
+    "graphic overrides",
+    "colour scheme",
+    "filter template",
+    "create filter",
+    "manage filters",
+    "manage templates",
+    "error filter",
+    "clash filter",
+    "hosted family filter",
+    "MEP colour scheme",
+    "filter and template manager"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [
+    "QAManagerCommand",
+    "OpenObjectSettingsAndStylesManagerCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Opening the Filter and Template Manager…",
+      "Loading filter and template management window…"
+    ],
+    "thinkingsteps": [
+      "Preparing WebView2 shell…",
+      "Loading React app with filter data…"
+    ],
+    "successprompts": [
+      "Filter and Template Manager is now open.",
+      "Filter manager ready — {filterCount} filters and {templateCount} templates loaded."
+    ],
+    "failureprompts": [
+      "Failed to open Filter and Template Manager: {error}",
+      "Could not launch filter manager — {error}"
+    ]
+  },
+  "has_restapi": false
+}

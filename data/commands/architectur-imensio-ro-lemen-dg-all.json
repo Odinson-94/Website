@@ -1,0 +1,42 @@
+{
+  "class": "ArchitectureDimensionFromElementEdgeToWallCommand",
+  "desc": "Places a Dimension between the edge of a source element and the centreline reference of a target Wall, in the active plan view.",
+  "summary": "Places a Dimension between the edge of a source element and the centreline reference of a target Wall, in the active plan view. Pure-logic edge picking is delegated to GetElementEdges.",
+  "usecase": "Architecture coordination — engineer wants the distance from a door / window / grid / MEP-family to a named wall, dimensioned to drawing standards.",
+  "notfor": "Face-to-face dimensions (use `ArchitectureDimensionFromElementFaceToWallFaceCommand` when built). Not for 3D views.",
+  "precondition": "Active document open; active view is a ViewPlan; selection contains one source element + one Wall, or both IDs supplied via resolvers.",
+  "postcondition": "Exactly one new Dimension added to the active view, inside a single committed Transaction, audit trail recorded.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot picks source element + wall (resolvers: Resolver_SourceElementId, Resolver_WallId, Resolver_OffsetMm default=300). 2) Validate preconditions — Active view is ViewPlan; source element and wall exist in Doc; wall has a linear LocationCurve; else ErrorWire.WireError with reason and abort. 3) Open Transaction \"Dim edge → wall\". 4) Call GetElementEdges.GetReferencesForDimension(Doc, [source, wall]) to obtain ReferenceArray; if count &lt; 2 WireError + abort. 5) Compute the dimension line: midpoint between source BB centre and wall centreline, offset perpendicular to the wall centreline by Resolver_OffsetMm. 6) doc.Create.NewDimension(activeView, dimLine, refArray); commit Transaction. 7) Bot: return JSON {ok, dimension_id, value_mm, source_element_id, wall_id, view_id}. User: ribbon toast \"Dimension placed — {value_mm} mm.\" 8) Any exception during resolving / computing / creating → tracker.Fail(ex); ErrorWire.WireFault with structured payload {source_id, wall_id, view_id, offset_mm}. Transaction rolls back.",
+  "keywords": [
+    "architecturedimensionfromelementedgetowall",
+    "dimension",
+    "wall",
+    "edge",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Placing dimension from selected element edge to wall…"
+    ],
+    "thinkingsteps": [
+      "Validating source element + wall…",
+      "Computing edge references via GetElementEdges…",
+      "Placing Dimension in active plan view…"
+    ],
+    "successprompts": [
+      "Dimension placed — {value_mm} mm between element {source_id} and wall {wall_id}."
+    ],
+    "failureprompts": [
+      "Could not place dimension: {error}."
+    ]
+  },
+  "has_restapi": false
+}

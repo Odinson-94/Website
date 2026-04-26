@@ -1,0 +1,15 @@
+{
+  "name": "error_manager_list_all_discoverable_error_checking_rules",
+  "desc": "List all available error checking rules with their groups and descriptions.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "available rules",
+    "error rules list",
+    "what rules",
+    "QA rules available"
+  ]
+}

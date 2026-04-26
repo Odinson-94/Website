@@ -1,0 +1,33 @@
+{
+  "name": "check_employer_requirements",
+  "desc": "Check the current Revit model against Employer's Requirements (ERs). Reads an ER document and validates compliance. Supports JSON and text ER files. Use context tools (list_levels, list_systems, get_document_info, etc.) to check each requirement after reading.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "er_path",
+      "type": "string",
+      "description": "Path to the Employer's Requirements file (JSON or text). If not provided, uses the default ER directory.",
+      "required": false
+    },
+    {
+      "name": "check_category",
+      "type": "string",
+      "description": "Specific category to check: 'naming', 'parameters', 'levels', 'systems', 'all' (default: all)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "employer requirements",
+    "ER",
+    "compliance",
+    "audit",
+    "validation",
+    "BIM",
+    "check requirements",
+    "ER compliance",
+    "model validation"
+  ]
+}

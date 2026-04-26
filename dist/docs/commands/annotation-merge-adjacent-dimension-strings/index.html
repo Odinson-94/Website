@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Annotation Merge Adjacent Dimension Strings — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Annotation Merge Adjacent Dimension Strings</div>
+
+  <h1 id="overview">Annotation Merge Adjacent Dimension Strings</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Merge adjacent dimension strings into one, preserving every anchor Reference.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document open; active view is a View; at least two Dimension ids supplied.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>One new Dimension added; input Dimensions deleted. One committed Transaction.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/annotation-merge-adjacent-dimension-strings/thumbnail.svg"
+           data-src="/sandbox/demo-assets/annotation-merge-adjacent-dimension-strings/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop annotation-merge-adjacent-dimension-strings/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>Cleaning up multiple collinear dimensions into a single running dimension for drawing presentation.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Non-collinear / disjoint dimension groups.</p></div>
+  
+
+  
+
+  
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree">1) Resolver_DimensionIdsCsv → list of ids (≥ 2). 2) Resolve each to a Dimension on the active view; validate at least two survive. Else WireError + abort. 3) Open Transaction 'Merge dimension strings'. 4) Order by curve start-X; collect each dimension's References into a single ReferenceArray; pick the first dimension's line as the merged dimension line. 5) merged = doc.Create.NewDimension(view, line, refs). 6) Delete every original dimension. 7) Commit. 8) Bot JSON / User toast. 9) Exception → tracker.Fail + WireFault.</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Merging adjacent dimension strings…</div>
+    <div class="lab">thinking</div><div class="msg">Resolving dimensions + collecting references…<br>Creating merged dimension and deleting originals…</div>
+    <div class="lab">on success</div><div class="msg">Merged <span class="placeholder">{merged_count}</span> dimensions into <span class="placeholder">{merged_dimension_id}</span>.</div>
+    <div class="lab">on failure</div><div class="msg">Could not merge dimensions: <span class="placeholder">{error}</span>.</div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/annotation_merge_adjacent_dimension_strings</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">annotationmergeadjacentdimensionstrings · dimension · merge · annotation · architecture</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

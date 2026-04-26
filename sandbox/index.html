@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sandbox — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <h1>Sandbox preview</h1>
+  <p style="font-size:17px;color:var(--text-muted);max-width:760px;margin-bottom:32px;">
+    Real Adelphos shell + sandboxed page templates. Open each, mark up anything you want changed.
+    Once approved, the same shapes will be auto-generated from the codebase + YAML data.
+  </p>
+
+  <div class="sandbox-grid">
+
+    <a class="sandbox-tile" href="/sandbox/demos/">
+      <div class="head" style="background:linear-gradient(135deg,#156082,#0e4560);">Demos · single page · 14 categories</div>
+      <div class="body">
+        <div class="title">/sandbox/demos/</div>
+        <div class="desc">Every video in one scrolling page, grouped by AI Chat / Model Set Up / Revit Utilities / Discipline / QA / Calculations / EPCs / BIM / Document Control / Specifications / Schedules / Reports / 2D-to-3D / Build Your Own Tool. Lazy loads as you scroll.</div>
+      </div>
+    </a>
+
+    <a class="sandbox-tile" href="/sandbox/docs/tools/inventory.html">
+      <div class="head" style="background:linear-gradient(135deg,#0e4560,#08283b);">Docs · all 191 tools</div>
+      <div class="body">
+        <div class="title">/sandbox/docs/tools/</div>
+        <div class="desc">Filterable inventory of every <code>[McpTool]</code> in the codebase. Live from <code>data/tools.json</code>.</div>
+      </div>
+    </a>
+
+    <a class="sandbox-tile" href="/sandbox/docs/tools/list_rooms.html">
+      <div class="head" style="background:linear-gradient(135deg,#0e4560,#08283b);">Single tool example</div>
+      <div class="body">
+        <div class="title">/sandbox/docs/tools/list_rooms.html</div>
+        <div class="desc">Auto-generated from <code>[McpTool]</code> + <code>[McpParam]</code>.</div>
+      </div>
+    </a>
+
+    <a class="sandbox-tile" href="/sandbox/docs/commands/inventory.html">
+      <div class="head" style="background:linear-gradient(135deg,#08283b,#02141d);">Docs · all 163 commands + coverage matrix</div>
+      <div class="body">
+        <div class="title">/sandbox/docs/commands/</div>
+        <div class="desc">Every <code>[Transaction]</code> command, with which attributes are filled in. The all-cross <code>REST</code> column is the gap to close.</div>
+      </div>
+    </a>
+
+    <a class="sandbox-tile" href="/sandbox/docs/commands/extend-all-connectors.html">
+      <div class="head" style="background:linear-gradient(135deg,#08283b,#02141d);">Real auto-generated command page</div>
+      <div class="body">
+        <div class="title">/sandbox/docs/commands/extend-all-connectors.html</div>
+        <div class="desc">Built 100% from <code>ExtendAllConnectorsCommand.cs</code>. Every block sourced from a live attribute/tag.</div>
+      </div>
+    </a>
+
+    <a class="sandbox-tile" href="/sandbox/workflows/new-job-from-brief.html">
+      <div class="head" style="background:linear-gradient(135deg,#1d6b3a,#103a23);">Workflow · multi-phase</div>
+      <div class="body">
+        <div class="title">/sandbox/workflows/new-job-from-brief.html</div>
+        <div class="desc">Multi-phase end-to-end recipe (briefing → strategy → model → QA).</div>
+      </div>
+    </a>
+
+  </div>
+
+  <h2 id="plan-docs">Plan documents</h2>
+  <ul style="list-style:none;padding:0;font-size:14px;line-height:1.9;">
+    <li>📄 <a href="/BUILD%20WEB%20Plan/Codebase%20Inventory.md">Codebase Inventory</a> — real numbers, full enumeration</li>
+    <li>📄 <a href="/BUILD%20WEB%20Plan/Attribute%20to%20Webpage%20Map.md">Attribute → Webpage Map</a></li>
+    <li>📄 <a href="/BUILD%20WEB%20Plan/Codebase%20Coverage%20Report.md">Codebase Coverage Report</a> (gaps + plan)</li>
+    <li>📄 <a href="/BUILD%20WEB%20Plan/Page%20Structures.md">Page Structures</a></li>
+    <li>📄 <a href="/BUILD%20WEB%20Plan/Site%20Map.md">Site Map</a></li>
+    <li>📄 <a href="/BUILD%20WEB%20Plan/Automation%20Dry%20Run.md">Automation Dry Run</a></li>
+    <li>📄 <a href="/BUILD%20WEB%20Plan/Project%20Structure%20Plan.md">Project Structure Plan</a></li>
+  </ul>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

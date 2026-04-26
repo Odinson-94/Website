@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverCentreAdjacentNodesAroundKeptElementCommand",
+  "desc": "ClashSolverCentreAdjacentNodesAroundKeptElementCommand — PDF \"CENTRE_NODES\".",
+  "summary": "ClashSolverCentreAdjacentNodesAroundKeptElementCommand — PDF \"CENTRE_NODES\". Delegate to ElementAlignment canonical.",
+  "usecase": "Solver cluster centering around a fixed anchor.",
+  "notfor": "Moving the anchor — that's a different resolver.",
+  "precondition": "Active document; kept + ≥ 1 adjacent resolvable.",
+  "postcondition": "Delegates MoveElement loop inside inner Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_KeptUniqueId + Resolver_AdjacentUniqueIds[] required OR ≥ 2 selection (first = kept).\n2) Delegate to ElementAlignmentCentreAdjacentNodesAroundKeptElementCommand.\n3) Tag tracker with clash_id.",
+  "keywords": [
+    "clashsolvercentreadjacentnodesaroundkeptelement",
+    "centre nodes around kept",
+    "solver centre nodes"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Centreing adjacent nodes around kept anchor…"
+    ],
+    "thinkingsteps": [
+      "Delegating to canonical command…"
+    ],
+    "successprompts": [
+      "Centring delegated."
+    ],
+    "failureprompts": [
+      "Centring failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

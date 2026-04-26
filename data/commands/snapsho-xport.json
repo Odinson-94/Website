@@ -1,0 +1,102 @@
+{
+  "class": "SnapshotExportCommand",
+  "desc": "Exports the active Revit model (or a scoped subset) to a local SQLite snapshot database.",
+  "summary": "Exports the active Revit model (or a scoped subset) to a local SQLite snapshot database. Runs on the Revit thread via CommandExecutor to avoid Microsoft.Data.Sqlite assembly resolution failures that occur when snapshot_export is called directly from MCP. Uses ModelSnapshot for data extraction and SnapshotDatabase for storage. Sets SnapshotRegistry.Current on success so downstream query tools can read the snapshot.",
+  "usecase": "User wants to query model data via snapshot tools (snapshot_query, snapshot_review, snapshot_apply).",
+  "notfor": "Direct live model queries — use MCP context tools instead. Not for model modification.",
+  "precondition": "Active document must be open. Temp directory must be writable.",
+  "postcondition": "SQLite snapshot database written to temp path. SnapshotRegistry.Current set to new DB.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "snapshot export",
+    "model snapshot",
+    "export snapshot",
+    "sqlite export"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "Export scope: model, level, levels, view, scope_box, category, selection, sheet",
+      "default": "\"model\""
+    },
+    {
+      "name": "level_name",
+      "type": "string",
+      "description": "Level name for level-scoped export",
+      "default": ""
+    },
+    {
+      "name": "level_names",
+      "type": "string",
+      "description": "Comma-separated level names for multi-level export",
+      "default": ""
+    },
+    {
+      "name": "scope_box_name",
+      "type": "string",
+      "description": "Scope box name for scope-box-scoped export",
+      "default": ""
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Category name for category-scoped export",
+      "default": ""
+    },
+    {
+      "name": "sheet_number",
+      "type": "string",
+      "description": "Sheet number for sheet-scoped export",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Export status (ready)"
+    },
+    {
+      "name": "elements",
+      "type": "int",
+      "description": "Number of elements exported"
+    },
+    {
+      "name": "parameters",
+      "type": "int",
+      "description": "Number of parameters exported"
+    },
+    {
+      "name": "db_path",
+      "type": "string",
+      "description": "Path to the snapshot SQLite database"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Exporting model snapshot to local database...",
+      "Taking a snapshot of your model for analysis..."
+    ],
+    "thinkingsteps": [
+      "Resolving export scope...",
+      "Extracting model data to SQLite...",
+      "Registering snapshot database..."
+    ],
+    "successprompts": [
+      "Snapshot ready — {elements} elements, {parameters} parameters exported in {duration_ms}ms",
+      "Model snapshot complete. {elements} elements captured at scope: {scope}"
+    ],
+    "failureprompts": [
+      "Snapshot export failed: {error}",
+      "Could not export model snapshot — {error}"
+    ]
+  },
+  "has_restapi": false
+}

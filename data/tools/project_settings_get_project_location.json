@@ -1,0 +1,13 @@
+{
+  "name": "project_settings_get_project_location",
+  "desc": "Read the active SiteLocation: latitude, longitude, time zone, elevation.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "project_settings_get_project_location",
+    "project settings get project location"
+  ]
+}

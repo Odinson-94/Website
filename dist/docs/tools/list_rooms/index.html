@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List rooms — Tools — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <div class="crumbs"><a href="/sandbox/docs/tools/inventory.html">Tools</a> &nbsp;›&nbsp; list_rooms</div>
+
+  <h1 id="overview" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:30px;letter-spacing:-0.01em;">list_rooms</h1>
+
+  <div class="meta-row" style="margin-bottom:20px;">
+    
+    <span class="pill pill-category">context</span>
+    <span class="pill pill-category">on demand</span>
+  </div>
+
+  <p class="lead" style="font-size:18px;max-width:760px;margin-bottom:32px;">List all rooms in the model with name, number, level, area.</p>
+
+  <h2 id="parameters">Parameters</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>level</code></td>
+        <td><code>string</code></td>
+        <td class="req-no">no</td>
+        <td>Filter by level name</td>
+      </tr>
+      <tr>
+        <td><code>nameContains</code></td>
+        <td><code>string</code></td>
+        <td class="req-no">no</td>
+        <td>Filter rooms by name containing text</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <pre class="logictree" style="background:#0d1117;color:#e6edf3;border-color:#0d1117;">Array of rooms objects.
+Each row carries id, name, and the key properties of a room.
+Empty array when no rooms match the filter.</pre>
+
+  <h2 id="example-prompts">Example prompts</h2>
+  <ul style="padding-left:22px;">
+    <li>Corridor section</li>
+    <li>Cross section</li>
+    <li>Corridor view</li>
+  </ul>
+
+  <h2 id="keywords">Keywords</h2>
+  <p style="color:var(--text-muted);font-size:14px;">corridor section · cross section · corridor view</p>
+
+  
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code>2026-04-21T08:38:15.669Z</code> by <code>stub-deterministic-v1</code> from data SHA <code>4d73f23</code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Tool%20Page/">Tool Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

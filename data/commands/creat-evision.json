@@ -1,0 +1,87 @@
+{
+  "class": "CreateRevisionCommand",
+  "desc": "Creates a new Revision in the active document with description, date, issued-by / issued-to fields, and an optional issued flag.",
+  "summary": "Creates a new Revision in the active document with description, date, issued-by / issued-to fields, and an optional issued flag. Uses CommandExecutor.GetParameter to resolve inputs from the AI orchestrator. Related: EditRevisionCommand to modify an existing revision.",
+  "usecase": "User wants to add a new revision to the project for issue tracking.",
+  "notfor": "Editing an existing revision (use EditRevisionCommand).",
+  "precondition": "Active Revit document must be open and not read-only.",
+  "postcondition": "A new Revision element exists in the document with the supplied metadata.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create revision",
+    "new revision",
+    "add revision",
+    "insert revision"
+  ],
+  "intent_patterns": [
+    "create * revision",
+    "add * revision",
+    "new * revision"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Revision description",
+      "default": ""
+    },
+    {
+      "name": "date",
+      "type": "string",
+      "description": "Revision date text",
+      "default": ""
+    },
+    {
+      "name": "issuedBy",
+      "type": "string",
+      "description": "Issued by",
+      "default": ""
+    },
+    {
+      "name": "issuedTo",
+      "type": "string",
+      "description": "Issued to",
+      "default": ""
+    },
+    {
+      "name": "issued",
+      "type": "bool",
+      "description": "Set revision issued flag",
+      "default": "false"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Revision",
+      "type": "JSON",
+      "description": "Created revision metadata including id, description, date, issuedBy, issuedTo, issued"
+    }
+  ],
+  "related_commands": [
+    "EditRevisionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating a new revision in the document...",
+      "Adding revision to the project..."
+    ],
+    "thinkingsteps": [
+      "Reading revision parameters...",
+      "Creating revision element...",
+      "Setting description, date, and issue fields..."
+    ],
+    "successprompts": [
+      "Revision created: {description} (ID {id})",
+      "Done — new revision added with description \"{description}\""
+    ],
+    "failureprompts": [
+      "Could not create revision: {error}",
+      "Revision creation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

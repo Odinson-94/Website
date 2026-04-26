@@ -1,0 +1,87 @@
+{
+  "class": "ImportWithCloudFamiliesCommand",
+  "desc": "Import MEP systems from JSON with automatic cloud family loading.",
+  "summary": "Import MEP systems from JSON with automatic cloud family loading. Downloads missing families from Supabase using LoadFamilyFromAdelphosCloud before placing blocks. Uses MepSegmentCreator for curve creation and ImportBlocksFromLinkedDwg for block placement. Ensures all family symbols are properly loaded and activated.",
+  "usecase": "User imports MEP model from JSON and families are not in the document. User wants to import with automatic family downloads from cloud.",
+  "notfor": "Importing families only (use cloud family loader directly). Importing non-MEP data formats.",
+  "precondition": "Active document must be open. MEPBridge JSON file must exist. Internet connection required for cloud family downloads.",
+  "postcondition": "Missing families are downloaded from Supabase and loaded into document. All family symbols are activated and available. MEP elements and blocks are created as specified in JSON.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "import with cloud families",
+    "import cloud",
+    "supabase import",
+    "cloud family import"
+  ],
+  "intent_patterns": [
+    "import * cloud",
+    "import * supabase",
+    "import with * families"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Base point for MEP placement",
+      "prompt": "Pick Revit basepoint (target origin for import)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to MEPBridge JSON file",
+      "default": "null"
+    },
+    {
+      "name": "SupabaseCategory",
+      "type": "string",
+      "description": "Supabase storage category for families",
+      "default": "\"general\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "FamiliesLoaded",
+      "type": "int",
+      "description": "Number of families downloaded from cloud"
+    },
+    {
+      "name": "CurvesCreated",
+      "type": "int",
+      "description": "Number of MEP curves created"
+    },
+    {
+      "name": "BlocksPlaced",
+      "type": "int",
+      "description": "Number of blocks placed"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Importing MEP systems from JSON with cloud family loading...",
+      "Starting cloud-assisted MEP import..."
+    ],
+    "thinkingsteps": [
+      "Parsing JSON file...",
+      "Loading block mapping...",
+      "Downloading missing families from Supabase...",
+      "Resolving types and levels...",
+      "Creating MEP curves...",
+      "Placing fittings and blocks..."
+    ],
+    "successprompts": [
+      "Import complete: {FamiliesLoaded} families loaded, {CurvesCreated} curves, {BlocksPlaced} blocks.",
+      "MEP import finished with {FamiliesLoaded} cloud families."
+    ],
+    "failureprompts": [
+      "Import failed: {error}",
+      "Cloud import error: {error}"
+    ]
+  },
+  "has_restapi": false
+}

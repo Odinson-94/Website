@@ -1,0 +1,21 @@
+{
+  "name": "list_titleblocks",
+  "desc": "List titleblock instances with sheet and family/type info.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "sheetNumber",
+      "type": "string",
+      "description": "Optional sheet number filter (exact).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "list titleblocks",
+    "title block list",
+    "sheet titleblocks"
+  ]
+}

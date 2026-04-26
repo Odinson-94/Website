@@ -1,0 +1,13 @@
+{
+  "name": "routing_preferences_list_all_rules",
+  "desc": "List all configured routing-preference rules per service type and discipline (pipe, duct, cable tray, sizing rules).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "routing_preferences_list_all_rules",
+    "routing preferences list all rules"
+  ]
+}

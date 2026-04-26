@@ -1,0 +1,34 @@
+{
+  "section_title": "Resources",
+  "section_blurb": "Free downloadable content for MEP professionals — families, templates, asset libraries, and reference data. All curated by JPA Designs and the Adelphos community.",
+  "categories": [
+    {
+      "slug": "families",
+      "title": "Free Revit Families",
+      "blurb": "Production-grade MEP families with parameters that drive schedules, calcs, and tags out of the box.",
+      "status": "coming-soon",
+      "items_count": 0
+    },
+    {
+      "slug": "templates",
+      "title": "Project Templates",
+      "blurb": "Pre-configured Revit templates for housing, commercial, healthcare, and education sectors.",
+      "status": "coming-soon",
+      "items_count": 0
+    },
+    {
+      "slug": "asset-data",
+      "title": "Asset Data Libraries",
+      "blurb": "Manufacturer asset databases (radiators, AHUs, lights, fans) with COBie-compliant parameters.",
+      "status": "coming-soon",
+      "items_count": 0
+    },
+    {
+      "slug": "guides",
+      "title": "Setup Guides",
+      "blurb": "Step-by-step guides for setting up the MEP Bridge platform, integrating with ACC, and deploying agents.",
+      "status": "coming-soon",
+      "items_count": 0
+    }
+  ]
+}

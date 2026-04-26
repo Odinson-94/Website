@@ -1,0 +1,15 @@
+{
+  "name": "check_revision_readiness_for_selected_export_sheets",
+  "desc": "Returns per-sheet revision readiness for all selected export sheets: has the staged revision, cloud count, readiness status.",
+  "bridge": "DrawingExporter",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "revision checklist",
+    "export readiness",
+    "revision per sheet",
+    "pre-export check"
+  ]
+}

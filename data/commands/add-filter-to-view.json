@@ -1,0 +1,80 @@
+{
+  "class": "AddFilterToViewCommand",
+  "desc": "Adds an existing view filter to a regular (non-template) view identified by name.",
+  "summary": "Adds an existing view filter to a regular (non-template) view identified by name. Resolves the view via ListViews.FindByExactName and delegates to AddFilterToView.AddFilter(Autodesk.Revit.DB.View, string, bool).",
+  "usecase": "Turn on a discipline filter on a working floor plan or section for QA checks.",
+  "notfor": "View templates — use AddFilterToTemplateCommand.",
+  "precondition": "Active document; filterName and viewName parameters supplied.",
+  "postcondition": "Filter is present on the view with the requested visibility when the helper returns true.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add filter to view",
+    "apply filter view",
+    "filter on view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "viewName",
+      "type": "string",
+      "description": "Exact name of the target view (not a template)",
+      "default": ""
+    },
+    {
+      "name": "filterName",
+      "type": "string",
+      "description": "Existing filter element name",
+      "default": ""
+    },
+    {
+      "name": "visible",
+      "type": "boolean",
+      "description": "Filter visibility (default true)",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "success",
+      "type": "bool",
+      "description": "Whether the filter was applied"
+    },
+    {
+      "name": "viewId",
+      "type": "int",
+      "description": "Target view element id when successful"
+    }
+  ],
+  "related_commands": [
+    "AddFilterToTemplateCommand",
+    "CreateFilterCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Applying the filter to your view...",
+      "Resolving the target view and filter...",
+      "Checking view type (must not be a template)..."
+    ],
+    "thinkingsteps": [
+      "Read viewName, filterName, and optional visible from command parameters.",
+      "Resolve the view with ListViews.FindByExactName (case-insensitive exact match).",
+      "Reject template views; suggest AddFilterToTemplateCommand if IsTemplate.",
+      "Parse visible; recover to true if the value is not a valid boolean.",
+      "Start a manual transaction, call AddFilterToView.AddFilter(Autodesk.Revit.DB.View, string, bool).",
+      "Commit on success; roll back when the helper returns false."
+    ],
+    "successprompts": [
+      "Filter '{filterName}' is applied on view '{viewName}'.",
+      "Done — the view now includes the requested filter."
+    ],
+    "failureprompts": [
+      "Could not add filter to view: {error}",
+      "Add filter to view failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

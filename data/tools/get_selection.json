@@ -1,0 +1,15 @@
+{
+  "name": "get_selection",
+  "desc": "Get the current Revit selection. Returns JSON with count and array of selected elements (id, category, familyName, typeName).",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "selection",
+    "selected elements",
+    "current selection",
+    "what's selected"
+  ]
+}

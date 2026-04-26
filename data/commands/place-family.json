@@ -1,0 +1,98 @@
+{
+  "class": "PlaceFamilyCommand",
+  "desc": "Places a family instance at XY + height using existing family placement utilities.",
+  "summary": "Places a family instance at XY + height using existing family placement utilities. Uses PlaceFamilyOnCurrentView for standard auto-placement and GetReferencePlaneForElement for hosted or rotated placement. Falls back to GetCurrentViewLevel when a level reference is needed.",
+  "usecase": "User wants to place a specific family at an exact XY coordinate and height. AI needs to place equipment, fixtures, or devices at computed positions.",
+  "notfor": "Loading families into the document (use ImportWithCloudFamiliesCommand). Placing multiple instances at once (use batch placement command). Placing families by picking points interactively.",
+  "precondition": "Active document must be open with a plan or 3D view. The specified family must be loaded in the document.",
+  "postcondition": "A FamilyInstance is created at the specified coordinates. The new instance is selected in the UI.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "place family",
+    "insert family",
+    "add family instance",
+    "family placement",
+    "drop family"
+  ],
+  "intent_patterns": [
+    "place * family *",
+    "insert * family *",
+    "add * family *"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "familyName",
+      "type": "string",
+      "description": "Family name to place",
+      "default": ""
+    },
+    {
+      "name": "typeName",
+      "type": "string",
+      "description": "Optional type name in that family",
+      "default": ""
+    },
+    {
+      "name": "x",
+      "type": "number",
+      "description": "X coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Y coordinate in mm",
+      "default": ""
+    },
+    {
+      "name": "heightMm",
+      "type": "number",
+      "description": "Height above level in mm",
+      "default": "0"
+    },
+    {
+      "name": "hostType",
+      "type": "string",
+      "description": "Optional host type: auto|level|ceiling|void|wall|floor",
+      "default": "\"auto\""
+    },
+    {
+      "name": "rotationDeg",
+      "type": "number",
+      "description": "Optional rotation in degrees",
+      "default": "0"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Placement result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Placing family instance at the specified location...",
+      "Inserting {familyName} into the model..."
+    ],
+    "thinkingsteps": [
+      "Resolving family symbol...",
+      "Determining host type...",
+      "Creating family instance..."
+    ],
+    "successprompts": [
+      "Placed {family} ({type}) at ({x}, {y}) — ID {id}.",
+      "Family instance created and selected."
+    ],
+    "failureprompts": [
+      "Could not place family: {error}",
+      "Family placement failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

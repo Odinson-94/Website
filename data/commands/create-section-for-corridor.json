@@ -1,0 +1,84 @@
+{
+  "class": "CreateSectionForCorridorCommand",
+  "desc": "Phase 7 Command: Creates cross-section views through corridors.",
+  "summary": "Phase 7 Command: Creates cross-section views through corridors. Two modes: - Single: User selects one corridor (host or linked model). - All: Automatically creates sections for all corridors (host + links). Uses ListCorridors.IsCorridor for corridor validation. Uses CreateSectionForCorridor helper for section creation. Uses ListCorridors.GetAllIncludingLinks for batch mode. Called by SheetSetUpCommand during automated sheet setup. Related: CreateRoomElevationViewsCommand for room elevations.",
+  "usecase": "User wants to create a section through a corridor showing MEP services. User wants to batch-create sections for all corridors in the model.",
+  "notfor": "Creating sections along gridlines (use CreateSectionFromGridlineCommand). Creating room elevations (use CreateRoomElevationViewsCommand). Creating sections through non-corridor rooms.",
+  "precondition": "Active document must be open. At least one corridor room must exist (host or linked). For single mode: user must have interactive access to select elements.",
+  "postcondition": "Cross-section view(s) created through corridor(s) using wall normal ray-casting. Sections are NOT placed on sheets (separate command).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "corridor section",
+    "create corridor section",
+    "section through corridor",
+    "corridor cross section"
+  ],
+  "intent_patterns": [
+    "create * section * corridor",
+    "create section for corridor",
+    "corridor * section"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [
+    {
+      "name": "Corridor",
+      "type": "Room",
+      "description": "Corridor room to create section through",
+      "prompt": "Select a corridor room"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "Execution mode: 'single' or 'all'",
+      "default": "\"single\""
+    },
+    {
+      "name": "Scale",
+      "type": "int",
+      "description": "View scale for the section",
+      "default": "50"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CreatedSection",
+      "type": "ViewSection",
+      "description": "The created section view (single mode)"
+    },
+    {
+      "name": "SectionsCreated",
+      "type": "int",
+      "description": "Number of sections created (all mode)"
+    }
+  ],
+  "related_commands": [
+    "CreateRoomElevationViewsCommand",
+    "CreateFloorplanCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Creating corridor section view...",
+      "Setting up cross-section through corridor..."
+    ],
+    "thinkingsteps": [
+      "Resolving corridor selection...",
+      "Validating corridor room type...",
+      "Calculating wall normals and ray-casting...",
+      "Creating section view box..."
+    ],
+    "successprompts": [
+      "Corridor section created: {viewName}",
+      "Created {count} corridor sections",
+      "Done! Section through '{corridorName}' is ready"
+    ],
+    "failureprompts": [
+      "Couldn't create corridor section: {error}",
+      "Corridor section failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,45 @@
+{
+  "class": "ClashSolverConnectIntoNearestNodeBySystemMatchCommand",
+  "desc": "ClashSolverConnectIntoNearestNodeBySystemMatchCommand — PDF \"CONNECT_INTO_NEAREST_NODE\" with strict system-match (no cross-system).",
+  "summary": "ClashSolverConnectIntoNearestNodeBySystemMatchCommand — PDF \"CONNECT_INTO_NEAREST_NODE\" with strict system-match (no cross-system).",
+  "usecase": "Clash solver connect step after a move.",
+  "notfor": "Cross-system connects — use the ConnectorOps 3D command directly with AllowCrossSystemWithWarning=true.",
+  "precondition": "Active document; source resolvable; at least one candidate with matching system type in radius.",
+  "postcondition": "Either one ConnectTo inside one Transaction or no change.",
+  "sideeffects": "",
+  "logictree": "1) Validate Resolver_ElementUniqueId.\n2) Instantiate ConnectorOpsConnectIntoNearestNodeIn3dCommand, copy resolvers,\n   set AllowCrossSystemWithWarning=false.\n3) Inherit command runner (caller's Revit UIApplication).\n4) Delegate Execute(); pipe its tracker outputs into this command's tracker.\n5) No extra logic — this command is the strict-system wrapper.",
+  "keywords": [
+    "clashsolverconnectintonearestnodebysystemmatch",
+    "strict system connect",
+    "clash solver connect"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Connecting to nearest system-matched node…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ConnectorOpsConnectIntoNearestNodeIn3dCommand with strict gate…"
+    ],
+    "successprompts": [
+      "Strict-system connect {connected}."
+    ],
+    "failureprompts": [
+      "Strict-system connect failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

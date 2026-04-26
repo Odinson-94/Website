@@ -1,0 +1,40 @@
+{
+  "name": "confirm_any_text_and_parameter_edits_with_user",
+  "desc": "Present text, parameter, specification, schedule, or report changes to the user for ",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Document or section title shown in the review header, e.g. 'M&E Specification — Section 5.3 Drainage'",
+      "required": true
+    },
+    {
+      "name": "subtitle",
+      "type": "string",
+      "description": "Who modified and description, e.g. 'Modified by BUILD MEP agent'",
+      "required": false
+    },
+    {
+      "name": "blocks_json",
+      "type": "string",
+      "description": "JSON array of block diff objects: [{id,label,type,operation,oldText,newText,section}]",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "confirm edits",
+    "review changes",
+    "accept reject",
+    "approve edits",
+    "specification review",
+    "schedule review",
+    "parameter review",
+    "report review",
+    "document review",
+    "text changes approval"
+  ]
+}

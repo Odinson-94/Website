@@ -1,0 +1,70 @@
+{
+  "class": "Rotate3DToOrientationCommand",
+  "desc": "Rotates selected elements 90° to stand up (horizontal to vertical: — to |).",
+  "summary": "Rotates selected elements 90° to stand up (horizontal to vertical: — to |). Workflow: Select elements → Pick pivot point → Elements rotate 90° around X or Y axis. Uses Rotate3DToOrientation helper for the rotation, fitting deletion, recreation, and reconnection logic.",
+  "usecase": "User wants to stand up horizontal pipes/elements to vertical orientation during modelling.",
+  "notfor": "Rotating to arbitrary angles (not 90°). Mirroring elements. Rotating in plan view only.",
+  "precondition": "Active document must be open. At least one element with geometry must be selectable.",
+  "postcondition": "Selected elements are rotated 90° around the chosen pivot. Fittings are deleted and recreated.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "stand up",
+    "rotate 90",
+    "flip vertical",
+    "horizontal to vertical",
+    "lay down",
+    "rotate elements"
+  ],
+  "intent_patterns": [
+    "stand up",
+    "rotate 90",
+    "flip vertical",
+    "make vertical"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [
+    {
+      "name": "Elements",
+      "type": "Element[]",
+      "description": "Elements to rotate",
+      "prompt": "Select elements to stand up"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "RotatedCount",
+      "type": "int",
+      "description": "Number of elements rotated"
+    },
+    {
+      "name": "AxisDirection",
+      "type": "string",
+      "description": "Rotation axis used"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Rotating selected elements 90°...",
+      "Standing up the selected elements..."
+    ],
+    "thinkingsteps": [
+      "Getting selected elements...",
+      "Waiting for pivot point selection...",
+      "Performing 90° rotation...",
+      "Reconnecting fittings..."
+    ],
+    "successprompts": [
+      "Rotated {RotatedCount} element(s) 90° around {AxisDirection}.",
+      "Done — elements are now standing up."
+    ],
+    "failureprompts": [
+      "Rotation failed: {error}",
+      "Could not rotate elements — {error}"
+    ]
+  },
+  "has_restapi": false
+}

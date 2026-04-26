@@ -1,0 +1,46 @@
+{
+  "class": "OpenObjectSettingsAndStylesWindowCommand",
+  "desc": "Opens the Object Settings &amp; Styles window for managing Revit object styles, line styles, line patterns, fill patterns, and materials.",
+  "summary": "Opens the Object Settings &amp; Styles window for managing Revit object styles, line styles, line patterns, fill patterns, and materials. Uses ObjectSettingsAndStylesWindow.ShowSingleton for singleton behaviour.",
+  "usecase": "User wants to view or edit object styles, line styles, line patterns, fill patterns, or materials.",
+  "notfor": "Changing individual element overrides per view (use Filter &amp; Template Manager instead).",
+  "precondition": "Active document must be open.",
+  "postcondition": "Object Settings &amp; Styles window is visible.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "object styles",
+    "line styles",
+    "line patterns",
+    "fill patterns",
+    "materials",
+    "manage styles",
+    "project settings styles",
+    "open object styles window",
+    "object settings"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening Object Settings &amp; Styles…",
+      "Loading style manager…"
+    ],
+    "thinkingsteps": [
+      "Reading object styles from project…",
+      "Loading line styles, patterns, materials…"
+    ],
+    "successprompts": [
+      "Object Settings &amp; Styles window is open."
+    ],
+    "failureprompts": [
+      "Could not open Object Settings &amp; Styles: {error}"
+    ]
+  },
+  "has_restapi": false
+}

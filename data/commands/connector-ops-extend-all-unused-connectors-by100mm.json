@@ -1,0 +1,38 @@
+{
+  "class": "ConnectorOpsExtendAllUnusedConnectorsBy100mmCommand",
+  "desc": "ConnectorOpsExtendAllUnusedConnectorsBy100mmCommand — ribbon wrapper for the bulk-extend helper.",
+  "summary": "ConnectorOpsExtendAllUnusedConnectorsBy100mmCommand — ribbon wrapper for the bulk-extend helper.",
+  "usecase": "Bulk extend-all after a fitting reseat.",
+  "notfor": "Single-connector extend — use ExtendSelectedNodeByDistance.",
+  "precondition": "Element resolvable via resolver or selection.",
+  "postcondition": "Pipes created for every unconnected connector inside inner Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId OR selection.\n2) Delegate to ClashSolverExtendAllUnusedConnectorsBy100mmCommand.\n3) Tag tracker.",
+  "keywords": [
+    "connectoropsextendallunusedconnectorsby100mm",
+    "extend all connectors",
+    "bulk extend connectors"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Extending every unconnected connector by 100 mm…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ClashSolverExtendAllUnusedConnectorsBy100mmCommand…"
+    ],
+    "successprompts": [
+      "Bulk extend delegated."
+    ],
+    "failureprompts": [
+      "Bulk extend failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

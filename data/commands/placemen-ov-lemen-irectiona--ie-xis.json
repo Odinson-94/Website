@@ -1,0 +1,37 @@
+{
+  "class": "PlacementMoveElementDirectionalByViewAxisCommand",
+  "desc": "Six cardinal directions resolved against the active view's basis.",
+  "summary": "Six cardinal directions resolved against the active view's basis.",
+  "usecase": "Arrow-key style nudge moves that respect view orientation.",
+  "notfor": "Absolute world-axis moves (use PlacementMoveElementByDumbVector).",
+  "precondition": "Active document + view. ≥1 element resolved.",
+  "postcondition": "Each element translated by (step × basis). Audit entry written.",
+  "sideeffects": "",
+  "logictree": "1) Resolve direction enum + step mm + element ids. 2) Pick basis from ActiveView. 3) Convert step mm → ft. 4) Transaction: MoveElement per id. 5) Commit, log. 6) Failure → WireFault + rollback.",
+  "keywords": [
+    "placementmoveelementdirectionalbyviewaxis"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running PlacementMoveElementDirectionalByViewAxisCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "PlacementMoveElementDirectionalByViewAxisCommand completed successfully."
+    ],
+    "failureprompts": [
+      "PlacementMoveElementDirectionalByViewAxisCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,31 @@
+{
+  "class": "PlacementPlaceFamilyInCeilingTileInCurrentViewCommand",
+  "desc": "Place a ceiling-hosted family on the first ceiling at (x,y).",
+  "summary": "Place a ceiling-hosted family on the first ceiling at (x,y).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "placementplacefamilyinceilingtileincurrentview",
+    "place family ceiling"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

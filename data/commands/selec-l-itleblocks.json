@@ -1,0 +1,57 @@
+{
+  "class": "SelectAllTitleblocksCommand",
+  "desc": "Selects all titleblock instances in the project.",
+  "summary": "Selects all titleblock instances in the project. Uses FilteredElementCollector to find all OST_TitleBlocks elements. Uses CommandExecutor for result reporting. Related: SelectByCategoryCommand for generic category selection. Related: SelectAllInstancesCommand for family-specific selection.",
+  "usecase": "User wants to select all titleblocks to verify they are the correct type. User wants to bulk-edit titleblock parameters (project name, number, etc.). User wants to audit which sheets have titleblocks.",
+  "notfor": "Selecting a specific titleblock family (use SelectAllInstancesCommand with familyName). Selecting sheets (titleblocks are not sheets — use a sheet selection command). Editing titleblock type (use a type-swap command).",
+  "precondition": "Active document must be open. At least one sheet with a titleblock must exist.",
+  "postcondition": "Revit selection is replaced with all titleblock instances in the project. Returns JSON with success flag, count, and element IDs.",
+  "sideeffects": "",
+  "logictree": "collect: FilteredElementCollector → OST_TitleBlocks → instances only\rset: UIDocument.Selection → all collected IDs\rreturn: JSON with count and IDs",
+  "keywords": [
+    "select all titleblocks",
+    "select title blocks",
+    "select all sheet titleblocks",
+    "titleblock selection",
+    "find titleblocks"
+  ],
+  "intent_patterns": [
+    "select * all titleblocks",
+    "select * title blocks",
+    "find * titleblocks"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Selected titleblock IDs and count"
+    }
+  ],
+  "related_commands": [
+    "SelectByCategoryCommand",
+    "SelectAllInstancesCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Selecting all titleblocks in the project...",
+      "Finding every titleblock instance..."
+    ],
+    "thinkingsteps": [
+      "Scanning project for titleblock instances...",
+      "Setting Revit selection..."
+    ],
+    "successprompts": [
+      "Selected {count} titleblocks across the project.",
+      "Done — {count} titleblock instances selected."
+    ],
+    "failureprompts": [
+      "Could not select titleblocks: {error}",
+      "Titleblock selection failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

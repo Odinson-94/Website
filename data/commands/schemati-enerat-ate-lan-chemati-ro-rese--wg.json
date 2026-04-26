@@ -1,0 +1,32 @@
+{
+  "class": "SchematicGenerateWaterPlantSchematicFromPresetToDwgCommand",
+  "desc": "Water-plant DWG (cold-water booster / softener / filter).",
+  "summary": "Water-plant DWG (cold-water booster / softener / filter).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "schematicgeneratewaterplantschematicfrompresettodwg",
+    "generate water plant schematic",
+    "water plant schematic"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,46 @@
+{
+  "name": "add_spec_custom_clause",
+  "desc": "Add a custom clause to the specification clause library. Project-level clauses override standard clauses.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 5,
+  "parameters": [
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Clause title",
+      "required": true
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "description": "Full clause text in specification language",
+      "required": true
+    },
+    {
+      "name": "uniclassCode",
+      "type": "string",
+      "description": "Uniclass 2015 code (e.g. Ss_32_20)",
+      "required": false
+    },
+    {
+      "name": "clauseType",
+      "type": "string",
+      "description": "Type: General, Performance, Material, Installation, Testing, Commissioning, Maintenance, Warranty, Compliance",
+      "required": false
+    },
+    {
+      "name": "discipline",
+      "type": "string",
+      "description": "Discipline this clause applies to",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "add clause",
+    "custom clause",
+    "project clause",
+    "insert clause"
+  ]
+}

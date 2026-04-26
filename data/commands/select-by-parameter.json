@@ -1,0 +1,85 @@
+{
+  "class": "SelectByParameterCommand",
+  "desc": "Selects elements where ANY parameter value contains the search term.",
+  "summary": "Selects elements where ANY parameter value contains the search term. Uses SearchParameterValue.Contains() which checks element name, family name, type name, all instance parameters, and all type parameters. Optionally narrows by category via SelectByCategoryCommand.TryResolveCategory. Uses SelectByFamilyNameCommand.BuildFamilyTypeBreakdown for result summary. Called by CommandExecutor when Claude invokes execute_command. Related: SelectByFamilyNameCommand for faster name-only search, SelectByCategoryCommand for category-only selection.",
+  "usecase": "User wants to find all elements marked \"emergency\" in any parameter. User wants to select elements with a specific circuit name or system name. User wants to find elements by a value buried in type parameters.",
+  "notfor": "Simple category selection (use SelectByCategoryCommand — much faster). Family name search (use SelectByFamilyNameCommand — faster).",
+  "precondition": "Active document must be open with a valid active view.",
+  "postcondition": "Revit selection is replaced with elements where at least one parameter contains the search text. Returns JSON with totalSelected, totalSearched, and breakdown. NOTE: Slower than SelectByCategoryCommand/SelectByFamilyNameCommand — searches ALL parameters.",
+  "sideeffects": "",
+  "logictree": "check: parameters.search → required, fail if empty\rcheck: parameters.category → optional, narrows collector for performance\rcheck: parameters.scope == \"model\" → search entire model\rdefault: search current view only",
+  "keywords": [
+    "select by parameter",
+    "search parameter value",
+    "find by value",
+    "parameter search",
+    "select by text"
+  ],
+  "intent_patterns": [
+    "select * parameter *",
+    "find * parameter *",
+    "select * with * value"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "search",
+      "type": "string",
+      "description": "Text to search for in ALL parameter values",
+      "default": ""
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Optional category to narrow search (recommended for performance)",
+      "default": ""
+    },
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "view (default) or model",
+      "default": "\"view\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Selected element IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Breakdown by family:type and count"
+    }
+  ],
+  "related_commands": [
+    "SelectByCategoryCommand",
+    "SelectByFamilyNameCommand",
+    "FilterSelectionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Searching all parameter values for your text...",
+      "Running deep parameter search across elements...",
+      "Starting parameter value search — this may take a moment..."
+    ],
+    "thinkingsteps": [
+      "Building element collector...",
+      "Searching every parameter on each element...",
+      "Matching parameter values against search term...",
+      "Applying selection to model..."
+    ],
+    "successprompts": [
+      "Selected {totalSelected} elements with parameter values matching \"{searchTerm}\" from {scope}",
+      "Deep parameter search found {totalSelected} of {totalSearched} elements for \"{searchTerm}\""
+    ],
+    "failureprompts": [
+      "Parameter search failed: {error}",
+      "Could not select by parameter value: {error}"
+    ]
+  },
+  "has_restapi": false
+}

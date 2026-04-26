@@ -1,0 +1,34 @@
+{
+  "name": "annotation_preferences_get_for_category",
+  "desc": "Resolve the preferred annotation family for a Revit category + optional context, walking the three-tier discovery chain.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "category",
+      "type": "string",
+      "description": "BuiltInCategory name, e.g. OST_PipeTags. Required.",
+      "required": true
+    },
+    {
+      "name": "context",
+      "type": "string",
+      "description": "Optional context key (e.g. small_pipe, AHU) for context-specific picks.",
+      "required": false
+    },
+    {
+      "name": "explicit_override",
+      "type": "string",
+      "description": "Optional family/type name to try first.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "annotation preferences resolve",
+    "what tag should I use",
+    "pick default annotation",
+    "annotation default for category"
+  ]
+}

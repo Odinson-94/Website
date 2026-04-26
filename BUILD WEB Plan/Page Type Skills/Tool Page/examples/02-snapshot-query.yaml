@@ -1,0 +1,21 @@
+slug: snapshot_query
+title: snapshot_query
+display_title: "Snapshot query"
+description: "Runs an arbitrary SQL query against the model snapshot SQLite database. Read-only. Returns rows as JSON. Use when no purpose-built tool exists for the question."
+bridge_label: "Snapshot"
+category_label: snapshot
+always_available: true
+what_it_returns: |
+  Array of objects, one per row.
+  Column names become object keys. Empty array if the query returns no rows.
+example_prompts:
+  - "Find every duct over 8 m long that crosses a wall"
+  - "Count radiators per level"
+  - "List rooms with no fixtures"
+related:
+  tools:    [list_rooms, list_doors, get_document_info, snapshot_export]
+  skills:   [model-snapshot]
+  demos:    [snap-objects-to-wall]
+generated_by: claude-opus-4-20251010
+generated_at: "2026-04-21T15:30:00Z"
+source_sha: d4e5f60

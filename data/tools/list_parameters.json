@@ -1,0 +1,12 @@
+{
+  "name": "list_parameters",
+  "desc": "List all shared and project parameters in the document.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list parameters"
+  ]
+}

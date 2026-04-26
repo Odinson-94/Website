@@ -1,0 +1,27 @@
+{
+  "class": "ArchitectureCreateShaftOpeningAroundServicesCommand",
+  "desc": "CSV of element ids (pipes / ducts / cable trays / conduits).",
+  "summary": "CSV of element ids (pipes / ducts / cable trays / conduits).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "architecturecreateshaftopeningaroundservices",
+    "shaft",
+    "around services",
+    "box out",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,95 @@
+{
+  "class": "EditRevisionCommand",
+  "desc": "Edits properties on an existing Revision element — description, date, issued-by, issued-to, and the issued flag.",
+  "summary": "Edits properties on an existing Revision element — description, date, issued-by, issued-to, and the issued flag. Only non-null parameters are applied, allowing partial updates. Uses CommandExecutor.GetParameter for AI-resolved inputs. Related: CreateRevisionCommand to create a new revision.",
+  "usecase": "User wants to update a revision's description, date, or issue details.",
+  "notfor": "Creating new revisions (use CreateRevisionCommand). Not for deleting revisions.",
+  "precondition": "Active document must be open. Target revision must exist by element ID.",
+  "postcondition": "The revision element has its specified fields updated.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "edit revision",
+    "update revision",
+    "set revision properties",
+    "change revision",
+    "modify revision"
+  ],
+  "intent_patterns": [
+    "edit * revision",
+    "update * revision",
+    "set * revision *",
+    "change * revision"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "revisionId",
+      "type": "int",
+      "description": "Revision element id",
+      "default": ""
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Revision description",
+      "default": ""
+    },
+    {
+      "name": "date",
+      "type": "string",
+      "description": "Revision date text",
+      "default": ""
+    },
+    {
+      "name": "issuedBy",
+      "type": "string",
+      "description": "Issued by",
+      "default": ""
+    },
+    {
+      "name": "issuedTo",
+      "type": "string",
+      "description": "Issued to",
+      "default": ""
+    },
+    {
+      "name": "issued",
+      "type": "bool",
+      "description": "Set issued flag",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Revision",
+      "type": "JSON",
+      "description": "Updated revision metadata including id, description, date, issuedBy, issuedTo, issued"
+    }
+  ],
+  "related_commands": [
+    "CreateRevisionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Updating revision properties...",
+      "Editing the revision details..."
+    ],
+    "thinkingsteps": [
+      "Looking up revision by element ID...",
+      "Applying property changes...",
+      "Verifying updated values..."
+    ],
+    "successprompts": [
+      "Revision {id} updated — \"{description}\"",
+      "Done — revision properties saved"
+    ],
+    "failureprompts": [
+      "Could not edit revision: {error}",
+      "Revision edit failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

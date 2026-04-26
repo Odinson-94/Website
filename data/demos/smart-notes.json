@@ -1,0 +1,8 @@
+{
+  "slug": "smart-notes",
+  "category": "revit-utilities",
+  "title": "Smart Notes",
+  "desc": "Auto-place spec notes referenced by element type and location.",
+  "duration": "1:03",
+  "status": "live"
+}

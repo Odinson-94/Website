@@ -1,0 +1,39 @@
+{
+  "class": "UpdateClashResultStatus",
+  "desc": "Sets lifecycle status on a clash row (new, active, reviewed, resolved) via orchestrated parameters clashId and newStatus.",
+  "summary": "Sets lifecycle status on a clash row (new, active, reviewed, resolved) via orchestrated parameters clashId and newStatus.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "update clash status",
+    "change clash status",
+    "clash status"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Updating clash status in QA XML…"
+    ],
+    "thinkingsteps": [
+      "Reading clashId and newStatus from command parameters…",
+      "Persisting the status attribute on the matching clash row…"
+    ],
+    "successprompts": [
+      "Clash {clashId} status set to {newStatus}."
+    ],
+    "failureprompts": [
+      "Could not update clash status: {error}"
+    ]
+  },
+  "has_restapi": false
+}

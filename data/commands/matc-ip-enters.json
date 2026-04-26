@@ -1,0 +1,77 @@
+{
+  "class": "MatchPipeCentersCommand",
+  "desc": "Command: Matches pipe centerlines by shifting the second pipe in X/Y.",
+  "summary": "Command: Matches pipe centerlines by shifting the second pipe in X/Y. Delegates alignment logic to MatchPipeCenters. Uses GetMEPCurve indirectly via the logic class. Related: MEPSystemFilletCommand for full fillet, MEPSystemAutoFilletCommand for auto-detect elbow/tee. WORKFLOW: 1. User selects reference pipe (stays in place) 2. User selects target pipe (will be moved) 3. Target pipe is shifted in X/Y to align with reference pipe centerline 4. Pipes can now be connected with a fitting",
+  "usecase": "Aligning branch pipes to main pipes before connecting. Fixing misaligned pipes that can't accept fittings. Preparing pipes for automatic connection with FilletMEPCurve.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. At least two pipes must exist in the model.",
+  "postcondition": "Target pipe centerline aligns with reference pipe extension. Pipes are now in position to be connected with an elbow.",
+  "sideeffects": "Moves the target pipe element horizontally.",
+  "logictree": "check: document.isOpen → continue\raction: promptUserToSelectReferencePipe → getReferencePipe\raction: promptUserToSelectTargetPipe → getTargetPipe\rcheck: bothPipesValid → continue, else → error\raction: calculateXYOffset → offset\raction: moveTargetPipe → shift\rresolve: success → complete, else → showError",
+  "keywords": [
+    "match centers",
+    "align pipes",
+    "centerline",
+    "shift pipe",
+    "align xy",
+    "match centerline"
+  ],
+  "intent_patterns": [
+    "match * center",
+    "align * centerline",
+    "shift * pipe"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "SoilDrainage",
+  "selection_inputs": [
+    {
+      "name": "ReferencePipe",
+      "type": "Pipe",
+      "description": "Reference pipe (stays in place)",
+      "prompt": "Select REFERENCE pipe (this pipe stays in place)"
+    },
+    {
+      "name": "TargetPipe",
+      "type": "Pipe",
+      "description": "Target pipe (will be moved)",
+      "prompt": "Select TARGET pipe (this pipe will be shifted)"
+    }
+  ],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "XOffset",
+      "type": "double",
+      "description": "X offset applied in feet"
+    },
+    {
+      "name": "YOffset",
+      "type": "double",
+      "description": "Y offset applied in feet"
+    }
+  ],
+  "related_commands": [
+    "MatchHeightCommand",
+    "MatchHeightAndFilletCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Aligning pipe centerlines...",
+      "Matching pipe centers in X/Y..."
+    ],
+    "thinkingsteps": [
+      "Getting reference pipe geometry...",
+      "Calculating X/Y offset to align centerlines...",
+      "Shifting target pipe into position..."
+    ],
+    "successprompts": [
+      "Pipes aligned. Shifted by X={XOffset}, Y={YOffset}.",
+      "Centerlines matched — pipes ready for fitting."
+    ],
+    "failureprompts": [
+      "Could not align pipes: {error}",
+      "Pipe center matching failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

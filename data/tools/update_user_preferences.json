@@ -1,0 +1,31 @@
+{
+  "name": "update_user_preferences",
+  "desc": "Update a user preference. Common keys: user_pref_measurement_units (metric/imperial), user_pref_default_view_scale (1:50/1:100/1:200), user_pref_mep_design_standard (CIBSE/ASHRAE), user_pref_ai_response_detail (concise/normal/detailed), user_pref_ai_thinking_steps_display (expanded/collapsed/hidden), user_pref_auto_accept_ai_changes, user_pref_favourite_commands, user_pref_display_language, user_pref_temperature_unit (celsius/fahrenheit), user_pref_pipe_sizing_standard, user_pref_duct_sizing_method.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "key",
+      "type": "string",
+      "description": "The preference key to update.",
+      "required": true
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The new value for the preference.",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "update preferences",
+    "set preference",
+    "change setting",
+    "user setting",
+    "measurement units",
+    "design standard",
+    "AI detail level"
+  ]
+}

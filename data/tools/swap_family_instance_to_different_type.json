@@ -1,0 +1,35 @@
+{
+  "name": "swap_family_instance_to_different_type",
+  "desc": "Swap a family instance to another family or family type. The element must be a family instance; the target family and type must already be loaded in the document. Use list_families to discover loaded families and types.",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "element_id",
+      "type": "string",
+      "description": "Element ID of the family instance to swap (integer as string).",
+      "required": true
+    },
+    {
+      "name": "family_name",
+      "type": "string",
+      "description": "Target family name (must be loaded in the document).",
+      "required": true
+    },
+    {
+      "name": "type_name",
+      "type": "string",
+      "description": "Target type name within the family (optional; if omitted, first type is used).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "family swap",
+    "swap family",
+    "change family",
+    "change type",
+    "family type"
+  ]
+}

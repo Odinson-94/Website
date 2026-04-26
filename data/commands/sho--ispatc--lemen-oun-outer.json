@@ -1,0 +1,32 @@
+{
+  "class": "ShowMeDispatchByElementCountRouterCommand",
+  "desc": "Router: ≤ 5 elements → 3D SectionBox; 6–25 → SingleView; > 25 → HighlightFilter.",
+  "summary": "Router: ≤ 5 elements → 3D SectionBox; 6–25 → SingleView; > 25 → HighlightFilter.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "showmedispatchbyelementcountrouter",
+    "showme router",
+    "showme dispatch"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"showme_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

@@ -1,0 +1,12 @@
+{
+  "name": "list_sheets",
+  "desc": "List all sheets in the document with number and name.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list sheets"
+  ]
+}

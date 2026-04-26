@@ -1,0 +1,13 @@
+{
+  "name": "family_swap_list_instances_grouped_by_type",
+  "desc": "List FamilyInstance ids in the model grouped by Family + Type — feeds the source list panel.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "family_swap_list_instances_grouped_by_type",
+    "family swap list instances grouped by type"
+  ]
+}

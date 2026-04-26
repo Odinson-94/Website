@@ -1,0 +1,22 @@
+{
+  "name": "regenerate_spec_section",
+  "desc": "Re-generate a single discipline section after a context or parameter change.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "discipline",
+      "type": "string",
+      "description": "Discipline to regenerate (e.g. Drainage, Power)",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "regenerate section",
+    "update section",
+    "re-run spec",
+    "refresh discipline"
+  ]
+}

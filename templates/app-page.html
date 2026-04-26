@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{seo_head}}
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+{{json_ld}}
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  /* APP DETAIL PAGE — production template ────────────────────────────────
+     Design language: homepage tone gradients, rp-feat-item separator rows,
+     agent spinners, brand teal #156082.
+     Build: scripts/build-app-pages.mjs  ·  Data: sandbox/data/apps.json
+  */
+
+  body { background: #f5f3ef; overflow-y: auto; overflow-x: hidden; height: auto; }
+  html.dark-mode body { background: #1a1a1a; }
+
+  html.dark-mode {
+    --text: #e0e0e0;
+    --text-muted: #999;
+    --bg-card: #2a2a2a;
+    --bg-soft: #242424;
+    --border: rgba(255,255,255,0.10);
+  }
+
+  /* ── TONE GRADIENTS — identical to home.html palette ─────────────────── */
+  :root {
+    --tone-blue:       linear-gradient(135deg, #0e1c25 0%, #1a3441 50%, #156082 100%);
+    --tone-midnight:   linear-gradient(135deg, #0a0f1a 0%, #1a2740 50%, #2c3e6a 100%);
+    --tone-red:        linear-gradient(135deg, #1a0808 0%, #4a1414 50%, #c43a3a 100%);
+    --tone-green:      linear-gradient(135deg, #0a1a14 0%, #1a4030 50%, #2e8b6f 100%);
+    --tone-amber:      linear-gradient(135deg, #1a1408 0%, #4a3a14 50%, #c4923a 100%);
+    --tone-purple:     linear-gradient(135deg, #100a1f 0%, #281a4a 50%, #6a3ac4 100%);
+    --tone-teal:       linear-gradient(135deg, #082020 0%, #144a4a 50%, #2eb8b8 100%);
+  }
+
+  /* ── MOTION ──────────────────────────────────────────────────────────── */
+  @keyframes apRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .ap-reveal { animation: apRise 0.6s ease both; }
+  .ap-reveal.d1 { animation-delay: 0.05s; }
+  .ap-reveal.d2 { animation-delay: 0.12s; }
+  .ap-reveal.d3 { animation-delay: 0.20s; }
+  @media (prefers-reduced-motion: reduce) { .ap-reveal { animation: none; } }
+
+  /* ── HERO BANNER — tone-gradient, matching revit-panel design ────────── */
+  .ap-hero {
+    background: var(--tone-blue);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 0 0 var(--space-2xl);
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.16);
+  }
+  .ap-hero[data-tone="blue"]     { background: var(--tone-blue); }
+  .ap-hero[data-tone="midnight"] { background: var(--tone-midnight); }
+  .ap-hero[data-tone="red"]      { background: var(--tone-red); }
+  .ap-hero[data-tone="green"]    { background: var(--tone-green); }
+  .ap-hero[data-tone="amber"]    { background: var(--tone-amber); }
+  .ap-hero[data-tone="purple"]   { background: var(--tone-purple); }
+  .ap-hero[data-tone="teal"]     { background: var(--tone-teal); }
+
+  .ap-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 85% 15%, rgba(255,255,255,0.06), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(21,96,130,0.18), transparent 50%);
+    pointer-events: none;
+  }
+
+  .ap-hero-inner {
+    position: relative;
+    padding: 48px 56px 44px;
+    color: #fff;
+  }
+
+  .ap-crumb {
+    font-size: 12px; color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em; margin-bottom: 20px;
+  }
+  .ap-crumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+  .ap-crumb a:hover { color: #fff; text-decoration: underline; }
+
+  .ap-hero-head {
+    display: flex; align-items: center; gap: 24px;
+    margin-bottom: 24px;
+  }
+  .ap-hero-head img {
+    width: 96px; height: 96px;
+    border-radius: var(--radius-md);
+    object-fit: contain;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    flex-shrink: 0;
+  }
+  .ap-hero-head .ap-title-block { min-width: 0; }
+
+  .ap-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.90);
+    font-size: 11px; font-weight: 700;
+    padding: 5px 12px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .ap-hero h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 600; line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  .ap-claim {
+    font-size: clamp(18px, 1.8vw, 26px);
+    font-weight: 300; line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: rgba(255,255,255,0.92);
+    margin: 0 0 12px; max-width: 760px;
+  }
+
+  .ap-tag {
+    font-size: 16px; line-height: 1.55;
+    color: rgba(255,255,255,0.70);
+    margin: 0 0 28px; max-width: 700px;
+  }
+
+  .ap-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  .ap-cta-primary {
+    background: #fff; color: #156082;
+    padding: 13px 24px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    display: inline-block;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .ap-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+  }
+
+  .ap-cta-ghost {
+    background: transparent; color: #fff;
+    padding: 13px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.22);
+    transition: background 0.18s;
+  }
+  .ap-cta-ghost:hover { background: rgba(255,255,255,0.10); }
+
+  @media (max-width: 720px) {
+    .ap-hero-inner { padding: 28px 24px 24px; }
+    .ap-hero-head { gap: 16px; }
+    .ap-hero-head img { width: 64px; height: 64px; }
+  }
+
+  /* ── OUTCOMES STRIP ──────────────────────────────────────────────────── */
+  .outcomes-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md); overflow: hidden;
+    margin: 0 0 var(--space-2xl);
+    box-shadow: var(--shadow-sm);
+  }
+  .outcomes-strip .ostat {
+    padding: 22px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .outcomes-strip .ostat:last-child { border-right: none; }
+  .outcomes-strip .num {
+    display: block; font-size: 28px; font-weight: 600;
+    line-height: 1.1; color: var(--brand-teal);
+    letter-spacing: -0.015em;
+  }
+  .outcomes-strip .lbl {
+    display: block; font-size: 13px; color: var(--text-muted);
+    margin-top: 6px; line-height: 1.4;
+  }
+  @media (max-width: 600px) {
+    .outcomes-strip { grid-template-columns: repeat(2, 1fr); }
+    .outcomes-strip .ostat:nth-child(2n) { border-right: none; }
+  }
+
+  /* ── VIDEO ───────────────────────────────────────────────────────────── */
+  .hero-video {
+    border-radius: var(--radius-md);
+    overflow: hidden; margin-bottom: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+  }
+  .hero-video video { display: block; width: 100%; }
+
+  /* ── SECTION HEADINGS ────────────────────────────────────────────────── */
+  .docs-content > h2 {
+    font-size: 28px; font-weight: 500; letter-spacing: -0.02em;
+    line-height: 1.15; color: var(--text);
+    margin: var(--space-2xl) 0 var(--space-xs);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+  .ap-section-sub {
+    font-size: 15px; line-height: 1.6; color: var(--text-muted);
+    margin: 0 0 var(--space-lg); max-width: 700px;
+  }
+
+  /* ── DESCRIPTION — two-column: detail left, pullquote right ──────────── */
+  .ap-why {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-2xl); align-items: start;
+    margin: var(--space-md) 0 var(--space-2xl);
+  }
+  .ap-why-detail p {
+    font-size: 16px; line-height: 1.7; color: var(--text);
+    margin: 0 0 var(--space-md);
+  }
+  .ap-why-detail p:last-child { margin-bottom: 0; }
+  .ap-why-quote blockquote {
+    margin: 0; padding: 0 0 0 24px;
+    border-left: 3px solid var(--brand-teal);
+    font-size: 22px; font-weight: 400; line-height: 1.4;
+    letter-spacing: -0.01em; color: var(--text);
+  }
+  @media (max-width: 900px) {
+    .ap-why { grid-template-columns: 1fr; gap: var(--space-lg); }
+    .ap-why-quote blockquote { font-size: 20px; }
+  }
+
+  /* ── WHAT MAKES IT SPECIAL ───────────────────────────────────────────── */
+  .ap-special {
+    font-size: 17px; line-height: 1.65; color: var(--text);
+    margin: var(--space-sm) 0 var(--space-xl); max-width: 760px;
+  }
+
+  /* ── THE SHIFT — before / after comparison ───────────────────────────── */
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .shift {
+    padding: 24px 26px; border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+  .shift .lab {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; margin: 0 0 10px;
+  }
+  .shift p { font-size: 15px; line-height: 1.6; color: var(--text); margin: 0; }
+  .shift.before { background: rgba(150,30,30,0.04); border-color: rgba(150,30,30,0.18); }
+  .shift.before .lab { color: #c43a3a; }
+  .shift.after  { background: rgba(46,125,50,0.05); border-color: rgba(46,125,50,0.20); }
+  .shift.after  .lab { color: #2e7d32; }
+  html.dark-mode .shift.before { background: rgba(196,58,58,0.08); }
+  html.dark-mode .shift.after  { background: rgba(46,139,111,0.08); }
+  @media (max-width: 720px) { .shift-grid { grid-template-columns: 1fr; } }
+
+  /* ── FEATURES — rp-feat-item separator rows with agent spinner ─────── */
+  @keyframes rpAgentSpin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .rp-agent-spinner { animation: none !important; }
+  }
+
+  .rp-feat-list {
+    display: flex; flex-direction: column; gap: 0;
+    margin: var(--space-sm) 0 0;
+  }
+  .rp-feat-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 16px;
+  }
+  .rp-feat-item:last-child { border-bottom: none; }
+  .rp-feat-copy {
+    display: flex; flex-direction: column; gap: 3px;
+    min-width: 0; flex: 1 1 auto;
+  }
+  .rp-feat-title {
+    font-size: 16px; font-weight: 600; color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .rp-feat-desc {
+    font-size: 14px; color: var(--text-muted); line-height: 1.5;
+  }
+  .rp-agent-spinner {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 2px solid var(--border);
+    border-top-color: var(--brand-teal);
+    border-radius: 50%;
+    animation: rpAgentSpin 0.9s linear infinite;
+  }
+
+  .ap-group { margin: var(--space-xl) 0; }
+  .ap-group:first-child { margin-top: 0; }
+  .ap-group-label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    color: var(--brand-teal);
+    margin: 0 0 var(--space-xs); padding: 0;
+  }
+  .ap-group-count {
+    font-weight: 500; color: var(--text-muted);
+    margin-left: 8px; letter-spacing: 0;
+  }
+
+  /* ── INSTALL ─────────────────────────────────────────────────────────── */
+  .install-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .install-strip .pname {
+    display: block; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--brand-teal); margin: 0 0 5px;
+  }
+  .install-strip .pspec {
+    display: block; font-size: 14px; line-height: 1.5; color: var(--text);
+  }
+
+  .install-meta {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl); margin-bottom: var(--space-xl);
+  }
+  @media (max-width: 800px) { .install-meta { grid-template-columns: 1fr; gap: var(--space-md); } }
+  .install-meta h4 {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.10em; color: var(--text-muted); margin: 0 0 8px;
+  }
+  .install-meta ul { list-style: none; padding: 0; margin: 0; }
+  .install-meta li {
+    font-size: 14px; line-height: 1.6; color: var(--text);
+    margin: 0 0 4px; padding-left: 14px; position: relative;
+  }
+  .install-meta li::before {
+    content: '\00b7'; position: absolute; left: 0;
+    color: var(--brand-teal); font-weight: 700; font-size: 18px; top: 1px;
+  }
+  .install-meta .auth-text {
+    font-size: 14px; line-height: 1.6; color: var(--text); margin: 0;
+  }
+
+  .install-cta-row {
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+  .install-cta-row .cta-primary {
+    background: var(--brand-teal); color: #fff;
+    padding: 13px 24px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .install-cta-row .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(21,96,130,0.25);
+  }
+  .install-cta-row .cta-secondary {
+    color: var(--brand-teal); padding: 13px 8px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+  }
+  .install-cta-row .cta-secondary:hover { text-decoration: underline; }
+
+  /* ── AUDIENCE ────────────────────────────────────────────────────────── */
+  .ap-audience {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: var(--space-sm) 0 var(--space-xl);
+  }
+  .ap-audience .ap {
+    padding: 10px 18px; background: var(--bg-soft);
+    border: 1px solid var(--border); border-radius: 999px;
+    font-size: 14px; color: var(--text);
+  }
+
+  /* ── END CTA ─────────────────────────────────────────────────────────── */
+  .ap-end-cta {
+    margin-top: var(--space-2xl); padding: 36px 40px;
+    background: linear-gradient(135deg, #156082, #1a3441);
+    color: #fff; border-radius: var(--radius-lg); text-align: center;
+  }
+  html.dark-mode .ap-end-cta {
+    background: linear-gradient(135deg, #156082, #1f7ba8);
+  }
+  .ap-end-cta h3 {
+    font-size: 26px; font-weight: 500; margin: 0 0 10px;
+    color: #fff; letter-spacing: -0.015em;
+  }
+  .ap-end-cta p {
+    color: rgba(255,255,255,0.85); margin: 0 0 20px; font-size: 15px;
+  }
+  .ap-end-cta a {
+    display: inline-block; background: #fff; color: #156082;
+    padding: 12px 26px; border-radius: 999px;
+    font-weight: 600; text-decoration: none;
+    transition: transform 0.18s;
+  }
+  .ap-end-cta a:hover { transform: translateY(-2px); }
+
+  /* ── TIMESTAMP ───────────────────────────────────────────────────────── */
+  .ap-stamp {
+    margin-top: 48px; padding: 14px 18px;
+    background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 12px; color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <!-- ═══ HERO — tone-gradient banner ═══ -->
+  <div class="ap-hero ap-reveal d1" data-tone="{{tone}}">
+    <div class="ap-hero-inner">
+      <nav class="ap-crumb"><a href="/">Home</a> &rsaquo; <a href="/dist/apps/index.html">Apps</a> &rsaquo; {{title}}</nav>
+      <div class="ap-hero-head">
+        <img src="/{{icon}}" alt="{{title}}" onerror="this.style.background='rgba(255,255,255,0.08)';this.removeAttribute('src');">
+        <div class="ap-title-block">
+          <span class="ap-badge">{{surface}}</span>
+          <h1 id="overview">{{title}}</h1>
+        </div>
+      </div>
+      <p class="ap-claim">{{headline_claim}}</p>
+      <p class="ap-tag">{{tagline}}</p>
+      <div class="ap-actions">
+        <a class="ap-cta-primary" href="{{cta_href}}">{{cta_label}} &rarr;</a>
+        <a class="ap-cta-ghost" href="{{cta2_href}}">{{cta2_label}}</a>
+      </div>
+    </div>
+  </div>
+
+  {{outcomes_strip}}
+
+  {{hero_video_block}}
+
+  <!-- ═══ DESCRIPTION ═══ -->
+  <h2 id="description">{{seo_why_h3}}</h2>
+  <div class="ap-why">
+    <div class="ap-why-detail">{{detail_paragraphs_html}}</div>
+    <aside class="ap-why-quote"><blockquote>{{pullquote}}</blockquote></aside>
+  </div>
+
+  <!-- ═══ THE SHIFT ═══ -->
+  <h2 id="the-shift">{{seo_shift_h3}}</h2>
+  <p class="ap-section-sub">What working looks like today versus with {{title}}.</p>
+  {{shift_block}}
+
+  <!-- ═══ WHAT MAKES IT DIFFERENT ═══ -->
+  <h2 id="special">{{seo_special_h3}}</h2>
+  <p class="ap-special">{{what_makes_it_special}}</p>
+
+  <!-- ═══ FEATURES — rp-feat-item rows with agent spinners ═══ -->
+  <h2 id="features">Features</h2>
+  <p class="ap-section-sub">What {{title}} does. Each line is a shipped capability.</p>
+  {{features_block}}
+
+  <!-- ═══ INSTALL ═══ -->
+  <h2 id="install">Install &amp; system</h2>
+  <p class="ap-section-sub">Where {{title}} runs, what you need, and how to get it.</p>
+  {{install_block}}
+
+  <!-- ═══ WHO IT'S FOR ═══ -->
+  <h2 id="best-for">{{seo_who_h3}}</h2>
+  <div class="ap-audience">{{audience_html}}</div>
+
+  {{related_block}}
+
+  {{faq_block}}
+
+  <div class="ap-end-cta">
+    <h3>Ready to put {{title}} to work?</h3>
+    <p>{{end_cta_blurb}}</p>
+    <a href="{{cta_href}}">{{cta_label}} &rarr;</a>
+  </div>
+
+  <p class="ap-stamp">
+    Auto-generated <code>{{generated_at}}</code> from <code>sandbox/data/apps.json</code>.
+    Re-run with <code>adelphos_CLI auto-all</code>.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  document.querySelectorAll('video[data-src]').forEach(function(v){ if (!v.src) v.src = v.dataset.src; });
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

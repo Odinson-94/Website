@@ -1,0 +1,30 @@
+{
+  "name": "discover_commands",
+  "desc": "Search for Revit commands by describing what you need to do. Returns command IDs, summaries, and usage hints. Use the returned command_id with execute_command to run the command. Example: 'create section views' returns SectionCreatorCommand etc.",
+  "bridge": "",
+  "category": "context",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "objective",
+      "type": "string",
+      "description": "Describe what you need — e.g. 'create section views for corridors' or 'tag all mechanical equipment'",
+      "required": true
+    },
+    {
+      "name": "max_results",
+      "type": "string",
+      "description": "Maximum number of results (default 10)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "discover commands",
+    "find commands",
+    "search commands",
+    "available commands",
+    "revit commands",
+    "execute"
+  ]
+}

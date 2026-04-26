@@ -1,0 +1,35 @@
+{
+  "class": "ProjectSettingsSetProjectUnitsToImperialCommand",
+  "desc": "Switch every SpecTypeId to its imperial FormatOptions equivalent.",
+  "summary": "Switch every SpecTypeId to its imperial FormatOptions equivalent.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings set project units to imperial",
+    "project_settings_set_project_units_to_imperial"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running project settings set project units to imperial…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "project settings set project units to imperial: done."
+    ],
+    "failureprompts": [
+      "project settings set project units to imperial failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

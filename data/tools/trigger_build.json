@@ -1,0 +1,23 @@
+{
+  "name": "trigger_build",
+  "desc": "Compile the project via the local build server (localhost:9876). Use after write_file to compile code changes. After success, call reload_dll to load the new DLL. Also runs generate_mcp_registry.py to update the tool registry.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "registry_only",
+      "type": "string",
+      "description": "Set to 'true' to only regenerate the MCP registry without building",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "build",
+    "compile",
+    "trigger build",
+    "dotnet build",
+    "rebuild"
+  ]
+}

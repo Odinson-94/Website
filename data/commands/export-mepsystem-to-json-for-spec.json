@@ -1,0 +1,26 @@
+{
+  "class": "ExportMEPSystemToJsonForSpecCommand",
+  "desc": "Returns flat { \"ParamName\": \"value\", ...",
+  "summary": "Returns flat { \"ParamName\": \"value\", ... } for whitelisted instance params only.",
+  "usecase": "Use when you need to run this command's workflow for the current model task.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active Revit document and required context are available.",
+  "postcondition": "The command finishes with tracked success or a handled failure state.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export mep system to json for spec",
+    "export pipes spec",
+    "export ducts spec",
+    "mep spec export"
+  ],
+  "intent_patterns": [],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

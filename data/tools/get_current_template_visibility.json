@@ -1,0 +1,12 @@
+{
+  "name": "get_current_template_visibility",
+  "desc": "Get category visibility settings for the current view template.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "get current template visibility"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "error_manager_run_all_discoverable_rules_on_active_model",
+  "desc": "Run ALL error checking rules against the current model and return a consolidated test report. ",
+  "bridge": "RevitContext",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "skip_stubs",
+      "type": "boolean",
+      "description": "Skip rules marked as stubs (default: true)",
+      "required": false
+    },
+    {
+      "name": "group_filter",
+      "type": "string",
+      "description": "Optional: only run rules in this navigator group (Checking, Coordination, Mechanical, Electrical, Custom, Legends & Notes)",
+      "required": false
+    },
+    {
+      "name": "timeout_seconds",
+      "type": "integer",
+      "description": "Max seconds per rule before marking as timeout (default: 30)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "test all rules",
+    "run all checks",
+    "validate QA",
+    "error pipeline test",
+    "qa test"
+  ]
+}

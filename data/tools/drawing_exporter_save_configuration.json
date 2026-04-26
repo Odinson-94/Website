@@ -1,0 +1,22 @@
+{
+  "name": "drawing_exporter_save_configuration",
+  "desc": "Save the current Drawing Exporter settings (format, naming, output folder, groups, selections) as a named configuration for reuse.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name for the saved configuration, e.g. \\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "save config",
+    "save settings",
+    "export preset",
+    "save export"
+  ]
+}

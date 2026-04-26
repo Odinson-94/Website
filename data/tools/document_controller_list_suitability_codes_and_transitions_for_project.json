@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_list_suitability_codes_and_transitions_for_project",
+  "desc": "Returns all suitability codes (S0-S7) with labels and allowed transitions. Includes project-specific overrides.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project ID for project-specific overrides",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

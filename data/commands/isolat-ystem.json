@@ -1,0 +1,33 @@
+{
+  "class": "IsolateSystemCommand",
+  "desc": "Isolate System command - isolates the selected MEP system in the current view.",
+  "summary": "Isolate System command - isolates the selected MEP system in the current view. FEATURES: - Finds all elements in the same MEP system - Isolates them in the current view - Option to reset isolation",
+  "usecase": "Use when you need to run this command's workflow for the current model task.",
+  "notfor": "Custom UI required for advanced options. AI path is JSON-first without dialogs.",
+  "precondition": "Active Revit document and required context are available.",
+  "postcondition": "The command finishes with tracked success or a handled failure state.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "system",
+    "isolate system",
+    "isolate"
+  ],
+  "intent_patterns": [
+    "* system"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Command execution result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

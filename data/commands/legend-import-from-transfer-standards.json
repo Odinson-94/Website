@@ -1,0 +1,31 @@
+{
+  "class": "LegendImportFromTransferStandardsCommand",
+  "desc": "Import Legend views from a linked standards model via CopyPasteOptions.",
+  "summary": "Import Legend views from a linked standards model via CopyPasteOptions.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "legendimportfromtransferstandards",
+    "import legends from standards"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"showme_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

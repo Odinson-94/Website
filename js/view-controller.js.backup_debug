@@ -1,0 +1,3647 @@
+  // --------------------------------------------------
+  // View Controller
+  // --------------------------------------------------
+  // Controls view transitions for the neural network visualization.
+  // Uses targetViewIndex pattern to prevent text bleeding during fast scrolling.
+  // All animations delegate to brain.js animateToViewState() function.
+  
+  if (window.PERF) window.PERF.mark('view-controller.js START');
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.PERF) window.PERF.mark('DOMContentLoaded fired');
+    // #region agent log
+    setTimeout(() => {
+      const heroContainer = document.getElementById('heroTextContainer');
+      const heroInner = heroContainer?.querySelector('.hero-text-inner');
+      const heroHeading = heroContainer?.querySelector('.hero-heading');
+      const heroSubheading = heroContainer?.querySelector('.hero-subheading');
+      const containerStyles = heroContainer ? getComputedStyle(heroContainer) : null;
+      const innerStyles = heroInner ? getComputedStyle(heroInner) : null;
+      const headingStyles = heroHeading ? getComputedStyle(heroHeading) : null;
+      const subheadingStyles = heroSubheading ? getComputedStyle(heroSubheading) : null;
+      fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view-controller.js:DOMContentLoaded',message:'Hero text computed styles',data:{containerWidth:containerStyles?.width,containerMaxWidth:containerStyles?.maxWidth,containerHeight:containerStyles?.height,innerWidth:innerStyles?.width,innerMaxWidth:innerStyles?.maxWidth,headingFontSize:headingStyles?.fontSize,headingLineHeight:headingStyles?.lineHeight,headingHeight:headingStyles?.height,subheadingFontSize:subheadingStyles?.fontSize,subheadingLineHeight:subheadingStyles?.lineHeight},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B,C,D'})}).catch(()=>{});
+    }, 500);
+    // #endregion
+    const rightPanel = document.getElementById('rightPanel');
+    const logo = document.getElementById('logo');
+    const menubar = document.getElementById('menubar');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    const darkToggle = document.getElementById('darkToggle');
+    const toggleSwitch = document.getElementById('toggleSwitch');
+    const sectionIndicator = document.getElementById('sectionIndicator');
+    const sectionDots = document.querySelectorAll('.section-dot');
+    
+    // --------------------------------------------------
+    // TARGET VIEW TRACKING
+    // --------------------------------------------------
+    // targetViewIndex is the single source of truth for which view
+    // we're navigating to. Text/panels only show when animation completes
+    // AND targetViewIndex still matches. This prevents text bleeding.
+    
+    let targetViewIndex = 0;
+    let currentView = 0;  // Last confirmed view (after animation complete)
+    
+    function setTargetView(viewNum) {
+      targetViewIndex = viewNum;
+      // Also update brain.js target
+      if (window.setTargetView) {
+        window.setTargetView(viewNum);
+      }
+    }
+    
+    function isTargetView(viewNum) {
+      return targetViewIndex === viewNum;
+    }
+    
+    // --------------------------------------------------
+    // ANIMATION DURATIONS (from brain.js)
+    // --------------------------------------------------
+    // These match the durations in brain.js ANIMATION_DURATIONS
+    // Using functions to get them ensures they stay in sync
+    
+    function getDuration(type) {
+      if (window.ANIMATION_DURATIONS) {
+        return window.ANIMATION_DURATIONS[type] || 800;
+      }
+      // Fallback values if brain.js not loaded
+      const defaults = {
+        panOnly: 800,
+        zoomWithPan: 1000,
+        brainMove: 600,
+        textDelay: 400
+      };
+      return defaults[type] || 800;
+    }
+    
+    // --------------------------------------------------
+    // LOCK FLAGS (COMMENTED OUT - using targetViewIndex instead)
+    // --------------------------------------------------
+    // These were used to prevent navigation until content appeared.
+    // Now we use targetViewIndex pattern: text only shows when
+    // animation completes AND target hasn't changed.
+    
+    // let view1Ready = false;        // REMOVED - use targetViewIndex
+    // let view2CanScrollDown = false; // REMOVED - use targetViewIndex
+    // let view3Ready = false;        // REMOVED - use targetViewIndex
+    // let view4Ready = false;        // REMOVED - use targetViewIndex
+    // let view5Ready = false;        // REMOVED - use targetViewIndex
+    // let view6Ready = false;        // REMOVED - use targetViewIndex
+    // let view7Ready = false;        // REMOVED - use targetViewIndex
+    
+    let isTransitioning = false;  // Still needed to prevent overlapping animations
+    let view3AnimationComplete = true; // Animation removed - always ready
+    let isZoomedIn = false;
+    
+    // --------------------------------------------------
+    // VIEW 3 VIDEO CONTROL
+    // --------------------------------------------------
+    // Video only plays when on View 3. Stops when fully leaving View 3.
+    
+    function playView3Video() {
+      const video = document.getElementById('demoIntroVideo');
+      if (video) {
+        // Ensure loop is always enabled
+        video.loop = true;
+        // Resume from current position (don't reset)
+        video.play().catch(() => {});
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view-controller.js:playView3Video',message:'Video play called (resume)',data:{currentTime:video.currentTime,paused:video.paused,readyState:video.readyState},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
+      }
+    }
+    
+    // Ensure intro video is ALWAYS playing when on View 3
+    (function() {
+      const video = document.getElementById('demoIntroVideo');
+      if (video) {
+        // Fallback loop - restart if video ends
+        video.addEventListener('ended', function() {
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        });
+        
+        // Check every 500ms if video should be playing but isn't
+        setInterval(function() {
+          if (currentView === 3 && video.paused && video.readyState >= 2) {
+            video.play().catch(() => {});
+          }
+        }, 500);
+        
+        // Also restart on visibility change (tab switching, etc.)
+        document.addEventListener('visibilitychange', function() {
+          if (!document.hidden && currentView === 3 && video.paused) {
+            video.play().catch(() => {});
+          }
+        });
+      }
+    })();
+    
+    function stopView3Video() {
+      const video = document.getElementById('demoIntroVideo');
+      if (video) {
+        video.pause();
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view-controller.js:stopView3Video',message:'Video pause called',data:{currentTime:video.currentTime,paused:video.paused},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
+      }
+    }
+    
+    // --------------------------------------------------
+    // AUTO-HOVER NODE CYCLING (Views 1 & 8)
+    // --------------------------------------------------
+    // Automatically cycles through brain regions, hovering the center node
+    // of each region for 3-4 seconds. Only active on views 1 and 8.
+    
+    let autoHoverInterval = null;
+    let autoHoverRegionIndex = 0;
+    const AUTO_HOVER_DURATION = 3000; // 3 seconds per region
+    const BRAIN_REGIONS = [0, 1, 2, 3, 4]; // Frontal, Parietal, Occipital, Temporal, Central
+    let activeAutoHovers = []; // Track multiple active hovers for overlap
+    
+    function startAutoHover() {
+      if (autoHoverInterval) return; // Already running
+      
+      // Initial hover
+      triggerAutoHover();
+      
+      // Cycle through regions with overlap
+      autoHoverInterval = setInterval(() => {
+        autoHoverRegionIndex = (autoHoverRegionIndex + 1) % BRAIN_REGIONS.length;
+        triggerAutoHover();
+      }, AUTO_HOVER_DURATION);
+    }
+    
+    function stopAutoHover() {
+      if (autoHoverInterval) {
+        clearInterval(autoHoverInterval);
+        autoHoverInterval = null;
+      }
+      // Clear all active hover timeouts
+      activeAutoHovers.forEach(timeout => clearTimeout(timeout));
+      activeAutoHovers = [];
+      // Pass false to indicate this is auto-hover cleanup, not user action
+      if (window.clearHoveredNode) {
+        window.clearHoveredNode(false);
+      }
+    }
+    
+    function triggerAutoHover() {
+      if (!window.getCenterNodeInRegion || !window.setHoveredNode) return;
+      
+      // Don't auto-hover if user is manually hovering
+      if (window.isUserHovering && window.isUserHovering()) return;
+      
+      const regionNum = BRAIN_REGIONS[autoHoverRegionIndex];
+      const nodeId = window.getCenterNodeInRegion(regionNum);
+      
+      if (nodeId !== null) {
+        // Set the new hover (overlaps with previous which fades naturally)
+        // Pass false to indicate this is auto-hover, not user-initiated
+        window.setHoveredNode(nodeId, false);
+      }
+    }
+    
+    // Check if auto-hover should be active based on current view
+    function updateAutoHover(viewNum) {
+      if (viewNum === 0 || viewNum === 1 || viewNum === 8) {
+        startAutoHover();
+      } else {
+        stopAutoHover();
+      }
+    }
+    
+    // Animated section indicator with trailing ball
+    const activeBall = document.getElementById('sectionActiveBall');
+    const trailBall1 = document.getElementById('trailBall1');
+    const trailBall2 = document.getElementById('trailBall2');
+    let previousDotTop = 0;
+    
+    // --------------------------------------------------
+    // SECTION INDICATOR (Dots on left side)
+    // --------------------------------------------------
+    // Shows current view with animated ball. View 0 has no dot.
+    
+    function updateSectionIndicator(viewNum) {
+      const targetDot = document.querySelector(`.section-dot[data-view="${viewNum}"]`);
+      if (!targetDot) return;
+      
+      // Calculate target position
+      const targetTop = targetDot.offsetTop;
+      const startTop = previousDotTop;
+      
+      // Update active class on dots
+      sectionDots.forEach(dot => {
+        const dotView = parseInt(dot.getAttribute('data-view'));
+        if (dotView === viewNum) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+      
+      // Create trail effect - position trail balls at start
+      if (Math.abs(targetTop - startTop) > 5) {
+        trailBall1.style.top = startTop + 'px';
+        trailBall2.style.top = startTop + 'px';
+        
+        // Reset and trigger animation
+        trailBall1.classList.remove('animating');
+        trailBall2.classList.remove('animating');
+        trailBall1.offsetHeight; // Force reflow
+        trailBall1.classList.add('animating');
+        setTimeout(() => trailBall2.classList.add('animating'), 30);
+      }
+      
+      // Animate the active ball immediately
+      activeBall.style.top = targetTop + 'px';
+      previousDotTop = targetTop;
+    }
+    
+    // Initialize ball position on first dot (View 0)
+    setTimeout(() => {
+      const firstDot = document.querySelector('.section-dot[data-view="0"]');
+      if (firstDot && activeBall) {
+        previousDotTop = firstDot.offsetTop;
+        activeBall.style.top = previousDotTop + 'px';
+      }
+    }, 100);
+    
+    // --------------------------------------------------
+    // SECTION DOT CLICK HANDLERS
+    // --------------------------------------------------
+    // Clicking a dot navigates to that view immediately.
+    // Ball animation happens instantly, view transition follows.
+    
+    sectionDots.forEach(dot => {
+      dot.addEventListener('click', async () => {
+        const targetView = parseInt(dot.getAttribute('data-view'));
+        
+        // Validate target (12 views: 0-11)
+        if (targetView < 0 || targetView > 11) return;
+        
+        // During content loading phase - block completely
+        if (isTransitioning && !animationPhase) {
+          console.log('Dot click blocked - content loading phase');
+          return;
+        }
+        
+        // Same view we're already going to - ignore
+        if (targetViewIndex === targetView) return;
+        
+        // IMMEDIATE: Update ball position (don't wait for view transition)
+        updateSectionIndicator(targetView);
+        
+        // Navigate to target view (can interrupt animation phase)
+        await navigateToView(targetView);
+      });
+    });
+    
+    // --------------------------------------------------
+    // UNIFIED NAVIGATION FUNCTION
+    // --------------------------------------------------
+    // This is the SINGLE function for navigating between views.
+    // It handles all transitions using animateToViewState().
+    // Text/panels only appear after animation completes AND target matches.
+    
+    // --------------------------------------------------
+    // INTERRUPTIBLE ANIMATION SYSTEM
+    // --------------------------------------------------
+    // Animation phase: camera/zoom transitions - CAN be interrupted
+    // Content phase: text/panel loading - CANNOT be interrupted
+    // When interrupted, new animation starts from current position (smooth handoff)
+    
+    let animationPhase = false;  // true = interruptible, false = locked
+    
+    async function navigateToView(targetView) {
+      // During content loading phase - block completely
+      if (isTransitioning && !animationPhase) {
+        console.log('Navigation blocked - content loading phase');
+        return;
+      }
+      
+      // Already navigating to this view - ignore
+      if (isTransitioning && targetViewIndex === targetView) {
+        console.log('Already navigating to view', targetView);
+        return;
+      }
+      
+      // Same view and not transitioning - ignore
+      if (currentView === targetView && !isTransitioning) return;
+      
+      // If interrupting an animation, log it
+      if (isTransitioning && animationPhase) {
+        console.log(`Interrupting animation to go to view ${targetView}`);
+        // The previous animation will continue but exit at target check
+        // New animation will start from current positions (smooth handoff)
+      }
+      
+      isTransitioning = true;
+      animationPhase = true;  // Enter interruptible phase
+      const startView = currentView;
+      
+      // #region agent log
+      const videoEl = document.getElementById('demoIntroVideo');
+      fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view-controller.js:navigateToView:start',message:'Navigation started',data:{startView:startView,targetView:targetView,videoPlaying:videoEl?!videoEl.paused:null,videoTime:videoEl?.currentTime},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D'})}).catch(()=>{});
+      // #endregion
+      
+      // Set target immediately - this is checked when animations complete
+      setTargetView(targetView);
+      updateSectionIndicator(targetView);
+      
+      // Hide scroll indicator during transition
+      scrollIndicator.classList.remove('visible');
+      
+      // IMMEDIATELY hide back-to-top if going to views 0 or 1
+      if (targetView <= 1) {
+        backToTop.classList.remove('visible');
+      }
+      
+      // IMMEDIATELY hide all text content - prevents bleeding
+      hideAllPanels();
+      // Always hide rightPanel at start of navigation
+      // (will be re-shown below if going to View 1, or in showViewContent for View 2)
+      rightPanel.classList.remove('visible');
+      
+      // Ensure core UI elements are visible (in case interrupted during intro)
+      logo.classList.add('visible');
+      menubar.classList.add('visible');
+      sectionIndicator.classList.add('visible');
+      darkToggle.classList.add('visible');
+      
+      // Start neural animations if not already started (in case interrupted early)
+      if (window.startNeuralAnimations) {
+        window.startNeuralAnimations();
+      }
+      
+      console.log(`navigateToView: ${startView} -> ${targetView}`);
+      
+      // Calculate duration based on transition type
+      const startState = window.VIEW_STATES ? window.VIEW_STATES[startView] : null;
+      const targetState = window.VIEW_STATES ? window.VIEW_STATES[targetView] : null;
+      const zoomChanging = startState && targetState && Math.abs(startState.zoom - targetState.zoom) > 0.5;
+      const duration = zoomChanging ? getDuration('zoomWithPan') : getDuration('panOnly');
+      
+      // Special handling for View 1 (hero text and rightPanel visibility)
+      // IMPORTANT: Always set state based on TARGET, not conditionally on startView
+      // This handles interruption correctly (when currentView is stale)
+      const heroTextContainer = document.getElementById('heroTextContainer');
+      if (targetView === 1) {
+        // Going TO View 1 - show hero text and rightPanel
+        heroTextContainer.classList.remove('fade-out');
+        heroTextContainer.classList.add('visible');
+        rightPanel.classList.add('visible');
+        document.getElementById('thinkingSection').classList.remove('visible');
+        resetView2Content();
+        // #region agent log
+        setTimeout(() => {
+          const heroInner = heroTextContainer.querySelector('.hero-text-inner');
+          const heroHeading = heroTextContainer.querySelector('.hero-heading');
+          const containerStyles = getComputedStyle(heroTextContainer);
+          const innerStyles = heroInner ? getComputedStyle(heroInner) : null;
+          const headingStyles = heroHeading ? getComputedStyle(heroHeading) : null;
+          fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view-controller.js:navigateToView1',message:'View1 hero styles when visible',data:{containerClasses:heroTextContainer.className,containerWidth:containerStyles.width,containerLeft:containerStyles.left,innerMaxWidth:innerStyles?.maxWidth,headingFontSize:headingStyles?.fontSize,headingHeight:headingStyles?.height,windowWidth:window.innerWidth},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B'})}).catch(()=>{});
+        }, 100);
+        // #endregion
+      } else {
+        // Going to ANY other view - always hide hero text
+        heroTextContainer.classList.remove('visible');
+        heroTextContainer.classList.add('fade-out');
+        // rightPanel already removed above
+      }
+      
+      // Animate brain to target view
+      // animateToViewState reads CURRENT values, so interruption works naturally
+      if (window.animateToViewState) {
+        await window.animateToViewState(targetView);
+      } else {
+        // Fallback if animateToViewState not available
+        await sleep(duration);
+      }
+      
+      // Check if we were interrupted (target changed during animation)
+      if (!isTargetView(targetView)) {
+        console.log('Animation interrupted, yielding to new navigation');
+        // Don't reset isTransitioning - the interrupting navigation owns it now
+        return;
+      }
+      
+      // ========== ENTER CONTENT PHASE - NO MORE INTERRUPTS ==========
+      animationPhase = false;
+      
+      // Wait a beat before showing content
+      await sleep(getDuration('textDelay'));
+      
+      // Final check - target might have changed during delay
+      if (!isTargetView(targetView)) {
+        console.log('Target changed during delay, skipping content show');
+        isTransitioning = false;
+        return;
+      }
+      
+      // Update current view and show content
+      const previousView = currentView;
+      currentView = targetView;
+      isZoomedIn = (targetView >= 2 && targetView <= 7);
+      
+      // Stop View 3 video only when COMPLETELY leaving View 3
+      if (previousView === 3 && targetView !== 3) {
+        stopView3Video();
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view-controller.js:navigateToView',message:'Leaving View 3 completely',data:{previousView:previousView,targetView:targetView,isTransitioning:isTransitioning},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+        // #endregion
+      }
+      
+      // Show appropriate content for target view
+      showViewContent(targetView);
+      
+      // Hide scroll indicator on View 11 (BUILD X - last view)
+      if (targetView === 11) {
+        scrollIndicator.classList.remove('visible');
+        updateBackToTop();
+      } else {
+        scrollIndicator.classList.add('visible');
+        updateBackToTop();
+      }
+      isTransitioning = false;
+    }
+    
+    // --------------------------------------------------
+    // SHOW VIEW CONTENT
+    // --------------------------------------------------
+    // Shows the text/panels for a specific view.
+    // Only called after animation completes AND target matches.
+    
+    function showViewContent(viewNum) {
+      // Show/hide section indicator based on view
+      if (viewNum === 9) {
+        sectionIndicator.classList.remove('visible');
+      } else {
+        sectionIndicator.classList.add('visible');
+      }
+      
+      // Update auto-hover based on view (active on views 1 and 8)
+      updateAutoHover(viewNum);
+      
+      // Overlay nodes disabled during demo consolidation
+      // TODO: Re-enable when overlay node views are added back
+      // if (viewNum === 4) {
+      //   showOverlayNodes(viewNum);
+      // } else {
+      //   hideOverlayNodes();
+      // }
+      hideOverlayNodes();
+      
+      switch(viewNum) {
+        case 0:
+          // View 0: Brain centered, no panels (or add view0PanelBg if needed)
+          break;
+          
+        case 1:
+          // View 1: Hero text on right, no panels
+          break;
+          
+        case 2:
+          // View 2: Right panel with services + RIBA left panel
+          rightPanel.classList.add('visible');
+          document.getElementById('thinkingSection').classList.add('visible');
+          // Show RIBA stages on LEFT side
+          const ribaLeftPanel = document.getElementById('ribaLeftPanel');
+          if (ribaLeftPanel) ribaLeftPanel.classList.add('visible');
+          // Show services content immediately (thinking animation removed)
+          showView2ContentInstantly();
+          // #region agent log
+          setTimeout(() => {
+            const thinkingSection = document.getElementById('thinkingSection');
+            const solutionSection = document.getElementById('ourSolutionSection');
+            const solutionHeading = solutionSection?.querySelector('.solution-heading');
+            const bodyText = solutionSection?.querySelector('.about-us-text');
+            const thinkingStyles = thinkingSection ? getComputedStyle(thinkingSection) : null;
+            const sectionStyles = solutionSection ? getComputedStyle(solutionSection) : null;
+            const headingStyles = solutionHeading ? getComputedStyle(solutionHeading) : null;
+            const bodyStyles = bodyText ? getComputedStyle(bodyText) : null;
+            fetch('http://127.0.0.1:7242/ingest/31da8b6e-d83f-42fc-b222-794ab77bafe7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view-controller.js:View2',message:'AEC Package section styles',data:{thinkingMaxWidth:thinkingStyles?.maxWidth,thinkingWidth:thinkingStyles?.width,sectionMaxWidth:sectionStyles?.maxWidth,sectionWidth:sectionStyles?.width,headingFontSize:headingStyles?.fontSize,headingWidth:headingStyles?.width,bodyMaxWidth:bodyStyles?.maxWidth,bodyWidth:bodyStyles?.width,bodyClassName:bodyText?.className},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'AEC'})}).catch(()=>{});
+          }, 100);
+          // #endregion
+          break;
+          
+        case 3:
+          // View 3: Demo Intro (40/60 split with image)
+          const demoIntroOverlay = document.getElementById('demoIntroOverlay');
+          if (demoIntroOverlay) demoIntroOverlay.classList.add('visible');
+          // Play video when entering View 3
+          playView3Video();
+          break;
+          
+        case 4:
+          // View 4: MEP Floorplan Demo (chat + Revit)
+          const gifOverlayEl = document.getElementById('gifOverlay');
+          if (gifOverlayEl) gifOverlayEl.classList.add('visible');
+          break;
+          
+        case 5:
+          // View 5: Schematics MEP Demo
+          const schematicsOverlay = document.getElementById('schematicsOverlay');
+          if (schematicsOverlay) schematicsOverlay.classList.add('visible');
+          break;
+          
+        case 6:
+          // View 6: 3D Modelling MEP Demo
+          const modellingOverlay = document.getElementById('modellingOverlay');
+          if (modellingOverlay) modellingOverlay.classList.add('visible');
+          break;
+          
+        case 7:
+          // View 7: Schedules MEP Demo
+          const schedulesOverlay = document.getElementById('schedulesOverlay');
+          if (schedulesOverlay) schedulesOverlay.classList.add('visible');
+          break;
+          
+        case 8:
+          // View 8: Spec Writing MEP Demo
+          const specWritingOverlay = document.getElementById('specWritingOverlay');
+          if (specWritingOverlay) specWritingOverlay.classList.add('visible');
+          break;
+          
+        case 9:
+          // View 9: Architectural Build Demo
+          const archBuildOverlay = document.getElementById('archBuildOverlay');
+          if (archBuildOverlay) archBuildOverlay.classList.add('visible');
+          break;
+          
+        case 10:
+          // View 10: Coming Soon (Structural & Civil)
+          const comingSoonOverlay = document.getElementById('comingSoonOverlay');
+          if (comingSoonOverlay) comingSoonOverlay.classList.add('visible');
+          break;
+          
+        case 11:
+          // View 11: BUILD X Demo (footer embedded at bottom)
+          const buildXOverlay = document.getElementById('buildXOverlay');
+          if (buildXOverlay) buildXOverlay.classList.add('visible');
+          // Add dark mode for menubar (uses existing html.dark-mode styles from shared-styles.css)
+          document.documentElement.classList.add('dark-mode');
+          document.body.classList.add('view-dark-header');
+          break;
+      }
+    }
+    
+    // --------------------------------------------------
+    // OVERLAY NODES - Interactive nodes over brain
+    // --------------------------------------------------
+    // Shows 5 clickable nodes anchored to brain nodes
+    // Hovering triggers the actual brain node hover behavior
+    // After 1 second hover, loading ring appears with accelerating pulses
+    
+    const RING_DURATION = 3000; // Duration of loading ring in ms - change this to adjust all timings
+    
+    const overlayContainer = document.getElementById('overlayNodesContainer');
+    let overlayNodeData = []; // {element, nodeId, hoverTimer, loadingState}
+    let overlayAnimationFrame = null;
+    let overlayActive = false;
+    let currentOverlayView = null;
+    
+    function showOverlayNodes(viewNum) {
+      if (!window.getCenterNodesForView) {
+        console.log('getCenterNodesForView not available');
+        return;
+      }
+      
+      // Get 6 nodes closest to center, spread out
+      const centerNodes = window.getCenterNodesForView(viewNum, 8);
+      if (!centerNodes.length) {
+        console.log('No center nodes found for view', viewNum);
+        return;
+      }
+      
+      currentOverlayView = viewNum;
+      
+      // Node titles for MEP screen (View 4) only
+      const nodeTitles = [
+        'MEP Engineer',
+        'Project Manager',
+        'Architect', 
+        'Structural Engineer',
+        'Client',
+        'Contractor',
+        'Building Control',
+        'Civil Engineer'
+      ];
+      
+      // Clear existing overlay nodes
+      overlayContainer.innerHTML = '';
+      overlayNodeData = [];
+      
+      // Create overlay node for each
+      centerNodes.forEach((nodeInfo, index) => {
+        const overlayNode = document.createElement('div');
+        overlayNode.className = 'overlay-node';
+        overlayNode.dataset.nodeId = nodeInfo.node.id;
+        
+        const title = nodeTitles[index % nodeTitles.length];
+        const isMEPEngineer = (index === 0);
+        
+        // Only show titles on View 4 (MEP screen)
+        const showTitleClass = (viewNum === 4) ? ' show-title' : '';
+        const showHintClass = (viewNum === 4 && isMEPEngineer) ? ' show-hint' : '';
+        const mepShineClass = (viewNum === 4 && isMEPEngineer) ? ' mep-shine' : '';
+        
+        overlayNode.className = 'overlay-node' + showTitleClass + showHintClass + mepShineClass;
+        overlayNode.dataset.nodeId = nodeInfo.node.id;
+        
+        overlayNode.innerHTML = `
+          <div class="node-title">${title}</div>
+          ${isMEPEngineer && viewNum === 4 ? '<div class="node-arrow">↑</div><div class="node-hint">hover here</div>' : ''}
+          <div class="node-code"></div>
+          <div class="node-core"></div>
+          <div class="node-glow"></div>
+          <div class="node-pulse-ring"></div>
+          <svg class="loading-ring" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="14"></circle>
+          </svg>
+        `;
+        
+        const nodeData = {
+          element: overlayNode,
+          nodeId: nodeInfo.node.id,
+          hoverTimer: null,
+          loadingState: 'idle', // idle, loading, accelerating, loaded
+          accelerateInterval: null,
+          codeInterval: null,
+          title: title,
+          isMEPEngineer: isMEPEngineer
+        };
+        
+        // Hover handlers - trigger actual brain node hover + loading sequence
+        overlayNode.addEventListener('mouseenter', () => {
+          // Don't re-trigger if already loaded or loading
+          if (nodeData.loadingState === 'loaded') return;
+          
+          // Unblock cascades when hovering a new node
+          if (window.unblockCascades) {
+            window.unblockCascades();
+          }
+          
+          if (window.setHoveredNode) {
+            window.setHoveredNode(nodeInfo.node.id);
+          }
+          
+          // Only MEP Engineer can trigger loading animation on View 4
+          // Other views work as before
+          if (viewNum === 4 && !isMEPEngineer) return;
+          
+          // Start loading timer (1 second delay) only if idle
+          if (nodeData.loadingState === 'idle') {
+            nodeData.hoverTimer = setTimeout(() => {
+              startNodeLoading(nodeData);
+            }, 1000);
+          }
+        });
+        
+        overlayNode.addEventListener('mouseleave', () => {
+          if (window.clearHoveredNode) {
+            window.clearHoveredNode();
+          }
+          
+          // If loaded, just reset so it can trigger again next time
+          if (nodeData.loadingState === 'loaded') {
+            nodeData.loadingState = 'idle';
+            overlayNode.classList.remove('loaded');
+            overlayNode.classList.remove('synced');
+          } else {
+            // Cancel loading if user leaves during loading
+            cancelNodeLoading(nodeData);
+          }
+        });
+        
+        overlayContainer.appendChild(overlayNode);
+        overlayNodeData.push(nodeData);
+      });
+      
+      // Show container
+      overlayContainer.classList.add('visible');
+      overlayActive = true;
+      
+      // Start position update loop
+      startOverlayPositionLoop();
+      
+      console.log(`Showing ${centerNodes.length} overlay nodes for view ${viewNum}`);
+    }
+    
+    // Code snippets for each node type - relevant to their role
+    const nodeSpecificCodes = {
+      'MEP Engineer': [
+        '#route ductwork',
+        '#size equipment',
+        '#check clearances',
+        '#run calculations',
+        '#update services',
+        '#coordinate plant',
+        '#verify pressures',
+        '#balance airflow',
+        '#check acoustics',
+        '#route pipework',
+        '#size chillers',
+        '#calc heat loads',
+        '#set VAV zones',
+        '#check drainage',
+        '#route conduit',
+        '#size cable trays',
+        '#verify voltages',
+        '#check lighting',
+        '#model risers',
+        '#clash detect'
+      ],
+      'Project Manager': [
+        '#update schedule',
+        '#track progress',
+        '#allocate resources',
+        '#send update',
+        '#review timeline',
+        '#log issue',
+        '#assign task',
+        '#set milestone',
+        '#check budget',
+        '#request update',
+        '#escalate risk',
+        '#book meeting',
+        '#approve change',
+        '#close action',
+        '#notify team',
+        '#update tracker',
+        '#review costs',
+        '#confirm dates',
+        '#chase response',
+        '#issue minutes'
+      ],
+      'Architect': [
+        '#apply boxing',
+        '#fix ceiling void',
+        '#add plant room',
+        '#add plant area',
+        '#adjust layout',
+        '#update drawings',
+        '#revise floor plan',
+        '#check fire egress',
+        '#add riser shaft',
+        '#amend ceiling',
+        '#update sections',
+        '#check heights',
+        '#revise facade',
+        '#add louvres',
+        '#check sightlines',
+        '#update finishes',
+        '#coord bulkheads',
+        '#add access panel',
+        '#revise details',
+        '#check buildups'
+      ],
+      'Client': [
+        '#answer RFI',
+        '#sign off costs',
+        '#approve design',
+        '#review proposal',
+        '#confirm scope',
+        '#release payment',
+        '#accept variation',
+        '#review progress',
+        '#approve samples',
+        '#sign off stage',
+        '#confirm brief',
+        '#approve mockup',
+        '#review budget',
+        '#accept programme',
+        '#approve spec',
+        '#confirm handover',
+        '#review warranty',
+        '#accept defects',
+        '#sign contract',
+        '#release retention'
+      ],
+      'Contractor': [
+        '#submit quote',
+        '#confirm install',
+        '#schedule works',
+        '#order materials',
+        '#assign team',
+        '#log completion',
+        '#request access',
+        '#book crane',
+        '#pour concrete',
+        '#install fixings',
+        '#pull cables',
+        '#hang ductwork',
+        '#fit pipework',
+        '#commission unit',
+        '#test system',
+        '#submit O&Ms',
+        '#snag works',
+        '#request sign off',
+        '#demob site',
+        '#close permits'
+      ],
+      'Structural Engineer': [
+        '#check loadings',
+        '#size beams',
+        '#design slab',
+        '#calc deflection',
+        '#verify fixings',
+        '#check penetrations',
+        '#approve hanger',
+        '#sign off opening',
+        '#review steelwork',
+        '#check foundations',
+        '#verify shear',
+        '#approve bracket',
+        '#calc wind load',
+        '#check vibration',
+        '#approve cantilever'
+      ],
+      'Building Control': [
+        '#review drawings',
+        '#check compliance',
+        '#approve Part L',
+        '#verify Part B',
+        '#inspect works',
+        '#issue approval',
+        '#check fire rating',
+        '#verify U-values',
+        '#approve ventilation',
+        '#check access',
+        '#sign off stage',
+        '#request test cert',
+        '#verify insulation',
+        '#check acoustics',
+        '#issue completion'
+      ],
+      'Civil Engineer': [
+        '#design drainage',
+        '#calc runoff',
+        '#size attenuation',
+        '#check levels',
+        '#design paving',
+        '#verify gradients',
+        '#approve connection',
+        '#check adoption',
+        '#design substation',
+        '#verify incoming',
+        '#approve trenches',
+        '#check crossings',
+        '#design retaining',
+        '#verify compaction',
+        '#approve surfacing'
+      ]
+    };
+    
+    // Global code flash interval for synchronized flashing
+    let globalCodeFlashInterval = null;
+    let pulseCodeFlashEnabled = false;
+    
+    // Flash code on ALL nodes simultaneously with role-specific codes
+    function flashCodeOnAllNodes() {
+      if (currentOverlayView !== 4) return;
+      
+      overlayNodeData.forEach(nodeData => {
+        const codeEl = nodeData.element.querySelector('.node-code');
+        if (!codeEl) return;
+        
+        // Get role-specific codes
+        const codes = nodeSpecificCodes[nodeData.title] || nodeSpecificCodes['MEP Engineer'];
+        const snippet = codes[Math.floor(Math.random() * codes.length)];
+        codeEl.textContent = snippet;
+        codeEl.classList.add('visible');
+        
+        setTimeout(() => {
+          codeEl.classList.remove('visible');
+        }, 200);
+      });
+    }
+    
+    // Flash code on a specific node by brain node ID (for hover - shows CODES)
+    function flashCodeOnNodeById(brainNodeId) {
+      if (currentOverlayView !== 4) return;
+      
+      // Find the overlay node that matches this brain node
+      const nodeData = overlayNodeData.find(nd => nd.nodeId === brainNodeId);
+      if (!nodeData) return;
+      
+      const codeEl = nodeData.element.querySelector('.node-code');
+      if (!codeEl) return;
+      
+      // Get role-specific codes
+      const codes = nodeSpecificCodes[nodeData.title] || nodeSpecificCodes['MEP Engineer'];
+      const snippet = codes[Math.floor(Math.random() * codes.length)];
+      codeEl.textContent = snippet;
+      codeEl.style.color = ''; // Reset to default (teal from CSS)
+      codeEl.classList.add('visible');
+      
+      setTimeout(() => {
+        codeEl.classList.remove('visible');
+      }, 150);
+    }
+    
+    // Pulse callbacks are set up in the auto-signals section below
+    
+    // Enable/disable pulse-synced code flashing
+    function enablePulseCodeFlash() {
+      pulseCodeFlashEnabled = true;
+    }
+    
+    function disablePulseCodeFlash() {
+      pulseCodeFlashEnabled = false;
+      // Clear all code displays
+      overlayNodeData.forEach(nodeData => {
+        const codeEl = nodeData.element.querySelector('.node-code');
+        if (codeEl) codeEl.classList.remove('visible');
+      });
+    }
+    
+    // Legacy timer-based flashing (keeping for fallback)
+    function startGlobalCodeFlashing(interval) {
+      if (currentOverlayView !== 4) return;
+      enablePulseCodeFlash();
+    }
+    
+    // Stop synchronized code flashing
+    function stopGlobalCodeFlashing() {
+      disablePulseCodeFlash();
+    }
+    
+    // Sync all nodes and show completion message (View 4 only for message)
+    function syncAllNodes() {
+      // All nodes glow together
+      overlayNodeData.forEach(nodeData => {
+        nodeData.element.classList.add('synced');
+      });
+      
+      // Stop any code flashing
+      stopGlobalCodeFlashing();
+      
+      // Stop auto signal questions permanently
+      if (window.setProjectComplete) {
+        window.setProjectComplete();
+      }
+      
+      // Show big tick overlay on View 4
+      if (currentOverlayView === 4) {
+        const completeOverlay = document.getElementById('projectCompleteOverlay');
+        if (completeOverlay) {
+          completeOverlay.classList.add('visible');
+          
+          // Hide overlay after animation (longer to account for staged animation)
+          setTimeout(() => {
+            completeOverlay.classList.remove('visible');
+          }, 5000);
+        }
+      }
+      
+      // Remove synced state after a moment
+      setTimeout(() => {
+        overlayNodeData.forEach(nodeData => {
+          nodeData.element.classList.remove('synced');
+        });
+      }, 5000);
+    }
+    
+    function startNodeLoading(nodeData) {
+      const { element, nodeId } = nodeData;
+      
+      // Remove shine effect when loading starts
+      element.classList.remove('mep-shine');
+      
+      // Start loading state - ring starts filling
+      nodeData.loadingState = 'loading';
+      element.classList.add('loading');
+      
+      // Set ring animation duration dynamically
+      const ring = element.querySelector('.loading-ring circle');
+      if (ring) {
+        ring.style.animationDuration = (RING_DURATION / 1000) + 's';
+      }
+      
+      // Start synchronized code flashing on ALL nodes
+      startGlobalCodeFlashing(300);
+      
+      // Fire pulses throughout, ramping up quantity
+      let elapsed = 0;
+      const updateInterval = 120;
+      
+      nodeData.accelerateInterval = setInterval(() => {
+        elapsed += updateInterval;
+        const progress = Math.min(elapsed / RING_DURATION, 1);
+        
+        // Speed only increases slightly (1x to 1.4x)
+        const pulseSpeed = 1.0 + progress * 0.4;
+        
+        if (window.setNodePulseSpeed) {
+          window.setNodePulseSpeed(nodeId, pulseSpeed);
+        }
+        if (window.updatePulsesFromNode) {
+          window.updatePulsesFromNode(nodeId, pulseSpeed);
+        }
+        
+        // Fire pulses - quantity ramps up, peaks at 90%
+        if (window.triggerNodePulse) {
+          // Number of triggers: 1 at start, up to 3 near the end
+          let triggers = 1;
+          if (progress > 0.3) triggers = 2;
+          if (progress > 0.6) triggers = 3;
+          if (progress > 0.9) triggers = 2; // Slight ease off at very end
+          
+          for (let i = 0; i < triggers; i++) {
+            window.triggerNodePulse(nodeId);
+          }
+        }
+        
+        // Complete loading when ring finishes
+        if (progress >= 1) {
+          completeNodeLoading(nodeData);
+        }
+      }, updateInterval);
+    }
+    
+    function completeNodeLoading(nodeData) {
+      const { element, nodeId } = nodeData;
+      
+      // Clear acceleration interval
+      if (nodeData.accelerateInterval) {
+        clearInterval(nodeData.accelerateInterval);
+        nodeData.accelerateInterval = null;
+      }
+      
+      // Stop synchronized code flashing
+      stopGlobalCodeFlashing();
+      
+      // Block cascades from this node until another node is hovered
+      if (window.blockCascadesFromNode) {
+        window.blockCascadesFromNode(nodeId);
+      }
+      
+      // STOP immediately - no more pulses
+      if (window.clearHoveredNode) {
+        window.clearHoveredNode();
+      }
+      
+      // Reset pulse speed to normal
+      if (window.setNodePulseSpeed) {
+        window.setNodePulseSpeed(nodeId, 1.0);
+      }
+      
+      // Set loaded state
+      nodeData.loadingState = 'loaded';
+      element.classList.remove('loading');
+      element.classList.add('loaded');
+      
+      // ALL nodes glow together after loading completes
+      syncAllNodes();
+      
+      // Reset after glow animation completes (matches overlay duration)
+      setTimeout(() => {
+        element.classList.remove('loaded');
+        nodeData.loadingState = 'idle';
+        // Restore mep-shine for MEP Engineer on View 4
+        if (nodeData.isMEPEngineer && currentOverlayView === 4) {
+          element.classList.add('mep-shine');
+        }
+      }, 5500);
+    }
+    
+    function cancelNodeLoading(nodeData) {
+      const { element, nodeId } = nodeData;
+      
+      // Clear timers
+      if (nodeData.hoverTimer) {
+        clearTimeout(nodeData.hoverTimer);
+        nodeData.hoverTimer = null;
+      }
+      
+      if (nodeData.accelerateInterval) {
+        clearInterval(nodeData.accelerateInterval);
+        nodeData.accelerateInterval = null;
+      }
+      
+      // Stop synchronized code flashing
+      stopGlobalCodeFlashing();
+      
+      // Reset visual state
+      element.classList.remove('loading', 'loaded');
+      nodeData.loadingState = 'idle';
+      
+      // Restore mep-shine for MEP Engineer on View 4
+      if (nodeData.isMEPEngineer && currentOverlayView === 4) {
+        element.classList.add('mep-shine');
+      }
+      
+      // Reset pulse speed
+      if (window.setNodePulseSpeed) {
+        window.setNodePulseSpeed(nodeId, 1.0);
+      }
+    }
+    
+    function hideOverlayNodes() {
+      overlayActive = false;
+      overlayContainer.classList.remove('visible');
+      
+      // Cancel any loading states
+      overlayNodeData.forEach(nodeData => {
+        cancelNodeLoading(nodeData);
+      });
+      
+      // Clear hovered node if any
+      if (window.clearHoveredNode) {
+        window.clearHoveredNode();
+      }
+      
+      // Stop animation loop
+      if (overlayAnimationFrame) {
+        cancelAnimationFrame(overlayAnimationFrame);
+        overlayAnimationFrame = null;
+      }
+      
+      // Clear after fade out
+      setTimeout(() => {
+        if (!overlayContainer.classList.contains('visible')) {
+          overlayContainer.innerHTML = '';
+          overlayNodeData = [];
+        }
+      }, 500);
+    }
+    
+    // Update overlay node positions to match brain node screen positions
+    function updateOverlayPositions() {
+      if (!overlayActive || !window.getNodeCurrentScreenPos) return;
+      
+      overlayNodeData.forEach(({ element, nodeId }) => {
+        const pos = window.getNodeCurrentScreenPos(nodeId);
+        if (pos) {
+          element.style.left = pos.x + 'px';
+          element.style.top = pos.y + 'px';
+        }
+      });
+    }
+    
+    // Animation loop for overlay positions
+    function startOverlayPositionLoop() {
+      if (overlayAnimationFrame) return; // Already running
+      
+      function loop() {
+        if (!overlayActive) {
+          overlayAnimationFrame = null;
+          return;
+        }
+        updateOverlayPositions();
+        overlayAnimationFrame = requestAnimationFrame(loop);
+      }
+      overlayAnimationFrame = requestAnimationFrame(loop);
+    }
+    
+    // Menubar hover effect is now in js/menubar.js - SINGLE SOURCE OF TRUTH
+    
+    // Dark mode toggle
+    // Note: Toggle visual state is purely CSS-based (html.dark-mode .toggle-switch)
+    // No .active class needed - CSS responds to html.dark-mode immediately
+    // Cookie helper functions
+    function setDarkModeCookie(enabled) {
+      // Cookie expires in 1 year, accessible site-wide
+      document.cookie = `darkMode=${enabled}; path=/; max-age=31536000; SameSite=Lax`;
+      // Also set localStorage as backup
+      localStorage.setItem('darkMode', enabled);
+    }
+    
+    function getDarkModeCookie() {
+      const match = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+      return match ? match[1] === 'true' : false;
+    }
+    
+    toggleSwitch.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark-mode');
+      const isDark = document.documentElement.classList.contains('dark-mode');
+      setDarkModeCookie(isDark);
+      if (window.setDarkMode) {
+        window.setDarkMode(isDark);
+      }
+    });
+    
+    // Set initial brain.js dark mode state from cookie (after brain.js loads)
+    // Use a small delay to ensure brain.js has initialized
+    setTimeout(() => {
+      const darkModeEnabled = getDarkModeCookie() || localStorage.getItem('darkMode') === 'true';
+      if (window.setDarkMode && darkModeEnabled) {
+        window.setDarkMode(true);
+      }
+    }, 100);
+    
+    // --------------------------------------------------
+    // COLOR PALETTE SYNC
+    // --------------------------------------------------
+    // Both dropdowns (dark toggle area + chat settings) share the same color selection
+    
+    function initColorPaletteSync() {
+      // Apply background colors to swatches from data-color attribute
+      document.querySelectorAll('.color-swatch[data-color]').forEach(swatch => {
+        swatch.style.backgroundColor = swatch.dataset.color;
+      });
+      
+      // Handle color swatch clicks
+      const allColorSwatches = document.querySelectorAll('.color-swatch');
+      
+      allColorSwatches.forEach(swatch => {
+        swatch.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const selectedColor = swatch.dataset.color;
+          
+          // Update all swatches across both dropdowns
+          document.querySelectorAll('.color-swatch').forEach(s => {
+            if (s.dataset.color === selectedColor) {
+              s.classList.add('active');
+            } else {
+              s.classList.remove('active');
+            }
+          });
+          
+          // Store selection in localStorage for persistence
+          localStorage.setItem('colorPalette', selectedColor);
+          
+          // Dispatch event for future color application
+          window.dispatchEvent(new CustomEvent('paletteChanged', { 
+            detail: { color: selectedColor } 
+          }));
+          
+          console.log('Color selected:', selectedColor);
+        });
+      });
+      
+      // Handle "More Colors" button clicks
+      const moreColorsBtn = document.getElementById('moreColorsBtn');
+      const customColorPicker = document.getElementById('customColorPicker');
+      const chatMoreColorsBtn = document.querySelector('.chat-more-colors');
+      const chatCustomColorPicker = document.querySelector('.chat-custom-color');
+      
+      if (moreColorsBtn && customColorPicker) {
+        moreColorsBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          customColorPicker.click();
+        });
+        
+        customColorPicker.addEventListener('input', (e) => {
+          const selectedColor = e.target.value;
+          applyCustomColor(selectedColor);
+        });
+      }
+      
+      if (chatMoreColorsBtn && chatCustomColorPicker) {
+        chatMoreColorsBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          chatCustomColorPicker.click();
+        });
+        
+        chatCustomColorPicker.addEventListener('input', (e) => {
+          const selectedColor = e.target.value;
+          applyCustomColor(selectedColor);
+        });
+      }
+      
+      function applyCustomColor(color) {
+        // Remove active from all swatches
+        document.querySelectorAll('.color-swatch').forEach(s => {
+          s.classList.remove('active');
+        });
+        
+        // Store and dispatch
+        localStorage.setItem('colorPalette', color);
+        window.dispatchEvent(new CustomEvent('paletteChanged', { 
+          detail: { color: color } 
+        }));
+        
+        console.log('Custom color selected:', color);
+      }
+      
+      // Restore saved color on load
+      const savedColor = localStorage.getItem('colorPalette');
+      if (savedColor) {
+        document.querySelectorAll('.color-swatch').forEach(s => {
+          if (s.dataset.color && s.dataset.color.toLowerCase() === savedColor.toLowerCase()) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+      }
+    }
+    
+    initColorPaletteSync();
+    
+    // --------------------------------------------------
+    // MENU NAVIGATION CLICK HANDLERS
+    // --------------------------------------------------
+    // These run on DOMContentLoaded so they work from any page
+    
+    const menuHome = document.getElementById('menuHome');
+    
+    if (menuHome) {
+      menuHome.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigateToView(1);
+      });
+    }
+    
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    // --------------------------------------------------
+    // MAIN ANIMATION SEQUENCE
+    // --------------------------------------------------
+    // Runs on page load: fade in brain, show logo, move brain left.
+    // This is View 0 -> View 1 transition.
+    // If #about hash is present, skip directly to About Us (view 9).
+    
+    async function runMainAnimation() {
+      if (window.PERF) window.PERF.mark('runMainAnimation START');
+      
+      // Check for hash-based navigation BEFORE anything else
+      const hash = window.location.hash.toLowerCase();
+      const skipToAbout = (hash === '#about');
+      
+      // ===== SPECIAL CASE: #about anchor on initial page load =====
+      // Skip ALL intro animation and go directly to About Us
+      if (skipToAbout) {
+        // Clear the hash so refreshing doesn't keep going to about
+        history.replaceState(null, '', window.location.pathname);
+        
+        // Set view to About Us (9) instantly - brain appears visible immediately
+        currentView = 9;
+        if (window.setViewInstant) {
+          window.setViewInstant(9, true); // true = make brain visible instantly
+        }
+        updateSectionIndicator(9);
+        
+        // Show UI elements immediately
+        logo.classList.add('visible');
+        menubar.classList.add('visible');
+        sectionIndicator.classList.add('visible');
+        darkToggle.classList.add('visible');
+        rightPanel.classList.add('visible');
+        
+        // Show About Us panel immediately
+        const aboutUsPanel = document.getElementById('aboutUsPanel');
+        if (aboutUsPanel) aboutUsPanel.classList.add('visible');
+        
+        // Enable scroll detection
+        enableScrollDetection();
+        
+        // Start neural network animations
+        if (window.startNeuralAnimations) {
+          window.startNeuralAnimations();
+        }
+        
+        console.log('Deep link to #about - skipped intro animation');
+        return;
+      }
+      
+      // ===== NORMAL PAGE LOAD: Full intro animation =====
+      
+      // Mark as transitioning (animation phase = interruptible)
+      isTransitioning = true;
+      animationPhase = true;
+      
+      // Start at View 0 (brain centered, full size)
+      currentView = 0;
+      setTargetView(0);
+      updateSectionIndicator(0);
+      if (window.PERF) window.PERF.mark('View 0 set');
+      
+      // Enable scroll detection early so user can interrupt
+      enableScrollDetection();
+      
+      // Brain fades in quickly (handled by brain.js)
+      await sleep(500);
+      if (window.PERF) window.PERF.mark('After 500ms sleep');
+      
+      // Start neural network pulse animations immediately as brain appears
+      if (window.startNeuralAnimations) {
+        window.startNeuralAnimations();
+      }
+      
+      // Check for interruption - if target changed, abort intro
+      if (!isTargetView(0)) {
+        console.log('Intro interrupted at phase 1, aborting');
+        return;
+      }
+      
+      // Wait for brain to be visible
+      await sleep(1500);
+      if (window.PERF) window.PERF.mark('After 1500ms sleep - brain should be visible');
+      
+      // Check for interruption
+      if (!isTargetView(0)) {
+        console.log('Intro interrupted at phase 2, aborting');
+        return;
+      }
+      
+      // Show logo, menubar, section indicator
+      logo.classList.add('visible');
+      menubar.classList.add('visible');
+      sectionIndicator.classList.add('visible');
+      darkToggle.classList.add('visible');
+      if (window.PERF) window.PERF.mark('UI elements shown (logo, menubar, etc)');
+      
+      await sleep(1000);
+      if (window.PERF) window.PERF.mark('After 1000ms sleep');
+      
+      // STAY AT VIEW 0 - don't auto-transition to View 1
+      // User scrolls/clicks to continue
+      
+      // Start auto-hover on view 0
+      updateAutoHover(0);
+      
+      // Show scroll indicator so user can click to continue
+      await sleep(500);
+      scrollIndicator.classList.add('visible');
+      
+      // Mark intro complete - stay at View 0
+      isTransitioning = false;
+      animationPhase = false;
+      
+      if (window.PERF) {
+        window.PERF.mark('VIEW 0 FULLY LOADED - Waiting for user scroll');
+        window.PERF.summary();
+      }
+    }
+    
+    // --------------------------------------------------
+    // STATE TRACKING
+    // --------------------------------------------------
+    
+    let scrollTriggered = false;
+    let scrollEnabled = false;
+    
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    
+    function updateBackToTop() {
+      // Hide for views 0 and 1, show for views 2+
+      if (currentView > 1) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }
+    
+    // --------------------------------------------------
+    // HIDE ALL PANELS
+    // --------------------------------------------------
+    // Called immediately when navigation starts to prevent text bleeding.
+    
+    function hideAllPanels() {
+      // Hide hero text (View 1)
+      const heroTextContainer = document.getElementById('heroTextContainer');
+      if (heroTextContainer) {
+        heroTextContainer.classList.remove('visible');
+        heroTextContainer.classList.add('fade-out');
+      }
+      
+      // Hide thinking section (View 2)
+      const thinkingSection = document.getElementById('thinkingSection');
+      if (thinkingSection) thinkingSection.classList.remove('visible');
+      
+      // Hide all demo view overlays (Views 3-11)
+      const demoIntroOverlay = document.getElementById('demoIntroOverlay');
+      const gifOverlay = document.getElementById('gifOverlay');
+      const schematicsOverlay = document.getElementById('schematicsOverlay');
+      const modellingOverlay = document.getElementById('modellingOverlay');
+      const schedulesOverlay = document.getElementById('schedulesOverlay');
+      const specWritingOverlay = document.getElementById('specWritingOverlay');
+      const archBuildOverlay = document.getElementById('archBuildOverlay');
+      const comingSoonOverlay = document.getElementById('comingSoonOverlay');
+      const buildXOverlay = document.getElementById('buildXOverlay');
+      
+      if (demoIntroOverlay) demoIntroOverlay.classList.remove('visible');
+      if (gifOverlay) gifOverlay.classList.remove('visible');
+      if (schematicsOverlay) schematicsOverlay.classList.remove('visible');
+      if (modellingOverlay) modellingOverlay.classList.remove('visible');
+      if (schedulesOverlay) schedulesOverlay.classList.remove('visible');
+      if (specWritingOverlay) specWritingOverlay.classList.remove('visible');
+      if (archBuildOverlay) archBuildOverlay.classList.remove('visible');
+      if (comingSoonOverlay) comingSoonOverlay.classList.remove('visible');
+      if (buildXOverlay) buildXOverlay.classList.remove('visible');
+      
+      // Remove dark mode added for View 11 (only if not user-enabled via toggle)
+      // Check if dark mode cookie/localStorage is NOT set - then remove
+      const darkModeCookie = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+      const darkModeEnabled = (darkModeCookie && darkModeCookie[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+      if (!darkModeEnabled) {
+        document.documentElement.classList.remove('dark-mode');
+      }
+      document.body.classList.remove('view-dark-header');
+      
+      // Stop auto signal firing for questions
+      if (window.stopAutoSignals) window.stopAutoSignals();
+      
+      // Hide RIBA left panel and cleanup
+      const ribaLeftPanel = document.getElementById('ribaLeftPanel');
+      const ribaBackdrop = document.getElementById('ribaBackdrop');
+      if (ribaLeftPanel) {
+        ribaLeftPanel.classList.remove('visible');
+        ribaLeftPanel.classList.remove('scroll-locked');
+        ribaLeftPanel.style.paddingRight = ''; // Reset scrollbar compensation
+        document.querySelectorAll('.riba-card-left').forEach(c => {
+          c.style.visibility = '';
+        });
+        document.querySelectorAll('.riba-clone-expanded').forEach(c => c.remove());
+      }
+      if (ribaBackdrop) ribaBackdrop.classList.remove('visible');
+      // Show section indicator again when leaving About Us
+      if (sectionIndicator) sectionIndicator.classList.remove('hidden');
+      const demoChatContainerHide = document.getElementById('demoChatContainer');
+      if (demoChatContainerHide) demoChatContainerHide.classList.remove('visible');
+      
+      // Cancel any running loading states on overlay nodes
+      overlayNodeData.forEach(nodeData => {
+        cancelNodeLoading(nodeData);
+      });
+      
+      // Hide overlay nodes
+      overlayActive = false;
+      if (window.clearHoveredNode) {
+        window.clearHoveredNode();
+      }
+      if (overlayAnimationFrame) {
+        cancelAnimationFrame(overlayAnimationFrame);
+        overlayAnimationFrame = null;
+      }
+      overlayContainer.classList.remove('visible');
+      overlayContainer.innerHTML = '';
+      overlayNodeData = [];
+    }
+    
+    // --------------------------------------------------
+    // SCROLL DETECTION
+    // --------------------------------------------------
+    // Handles wheel and touch scrolling.
+    // Animation phase: CAN be interrupted (smooth handoff to new target)
+    // Content phase: CANNOT be interrupted (prevents text bleeding)
+    // Scroll only moves +1/-1 from target view, anchors can jump anywhere
+    
+    function enableScrollDetection() {
+      if (scrollEnabled) return;
+      scrollEnabled = true;
+      console.log('Scroll detection enabled');
+      
+      // Wheel scroll handler
+      document.addEventListener('wheel', handleWheelSnap, { passive: false });
+      
+      // Touch support
+      let touchStartY = 0;
+      let touchStartTarget = null;
+      document.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+        touchStartTarget = e.target;
+      }, { passive: true });
+      
+      document.addEventListener('touchend', (e) => {
+        // Check if touch originated from inside a scrollable panel
+        const scrollablePanels = [
+          '.demo-chat-messages',
+          '.demo-history-list',
+          '.demo-outputs-tree',
+          '.demo-chat-history-sidebar',
+          '.demo-revit-box',
+          '.demo-chat-box',
+          '.demo-chat-wrapper',
+          '.demo-containers-stack',
+          '.sidebar-panel',
+          '.riba-left-panel',
+          '.about-us-panel'
+        ];
+        
+        for (const selector of scrollablePanels) {
+          if (touchStartTarget && touchStartTarget.closest(selector)) {
+            // Let the panel handle its own scroll - don't change views
+            return;
+          }
+        }
+        
+        const touchEndY = e.changedTouches[0].clientY;
+        const diff = touchStartY - touchEndY;
+        
+        if (Math.abs(diff) > 50) {
+          handleScrollDirection(diff > 0 ? 'down' : 'up');
+        }
+      }, { passive: true });
+      
+      // Back to top click handler
+      backToTop.addEventListener('click', () => navigateToView(0));
+    }
+    
+    function handleWheelSnap(e) {
+      if (!scrollEnabled) return;
+      
+      // Block scrolling when RIBA panel card is expanded
+      const ribaPanel = document.getElementById('ribaLeftPanel');
+      if (ribaPanel && ribaPanel.classList.contains('scroll-locked')) {
+        return;
+      }
+      
+      // Check if scroll originated from inside a scrollable panel
+      // If so, let the panel scroll naturally - don't change views
+      const scrollablePanels = [
+        '.demo-chat-messages',
+        '.demo-history-list',
+        '.demo-outputs-tree',
+        '.demo-chat-history-sidebar',
+        '.demo-revit-box',
+        '.demo-chat-box',
+        '.demo-chat-wrapper',
+        '.demo-containers-stack',
+        '.sidebar-panel',
+        '.riba-left-panel',
+        '.about-us-panel'
+      ];
+      
+      for (const selector of scrollablePanels) {
+        if (e.target.closest(selector)) {
+          // Let the panel handle its own scroll - don't change views
+          return;
+        }
+      }
+      
+      e.preventDefault();
+      
+      handleScrollDirection(e.deltaY > 0 ? 'down' : 'up');
+    }
+    
+    // Scroll throttling - ignore rapid wheel events from sensitive mice
+    let lastScrollTime = 0;
+    const SCROLL_COOLDOWN = 150; // ms - ignore scrolls within this window
+    
+    function handleScrollDirection(direction) {
+      // Block scrolling when RIBA panel card is expanded
+      const ribaPanel = document.getElementById('ribaLeftPanel');
+      if (ribaPanel && ribaPanel.classList.contains('scroll-locked')) {
+        return;
+      }
+      
+      // Throttle rapid scrolls (gaming mice, trackpads)
+      const now = performance.now();
+      if (now - lastScrollTime < SCROLL_COOLDOWN) {
+        return; // Ignore - too soon after last scroll
+      }
+      lastScrollTime = now;
+      
+      // During content loading phase - block completely
+      if (isTransitioning && !animationPhase) {
+        console.log('Scroll blocked - content loading phase');
+        return;
+      }
+      
+      // Calculate next view based on TARGET view (handles interruption correctly)
+      // If interrupting, we go +1/-1 from where we're GOING, not where we ARE
+      const baseView = isTransitioning ? targetViewIndex : currentView;
+      let nextView = baseView;
+      
+      if (direction === 'down') {
+        // Scroll down - go to next view
+        if (baseView < 11) {  // 12 views total (0-11)
+          nextView = baseView + 1;
+        }
+      } else {
+        // Scroll up - go to previous view
+        if (baseView > 0) {
+          nextView = baseView - 1;
+        }
+      }
+      
+      // Only navigate if we have a new target
+      if (nextView !== baseView) {
+        navigateToView(nextView);
+      }
+    }
+    
+    // --------------------------------------------------
+    // VIEW 2 CONTENT FUNCTIONS
+    // --------------------------------------------------
+    
+    function showView2ContentInstantly() {
+      const servicesSection = document.getElementById('servicesSection');
+      const softwareCarousel = document.getElementById('softwareCarousel');
+      
+      // Show services section and all lines
+      if (servicesSection) {
+        servicesSection.classList.add('visible');
+        const allLines = servicesSection.querySelectorAll('.line');
+        allLines.forEach(l => l.classList.add('visible'));
+      }
+      
+      // Show carousel
+      if (softwareCarousel) softwareCarousel.classList.add('visible');
+      
+      scrollIndicator.classList.add('visible');
+    }
+    
+    // --------------------------------------------------
+    // RESET VIEW 2 CONTENT
+    // --------------------------------------------------
+    
+    function resetView2Content() {
+      const servicesSection = document.getElementById('servicesSection');
+      
+      if (servicesSection) {
+        servicesSection.classList.remove('visible');
+        const lines = servicesSection.querySelectorAll('.line');
+        lines.forEach(l => l.classList.remove('visible'));
+      }
+      
+      // Reset carousel
+      const carousel = document.getElementById('softwareCarousel');
+      if (carousel) carousel.classList.remove('visible');
+    }
+    
+    // --------------------------------------------------
+    // SCROLL INDICATOR CLICK
+    // --------------------------------------------------
+    
+    scrollIndicator.addEventListener('click', () => {
+      if (!scrollEnabled) return;
+      if (currentView < 7) {
+        navigateToView(currentView + 1);
+      }
+    });
+    
+    // --------------------------------------------------
+    // VIEW 3 CHAT FUNCTIONS
+    // --------------------------------------------------
+    
+    function openChat() {
+      const demoChatContainer = document.getElementById('demoChatContainer');
+      if (demoChatContainer) {
+        demoChatContainer.classList.add('visible');
+      }
+      
+      // Scroll chat to bottom (like demos.html)
+      const chatMessages = document.getElementById('chatMessages');
+      if (chatMessages) {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      // Stop shine animation on all Open Chat buttons
+      document.querySelectorAll('.open-chat-btn').forEach(btn => {
+        btn.classList.add('clicked');
+      });
+    }
+    
+    function resetGifState() {
+      // Reset floating chat messages to initial state with inline options
+      const chatMessages = document.getElementById('chatMessages');
+      if (chatMessages) {
+        chatMessages.innerHTML = `
+          <div class="demo-msg-bot">
+            <p>Welcome — select a plan option below or type your request.</p>
+            <div class="demo-inline-options">
+              <button class="demo-option-btn" data-plan="1">Option 1</button>
+              <button class="demo-option-btn" data-plan="2">Option 2</button>
+              <button class="demo-option-btn" data-plan="3">Option 3</button>
+              <button class="demo-option-btn" data-plan="4">Option 4</button>
+            </div>
+          </div>
+        `;
+        // Re-attach click handlers and scroll to bottom
+        if (typeof attachInlineOptionHandlers === 'function') {
+          attachInlineOptionHandlers();
+        }
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      // Reset session to Plan Options
+      document.querySelectorAll('#floatingChatHistory .demo-history-item').forEach(item => {
+        if (item.dataset.session === 'plan-options') {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+      
+      // Reset new View 3 GIF state
+      const gifSectionIndex4 = document.getElementById('gifSectionIndex4');
+      if (gifSectionIndex4) {
+        const img = gifSectionIndex4.querySelector('img');
+        if (img) img.classList.remove('playing');
+        const placeholder = gifSectionIndex4.querySelector('.demo-revit-placeholder');
+        if (placeholder) placeholder.style.display = 'block';
+      }
+    }
+    
+    // Reset chat container position (called when leaving View 3)
+    function resetChatContainer() {
+      const demoChatContainer = document.getElementById('demoChatContainer');
+      if (demoChatContainer) {
+        demoChatContainer.classList.remove('visible');
+        demoChatContainer.style.left = '';
+        demoChatContainer.style.top = '';
+        demoChatContainer.style.bottom = '';
+        demoChatContainer.style.right = '';
+        demoChatContainer.style.transform = '';
+        demoChatContainer.style.width = '';
+        demoChatContainer.style.height = '';
+      }
+      resetGifState();
+    }
+      
+    // --------------------------------------------------
+    // DEMO FUNCTIONALITY
+    // --------------------------------------------------
+    
+    let isGifTransitioning = false;
+    const validCommands = ['plan routes', 'size emitters', 'note drawings', 'write spec', 'produce 3d model', 'clash coordinate revit', 'produce 3d', 'clash coordinate'];
+    
+    function attachDemoButtonHandlers() {
+      document.querySelectorAll('.inline-demo-btn').forEach(btn => {
+        // Skip output buttons - they have their own onclick handlers
+        if (btn.classList.contains('see-output-btn')) return;
+        
+        btn.addEventListener('click', async function() {
+          if (isGifTransitioning) return;
+          
+          const title = this.getAttribute('data-title');
+          if (!title) return; // Safety check
+          
+          // Skip if "See more Demos"
+          if (this.getAttribute('data-demo') === 'see-more') {
+            await addThinkingAnimation();
+            addBotMessage("More demos coming soon! Please select from the available options above.");
+            return;
+          }
+          
+          // Remove active from all, add to clicked
+          document.querySelectorAll('.inline-demo-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Add user message equivalent
+          addUserMessage(title);
+          
+          // Show thinking animation and wait for it to complete
+          await addThinkingAnimation();
+          
+          // Show response and play demo
+          addBotMessage(`Loading ${title} demo...`);
+          await playDemo(title);
+        });
+      });
+    }
+    
+    // Initial attachment
+    attachDemoButtonHandlers();
+    
+    async function playDemo(title) {
+      if (isGifTransitioning) return;
+      
+      isGifTransitioning = true;
+      
+      // Play the new View 3 GIF if available
+      const gifSectionIndex4 = document.getElementById('gifSectionIndex4');
+      if (gifSectionIndex4) {
+        const img = gifSectionIndex4.querySelector('img');
+        const placeholder = gifSectionIndex4.querySelector('.demo-revit-placeholder');
+        
+        if (img && placeholder) {
+          // Hide placeholder
+          placeholder.style.display = 'none';
+          
+          // Force reload GIF to restart it
+          const gifSrc = img.src;
+          img.src = '';
+          img.src = gifSrc;
+          
+          // Show GIF with fade in
+          await sleep(50);
+          img.classList.add('playing');
+        }
+      }
+      
+      isGifTransitioning = false;
+    }
+    
+    async function addThinkingAnimation() {
+      const chatMessages = document.getElementById('chatMessages');
+      const persistentNode = document.getElementById('chatPersistentNode');
+      
+      // Create thinking content (no node - we use the persistent one)
+      const thinkingDiv = document.createElement('div');
+      thinkingDiv.className = 'chat-thinking';
+      thinkingDiv.id = 'chatThinking';
+      thinkingDiv.innerHTML = `
+        <div class="chat-thinking-content" id="chatThinkingContent">
+          <div class="chat-thinking-header" id="chatThinkingHeader">
+            <span>Thinking...</span>
+          </div>
+          <ul class="chat-steps-list" id="chatStepsList">
+            <li><span class="chat-step-icon">●</span> Analyzing request</li>
+            <li><span class="chat-step-icon">●</span> Loading context</li>
+            <li><span class="chat-step-icon">●</span> Preparing response</li>
+          </ul>
+        </div>
+      `;
+      chatMessages.appendChild(thinkingDiv);
+      
+      // Scroll to bottom
+      const chatBody = document.getElementById('demoChatBody');
+      chatBody.scrollTop = chatBody.scrollHeight;
+      
+      // Get elements
+      const content = document.getElementById('chatThinkingContent');
+      const header = document.getElementById('chatThinkingHeader');
+      const stepsList = document.getElementById('chatStepsList');
+      const steps = stepsList.querySelectorAll('li');
+      
+      // Step 1: Activate persistent node (start processing)
+      persistentNode.classList.add('processing');
+      await sleep(100);
+      
+      // Step 2: Move node to left
+      persistentNode.classList.add('left');
+      await sleep(400);
+      
+      // Step 3: Show thinking content above node
+      content.classList.add('visible');
+      await sleep(200);
+      
+      // Step 4: Expand steps list
+      stepsList.classList.add('expanded');
+      
+      // Step 5: Reveal steps one by one
+      for (let i = 0; i < steps.length; i++) {
+        steps[i].classList.add('visible');
+        await sleep(250);
+      }
+      
+      // Mark as done
+      header.classList.add('done');
+      header.querySelector('span').textContent = '3 steps';
+      
+      await sleep(400);
+      
+      // Step 6: Collapse steps
+      stepsList.classList.remove('expanded');
+      await sleep(300);
+      
+      // Step 7: Collapse content
+      content.classList.add('collapsing');
+      content.classList.remove('visible');
+      await sleep(300);
+      
+      // Step 8: Move node back to right
+      persistentNode.classList.remove('left');
+      await sleep(400);
+      
+      // Step 9: Keep pulsing for half a second longer
+      await sleep(500);
+      
+      // Step 10: Stop processing - dim but keep visible
+      persistentNode.classList.remove('processing');
+    }
+    
+    function removeThinkingAnimation() {
+      const thinkingDiv = document.getElementById('chatThinking');
+      if (thinkingDiv) {
+        thinkingDiv.remove();
+      }
+    }
+    
+    function addBotMessage(text) {
+      removeThinkingAnimation();
+      const chatMessages = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'demo-msg-bot';
+      messageDiv.innerHTML = `<p>${text}</p>`;
+      chatMessages.appendChild(messageDiv);
+      
+      // Scroll to bottom
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    function addUserMessage(text) {
+      const chatMessages = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'demo-msg-user';
+      messageDiv.innerHTML = `<p>${text}</p>`;
+      chatMessages.appendChild(messageDiv);
+      
+      // Scroll to bottom
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Plan images for Revit panel - used by floating chat
+    const floatingChatPlanImages = ['images/backgrounds/PLAN_A.png', 'images/backgrounds/PLAN_B.png', 'images/backgrounds/PLAN_C.png', 'images/backgrounds/PLAN_D.png'];
+    let currentChatSession = 'plan-options'; // 'base-layout' or 'plan-options'
+    
+    // Handle session selection (Base Layout vs Plan Options)
+    function selectChatSession(sessionType) {
+      currentChatSession = sessionType;
+      const chatMessages = document.getElementById('chatMessages');
+      
+      // Update session history active state
+      document.querySelectorAll('#floatingChatHistory .demo-history-item').forEach(item => {
+        if (item.dataset.session === sessionType) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+      
+      if (sessionType === 'base-layout') {
+        // Show base layout conversation
+        chatMessages.innerHTML = `
+          <div class="demo-msg-bot">
+            <p>I've received the measured building survey data. Analysing spatial constraints and existing structure...</p>
+          </div>
+          <div class="demo-msg-bot">
+            <p>Survey processed. I've identified 2,450m² of usable floor area across 3 levels. Structural grid is 7.5m x 9m. Ceiling void available: 450mm.</p>
+          </div>
+          <div class="demo-msg-user">
+            <p>What about the services risers?</p>
+          </div>
+          <div class="demo-msg-bot">
+            <p>I've located 4 existing risers from the survey. Primary riser at grid intersection C-3 with 2.4m² available. Secondary risers at A-1, E-1, and E-5 with 1.2m² each.</p>
+          </div>
+          <div class="demo-msg-bot">
+            <p>Base layout is ready. Switch to Plan Options to explore layout variations.</p>
+          </div>
+        `;
+      } else {
+        // Show plan options conversation with inline buttons
+        chatMessages.innerHTML = `
+          <div class="demo-msg-bot">
+            <p>Welcome — select a plan option below or type your request.</p>
+            <div class="demo-inline-options">
+              <button class="demo-option-btn" data-plan="1">Option 1</button>
+              <button class="demo-option-btn" data-plan="2">Option 2</button>
+              <button class="demo-option-btn" data-plan="3">Option 3</button>
+              <button class="demo-option-btn" data-plan="4">Option 4</button>
+            </div>
+          </div>
+        `;
+        // Re-attach click handlers for inline buttons
+        attachInlineOptionHandlers();
+      }
+      
+      // Scroll to bottom after content change
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Attach click handlers to inline option buttons
+    function attachInlineOptionHandlers() {
+      document.querySelectorAll('.demo-option-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const planNum = parseInt(this.dataset.plan);
+          if (planNum >= 1 && planNum <= 4) {
+            selectPlanOption(planNum - 1);
+          }
+        });
+      });
+    }
+    
+    // Initial attachment
+    attachInlineOptionHandlers();
+    
+    // Handle plan option selection (from inline buttons or typed command)
+    async function selectPlanOption(planIndex) {
+      const revitPlanImageEl = document.getElementById('revitPlanImage');
+      
+      // Make sure we're in plan-options session
+      if (currentChatSession !== 'plan-options') {
+        selectChatSession('plan-options');
+        await sleep(100);
+      }
+      
+      // Update inline button active state
+      document.querySelectorAll('.demo-option-btn').forEach((btn, idx) => {
+        if (idx === planIndex) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      // Add bot message
+      addBotMessage(`Switching to Option ${planIndex + 1}...`);
+      
+      // If Revit panel is visible, update the plan
+      if (revitPlanImageEl) {
+        revitPlanImageEl.classList.add('fade-out');
+        await sleep(300);
+        revitPlanImageEl.src = floatingChatPlanImages[planIndex];
+        await sleep(50);
+        revitPlanImageEl.classList.remove('fade-out');
+      }
+      
+      await sleep(500);
+      
+      const planDescriptions = [
+        'Open plan layout loaded. This design maximises floor area with minimal partitions.',
+        'Cellular offices configured. Private workspaces arranged along the perimeter.',
+        'Hybrid layout applied. Mix of open areas and enclosed meeting rooms.',
+        'Collaborative zones established. Breakout spaces and team areas positioned.'
+      ];
+      
+      addBotMessage(planDescriptions[planIndex]);
+    }
+    
+    // Session history click handlers
+    document.querySelectorAll('#floatingChatHistory .demo-history-item').forEach(item => {
+      item.addEventListener('click', function() {
+        const session = this.dataset.session;
+        if (session) {
+          selectChatSession(session);
+        }
+      });
+    });
+    
+    // Send button functionality
+    const demoChatInput = document.getElementById('demoChatInput');
+    const demoChatSendBtn = document.getElementById('demoChatSendBtn');
+    
+    async function handleSend() {
+      const input = demoChatInput.value.trim();
+      if (!input) return;
+      
+      // Add user message
+      addUserMessage(input);
+      demoChatInput.value = '';
+      
+      // Check for option commands
+      const inputLower = input.toLowerCase();
+      
+      if (inputLower.includes('option 1') || inputLower === '1') {
+        await selectPlanOption(0);
+      } else if (inputLower.includes('option 2') || inputLower === '2') {
+        await selectPlanOption(1);
+      } else if (inputLower.includes('option 3') || inputLower === '3') {
+        await selectPlanOption(2);
+      } else if (inputLower.includes('option 4') || inputLower === '4') {
+        await selectPlanOption(3);
+      } else if (inputLower.includes('change') || inputLower.includes('next') || inputLower.includes('cycle')) {
+        // Cycle through plans
+        const activeItem = document.querySelector('#floatingChatOptions .demo-history-item.active');
+        const currentIndex = activeItem ? parseInt(activeItem.dataset.plan) - 1 : 0;
+        const nextIndex = (currentIndex + 1) % 4;
+        await selectPlanOption(nextIndex);
+      } else {
+        // Unrecognized command
+        await sleep(300);
+        addBotMessage("Please select an option from the sidebar or type 'option 1' through 'option 4' to switch layouts.");
+      }
+    }
+    
+    if (demoChatSendBtn) {
+      demoChatSendBtn.addEventListener('click', handleSend);
+    }
+    if (demoChatInput) {
+      demoChatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          handleSend();
+        }
+      });
+    }
+    
+    // Close button (was minimize) - only if floating chat exists
+    const demoMinimizeBtn = document.getElementById('demoMinimizeBtn');
+    if (demoMinimizeBtn) {
+      demoMinimizeBtn.addEventListener('click', function() {
+        const container = document.getElementById('demoChatContainer');
+        if (container) container.classList.remove('visible');
+      });
+    }
+    
+    // Draggable demo container - only if it exists
+    const demoChatContainer = document.getElementById('demoChatContainer');
+    const demoChatHeader = document.getElementById('demoChatHeader');
+    let isDraggingDemo = false;
+    let demoStartX, demoStartY, demoInitialX, demoInitialY;
+    
+    if (demoChatHeader && demoChatContainer) demoChatHeader.addEventListener('mousedown', function(e) {
+      if (e.target.tagName === 'BUTTON') return;
+      isDraggingDemo = true;
+      demoStartX = e.clientX;
+      demoStartY = e.clientY;
+      
+      // Get actual pixel position from bounding rect
+      const rect = demoChatContainer.getBoundingClientRect();
+      demoInitialX = rect.left;
+      demoInitialY = rect.top;
+      
+      // Convert from right-positioned to left-positioned before dragging
+      // This prevents jump caused by CSS right property conflicting with left
+      demoChatContainer.style.right = 'auto';
+      demoChatContainer.style.left = demoInitialX + 'px';
+      demoChatContainer.style.top = demoInitialY + 'px';
+      demoChatContainer.style.transform = 'none';
+      demoChatContainer.classList.add('dragging');
+    });
+    
+    document.addEventListener('mousemove', function(e) {
+      if (!isDraggingDemo || !demoChatContainer) return;
+      const deltaX = e.clientX - demoStartX;
+      const deltaY = e.clientY - demoStartY;
+      demoChatContainer.style.left = (demoInitialX + deltaX) + 'px';
+      demoChatContainer.style.top = (demoInitialY + deltaY) + 'px';
+    });
+    
+    document.addEventListener('mouseup', function() {
+      if (isDraggingDemo && demoChatContainer) {
+        isDraggingDemo = false;
+        demoChatContainer.classList.remove('dragging');
+      }
+    });
+    
+    // Resizable demo container from any edge (scoped to demoChatContainer only)
+    let isResizing = false;
+    let resizeDirection = null;
+    let resizeStartX, resizeStartY, resizeStartWidth, resizeStartHeight, resizeStartLeft, resizeStartTop;
+    
+    // Only attach to resize edges within demoChatContainer, not global
+    if (demoChatContainer) {
+      demoChatContainer.querySelectorAll('.resize-edge').forEach(edge => {
+        edge.addEventListener('mousedown', function(e) {
+          if (!demoChatContainer) return;
+          e.preventDefault();
+          e.stopPropagation();
+          isResizing = true;
+          resizeDirection = this.getAttribute('data-resize');
+          resizeStartX = e.clientX;
+          resizeStartY = e.clientY;
+          const rect = demoChatContainer.getBoundingClientRect();
+          resizeStartWidth = rect.width;
+          resizeStartHeight = rect.height;
+          resizeStartLeft = rect.left;
+          resizeStartTop = rect.top;
+        });
+      });
+    }
+    
+    document.addEventListener('mousemove', function(e) {
+      if (!isResizing || !demoChatContainer) return;
+      
+      const deltaX = e.clientX - resizeStartX;
+      const deltaY = e.clientY - resizeStartY;
+      
+      if (resizeDirection === 'right' || resizeDirection === 'corner') {
+        const newWidth = Math.max(280, Math.min(700, resizeStartWidth + deltaX));
+        demoChatContainer.style.width = newWidth + 'px';
+      }
+      
+      if (resizeDirection === 'left') {
+        const newWidth = Math.max(280, Math.min(700, resizeStartWidth - deltaX));
+        if (newWidth > 280 && newWidth < 700) {
+          demoChatContainer.style.width = newWidth + 'px';
+          demoChatContainer.style.left = (resizeStartLeft + deltaX) + 'px';
+          demoChatContainer.style.right = 'auto';
+        }
+      }
+      
+      if (resizeDirection === 'bottom' || resizeDirection === 'corner') {
+        const newHeight = Math.max(250, resizeStartHeight + deltaY);
+        demoChatContainer.style.height = newHeight + 'px';
+      }
+      
+      if (resizeDirection === 'top') {
+        const newHeight = Math.max(250, resizeStartHeight - deltaY);
+        if (newHeight > 250) {
+          demoChatContainer.style.height = newHeight + 'px';
+          demoChatContainer.style.top = (resizeStartTop + deltaY) + 'px';
+          demoChatContainer.style.bottom = 'auto';
+        }
+      }
+    });
+    
+    document.addEventListener('mouseup', function() {
+      if (isResizing) {
+        isResizing = false;
+        resizeDirection = null;
+      }
+    });
+    
+    // Open Chat button event listeners (panel buttons)
+    const openChatBtnPanel2 = document.getElementById('openChatBtnPanel2');
+    const tryMoreDemosBtn2 = document.getElementById('tryMoreDemosBtn2');
+    if (openChatBtnPanel2) openChatBtnPanel2.addEventListener('click', openChat);
+    if (tryMoreDemosBtn2) tryMoreDemosBtn2.addEventListener('click', openChat);
+    
+    
+    // --------------------------------------------------
+    // REVIT/GIF PANEL EXPAND/MINIMIZE (Green/Yellow buttons)
+    // --------------------------------------------------
+    // Shared state for expanded panel drag (single document listeners)
+    let expandedDragState = null; // { box, wrapper, maxBtn, titlebar, offsetX, offsetY, dockZone, animateToWrapper }
+    
+    // Helper to create animateToWrapper function for a specific box
+    // Works for both 'expanded' (green button) and 'free-floating' (dragged out) states
+    function createAnimateToWrapper(revitBox, wrapper, maxBtn) {
+      return function() {
+        if (!wrapper) {
+          revitBox.style.transition = '';
+          revitBox.style.position = '';
+          revitBox.style.top = '';
+          revitBox.style.left = '';
+          revitBox.style.right = '';
+          revitBox.style.width = '';
+          revitBox.style.height = '';
+          revitBox.style.zIndex = '';
+          revitBox.classList.remove('expanded');
+          revitBox.classList.remove('free-floating');
+          revitBox.classList.remove('snapping-back');
+          if (maxBtn) { maxBtn.disabled = false; maxBtn.style.opacity = ''; maxBtn.style.cursor = ''; }
+          return;
+        }
+        
+        const currentRect = revitBox.getBoundingClientRect();
+        const targetRect = wrapper.getBoundingClientRect();
+        const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+        
+        revitBox.style.transition = 'none';
+        revitBox.style.position = 'fixed';
+        revitBox.style.top = (currentRect.top / zoom) + 'px';
+        revitBox.style.left = (currentRect.left / zoom) + 'px';
+        revitBox.style.width = (currentRect.width / zoom) + 'px';
+        revitBox.style.height = (currentRect.height / zoom) + 'px';
+        revitBox.style.zIndex = '1000';
+        
+        void revitBox.offsetHeight;
+        
+        revitBox.style.transition = 'top 0.35s cubic-bezier(0.4, 0, 0.2, 1), left 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+        revitBox.style.top = (targetRect.top / zoom) + 'px';
+        revitBox.style.left = (targetRect.left / zoom) + 'px';
+        revitBox.style.width = (targetRect.width / zoom) + 'px';
+        revitBox.style.height = (targetRect.height / zoom) + 'px';
+        
+        setTimeout(() => {
+          revitBox.style.transition = '';
+          revitBox.style.position = '';
+          revitBox.style.top = '';
+          revitBox.style.left = '';
+          revitBox.style.right = '';
+          revitBox.style.width = '';
+          revitBox.style.height = '';
+          revitBox.style.zIndex = '';
+          revitBox.classList.remove('expanded');
+          revitBox.classList.remove('free-floating');
+          revitBox.classList.remove('snapping-back');
+          if (maxBtn) { maxBtn.disabled = false; maxBtn.style.opacity = ''; maxBtn.style.cursor = ''; }
+        }, 350);
+      };
+    }
+    
+    // Initialize each revit box
+    document.querySelectorAll('.demo-view-overlay .demo-revit-box').forEach(revitBox => {
+      const titlebar = revitBox.querySelector('.demo-revit-titlebar');
+      const maxBtn = revitBox.querySelector('.demo-titlebar-btn.max');
+      const minBtn = revitBox.querySelector('.demo-titlebar-btn.min');
+      const wrapper = revitBox.closest('.demo-revit-wrapper');
+      const animateToWrapper = createAnimateToWrapper(revitBox, wrapper, maxBtn);
+      
+      // GREEN BUTTON: Expand panel (disabled when already expanded or free-floating)
+      if (maxBtn) {
+        maxBtn.addEventListener('mousedown', e => e.stopPropagation());
+        maxBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          e.preventDefault();
+          // Prevent if already expanded, free-floating (dragged out), or disabled
+          if (revitBox.classList.contains('expanded') || revitBox.classList.contains('free-floating') || maxBtn.disabled) return;
+          
+          maxBtn.disabled = true;
+          maxBtn.style.opacity = '0.5';
+          maxBtn.style.cursor = 'not-allowed';
+          
+          const startRect = revitBox.getBoundingClientRect();
+          const isReversed = revitBox.closest('.demo-split-view.reversed') !== null;
+          
+          // Calculate width based on poster image's actual aspect ratio
+          // Use content area height (excluding titlebar) for accurate calculation
+          const poster = revitBox.querySelector('.video-poster');
+          const contentArea = revitBox.querySelector('.demo-revit-content');
+          const contentHeight = contentArea ? contentArea.getBoundingClientRect().height : startRect.height;
+          const aspectRatio = (poster && poster.naturalWidth && poster.naturalHeight) 
+            ? poster.naturalWidth / poster.naturalHeight 
+            : 16 / 9; // Fallback
+          const endWidth = contentHeight * aspectRatio;
+          const endLeft = isReversed ? startRect.left : startRect.right - endWidth;
+          
+          const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+          revitBox.style.transition = 'none';
+          revitBox.style.position = 'fixed';
+          revitBox.style.top = (startRect.top / zoom) + 'px';
+          revitBox.style.left = (startRect.left / zoom) + 'px';
+          revitBox.style.width = (startRect.width / zoom) + 'px';
+          revitBox.style.height = (startRect.height / zoom) + 'px';
+          revitBox.style.zIndex = '1000';
+          revitBox.classList.add('expanded');
+          
+          void revitBox.offsetHeight;
+          
+          revitBox.style.transition = 'left 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+          revitBox.style.left = (endLeft / zoom) + 'px';
+          revitBox.style.width = (endWidth / zoom) + 'px';
+        });
+      }
+      
+      // YELLOW BUTTON: Minimize (works for both expanded AND free-floating)
+      if (minBtn) {
+        minBtn.addEventListener('mousedown', e => e.stopPropagation());
+        minBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          e.preventDefault();
+          // Work for either expanded (green button) or free-floating (dragged out)
+          if (!revitBox.classList.contains('expanded') && !revitBox.classList.contains('free-floating')) return;
+          animateToWrapper();
+        });
+      }
+      
+      // DRAG: Only when expanded
+      if (titlebar) {
+        titlebar.addEventListener('mousedown', function(e) {
+          if (!revitBox.classList.contains('expanded')) return;
+          if (e.target.closest('.demo-titlebar-btn')) return;
+          
+          e.preventDefault();
+          e.stopPropagation();
+          
+          revitBox.style.transition = 'none';
+          const rect = revitBox.getBoundingClientRect();
+          const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+          revitBox.style.left = (rect.left / zoom) + 'px';
+          revitBox.style.right = 'auto';
+          
+          let dockZone = null;
+          if (wrapper) {
+            dockZone = document.createElement('div');
+            dockZone.className = 'revit-dock-zone';
+            dockZone.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;border:2px dashed #4a9eff;border-radius:10px;background:rgba(74,158,255,0.1);z-index:1;pointer-events:none;';
+            wrapper.style.position = 'relative';
+            wrapper.appendChild(dockZone);
+          }
+          
+          expandedDragState = {
+            box: revitBox,
+            wrapper: wrapper,
+            maxBtn: maxBtn,
+            titlebar: titlebar,
+            offsetX: e.clientX - rect.left,
+            offsetY: e.clientY - rect.top,
+            dockZone: dockZone,
+            animateToWrapper: animateToWrapper
+          };
+          
+          document.body.style.userSelect = 'none';
+        });
+      }
+    });
+    
+    // Single document mousemove for expanded panel drag
+    document.addEventListener('mousemove', function(e) {
+      if (!expandedDragState) return;
+      const { box, offsetX, offsetY, dockZone } = expandedDragState;
+      const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+      
+      box.style.left = ((e.clientX - offsetX) / zoom) + 'px';
+      box.style.top = ((e.clientY - offsetY) / zoom) + 'px';
+      
+      if (dockZone) {
+        const dockRect = dockZone.getBoundingClientRect();
+        const isOverDock = e.clientX >= dockRect.left && e.clientX <= dockRect.right &&
+                           e.clientY >= dockRect.top && e.clientY <= dockRect.bottom;
+        dockZone.style.background = isOverDock ? 'rgba(74,158,255,0.3)' : 'rgba(74,158,255,0.1)';
+      }
+    });
+    
+    // Single document mouseup for expanded panel drag
+    document.addEventListener('mouseup', function(e) {
+      if (!expandedDragState) return;
+      const { titlebar, dockZone, animateToWrapper } = expandedDragState;
+      
+      document.body.style.userSelect = '';
+      
+      if (dockZone) {
+        const dockRect = dockZone.getBoundingClientRect();
+        const isOverDock = e.clientX >= dockRect.left && e.clientX <= dockRect.right &&
+                           e.clientY >= dockRect.top && e.clientY <= dockRect.bottom;
+        dockZone.remove();
+        if (isOverDock) animateToWrapper();
+      }
+      
+      expandedDragState = null;
+    });
+    
+    // --------------------------------------------------
+    // CHAT SCROLL CONTAINMENT
+    // --------------------------------------------------
+    // Prevent page scroll when scrolling inside chat message containers
+    document.querySelectorAll('.demo-chat-messages').forEach(container => {
+      container.addEventListener('wheel', function(e) {
+        const atTop = container.scrollTop === 0;
+        const atBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 1;
+        
+        // If scrolling up at top or down at bottom, prevent page scroll
+        if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) {
+          e.preventDefault();
+        }
+        
+        // Always stop propagation to prevent view navigation
+        e.stopPropagation();
+      }, { passive: false });
+    });
+    
+    // Prevent page scroll when scrolling inside chat history sidebar
+    document.querySelectorAll('.demo-history-list').forEach(container => {
+      container.addEventListener('wheel', function(e) {
+        const atTop = container.scrollTop === 0;
+        const atBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 1;
+        
+        // If scrolling up at top or down at bottom, prevent page scroll
+        if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) {
+          e.preventDefault();
+        }
+        
+        // Always stop propagation to prevent view navigation
+        e.stopPropagation();
+      }, { passive: false });
+    });
+    
+    // Prevent page scroll when scrolling inside BUILD X ribbon panels
+    document.querySelectorAll('.buildx-ribbon-panel').forEach(panel => {
+      panel.addEventListener('wheel', function(e) {
+        const atTop = panel.scrollTop === 0;
+        const atBottom = panel.scrollHeight - panel.scrollTop <= panel.clientHeight + 1;
+        
+        // Only stop propagation if we can scroll within the panel
+        if (!((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom))) {
+          e.stopPropagation();
+        }
+      }, { passive: true });
+    });
+    
+    // Allow wheel events from buildx center area to propagate for view navigation
+    const buildxCenterArea = document.querySelector('.buildx-center-area');
+    if (buildxCenterArea) {
+      // Center area should not block wheel events - let them bubble to document
+      // (default behavior, no stopPropagation needed)
+    }
+    
+    // --------------------------------------------------
+    // VIEW 4: Floorplan MEP Chat Functionality
+    // Now handled by js/view4-chat.js for better separation
+    // --------------------------------------------------
+    
+    // NOTE: All View 4 chat functionality (conversations, thinking steps,
+    // neural node animation, history switching) moved to js/view4-chat.js
+    // to reduce file size and improve separation of concerns.
+    
+    // View 5 buttons are below this comment
+    
+    // (View 4 conversation data and functions removed - see js/view4-chat.js)
+    
+    // START OF REMOVED SECTION - kept for reference
+    /* 
+    const view4Conversations = { drainage: {
+        messages: [
+          { type: 'user', text: 'Can you design the drainage system?' },
+          { type: 'bot', text: 'Of course, let me check the rooms.' },
+          { type: 'thinking', steps: [
+            'Finding rooms...',
+            'Rooms found.',
+            'Checking number of outlets.',
+            'Checking for further drainage requirements.',
+            'Reading specification.',
+            'Understanding where condensate connections would be required.',
+            'Looking for civil pop up information...',
+            'Stopped.'
+          ]},
+          { type: 'bot', text: 'Do you have civil engineering information?' },
+          { type: 'user', text: 'Yes, sorry just added to the folder now.' },
+          { type: 'thinking', steps: [
+            'Continuing.',
+            'Checking civil.',
+            'Pop up locations found — different to requirements.',
+            'Placing pop ups on drawing.',
+            'Done.'
+          ]},
+          { type: 'bot', text: 'Can you check to see if you are happy? If happy, type yes or proceed to continue.' }
+        ],
+        thinkingSequence: [
+          'Thinking...',
+          'Placing branch pipes and outlet positions.',
+          'Designing in 3D.',
+          'Forecasting clashes.',
+          'Rerouting pipes.',
+          'Done.'
+        ],
+        finalMessage: 'Designed and added note on primary ventilation in compliance with BS EN 12056 & Approved Document H. Note: I have marked the SVPs that weren\'t on the civil engineering information with a hazard symbol — please send this drawing to the civil engineer for confirmation.',
+        readyPrompt: 'Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate drainage layout'
+      },
+      water: {
+        messages: [
+          { type: 'user', text: 'Can you design the cold and hot water system?' },
+          { type: 'bot', text: 'Of course, let me check the requirements and site constraints.' },
+          { type: 'thinking', steps: [
+            { text: 'Reading specification...', type: 'think' },
+            { text: 'Checking building location.', type: 'think' },
+            { text: 'Analysing local utility provider constraints.', type: 'think' },
+            { text: 'Understanding incoming water pressure — 2.1 bar static.', type: 'think' },
+            { text: 'Calculating pressure requirements for upper floors.', type: 'think' },
+            { text: 'Booster set required — pressure insufficient above Level 3.', type: 'think' },
+            { text: 'Checking water hardness data — 285 ppm (hard water zone).', type: 'think' },
+            { text: 'Water softener required as per specification.', type: 'think' },
+            { text: 'Reading BS EN 806 requirements.', type: 'think' },
+            { text: 'Analysis complete — awaiting confirmation.', type: 'done' }
+          ]},
+          { type: 'bot', text: 'Based on my analysis:<br>• <strong>Incoming pressure</strong>: 2.1 bar static (insufficient for upper floors)<br>• <strong>Booster set</strong>: Required for Levels 3+<br>• <strong>Water hardness</strong>: 285 ppm — softener required per spec<br>• <strong>Standard</strong>: BS EN 806 compliance<br><br>Shall I proceed with the design?' },
+          { type: 'user', text: 'Yes, proceed.' },
+          { type: 'thinking', steps: [
+            { text: 'Continuing.', type: 'think' },
+            { text: 'Reading room schedule for outlet requirements.', type: 'think' },
+            { text: 'Identifying point-of-use water heater locations.', type: 'think' },
+            { text: 'Placing cold water outlets.', type: 'action', changes: '+186', filename: 'water-services.rvt' },
+            { text: 'Placing hot water outlets.', type: 'action', changes: '+142', filename: 'water-services.rvt' },
+            { text: 'Adding point-of-use water heaters (as spec).', type: 'action', changes: '+24', filename: 'water-services.rvt' },
+            { text: 'Placing booster set in plantroom.', type: 'action', changes: '+8', filename: 'water-services.rvt' },
+            { text: 'Placing water softener in plantroom.', type: 'action', changes: '+4', filename: 'water-services.rvt' },
+            { text: 'Done.', type: 'done' }
+          ]},
+          { type: 'bot', text: 'Water outlets placed. Ready to route pipework and generate calculations?' }
+        ],
+        thinkingSequence: [
+          { text: 'Thinking...', type: 'think' },
+          { text: 'Calculating pipe sizes based on loading units.', type: 'think' },
+          { text: 'Routing cold water mains from intake.', type: 'action', changes: '+486', filename: 'water-services.rvt' },
+          { text: 'Routing hot water distribution pipework.', type: 'action', changes: '+324', filename: 'water-services.rvt' },
+          { text: 'Checking dead legs compliance.', type: 'think' },
+          { text: 'Generating calculation report.', type: 'think' },
+          { text: 'Saving calculations to folder.', type: 'action', changes: '+1', filename: 'Water_Calcs_BS-EN-806.pdf' },
+          { text: 'Done.', type: 'done' }
+        ],
+        finalMessage: 'Water services design complete:<br>• <strong>186</strong> cold water outlets placed<br>• <strong>142</strong> hot water outlets placed<br>• <strong>24</strong> point-of-use water heaters (per specification)<br>• <strong>Booster set</strong> and <strong>softener</strong> positioned in plantroom<br>• Pipework routed in 3D with clash avoidance<br>• Calculations saved: <code>Water_Calcs_BS-EN-806.pdf</code><br><br>Design complies with BS EN 806. Ready for review.',
+        readyPrompt: 'Type <strong>"yes"</strong> or <strong>"proceed"</strong> to route pipework'
+      },
+      heating: {
+        messages: [
+          { type: 'user', text: 'Can you size the heating emitters?' },
+          { type: 'bot', text: 'Of course, let me calculate the heat losses.' },
+          { type: 'thinking', steps: [
+            'Calculating heat losses per zone.',
+            'Average heat loss: 45 W/m².',
+            'Kitchen-01 flagged: 85 W/m² due to cooking loads.',
+            'Server-R1 flagged: 150 W/m² for equipment heat gains.',
+            'Updating zone property sets.',
+            'Sizing emitters based on heat loss calculations.',
+            'Perimeter radiators for offices.',
+            'Trench heaters at full-height glazing.',
+            'LST radiators in accessible areas.',
+            'Done.'
+          ]},
+          { type: 'bot', text: 'Emitters sized. Ready to proceed with the heating layout?' }
+        ],
+        thinkingSequence: [
+          'Thinking...',
+          'Selecting emitter types per zone.',
+          'Calculating flow rates and pipe sizes.',
+          'Routing LTHW pipework from plant room.',
+          'Balancing circuits.',
+          'Done.'
+        ],
+        finalMessage: 'Heating system designed to CIBSE Guide B1. Emitters sized with 10% margin. Variable temperature compensation specified for weather response.',
+        readyPrompt: 'Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate heating layout'
+      },
+      ventilation: {
+        messages: [
+          { type: 'user', text: 'Position the ventilation grilles please.' },
+          { type: 'bot', text: 'Of course, let me extract the requirements.' },
+          { type: 'thinking', steps: [
+            'Extracting ventilation requirements from room data sheets.',
+            'Calculating fresh air rates per BS EN 16798-1.',
+            'Determining strategy: mixed-mode ventilation.',
+            'Mechanical supply and extract to landlord areas.',
+            'Natural ventilation assist to perimeter offices.',
+            'Positioning supply grilles for optimal air distribution.',
+            'Positioning extract grilles at high level in WCs and kitchens.',
+            'Sizing transfer grilles for pressure relief.',
+            'Done.'
+          ]},
+          { type: 'bot', text: 'Grilles positioned. Ready to proceed with the ventilation layout?' }
+        ],
+        thinkingSequence: [
+          'Thinking...',
+          'Calculating duct sizes from flow rates.',
+          'Routing supply ductwork from AHU.',
+          'Routing extract ductwork.',
+          'Checking ceiling void clearances.',
+          'Done.'
+        ],
+        finalMessage: 'Ventilation designed to CIBSE Guide B2 and BB101 where applicable. Duct sizes shown with acoustic attenuators at plantroom breakout.',
+        readyPrompt: 'Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate ventilation layout'
+      },
+      controls: {
+        messages: [
+          { type: 'user', text: 'Can you add the BMS and controls?' },
+          { type: 'bot', text: 'Of course, let me collate the control points.' },
+          { type: 'thinking', steps: [
+            'Collating BMS points from mechanical systems.',
+            '127 control points identified.',
+            'Determining control strategy: zone-based with occupancy sensing.',
+            'VAV boxes on supply air.',
+            'Modulating valves on heating circuits.',
+            'Central BMS with local override capability.',
+            'Adding plant room controls: duty/standby changeover.',
+            'Adding pressure sensors, temperature sensors, flow switches.',
+            'Adding energy metering at main incomers.',
+            'Done.'
+          ]},
+          { type: 'bot', text: 'Controls configured. Ready to proceed with the controls layout?' }
+        ],
+        thinkingSequence: [
+          'Thinking...',
+          'Generating BMS points schedule.',
+          'Creating control panel layouts.',
+          'Routing control cabling.',
+          'Linking to energy management system.',
+          'Done.'
+        ],
+        finalMessage: 'Controls designed to BSRIA BG6 and BCO Guide. BMS graphics specification included. Trend logging on all major plant items.',
+        readyPrompt: 'Type <strong>"yes"</strong> or <strong>"proceed"</strong> to generate controls layout'
+      }
+    };
+    
+    let view4ActiveConversation = 'drainage';
+    let view4IsThinking = false;
+    
+    // Function to create a thinking container for use with ThinkingAnimation
+    // Steps can be strings (legacy) or objects: { text, type: 'think'|'action'|'done', changes?, filename? }
+    function createThinkingContainer(thinkingSteps) {
+      const container = document.createElement('div');
+      container.className = 'thinking-container';
+      
+      // Build steps list HTML
+      let stepsHtml = '';
+      thinkingSteps.forEach((step, index) => {
+        const isLastStep = index === thinkingSteps.length - 1;
+        
+        // Support both string format (legacy) and object format (new)
+        if (typeof step === 'string') {
+          // Legacy string format
+          const iconType = isLastStep ? 'check' : 'dot';
+          stepsHtml += `<li><span class="step-icon ${iconType}"></span><span class="step-content"><span class="step-text">${step}</span></span></li>`;
+        } else {
+          // New object format: { text, type, changes?, filename? }
+          let iconClass = 'dot';
+          let iconChar = '';
+          
+          if (step.type === 'done') {
+            iconClass = 'check';
+          } else if (step.type === 'action') {
+            iconClass = 'edit';
+            iconChar = '✎';
+          }
+          
+          // Build changes HTML if present
+          let changesHtml = '';
+          if (step.changes) {
+            const changeClass = step.changes.startsWith('-') ? 'removed' : 'added';
+            changesHtml = `<span class="step-changes"><span class="changes-box"><span class="${changeClass}">${step.changes}</span></span><span class="filename">${step.filename || ''}</span></span>`;
+          }
+          
+          stepsHtml += `<li><span class="step-icon ${iconClass}">${iconChar}</span><span class="step-content"><span class="step-text">${step.text}</span>${changesHtml}</span></li>`;
+        }
+      });
+      
+      container.innerHTML = `
+        <div class="thinking-header">
+          <div class="thinking-header-left">
+            <div class="pulsing-node"></div>
+            <span class="steps-count">${thinkingSteps.length} steps</span>
+          </div>
+          <div class="steps-toggle">
+            <span class="chevron">⌃</span>
+          </div>
+        </div>
+        <ul class="steps-list">
+          ${stepsHtml}
+        </ul>
+      `;
+      
+      return container;
+    }
+    
+    // Function to run thinking animation using ThinkingAnimation module
+    async function runThinkingSequence(chatContainer, thinkingSteps) {
+      // Create and add thinking container
+      const thinkingContainer = createThinkingContainer(thinkingSteps);
+      chatContainer.appendChild(thinkingContainer);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      
+      // Run the animation using ThinkingAnimation module
+      return new Promise((resolve) => {
+        ThinkingAnimation.run(thinkingContainer, {
+          stepDelay: 450,
+          autoCollapse: false, // Keep visible after completion
+          onComplete: () => {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            resolve(thinkingContainer);
+          }
+        });
+      });
+    }
+    
+    // Function to create a collapsed (completed) thinking container for history
+    // Steps can be strings (legacy) or objects: { text, type: 'think'|'action'|'done', changes?, filename? }
+    function createCollapsedThinkingContainer(steps) {
+      const container = document.createElement('div');
+      container.className = 'thinking-container visible';
+      
+      // Build steps list HTML - all steps already visible (completed state)
+      let stepsHtml = '';
+      steps.forEach((step, index) => {
+        const isLastStep = index === steps.length - 1;
+        
+        // Support both string format (legacy) and object format (new)
+        if (typeof step === 'string') {
+          // Legacy string format
+          const iconType = isLastStep ? 'check' : 'dot';
+          stepsHtml += `<li class="visible"><span class="step-icon ${iconType}"></span><span class="step-content"><span class="step-text">${step}</span></span></li>`;
+        } else {
+          // New object format: { text, type, changes?, filename? }
+          let iconClass = 'dot';
+          let iconChar = '';
+          
+          if (step.type === 'done') {
+            iconClass = 'check';
+          } else if (step.type === 'action') {
+            iconClass = 'edit';
+            iconChar = '✎';
+          }
+          
+          // Build changes HTML if present
+          let changesHtml = '';
+          if (step.changes) {
+            const changeClass = step.changes.startsWith('-') ? 'removed' : 'added';
+            changesHtml = `<span class="step-changes"><span class="changes-box"><span class="${changeClass}">${step.changes}</span></span><span class="filename">${step.filename || ''}</span></span>`;
+          }
+          
+          stepsHtml += `<li class="visible"><span class="step-icon ${iconClass}">${iconChar}</span><span class="step-content"><span class="step-text">${step.text}</span>${changesHtml}</span></li>`;
+        }
+      });
+      
+      container.innerHTML = `
+        <div class="thinking-header done">
+          <div class="thinking-header-left">
+            <div class="pulsing-node"></div>
+            <span class="steps-count">${steps.length} steps</span>
+          </div>
+          <div class="steps-toggle">
+            <span class="chevron">⌃</span>
+          </div>
+        </div>
+        <ul class="steps-list">
+          ${stepsHtml}
+        </ul>
+      `;
+      
+      // Add click handler to toggle expand/collapse
+      const header = container.querySelector('.thinking-header');
+      const stepsList = container.querySelector('.steps-list');
+      const toggle = container.querySelector('.steps-toggle');
+      if (header && stepsList) {
+        header.addEventListener('click', function() {
+          if (toggle) toggle.classList.toggle('expanded');
+          stepsList.classList.toggle('expanded');
+        });
+      }
+      
+      return container;
+    }
+    
+    // Function to load a conversation into View 4 chat
+    function loadView4Conversation(conversationKey) {
+      // Get fresh reference to chat messages element (may have been cloned/replaced)
+      const chatEl = document.getElementById('chatMessagesIndex4');
+      if (!chatEl) {
+        console.warn('loadView4Conversation: chatMessagesIndex4 not found');
+        return;
+      }
+      const conversation = view4Conversations[conversationKey];
+      if (!conversation) {
+        console.warn('loadView4Conversation: conversation not found for key:', conversationKey);
+        return;
+      }
+      
+      view4ActiveConversation = conversationKey;
+      console.log('Loaded conversation:', conversationKey, '| Active:', view4ActiveConversation);
+      
+      // Clear current messages
+      chatEl.innerHTML = '';
+      
+      // Add conversation messages
+      conversation.messages.forEach(msg => {
+        if (msg.type === 'thinking') {
+          // Create a collapsed thinking container showing the steps
+          const thinkingEl = createCollapsedThinkingContainer(msg.steps);
+          chatEl.appendChild(thinkingEl);
+        } else {
+          // Regular user or bot message
+          const msgDiv = document.createElement('div');
+          msgDiv.className = msg.type === 'user' ? 'demo-msg-user' : 'demo-msg-bot';
+          msgDiv.innerHTML = '<p>' + msg.text + '</p>';
+          chatEl.appendChild(msgDiv);
+        }
+      });
+      
+      // Add ready prompt
+      const promptDiv = document.createElement('div');
+      promptDiv.className = 'demo-ready-prompt';
+      promptDiv.innerHTML = '<span>' + conversation.readyPrompt + '</span>';
+      chatEl.appendChild(promptDiv);
+      
+      // Scroll to bottom
+      chatEl.scrollTop = chatEl.scrollHeight;
+      
+      // Reset GIF section
+      const gifEl = document.getElementById('gifSectionIndex4');
+      if (gifEl) {
+        const img = gifEl.querySelector('img');
+        const placeholder = gifEl.querySelector('.demo-revit-placeholder');
+        if (img) img.classList.remove('playing');
+        if (placeholder) placeholder.style.display = '';
+      }
+    }
+    
+    async function handleView4ChatSend() {
+      // Get fresh references to elements
+      const inputEl = document.getElementById('chatInputIndex4');
+      const chatEl = document.getElementById('chatMessagesIndex4');
+      const gifEl = document.getElementById('gifSectionIndex4');
+      
+      if (!inputEl || !chatEl || view4IsThinking) return;
+      const input = inputEl.value.trim().toLowerCase();
+      if (!input) return;
+      
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'demo-msg-user';
+      userMsg.innerHTML = '<p>' + inputEl.value + '</p>';
+      chatEl.appendChild(userMsg);
+      inputEl.value = '';
+      
+      // Remove ready prompt if exists
+      const readyPrompt = chatEl.querySelector('.demo-ready-prompt');
+      if (readyPrompt) readyPrompt.remove();
+      
+      // Scroll to bottom
+      chatEl.scrollTop = chatEl.scrollHeight;
+      
+      // Check for proceed commands
+      if (input === 'yes' || input === 'proceed' || input === 'y') {
+        view4IsThinking = true;
+        
+        console.log('handleView4ChatSend: Using conversation:', view4ActiveConversation);
+        const conversation = view4Conversations[view4ActiveConversation];
+        if (!conversation) {
+          console.warn('handleView4ChatSend: No conversation found for:', view4ActiveConversation);
+          view4IsThinking = false;
+          return;
+        }
+        console.log('Running thinkingSequence:', conversation.thinkingSequence.length, 'steps');
+        
+        // Run thinking animation using ThinkingAnimation module
+        const thinkingContainer = await runThinkingSequence(chatEl, conversation.thinkingSequence);
+        
+        // Wait a moment then collapse thinking
+        await sleep(800);
+        if (thinkingContainer && typeof ThinkingAnimation !== 'undefined') {
+          await ThinkingAnimation.hide(thinkingContainer);
+        }
+        
+        // Show GIF
+        if (gifEl) {
+          const img = gifEl.querySelector('img');
+          const placeholder = gifEl.querySelector('.demo-revit-placeholder');
+          
+          if (img && placeholder) {
+            placeholder.style.display = 'none';
+            
+            // Force reload GIF
+            const gifSrc = img.src;
+            img.src = '';
+            img.src = gifSrc;
+            
+            await sleep(50);
+            img.classList.add('playing');
+          }
+        }
+        
+        // Add final chat message response
+        await sleep(300);
+        const botMsg = document.createElement('div');
+        botMsg.className = 'demo-msg-bot';
+        botMsg.innerHTML = '<p>' + conversation.finalMessage + '</p>';
+        chatEl.appendChild(botMsg);
+        chatEl.scrollTop = chatEl.scrollHeight;
+        
+        view4IsThinking = false;
+      } else {
+        // Unknown command
+        await sleep(300);
+        const botMsg = document.createElement('div');
+        botMsg.className = 'demo-msg-bot';
+        botMsg.innerHTML = '<p>Please type "yes" or "proceed" to generate the layout.</p>';
+        chatEl.appendChild(botMsg);
+        chatEl.scrollTop = chatEl.scrollHeight;
+      }
+    }
+    
+    // Use event delegation for send button and input (handles cloned elements)
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('#chatSendIndex4')) {
+        handleView4ChatSend();
+      }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      const inputEl = document.getElementById('chatInputIndex4');
+      if (e.key === 'Enter' && document.activeElement === inputEl) {
+        handleView4ChatSend();
+      }
+    });
+    
+    // History item click handlers for View 4 - loads conversation
+    // Use event delegation on document for reliability (handles cloned elements)
+    document.addEventListener('click', function(e) {
+      const historyItem = e.target.closest('#chatHistoryIndex4 .demo-history-item');
+      if (!historyItem) return;
+      
+      console.log('History item clicked:', historyItem);
+      
+      // Remove active from all, add to clicked
+      document.querySelectorAll('#chatHistoryIndex4 .demo-history-item').forEach(i => i.classList.remove('active'));
+      historyItem.classList.add('active');
+      
+      // Load the conversation for this system
+      const system = historyItem.getAttribute('data-system') || historyItem.getAttribute('data-conversation');
+      console.log('System attribute:', system, '| Exists in conversations:', !!view4Conversations[system]);
+      if (system && view4Conversations[system]) {
+        loadView4Conversation(system);
+      }
+    });
+    
+    // END OF REMOVED VIEW 4 SECTION */
+    
+    // View 5 buttons (same openChat functionality as View 3)
+    const openChatBtnView5 = document.getElementById('openChatBtnView5');
+    const tryMoreDemosBtn5 = document.getElementById('tryMoreDemosBtn5');
+    if (openChatBtnView5) openChatBtnView5.addEventListener('click', openChat);
+    if (tryMoreDemosBtn5) tryMoreDemosBtn5.addEventListener('click', function() {
+      window.location.href = 'demos.html';
+    });
+    
+    // --------------------------------------------------
+    // VIEW 5: REVIT PLAN CYCLING (click to cycle)
+    // --------------------------------------------------
+    
+    const revitPlanImage = document.getElementById('revitPlanImage');
+    
+    // Plan images - click to cycle through
+    const planImages = ['images/backgrounds/PLAN_A.png', 'images/backgrounds/PLAN_B.png', 'images/backgrounds/PLAN_C.png', 'images/backgrounds/PLAN_D.png'];
+    let currentPlanIndex = 0;
+    let isRevitPlanAnimating = false;
+    
+    async function cyclePlans() {
+      if (isRevitPlanAnimating) return;
+      isRevitPlanAnimating = true;
+      
+      if (revitPlanImage) {
+        revitPlanImage.classList.add('fade-out');
+        await sleep(300);
+        
+        // Cycle to next plan image
+        currentPlanIndex = (currentPlanIndex + 1) % planImages.length;
+        revitPlanImage.src = planImages[currentPlanIndex];
+        
+        // Small delay for src to update
+        await sleep(50);
+        
+        // Fade in new plan
+        revitPlanImage.classList.remove('fade-out');
+      }
+      
+      await sleep(300);
+      isRevitPlanAnimating = false;
+    }
+    
+    // Click on plan image to cycle
+    if (revitPlanImage) {
+      revitPlanImage.style.cursor = 'pointer';
+      revitPlanImage.addEventListener('click', cyclePlans);
+    }
+    
+    // --------------------------------------------------
+    // REVIT CONTAINER DRAGGING (via title bar area)
+    // --------------------------------------------------
+    
+    const revitBackgroundEl = document.getElementById('revitBackground');
+    const revitDragHandle = document.getElementById('revitDragHandle');
+    let isDraggingRevitBg = false;
+    let revitBgStartX, revitBgStartY, revitBgInitialX, revitBgInitialY;
+    
+    if (revitDragHandle) {
+      revitDragHandle.addEventListener('mousedown', function(e) {
+        isDraggingRevitBg = true;
+        revitBgStartX = e.clientX;
+        revitBgStartY = e.clientY;
+        
+        // Get actual pixel position from bounding rect BEFORE adding dragging class
+        const rect = revitBackgroundEl.getBoundingClientRect();
+        revitBgInitialX = rect.left;
+        revitBgInitialY = rect.top;
+        
+        // Add dragging class to disable CSS transform and transitions
+        revitBackgroundEl.classList.add('dragging');
+        
+        // Set position using the calculated rect values
+        revitBackgroundEl.style.left = revitBgInitialX + 'px';
+        revitBackgroundEl.style.top = revitBgInitialY + 'px';
+      });
+    }
+    
+    document.addEventListener('mousemove', function(e) {
+      if (!isDraggingRevitBg) return;
+      const deltaX = e.clientX - revitBgStartX;
+      const deltaY = e.clientY - revitBgStartY;
+      revitBackgroundEl.style.left = (revitBgInitialX + deltaX) + 'px';
+      revitBackgroundEl.style.top = (revitBgInitialY + deltaY) + 'px';
+    });
+    
+    document.addEventListener('mouseup', function() {
+      if (isDraggingRevitBg) {
+        isDraggingRevitBg = false;
+        // Keep dragging class to prevent CSS transform from reactivating
+        // Don't remove it so the element stays at the user's dragged position
+      }
+    });
+    
+    // --------------------------------------------------
+    // LEFT RIBA CARD EXPANSION
+    // --------------------------------------------------
+    // Animation: card moves to center → expands from center (all corners equally) → show content
+    
+    const ribaPanel = document.getElementById('ribaLeftPanel');
+    const ribaBackdrop = document.getElementById('ribaBackdrop');
+    
+    if (ribaPanel) {
+      ribaPanel.addEventListener('wheel', function(e) {
+        // Only stop propagation when a card is expanded (to allow scrolling the expanded content)
+        // When no card is expanded, let the wheel event bubble up for normal page navigation
+        if (expandedClone) {
+          e.stopPropagation();
+        }
+      }, { passive: false });
+    }
+    
+    let expandedClone = null;
+    let originalCard = null;
+    let cardStartRect = null;
+    
+    // Expanded size
+    const EXPAND_W = 700;
+    const EXPAND_H = window.innerHeight * 0.8;
+    
+    // Center position (where expanded panel will be)
+    const getCenterPos = () => ({
+      x: window.innerWidth * 0.275 + 40,
+      y: window.innerHeight / 2
+    });
+    
+    document.querySelectorAll('.riba-card-left').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        if (originalCard === this && expandedClone) {
+          // Ensure scroll lock is removed when clicking the card again to close
+          const ribaPanelUnlock = document.getElementById('ribaLeftPanel');
+          if (ribaPanelUnlock) {
+            ribaPanelUnlock.classList.remove('scroll-locked');
+            ribaPanelUnlock.style.paddingRight = '';
+          }
+          closeExpandedCard();
+          return;
+        }
+        
+        if (expandedClone) {
+          closeExpandedCardInstant();
+        }
+        
+        // Record original card dimensions
+        const rect = this.getBoundingClientRect();
+        cardStartRect = {
+          w: rect.width,
+          h: rect.height,
+          cx: rect.left + rect.width / 2,  // center x
+          cy: rect.top + rect.height / 2    // center y
+        };
+        originalCard = this;
+        
+        const center = getCenterPos();
+        
+        // Show backdrop and lock RIBA panel scroll
+        if (ribaBackdrop) ribaBackdrop.classList.add('visible');
+        const ribaPanelForLock = document.getElementById('ribaLeftPanel');
+        if (ribaPanelForLock) {
+          // Calculate scrollbar width before hiding it
+          const scrollbarWidth = ribaPanelForLock.offsetWidth - ribaPanelForLock.clientWidth;
+          // Add compensating padding to prevent content shift
+          if (scrollbarWidth > 0) {
+            ribaPanelForLock.style.paddingRight = (40 + scrollbarWidth) + 'px'; // 40px is original padding
+          }
+          ribaPanelForLock.classList.add('scroll-locked');
+        }
+        
+        // Create clone at original position (positioned by center)
+        expandedClone = this.cloneNode(true);
+        expandedClone.classList.add('riba-clone-expanded');
+        // Detect dark mode and use appropriate background
+        const isDarkMode = document.documentElement.classList.contains('dark-mode');
+        expandedClone.style.cssText = `
+          position: fixed;
+          width: ${cardStartRect.w}px;
+          height: ${cardStartRect.h}px;
+          left: ${cardStartRect.cx}px;
+          top: ${cardStartRect.cy}px;
+          transform: translate(-50%, -50%);
+          z-index: 700;
+          margin: 0;
+          background: ${isDarkMode ? '#2a2a2a' : '#fff'};
+        `;
+        document.body.appendChild(expandedClone);
+        
+        // Hide original
+        this.style.visibility = 'hidden';
+        
+        // Force reflow
+        expandedClone.offsetHeight;
+        
+        // STEP 1: Move to center (same size, just position change)
+        expandedClone.style.transition = 'left 0.3s ease-out, top 0.3s ease-out, box-shadow 0.3s ease-out';
+        expandedClone.style.left = center.x + 'px';
+        expandedClone.style.top = center.y + 'px';
+        expandedClone.style.boxShadow = '0 12px 40px rgba(0,0,0,0.2)';
+        
+        setTimeout(() => {
+          // STEP 2: Expand from center (width/height grow, center stays fixed due to translate(-50%,-50%))
+          expandedClone.style.transition = 'width 0.3s ease-in-out, height 0.3s ease-in-out';
+          expandedClone.style.width = EXPAND_W + 'px';
+          expandedClone.style.height = EXPAND_H + 'px';
+          expandedClone.style.borderColor = 'rgba(0, 160, 160, 0.4)';
+          expandedClone.classList.add('expanded');
+          
+          setTimeout(() => {
+            // STEP 3: Show content first, then scrollbar after fade-in
+            expandedClone.classList.add('show-content');
+            setTimeout(() => {
+              expandedClone.classList.add('show-scrollbar');
+            }, 200); // Wait for content fade-in
+          }, 300);
+        }, 300);
+        
+        expandedClone.addEventListener('click', function(e) {
+          e.stopPropagation();
+          // Ensure scroll lock is removed when clicking the expanded card to close
+          const ribaPanelUnlock = document.getElementById('ribaLeftPanel');
+          if (ribaPanelUnlock) {
+            ribaPanelUnlock.classList.remove('scroll-locked');
+            ribaPanelUnlock.style.paddingRight = '';
+          }
+          closeExpandedCard();
+        });
+      });
+    });
+    
+    function closeExpandedCard() {
+      // Remove scroll lock immediately so user can scroll right away
+      const ribaPanelForUnlock = document.getElementById('ribaLeftPanel');
+      if (ribaPanelForUnlock) {
+        ribaPanelForUnlock.classList.remove('scroll-locked');
+        ribaPanelForUnlock.style.paddingRight = ''; // Reset to CSS default
+      }
+      
+      if (!expandedClone || !originalCard || !cardStartRect) return;
+      
+      const center = getCenterPos();
+      
+      // STEP 1: Hide scrollbar first, then content
+      expandedClone.classList.remove('show-scrollbar');
+      
+      setTimeout(() => {
+        expandedClone.classList.remove('show-content');
+        
+        setTimeout(() => {
+          // STEP 2: Shrink to original size (center stays fixed)
+          expandedClone.classList.remove('expanded');
+          expandedClone.style.transition = 'width 0.3s ease-in-out, height 0.3s ease-in-out';
+          expandedClone.style.width = cardStartRect.w + 'px';
+          expandedClone.style.height = cardStartRect.h + 'px';
+          expandedClone.style.borderColor = 'rgba(0,0,0,0.06)';
+          
+          setTimeout(() => {
+            // STEP 3: Move back to original position
+            expandedClone.style.transition = 'left 0.3s ease-in, top 0.3s ease-in, box-shadow 0.3s ease-in';
+            expandedClone.style.left = cardStartRect.cx + 'px';
+            expandedClone.style.top = cardStartRect.cy + 'px';
+            expandedClone.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            
+            setTimeout(() => {
+              // Cleanup
+              if (originalCard) originalCard.style.visibility = '';
+              if (expandedClone && expandedClone.parentNode) {
+                expandedClone.parentNode.removeChild(expandedClone);
+              }
+              expandedClone = null;
+              originalCard = null;
+              cardStartRect = null;
+              if (ribaBackdrop) ribaBackdrop.classList.remove('visible');
+              const ribaPanelForUnlock = document.getElementById('ribaLeftPanel');
+              if (ribaPanelForUnlock) {
+                ribaPanelForUnlock.classList.remove('scroll-locked');
+                ribaPanelForUnlock.style.paddingRight = '';
+              }
+            }, 300);
+          }, 300);
+        }, 150);
+      }, 50);
+    }
+    
+    function closeExpandedCardInstant() {
+      if (originalCard) originalCard.style.visibility = '';
+      if (expandedClone && expandedClone.parentNode) {
+        expandedClone.parentNode.removeChild(expandedClone);
+      }
+      expandedClone = null;
+      originalCard = null;
+      cardStartRect = null;
+      if (ribaBackdrop) ribaBackdrop.classList.remove('visible');
+      const ribaPanelForUnlock = document.getElementById('ribaLeftPanel');
+      if (ribaPanelForUnlock) {
+        ribaPanelForUnlock.classList.remove('scroll-locked');
+        ribaPanelForUnlock.style.paddingRight = '';
+      }
+    }
+    
+    // Close when clicking backdrop
+    if (ribaBackdrop) {
+      ribaBackdrop.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeExpandedCard();
+      });
+    }
+    
+    // Close when clicking anywhere outside the expanded card
+    document.addEventListener('click', function(e) {
+      if (!expandedClone) return;
+      
+      // If clicked on the expanded clone itself, don't close (clone has its own handler)
+      if (expandedClone.contains(e.target)) return;
+      
+      // If clicked on the original card or another RIBA card, don't close here
+      if (e.target.closest('.riba-card-left')) return;
+      
+      // Close the card when clicking anywhere else
+      closeExpandedCard();
+    });
+    
+    // --------------------------------------------------
+    // VIEW 4 AUTO SIGNAL FIRING + QUESTIONS
+    // --------------------------------------------------
+    // When on View 4, nodes fire signals automatically (1-2 per second)
+    // Questions appear from non-MEP parties when signals fire/arrive
+    // Stops on hover, stops permanently on project complete
+    
+    const nodeQuestions = {
+      'Project Manager': [
+        "Is Stage 4 on programme?",
+        "When can we issue tender?",
+        "Are there any design risks?",
+        "What's holding up coordination?",
+        "Have you logged this change?",
+        "Is the cost plan updated?",
+        "Can we accelerate this?",
+        "Who's responsible for this delay?",
+        "Are all RFIs closed out?",
+        "What's the critical path item?",
+        "Have you updated the tracker?",
+        "Is the client aware of this?"
+      ],
+      'Architect': [
+        "Where are the MEP layouts?",
+        "Does the plant room fit?",
+        "Can we move this riser?",
+        "What's the ceiling void depth?",
+        "Is there coordination with structure?",
+        "When will sections be ready?",
+        "Have clashes been resolved?",
+        "What's the services zone?",
+        "Can you check the plantroom access?",
+        "Are penetrations coordinated?",
+        "What's the bulkhead requirement?",
+        "Is fire compartmentation clear?"
+      ],
+      'Client': [
+        "Does this comply with brief?",
+        "What's the energy strategy?",
+        "Is this within budget?",
+        "Can we see a 3D visual?",
+        "What are the running costs?",
+        "Is BREEAM achievable?",
+        "Have you met with the operator?",
+        "What's the maintenance access like?",
+        "Can we reduce the plant space?",
+        "Is there expansion capacity?",
+        "What's the sustainability score?",
+        "Have planning conditions been met?"
+      ],
+      'Contractor': [
+        "We need drawings on site now!",
+        "Can you issue for construction?",
+        "Is the spec finalised?",
+        "When is equipment arriving?",
+        "Have you approved the submittals?",
+        "Need RFI response urgently",
+        "Are procurement lists ready?",
+        "What's the lead time on chillers?",
+        "Can we proceed with this route?",
+        "Is this change approved?",
+        "Need updated programme info",
+        "Where's the builders work?"
+      ],
+      'Structural Engineer': [
+        "What's the plant loading?",
+        "Where are the major penetrations?",
+        "Can this beam be moved?",
+        "What are the hanger loads?",
+        "Is the rooftop plant confirmed?",
+        "Do we have padstone requirements?",
+        "What's the tank room loading?",
+        "Are there any embedded services?",
+        "What's the UPS room load?",
+        "Need penetration locations ASAP",
+        "Can you confirm floor loadings?",
+        "Have you coordinated with rebar?"
+      ]
+    };
+    
+    let questionIndices = {};
+    Object.keys(nodeQuestions).forEach(k => questionIndices[k] = 0);
+    
+    let autoSignalInterval = null;
+    let autoSignalPaused = false;
+    let projectComplete = false;
+    
+    // Track which nodes are auto-signal sources (so we know when their pulses arrive)
+    const autoSignalSources = new Set();
+    
+    // Get a question for a party (cycles through)
+    function getNextQuestion(partyTitle) {
+      const questions = nodeQuestions[partyTitle];
+      if (!questions) return null;
+      const idx = questionIndices[partyTitle] || 0;
+      questionIndices[partyTitle] = (idx + 1) % questions.length;
+      return questions[idx];
+    }
+    
+    // Show QUESTION on a node (grey text, for auto-signals only)
+    function flashQuestionOnNode(brainNodeId) {
+      if (currentOverlayView !== 4 || projectComplete) return;
+      
+      const nodeData = overlayNodeData.find(nd => nd.nodeId === brainNodeId);
+      if (!nodeData) return;
+      
+      // Only non-MEP parties show questions
+      if (nodeData.isMEPEngineer) return;
+      
+      const codeEl = nodeData.element.querySelector('.node-code');
+      if (!codeEl) return;
+      
+      const text = getNextQuestion(nodeData.title);
+      if (!text) return;
+      
+      codeEl.textContent = text;
+      codeEl.style.color = '#888'; // Grey for questions
+      codeEl.classList.add('visible');
+      
+      setTimeout(() => {
+        codeEl.classList.remove('visible');
+      }, 1200); // Longer display for questions
+    }
+    
+    // Fire signal from a random visible node (auto-signal mode)
+    function fireAutoSignal() {
+      if (autoSignalPaused || projectComplete || currentOverlayView !== 4) return;
+      if (!overlayNodeData.length) return;
+      
+      // Pick a random non-MEP overlay node
+      const nonMEPNodes = overlayNodeData.filter(nd => !nd.isMEPEngineer);
+      if (!nonMEPNodes.length) return;
+      
+      const randomNode = nonMEPNodes[Math.floor(Math.random() * nonMEPNodes.length)];
+      
+      // Track this as an auto-signal source
+      autoSignalSources.add(randomNode.nodeId);
+      
+      // Clear from set after 3 seconds (enough time for pulses to arrive)
+      setTimeout(() => {
+        autoSignalSources.delete(randomNode.nodeId);
+      }, 3000);
+      
+      // Show question on the firing node immediately
+      flashQuestionOnNode(randomNode.nodeId);
+      
+      // Trigger pulse from brain.js (pulses will trigger onPulseArrived when they land)
+      if (window.triggerNodePulse) {
+        window.triggerNodePulse(randomNode.nodeId);
+      }
+    }
+    
+    // Start auto signal firing for View 4
+    function startAutoSignals() {
+      if (autoSignalInterval || projectComplete) return;
+      
+      // Fire 1-2 signals per second
+      autoSignalInterval = setInterval(() => {
+        fireAutoSignal();
+        // Sometimes fire a second one
+        if (Math.random() > 0.5) {
+          setTimeout(fireAutoSignal, 400);
+        }
+      }, 1000);
+    }
+    
+    // Stop auto signal firing
+    function stopAutoSignals() {
+      if (autoSignalInterval) {
+        clearInterval(autoSignalInterval);
+        autoSignalInterval = null;
+      }
+      autoSignalSources.clear();
+    }
+    
+    // Set project complete (stops questions permanently)
+    function setProjectComplete() {
+      projectComplete = true;
+      stopAutoSignals();
+      // Clear all code displays
+      overlayNodeData.forEach(nodeData => {
+        const codeEl = nodeData.element.querySelector('.node-code');
+        if (codeEl) codeEl.classList.remove('visible');
+      });
+    }
+    window.setProjectComplete = setProjectComplete;
+    
+    // Pulse callbacks:
+    // - HOVER triggers codes (original behavior)
+    // - AUTO-SIGNAL triggers questions (grey) on receiving nodes
+    
+    window.onPulseFired = function(nodeId) {
+      if (!pulseCodeFlashEnabled || currentOverlayView !== 4) return;
+      
+      // Auto-signal firing is handled in fireAutoSignal() directly
+      // This callback only handles hover-triggered pulses
+      if (!autoSignalSources.has(nodeId)) {
+        // User hover: show code (original behavior)
+        flashCodeOnNodeById(nodeId);
+      }
+      // If it's an auto-signal source, question was already shown in fireAutoSignal()
+    };
+    
+    window.onPulseArrived = function(toNodeIdx, sourceNodeId) {
+      if (!pulseCodeFlashEnabled || currentOverlayView !== 4) return;
+      
+      // Check if this pulse came from an auto-signal source
+      if (autoSignalSources.has(sourceNodeId) && !projectComplete) {
+        // Auto-signal: show question on receiving node (grey)
+        flashQuestionOnNode(toNodeIdx);
+      } else {
+        // User hover: show code (original behavior)
+        flashCodeOnNodeById(toNodeIdx);
+      }
+    };
+    
+    // Pause auto-signals on hover over brain (but don't stop existing pulses)
+    const brainCanvasForSignals = document.getElementById('brainCanvas');
+    if (brainCanvasForSignals) {
+      brainCanvasForSignals.addEventListener('mouseenter', () => {
+        autoSignalPaused = true;
+      });
+      
+      brainCanvasForSignals.addEventListener('mouseleave', () => {
+        autoSignalPaused = false;
+      });
+    }
+    
+    // Export for view controller
+    window.startAutoSignals = startAutoSignals;
+    window.stopAutoSignals = stopAutoSignals;
+    
+    // Start the main animation
+    runMainAnimation();
+  });

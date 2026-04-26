@@ -1,0 +1,35 @@
+{
+  "class": "TestCreateSheetsCommand",
+  "desc": "Test command for CreateSheet and CreateViews functionality.",
+  "summary": "Test command for CreateSheet and CreateViews functionality. Shows service selection dialog and creates sheets with smart sizing.",
+  "usecase": "Use when you need to run this command's workflow for the current model task.",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active Revit document and required context are available.",
+  "postcondition": "The command finishes with tracked success or a handled failure state.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create",
+    "make test sheets",
+    "test create sheets",
+    "test",
+    "sheets"
+  ],
+  "intent_patterns": [
+    "* create"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Command execution result"
+    }
+  ],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

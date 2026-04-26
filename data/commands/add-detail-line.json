@@ -1,0 +1,84 @@
+{
+  "class": "AddDetailLineCommand",
+  "desc": "Creates a detail line in the active view between two points specified in millimetres.",
+  "summary": "Creates a detail line in the active view between two points specified in millimetres. Optionally applies a named line style via ResolveLineStyle. Coordinates are converted from mm to feet internally. Uses CommandExecutor to retrieve parameters from the AI orchestrator. Related: AddFilledRegionCommand for creating filled regions in the same view.",
+  "usecase": "User wants to draw a detail line between two known coordinates. AI needs to add annotation lines to a drafting or detail view.",
+  "notfor": "Creating model lines in 3D (use ModelLine API instead). Drawing multiple connected lines (use a polyline command or loop externally). Creating filled regions (use AddFilledRegionCommand).",
+  "precondition": "Active document must be open with a detail-capable view (floor plan, section, drafting view). Coordinates x1, y1, x2, y2 must be provided in millimetres.",
+  "postcondition": "A new DetailCurve is created in the active view. If a line style name was provided and found, it is applied to the new curve.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add detail line",
+    "create detail line",
+    "draw detail line",
+    "detail curve",
+    "annotation line"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "x1",
+      "type": "number",
+      "description": "Start X in mm",
+      "default": ""
+    },
+    {
+      "name": "y1",
+      "type": "number",
+      "description": "Start Y in mm",
+      "default": ""
+    },
+    {
+      "name": "x2",
+      "type": "number",
+      "description": "End X in mm",
+      "default": ""
+    },
+    {
+      "name": "y2",
+      "type": "number",
+      "description": "End Y in mm",
+      "default": ""
+    },
+    {
+      "name": "lineStyle",
+      "type": "string",
+      "description": "Optional detail line style name",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Detail line creation result with element ID"
+    }
+  ],
+  "related_commands": [
+    "AddFilledRegionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Drawing a detail line in the active view...",
+      "Creating your detail line now..."
+    ],
+    "thinkingsteps": [
+      "Converting coordinates from mm to feet...",
+      "Creating detail curve in the active view...",
+      "Applying line style if specified..."
+    ],
+    "successprompts": [
+      "Detail line created successfully (ID: {Result}).",
+      "Done — detail line drawn between your two points."
+    ],
+    "failureprompts": [
+      "Could not create detail line: {error}",
+      "Detail line creation failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

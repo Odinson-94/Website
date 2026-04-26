@@ -1,0 +1,28 @@
+{
+  "name": "calculate_level_height_differences",
+  "desc": "Group close levels by tolerance and return primary levels.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "toleranceMm",
+      "type": "number",
+      "description": "Grouping tolerance in mm (default 500).",
+      "required": false
+    },
+    {
+      "name": "includeLinkedFloors",
+      "type": "boolean",
+      "description": "Include linked models for floor-slab lookup.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "level height differences",
+    "group levels",
+    "primary levels",
+    "mezzanine grouping"
+  ]
+}

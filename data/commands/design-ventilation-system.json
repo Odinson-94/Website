@@ -1,0 +1,108 @@
+{
+  "class": "DesignVentilationSystemCommand",
+  "desc": "Design Ventilation System Command: Imports MEP systems from a MEPBridge JSON file with Neural Loading visualization.",
+  "summary": "Design Ventilation System Command: Imports MEP systems from a MEPBridge JSON file with Neural Loading visualization. User selects TWO inputs: 1. JSON file path 2. Base point for placement. Uses silent Excel auto-mapping for blocks (no manual mapping UI). Creates ducts, pipes, cable trays, fittings (elbows, tees, transitions), and family instances.",
+  "usecase": "User wants to design the ventilation system from AutoCAD JSON export. User wants to import MEP ductwork and equipment from coordinated model. User wants automated ventilation routing from a coordinated JSON model. User says \"design the ventilation\" or \"create ventilation system\".",
+  "notfor": "Not for autonomous AI execution. This command requires interactive Revit UI input (dialogs, picks, or manual confirmation).",
+  "precondition": "Active document must be open. User must have MEPBridge JSON file. At least one level must exist in the model. Appropriate MEP types (duct, pipe, cable tray) must be loaded in the model.",
+  "postcondition": "MEP elements (ducts, pipes, trays), fittings (elbows, tees, transitions), and blocks are created. Log file is written next to the JSON file with .ventilation.log.txt extension. Neural Loading dialog shows completion summary.",
+  "sideeffects": "",
+  "logictree": "check: jsonPath.isValid → proceed\ncheck: basePoint.isSelected → proceed\ncheck: dto.Edges.count > 0 → proceed\nresolve: excelMapper.exists → autoMap silently",
+  "keywords": [
+    "design vent",
+    "design ventilation",
+    "design the vent system",
+    "design the ventilation",
+    "design the ventilation system",
+    "can you please design the ventilation",
+    "please design the vent",
+    "design the ventilation please"
+  ],
+  "intent_patterns": [
+    "design * ventilation",
+    "create * ventilation",
+    "design * vent",
+    "ventilation * design",
+    "vent * system"
+  ],
+  "pillar": "Ventilation",
+  "pillar_raw": "Ventilation",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Base point for ventilation placement",
+      "prompt": "Pick Revit basepoint (target origin for import)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to MEPBridge JSON file",
+      "default": "null"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "DuctsCreated",
+      "type": "int",
+      "description": "Number of MEP curve segments created"
+    },
+    {
+      "name": "ElbowsPlaced",
+      "type": "int",
+      "description": "Number of elbow fittings placed"
+    },
+    {
+      "name": "TeesPlaced",
+      "type": "int",
+      "description": "Number of tee fittings placed"
+    },
+    {
+      "name": "TransitionsPlaced",
+      "type": "int",
+      "description": "Number of transitions placed"
+    },
+    {
+      "name": "BlocksPlaced",
+      "type": "int",
+      "description": "Number of family instances placed"
+    }
+  ],
+  "related_commands": [
+    "ImportCommand",
+    "DesignPipeworkCommand",
+    "DesignContainmentCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Designing your ventilation system...",
+      "Setting up ventilation import...",
+      "Preparing to create your ventilation ductwork..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON ventilation data...",
+      "Loading block mapping configuration...",
+      "Resolving MEP types and levels...",
+      "Building node coordinate system...",
+      "Creating MEP segments...",
+      "Building fitting index...",
+      "Placing elbow fittings...",
+      "Placing tee fittings...",
+      "Placing transitions...",
+      "Importing equipment blocks...",
+      "Finalizing ventilation model..."
+    ],
+    "successprompts": [
+      "Ventilation system created successfully! {DuctsCreated} segments, {ElbowsPlaced} elbows, {TeesPlaced} tees placed.",
+      "Done! Your ventilation system is ready with {DuctsCreated} MEP curves.",
+      "Ventilation design complete! Created {DuctsCreated} ducts with {ElbowsPlaced} fittings."
+    ],
+    "failureprompts": [
+      "Couldn't create ventilation system: {error}",
+      "Ventilation design failed - {error}"
+    ]
+  },
+  "has_restapi": false
+}

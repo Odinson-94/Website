@@ -1,0 +1,35 @@
+{
+  "class": "WorksetManagerRenameWorksetCommand",
+  "desc": "Rename a workset.",
+  "summary": "Rename a workset.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "workset manager rename workset",
+    "workset_manager_rename_workset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running workset manager rename workset…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "workset manager rename workset: done."
+    ],
+    "failureprompts": [
+      "workset manager rename workset failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

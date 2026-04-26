@@ -1,0 +1,91 @@
+{
+  "class": "CheckClashesLinkedCommand",
+  "desc": "Clash detection between linked model elements (e.g.",
+  "summary": "Clash detection between linked model elements (e.g. structural beams, columns) and host MEP services (pipes, ducts, cable trays). Delegates to ClashLinkedWithHost.GetAll for the intersection logic. Returns hostElementIds that can be passed to SectionBoxAroundClashesCommand to zoom to specific clashes. Use CheckClashesCommand for host-only (non-linked) clashes.",
+  "usecase": "Structural vs MEP clash check before coordination meeting. Identifying where pipes/ducts clash with structural beams or columns. Generating clash reports for BIM coordination.",
+  "notfor": "Host-only clashes (use CheckClashesCommand). Resolving clashes automatically. Mechanical vs electrical clashes within host model only.",
+  "precondition": "Active document must be open. At least one linked model must be loaded. MEP elements must exist in the host model.",
+  "postcondition": "Result JSON stored in LastQueryResult with clash pairs, overlap bounds, and hostElementIds. Optional XML report written to disk if outputXml path is provided. No model modifications — read-only analysis.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clash linked",
+    "structural clash",
+    "link vs host",
+    "clash detection linked",
+    "MEP structural clash"
+  ],
+  "intent_patterns": [
+    "clash * linked",
+    "structural * clash",
+    "check * linked * clash",
+    "MEP * structural * clash"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "linkName",
+      "type": "string",
+      "description": "Optional link name filter (partial match)",
+      "default": ""
+    },
+    {
+      "name": "linkedFilter",
+      "type": "string",
+      "description": "Linked categories: structural (default), all, or columns,framing,foundation,walls",
+      "default": ""
+    },
+    {
+      "name": "hostElementIds",
+      "type": "string",
+      "description": "Optional JSON array of host element IDs; default all MEP",
+      "default": ""
+    },
+    {
+      "name": "useSelectionForHost",
+      "type": "boolean",
+      "description": "If true and hostElementIds empty, use current selection as host set",
+      "default": ""
+    },
+    {
+      "name": "outputXml",
+      "type": "string",
+      "description": "Optional file path to write clashes XML",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "success, count, clashes, hostElementIds, message"
+    }
+  ],
+  "related_commands": [
+    "CheckClashesCommand",
+    "SectionBoxAroundClashesCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Running clash check against linked model...",
+      "Checking MEP services against structural links..."
+    ],
+    "thinkingsteps": [
+      "Loading linked model elements...",
+      "Filtering structural categories...",
+      "Running intersection tests against host MEP...",
+      "Compiling clash results..."
+    ],
+    "successprompts": [
+      "Found {count} clashes between MEP and linked structural elements.",
+      "Clash check complete — {count} interferences with linked model."
+    ],
+    "failureprompts": [
+      "Linked clash check failed: {error}",
+      "Could not check clashes against link — {error}"
+    ]
+  },
+  "has_restapi": false
+}

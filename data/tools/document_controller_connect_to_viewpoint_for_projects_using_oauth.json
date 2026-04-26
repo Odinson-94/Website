@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_connect_to_viewpoint_for_projects_using_oauth",
+  "desc": "Authenticates and connects to Viewpoint for Projects CDE using OAuth2 client credentials.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "consumerKey",
+      "type": "string",
+      "description": "VFP OAuth2 consumer key",
+      "required": true
+    },
+    {
+      "name": "consumerSecret",
+      "type": "string",
+      "description": "VFP OAuth2 consumer secret",
+      "required": true
+    },
+    {
+      "name": "storeCredentials",
+      "type": "boolean",
+      "description": "Whether to persist credentials in encrypted store",
+      "required": false
+    }
+  ],
+  "keywords": []
+}

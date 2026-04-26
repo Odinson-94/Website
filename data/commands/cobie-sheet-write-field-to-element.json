@@ -1,0 +1,35 @@
+{
+  "class": "CobieSheetWriteFieldToElementCommand",
+  "desc": "Write a single CoBie field value back to its source Revit element parameter.",
+  "summary": "Write a single CoBie field value back to its source Revit element parameter.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "cobie sheet write field to element",
+    "cobie_sheet_write_field_to_element"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running cobie sheet write field to element…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "cobie sheet write field to element: done."
+    ],
+    "failureprompts": [
+      "cobie sheet write field to element failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

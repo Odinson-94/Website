@@ -1,0 +1,31 @@
+{
+  "class": "RoomEditChangeRoomFilterPresetCommand",
+  "desc": "Write the RoomFilterPreset parameter driving the view filter system.",
+  "summary": "Write the RoomFilterPreset parameter driving the view filter system.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "roomeditchangeroomfilterpreset",
+    "change room filter preset"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

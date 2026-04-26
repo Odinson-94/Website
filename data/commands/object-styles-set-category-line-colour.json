@@ -1,0 +1,36 @@
+{
+  "class": "ObjectStylesSetCategoryLineColourCommand",
+  "desc": "Set the line colour for an object-style category.",
+  "summary": "Set the line colour for an object-style category.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "set category line colour",
+    "object_styles_set_category_line_colour",
+    "set category line color"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Updating line colour…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Line colour set."
+    ],
+    "failureprompts": [
+      "Set line colour failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

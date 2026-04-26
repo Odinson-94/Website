@@ -1,0 +1,27 @@
+{
+  "name": "free_viewport_space_calculator",
+  "desc": "Calculate available viewport space on a sheet/titleblock.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "sheetId",
+      "type": "integer",
+      "description": "Optional sheet ID. If omitted, uses first sheet in document.",
+      "required": false
+    },
+    {
+      "name": "marginMm",
+      "type": "number",
+      "description": "Margin from titleblock edges in mm (default 15).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "free viewport space",
+    "sheet viewport area",
+    "titleblock usable area"
+  ]
+}

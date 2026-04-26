@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adelphos AI — Neural Node Logo (300×300)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /*
+      Adelphos AI – Neural Node Logo
+      Scaled-up version of the chat-neural-node used across the site.
+      Source: css/index-styles.css  ~lines 5897–5974
+
+      The original node is 20px square. This file renders it at 300px square
+      (15× scale) preserving every proportion, color, gradient and animation.
+
+      Two variants are provided:
+        1. .logo-300 (animated, processing state – matches the live chat node)
+        2. .logo-300.static (no animation – ideal for screenshots / PNG export)
+
+      To export a PNG:
+        - Open this file in a browser
+        - Right-click the static logo → "Save image as…" is not available because
+          it's pure CSS, so use a screenshot tool or print-to-PDF and crop.
+        - Or load it in a headless browser at 300×300 and screenshot.
+    */
+
+    :root {
+      /* Brand colors taken directly from the live chat node */
+      --node-core-from: #1a7a9e;
+      --node-core-to:   #156082;
+      --node-glow:      rgba(21, 96, 130, 0.30);
+      --node-ring:      rgba(21, 96, 130, 0.50);
+      --node-shadow:    rgba(21, 96, 130, 0.50);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 64px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #666;
+    }
+
+    /* ---------- 300 × 300 logo ---------- */
+    .logo-300 {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      /* keeps a clean transparent box around the node so the
+         glow + pulse ring never get clipped at the edges */
+      overflow: visible;
+    }
+
+    /* CORE: 8px → 120px (8 * 15)
+       Original gradient + a proportionally larger box-shadow
+       (original 6px shadow * 15 = 90px) */
+    .logo-300 .chat-node-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--node-core-from) 0%, var(--node-core-to) 100%);
+      box-shadow: 0 0 90px var(--node-shadow);
+    }
+
+    /* GLOW: original 14px → 210px, blur 3px → 45px */
+    .logo-300 .chat-node-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: var(--node-glow);
+      filter: blur(45px);
+    }
+
+    /* PULSE RING: starts at core size (120px), border 2px → 30px */
+    .logo-300 .chat-node-pulse-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 30px solid var(--node-ring);
+      box-sizing: border-box;
+      animation: chat-node-pulse 1.5s ease-out infinite;
+    }
+
+    /* Static variant – useful for clean screenshot / PNG export.
+       Pulse ring is rendered once at its starting position. */
+    .logo-300.static .chat-node-pulse-ring {
+      animation: none;
+    }
+
+    @keyframes chat-node-pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+      }
+    }
+
+    .label {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .logo-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1a1a1a; color: #aaa; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-row">
+    <div class="logo-300">
+      <div class="chat-node-glow"></div>
+      <div class="chat-node-core"></div>
+      <div class="chat-node-pulse-ring"></div>
+    </div>
+    <div class="label">Animated · 300 × 300</div>
+  </div>
+
+  <div class="logo-row">
+    <div class="logo-300 static">
+      <div class="chat-node-glow"></div>
+      <div class="chat-node-core"></div>
+      <div class="chat-node-pulse-ring"></div>
+    </div>
+    <div class="label">Static · 300 × 300 (use for PNG export)</div>
+  </div>
+
+</body>
+</html>

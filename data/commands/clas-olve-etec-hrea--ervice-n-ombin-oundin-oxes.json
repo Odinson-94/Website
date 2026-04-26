@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverDetectThreadOfServicesAndCombineBoundingBoxesCommand",
+  "desc": "ClashSolverDetectThreadOfServicesAndCombineBoundingBoxesCommand — PDF \"THREAD_OF_SERVICES\".",
+  "summary": "ClashSolverDetectThreadOfServicesAndCombineBoundingBoxesCommand — PDF \"THREAD_OF_SERVICES\". Identify parallel-run groups and return combined BBs.",
+  "usecase": "Pre-step before any group-level solver move.",
+  "notfor": "Mutating the model — pure grouping.",
+  "precondition": "Active document; input element ids (resolver or selection); each element has a BoundingBox.",
+  "postcondition": "No mutation; audit records threads + unthreaded.",
+  "sideeffects": "",
+  "logictree": "1) Resolve input ids: Resolver_ElementIds (Bot) else active selection (Human).\n2) WireError if fewer than 2 element ids (nothing to thread).\n3) angle_tol_deg = Resolver_AngleTolDeg ?? 5.0; lateral_tol_mm = Resolver_LateralTolMm ?? 300.0.\n4) Call CombineBoundingBoxesSafely.Combine(doc, ids, angle, lateral).\n5) Serialise threads + unthreaded into tracker outputs.\n6) Human path: TaskDialog summary \"N threads, X unthreaded\".",
+  "keywords": [
+    "clashsolverdetectthreadofservicesandcombineboundingboxes",
+    "thread of services",
+    "combine parallel bb"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Combining parallel services into threads…"
+    ],
+    "thinkingsteps": [
+      "Resolving input element ids…",
+      "Calling CombineBoundingBoxesSafely…"
+    ],
+    "successprompts": [
+      "{threads_count} threads; {unthreaded_count} unthreaded."
+    ],
+    "failureprompts": [
+      "Thread detection failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

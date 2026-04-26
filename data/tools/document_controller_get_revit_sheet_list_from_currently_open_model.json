@@ -1,0 +1,10 @@
+{
+  "name": "document_controller_get_revit_sheet_list_from_currently_open_model",
+  "desc": "Gets the sheet list from the currently open Revit model via MEPBridge. Returns sheet numbers, names, and revision status.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": []
+}

@@ -1,0 +1,41 @@
+{
+  "name": "search_spec_clause_library",
+  "desc": "Search the clause library by keyword, discipline, Uniclass code, building type, or clause type.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "keyword",
+      "type": "string",
+      "description": "Free-text search across clause title, text, and tags",
+      "required": false
+    },
+    {
+      "name": "discipline",
+      "type": "string",
+      "description": "Filter by discipline name (e.g. Drainage, Power, Lighting)",
+      "required": false
+    },
+    {
+      "name": "uniclassCode",
+      "type": "string",
+      "description": "Filter by Uniclass code prefix (e.g. Ss_32)",
+      "required": false
+    },
+    {
+      "name": "clauseType",
+      "type": "string",
+      "description": "Filter by clause type (General, Performance, Material, Installation, Testing, Commissioning, Maintenance, Warranty, Compliance)",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "search clauses",
+    "find clause",
+    "clause library",
+    "specification clause",
+    "NBS clause"
+  ]
+}

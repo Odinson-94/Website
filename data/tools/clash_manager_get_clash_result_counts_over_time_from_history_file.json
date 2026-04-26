@@ -1,0 +1,14 @@
+{
+  "name": "clash_manager_get_clash_result_counts_over_time_from_history_file",
+  "desc": "Track clash counts over time from history file.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "clash history",
+    "clash trend",
+    "QA history"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "family_swap_get_smart_mapping_suggestions",
+  "desc": "Returns smart mapping suggestions (source→target type) using SmartMapCadBlockToRevitFamily heuristics.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "family_swap_get_smart_mapping_suggestions",
+    "family swap get smart mapping suggestions"
+  ]
+}

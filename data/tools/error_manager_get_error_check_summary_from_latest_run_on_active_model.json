@@ -1,0 +1,14 @@
+{
+  "name": "error_manager_get_error_check_summary_from_latest_run_on_active_model",
+  "desc": "Get summary of the last error check run. Returns counts by group and severity.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "error summary",
+    "error check results",
+    "QA summary"
+  ]
+}

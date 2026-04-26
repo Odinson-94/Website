@@ -1,0 +1,37 @@
+{
+  "name": "snapshot_review",
+  "desc": "Review pending parameter changes before applying. Shows a summary of all proposed changes, grouped by agent, parameter name, or element. Use after snapshot_write, before snapshot_apply.",
+  "bridge": "Snapshot",
+  "category": "snapshot",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "group_by",
+      "type": "string",
+      "description": "Group results by: 'agent_id', 'param_name', 'element_id', or omit for full list",
+      "required": false
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Filter by status: 'pending' (default), 'applied', 'failed', 'all'",
+      "required": false
+    },
+    {
+      "name": "clear",
+      "type": "string",
+      "description": "Set to 'true' to clear all pending changes. Set to a status value ('pending','failed') to clear only that status.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "snapshot review",
+    "review changes",
+    "pending changes",
+    "change summary",
+    "inspect changes",
+    "list changes",
+    "clear changes"
+  ]
+}

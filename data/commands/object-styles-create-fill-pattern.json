@@ -1,0 +1,35 @@
+{
+  "class": "ObjectStylesCreateFillPatternCommand",
+  "desc": "Create a new FillPatternElement (drafting or model).",
+  "summary": "Create a new FillPatternElement (drafting or model). MVP: simple parallel-lines pattern.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "create fill pattern",
+    "object_styles_create_fill_pattern"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating fill pattern…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Fill pattern created."
+    ],
+    "failureprompts": [
+      "Create fill pattern failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

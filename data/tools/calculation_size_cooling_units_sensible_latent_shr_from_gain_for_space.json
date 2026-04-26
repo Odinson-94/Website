@@ -1,0 +1,12 @@
+{
+  "name": "calculation_size_cooling_units_sensible_latent_shr_from_gain_for_space",
+  "desc": "calculation_size_cooling_units_sensible_latent_shr_from_gain_for_space — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation size cooling units sensible latent shr from gain for space"
+  ]
+}

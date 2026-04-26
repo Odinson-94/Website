@@ -1,0 +1,12 @@
+{
+  "name": "layout_report_last_solver_run_details",
+  "desc": "layout_report_last_solver_run_details — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "layout report last solver run details"
+  ]
+}

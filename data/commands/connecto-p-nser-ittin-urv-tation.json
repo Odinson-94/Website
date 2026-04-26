@@ -1,0 +1,39 @@
+{
+  "class": "ConnectorOpsInsertFittingOnCurveAtStationCommand",
+  "desc": "ConnectorOpsInsertFittingOnCurveAtStationCommand — two-step split-then-insert orchestration inside one Transaction.",
+  "summary": "ConnectorOpsInsertFittingOnCurveAtStationCommand — two-step split-then-insert orchestration inside one Transaction.",
+  "usecase": "Precise fitting placement (e.g. union mid-run).",
+  "notfor": "Arbitrary-kind fittings beyond Elbow/Tee/Union/Transition.",
+  "precondition": "Pipe resolvable; valid station; valid fitting kind.",
+  "postcondition": "One fitting + two pipe segments committed or rolled back together.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId OR single Pipe selection.\n2) Resolver_DistanceFromEnd0Mm within bounds.\n3) Parse Resolver_FittingKind.\n4) Open Transaction 'ConnectorOps::SplitAndInsert'. Split via CurveSplitterService. Insert via FittingInserterService using left's end-1 + right's end-0 connectors (colinear for Union; for Elbow/Tee caller must supply second connector by convention).\n5) On any failure roll back; WireError with message.\n6) Emit fitting_id + left_id + right_id.",
+  "keywords": [
+    "connectoropsinsertfittingoncurveatstation",
+    "insert fitting at station",
+    "split and insert fitting"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Inserting fitting at station…"
+    ],
+    "thinkingsteps": [
+      "Splitting pipe…",
+      "Inserting fitting via FittingInserterService…"
+    ],
+    "successprompts": [
+      "Inserted {fitting_kind} id={fitting_id}."
+    ],
+    "failureprompts": [
+      "Insert failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

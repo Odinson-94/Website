@@ -1,0 +1,39 @@
+{
+  "class": "ConnectorOpsConnectIntoNearestNodeIn2dCommand",
+  "desc": "ConnectorOpsConnectIntoNearestNodeIn2dCommand — plan-view 2D connect-into-nearest.",
+  "summary": "ConnectorOpsConnectIntoNearestNodeIn2dCommand — plan-view 2D connect-into-nearest. Distance measured XY only; falls back to doc.Create.NewElbowFitting when ConnectTo refuses.",
+  "usecase": "Plan-view routing where Z is fixed by the user.",
+  "notfor": "3D routing — use the 3D variant.",
+  "precondition": "Active document; source element + connector resolvable; at least one candidate within 2D radius at the same Z.",
+  "postcondition": "Either a direct Connector.ConnectTo or a doc.Create.NewElbowFitting inside one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve source connector (same rule as 3D).\n2) Candidate pool restricted to |Δz| ≤ Resolver_ZToleranceMm; 2D distance ≤ Resolver_MaxSearchRadiusMm.\n3) System-match gate.\n4) Rank by 2D distance.\n5) Transaction \"ConnectorOps::ConnectNearest2d\"; try source.ConnectTo(pick).\n   If that leaves IsConnected=false, try doc.Create.NewElbowFitting(source, pick). Commit on success.\n6) Emit result + used_fitting flag.",
+  "keywords": [
+    "connectoropsconnectintonearestnodein2d",
+    "connect into nearest node 2d",
+    "plan-view connect"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Searching for nearest compatible connector on plan…"
+    ],
+    "thinkingsteps": [
+      "Restricting candidates to the same Z level…",
+      "Calling Connector.ConnectTo; falling back to NewElbowFitting if needed…"
+    ],
+    "successprompts": [
+      "Connected in 2D at {distance_mm} mm (fitting={used_fitting})."
+    ],
+    "failureprompts": [
+      "Connect-nearest (2D) failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

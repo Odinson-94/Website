@@ -1,0 +1,35 @@
+{
+  "class": "SheetViewSetupCreateSheetFromTitleblockCommand",
+  "desc": "Create a new sheet using a chosen titleblock family.",
+  "summary": "Create a new sheet using a chosen titleblock family.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet view setup create sheet from titleblock",
+    "sheet_view_setup_create_sheet_from_titleblock"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running sheet view setup create sheet from titleblock…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "sheet view setup create sheet from titleblock: done."
+    ],
+    "failureprompts": [
+      "sheet view setup create sheet from titleblock failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

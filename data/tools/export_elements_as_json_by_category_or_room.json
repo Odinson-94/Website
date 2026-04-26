@@ -1,0 +1,83 @@
+{
+  "name": "export_elements_as_json_by_category_or_room",
+  "desc": "Export lightweight JSON of elements (equipment, fixtures, etc.) by category, family name, room, space, or X/Y/Z. Use to see IDs and positions then select_by_ids or family_swap.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 11,
+  "parameters": [
+    {
+      "name": "category",
+      "type": "string",
+      "description": "Revit category name (e.g. Mechanical Equipment, Lighting Fixtures).",
+      "required": false
+    },
+    {
+      "name": "familyNameContains",
+      "type": "string",
+      "description": "Filter by family name containing this text (e.g. Radiator).",
+      "required": false
+    },
+    {
+      "name": "roomNumber",
+      "type": "string",
+      "description": "Only elements in this room number (architectural room).",
+      "required": false
+    },
+    {
+      "name": "roomName",
+      "type": "string",
+      "description": "Only elements in this room name (architectural room).",
+      "required": false
+    },
+    {
+      "name": "spaceNumber",
+      "type": "string",
+      "description": "Only elements in this MEP space number.",
+      "required": false
+    },
+    {
+      "name": "spaceId",
+      "type": "integer",
+      "description": "Only elements in this MEP space element ID.",
+      "required": false
+    },
+    {
+      "name": "xMm",
+      "type": "number",
+      "description": "Filter by location X (mm).",
+      "required": false
+    },
+    {
+      "name": "yMm",
+      "type": "number",
+      "description": "Filter by location Y (mm).",
+      "required": false
+    },
+    {
+      "name": "zMm",
+      "type": "number",
+      "description": "Filter by location Z (mm).",
+      "required": false
+    },
+    {
+      "name": "toleranceMm",
+      "type": "number",
+      "description": "Tolerance for x/y/z point filter (default 500mm).",
+      "required": false
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "description": "Max items returned (default 200, max 500).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "export equipment",
+    "list radiators",
+    "vision",
+    "element json",
+    "select by id"
+  ]
+}

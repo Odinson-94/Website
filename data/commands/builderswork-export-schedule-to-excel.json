@@ -1,0 +1,35 @@
+{
+  "class": "BuildersworkExportScheduleToExcelCommand",
+  "desc": "Export the builderswork penetration schedule to Excel.",
+  "summary": "Export the builderswork penetration schedule to Excel. Large-scale op exposed via REST API.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "builderswork export schedule to excel",
+    "builderswork_export_schedule_to_excel"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running builderswork export schedule to excel…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "builderswork export schedule to excel: done."
+    ],
+    "failureprompts": [
+      "builderswork export schedule to excel failed: {error}"
+    ]
+  },
+  "has_restapi": true
+}

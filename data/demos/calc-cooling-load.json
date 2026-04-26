@@ -1,0 +1,8 @@
+{
+  "slug": "calc-cooling-load",
+  "category": "calculations",
+  "title": "Cooling Load Calculator",
+  "desc": "Per-room cooling load with solar gains and occupancy.",
+  "duration": "1:21",
+  "status": "live"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_room_colour_scheme_profiles_available_for_current_project",
+  "desc": "ArchitectureListRoomColourSchemeProfilesAvailableForCurrentProject — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "ArchitectureListRoomColourSchemeProfilesAvailableForCurrentProject"
+  ]
+}

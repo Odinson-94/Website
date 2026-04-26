@@ -1,0 +1,32 @@
+{
+  "class": "ShowUserTheIssueOrCompletedObjectsInASingleViewCommand",
+  "desc": "Show selected elements in a single (non-3D) view — active preferred.",
+  "summary": "Show selected elements in a single (non-3D) view — active preferred.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "showusertheissueorcompletedobjectsinasingleview",
+    "show in single view",
+    "view element single"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"showme_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

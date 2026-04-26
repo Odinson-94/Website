@@ -1,0 +1,45 @@
+{
+  "name": "get_family_parameters_and_values",
+  "desc": "Get ALL parameter names and values from selected elements or by ID. Returns every instance and type parameter with current value, storage type, and whether writable. For titleblocks, includes sheet parameters like Checked By and Designed By. Call this before set_parameter_values to see what is available.",
+  "bridge": "RevitContext",
+  "category": "context",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "Optional JSON array of element IDs e.g. [12345,67890]. Defaults to current selection.",
+      "required": false
+    },
+    {
+      "name": "includeTypeParams",
+      "type": "boolean",
+      "description": "Include type parameters (default true).",
+      "required": false
+    },
+    {
+      "name": "includeBuiltIn",
+      "type": "boolean",
+      "description": "Include built-in parameters (default false).",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "get family parameters",
+    "all parameters",
+    "parameter values",
+    "what parameters",
+    "read parameters",
+    "show parameters",
+    "element parameters",
+    "titleblock parameters",
+    "checked by",
+    "designed by",
+    "drawn by",
+    "family parameter list",
+    "instance parameters",
+    "type parameters",
+    "sheet parameters"
+  ]
+}

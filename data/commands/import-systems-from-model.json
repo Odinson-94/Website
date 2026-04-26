@@ -1,0 +1,85 @@
+{
+  "class": "ImportSystemsFromModelCommand",
+  "desc": "Command: Migrates a piping system from another open Revit model.",
+  "summary": "Command: Migrates a piping system from another open Revit model. This is the main \"Migrate System\" command that: 1. Opens dialog to select another already-open Revit model 2. Displays available systems in that model 3. On system selection, imports associated routing preference families 4. Imports the system type and configures routing preferences",
+  "usecase": "User wants to copy a drainage system setup from a template model. User needs to bring in pipe types and fittings from another project. User wants to standardize system configurations across projects.",
+  "notfor": "Custom UI required for manual system/family browsing. AI path is JSON-first and dialog-free.",
+  "precondition": "At least two project documents must be open in Revit. Active document must not be read-only. Source model must contain piping systems with routing preferences.",
+  "postcondition": "Selected system type is created/updated in current document. All associated families are imported (overwriting if needed). Routing preferences are configured with the imported families.",
+  "sideeffects": "",
+  "logictree": "check: openDocuments.count > 1 → continue\rcheck: sourceDoc != targetDoc → continue\rcheck: sourceSystems.count > 0 → showSystemList\rcheck: selectedSystem.hasRoutingPreferences → importRoutingPreferences\rresolve: transaction.success → showResults",
+  "keywords": [
+    "migrate system",
+    "import system",
+    "copy system",
+    "transfer system",
+    "piping system",
+    "routing preferences",
+    "drainage system"
+  ],
+  "intent_patterns": [
+    "migrate * system * model",
+    "import * system * from",
+    "copy * system * from",
+    "transfer * routing * preferences"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "ImportFamilies",
+      "type": "bool",
+      "description": "Import associated families",
+      "default": "true"
+    },
+    {
+      "name": "OverwriteParameters",
+      "type": "bool",
+      "description": "Overwrite existing parameter values",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ImportedSystem",
+      "type": "PipingSystemType",
+      "description": "System that was imported/created"
+    },
+    {
+      "name": "ImportedFamilies",
+      "type": "List<FamilyImportInfo>",
+      "description": "Families that were imported"
+    },
+    {
+      "name": "RoutingPreferencesSet",
+      "type": "bool",
+      "description": "Whether routing preferences were configured"
+    }
+  ],
+  "related_commands": [
+    "ImportFamiliesFromModelCommand",
+    "ListSystems"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Preparing to migrate piping system from another model...",
+      "Setting up system import from source model..."
+    ],
+    "thinkingsteps": [
+      "Scanning open documents for source models...",
+      "Loading available piping systems...",
+      "Extracting routing preference families...",
+      "Importing system and configuring routing preferences..."
+    ],
+    "successprompts": [
+      "System \"{ImportedSystem}\" migrated successfully with {ImportedFamilies} families.",
+      "Migration complete — routing preferences configured for {ImportedSystem}."
+    ],
+    "failureprompts": [
+      "System migration failed: {error}",
+      "Could not import system: {error}"
+    ]
+  },
+  "has_restapi": false
+}

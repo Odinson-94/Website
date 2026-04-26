@@ -1,0 +1,14 @@
+{
+  "name": "browser_organisation_read",
+  "desc": "Read browser organisation rules for views and sheets.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "browser organisation",
+    "browser organization",
+    "project browser"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupCreateLowMidHighPlanViewsForStackedMepServicesCommand",
+  "desc": "Create Low Mid High Plan Views For Stacked MEP Services.",
+  "summary": "Create Low Mid High Plan Views For Stacked MEP Services.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "low mid high plans",
+    "stacked services plans",
+    "mep plan bands"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Create Low Mid High Plan Views For Stacked MEP Services…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Create Low Mid High Plan Views For Stacked MEP Services: completed."
+    ],
+    "failureprompts": [
+      "Create Low Mid High Plan Views For Stacked MEP Services: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

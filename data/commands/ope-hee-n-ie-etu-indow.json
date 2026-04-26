@@ -1,0 +1,42 @@
+{
+  "class": "OpenSheetAndViewSetupWindowCommand",
+  "desc": "Opens the Sheet &amp; View Setup window — a WebView2 + AI Chat split-panel for managing sheets, views, scope boxes, templates, and titleblocks in the active Revit document.",
+  "summary": "Opens the Sheet &amp; View Setup window — a WebView2 + AI Chat split-panel for managing sheets, views, scope boxes, templates, and titleblocks in the active Revit document.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheet setup",
+    "view setup",
+    "sheet and view setup",
+    "manage sheets",
+    "manage views",
+    "scope boxes",
+    "view templates",
+    "titleblocks",
+    "sheet manager"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening Sheet &amp; View Setup…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Sheet &amp; View Setup window is now open."
+    ],
+    "failureprompts": [
+      "Failed to open Sheet &amp; View Setup: {error}"
+    ]
+  },
+  "has_restapi": false
+}

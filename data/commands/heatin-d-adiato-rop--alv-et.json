@@ -1,0 +1,32 @@
+{
+  "class": "HeatingAddRadiatorDropsByValveSetCommand",
+  "desc": "HeatingAddRadiatorDropsByValveSetCommand — create flow + return drops from a radiator and insert a valve set per leg.",
+  "summary": "HeatingAddRadiatorDropsByValveSetCommand — create flow + return drops from a radiator and insert a valve set per leg.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "1) Resolve radiator (FamilyInstance).\n2) Transaction. For each flow + return connector on the radiator:\n   create Pipe from connector.Origin to Resolver_*TargetXyzFt.\n3) Delegate valve-set insert to PipeworkAddValveSetToPipeByDefinitionCommand on each drop.\n4) Emit pipe + valve ids.",
+  "keywords": [
+    "heatingaddradiatordropsbyvalveset",
+    "add radiator drops",
+    "heating radiator piping"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

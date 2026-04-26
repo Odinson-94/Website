@@ -1,0 +1,17 @@
+{
+  "name": "document_controller_refresh_master_register_from_all_connected_sources",
+  "desc": "Refreshes the master document register by querying all connected CDE platforms, scanning local folders, and incorporating incoming document logs.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project identifier",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

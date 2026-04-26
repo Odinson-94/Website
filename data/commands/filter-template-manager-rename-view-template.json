@@ -1,0 +1,35 @@
+{
+  "class": "FilterTemplateManagerRenameViewTemplateCommand",
+  "desc": "Renames a view template.",
+  "summary": "Renames a view template.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "rename view template",
+    "filter_template_manager_rename_view_template"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Renaming template…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Template renamed."
+    ],
+    "failureprompts": [
+      "Rename failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

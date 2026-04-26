@@ -1,0 +1,13 @@
+{
+  "name": "builderswork_list_structural_hosts",
+  "desc": "List structural host elements (walls, floors, slabs, ceilings) that MEP services may need to penetrate.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "builderswork_list_structural_hosts",
+    "builderswork list structural hosts"
+  ]
+}

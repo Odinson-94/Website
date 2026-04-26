@@ -1,0 +1,81 @@
+{
+  "class": "ConfigureViewTemplateCommand",
+  "desc": "Configures display properties on a named view template using ConfigureTemplate.",
+  "summary": "Configures display properties on a named view template using ConfigureTemplate. Resolves the template with ListTemplates.GetByName.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "Active document; templateName resolves to a view template.",
+  "postcondition": "Requested template parameters are applied for each supplied optional argument.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "configure template",
+    "set template scale",
+    "template settings"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "templateName",
+      "type": "string",
+      "description": "Existing view template name",
+      "default": ""
+    },
+    {
+      "name": "scale",
+      "type": "int",
+      "description": "Optional scale denominator (1:scale)",
+      "default": ""
+    },
+    {
+      "name": "detailLevel",
+      "type": "string",
+      "description": "Optional: Coarse, Medium, Fine",
+      "default": ""
+    },
+    {
+      "name": "displayStyle",
+      "type": "string",
+      "description": "Optional: HLR, HiddenLine, Shading, Wireframe",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "templateId",
+      "type": "int",
+      "description": "Template element id"
+    }
+  ],
+  "related_commands": [
+    "CreateViewTemplateCommand",
+    "AddFilterToTemplateCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Updating view template settings...",
+      "Applying scale, detail, and display to the template...",
+      "Validating template name and optional display tokens..."
+    ],
+    "thinkingsteps": [
+      "Resolve templateName via ListTemplates.GetByName and confirm IsTemplate.",
+      "Require at least one of scale, detailLevel, or displayStyle; otherwise stop with guidance.",
+      "Parse detailLevel with Enum.TryParse; recover and skip unknown tokens.",
+      "Normalize displayStyle synonyms (HLR/HiddenLine, Shading, Wireframe).",
+      "Call ConfigureTemplate.SetScale, SetDetailLevel, and/or SetModelDisplay inside a transaction.",
+      "Commit after updates; individual setters may no-op with recoverable wiring inside the helper."
+    ],
+    "successprompts": [
+      "Template '{templateName}' updated (scale/detail/display as provided).",
+      "Template configuration completed."
+    ],
+    "failureprompts": [
+      "Configure template failed: {error}",
+      "Could not configure template — {error}"
+    ]
+  },
+  "has_restapi": false
+}

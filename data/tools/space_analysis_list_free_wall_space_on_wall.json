@@ -1,0 +1,27 @@
+{
+  "name": "space_analysis_list_free_wall_space_on_wall",
+  "desc": "Project every door/window/opening/hosted family onto the wall's axis and return the remaining free intervals with start, end and length (mm).",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "wall_id",
+      "type": "integer",
+      "description": "Revit Wall element id.",
+      "required": true
+    },
+    {
+      "name": "min_free_length_mm",
+      "type": "number",
+      "description": "Optional — only return free spans at least this long (mm). Default 0.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "space analysis list free wall space on wall",
+    "free wall",
+    "where can I mount on this wall"
+  ]
+}

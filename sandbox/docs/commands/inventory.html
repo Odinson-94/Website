@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Revit commands — Adelphos AI Docs</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/shared-styles.css">
+<link rel="stylesheet" href="/sandbox/sandbox.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout wide">
+<aside class="docs-left"></aside>
+<main class="docs-content">
+
+  <div class="crumbs"><a href="#">Docs</a> &nbsp;›&nbsp; Commands</div>
+  <h1>All Revit commands</h1>
+  <p style="font-size:16px;color:var(--text-muted);max-width:760px;margin-bottom:8px;">
+    Auto-generated from every <code>[Transaction]</code>-decorated class.
+    Total: <span id="totalCount">…</span> commands. Each ticked column is metadata the page already auto-populates from the source.
+  </p>
+
+  <div class="inv-counts" id="counts"></div>
+
+  <div class="filter-row">
+    <select id="restFilter"><option value="">All commands</option><option value="true">Public REST API</option><option value="false">Internal only</option></select>
+    <input type="search" id="search" placeholder="Filter by name or description…">
+    <span class="row-count" id="rowCount"></span>
+  </div>
+
+  <div style="overflow-x:auto;">
+  <table class="ref-table" style="min-width:680px;">
+    <thead><tr>
+      <th>Command</th><th>Description</th>
+      <th title="Inputs the user provides">Inputs</th>
+      <th title="Returned values">Returns</th>
+      <th title="Exposed as public REST API">Public&nbsp;API</th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+
+  <p style="margin-top:14px;font-size:12px;color:var(--text-muted);">
+    <strong>Legend:</strong>
+    <span class="check">✓</span> present · <span class="cross">✗</span> missing ·
+    <em>Public&nbsp;API</em> indicates the command is callable from <code>POST /api/v1/commands/&lt;name&gt;</code>.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+async function load(){
+  const r = await fetch('/sandbox/data/commands.json');
+  const cmds = await r.json();
+  document.getElementById('totalCount').textContent = cmds.length;
+
+  const counts = [
+    { n: cmds.length,                                                              l: 'Commands' },
+    { n: cmds.filter(c => c.has_usecase && c.has_notfor && c.has_aiprompts).length, l: 'fully documented' },
+    { n: cmds.filter(c => c.outputs > 0).length,                                   l: 'with documented returns' },
+    { n: cmds.filter(c => c.has_restapi).length,                                   l: 'public REST API' },
+  ];
+  document.getElementById('counts').innerHTML = counts.map(c => `<div class="inv-count"><strong>${c.n}<span> /${cmds.length}</span></strong><span class="label">${c.l}</span></div>`).join('');
+
+  // Make a public-friendly display name from the C# class name
+  function displayName(cls) {
+    return cls.replace(/Command$/, '').replace(/([A-Z])/g, ' $1').trim();
+  }
+
+  function render(){
+    const fr = document.getElementById('restFilter').value;
+    const fs = document.getElementById('search').value.toLowerCase();
+    const filtered = cmds.filter(c =>
+      (fr === '' || String(c.has_restapi) === fr) &&
+      (fs === '' || (c.class.toLowerCase().includes(fs) || (c.desc||'').toLowerCase().includes(fs)))
+    );
+    document.getElementById('rowCount').textContent = `${filtered.length} of ${cmds.length}`;
+    const ck = b => b ? '<span class="check">✓</span>' : '<span class="cross">✗</span>';
+    const inputCount = c => c.sel_inputs + c.cfg_inputs;
+    const docCount = c => (c.has_usecase ? 1 : 0) + (c.has_notfor ? 1 : 0) + (c.has_aiprompts ? 1 : 0);
+
+    document.getElementById('rows').innerHTML = filtered.map(c => `
+      <tr>
+        <td><a href="${ c.class === 'ExtendAllConnectorsCommand' ? 'extend-all-connectors.html' : '#' }">${displayName(c.class)}</a></td>
+        <td style="color:var(--text-muted);max-width:540px;">${esc(c.desc || '—')}</td>
+        <td style="text-align:center;">${inputCount(c) > 0 ? `<span class="check">${inputCount(c)}</span>` : '<span style="color:var(--text-muted);">—</span>'}</td>
+        <td style="text-align:center;">${c.outputs > 0    ? `<span class="check">${c.outputs}</span>`    : '<span style="color:var(--text-muted);">—</span>'}</td>
+        <td style="text-align:center;">${ck(c.has_restapi)}</td>
+      </tr>
+    `).join('');
+  }
+  function esc(s){ return (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  ['restFilter','search'].forEach(id => document.getElementById(id).addEventListener('input', render));
+  render();
+}
+load();
+</script>
+
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

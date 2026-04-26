@@ -1,0 +1,66 @@
+{
+  "class": "ApplyViewTemplateCommand",
+  "desc": "Applies a named view template to a target view using SetTemplate.ApplyTemplate.",
+  "summary": "Applies a named view template to a target view using SetTemplate.ApplyTemplate. If no viewId is provided, the active view is used as the target. The template is resolved by exact name match against all view templates in the project. Related: AddFilterToTemplateCommand for adding filters to templates before applying them.",
+  "usecase": "User wants to apply a standard template to the current view for consistent display. AI is configuring views as part of automated sheet setup or coordination workflows.",
+  "notfor": "Creating new view templates (use a dedicated CreateViewTemplateCommand). Adding filters to templates (use AddFilterToTemplateCommand). Removing templates from views.",
+  "precondition": "Active document must be open. The named view template must exist in the project. The target view must not itself be a template (cannot apply a template to a template).",
+  "postcondition": "The target view's ViewTemplateId is set to the resolved template's element ID. All template-controlled settings are applied to the view.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "apply view template",
+    "set template on view",
+    "assign template",
+    "view template",
+    "apply template to view"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "templateName",
+      "type": "string",
+      "description": "View template name",
+      "default": ""
+    },
+    {
+      "name": "viewId",
+      "type": "integer",
+      "description": "Optional target view id (defaults to active view)",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Apply template result with view and template details"
+    }
+  ],
+  "related_commands": [
+    "AddFilterToTemplateCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Applying view template to the target view...",
+      "Setting up the view template now..."
+    ],
+    "thinkingsteps": [
+      "Resolving target view...",
+      "Looking up template by name...",
+      "Applying template to the view..."
+    ],
+    "successprompts": [
+      "Template '{templateName}' applied to the view successfully.",
+      "Done — view now uses the specified template."
+    ],
+    "failureprompts": [
+      "Could not apply view template: {error}",
+      "Template application failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

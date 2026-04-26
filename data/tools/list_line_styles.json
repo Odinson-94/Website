@@ -1,0 +1,14 @@
+{
+  "name": "list_line_styles",
+  "desc": "List available detail line styles in the document.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "line styles",
+    "detail line styles",
+    "list line types"
+  ]
+}

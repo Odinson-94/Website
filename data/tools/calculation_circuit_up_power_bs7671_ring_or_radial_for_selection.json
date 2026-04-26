@@ -1,0 +1,12 @@
+{
+  "name": "calculation_circuit_up_power_bs7671_ring_or_radial_for_selection",
+  "desc": "calculation_circuit_up_power_bs7671_ring_or_radial_for_selection — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation circuit up power bs7671 ring or radial for selection"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "class": "LayoutApplyPendingPlacementsToRevitCommand",
+  "desc": "LayoutApplyPendingPlacementsToRevitCommand — commit a staged placement batch to the Revit model.",
+  "summary": "LayoutApplyPendingPlacementsToRevitCommand — commit a staged placement batch to the Revit model.",
+  "usecase": "Commit a plantroom solve result.",
+  "notfor": "Dry-run / preview — use LayoutPreviewPlantroomSolveWithPreset.",
+  "precondition": "Resolver_ChangeId resolvable in staging DB.",
+  "postcondition": "FamilyInstances created inside one Transaction; change transitioned to 'applied'.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ChangeId required.\n2) Load pending_placements for the change.\n3) For each placement: resolve FamilySymbol (unique id first, then name fallback).\n4) Open Transaction. Activate symbol if not active. Call NewFamilyInstance. Record per-placement outcome.\n5) Commit; transition change to 'applied'. On no successes, roll back + mark 'rejected'.",
+  "keywords": [
+    "layoutapplypendingplacementstorevit",
+    "apply plantroom placements",
+    "commit staged layout"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"plantroom_layout\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Applying staged plantroom placements…"
+    ],
+    "thinkingsteps": [
+      "Loading pending_placements…",
+      "Creating FamilyInstances inside one Transaction…"
+    ],
+    "successprompts": [
+      "Created {instances_created} instances."
+    ],
+    "failureprompts": [
+      "Apply failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

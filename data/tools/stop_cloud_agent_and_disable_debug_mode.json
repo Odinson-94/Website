@@ -1,0 +1,15 @@
+{
+  "name": "stop_cloud_agent_and_disable_debug_mode",
+  "desc": "Stop the active cloud agent and disable debug mode. Reports final test results.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "stop debug",
+    "disable debug",
+    "exit debug mode",
+    "stop self debug"
+  ]
+}

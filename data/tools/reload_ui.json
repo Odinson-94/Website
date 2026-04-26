@@ -1,0 +1,15 @@
+{
+  "name": "reload_ui",
+  "desc": "Refresh the WebView2 chat UI to pick up HTML/CSS/JS changes from the source directory.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "reload ui",
+    "refresh ui",
+    "reload chat",
+    "refresh webview"
+  ]
+}

@@ -1,0 +1,3839 @@
+# CSS Audit Report
+
+- CSS files scanned: **14**
+- HTML files scanned: **133**
+- Total rules parsed: **8825**
+- Duplicate selectors: **2019**
+- !important wars: **86**
+- Orphaned selectors: **3173**
+
+## 🎯 Cascade stack for `.docs-layout`
+
+_Filtered to property `max-width` — winning value at the top._
+
+| # | spec | !imp | selector | source | media | properties |
+|---|------|------|----------|--------|-------|------------|
+| 1 | (0,2,0) | ✓ | `.docs-layout.home-no-rails` | `dist/index.html<style#1>:205` | `—` | `max-width: 1640px`  |
+| 2 | (0,2,0) |  | `.docs-layout.wide` | `sandbox/sandbox.css:259` | `—` | `max-width: none`  |
+| 3 | (0,1,0) |  | `.docs-layout` | `sandbox/sandbox.css:250` | `—` | `max-width: var(--max-content)`  |
+
+> The rule at row 1 wins. To beat it, either raise specificity, add `!important`, or move your rule later in the same stylesheet.
+
+## 🔁 Duplicate selectors (same selector, multiple rule blocks)
+
+_Showing top 50 of 2019_
+
+### `.demo-detail .lead` × 27
+_Properties touched: `color`, `font-size`, `line-height`, `margin-bottom`, `max-width`_
+- `sandbox/sandbox.css:708`  →  5 props
+- `dist/agentic-services/document-controller/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:4`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:5`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:5`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:5`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:5`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:5`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:5`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:5`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:5`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:5`  →  1 props
+- `dist/workflows/schedules/index.html<style#0>:5`  →  1 props
+- `templates/agentic-service-page.html<style#0>:4`  →  1 props
+- `templates/app-page.html<style#0>:5`  →  1 props
+- `templates/workflow-page.html<style#0>:5`  →  1 props
+
+### `.demo-detail > p` × 26
+_Properties touched: `max-width`_
+- `dist/agentic-services/document-controller/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:4`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:5`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:5`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:5`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:5`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:5`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:5`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:5`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:5`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:5`  →  1 props
+- `dist/workflows/schedules/index.html<style#0>:5`  →  1 props
+- `templates/agentic-service-page.html<style#0>:4`  →  1 props
+- `templates/app-page.html<style#0>:5`  →  1 props
+- `templates/workflow-page.html<style#0>:5`  →  1 props
+
+### `.demo-detail > ul` × 26
+_Properties touched: `max-width`_
+- `dist/agentic-services/document-controller/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:4`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:5`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:5`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:5`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:5`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:5`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:5`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:5`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:5`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:5`  →  1 props
+- `dist/workflows/schedules/index.html<style#0>:5`  →  1 props
+- `templates/agentic-service-page.html<style#0>:4`  →  1 props
+- `templates/app-page.html<style#0>:5`  →  1 props
+- `templates/workflow-page.html<style#0>:5`  →  1 props
+
+### `.demo-detail > ol` × 26
+_Properties touched: `max-width`_
+- `dist/agentic-services/document-controller/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:4`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:4`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:5`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:5`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:5`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:5`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:5`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:5`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:5`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:5`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:5`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:5`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:5`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:5`  →  1 props
+- `dist/workflows/schedules/index.html<style#0>:5`  →  1 props
+- `templates/agentic-service-page.html<style#0>:4`  →  1 props
+- `templates/app-page.html<style#0>:5`  →  1 props
+- `templates/workflow-page.html<style#0>:5`  →  1 props
+
+### `html.dark-mode .end-cta` × 26
+_Properties touched: `background`_
+- `dist/agentic-services/document-controller/index.html<style#0>:196`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:196`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:196`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:196`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:196`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:196`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:196`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:255`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:255`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:255`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:255`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:255`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:255`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:255`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:255`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:255`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:255`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:255`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:255`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:255`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:255`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:255`  →  1 props
+- `dist/index.html<style#1>:667`  →  1 props
+- `templates/agentic-service-page.html<style#0>:196`  →  1 props
+- `templates/app-page.html<style#0>:255`  →  1 props
+- `templates/home.html<style#0>:487`  →  1 props
+
+### `.end-cta` × 26
+_Properties touched: `background`, `border-radius`, `color`, `margin`, `margin-top`, `padding`, `text-align`_
+- `dist/agentic-services/document-controller/index.html<style#0>:199`  →  6 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:199`  →  6 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:199`  →  6 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:199`  →  6 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:199`  →  6 props
+- `dist/agentic-services/finances/index.html<style#0>:199`  →  6 props
+- `dist/agentic-services/project-management/index.html<style#0>:199`  →  6 props
+- `dist/apps/adelphos-chat/index.html<style#0>:250`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:250`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:250`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:250`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:250`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:250`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:250`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:250`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:250`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:250`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:250`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:250`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:250`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:250`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:250`  →  6 props
+- `dist/index.html<style#1>:661`  →  6 props
+- `templates/agentic-service-page.html<style#0>:199`  →  6 props
+- `templates/app-page.html<style#0>:250`  →  6 props
+- `templates/home.html<style#0>:481`  →  6 props
+
+### `.end-cta h3` × 26
+_Properties touched: `color`, `font-size`, `font-weight`, `letter-spacing`, `margin`_
+- `dist/agentic-services/document-controller/index.html<style#0>:204`  →  4 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:204`  →  4 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:204`  →  4 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:204`  →  4 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:204`  →  4 props
+- `dist/agentic-services/finances/index.html<style#0>:204`  →  4 props
+- `dist/agentic-services/project-management/index.html<style#0>:204`  →  4 props
+- `dist/apps/adelphos-chat/index.html<style#0>:258`  →  4 props
+- `dist/apps/autocad-copilot/index.html<style#0>:258`  →  4 props
+- `dist/apps/cobie-manager/index.html<style#0>:258`  →  4 props
+- `dist/apps/document-controller/index.html<style#0>:258`  →  4 props
+- `dist/apps/excel-add-in/index.html<style#0>:258`  →  4 props
+- `dist/apps/qa-manager/index.html<style#0>:258`  →  4 props
+- `dist/apps/report-builder/index.html<style#0>:258`  →  4 props
+- `dist/apps/revit-copilot/index.html<style#0>:258`  →  4 props
+- `dist/apps/schedule-builder/index.html<style#0>:258`  →  4 props
+- `dist/apps/specbuilder/index.html<style#0>:258`  →  4 props
+- `dist/apps/word-add-in/index.html<style#0>:258`  →  4 props
+- `dist/features/autoroute/index.html<style#0>:258`  →  4 props
+- `dist/features/clash-solver/index.html<style#0>:258`  →  4 props
+- `dist/features/pdf-to-3d/index.html<style#0>:258`  →  4 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:258`  →  4 props
+- `dist/index.html<style#1>:668`  →  5 props
+- `templates/agentic-service-page.html<style#0>:204`  →  4 props
+- `templates/app-page.html<style#0>:258`  →  4 props
+- `templates/home.html<style#0>:488`  →  5 props
+
+### `.end-cta p` × 26
+_Properties touched: `color`, `font-size`, `margin`_
+- `dist/agentic-services/document-controller/index.html<style#0>:205`  →  3 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:205`  →  3 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:205`  →  3 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:205`  →  3 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:205`  →  3 props
+- `dist/agentic-services/finances/index.html<style#0>:205`  →  3 props
+- `dist/agentic-services/project-management/index.html<style#0>:205`  →  3 props
+- `dist/apps/adelphos-chat/index.html<style#0>:259`  →  3 props
+- `dist/apps/autocad-copilot/index.html<style#0>:259`  →  3 props
+- `dist/apps/cobie-manager/index.html<style#0>:259`  →  3 props
+- `dist/apps/document-controller/index.html<style#0>:259`  →  3 props
+- `dist/apps/excel-add-in/index.html<style#0>:259`  →  3 props
+- `dist/apps/qa-manager/index.html<style#0>:259`  →  3 props
+- `dist/apps/report-builder/index.html<style#0>:259`  →  3 props
+- `dist/apps/revit-copilot/index.html<style#0>:259`  →  3 props
+- `dist/apps/schedule-builder/index.html<style#0>:259`  →  3 props
+- `dist/apps/specbuilder/index.html<style#0>:259`  →  3 props
+- `dist/apps/word-add-in/index.html<style#0>:259`  →  3 props
+- `dist/features/autoroute/index.html<style#0>:259`  →  3 props
+- `dist/features/clash-solver/index.html<style#0>:259`  →  3 props
+- `dist/features/pdf-to-3d/index.html<style#0>:259`  →  3 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:259`  →  3 props
+- `dist/index.html<style#1>:669`  →  3 props
+- `templates/agentic-service-page.html<style#0>:205`  →  3 props
+- `templates/app-page.html<style#0>:259`  →  3 props
+- `templates/home.html<style#0>:489`  →  3 props
+
+### `.end-cta a` × 26
+_Properties touched: `background`, `border-radius`, `color`, `display`, `font-weight`, `margin`, `padding`, `text-decoration`, `transition`_
+- `dist/agentic-services/document-controller/index.html<style#0>:206`  →  8 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:206`  →  8 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:206`  →  8 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:206`  →  8 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:206`  →  8 props
+- `dist/agentic-services/finances/index.html<style#0>:206`  →  8 props
+- `dist/agentic-services/project-management/index.html<style#0>:206`  →  8 props
+- `dist/apps/adelphos-chat/index.html<style#0>:260`  →  8 props
+- `dist/apps/autocad-copilot/index.html<style#0>:260`  →  8 props
+- `dist/apps/cobie-manager/index.html<style#0>:260`  →  8 props
+- `dist/apps/document-controller/index.html<style#0>:260`  →  8 props
+- `dist/apps/excel-add-in/index.html<style#0>:260`  →  8 props
+- `dist/apps/qa-manager/index.html<style#0>:260`  →  8 props
+- `dist/apps/report-builder/index.html<style#0>:260`  →  8 props
+- `dist/apps/revit-copilot/index.html<style#0>:260`  →  8 props
+- `dist/apps/schedule-builder/index.html<style#0>:260`  →  8 props
+- `dist/apps/specbuilder/index.html<style#0>:260`  →  8 props
+- `dist/apps/word-add-in/index.html<style#0>:260`  →  8 props
+- `dist/features/autoroute/index.html<style#0>:260`  →  8 props
+- `dist/features/clash-solver/index.html<style#0>:260`  →  8 props
+- `dist/features/pdf-to-3d/index.html<style#0>:260`  →  8 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:260`  →  8 props
+- `dist/index.html<style#1>:670`  →  9 props
+- `templates/agentic-service-page.html<style#0>:206`  →  8 props
+- `templates/app-page.html<style#0>:260`  →  8 props
+- `templates/home.html<style#0>:490`  →  9 props
+
+### `.end-cta a:hover` × 26
+_Properties touched: `transform`_
+- `dist/agentic-services/document-controller/index.html<style#0>:211`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:211`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:211`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:211`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:211`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:211`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:211`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:265`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:265`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:265`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:265`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:265`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:265`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:265`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:265`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:265`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:265`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:265`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:265`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:265`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:265`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:265`  →  1 props
+- `dist/index.html<style#1>:676`  →  1 props
+- `templates/agentic-service-page.html<style#0>:211`  →  1 props
+- `templates/app-page.html<style#0>:265`  →  1 props
+- `templates/home.html<style#0>:496`  →  1 props
+
+### `.outcomes-strip` × 24
+_Properties touched: `background`, `border`, `border-radius`, `box-shadow`, `display`, `gap`, `grid-template-columns`, `margin`, `overflow`, `position`, `z-index`_
+- `dist/agentic-services/document-controller/index.html<style#0>:91`  →  11 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:91`  →  11 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:91`  →  11 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:91`  →  11 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:91`  →  11 props
+- `dist/agentic-services/finances/index.html<style#0>:91`  →  11 props
+- `dist/agentic-services/project-management/index.html<style#0>:91`  →  11 props
+- `dist/apps/adelphos-chat/index.html<style#0>:79`  →  11 props
+- `dist/apps/autocad-copilot/index.html<style#0>:79`  →  11 props
+- `dist/apps/cobie-manager/index.html<style#0>:79`  →  11 props
+- `dist/apps/document-controller/index.html<style#0>:79`  →  11 props
+- `dist/apps/excel-add-in/index.html<style#0>:79`  →  11 props
+- `dist/apps/qa-manager/index.html<style#0>:79`  →  11 props
+- `dist/apps/report-builder/index.html<style#0>:79`  →  11 props
+- `dist/apps/revit-copilot/index.html<style#0>:79`  →  11 props
+- `dist/apps/schedule-builder/index.html<style#0>:79`  →  11 props
+- `dist/apps/specbuilder/index.html<style#0>:79`  →  11 props
+- `dist/apps/word-add-in/index.html<style#0>:79`  →  11 props
+- `dist/features/autoroute/index.html<style#0>:79`  →  11 props
+- `dist/features/clash-solver/index.html<style#0>:79`  →  11 props
+- `dist/features/pdf-to-3d/index.html<style#0>:79`  →  11 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:79`  →  11 props
+- `templates/agentic-service-page.html<style#0>:91`  →  11 props
+- `templates/app-page.html<style#0>:79`  →  11 props
+
+### `.outcomes-strip .ostat` × 24
+_Properties touched: `border-right`, `padding`_
+- `dist/agentic-services/document-controller/index.html<style#0>:98`  →  2 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:98`  →  2 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:98`  →  2 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:98`  →  2 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:98`  →  2 props
+- `dist/agentic-services/finances/index.html<style#0>:98`  →  2 props
+- `dist/agentic-services/project-management/index.html<style#0>:98`  →  2 props
+- `dist/apps/adelphos-chat/index.html<style#0>:86`  →  2 props
+- `dist/apps/autocad-copilot/index.html<style#0>:86`  →  2 props
+- `dist/apps/cobie-manager/index.html<style#0>:86`  →  2 props
+- `dist/apps/document-controller/index.html<style#0>:86`  →  2 props
+- `dist/apps/excel-add-in/index.html<style#0>:86`  →  2 props
+- `dist/apps/qa-manager/index.html<style#0>:86`  →  2 props
+- `dist/apps/report-builder/index.html<style#0>:86`  →  2 props
+- `dist/apps/revit-copilot/index.html<style#0>:86`  →  2 props
+- `dist/apps/schedule-builder/index.html<style#0>:86`  →  2 props
+- `dist/apps/specbuilder/index.html<style#0>:86`  →  2 props
+- `dist/apps/word-add-in/index.html<style#0>:86`  →  2 props
+- `dist/features/autoroute/index.html<style#0>:86`  →  2 props
+- `dist/features/clash-solver/index.html<style#0>:86`  →  2 props
+- `dist/features/pdf-to-3d/index.html<style#0>:86`  →  2 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:86`  →  2 props
+- `templates/agentic-service-page.html<style#0>:98`  →  2 props
+- `templates/app-page.html<style#0>:86`  →  2 props
+
+### `.outcomes-strip .ostat:last-child` × 24
+_Properties touched: `border-right`_
+- `dist/agentic-services/document-controller/index.html<style#0>:99`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:99`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:99`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:99`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:99`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:99`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:99`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:87`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:87`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:87`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:87`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:87`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:87`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:87`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:87`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:87`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:87`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:87`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:87`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:87`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:87`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:87`  →  1 props
+- `templates/agentic-service-page.html<style#0>:99`  →  1 props
+- `templates/app-page.html<style#0>:87`  →  1 props
+
+### `.outcomes-strip .ostat .num` × 24
+_Properties touched: `color`, `display`, `font-size`, `font-weight`, `letter-spacing`, `line-height`_
+- `dist/agentic-services/document-controller/index.html<style#0>:100`  →  6 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:100`  →  6 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:100`  →  6 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:100`  →  6 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:100`  →  6 props
+- `dist/agentic-services/finances/index.html<style#0>:100`  →  6 props
+- `dist/agentic-services/project-management/index.html<style#0>:100`  →  6 props
+- `dist/apps/adelphos-chat/index.html<style#0>:88`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:88`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:88`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:88`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:88`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:88`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:88`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:88`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:88`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:88`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:88`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:88`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:88`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:88`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:88`  →  6 props
+- `templates/agentic-service-page.html<style#0>:100`  →  6 props
+- `templates/app-page.html<style#0>:88`  →  6 props
+
+### `.outcomes-strip .ostat .lbl` × 24
+_Properties touched: `color`, `display`, `font-size`, `line-height`, `margin-top`_
+- `dist/agentic-services/document-controller/index.html<style#0>:104`  →  5 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:104`  →  5 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:104`  →  5 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:104`  →  5 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:104`  →  5 props
+- `dist/agentic-services/finances/index.html<style#0>:104`  →  5 props
+- `dist/agentic-services/project-management/index.html<style#0>:104`  →  5 props
+- `dist/apps/adelphos-chat/index.html<style#0>:92`  →  5 props
+- `dist/apps/autocad-copilot/index.html<style#0>:92`  →  5 props
+- `dist/apps/cobie-manager/index.html<style#0>:92`  →  5 props
+- `dist/apps/document-controller/index.html<style#0>:92`  →  5 props
+- `dist/apps/excel-add-in/index.html<style#0>:92`  →  5 props
+- `dist/apps/qa-manager/index.html<style#0>:92`  →  5 props
+- `dist/apps/report-builder/index.html<style#0>:92`  →  5 props
+- `dist/apps/revit-copilot/index.html<style#0>:92`  →  5 props
+- `dist/apps/schedule-builder/index.html<style#0>:92`  →  5 props
+- `dist/apps/specbuilder/index.html<style#0>:92`  →  5 props
+- `dist/apps/word-add-in/index.html<style#0>:92`  →  5 props
+- `dist/features/autoroute/index.html<style#0>:92`  →  5 props
+- `dist/features/clash-solver/index.html<style#0>:92`  →  5 props
+- `dist/features/pdf-to-3d/index.html<style#0>:92`  →  5 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:92`  →  5 props
+- `templates/agentic-service-page.html<style#0>:104`  →  5 props
+- `templates/app-page.html<style#0>:92`  →  5 props
+
+### `.shift-grid` × 24
+_Properties touched: `display`, `gap`, `grid-template-columns`, `margin`_
+- `dist/agentic-services/document-controller/index.html<style#0>:109`  →  4 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:109`  →  4 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:109`  →  4 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:109`  →  4 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:109`  →  4 props
+- `dist/agentic-services/finances/index.html<style#0>:109`  →  4 props
+- `dist/agentic-services/project-management/index.html<style#0>:109`  →  4 props
+- `dist/apps/adelphos-chat/index.html<style#0>:100`  →  4 props
+- `dist/apps/autocad-copilot/index.html<style#0>:100`  →  4 props
+- `dist/apps/cobie-manager/index.html<style#0>:100`  →  4 props
+- `dist/apps/document-controller/index.html<style#0>:100`  →  4 props
+- `dist/apps/excel-add-in/index.html<style#0>:100`  →  4 props
+- `dist/apps/qa-manager/index.html<style#0>:100`  →  4 props
+- `dist/apps/report-builder/index.html<style#0>:100`  →  4 props
+- `dist/apps/revit-copilot/index.html<style#0>:100`  →  4 props
+- `dist/apps/schedule-builder/index.html<style#0>:100`  →  4 props
+- `dist/apps/specbuilder/index.html<style#0>:100`  →  4 props
+- `dist/apps/word-add-in/index.html<style#0>:100`  →  4 props
+- `dist/features/autoroute/index.html<style#0>:100`  →  4 props
+- `dist/features/clash-solver/index.html<style#0>:100`  →  4 props
+- `dist/features/pdf-to-3d/index.html<style#0>:100`  →  4 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:100`  →  4 props
+- `templates/agentic-service-page.html<style#0>:109`  →  4 props
+- `templates/app-page.html<style#0>:100`  →  4 props
+
+### `.shift` × 24
+_Properties touched: `border`, `border-radius`, `padding`_
+- `dist/agentic-services/document-controller/index.html<style#0>:110`  →  3 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:110`  →  3 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:110`  →  3 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:110`  →  3 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:110`  →  3 props
+- `dist/agentic-services/finances/index.html<style#0>:110`  →  3 props
+- `dist/agentic-services/project-management/index.html<style#0>:110`  →  3 props
+- `dist/apps/adelphos-chat/index.html<style#0>:101`  →  3 props
+- `dist/apps/autocad-copilot/index.html<style#0>:101`  →  3 props
+- `dist/apps/cobie-manager/index.html<style#0>:101`  →  3 props
+- `dist/apps/document-controller/index.html<style#0>:101`  →  3 props
+- `dist/apps/excel-add-in/index.html<style#0>:101`  →  3 props
+- `dist/apps/qa-manager/index.html<style#0>:101`  →  3 props
+- `dist/apps/report-builder/index.html<style#0>:101`  →  3 props
+- `dist/apps/revit-copilot/index.html<style#0>:101`  →  3 props
+- `dist/apps/schedule-builder/index.html<style#0>:101`  →  3 props
+- `dist/apps/specbuilder/index.html<style#0>:101`  →  3 props
+- `dist/apps/word-add-in/index.html<style#0>:101`  →  3 props
+- `dist/features/autoroute/index.html<style#0>:101`  →  3 props
+- `dist/features/clash-solver/index.html<style#0>:101`  →  3 props
+- `dist/features/pdf-to-3d/index.html<style#0>:101`  →  3 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:101`  →  3 props
+- `templates/agentic-service-page.html<style#0>:110`  →  3 props
+- `templates/app-page.html<style#0>:101`  →  3 props
+
+### `.shift .lab` × 24
+_Properties touched: `font-size`, `font-weight`, `letter-spacing`, `margin`, `text-transform`_
+- `dist/agentic-services/document-controller/index.html<style#0>:111`  →  5 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:111`  →  5 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:111`  →  5 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:111`  →  5 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:111`  →  5 props
+- `dist/agentic-services/finances/index.html<style#0>:111`  →  5 props
+- `dist/agentic-services/project-management/index.html<style#0>:111`  →  5 props
+- `dist/apps/adelphos-chat/index.html<style#0>:102`  →  5 props
+- `dist/apps/autocad-copilot/index.html<style#0>:102`  →  5 props
+- `dist/apps/cobie-manager/index.html<style#0>:102`  →  5 props
+- `dist/apps/document-controller/index.html<style#0>:102`  →  5 props
+- `dist/apps/excel-add-in/index.html<style#0>:102`  →  5 props
+- `dist/apps/qa-manager/index.html<style#0>:102`  →  5 props
+- `dist/apps/report-builder/index.html<style#0>:102`  →  5 props
+- `dist/apps/revit-copilot/index.html<style#0>:102`  →  5 props
+- `dist/apps/schedule-builder/index.html<style#0>:102`  →  5 props
+- `dist/apps/specbuilder/index.html<style#0>:102`  →  5 props
+- `dist/apps/word-add-in/index.html<style#0>:102`  →  5 props
+- `dist/features/autoroute/index.html<style#0>:102`  →  5 props
+- `dist/features/clash-solver/index.html<style#0>:102`  →  5 props
+- `dist/features/pdf-to-3d/index.html<style#0>:102`  →  5 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:102`  →  5 props
+- `templates/agentic-service-page.html<style#0>:111`  →  5 props
+- `templates/app-page.html<style#0>:102`  →  5 props
+
+### `.shift p` × 24
+_Properties touched: `color`, `font-size`, `line-height`, `margin`_
+- `dist/agentic-services/document-controller/index.html<style#0>:112`  →  4 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:112`  →  4 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:112`  →  4 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:112`  →  4 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:112`  →  4 props
+- `dist/agentic-services/finances/index.html<style#0>:112`  →  4 props
+- `dist/agentic-services/project-management/index.html<style#0>:112`  →  4 props
+- `dist/apps/adelphos-chat/index.html<style#0>:106`  →  4 props
+- `dist/apps/autocad-copilot/index.html<style#0>:106`  →  4 props
+- `dist/apps/cobie-manager/index.html<style#0>:106`  →  4 props
+- `dist/apps/document-controller/index.html<style#0>:106`  →  4 props
+- `dist/apps/excel-add-in/index.html<style#0>:106`  →  4 props
+- `dist/apps/qa-manager/index.html<style#0>:106`  →  4 props
+- `dist/apps/report-builder/index.html<style#0>:106`  →  4 props
+- `dist/apps/revit-copilot/index.html<style#0>:106`  →  4 props
+- `dist/apps/schedule-builder/index.html<style#0>:106`  →  4 props
+- `dist/apps/specbuilder/index.html<style#0>:106`  →  4 props
+- `dist/apps/word-add-in/index.html<style#0>:106`  →  4 props
+- `dist/features/autoroute/index.html<style#0>:106`  →  4 props
+- `dist/features/clash-solver/index.html<style#0>:106`  →  4 props
+- `dist/features/pdf-to-3d/index.html<style#0>:106`  →  4 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:106`  →  4 props
+- `templates/agentic-service-page.html<style#0>:112`  →  4 props
+- `templates/app-page.html<style#0>:106`  →  4 props
+
+### `.shift.before` × 24
+_Properties touched: `background`, `border-color`_
+- `dist/agentic-services/document-controller/index.html<style#0>:113`  →  2 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:113`  →  2 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:113`  →  2 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:113`  →  2 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:113`  →  2 props
+- `dist/agentic-services/finances/index.html<style#0>:113`  →  2 props
+- `dist/agentic-services/project-management/index.html<style#0>:113`  →  2 props
+- `dist/apps/adelphos-chat/index.html<style#0>:107`  →  2 props
+- `dist/apps/autocad-copilot/index.html<style#0>:107`  →  2 props
+- `dist/apps/cobie-manager/index.html<style#0>:107`  →  2 props
+- `dist/apps/document-controller/index.html<style#0>:107`  →  2 props
+- `dist/apps/excel-add-in/index.html<style#0>:107`  →  2 props
+- `dist/apps/qa-manager/index.html<style#0>:107`  →  2 props
+- `dist/apps/report-builder/index.html<style#0>:107`  →  2 props
+- `dist/apps/revit-copilot/index.html<style#0>:107`  →  2 props
+- `dist/apps/schedule-builder/index.html<style#0>:107`  →  2 props
+- `dist/apps/specbuilder/index.html<style#0>:107`  →  2 props
+- `dist/apps/word-add-in/index.html<style#0>:107`  →  2 props
+- `dist/features/autoroute/index.html<style#0>:107`  →  2 props
+- `dist/features/clash-solver/index.html<style#0>:107`  →  2 props
+- `dist/features/pdf-to-3d/index.html<style#0>:107`  →  2 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:107`  →  2 props
+- `templates/agentic-service-page.html<style#0>:113`  →  2 props
+- `templates/app-page.html<style#0>:107`  →  2 props
+
+### `.shift.before .lab` × 24
+_Properties touched: `color`_
+- `dist/agentic-services/document-controller/index.html<style#0>:114`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:114`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:114`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:114`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:114`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:114`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:114`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:108`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:108`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:108`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:108`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:108`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:108`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:108`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:108`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:108`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:108`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:108`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:108`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:108`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:108`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:108`  →  1 props
+- `templates/agentic-service-page.html<style#0>:114`  →  1 props
+- `templates/app-page.html<style#0>:108`  →  1 props
+
+### `.shift.after` × 24
+_Properties touched: `background`, `border-color`_
+- `dist/agentic-services/document-controller/index.html<style#0>:115`  →  2 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:115`  →  2 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:115`  →  2 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:115`  →  2 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:115`  →  2 props
+- `dist/agentic-services/finances/index.html<style#0>:115`  →  2 props
+- `dist/agentic-services/project-management/index.html<style#0>:115`  →  2 props
+- `dist/apps/adelphos-chat/index.html<style#0>:109`  →  2 props
+- `dist/apps/autocad-copilot/index.html<style#0>:109`  →  2 props
+- `dist/apps/cobie-manager/index.html<style#0>:109`  →  2 props
+- `dist/apps/document-controller/index.html<style#0>:109`  →  2 props
+- `dist/apps/excel-add-in/index.html<style#0>:109`  →  2 props
+- `dist/apps/qa-manager/index.html<style#0>:109`  →  2 props
+- `dist/apps/report-builder/index.html<style#0>:109`  →  2 props
+- `dist/apps/revit-copilot/index.html<style#0>:109`  →  2 props
+- `dist/apps/schedule-builder/index.html<style#0>:109`  →  2 props
+- `dist/apps/specbuilder/index.html<style#0>:109`  →  2 props
+- `dist/apps/word-add-in/index.html<style#0>:109`  →  2 props
+- `dist/features/autoroute/index.html<style#0>:109`  →  2 props
+- `dist/features/clash-solver/index.html<style#0>:109`  →  2 props
+- `dist/features/pdf-to-3d/index.html<style#0>:109`  →  2 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:109`  →  2 props
+- `templates/agentic-service-page.html<style#0>:115`  →  2 props
+- `templates/app-page.html<style#0>:109`  →  2 props
+
+### `.shift.after  .lab` × 24
+_Properties touched: `color`_
+- `dist/agentic-services/document-controller/index.html<style#0>:116`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:116`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:116`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:116`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:116`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:116`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:116`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:110`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:110`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:110`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:110`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:110`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:110`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:110`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:110`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:110`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:110`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:110`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:110`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:110`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:110`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:110`  →  1 props
+- `templates/agentic-service-page.html<style#0>:116`  →  1 props
+- `templates/app-page.html<style#0>:110`  →  1 props
+
+### `.shift-grid` @media(@media (max-width: 720px)) × 24
+_Properties touched: `grid-template-columns`_
+- `dist/agentic-services/document-controller/index.html<style#0>:1`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:1`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:1`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:1`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:1`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:1`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:1`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:1`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:1`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:1`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:1`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:1`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:1`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:1`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:1`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:1`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:1`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:1`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:1`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:1`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:1`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:1`  →  1 props
+- `templates/agentic-service-page.html<style#0>:1`  →  1 props
+- `templates/app-page.html<style#0>:1`  →  1 props
+
+### `.why-grid` × 24
+_Properties touched: `align-items`, `display`, `gap`, `grid-template-columns`, `margin`_
+- `dist/agentic-services/document-controller/index.html<style#0>:152`  →  5 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:152`  →  5 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:152`  →  5 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:152`  →  5 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:152`  →  5 props
+- `dist/agentic-services/finances/index.html<style#0>:152`  →  5 props
+- `dist/agentic-services/project-management/index.html<style#0>:152`  →  5 props
+- `dist/apps/adelphos-chat/index.html<style#0>:121`  →  5 props
+- `dist/apps/autocad-copilot/index.html<style#0>:121`  →  5 props
+- `dist/apps/cobie-manager/index.html<style#0>:121`  →  5 props
+- `dist/apps/document-controller/index.html<style#0>:121`  →  5 props
+- `dist/apps/excel-add-in/index.html<style#0>:121`  →  5 props
+- `dist/apps/qa-manager/index.html<style#0>:121`  →  5 props
+- `dist/apps/report-builder/index.html<style#0>:121`  →  5 props
+- `dist/apps/revit-copilot/index.html<style#0>:121`  →  5 props
+- `dist/apps/schedule-builder/index.html<style#0>:121`  →  5 props
+- `dist/apps/specbuilder/index.html<style#0>:121`  →  5 props
+- `dist/apps/word-add-in/index.html<style#0>:121`  →  5 props
+- `dist/features/autoroute/index.html<style#0>:121`  →  5 props
+- `dist/features/clash-solver/index.html<style#0>:121`  →  5 props
+- `dist/features/pdf-to-3d/index.html<style#0>:121`  →  5 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:121`  →  5 props
+- `templates/agentic-service-page.html<style#0>:152`  →  5 props
+- `templates/app-page.html<style#0>:121`  →  5 props
+
+### `.why-grid .why-detail` × 24
+_Properties touched: `min-width`_
+- `dist/agentic-services/document-controller/index.html<style#0>:157`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:157`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:157`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:157`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:157`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:157`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:157`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:128`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:128`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:128`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:128`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:128`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:128`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:128`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:128`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:128`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:128`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:128`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:128`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:128`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:128`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:128`  →  1 props
+- `templates/agentic-service-page.html<style#0>:157`  →  1 props
+- `templates/app-page.html<style#0>:128`  →  1 props
+
+### `.why-grid .why-detail p` × 24
+_Properties touched: `color`, `font-size`, `line-height`, `margin`_
+- `dist/agentic-services/document-controller/index.html<style#0>:158`  →  4 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:158`  →  4 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:158`  →  4 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:158`  →  4 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:158`  →  4 props
+- `dist/agentic-services/finances/index.html<style#0>:158`  →  4 props
+- `dist/agentic-services/project-management/index.html<style#0>:158`  →  4 props
+- `dist/apps/adelphos-chat/index.html<style#0>:129`  →  4 props
+- `dist/apps/autocad-copilot/index.html<style#0>:129`  →  4 props
+- `dist/apps/cobie-manager/index.html<style#0>:129`  →  4 props
+- `dist/apps/document-controller/index.html<style#0>:129`  →  4 props
+- `dist/apps/excel-add-in/index.html<style#0>:129`  →  4 props
+- `dist/apps/qa-manager/index.html<style#0>:129`  →  4 props
+- `dist/apps/report-builder/index.html<style#0>:129`  →  4 props
+- `dist/apps/revit-copilot/index.html<style#0>:129`  →  4 props
+- `dist/apps/schedule-builder/index.html<style#0>:129`  →  4 props
+- `dist/apps/specbuilder/index.html<style#0>:129`  →  4 props
+- `dist/apps/word-add-in/index.html<style#0>:129`  →  4 props
+- `dist/features/autoroute/index.html<style#0>:129`  →  4 props
+- `dist/features/clash-solver/index.html<style#0>:129`  →  4 props
+- `dist/features/pdf-to-3d/index.html<style#0>:129`  →  4 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:129`  →  4 props
+- `templates/agentic-service-page.html<style#0>:158`  →  4 props
+- `templates/app-page.html<style#0>:129`  →  4 props
+
+### `.why-grid .why-detail p:last-child` × 24
+_Properties touched: `margin-bottom`_
+- `dist/agentic-services/document-controller/index.html<style#0>:159`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:159`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:159`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:159`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:159`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:159`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:159`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:133`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:133`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:133`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:133`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:133`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:133`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:133`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:133`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:133`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:133`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:133`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:133`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:133`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:133`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:133`  →  1 props
+- `templates/agentic-service-page.html<style#0>:159`  →  1 props
+- `templates/app-page.html<style#0>:133`  →  1 props
+
+### `.why-grid .why-quote` × 24
+_Properties touched: _
+- `dist/agentic-services/document-controller/index.html<style#0>:160`  →  0 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:160`  →  0 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:160`  →  0 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:160`  →  0 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:160`  →  0 props
+- `dist/agentic-services/finances/index.html<style#0>:160`  →  0 props
+- `dist/agentic-services/project-management/index.html<style#0>:160`  →  0 props
+- `dist/apps/adelphos-chat/index.html<style#0>:134`  →  0 props
+- `dist/apps/autocad-copilot/index.html<style#0>:134`  →  0 props
+- `dist/apps/cobie-manager/index.html<style#0>:134`  →  0 props
+- `dist/apps/document-controller/index.html<style#0>:134`  →  0 props
+- `dist/apps/excel-add-in/index.html<style#0>:134`  →  0 props
+- `dist/apps/qa-manager/index.html<style#0>:134`  →  0 props
+- `dist/apps/report-builder/index.html<style#0>:134`  →  0 props
+- `dist/apps/revit-copilot/index.html<style#0>:134`  →  0 props
+- `dist/apps/schedule-builder/index.html<style#0>:134`  →  0 props
+- `dist/apps/specbuilder/index.html<style#0>:134`  →  0 props
+- `dist/apps/word-add-in/index.html<style#0>:134`  →  0 props
+- `dist/features/autoroute/index.html<style#0>:134`  →  0 props
+- `dist/features/clash-solver/index.html<style#0>:134`  →  0 props
+- `dist/features/pdf-to-3d/index.html<style#0>:134`  →  0 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:134`  →  0 props
+- `templates/agentic-service-page.html<style#0>:160`  →  0 props
+- `templates/app-page.html<style#0>:134`  →  0 props
+
+### `.why-grid .why-quote blockquote` × 24
+_Properties touched: `color`, `font-size`, `font-weight`, `letter-spacing`, `line-height`, `margin`_
+- `dist/agentic-services/document-controller/index.html<style#0>:161`  →  6 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:161`  →  6 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:161`  →  6 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:161`  →  6 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:161`  →  6 props
+- `dist/agentic-services/finances/index.html<style#0>:161`  →  6 props
+- `dist/agentic-services/project-management/index.html<style#0>:161`  →  6 props
+- `dist/apps/adelphos-chat/index.html<style#0>:135`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:135`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:135`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:135`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:135`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:135`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:135`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:135`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:135`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:135`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:135`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:135`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:135`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:135`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:135`  →  6 props
+- `templates/agentic-service-page.html<style#0>:161`  →  6 props
+- `templates/app-page.html<style#0>:135`  →  6 props
+
+### `.why-grid` @media(@media (max-width: 1100px)) × 24
+_Properties touched: `gap`, `grid-template-columns`_
+- `dist/agentic-services/document-controller/index.html<style#0>:2`  →  2 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:2`  →  2 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:2`  →  2 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:2`  →  2 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:2`  →  2 props
+- `dist/agentic-services/finances/index.html<style#0>:2`  →  2 props
+- `dist/agentic-services/project-management/index.html<style#0>:2`  →  2 props
+- `dist/apps/adelphos-chat/index.html<style#0>:2`  →  2 props
+- `dist/apps/autocad-copilot/index.html<style#0>:2`  →  2 props
+- `dist/apps/cobie-manager/index.html<style#0>:2`  →  2 props
+- `dist/apps/document-controller/index.html<style#0>:2`  →  2 props
+- `dist/apps/excel-add-in/index.html<style#0>:2`  →  2 props
+- `dist/apps/qa-manager/index.html<style#0>:2`  →  2 props
+- `dist/apps/report-builder/index.html<style#0>:2`  →  2 props
+- `dist/apps/revit-copilot/index.html<style#0>:2`  →  2 props
+- `dist/apps/schedule-builder/index.html<style#0>:2`  →  2 props
+- `dist/apps/specbuilder/index.html<style#0>:2`  →  2 props
+- `dist/apps/word-add-in/index.html<style#0>:2`  →  2 props
+- `dist/features/autoroute/index.html<style#0>:2`  →  2 props
+- `dist/features/clash-solver/index.html<style#0>:2`  →  2 props
+- `dist/features/pdf-to-3d/index.html<style#0>:2`  →  2 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:2`  →  2 props
+- `templates/agentic-service-page.html<style#0>:2`  →  2 props
+- `templates/app-page.html<style#0>:2`  →  2 props
+
+### `.why-grid .why-quote blockquote` @media(@media (max-width: 1100px)) × 24
+_Properties touched: `font-size`_
+- `dist/agentic-services/document-controller/index.html<style#0>:3`  →  1 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:3`  →  1 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:3`  →  1 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:3`  →  1 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:3`  →  1 props
+- `dist/agentic-services/finances/index.html<style#0>:3`  →  1 props
+- `dist/agentic-services/project-management/index.html<style#0>:3`  →  1 props
+- `dist/apps/adelphos-chat/index.html<style#0>:3`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:3`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:3`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:3`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:3`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:3`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:3`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:3`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:3`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:3`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:3`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:3`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:3`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:3`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:3`  →  1 props
+- `templates/agentic-service-page.html<style#0>:3`  →  1 props
+- `templates/app-page.html<style#0>:3`  →  1 props
+
+### `.feat-list` × 24
+_Properties touched: `display`, `gap`, `grid-template-columns`, `list-style`, `margin`, `padding`_
+- `dist/agentic-services/document-controller/index.html<style#0>:173`  →  6 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:173`  →  6 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:173`  →  6 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:173`  →  6 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:173`  →  6 props
+- `dist/agentic-services/finances/index.html<style#0>:173`  →  6 props
+- `dist/agentic-services/project-management/index.html<style#0>:173`  →  6 props
+- `dist/apps/adelphos-chat/index.html<style#0>:147`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:147`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:147`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:147`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:147`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:147`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:147`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:147`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:147`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:147`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:147`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:147`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:147`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:147`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:147`  →  6 props
+- `templates/agentic-service-page.html<style#0>:173`  →  6 props
+- `templates/app-page.html<style#0>:147`  →  6 props
+
+### `.feat-list` @media(@media (max-width: 800px)) × 24
+_Properties touched: `gap`, `grid-template-columns`_
+- `dist/agentic-services/document-controller/index.html<style#0>:1`  →  2 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:1`  →  2 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:1`  →  2 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:1`  →  2 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:1`  →  2 props
+- `dist/agentic-services/finances/index.html<style#0>:1`  →  2 props
+- `dist/agentic-services/project-management/index.html<style#0>:1`  →  2 props
+- `dist/apps/adelphos-chat/index.html<style#0>:1`  →  2 props
+- `dist/apps/autocad-copilot/index.html<style#0>:1`  →  2 props
+- `dist/apps/cobie-manager/index.html<style#0>:1`  →  2 props
+- `dist/apps/document-controller/index.html<style#0>:1`  →  2 props
+- `dist/apps/excel-add-in/index.html<style#0>:1`  →  2 props
+- `dist/apps/qa-manager/index.html<style#0>:1`  →  2 props
+- `dist/apps/report-builder/index.html<style#0>:1`  →  2 props
+- `dist/apps/revit-copilot/index.html<style#0>:1`  →  2 props
+- `dist/apps/schedule-builder/index.html<style#0>:1`  →  2 props
+- `dist/apps/specbuilder/index.html<style#0>:1`  →  2 props
+- `dist/apps/word-add-in/index.html<style#0>:1`  →  2 props
+- `dist/features/autoroute/index.html<style#0>:1`  →  2 props
+- `dist/features/clash-solver/index.html<style#0>:1`  →  2 props
+- `dist/features/pdf-to-3d/index.html<style#0>:1`  →  2 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:1`  →  2 props
+- `templates/agentic-service-page.html<style#0>:1`  →  2 props
+- `templates/app-page.html<style#0>:1`  →  2 props
+
+### `.feat-list li .name` × 24
+_Properties touched: `color`, `display`, `font-size`, `font-weight`, `letter-spacing`, `margin`, `padding-left`, `position`_
+- `dist/agentic-services/document-controller/index.html<style#0>:179`  →  8 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:179`  →  8 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:179`  →  8 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:179`  →  8 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:179`  →  8 props
+- `dist/agentic-services/finances/index.html<style#0>:179`  →  8 props
+- `dist/agentic-services/project-management/index.html<style#0>:179`  →  8 props
+- `dist/apps/adelphos-chat/index.html<style#0>:155`  →  8 props
+- `dist/apps/autocad-copilot/index.html<style#0>:155`  →  8 props
+- `dist/apps/cobie-manager/index.html<style#0>:155`  →  8 props
+- `dist/apps/document-controller/index.html<style#0>:155`  →  8 props
+- `dist/apps/excel-add-in/index.html<style#0>:155`  →  8 props
+- `dist/apps/qa-manager/index.html<style#0>:155`  →  8 props
+- `dist/apps/report-builder/index.html<style#0>:155`  →  8 props
+- `dist/apps/revit-copilot/index.html<style#0>:155`  →  8 props
+- `dist/apps/schedule-builder/index.html<style#0>:155`  →  8 props
+- `dist/apps/specbuilder/index.html<style#0>:155`  →  8 props
+- `dist/apps/word-add-in/index.html<style#0>:155`  →  8 props
+- `dist/features/autoroute/index.html<style#0>:155`  →  8 props
+- `dist/features/clash-solver/index.html<style#0>:155`  →  8 props
+- `dist/features/pdf-to-3d/index.html<style#0>:155`  →  8 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:155`  →  8 props
+- `templates/agentic-service-page.html<style#0>:179`  →  8 props
+- `templates/app-page.html<style#0>:155`  →  8 props
+
+### `.feat-list li .name::before` × 24
+_Properties touched: `background`, `border-radius`, `content`, `height`, `left`, `position`, `top`, `width`_
+- `dist/agentic-services/document-controller/index.html<style#0>:184`  →  8 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:184`  →  8 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:184`  →  8 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:184`  →  8 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:184`  →  8 props
+- `dist/agentic-services/finances/index.html<style#0>:184`  →  8 props
+- `dist/agentic-services/project-management/index.html<style#0>:184`  →  8 props
+- `dist/apps/adelphos-chat/index.html<style#0>:161`  →  8 props
+- `dist/apps/autocad-copilot/index.html<style#0>:161`  →  8 props
+- `dist/apps/cobie-manager/index.html<style#0>:161`  →  8 props
+- `dist/apps/document-controller/index.html<style#0>:161`  →  8 props
+- `dist/apps/excel-add-in/index.html<style#0>:161`  →  8 props
+- `dist/apps/qa-manager/index.html<style#0>:161`  →  8 props
+- `dist/apps/report-builder/index.html<style#0>:161`  →  8 props
+- `dist/apps/revit-copilot/index.html<style#0>:161`  →  8 props
+- `dist/apps/schedule-builder/index.html<style#0>:161`  →  8 props
+- `dist/apps/specbuilder/index.html<style#0>:161`  →  8 props
+- `dist/apps/word-add-in/index.html<style#0>:161`  →  8 props
+- `dist/features/autoroute/index.html<style#0>:161`  →  8 props
+- `dist/features/clash-solver/index.html<style#0>:161`  →  8 props
+- `dist/features/pdf-to-3d/index.html<style#0>:161`  →  8 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:161`  →  8 props
+- `templates/agentic-service-page.html<style#0>:184`  →  8 props
+- `templates/app-page.html<style#0>:161`  →  8 props
+
+### `.feat-list li .desc` × 24
+_Properties touched: `color`, `display`, `font-size`, `line-height`, `margin`, `padding-left`_
+- `dist/agentic-services/document-controller/index.html<style#0>:188`  →  6 props
+- `dist/agentic-services/email-cobie/index.html<style#0>:188`  →  6 props
+- `dist/agentic-services/email-revit-modelling/index.html<style#0>:188`  →  6 props
+- `dist/agentic-services/email-schematics/index.html<style#0>:188`  →  6 props
+- `dist/agentic-services/email-specifications/index.html<style#0>:188`  →  6 props
+- `dist/agentic-services/finances/index.html<style#0>:188`  →  6 props
+- `dist/agentic-services/project-management/index.html<style#0>:188`  →  6 props
+- `dist/apps/adelphos-chat/index.html<style#0>:166`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:166`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:166`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:166`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:166`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:166`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:166`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:166`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:166`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:166`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:166`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:166`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:166`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:166`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:166`  →  6 props
+- `templates/agentic-service-page.html<style#0>:188`  →  6 props
+- `templates/app-page.html<style#0>:166`  →  6 props
+
+### `.demo-detail .hero-video` × 19
+_Properties touched: `aspect-ratio`, `background`, `border-radius`, `box-shadow`, `margin-bottom`, `max-width`, `overflow`, `width`_
+- `sandbox/sandbox.css:715`  →  8 props
+- `dist/apps/adelphos-chat/index.html<style#0>:97`  →  3 props
+- `dist/apps/autocad-copilot/index.html<style#0>:97`  →  3 props
+- `dist/apps/cobie-manager/index.html<style#0>:97`  →  3 props
+- `dist/apps/document-controller/index.html<style#0>:97`  →  3 props
+- `dist/apps/excel-add-in/index.html<style#0>:97`  →  3 props
+- `dist/apps/qa-manager/index.html<style#0>:97`  →  3 props
+- `dist/apps/report-builder/index.html<style#0>:97`  →  3 props
+- `dist/apps/revit-copilot/index.html<style#0>:97`  →  3 props
+- `dist/apps/schedule-builder/index.html<style#0>:97`  →  3 props
+- `dist/apps/specbuilder/index.html<style#0>:97`  →  3 props
+- `dist/apps/word-add-in/index.html<style#0>:97`  →  3 props
+- `dist/features/autoroute/index.html<style#0>:97`  →  3 props
+- `dist/features/clash-solver/index.html<style#0>:97`  →  3 props
+- `dist/features/pdf-to-3d/index.html<style#0>:97`  →  3 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:97`  →  3 props
+- `dist/workflows/schedules/index.html<style#0>:11`  →  3 props
+- `templates/app-page.html<style#0>:97`  →  3 props
+- `templates/workflow-page.html<style#0>:11`  →  3 props
+
+### `.app-hero-card` × 16
+_Properties touched: `background`, `border-radius`, `box-shadow`, `margin`, `overflow`, `position`_
+- `dist/apps/adelphos-chat/index.html<style#0>:8`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:8`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:8`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:8`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:8`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:8`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:8`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:8`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:8`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:8`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:8`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:8`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:8`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:8`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:8`  →  6 props
+- `templates/app-page.html<style#0>:8`  →  6 props
+
+### `html.dark-mode .app-hero-card` × 16
+_Properties touched: `background`_
+- `dist/apps/adelphos-chat/index.html<style#0>:15`  →  1 props
+- `dist/apps/autocad-copilot/index.html<style#0>:15`  →  1 props
+- `dist/apps/cobie-manager/index.html<style#0>:15`  →  1 props
+- `dist/apps/document-controller/index.html<style#0>:15`  →  1 props
+- `dist/apps/excel-add-in/index.html<style#0>:15`  →  1 props
+- `dist/apps/qa-manager/index.html<style#0>:15`  →  1 props
+- `dist/apps/report-builder/index.html<style#0>:15`  →  1 props
+- `dist/apps/revit-copilot/index.html<style#0>:15`  →  1 props
+- `dist/apps/schedule-builder/index.html<style#0>:15`  →  1 props
+- `dist/apps/specbuilder/index.html<style#0>:15`  →  1 props
+- `dist/apps/word-add-in/index.html<style#0>:15`  →  1 props
+- `dist/features/autoroute/index.html<style#0>:15`  →  1 props
+- `dist/features/clash-solver/index.html<style#0>:15`  →  1 props
+- `dist/features/pdf-to-3d/index.html<style#0>:15`  →  1 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:15`  →  1 props
+- `templates/app-page.html<style#0>:15`  →  1 props
+
+### `.app-hero-card::before` × 16
+_Properties touched: `background`, `content`, `inset`, `pointer-events`, `position`_
+- `dist/apps/adelphos-chat/index.html<style#0>:18`  →  5 props
+- `dist/apps/autocad-copilot/index.html<style#0>:18`  →  5 props
+- `dist/apps/cobie-manager/index.html<style#0>:18`  →  5 props
+- `dist/apps/document-controller/index.html<style#0>:18`  →  5 props
+- `dist/apps/excel-add-in/index.html<style#0>:18`  →  5 props
+- `dist/apps/qa-manager/index.html<style#0>:18`  →  5 props
+- `dist/apps/report-builder/index.html<style#0>:18`  →  5 props
+- `dist/apps/revit-copilot/index.html<style#0>:18`  →  5 props
+- `dist/apps/schedule-builder/index.html<style#0>:18`  →  5 props
+- `dist/apps/specbuilder/index.html<style#0>:18`  →  5 props
+- `dist/apps/word-add-in/index.html<style#0>:18`  →  5 props
+- `dist/features/autoroute/index.html<style#0>:18`  →  5 props
+- `dist/features/clash-solver/index.html<style#0>:18`  →  5 props
+- `dist/features/pdf-to-3d/index.html<style#0>:18`  →  5 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:18`  →  5 props
+- `templates/app-page.html<style#0>:18`  →  5 props
+
+### `.app-hero-card .inner` × 16
+_Properties touched: `color`, `padding`, `position`_
+- `dist/apps/adelphos-chat/index.html<style#0>:25`  →  3 props
+- `dist/apps/autocad-copilot/index.html<style#0>:25`  →  3 props
+- `dist/apps/cobie-manager/index.html<style#0>:25`  →  3 props
+- `dist/apps/document-controller/index.html<style#0>:25`  →  3 props
+- `dist/apps/excel-add-in/index.html<style#0>:25`  →  3 props
+- `dist/apps/qa-manager/index.html<style#0>:25`  →  3 props
+- `dist/apps/report-builder/index.html<style#0>:25`  →  3 props
+- `dist/apps/revit-copilot/index.html<style#0>:25`  →  3 props
+- `dist/apps/schedule-builder/index.html<style#0>:25`  →  3 props
+- `dist/apps/specbuilder/index.html<style#0>:25`  →  3 props
+- `dist/apps/word-add-in/index.html<style#0>:25`  →  3 props
+- `dist/features/autoroute/index.html<style#0>:25`  →  3 props
+- `dist/features/clash-solver/index.html<style#0>:25`  →  3 props
+- `dist/features/pdf-to-3d/index.html<style#0>:25`  →  3 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:25`  →  3 props
+- `templates/app-page.html<style#0>:25`  →  3 props
+
+### `.app-hero-card .crumb` × 16
+_Properties touched: `color`, `font-size`, `letter-spacing`, `margin-bottom`, `text-transform`_
+- `dist/apps/adelphos-chat/index.html<style#0>:26`  →  5 props
+- `dist/apps/autocad-copilot/index.html<style#0>:26`  →  5 props
+- `dist/apps/cobie-manager/index.html<style#0>:26`  →  5 props
+- `dist/apps/document-controller/index.html<style#0>:26`  →  5 props
+- `dist/apps/excel-add-in/index.html<style#0>:26`  →  5 props
+- `dist/apps/qa-manager/index.html<style#0>:26`  →  5 props
+- `dist/apps/report-builder/index.html<style#0>:26`  →  5 props
+- `dist/apps/revit-copilot/index.html<style#0>:26`  →  5 props
+- `dist/apps/schedule-builder/index.html<style#0>:26`  →  5 props
+- `dist/apps/specbuilder/index.html<style#0>:26`  →  5 props
+- `dist/apps/word-add-in/index.html<style#0>:26`  →  5 props
+- `dist/features/autoroute/index.html<style#0>:26`  →  5 props
+- `dist/features/clash-solver/index.html<style#0>:26`  →  5 props
+- `dist/features/pdf-to-3d/index.html<style#0>:26`  →  5 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:26`  →  5 props
+- `templates/app-page.html<style#0>:26`  →  5 props
+
+### `.app-hero-card .crumb a` × 16
+_Properties touched: `color`, `text-decoration`_
+- `dist/apps/adelphos-chat/index.html<style#0>:30`  →  2 props
+- `dist/apps/autocad-copilot/index.html<style#0>:30`  →  2 props
+- `dist/apps/cobie-manager/index.html<style#0>:30`  →  2 props
+- `dist/apps/document-controller/index.html<style#0>:30`  →  2 props
+- `dist/apps/excel-add-in/index.html<style#0>:30`  →  2 props
+- `dist/apps/qa-manager/index.html<style#0>:30`  →  2 props
+- `dist/apps/report-builder/index.html<style#0>:30`  →  2 props
+- `dist/apps/revit-copilot/index.html<style#0>:30`  →  2 props
+- `dist/apps/schedule-builder/index.html<style#0>:30`  →  2 props
+- `dist/apps/specbuilder/index.html<style#0>:30`  →  2 props
+- `dist/apps/word-add-in/index.html<style#0>:30`  →  2 props
+- `dist/features/autoroute/index.html<style#0>:30`  →  2 props
+- `dist/features/clash-solver/index.html<style#0>:30`  →  2 props
+- `dist/features/pdf-to-3d/index.html<style#0>:30`  →  2 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:30`  →  2 props
+- `templates/app-page.html<style#0>:30`  →  2 props
+
+### `.app-hero-card .crumb a:hover` × 16
+_Properties touched: `color`, `text-decoration`_
+- `dist/apps/adelphos-chat/index.html<style#0>:31`  →  2 props
+- `dist/apps/autocad-copilot/index.html<style#0>:31`  →  2 props
+- `dist/apps/cobie-manager/index.html<style#0>:31`  →  2 props
+- `dist/apps/document-controller/index.html<style#0>:31`  →  2 props
+- `dist/apps/excel-add-in/index.html<style#0>:31`  →  2 props
+- `dist/apps/qa-manager/index.html<style#0>:31`  →  2 props
+- `dist/apps/report-builder/index.html<style#0>:31`  →  2 props
+- `dist/apps/revit-copilot/index.html<style#0>:31`  →  2 props
+- `dist/apps/schedule-builder/index.html<style#0>:31`  →  2 props
+- `dist/apps/specbuilder/index.html<style#0>:31`  →  2 props
+- `dist/apps/word-add-in/index.html<style#0>:31`  →  2 props
+- `dist/features/autoroute/index.html<style#0>:31`  →  2 props
+- `dist/features/clash-solver/index.html<style#0>:31`  →  2 props
+- `dist/features/pdf-to-3d/index.html<style#0>:31`  →  2 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:31`  →  2 props
+- `templates/app-page.html<style#0>:31`  →  2 props
+
+### `.app-hero-card .head` × 16
+_Properties touched: `align-items`, `display`, `gap`, `grid-template-columns`, `margin-bottom`_
+- `dist/apps/adelphos-chat/index.html<style#0>:33`  →  5 props
+- `dist/apps/autocad-copilot/index.html<style#0>:33`  →  5 props
+- `dist/apps/cobie-manager/index.html<style#0>:33`  →  5 props
+- `dist/apps/document-controller/index.html<style#0>:33`  →  5 props
+- `dist/apps/excel-add-in/index.html<style#0>:33`  →  5 props
+- `dist/apps/qa-manager/index.html<style#0>:33`  →  5 props
+- `dist/apps/report-builder/index.html<style#0>:33`  →  5 props
+- `dist/apps/revit-copilot/index.html<style#0>:33`  →  5 props
+- `dist/apps/schedule-builder/index.html<style#0>:33`  →  5 props
+- `dist/apps/specbuilder/index.html<style#0>:33`  →  5 props
+- `dist/apps/word-add-in/index.html<style#0>:33`  →  5 props
+- `dist/features/autoroute/index.html<style#0>:33`  →  5 props
+- `dist/features/clash-solver/index.html<style#0>:33`  →  5 props
+- `dist/features/pdf-to-3d/index.html<style#0>:33`  →  5 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:33`  →  5 props
+- `templates/app-page.html<style#0>:33`  →  5 props
+
+### `.app-hero-card .head img` × 16
+_Properties touched: `border-radius`, `box-shadow`, `height`, `object-fit`, `width`_
+- `dist/apps/adelphos-chat/index.html<style#0>:37`  →  5 props
+- `dist/apps/autocad-copilot/index.html<style#0>:37`  →  5 props
+- `dist/apps/cobie-manager/index.html<style#0>:37`  →  5 props
+- `dist/apps/document-controller/index.html<style#0>:37`  →  5 props
+- `dist/apps/excel-add-in/index.html<style#0>:37`  →  5 props
+- `dist/apps/qa-manager/index.html<style#0>:37`  →  5 props
+- `dist/apps/report-builder/index.html<style#0>:37`  →  5 props
+- `dist/apps/revit-copilot/index.html<style#0>:37`  →  5 props
+- `dist/apps/schedule-builder/index.html<style#0>:37`  →  5 props
+- `dist/apps/specbuilder/index.html<style#0>:37`  →  5 props
+- `dist/apps/word-add-in/index.html<style#0>:37`  →  5 props
+- `dist/features/autoroute/index.html<style#0>:37`  →  5 props
+- `dist/features/clash-solver/index.html<style#0>:37`  →  5 props
+- `dist/features/pdf-to-3d/index.html<style#0>:37`  →  5 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:37`  →  5 props
+- `templates/app-page.html<style#0>:37`  →  5 props
+
+### `.app-hero-card h1` × 16
+_Properties touched: `color`, `font-size`, `font-weight`, `letter-spacing`, `line-height`, `margin`_
+- `dist/apps/adelphos-chat/index.html<style#0>:41`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:41`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:41`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:41`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:41`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:41`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:41`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:41`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:41`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:41`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:41`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:41`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:41`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:41`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:41`  →  6 props
+- `templates/app-page.html<style#0>:41`  →  6 props
+
+### `.app-hero-card .surf` × 16
+_Properties touched: `color`, `display`, `font-size`, `letter-spacing`, `margin-top`, `text-transform`_
+- `dist/apps/adelphos-chat/index.html<style#0>:45`  →  6 props
+- `dist/apps/autocad-copilot/index.html<style#0>:45`  →  6 props
+- `dist/apps/cobie-manager/index.html<style#0>:45`  →  6 props
+- `dist/apps/document-controller/index.html<style#0>:45`  →  6 props
+- `dist/apps/excel-add-in/index.html<style#0>:45`  →  6 props
+- `dist/apps/qa-manager/index.html<style#0>:45`  →  6 props
+- `dist/apps/report-builder/index.html<style#0>:45`  →  6 props
+- `dist/apps/revit-copilot/index.html<style#0>:45`  →  6 props
+- `dist/apps/schedule-builder/index.html<style#0>:45`  →  6 props
+- `dist/apps/specbuilder/index.html<style#0>:45`  →  6 props
+- `dist/apps/word-add-in/index.html<style#0>:45`  →  6 props
+- `dist/features/autoroute/index.html<style#0>:45`  →  6 props
+- `dist/features/clash-solver/index.html<style#0>:45`  →  6 props
+- `dist/features/pdf-to-3d/index.html<style#0>:45`  →  6 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:45`  →  6 props
+- `templates/app-page.html<style#0>:45`  →  6 props
+
+### `.app-hero-card .claim` × 16
+_Properties touched: `color`, `font-size`, `font-weight`, `letter-spacing`, `line-height`, `margin`, `max-width`_
+- `dist/apps/adelphos-chat/index.html<style#0>:49`  →  7 props
+- `dist/apps/autocad-copilot/index.html<style#0>:49`  →  7 props
+- `dist/apps/cobie-manager/index.html<style#0>:49`  →  7 props
+- `dist/apps/document-controller/index.html<style#0>:49`  →  7 props
+- `dist/apps/excel-add-in/index.html<style#0>:49`  →  7 props
+- `dist/apps/qa-manager/index.html<style#0>:49`  →  7 props
+- `dist/apps/report-builder/index.html<style#0>:49`  →  7 props
+- `dist/apps/revit-copilot/index.html<style#0>:49`  →  7 props
+- `dist/apps/schedule-builder/index.html<style#0>:49`  →  7 props
+- `dist/apps/specbuilder/index.html<style#0>:49`  →  7 props
+- `dist/apps/word-add-in/index.html<style#0>:49`  →  7 props
+- `dist/features/autoroute/index.html<style#0>:49`  →  7 props
+- `dist/features/clash-solver/index.html<style#0>:49`  →  7 props
+- `dist/features/pdf-to-3d/index.html<style#0>:49`  →  7 props
+- `dist/features/plantroom-designer-3d/index.html<style#0>:49`  →  7 props
+- `templates/app-page.html<style#0>:49`  →  7 props
+
+## ⚠ !important wars
+
+_Showing top 30 of 86_
+
+### `.features-group > h3` · `font-size` × 16 `!important`
+- `dist/apps/adelphos-chat/index.html<style#0>:175` → `12px`
+- `dist/apps/autocad-copilot/index.html<style#0>:175` → `12px`
+- `dist/apps/cobie-manager/index.html<style#0>:175` → `12px`
+- `dist/apps/document-controller/index.html<style#0>:175` → `12px`
+- `dist/apps/excel-add-in/index.html<style#0>:175` → `12px`
+- `dist/apps/qa-manager/index.html<style#0>:175` → `12px`
+- `dist/apps/report-builder/index.html<style#0>:175` → `12px`
+- `dist/apps/revit-copilot/index.html<style#0>:175` → `12px`
+- `dist/apps/schedule-builder/index.html<style#0>:175` → `12px`
+- `dist/apps/specbuilder/index.html<style#0>:175` → `12px`
+- `dist/apps/word-add-in/index.html<style#0>:175` → `12px`
+- `dist/features/autoroute/index.html<style#0>:175` → `12px`
+- `dist/features/clash-solver/index.html<style#0>:175` → `12px`
+- `dist/features/pdf-to-3d/index.html<style#0>:175` → `12px`
+- `dist/features/plantroom-designer-3d/index.html<style#0>:175` → `12px`
+- `templates/app-page.html<style#0>:175` → `12px`
+
+### `.features-group > h3` · `font-weight` × 16 `!important`
+- `dist/apps/adelphos-chat/index.html<style#0>:175` → `700`
+- `dist/apps/autocad-copilot/index.html<style#0>:175` → `700`
+- `dist/apps/cobie-manager/index.html<style#0>:175` → `700`
+- `dist/apps/document-controller/index.html<style#0>:175` → `700`
+- `dist/apps/excel-add-in/index.html<style#0>:175` → `700`
+- `dist/apps/qa-manager/index.html<style#0>:175` → `700`
+- `dist/apps/report-builder/index.html<style#0>:175` → `700`
+- `dist/apps/revit-copilot/index.html<style#0>:175` → `700`
+- `dist/apps/schedule-builder/index.html<style#0>:175` → `700`
+- `dist/apps/specbuilder/index.html<style#0>:175` → `700`
+- `dist/apps/word-add-in/index.html<style#0>:175` → `700`
+- `dist/features/autoroute/index.html<style#0>:175` → `700`
+- `dist/features/clash-solver/index.html<style#0>:175` → `700`
+- `dist/features/pdf-to-3d/index.html<style#0>:175` → `700`
+- `dist/features/plantroom-designer-3d/index.html<style#0>:175` → `700`
+- `templates/app-page.html<style#0>:175` → `700`
+
+### `.features-group > h3` · `color` × 16 `!important`
+- `dist/apps/adelphos-chat/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/autocad-copilot/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/cobie-manager/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/document-controller/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/excel-add-in/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/qa-manager/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/report-builder/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/revit-copilot/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/schedule-builder/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/specbuilder/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/apps/word-add-in/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/features/autoroute/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/features/clash-solver/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/features/pdf-to-3d/index.html<style#0>:175` → `var(--brand-teal)`
+- `dist/features/plantroom-designer-3d/index.html<style#0>:175` → `var(--brand-teal)`
+- `templates/app-page.html<style#0>:175` → `var(--brand-teal)`
+
+### `.features-group > h3` · `margin` × 16 `!important`
+- `dist/apps/adelphos-chat/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/autocad-copilot/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/cobie-manager/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/document-controller/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/excel-add-in/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/qa-manager/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/report-builder/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/revit-copilot/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/schedule-builder/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/specbuilder/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/apps/word-add-in/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/features/autoroute/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/features/clash-solver/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/features/pdf-to-3d/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `dist/features/plantroom-designer-3d/index.html<style#0>:175` → `0 0 var(--space-sm)`
+- `templates/app-page.html<style#0>:175` → `0 0 var(--space-sm)`
+
+### `.features-group > h3` · `padding` × 16 `!important`
+- `dist/apps/adelphos-chat/index.html<style#0>:175` → `0`
+- `dist/apps/autocad-copilot/index.html<style#0>:175` → `0`
+- `dist/apps/cobie-manager/index.html<style#0>:175` → `0`
+- `dist/apps/document-controller/index.html<style#0>:175` → `0`
+- `dist/apps/excel-add-in/index.html<style#0>:175` → `0`
+- `dist/apps/qa-manager/index.html<style#0>:175` → `0`
+- `dist/apps/report-builder/index.html<style#0>:175` → `0`
+- `dist/apps/revit-copilot/index.html<style#0>:175` → `0`
+- `dist/apps/schedule-builder/index.html<style#0>:175` → `0`
+- `dist/apps/specbuilder/index.html<style#0>:175` → `0`
+- `dist/apps/word-add-in/index.html<style#0>:175` → `0`
+- `dist/features/autoroute/index.html<style#0>:175` → `0`
+- `dist/features/clash-solver/index.html<style#0>:175` → `0`
+- `dist/features/pdf-to-3d/index.html<style#0>:175` → `0`
+- `dist/features/plantroom-designer-3d/index.html<style#0>:175` → `0`
+- `templates/app-page.html<style#0>:175` → `0`
+
+### `.demo-chat-box.dragging` · `transition` × 5 `!important`
+- `chat-panel/backup/index-styles.css:2793` → `none`
+- `chat-panel/css/chat-panel.css:353` → `none`
+- `chat-panel/index-styles.css:2794` → `none`
+- `css/chat-panel.css:354` → `none`
+- `css/index-styles.css:3083` → `none`
+
+### `.section-indicator.hidden` · `opacity` × 3 `!important`
+- `chat-panel/backup/index-styles.css:133` → `0`
+- `chat-panel/index-styles.css:133` → `0`
+- `css/index-styles.css:135` → `0`
+
+### `.hero-text-container.fade-out` · `opacity` × 3 `!important`
+- `chat-panel/backup/index-styles.css:234` → `0`
+- `chat-panel/index-styles.css:234` → `0`
+- `css/index-styles.css:237` → `0`
+
+### `.hero-text-container.fade-out` · `pointer-events` × 3 `!important`
+- `chat-panel/backup/index-styles.css:234` → `none`
+- `chat-panel/index-styles.css:234` → `none`
+- `css/index-styles.css:237` → `none`
+
+### `.hero-text-container.fade-out .hero-text-inner` · `pointer-events` × 3 `!important`
+- `chat-panel/backup/index-styles.css:240` → `none`
+- `chat-panel/index-styles.css:240` → `none`
+- `css/index-styles.css:243` → `none`
+
+### `.riba-card-left.expanded` · `position` × 3 `!important`
+- `chat-panel/backup/index-styles.css:720` → `fixed`
+- `chat-panel/index-styles.css:721` → `fixed`
+- `css/index-styles.css:774` → `fixed`
+
+### `.riba-card-left.expanded` · `top` × 3 `!important`
+- `chat-panel/backup/index-styles.css:720` → `50%`
+- `chat-panel/index-styles.css:721` → `50%`
+- `css/index-styles.css:774` → `50%`
+
+### `.riba-card-left.expanded` · `left` × 3 `!important`
+- `chat-panel/backup/index-styles.css:720` → `calc(27.5% + 40px)`
+- `chat-panel/index-styles.css:721` → `calc(27.5% + 40px)`
+- `css/index-styles.css:774` → `calc(27.5% + 40px)`
+
+### `.riba-card-left.expanded` · `transform` × 3 `!important`
+- `chat-panel/backup/index-styles.css:720` → `translate(-50%, -50%)`
+- `chat-panel/index-styles.css:721` → `translate(-50%, -50%)`
+- `css/index-styles.css:774` → `translate(-50%, -50%)`
+
+### `.riba-card-left.expanded` · `width` × 3 `!important`
+- `chat-panel/backup/index-styles.css:720` → `650px`
+- `chat-panel/index-styles.css:721` → `650px`
+- `css/index-styles.css:774` → `650px`
+
+### `.riba-card-left.expanded` · `max-height` × 3 `!important`
+- `chat-panel/backup/index-styles.css:720` → `80vh`
+- `chat-panel/index-styles.css:721` → `80vh`
+- `css/index-styles.css:774` → `80vh`
+
+### `.riba-card-left.expanded` · `transition` × 3 `!important`
+- `chat-panel/backup/index-styles.css:720` → `all 0.35s cubic-bezier(0.4, 0, 0.2, 1)`
+- `chat-panel/index-styles.css:721` → `all 0.35s cubic-bezier(0.4, 0, 0.2, 1)`
+- `css/index-styles.css:774` → `all 0.1s cubic-bezier(0.4, 0, 0.2, 1)`
+
+### `.riba-left-panel.scroll-locked` · `overflow` × 3 `!important`
+- `chat-panel/backup/index-styles.css:804` → `hidden`
+- `chat-panel/index-styles.css:805` → `hidden`
+- `css/index-styles.css:858` → `hidden`
+
+### `.demo-revit-box.dragging` · `transition` × 3 `!important`
+- `chat-panel/backup/index-styles.css:2793` → `none`
+- `chat-panel/index-styles.css:2794` → `none`
+- `css/index-styles.css:3083` → `none`
+
+### `body.view-dark-header .logo` · `color` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6407` → `#e0e0e0`
+- `chat-panel/index-styles.css:6408` → `#e0e0e0`
+- `css/index-styles.css:6809` → `#e0e0e0`
+
+### `body.view-dark-header .menubar .menu-link` · `color` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6411` → `#fff`
+- `chat-panel/index-styles.css:6412` → `#fff`
+- `css/index-styles.css:6813` → `#fff`
+
+### `body.view-dark-header .menubar .menu-link:hover` · `color` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6415` → `#fff`
+- `chat-panel/index-styles.css:6416` → `#fff`
+- `css/index-styles.css:6817` → `#fff`
+
+### `body.view-dark-header .menubar .menu-highlight` · `background` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6419` → `rgba(255, 255, 255, 0.1)`
+- `chat-panel/index-styles.css:6420` → `rgba(255, 255, 255, 0.1)`
+- `css/index-styles.css:6821` → `rgba(255, 255, 255, 0.1)`
+
+### `body.view-dark-header .menubar .menu-highlight.bright` · `background` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6423` → `rgba(255, 255, 255, 0.15)`
+- `chat-panel/index-styles.css:6424` → `rgba(255, 255, 255, 0.15)`
+- `css/index-styles.css:6825` → `rgba(255, 255, 255, 0.15)`
+
+### `body.view-dark-header .menubar .menu-tail` · `background` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6427` → `linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent)`
+- `chat-panel/index-styles.css:6428` → `linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent)`
+- `css/index-styles.css:6829` → `linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent)`
+
+### `body.view-dark-header .section-indicator .section-dot` · `background` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6431` → `rgba(255, 255, 255, 0.25)`
+- `chat-panel/index-styles.css:6432` → `rgba(255, 255, 255, 0.25)`
+- `css/index-styles.css:6833` → `rgba(21, 96, 130, 0.35)`
+
+### `body.view-dark-header .section-indicator .section-active-ball` · `background` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6435` → `#4ECDC4`
+- `chat-panel/index-styles.css:6436` → `#4ECDC4`
+- `css/index-styles.css:6837` → `#156082`
+
+### `body.view-dark-header .section-indicator .section-trail-ball` · `background` × 3 `!important`
+- `chat-panel/backup/index-styles.css:6439` → `rgba(78, 205, 196, 0.4)`
+- `chat-panel/index-styles.css:6440` → `rgba(78, 205, 196, 0.4)`
+- `css/index-styles.css:6841` → `rgba(21, 96, 130, 0.4)`
+
+### `.demo-chat-box.free-floating` · `position` × 3 `!important`
+- `chat-panel/css/chat-panel.css:346` → `fixed`
+- `css/chat-panel.css:343` → `fixed`
+- `css/index-styles.css:3077` → `fixed`
+
+### `html` · `height` × 3 `!important`
+- `css/index-styles.css:4` → `auto`
+- `about.html<style#2>:3` → `auto`
+- `dist/index.html<style#0>:3` → `auto`
+
+## 🔥 Property pressure (most-fought-over properties)
+
+| property | rules touching it |
+|----------|-------------------|
+| `color` | 3137 |
+| `background` | 2840 |
+| `font-size` | 1974 |
+| `display` | 1571 |
+| `padding` | 1202 |
+| `font-weight` | 1169 |
+| `border-radius` | 1008 |
+| `margin` | 896 |
+| `position` | 863 |
+| `width` | 825 |
+| `gap` | 824 |
+| `transition` | 760 |
+| `height` | 739 |
+| `font-family` | 712 |
+| `opacity` | 663 |
+| `align-items` | 600 |
+| `line-height` | 580 |
+| `transform` | 575 |
+| `letter-spacing` | 574 |
+| `cursor` | 451 |
+| `border` | 444 |
+| `box-shadow` | 435 |
+| `pointer-events` | 406 |
+| `left` | 397 |
+| `margin-bottom` | 391 |
+| `overflow` | 386 |
+| `grid-template-columns` | 375 |
+| `max-width` | 353 |
+| `top` | 352 |
+| `border-color` | 340 |
+
+## 👻 Orphaned selectors (no matching DOM hook found)
+
+_Conservative — only flagged when every `.class` and `#id` in the selector is missing from every HTML file scanned. Tag-only / html / body / pseudo-element rules are intentionally not flagged._
+
+_Total orphans: 3173; in 51 files_
+
+### `about.html<style#0>` — 4 orphans
+- `html.dark-mode`  (2)
+- `html.dark-mode body`  (2)
+- `html.dark-mode canvas`  (3)
+- `html.dark-mode #scene`  (3)
+
+### `about.html<style#1>` — 1 orphans
+- `html.fonts-loaded`  (3)
+
+### `about.html<style#2>` — 1 orphans
+- `html.dark-mode .about-us-left`  (42)
+
+### `chat-panel/backup/index-styles.css` — 441 orphans
+- `html.dark-mode`  (57)
+- `.center-absolute`  (89)
+- `.hidden-state`  (97)
+- `.hidden-state.visible`  (103)
+- `.section-indicator.hidden`  (133)
+- `.section-trail-ball.animating`  (187)
+- `html.dark-mode .section-dot`  (196)
+- `html.dark-mode .section-dot:hover`  (200)
+- `html.dark-mode .section-dot.active`  (204)
+- `html.dark-mode .section-active-ball`  (208)
+- `html.dark-mode .section-trail-ball`  (208)
+- `.hero-text-container.fade-out`  (234)
+- `.hero-text-container.fade-out .hero-text-inner`  (240)
+- `.hero-text-container.left-position`  (265)
+- `html.dark-mode .hero-text-container .hero-heading`  (294)
+- `html.dark-mode .hero-text-container .hero-subheading`  (298)
+- `html.dark-mode .toggle-switch`  (348)
+- `html.dark-mode .toggle-switch::after`  (352)
+- `html.dark-mode .color-palette-btn .palette-icon`  (375)
+- `html.dark-mode .color-palette-btn:hover .palette-icon`  (379)
+- `html.dark-mode .color-palette-dropdown`  (407)
+- `html.dark-mode .palette-header`  (424)
+- `.palette-options`  (429)
+- `.palette-option`  (435)
+- `.palette-option:hover`  (449)
+- `html.dark-mode .palette-option:hover`  (453)
+- `.palette-option.active`  (457)
+- `html.dark-mode .palette-option.active`  (461)
+- `.palette-swatch`  (465)
+- `.palette-name`  (473)
+- `html.dark-mode .palette-name`  (480)
+- `.palette-option.active .palette-name::after`  (484)
+- `html.dark-mode .palette-option.active .palette-name::after`  (489)
+- `html.dark-mode body`  (512)
+- `html.dark-mode canvas`  (516)
+- `html.dark-mode .right-panel`  (522)
+- `html.dark-mode .right-panel .panel-content`  (527)
+- `html.dark-mode .dark-toggle-label`  (531)
+- `html.dark-mode .service-item-title`  (536)
+- `html.dark-mode .service-item-body`  (540)
+- `html.dark-mode .scroll-indicator-text`  (544)
+- `html.dark-mode .scroll-indicator-arrow svg`  (548)
+- `.download-buttons`  (554)
+- `.build-label-bottom-right`  (617)
+- `.build-label-bottom-right .teal`  (628)
+- `html.dark-mode .build-label-bottom-right`  (632)
+- `html.dark-mode .riba-card-left.expanded`  (736)
+- `html.dark-mode .riba-backdrop`  (758)
+- `.riba-clone-expanded`  (770)
+- `.riba-clone-expanded > *`  (783)
+- `.riba-clone-expanded.show-content > *`  (789)
+- `.riba-clone-expanded.show-scrollbar`  (794)
+- `body.riba-expanded-lock`  (799)
+- `.riba-left-panel.scroll-locked`  (804)
+- `.riba-clone-expanded.expanded .riba-details-left`  (931)
+- `.riba-clone-expanded.expanded .riba-details-left`  (937)
+- `.riba-clone-expanded.expanded .riba-section-left`  (950)
+- `.riba-clone-expanded.expanded .riba-section-left:first-child`  (956)
+- `.riba-clone-expanded.expanded .riba-section-left:last-child`  (961)
+- `html.dark-mode .riba-card-left`  (1007)
+- `html.dark-mode .riba-card-left:hover`  (1012)
+- `html.dark-mode .riba-num-left`  (1017)
+- `html.dark-mode .riba-title-left`  (1017)
+- `html.dark-mode .riba-desc-left`  (1022)
+- `html.dark-mode .riba-list-left li`  (1022)
+- `html.dark-mode .ring-seg-left`  (1027)
+- `html.dark-mode .riba-toggle-left`  (1031)
+- `html.dark-mode .riba-section-left`  (1031)
+- `html.dark-mode .riba-panel-header`  (1036)
+- `html.dark-mode .riba-clone-expanded`  (1042)
+- `html.dark-mode .riba-clone-expanded.expanded .riba-section-left:first-child`  (1047)
+- `.typing-word`  (1051)
+- `.typing-cursor`  (1055)
+- `.typing-cursor.hidden`  (1070)
+- `.subtitle-line`  (1074)
+- `.subtitle-line .highlight-blue`  (1083)
+- `.panel-blurb`  (1087)
+- `.panel-blurb.visible`  (1099)
+- `.panel-blurb .line`  (1104)
+- `.panel-blurb .line.visible`  (1110)
+- `.overlay-node`  (1131)
+- `.overlay-node .node-title`  (1141)
+- `html.dark-mode .overlay-node .node-title`  (1156)
+- `.overlay-node.show-title .node-title`  (1160)
+- `.overlay-node .node-hint`  (1166)
+- `html.dark-mode .overlay-node .node-hint`  (1181)
+- `.overlay-node .node-arrow`  (1185)
+- `html.dark-mode .overlay-node .node-arrow`  (1196)
+- `.overlay-node.show-hint .node-hint`  (1200)
+- `.overlay-node.show-hint .node-arrow`  (1200)
+- `.overlay-node.mep-shine .node-core`  (1213)
+- `.overlay-node.mep-shine::after`  (1217)
+- `.overlay-node .node-code`  (1248)
+- `.overlay-node .node-code.visible`  (1262)
+- `.overlay-node.synced .node-core`  (1267)
+- `.overlay-node.synced .node-glow`  (1272)
+- `.overlay-node.synced .node-pulse-ring`  (1278)
+- `html.dark-mode .project-complete-overlay.visible`  (1332)
+- `html.dark-mode .project-complete-tick`  (1439)
+- `html.dark-mode .project-complete-text`  (1444)
+- `html.dark-mode .project-complete-savings`  (1448)
+- `.overlay-node .node-core`  (1453)
+- `.overlay-node .node-glow`  (1465)
+- `.overlay-node .node-pulse-ring`  (1478)
+- `.overlay-node:hover .node-core`  (1491)
+- `.overlay-node:hover .node-glow`  (1496)
+- `.overlay-node:hover .node-pulse-ring`  (1502)
+- `.overlay-node .loading-ring`  (1508)
+- `.overlay-node .loading-ring circle`  (1519)
+- `.overlay-node.loading .loading-ring`  (1530)
+- `.overlay-node.loading .loading-ring circle`  (1534)
+- `.overlay-node.loaded .loading-ring`  (1538)
+- `.overlay-node.loaded .loading-ring circle`  (1542)
+- `html.dark-mode .overlay-node .loading-ring circle`  (1574)
+- `html.dark-mode .overlay-node.loaded .loading-ring circle`  (1579)
+- `html.dark-mode .overlay-node .node-core`  (1596)
+- `html.dark-mode .overlay-node .node-glow`  (1600)
+- `html.dark-mode .overlay-node:hover .node-core`  (1604)
+- `html.dark-mode .overlay-node:hover .node-glow`  (1609)
+- `html.dark-mode .overlay-node:hover .node-pulse-ring`  (1613)
+- `html.dark-mode .overlay-node.synced .node-core`  (1618)
+- `html.dark-mode .overlay-node.synced .node-glow`  (1623)
+- `html.dark-mode .overlay-node.synced .node-pulse-ring`  (1627)
+- `html.dark-mode .overlay-node.mep-shine .node-core`  (1632)
+- `html.dark-mode .overlay-node.mep-shine::after`  (1636)
+- `.services-label`  (1651)
+- `.services-label.visible`  (1655)
+- `.services-grid-3`  (1660)
+- `.services-full-width`  (1667)
+- `.service-item`  (1671)
+- `.service-item:last-child`  (1675)
+- `.service-item .line`  (1679)
+- `.service-item .line.visible`  (1684)
+- `.service-item-title .line`  (1688)
+- `.service-item-body .line`  (1692)
+- `.service-item-title`  (1696)
+- `.service-item-title .teal`  (1705)
+- `.service-item-body`  (1709)
+- `.solution-text`  (1750)
+- `.solution-text:last-child`  (1761)
+- `html.dark-mode .solution-heading`  (1765)
+- `html.dark-mode .solution-text`  (1769)
+- `.brain-overlay-node`  (1784)
+- `.brain-overlay-node.visible`  (1795)
+- `.brain-overlay-node .overlay-core`  (1799)
+- `.brain-overlay-node .overlay-glow`  (1811)
+- `.brain-overlay-node .overlay-ring`  (1824)
+- `.brain-overlay-node:hover .overlay-core`  (1837)
+- `.brain-overlay-node:hover .overlay-glow`  (1842)
+- `.brain-overlay-node:hover .overlay-ring`  (1848)
+- `html.dark-mode .brain-overlay-node .overlay-core`  (1865)
+- `html.dark-mode .brain-overlay-node:hover .overlay-core`  (1869)
+- `html.dark-mode .software-carousel`  (2122)
+- `html.dark-mode .carousel-label`  (2126)
+- `html.dark-mode .carousel-item`  (2130)
+- `html.dark-mode .carousel-item:hover`  (2134)
+- `html.dark-mode .carousel-item span`  (2139)
+- `html.dark-mode .demo-view-overlay .demo-text-panel`  (2201)
+- `html.dark-mode .demo-view-overlay .demo-text-heading`  (2214)
+- `html.dark-mode .demo-view-overlay .demo-text-body`  (2228)
+- `.demo-view-overlay .demo-containers-panel .demo-intro-image`  (2254)
+- `.demo-view-overlay .demo-intro-image`  (2276)
+- `html.dark-mode .demo-example-btn`  (2325)
+- `html.dark-mode .demo-example-btn:hover`  (2329)
+- `html.dark-mode .coming-soon-overlay h3`  (2373)
+- `html.dark-mode .demo-view-overlay .sidebar-tab-bar`  (2417)
+- `html.dark-mode .demo-view-overlay .sidebar-tab`  (2421)
+- `html.dark-mode .demo-view-overlay .sidebar-tab:hover`  (2425)
+- `html.dark-mode .demo-view-overlay .sidebar-tab.active`  (2430)
+- `html.dark-mode .demo-view-overlay .sidebar-footer`  (2487)
+- `html.dark-mode .demo-view-overlay .sidebar-footer .footer-text`  (2492)
+- `.demo-output-icon.docx`  (2562)
+- `html.dark-mode .demo-outputs-header`  (2573)
+- `html.dark-mode .demo-output-file:hover`  (2577)
+- `html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb`  (2609)
+- `html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb:hover`  (2613)
+- `.demo-outputs-section.project-structure .file-icon.docx`  (2701)
+- `.demo-outputs-section.project-structure .file-icon.docx::before`  (2702)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-header`  (2704)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-header:hover`  (2708)
+- `html.dark-mode .demo-outputs-section.project-structure .folder-icon`  (2712)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-content`  (2716)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-file`  (2720)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-file:hover`  (2724)
+- `.demo-placeholder-text`  (2729)
+- `html.dark-mode .demo-placeholder-text`  (2745)
+- `.demo-chat-box.free-floating`  (2787)
+- `.demo-revit-box.free-floating`  (2787)
+- `.demo-chat-box.dragging`  (2793)
+- `.demo-revit-box.dragging`  (2793)
+- `html.dark-mode .demo-chat-box.dragging`  (2801)
+- `html.dark-mode .demo-revit-box.dragging`  (2801)
+- `.demo-chat-box.snapping-back`  (2807)
+- `.demo-revit-box.snapping-back`  (2807)
+- `.demo-chat-wrapper.snap-target`  (2813)
+- `.demo-revit-wrapper.snap-target`  (2813)
+- `html.dark-mode .demo-chat-wrapper.snap-target`  (2819)
+- `html.dark-mode .demo-revit-wrapper.snap-target`  (2819)
+- `html.dark-mode .demo-view-overlay .demo-chat-box`  (2836)
+- `html.dark-mode .demo-view-overlay .demo-chat-history-sidebar`  (2859)
+_… 241 more_
+
+### `chat-panel/backup/shared-styles.css` — 135 orphans
+- `html.dark-mode h1`  (52)
+- `html.dark-mode h2`  (52)
+- `html.dark-mode h3`  (57)
+- `html.dark-mode p`  (61)
+- `html.dark-mode .logo`  (83)
+- `html.dark-mode .logo .ai`  (87)
+- `.menu-highlight.bright`  (126)
+- `.menu-highlight.dimming`  (131)
+- `.menu-highlight.moving`  (136)
+- `.menu-highlight.fading`  (140)
+- `.menu-tail.moving`  (162)
+- `.menu-tail.fading`  (166)
+- `html.dark-mode .menu-highlight`  (170)
+- `html.dark-mode .menu-highlight.bright`  (174)
+- `html.dark-mode .menu-highlight.dimming`  (179)
+- `html.dark-mode .menu-tail`  (184)
+- `html.dark-mode .menu-link`  (201)
+- `html.dark-mode .dark-toggle-label`  (255)
+- `html.dark-mode .toggle-switch`  (259)
+- `.btn-chat-blue`  (264)
+- `.btn-chat-blue:hover`  (279)
+- `.btn-chat-blue:disabled`  (284)
+- `html.dark-mode .btn-chat-blue`  (290)
+- `html.dark-mode .btn-chat-blue:hover`  (294)
+- `html.dark-mode .btn-chat-blue:disabled`  (298)
+- `.btn-chat-grey`  (302)
+- `.btn-chat-grey:hover`  (317)
+- `html.dark-mode .btn-chat-grey`  (322)
+- `html.dark-mode .btn-chat-grey:hover`  (326)
+- `html.dark-mode .btn-primary`  (349)
+- `html.dark-mode .btn-primary:hover`  (353)
+- `html.dark-mode .btn-secondary`  (375)
+- `html.dark-mode .btn-secondary:hover`  (379)
+- `html.dark-mode .coming-soon-badge`  (397)
+- `.chat-text`  (404)
+- `html.dark-mode .demo-msg-user`  (454)
+- `html.dark-mode .demo-msg-user:hover`  (458)
+- `html.dark-mode .demo-msg-bot`  (471)
+- `html.dark-mode .demo-chat-history-sidebar`  (486)
+- `html.dark-mode .demo-history-header`  (502)
+- `html.dark-mode .demo-history-item`  (529)
+- `html.dark-mode .demo-history-item:hover`  (533)
+- `html.dark-mode .demo-history-item.active`  (542)
+- `html.dark-mode .demo-chat-input-row`  (557)
+- `html.dark-mode .demo-chat-input`  (583)
+- `html.dark-mode .demo-chat-input:focus`  (589)
+- `html.dark-mode .demo-chat-send`  (622)
+- `html.dark-mode .demo-chat-send:hover`  (626)
+- `html.dark-mode .demo-chat-send:disabled`  (630)
+- `html.dark-mode .demo-chat-messages`  (645)
+- `html.dark-mode .demo-ready-prompt`  (662)
+- `html.dark-mode .demo-ready-prompt strong`  (673)
+- `.section-trail-ball.animating`  (738)
+- `html.dark-mode .section-dot`  (747)
+- `html.dark-mode .section-dot:hover`  (751)
+- `html.dark-mode .section-dot.active`  (755)
+- `html.dark-mode .section-active-ball`  (759)
+- `html.dark-mode .section-trail-ball`  (759)
+- `.scroll-indicator.hidden`  (781)
+- `html.dark-mode .scroll-indicator-text`  (816)
+- `html.dark-mode .scroll-indicator-arrow svg`  (820)
+- `html.dark-mode .back-to-top-arrow svg`  (869)
+- `html.dark-mode .back-to-top-text`  (873)
+- `.footer-content-compact`  (906)
+- `.footer-brand`  (910)
+- `.footer-brand .footer-copyright`  (914)
+- `.footer-logo`  (918)
+- `.footer-logo-adelphos`  (926)
+- `.footer-logo-ai`  (935)
+- `.footer-tagline`  (945)
+- `.footer-links`  (954)
+- `.footer-links-column`  (960)
+- `.footer-links-title`  (964)
+- `.footer-links-list`  (974)
+- `.footer-links-list li`  (980)
+- `.footer-links-list a`  (984)
+- `.footer-links-list a:hover`  (993)
+- `.footer-bottom`  (998)
+- `.footer-content-compact + .footer-bottom`  (1011)
+- `.footer-copyright`  (1015)
+- `.footer-legal`  (1023)
+- `.footer-legal a`  (1028)
+- `.footer-legal a:hover`  (1037)
+- `html.dark-mode .site-footer`  (1042)
+- `html.dark-mode .footer-logo-adelphos`  (1047)
+- `html.dark-mode .footer-tagline`  (1051)
+- `html.dark-mode .footer-links-title`  (1055)
+- `html.dark-mode .footer-links-list a`  (1059)
+- `html.dark-mode .footer-links-list a:hover`  (1063)
+- `html.dark-mode .footer-bottom`  (1067)
+- `html.dark-mode .footer-copyright`  (1071)
+- `html.dark-mode .footer-legal a`  (1071)
+- `html.dark-mode .footer-legal a:hover`  (1076)
+- `.footer-brand` @media(@media (max-width: 768px))  (7)
+- `.footer-links` @media(@media (max-width: 768px))  (11)
+- `.footer-links-column` @media(@media (max-width: 768px))  (16)
+- `.footer-bottom` @media(@media (max-width: 768px))  (21)
+- `.signup-modal`  (1109)
+- `.signup-modal.active`  (1124)
+- `.signup-modal-overlay`  (1129)
+- `.signup-modal-content`  (1139)
+- `.signup-modal.active .signup-modal-content`  (1152)
+- `.signup-modal-close`  (1156)
+- `.signup-modal-close:hover`  (1174)
+- `.signup-modal-title`  (1179)
+- `.signup-modal-subtitle`  (1191)
+- `.signup-form`  (1199)
+- `.signup-field`  (1205)
+- `.signup-field label`  (1211)
+- `.signup-field input`  (1218)
+- `.signup-field input::placeholder`  (1230)
+- `.signup-field input:focus`  (1234)
+- `.signup-field select:focus`  (1234)
+- `.signup-field select`  (1241)
+- `.signup-field select option`  (1259)
+- `.signup-field-hint`  (1265)
+- `.signup-submit-btn`  (1271)
+- `.signup-submit-btn:hover:not(:disabled)`  (1285)
+- `.signup-submit-btn:disabled`  (1290)
+- `.signup-message`  (1295)
+- `.signup-message.success`  (1303)
+- `.signup-message.error`  (1307)
+- `html:not(.dark-mode) .signup-modal-content`  (1312)
+- `html:not(.dark-mode) .signup-modal-title`  (1317)
+- `html:not(.dark-mode) .signup-modal-subtitle`  (1324)
+- `html:not(.dark-mode) .signup-field label`  (1328)
+- `html:not(.dark-mode) .signup-field input`  (1332)
+- `html:not(.dark-mode) .signup-field input::placeholder`  (1338)
+- `html:not(.dark-mode) .signup-field input:focus`  (1342)
+- `html:not(.dark-mode) .signup-field select:focus`  (1342)
+- `html:not(.dark-mode) .signup-field select`  (1348)
+- `html:not(.dark-mode) .signup-field select option`  (1355)
+- `html:not(.dark-mode) .signup-field-hint`  (1360)
+- `.signup-modal-content` @media(@media (max-width: 480px))  (2)
+- `.signup-modal-title` @media(@media (max-width: 480px))  (7)
+
+### `chat-panel/backup/thinking-animation.css` — 84 orphans
+- `.thinking-container.collapsing`  (24)
+- `.thinking-container.hidden`  (29)
+- `html.dark-mode .thinking-container`  (37)
+- `html.dark-mode .steps-count`  (69)
+- `html.dark-mode .thinking-header`  (81)
+- `html.dark-mode .thinking-header:hover`  (85)
+- `html.dark-mode .thinking-header:hover .steps-toggle`  (89)
+- `html.dark-mode .pulsing-node::before`  (143)
+- `html.dark-mode .pulsing-node::after`  (148)
+- `html.dark-mode .steps-toggle`  (177)
+- `.steps-list.animating-1`  (210)
+- `.steps-list.animating-2`  (219)
+- `.steps-list.animating`  (228)
+- `.steps-list.fully-expanded`  (237)
+- `.steps-list li.preview-hidden`  (283)
+- `.steps-list.fully-expanded li.preview-hidden`  (288)
+- `html.dark-mode .steps-list li`  (294)
+- `html.dark-mode .steps-list li::before`  (298)
+- `html.dark-mode .step-icon.dot`  (340)
+- `html.dark-mode .step-icon.check`  (344)
+- `html.dark-mode .step-icon.edit`  (348)
+- `html.dark-mode .step-icon.error`  (364)
+- `html.dark-mode .step-changes .changes-box`  (420)
+- `html.dark-mode .step-changes .added`  (425)
+- `html.dark-mode .step-changes .removed`  (429)
+- `html.dark-mode .step-changes .filename`  (433)
+- `.thought-status`  (439)
+- `.thinking-container.complete .thought-status`  (445)
+- `.thought-status-text`  (449)
+- `html.dark-mode .thought-status`  (473)
+- `html.dark-mode .thought-status-text`  (477)
+- `.thought-trail`  (494)
+- `.thinking-container.complete .thought-trail`  (501)
+- `.thought-trail-header`  (505)
+- `.thought-trail-label`  (512)
+- `.thought-duration`  (519)
+- `.thought-trail-expand`  (523)
+- `.thought-trail-header:hover .thought-trail-expand`  (530)
+- `.thought-trail.expanded .thought-trail-expand`  (534)
+- `.thought-trail-content`  (539)
+- `.thought-trail.expanded .thought-trail-content`  (546)
+- `.thought-trail-content p`  (552)
+- `html.dark-mode .thought-trail`  (562)
+- `html.dark-mode .thought-trail-label`  (566)
+- `html.dark-mode .thought-duration`  (570)
+- `html.dark-mode .thought-trail-expand`  (574)
+- `html.dark-mode .thought-trail-content p`  (578)
+- `.files-changed-section`  (583)
+- `.files-changed-section.visible`  (598)
+- `.files-changed-header`  (603)
+- `.files-changed-count`  (612)
+- `.files-changed-actions`  (619)
+- `.files-action-btn`  (624)
+- `.files-action-btn:hover`  (636)
+- `.files-action-btn.primary`  (640)
+- `.files-action-btn.primary:hover`  (647)
+- `.files-changed-list`  (651)
+- `.file-changed-item`  (655)
+- `.file-changed-item:hover`  (665)
+- `.file-lang-icon`  (669)
+- `.file-lang-icon.js`  (682)
+- `.file-lang-icon.html`  (683)
+- `.file-lang-icon.css`  (684)
+- `.file-lang-icon.py`  (685)
+- `.file-lang-icon.rvt`  (686)
+- `.file-lang-icon.dwg`  (687)
+- `.file-lang-icon.pdf`  (688)
+- `.file-lang-icon.xlsx`  (689)
+- `.file-lang-icon.docx`  (690)
+- `.file-lang-icon.default`  (691)
+- `.file-name`  (693)
+- `.file-changes`  (701)
+- `.file-changes .added`  (706)
+- `.file-changes .removed`  (710)
+- `html.dark-mode .files-changed-section`  (715)
+- `html.dark-mode .files-changed-header`  (720)
+- `html.dark-mode .files-changed-count`  (725)
+- `html.dark-mode .files-action-btn`  (729)
+- `html.dark-mode .files-action-btn:hover`  (733)
+- `html.dark-mode .files-action-btn.primary`  (737)
+- `html.dark-mode .files-action-btn.primary:hover`  (741)
+- `html.dark-mode .file-changed-item:hover`  (745)
+- `html.dark-mode .file-name`  (749)
+- `html.dark-mode .file-changes`  (753)
+
+### `chat-panel/css/chat-panel.css` — 289 orphans
+- `html.dark-mode`  (56)
+- `.center-absolute`  (86)
+- `.hidden-state`  (93)
+- `.hidden-state.visible`  (99)
+- `html.dark-mode body`  (113)
+- `html.dark-mode .demo-view-overlay .demo-text-panel`  (182)
+- `html.dark-mode .demo-view-overlay .demo-text-heading`  (195)
+- `html.dark-mode .demo-view-overlay .demo-text-body`  (209)
+- `.demo-view-overlay .demo-containers-panel .demo-intro-image`  (235)
+- `html.dark-mode .demo-view-overlay .demo-chat-box`  (340)
+- `.demo-chat-box.free-floating`  (346)
+- `.demo-chat-box.dragging`  (353)
+- `html.dark-mode .demo-chat-box.dragging`  (360)
+- `.demo-chat-box.snapping-back`  (364)
+- `.demo-chat-wrapper.snap-target`  (368)
+- `html.dark-mode .demo-chat-wrapper.snap-target`  (373)
+- `html.dark-mode .resizer`  (399)
+- `html.dark-mode .resizer:hover`  (403)
+- `html.dark-mode .resizer.active`  (403)
+- `html.dark-mode .inner-resizer`  (443)
+- `html.dark-mode .inner-resizer:hover`  (447)
+- `html.dark-mode .inner-resizer.active`  (447)
+- `html.dark-mode .v-resizer`  (462)
+- `html.dark-mode .v-resizer:hover`  (466)
+- `html.dark-mode .left-column`  (482)
+- `html.dark-mode .headings-section`  (507)
+- `.heading-item`  (519)
+- `.heading-item:hover`  (528)
+- `.heading-item.active`  (532)
+- `.heading-item.level-1`  (537)
+- `.heading-item.level-2`  (541)
+- `.heading-item.level-3`  (545)
+- `html.dark-mode .heading-item`  (551)
+- `html.dark-mode .heading-item:hover`  (555)
+- `html.dark-mode .heading-item.active`  (559)
+- `html.dark-mode .project-section`  (573)
+- `html.dark-mode .project-box`  (585)
+- `html.dark-mode .project-label`  (599)
+- `html.dark-mode .project-name`  (610)
+- `html.dark-mode .project-ref-btn`  (630)
+- `.files-section`  (635)
+- `html.dark-mode .file-tree`  (656)
+- `html.dark-mode .tree-folder-header:hover`  (679)
+- `html.dark-mode .folder-icon`  (695)
+- `html.dark-mode .tree-folder-content`  (709)
+- `html.dark-mode .tree-file`  (728)
+- `html.dark-mode .tree-file:hover`  (732)
+- `.file-icon-badge`  (744)
+- `.file-icon-badge.pdf`  (758)
+- `.file-icon-badge.dwg`  (759)
+- `.file-icon-badge.rvt`  (760)
+- `.file-icon-badge.xlsx`  (761)
+- `.file-icon-badge.docx`  (762)
+- `html.dark-mode .ui-options-footer .footer-separator`  (787)
+- `html.dark-mode .ui-options-footer .toggle-text`  (828)
+- `html.dark-mode .ui-options-footer .ui-toggle .toggle-slider`  (879)
+- `html.dark-mode .ui-options-footer .ui-toggle input:checked + .toggle-slider`  (883)
+- `.ui-options-footer .ui-toggle input:checked ~ .completion-indicator`  (888)
+- `.ui-options-footer .completion-indicator`  (892)
+- `html.dark-mode .ui-options-footer .completion-indicator`  (909)
+- `html.dark-mode .center-column`  (922)
+- `html.dark-mode .ribbon`  (932)
+- `html.dark-mode .ribbon-tabs`  (943)
+- `html.dark-mode .ribbon-tab`  (969)
+- `html.dark-mode .ribbon-tab:hover`  (973)
+- `html.dark-mode .ribbon-tab.active`  (977)
+- `html.dark-mode .ribbon-content`  (1008)
+- `html.dark-mode .ribbon-group-label`  (1076)
+- `html.dark-mode .ribbon-separator`  (1089)
+- `html.dark-mode .ribbon-btn.icon.highlight::after`  (1139)
+- `html.dark-mode .ribbon-btn`  (1143)
+- `html.dark-mode .ribbon-btn:hover`  (1147)
+- `html.dark-mode .ribbon-btn.active`  (1152)
+- `.ribbon-row-inner .ribbon-btn`  (1220)
+- `html.dark-mode .ribbon-btn.primary`  (1236)
+- `html.dark-mode .ribbon-btn.primary:hover`  (1240)
+- `html.dark-mode .ribbon-btn.smart::after`  (1259)
+- `.ribbon-btn-row`  (1266)
+- `.ribbon-col`  (1274)
+- `.ribbon-row-inner`  (1282)
+- `html.dark-mode .ribbon-select`  (1312)
+- `html.dark-mode .ribbon-style-btn`  (1406)
+- `html.dark-mode .ribbon-style-btn::before`  (1413)
+- `html.dark-mode .ribbon-style-btn:hover`  (1417)
+- `html.dark-mode .ribbon-style-btn.active`  (1422)
+- `html.dark-mode .ribbon-style-btn.h1::before`  (1427)
+- `html.dark-mode .ribbon-style-btn.h2::before`  (1427)
+- `html.dark-mode .ribbon-style-btn.clause::before`  (1432)
+- `html.dark-mode .ribbon-style-btn.note::before`  (1436)
+- `.ribbon-group.ai-group`  (1441)
+- `html.dark-mode .ribbon-group.ai-group`  (1447)
+- `html.dark-mode .editor-area::-webkit-scrollbar-track`  (1482)
+- `html.dark-mode .editor-area::-webkit-scrollbar-thumb`  (1486)
+- `html.dark-mode .editor-area::-webkit-scrollbar-thumb:hover`  (1490)
+- `.editor-area.blurred .editor-paper`  (1495)
+- `.build-release-overlay`  (1502)
+- `.build-release-overlay.visible`  (1517)
+- `.build-release-content`  (1521)
+- `.build-release-logo`  (1526)
+- `.build-release-logo .logo-ai`  (1535)
+- `html.dark-mode .build-release-logo`  (1539)
+- `.build-release-text`  (1543)
+- `.build-release-text .release-line`  (1547)
+- `.build-release-text .release-brand`  (1554)
+- `.build-release-text .release-brand .brand-build`  (1560)
+- `.build-release-text .release-product`  (1564)
+- `html.dark-mode .build-release-text .release-line`  (1570)
+- `html.dark-mode .build-release-text .release-brand .brand-build`  (1574)
+- `html.dark-mode .build-release-text .release-product`  (1578)
+- `html.dark-mode .editor-paper.title-page`  (1645)
+- `html.dark-mode .title-logo-space`  (1671)
+- `html.dark-mode .title-heading-1`  (1684)
+- `html.dark-mode .title-separator`  (1695)
+- `html.dark-mode .title-heading-2`  (1707)
+- `html.dark-mode .title-heading-3`  (1719)
+- `html.dark-mode .title-date`  (1730)
+- `html.dark-mode .ghost-text-inline`  (1751)
+- `.ghost-text-wrapper .ghost-tab-hint`  (1761)
+- `.ghost-text-wrapper .ghost-tab-hint::before`  (1778)
+- `.ghost-text-wrapper.active .ghost-tab-hint`  (1784)
+- `html.dark-mode .ghost-text-wrapper .ghost-tab-hint`  (1788)
+- `.editor-pages-container`  (1806)
+- `.editor-paper.overflow-page`  (1814)
+- `html.dark-mode .editor-paper`  (1823)
+- `html.dark-mode .editor-paper:focus`  (1829)
+- `html.dark-mode .editor-paper h1`  (1858)
+- `html.dark-mode .editor-paper h2`  (1858)
+- `html.dark-mode .editor-paper h3`  (1863)
+- `html.dark-mode .editor-paper p`  (1867)
+- `html.dark-mode .editor-paper span`  (1867)
+- `html.dark-mode .editor-paper div`  (1867)
+- `.editor-placeholder`  (1873)
+- `html.dark-mode .editor-placeholder`  (1880)
+- `html.dark-mode .editor-status-bar`  (1931)
+- `html.dark-mode .editor-status-bar .status-divider`  (1954)
+- `html.dark-mode .editor-status-bar .structure-status.detected`  (1971)
+- `html.dark-mode .editor-status-bar .structure-status.detected .status-icon`  (1975)
+- `html.dark-mode .right-column .demo-chat-history-sidebar`  (2015)
+- `html.dark-mode .demo-view-overlay .demo-chat-titlebar`  (2034)
+- `html.dark-mode .demo-view-overlay .demo-chat-titlebar-text`  (2047)
+- `html.dark-mode .titlebar-brand .brand-build`  (2071)
+- `html.dark-mode .titlebar-brand .brand-variant`  (2072)
+- `html.dark-mode .titlebar-brand .brand-dot`  (2073)
+- `html.dark-mode .titlebar-subtitle`  (2082)
+- `html.dark-mode .titlebar-menu-btn`  (2130)
+- `html.dark-mode .titlebar-menu-btn:hover`  (2134)
+- `html.dark-mode .titlebar-menu-ellipsis`  (2139)
+- `html.dark-mode .titlebar-menu-ellipsis:hover`  (2143)
+- `html.dark-mode .menu-dropdown-content`  (2174)
+- `html.dark-mode .menu-item`  (2196)
+- `html.dark-mode .menu-item:hover`  (2200)
+- `html.dark-mode .menu-item[data-shortcut]::after`  (2212)
+- `html.dark-mode .menu-divider`  (2223)
+- `html.dark-mode .menu-item .submenu-arrow`  (2239)
+- `html.dark-mode .menu-submenu`  (2261)
+- `html.dark-mode .smart-menu .menu-item[title]::before`  (2286)
+- `html.dark-mode .menu-item.smart-feature`  (2295)
+- `.menu-item.menu-toggle.checked::before`  (2310)
+- `html.dark-mode .menu-item.menu-toggle::before`  (2321)
+- `html.dark-mode .menu-item.menu-toggle.checked::before`  (2325)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.settings`  (2432)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.settings:hover`  (2436)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle`  (2469)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle:hover`  (2474)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle .theme-icon`  (2479)
+- `html.dark-mode .demo-chat-history-sidebar`  (2501)
+- `html.dark-mode .demo-view-overlay .demo-chat-history-sidebar`  (2518)
+- `html.dark-mode .demo-view-overlay .sidebar-tab-bar`  (2532)
+- `html.dark-mode .demo-view-overlay .sidebar-tab`  (2562)
+- `html.dark-mode .demo-view-overlay .sidebar-tab:hover`  (2566)
+- `html.dark-mode .demo-view-overlay .sidebar-tab.active`  (2571)
+- `html.dark-mode .demo-view-overlay .demo-history-search`  (2624)
+- `html.dark-mode .demo-view-overlay .history-search-input`  (2628)
+- `html.dark-mode .demo-view-overlay .history-search-input:focus`  (2634)
+- `html.dark-mode .demo-view-overlay .history-search-input::placeholder`  (2639)
+- `html.dark-mode .demo-view-overlay .new-agent-btn`  (2665)
+- `html.dark-mode .demo-view-overlay .new-agent-btn:hover`  (2670)
+- `html.dark-mode .demo-view-overlay .sidebar-footer`  (2689)
+- `html.dark-mode .demo-view-overlay .sidebar-footer .footer-text`  (2694)
+- `html.dark-mode .demo-history-header`  (2710)
+- `html.dark-mode .demo-view-overlay .demo-history-header`  (2729)
+- `html.dark-mode .demo-view-overlay .share-chat-btn:hover`  (2752)
+- `html.dark-mode .demo-history-item`  (2790)
+- `html.dark-mode .demo-history-item:hover`  (2794)
+- `html.dark-mode .demo-history-item.active`  (2803)
+- `html.dark-mode .demo-view-overlay .demo-history-item`  (2824)
+- `html.dark-mode .demo-view-overlay .demo-history-item:hover`  (2829)
+- `html.dark-mode .demo-view-overlay .demo-history-item.active`  (2838)
+- `html.dark-mode .demo-history-item.manager-item`  (2897)
+- `html.dark-mode .demo-history-item.manager-item:hover`  (2902)
+- `html.dark-mode .demo-history-item.manager-item.active`  (2906)
+- `html.dark-mode .demo-history-item .agent-progress-ring .ring-bg`  (2958)
+- `html.dark-mode .demo-history-item .agent-progress-ring .ring-fill`  (2962)
+- `.demo-history-item.complete .agent-progress-ring`  (2967)
+- `.demo-history-item .agent-progress-ring.complete .ring-fill`  (2972)
+- `.agent-progress-container.complete .progress-ring-fill`  (3005)
+- `.agent-progress-container.complete .progress-percent`  (3009)
+- `html.dark-mode .progress-ring-bg`  (3014)
+- `html.dark-mode .progress-ring-fill`  (3018)
+- `html.dark-mode .progress-percent`  (3022)
+_… 89 more_
+
+### `chat-panel/css/thinking-animation.css` — 84 orphans
+- `.thinking-container.collapsing`  (24)
+- `.thinking-container.hidden`  (29)
+- `html.dark-mode .thinking-container`  (37)
+- `html.dark-mode .steps-count`  (69)
+- `html.dark-mode .thinking-header`  (81)
+- `html.dark-mode .thinking-header:hover`  (85)
+- `html.dark-mode .thinking-header:hover .steps-toggle`  (89)
+- `html.dark-mode .pulsing-node::before`  (143)
+- `html.dark-mode .pulsing-node::after`  (148)
+- `html.dark-mode .steps-toggle`  (177)
+- `.steps-list.animating-1`  (210)
+- `.steps-list.animating-2`  (219)
+- `.steps-list.animating`  (228)
+- `.steps-list.fully-expanded`  (237)
+- `.steps-list li.preview-hidden`  (283)
+- `.steps-list.fully-expanded li.preview-hidden`  (288)
+- `html.dark-mode .steps-list li`  (294)
+- `html.dark-mode .steps-list li::before`  (298)
+- `html.dark-mode .step-icon.dot`  (340)
+- `html.dark-mode .step-icon.check`  (344)
+- `html.dark-mode .step-icon.edit`  (348)
+- `html.dark-mode .step-icon.error`  (364)
+- `html.dark-mode .step-changes .changes-box`  (420)
+- `html.dark-mode .step-changes .added`  (425)
+- `html.dark-mode .step-changes .removed`  (429)
+- `html.dark-mode .step-changes .filename`  (433)
+- `.thought-status`  (439)
+- `.thinking-container.complete .thought-status`  (445)
+- `.thought-status-text`  (449)
+- `html.dark-mode .thought-status`  (473)
+- `html.dark-mode .thought-status-text`  (477)
+- `.thought-trail`  (494)
+- `.thinking-container.complete .thought-trail`  (501)
+- `.thought-trail-header`  (505)
+- `.thought-trail-label`  (512)
+- `.thought-duration`  (519)
+- `.thought-trail-expand`  (523)
+- `.thought-trail-header:hover .thought-trail-expand`  (530)
+- `.thought-trail.expanded .thought-trail-expand`  (534)
+- `.thought-trail-content`  (539)
+- `.thought-trail.expanded .thought-trail-content`  (546)
+- `.thought-trail-content p`  (552)
+- `html.dark-mode .thought-trail`  (562)
+- `html.dark-mode .thought-trail-label`  (566)
+- `html.dark-mode .thought-duration`  (570)
+- `html.dark-mode .thought-trail-expand`  (574)
+- `html.dark-mode .thought-trail-content p`  (578)
+- `.files-changed-section`  (583)
+- `.files-changed-section.visible`  (598)
+- `.files-changed-header`  (603)
+- `.files-changed-count`  (612)
+- `.files-changed-actions`  (619)
+- `.files-action-btn`  (624)
+- `.files-action-btn:hover`  (636)
+- `.files-action-btn.primary`  (640)
+- `.files-action-btn.primary:hover`  (647)
+- `.files-changed-list`  (651)
+- `.file-changed-item`  (655)
+- `.file-changed-item:hover`  (665)
+- `.file-lang-icon`  (669)
+- `.file-lang-icon.js`  (682)
+- `.file-lang-icon.html`  (683)
+- `.file-lang-icon.css`  (684)
+- `.file-lang-icon.py`  (685)
+- `.file-lang-icon.rvt`  (686)
+- `.file-lang-icon.dwg`  (687)
+- `.file-lang-icon.pdf`  (688)
+- `.file-lang-icon.xlsx`  (689)
+- `.file-lang-icon.docx`  (690)
+- `.file-lang-icon.default`  (691)
+- `.file-name`  (693)
+- `.file-changes`  (701)
+- `.file-changes .added`  (706)
+- `.file-changes .removed`  (710)
+- `html.dark-mode .files-changed-section`  (715)
+- `html.dark-mode .files-changed-header`  (720)
+- `html.dark-mode .files-changed-count`  (725)
+- `html.dark-mode .files-action-btn`  (729)
+- `html.dark-mode .files-action-btn:hover`  (733)
+- `html.dark-mode .files-action-btn.primary`  (737)
+- `html.dark-mode .files-action-btn.primary:hover`  (741)
+- `html.dark-mode .file-changed-item:hover`  (745)
+- `html.dark-mode .file-name`  (749)
+- `html.dark-mode .file-changes`  (753)
+
+### `chat-panel/index-styles.css` — 441 orphans
+- `html.dark-mode`  (57)
+- `.center-absolute`  (89)
+- `.hidden-state`  (97)
+- `.hidden-state.visible`  (103)
+- `.section-indicator.hidden`  (133)
+- `.section-trail-ball.animating`  (187)
+- `html.dark-mode .section-dot`  (196)
+- `html.dark-mode .section-dot:hover`  (200)
+- `html.dark-mode .section-dot.active`  (204)
+- `html.dark-mode .section-active-ball`  (208)
+- `html.dark-mode .section-trail-ball`  (208)
+- `.hero-text-container.fade-out`  (234)
+- `.hero-text-container.fade-out .hero-text-inner`  (240)
+- `.hero-text-container.left-position`  (265)
+- `html.dark-mode .hero-text-container .hero-heading`  (294)
+- `html.dark-mode .hero-text-container .hero-subheading`  (298)
+- `html.dark-mode .toggle-switch`  (348)
+- `html.dark-mode .toggle-switch::after`  (352)
+- `html.dark-mode .color-palette-btn .palette-icon`  (375)
+- `html.dark-mode .color-palette-btn:hover .palette-icon`  (379)
+- `html.dark-mode .color-palette-dropdown`  (407)
+- `html.dark-mode .palette-header`  (424)
+- `.palette-options`  (429)
+- `.palette-option`  (435)
+- `.palette-option:hover`  (449)
+- `html.dark-mode .palette-option:hover`  (453)
+- `.palette-option.active`  (457)
+- `html.dark-mode .palette-option.active`  (461)
+- `.palette-swatch`  (465)
+- `.palette-name`  (473)
+- `html.dark-mode .palette-name`  (480)
+- `.palette-option.active .palette-name::after`  (484)
+- `html.dark-mode .palette-option.active .palette-name::after`  (489)
+- `html.dark-mode body`  (512)
+- `html.dark-mode canvas`  (516)
+- `html.dark-mode .right-panel`  (522)
+- `html.dark-mode .right-panel .panel-content`  (527)
+- `html.dark-mode .dark-toggle-label`  (531)
+- `html.dark-mode .service-item-title`  (536)
+- `html.dark-mode .service-item-body`  (540)
+- `html.dark-mode .scroll-indicator-text`  (544)
+- `html.dark-mode .scroll-indicator-arrow svg`  (548)
+- `.download-buttons`  (554)
+- `.build-label-bottom-right`  (618)
+- `.build-label-bottom-right .teal`  (629)
+- `html.dark-mode .build-label-bottom-right`  (633)
+- `html.dark-mode .riba-card-left.expanded`  (737)
+- `html.dark-mode .riba-backdrop`  (759)
+- `.riba-clone-expanded`  (771)
+- `.riba-clone-expanded > *`  (784)
+- `.riba-clone-expanded.show-content > *`  (790)
+- `.riba-clone-expanded.show-scrollbar`  (795)
+- `body.riba-expanded-lock`  (800)
+- `.riba-left-panel.scroll-locked`  (805)
+- `.riba-clone-expanded.expanded .riba-details-left`  (932)
+- `.riba-clone-expanded.expanded .riba-details-left`  (938)
+- `.riba-clone-expanded.expanded .riba-section-left`  (951)
+- `.riba-clone-expanded.expanded .riba-section-left:first-child`  (957)
+- `.riba-clone-expanded.expanded .riba-section-left:last-child`  (962)
+- `html.dark-mode .riba-card-left`  (1008)
+- `html.dark-mode .riba-card-left:hover`  (1013)
+- `html.dark-mode .riba-num-left`  (1018)
+- `html.dark-mode .riba-title-left`  (1018)
+- `html.dark-mode .riba-desc-left`  (1023)
+- `html.dark-mode .riba-list-left li`  (1023)
+- `html.dark-mode .ring-seg-left`  (1028)
+- `html.dark-mode .riba-toggle-left`  (1032)
+- `html.dark-mode .riba-section-left`  (1032)
+- `html.dark-mode .riba-panel-header`  (1037)
+- `html.dark-mode .riba-clone-expanded`  (1043)
+- `html.dark-mode .riba-clone-expanded.expanded .riba-section-left:first-child`  (1048)
+- `.typing-word`  (1052)
+- `.typing-cursor`  (1056)
+- `.typing-cursor.hidden`  (1071)
+- `.subtitle-line`  (1075)
+- `.subtitle-line .highlight-blue`  (1084)
+- `.panel-blurb`  (1088)
+- `.panel-blurb.visible`  (1100)
+- `.panel-blurb .line`  (1105)
+- `.panel-blurb .line.visible`  (1111)
+- `.overlay-node`  (1132)
+- `.overlay-node .node-title`  (1142)
+- `html.dark-mode .overlay-node .node-title`  (1157)
+- `.overlay-node.show-title .node-title`  (1161)
+- `.overlay-node .node-hint`  (1167)
+- `html.dark-mode .overlay-node .node-hint`  (1182)
+- `.overlay-node .node-arrow`  (1186)
+- `html.dark-mode .overlay-node .node-arrow`  (1197)
+- `.overlay-node.show-hint .node-hint`  (1201)
+- `.overlay-node.show-hint .node-arrow`  (1201)
+- `.overlay-node.mep-shine .node-core`  (1214)
+- `.overlay-node.mep-shine::after`  (1218)
+- `.overlay-node .node-code`  (1249)
+- `.overlay-node .node-code.visible`  (1263)
+- `.overlay-node.synced .node-core`  (1268)
+- `.overlay-node.synced .node-glow`  (1273)
+- `.overlay-node.synced .node-pulse-ring`  (1279)
+- `html.dark-mode .project-complete-overlay.visible`  (1333)
+- `html.dark-mode .project-complete-tick`  (1440)
+- `html.dark-mode .project-complete-text`  (1445)
+- `html.dark-mode .project-complete-savings`  (1449)
+- `.overlay-node .node-core`  (1454)
+- `.overlay-node .node-glow`  (1466)
+- `.overlay-node .node-pulse-ring`  (1479)
+- `.overlay-node:hover .node-core`  (1492)
+- `.overlay-node:hover .node-glow`  (1497)
+- `.overlay-node:hover .node-pulse-ring`  (1503)
+- `.overlay-node .loading-ring`  (1509)
+- `.overlay-node .loading-ring circle`  (1520)
+- `.overlay-node.loading .loading-ring`  (1531)
+- `.overlay-node.loading .loading-ring circle`  (1535)
+- `.overlay-node.loaded .loading-ring`  (1539)
+- `.overlay-node.loaded .loading-ring circle`  (1543)
+- `html.dark-mode .overlay-node .loading-ring circle`  (1575)
+- `html.dark-mode .overlay-node.loaded .loading-ring circle`  (1580)
+- `html.dark-mode .overlay-node .node-core`  (1597)
+- `html.dark-mode .overlay-node .node-glow`  (1601)
+- `html.dark-mode .overlay-node:hover .node-core`  (1605)
+- `html.dark-mode .overlay-node:hover .node-glow`  (1610)
+- `html.dark-mode .overlay-node:hover .node-pulse-ring`  (1614)
+- `html.dark-mode .overlay-node.synced .node-core`  (1619)
+- `html.dark-mode .overlay-node.synced .node-glow`  (1624)
+- `html.dark-mode .overlay-node.synced .node-pulse-ring`  (1628)
+- `html.dark-mode .overlay-node.mep-shine .node-core`  (1633)
+- `html.dark-mode .overlay-node.mep-shine::after`  (1637)
+- `.services-label`  (1652)
+- `.services-label.visible`  (1656)
+- `.services-grid-3`  (1661)
+- `.services-full-width`  (1668)
+- `.service-item`  (1672)
+- `.service-item:last-child`  (1676)
+- `.service-item .line`  (1680)
+- `.service-item .line.visible`  (1685)
+- `.service-item-title .line`  (1689)
+- `.service-item-body .line`  (1693)
+- `.service-item-title`  (1697)
+- `.service-item-title .teal`  (1706)
+- `.service-item-body`  (1710)
+- `.solution-text`  (1751)
+- `.solution-text:last-child`  (1762)
+- `html.dark-mode .solution-heading`  (1766)
+- `html.dark-mode .solution-text`  (1770)
+- `.brain-overlay-node`  (1785)
+- `.brain-overlay-node.visible`  (1796)
+- `.brain-overlay-node .overlay-core`  (1800)
+- `.brain-overlay-node .overlay-glow`  (1812)
+- `.brain-overlay-node .overlay-ring`  (1825)
+- `.brain-overlay-node:hover .overlay-core`  (1838)
+- `.brain-overlay-node:hover .overlay-glow`  (1843)
+- `.brain-overlay-node:hover .overlay-ring`  (1849)
+- `html.dark-mode .brain-overlay-node .overlay-core`  (1866)
+- `html.dark-mode .brain-overlay-node:hover .overlay-core`  (1870)
+- `html.dark-mode .software-carousel`  (2123)
+- `html.dark-mode .carousel-label`  (2127)
+- `html.dark-mode .carousel-item`  (2131)
+- `html.dark-mode .carousel-item:hover`  (2135)
+- `html.dark-mode .carousel-item span`  (2140)
+- `html.dark-mode .demo-view-overlay .demo-text-panel`  (2202)
+- `html.dark-mode .demo-view-overlay .demo-text-heading`  (2215)
+- `html.dark-mode .demo-view-overlay .demo-text-body`  (2229)
+- `.demo-view-overlay .demo-containers-panel .demo-intro-image`  (2255)
+- `.demo-view-overlay .demo-intro-image`  (2277)
+- `html.dark-mode .demo-example-btn`  (2326)
+- `html.dark-mode .demo-example-btn:hover`  (2330)
+- `html.dark-mode .coming-soon-overlay h3`  (2374)
+- `html.dark-mode .demo-view-overlay .sidebar-tab-bar`  (2418)
+- `html.dark-mode .demo-view-overlay .sidebar-tab`  (2422)
+- `html.dark-mode .demo-view-overlay .sidebar-tab:hover`  (2426)
+- `html.dark-mode .demo-view-overlay .sidebar-tab.active`  (2431)
+- `html.dark-mode .demo-view-overlay .sidebar-footer`  (2488)
+- `html.dark-mode .demo-view-overlay .sidebar-footer .footer-text`  (2493)
+- `.demo-output-icon.docx`  (2563)
+- `html.dark-mode .demo-outputs-header`  (2574)
+- `html.dark-mode .demo-output-file:hover`  (2578)
+- `html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb`  (2610)
+- `html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb:hover`  (2614)
+- `.demo-outputs-section.project-structure .file-icon.docx`  (2702)
+- `.demo-outputs-section.project-structure .file-icon.docx::before`  (2703)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-header`  (2705)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-header:hover`  (2709)
+- `html.dark-mode .demo-outputs-section.project-structure .folder-icon`  (2713)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-content`  (2717)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-file`  (2721)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-file:hover`  (2725)
+- `.demo-placeholder-text`  (2730)
+- `html.dark-mode .demo-placeholder-text`  (2746)
+- `.demo-chat-box.free-floating`  (2788)
+- `.demo-revit-box.free-floating`  (2788)
+- `.demo-chat-box.dragging`  (2794)
+- `.demo-revit-box.dragging`  (2794)
+- `html.dark-mode .demo-chat-box.dragging`  (2802)
+- `html.dark-mode .demo-revit-box.dragging`  (2802)
+- `.demo-chat-box.snapping-back`  (2808)
+- `.demo-revit-box.snapping-back`  (2808)
+- `.demo-chat-wrapper.snap-target`  (2814)
+- `.demo-revit-wrapper.snap-target`  (2814)
+- `html.dark-mode .demo-chat-wrapper.snap-target`  (2820)
+- `html.dark-mode .demo-revit-wrapper.snap-target`  (2820)
+- `html.dark-mode .demo-view-overlay .demo-chat-box`  (2837)
+- `html.dark-mode .demo-view-overlay .demo-chat-history-sidebar`  (2860)
+_… 241 more_
+
+### `chat-panel/shared-styles.css` — 135 orphans
+- `html.dark-mode h1`  (52)
+- `html.dark-mode h2`  (52)
+- `html.dark-mode h3`  (57)
+- `html.dark-mode p`  (61)
+- `html.dark-mode .logo`  (83)
+- `html.dark-mode .logo .ai`  (87)
+- `.menu-highlight.bright`  (126)
+- `.menu-highlight.dimming`  (131)
+- `.menu-highlight.moving`  (136)
+- `.menu-highlight.fading`  (140)
+- `.menu-tail.moving`  (162)
+- `.menu-tail.fading`  (166)
+- `html.dark-mode .menu-highlight`  (170)
+- `html.dark-mode .menu-highlight.bright`  (174)
+- `html.dark-mode .menu-highlight.dimming`  (179)
+- `html.dark-mode .menu-tail`  (184)
+- `html.dark-mode .menu-link`  (201)
+- `html.dark-mode .dark-toggle-label`  (255)
+- `html.dark-mode .toggle-switch`  (259)
+- `.btn-chat-blue`  (264)
+- `.btn-chat-blue:hover`  (279)
+- `.btn-chat-blue:disabled`  (284)
+- `html.dark-mode .btn-chat-blue`  (290)
+- `html.dark-mode .btn-chat-blue:hover`  (294)
+- `html.dark-mode .btn-chat-blue:disabled`  (298)
+- `.btn-chat-grey`  (302)
+- `.btn-chat-grey:hover`  (317)
+- `html.dark-mode .btn-chat-grey`  (322)
+- `html.dark-mode .btn-chat-grey:hover`  (326)
+- `html.dark-mode .btn-primary`  (349)
+- `html.dark-mode .btn-primary:hover`  (353)
+- `html.dark-mode .btn-secondary`  (375)
+- `html.dark-mode .btn-secondary:hover`  (379)
+- `html.dark-mode .coming-soon-badge`  (397)
+- `.chat-text`  (404)
+- `html.dark-mode .demo-msg-user`  (454)
+- `html.dark-mode .demo-msg-user:hover`  (458)
+- `html.dark-mode .demo-msg-bot`  (471)
+- `html.dark-mode .demo-chat-history-sidebar`  (486)
+- `html.dark-mode .demo-history-header`  (502)
+- `html.dark-mode .demo-history-item`  (529)
+- `html.dark-mode .demo-history-item:hover`  (533)
+- `html.dark-mode .demo-history-item.active`  (542)
+- `html.dark-mode .demo-chat-input-row`  (557)
+- `html.dark-mode .demo-chat-input`  (583)
+- `html.dark-mode .demo-chat-input:focus`  (589)
+- `html.dark-mode .demo-chat-send`  (622)
+- `html.dark-mode .demo-chat-send:hover`  (626)
+- `html.dark-mode .demo-chat-send:disabled`  (630)
+- `html.dark-mode .demo-chat-messages`  (645)
+- `html.dark-mode .demo-ready-prompt`  (662)
+- `html.dark-mode .demo-ready-prompt strong`  (673)
+- `.section-trail-ball.animating`  (738)
+- `html.dark-mode .section-dot`  (747)
+- `html.dark-mode .section-dot:hover`  (751)
+- `html.dark-mode .section-dot.active`  (755)
+- `html.dark-mode .section-active-ball`  (759)
+- `html.dark-mode .section-trail-ball`  (759)
+- `.scroll-indicator.hidden`  (781)
+- `html.dark-mode .scroll-indicator-text`  (816)
+- `html.dark-mode .scroll-indicator-arrow svg`  (820)
+- `html.dark-mode .back-to-top-arrow svg`  (869)
+- `html.dark-mode .back-to-top-text`  (873)
+- `.footer-content-compact`  (906)
+- `.footer-brand`  (910)
+- `.footer-brand .footer-copyright`  (914)
+- `.footer-logo`  (918)
+- `.footer-logo-adelphos`  (926)
+- `.footer-logo-ai`  (935)
+- `.footer-tagline`  (945)
+- `.footer-links`  (954)
+- `.footer-links-column`  (960)
+- `.footer-links-title`  (964)
+- `.footer-links-list`  (974)
+- `.footer-links-list li`  (980)
+- `.footer-links-list a`  (984)
+- `.footer-links-list a:hover`  (993)
+- `.footer-bottom`  (998)
+- `.footer-content-compact + .footer-bottom`  (1011)
+- `.footer-copyright`  (1015)
+- `.footer-legal`  (1023)
+- `.footer-legal a`  (1028)
+- `.footer-legal a:hover`  (1037)
+- `html.dark-mode .site-footer`  (1042)
+- `html.dark-mode .footer-logo-adelphos`  (1047)
+- `html.dark-mode .footer-tagline`  (1051)
+- `html.dark-mode .footer-links-title`  (1055)
+- `html.dark-mode .footer-links-list a`  (1059)
+- `html.dark-mode .footer-links-list a:hover`  (1063)
+- `html.dark-mode .footer-bottom`  (1067)
+- `html.dark-mode .footer-copyright`  (1071)
+- `html.dark-mode .footer-legal a`  (1071)
+- `html.dark-mode .footer-legal a:hover`  (1076)
+- `.footer-brand` @media(@media (max-width: 768px))  (7)
+- `.footer-links` @media(@media (max-width: 768px))  (11)
+- `.footer-links-column` @media(@media (max-width: 768px))  (16)
+- `.footer-bottom` @media(@media (max-width: 768px))  (21)
+- `.signup-modal`  (1109)
+- `.signup-modal.active`  (1124)
+- `.signup-modal-overlay`  (1129)
+- `.signup-modal-content`  (1139)
+- `.signup-modal.active .signup-modal-content`  (1152)
+- `.signup-modal-close`  (1156)
+- `.signup-modal-close:hover`  (1174)
+- `.signup-modal-title`  (1179)
+- `.signup-modal-subtitle`  (1191)
+- `.signup-form`  (1199)
+- `.signup-field`  (1205)
+- `.signup-field label`  (1211)
+- `.signup-field input`  (1218)
+- `.signup-field input::placeholder`  (1230)
+- `.signup-field input:focus`  (1234)
+- `.signup-field select:focus`  (1234)
+- `.signup-field select`  (1241)
+- `.signup-field select option`  (1259)
+- `.signup-field-hint`  (1265)
+- `.signup-submit-btn`  (1271)
+- `.signup-submit-btn:hover:not(:disabled)`  (1285)
+- `.signup-submit-btn:disabled`  (1290)
+- `.signup-message`  (1295)
+- `.signup-message.success`  (1303)
+- `.signup-message.error`  (1307)
+- `html:not(.dark-mode) .signup-modal-content`  (1312)
+- `html:not(.dark-mode) .signup-modal-title`  (1317)
+- `html:not(.dark-mode) .signup-modal-subtitle`  (1324)
+- `html:not(.dark-mode) .signup-field label`  (1328)
+- `html:not(.dark-mode) .signup-field input`  (1332)
+- `html:not(.dark-mode) .signup-field input::placeholder`  (1338)
+- `html:not(.dark-mode) .signup-field input:focus`  (1342)
+- `html:not(.dark-mode) .signup-field select:focus`  (1342)
+- `html:not(.dark-mode) .signup-field select`  (1348)
+- `html:not(.dark-mode) .signup-field select option`  (1355)
+- `html:not(.dark-mode) .signup-field-hint`  (1360)
+- `.signup-modal-content` @media(@media (max-width: 480px))  (2)
+- `.signup-modal-title` @media(@media (max-width: 480px))  (7)
+
+### `chat-panel/thinking-animation.css` — 81 orphans
+- `.thinking-container.collapsing`  (24)
+- `.thinking-container.hidden`  (29)
+- `html.dark-mode .thinking-container`  (37)
+- `html.dark-mode .steps-count`  (69)
+- `html.dark-mode .thinking-header`  (81)
+- `html.dark-mode .thinking-header:hover`  (85)
+- `html.dark-mode .thinking-header:hover .steps-toggle`  (89)
+- `html.dark-mode .pulsing-node::before`  (143)
+- `html.dark-mode .pulsing-node::after`  (148)
+- `html.dark-mode .steps-toggle`  (177)
+- `.steps-list.fully-expanded`  (210)
+- `.steps-list li.preview-hidden`  (256)
+- `.steps-list.fully-expanded li.preview-hidden`  (261)
+- `html.dark-mode .steps-list li`  (267)
+- `html.dark-mode .steps-list li::before`  (271)
+- `html.dark-mode .step-icon.dot`  (313)
+- `html.dark-mode .step-icon.check`  (317)
+- `html.dark-mode .step-icon.edit`  (321)
+- `html.dark-mode .step-icon.error`  (337)
+- `html.dark-mode .step-changes .changes-box`  (393)
+- `html.dark-mode .step-changes .added`  (398)
+- `html.dark-mode .step-changes .removed`  (402)
+- `html.dark-mode .step-changes .filename`  (406)
+- `.thought-status`  (412)
+- `.thinking-container.complete .thought-status`  (418)
+- `.thought-status-text`  (422)
+- `html.dark-mode .thought-status`  (446)
+- `html.dark-mode .thought-status-text`  (450)
+- `.thought-trail`  (467)
+- `.thinking-container.complete .thought-trail`  (474)
+- `.thought-trail-header`  (478)
+- `.thought-trail-label`  (485)
+- `.thought-duration`  (492)
+- `.thought-trail-expand`  (496)
+- `.thought-trail-header:hover .thought-trail-expand`  (503)
+- `.thought-trail.expanded .thought-trail-expand`  (507)
+- `.thought-trail-content`  (512)
+- `.thought-trail.expanded .thought-trail-content`  (519)
+- `.thought-trail-content p`  (525)
+- `html.dark-mode .thought-trail`  (535)
+- `html.dark-mode .thought-trail-label`  (539)
+- `html.dark-mode .thought-duration`  (543)
+- `html.dark-mode .thought-trail-expand`  (547)
+- `html.dark-mode .thought-trail-content p`  (551)
+- `.files-changed-section`  (556)
+- `.files-changed-section.visible`  (571)
+- `.files-changed-header`  (576)
+- `.files-changed-count`  (585)
+- `.files-changed-actions`  (592)
+- `.files-action-btn`  (597)
+- `.files-action-btn:hover`  (609)
+- `.files-action-btn.primary`  (613)
+- `.files-action-btn.primary:hover`  (620)
+- `.files-changed-list`  (624)
+- `.file-changed-item`  (628)
+- `.file-changed-item:hover`  (638)
+- `.file-lang-icon`  (642)
+- `.file-lang-icon.js`  (655)
+- `.file-lang-icon.html`  (656)
+- `.file-lang-icon.css`  (657)
+- `.file-lang-icon.py`  (658)
+- `.file-lang-icon.rvt`  (659)
+- `.file-lang-icon.dwg`  (660)
+- `.file-lang-icon.pdf`  (661)
+- `.file-lang-icon.xlsx`  (662)
+- `.file-lang-icon.docx`  (663)
+- `.file-lang-icon.default`  (664)
+- `.file-name`  (666)
+- `.file-changes`  (674)
+- `.file-changes .added`  (679)
+- `.file-changes .removed`  (683)
+- `html.dark-mode .files-changed-section`  (688)
+- `html.dark-mode .files-changed-header`  (693)
+- `html.dark-mode .files-changed-count`  (698)
+- `html.dark-mode .files-action-btn`  (702)
+- `html.dark-mode .files-action-btn:hover`  (706)
+- `html.dark-mode .files-action-btn.primary`  (710)
+- `html.dark-mode .files-action-btn.primary:hover`  (714)
+- `html.dark-mode .file-changed-item:hover`  (718)
+- `html.dark-mode .file-name`  (722)
+- `html.dark-mode .file-changes`  (726)
+
+### `clash-manager.html<style#0>` — 1 orphans
+- `html.dark-mode .qa-manager`  (3)
+
+### `css/chat-panel.css` — 308 orphans
+- `html.dark-mode`  (56)
+- `.center-absolute`  (86)
+- `.hidden-state`  (93)
+- `.hidden-state.visible`  (99)
+- `html.dark-mode body`  (113)
+- `html.dark-mode .demo-view-overlay .demo-text-panel`  (171)
+- `html.dark-mode .demo-view-overlay .demo-text-heading`  (184)
+- `html.dark-mode .demo-view-overlay .demo-text-body`  (198)
+- `.demo-view-overlay .demo-containers-panel .demo-intro-image`  (224)
+- `html.dark-mode .demo-view-overlay .demo-chat-box`  (337)
+- `.demo-chat-box.free-floating`  (343)
+- `#specWritingOverlay .demo-chat-box.free-floating`  (349)
+- `.demo-chat-box.dragging`  (354)
+- `html.dark-mode .demo-chat-box.dragging`  (361)
+- `.demo-chat-box.snapping-back`  (365)
+- `.demo-chat-wrapper.snap-target`  (369)
+- `html.dark-mode .demo-chat-wrapper.snap-target`  (374)
+- `html.dark-mode .resizer`  (400)
+- `html.dark-mode .resizer:hover`  (404)
+- `html.dark-mode .resizer.active`  (404)
+- `html.dark-mode .inner-resizer`  (444)
+- `html.dark-mode .inner-resizer:hover`  (448)
+- `html.dark-mode .inner-resizer.active`  (448)
+- `html.dark-mode .v-resizer`  (463)
+- `html.dark-mode .v-resizer:hover`  (467)
+- `html.dark-mode .left-column`  (483)
+- `html.dark-mode .headings-section`  (508)
+- `.heading-item`  (520)
+- `.heading-item:hover`  (529)
+- `.heading-item.active`  (533)
+- `.heading-item.level-1`  (538)
+- `.heading-item.level-2`  (542)
+- `.heading-item.level-3`  (546)
+- `.heading-item.level-4`  (552)
+- `html.dark-mode .heading-item`  (558)
+- `html.dark-mode .heading-item:hover`  (562)
+- `html.dark-mode .heading-item.active`  (566)
+- `html.dark-mode .project-section`  (580)
+- `html.dark-mode .project-box`  (592)
+- `html.dark-mode .project-label`  (606)
+- `html.dark-mode .project-name`  (617)
+- `html.dark-mode .project-ref-btn`  (637)
+- `.files-section`  (642)
+- `html.dark-mode .file-tree`  (663)
+- `html.dark-mode .tree-folder-header:hover`  (686)
+- `html.dark-mode .folder-icon`  (702)
+- `html.dark-mode .tree-folder-content`  (716)
+- `html.dark-mode .tree-file`  (735)
+- `html.dark-mode .tree-file:hover`  (739)
+- `.file-icon-badge`  (751)
+- `.file-icon-badge.pdf`  (765)
+- `.file-icon-badge.dwg`  (766)
+- `.file-icon-badge.rvt`  (767)
+- `.file-icon-badge.xlsx`  (768)
+- `.file-icon-badge.docx`  (769)
+- `html.dark-mode .ui-options-footer .footer-separator`  (794)
+- `html.dark-mode .ui-options-footer .toggle-text`  (835)
+- `html.dark-mode .ui-options-footer .ui-toggle .toggle-slider`  (886)
+- `html.dark-mode .ui-options-footer .ui-toggle input:checked + .toggle-slider`  (890)
+- `.ui-options-footer .ui-toggle input:checked ~ .completion-indicator`  (895)
+- `.ui-options-footer .completion-indicator`  (899)
+- `html.dark-mode .ui-options-footer .completion-indicator`  (916)
+- `html.dark-mode .center-column`  (929)
+- `html.dark-mode .ribbon`  (939)
+- `html.dark-mode .ribbon-tabs`  (950)
+- `html.dark-mode .ribbon-tab`  (976)
+- `html.dark-mode .ribbon-tab:hover`  (980)
+- `html.dark-mode .ribbon-tab.active`  (984)
+- `html.dark-mode .ribbon-content`  (1015)
+- `html.dark-mode .ribbon-group-label`  (1083)
+- `html.dark-mode .ribbon-separator`  (1096)
+- `html.dark-mode .ribbon-btn.icon.highlight::after`  (1146)
+- `html.dark-mode .ribbon-btn`  (1150)
+- `html.dark-mode .ribbon-btn:hover`  (1154)
+- `html.dark-mode .ribbon-btn.active`  (1159)
+- `.ribbon-row-inner .ribbon-btn`  (1227)
+- `html.dark-mode .ribbon-btn.primary`  (1243)
+- `html.dark-mode .ribbon-btn.primary:hover`  (1247)
+- `html.dark-mode .ribbon-btn.smart::after`  (1266)
+- `.ribbon-btn-row`  (1273)
+- `.ribbon-col`  (1281)
+- `.ribbon-row-inner`  (1289)
+- `html.dark-mode .ribbon-select`  (1319)
+- `html.dark-mode .ribbon-style-btn`  (1413)
+- `html.dark-mode .ribbon-style-btn::before`  (1420)
+- `html.dark-mode .ribbon-style-btn:hover`  (1424)
+- `html.dark-mode .ribbon-style-btn.active`  (1429)
+- `html.dark-mode .ribbon-style-btn.h1::before`  (1434)
+- `html.dark-mode .ribbon-style-btn.h2::before`  (1434)
+- `html.dark-mode .ribbon-style-btn.clause::before`  (1439)
+- `html.dark-mode .ribbon-style-btn.note::before`  (1443)
+- `.ribbon-group.ai-group`  (1448)
+- `html.dark-mode .ribbon-group.ai-group`  (1454)
+- `html.dark-mode .editor-area::-webkit-scrollbar-track`  (1489)
+- `html.dark-mode .editor-area::-webkit-scrollbar-thumb`  (1493)
+- `html.dark-mode .editor-area::-webkit-scrollbar-thumb:hover`  (1497)
+- `.editor-area.blurred .editor-paper`  (1502)
+- `.build-release-overlay`  (1509)
+- `.build-release-overlay.visible`  (1524)
+- `.build-release-content`  (1528)
+- `.build-release-logo`  (1533)
+- `.build-release-logo .logo-ai`  (1542)
+- `html.dark-mode .build-release-logo .logo-ai`  (1547)
+- `html.dark-mode .build-release-logo`  (1551)
+- `.build-release-text`  (1555)
+- `.build-release-text .release-line`  (1559)
+- `.build-release-text .release-brand`  (1566)
+- `.build-release-text .release-brand .brand-build`  (1576)
+- `.build-release-text .release-product`  (1583)
+- `html.dark-mode .build-release-text .release-line`  (1589)
+- `html.dark-mode .build-release-text .release-brand .brand-build`  (1593)
+- `html.dark-mode .build-release-text .release-product`  (1599)
+- `.build-release-text .carousel-container`  (1604)
+- `.build-release-text .carousel-items`  (1612)
+- `.build-release-text .carousel-item`  (1618)
+- `.build-release-text .carousel-item .carousel-letter`  (1628)
+- `html.dark-mode .build-release-text .carousel-item .carousel-letter`  (1635)
+- `.build-release-text .carousel-item .carousel-stop`  (1643)
+- `html.dark-mode .build-release-text .carousel-item .carousel-stop`  (1650)
+- `.simulated-contents-wrapper`  (1658)
+- `html.dark-mode .simulated-contents-wrapper`  (1670)
+- `.simulated-text-paragraph`  (1674)
+- `.simulated-text-paragraph.toc-h1`  (1682)
+- `.simulated-text-paragraph.toc-h2`  (1690)
+- `html.dark-mode .simulated-text-paragraph.toc-h2`  (1698)
+- `.simulated-text-paragraph.toc-h3`  (1702)
+- `.simulated-text-paragraph.toc-h4`  (1709)
+- `html.dark-mode .simulated-text-paragraph.toc-h4`  (1717)
+- `html.dark-mode .editor-paper.title-page`  (1803)
+- `html.dark-mode .title-logo-space`  (1829)
+- `html.dark-mode .title-heading-1`  (1842)
+- `html.dark-mode .title-separator`  (1853)
+- `html.dark-mode .title-heading-2`  (1865)
+- `html.dark-mode .title-heading-3`  (1877)
+- `html.dark-mode .title-date`  (1888)
+- `html.dark-mode .ghost-text-inline`  (1909)
+- `.ghost-text-wrapper .ghost-tab-hint`  (1919)
+- `.ghost-text-wrapper .ghost-tab-hint::before`  (1936)
+- `.ghost-text-wrapper.active .ghost-tab-hint`  (1942)
+- `html.dark-mode .ghost-text-wrapper .ghost-tab-hint`  (1946)
+- `.editor-pages-container`  (1964)
+- `.editor-paper.overflow-page`  (1972)
+- `html.dark-mode .editor-paper`  (1981)
+- `html.dark-mode .editor-paper:focus`  (1987)
+- `html.dark-mode .editor-paper h1`  (2022)
+- `html.dark-mode .editor-paper h2`  (2022)
+- `html.dark-mode .editor-paper h3`  (2027)
+- `html.dark-mode .editor-paper p`  (2031)
+- `html.dark-mode .editor-paper span`  (2031)
+- `html.dark-mode .editor-paper div`  (2031)
+- `.editor-placeholder`  (2037)
+- `html.dark-mode .editor-placeholder`  (2044)
+- `html.dark-mode .editor-status-bar`  (2095)
+- `html.dark-mode .editor-status-bar .status-divider`  (2118)
+- `html.dark-mode .editor-status-bar .structure-status.detected`  (2135)
+- `html.dark-mode .editor-status-bar .structure-status.detected .status-icon`  (2139)
+- `html.dark-mode .right-column .demo-chat-history-sidebar`  (2179)
+- `html.dark-mode .demo-view-overlay .demo-chat-titlebar`  (2198)
+- `html.dark-mode .demo-view-overlay .demo-chat-titlebar-text`  (2211)
+- `html.dark-mode .titlebar-brand .brand-build`  (2235)
+- `html.dark-mode .titlebar-brand .brand-variant`  (2236)
+- `html.dark-mode .titlebar-brand .brand-dot`  (2237)
+- `html.dark-mode .titlebar-subtitle`  (2246)
+- `html.dark-mode .titlebar-menu-btn`  (2294)
+- `html.dark-mode .titlebar-menu-btn:hover`  (2298)
+- `html.dark-mode .titlebar-menu-ellipsis`  (2303)
+- `html.dark-mode .titlebar-menu-ellipsis:hover`  (2307)
+- `html.dark-mode .menu-dropdown-content`  (2338)
+- `html.dark-mode .menu-item`  (2360)
+- `html.dark-mode .menu-item:hover`  (2364)
+- `html.dark-mode .menu-item[data-shortcut]::after`  (2376)
+- `html.dark-mode .menu-divider`  (2387)
+- `html.dark-mode .menu-item .submenu-arrow`  (2403)
+- `html.dark-mode .menu-submenu`  (2425)
+- `html.dark-mode .smart-menu .menu-item[title]::before`  (2450)
+- `html.dark-mode .menu-item.smart-feature`  (2459)
+- `.menu-item.menu-toggle.checked::before`  (2474)
+- `html.dark-mode .menu-item.menu-toggle::before`  (2485)
+- `html.dark-mode .menu-item.menu-toggle.checked::before`  (2489)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.settings`  (2596)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.settings:hover`  (2600)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle`  (2633)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle:hover`  (2638)
+- `html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle .theme-icon`  (2643)
+- `html.dark-mode .demo-chat-history-sidebar`  (2665)
+- `html.dark-mode .demo-view-overlay .demo-chat-history-sidebar`  (2682)
+- `html.dark-mode .demo-view-overlay .sidebar-tab-bar`  (2696)
+- `html.dark-mode .demo-view-overlay .sidebar-tab`  (2726)
+- `html.dark-mode .demo-view-overlay .sidebar-tab:hover`  (2730)
+- `html.dark-mode .demo-view-overlay .sidebar-tab.active`  (2735)
+- `html.dark-mode .demo-view-overlay .demo-history-search`  (2788)
+- `html.dark-mode .demo-view-overlay .history-search-input`  (2792)
+- `html.dark-mode .demo-view-overlay .history-search-input:focus`  (2798)
+- `html.dark-mode .demo-view-overlay .history-search-input::placeholder`  (2803)
+- `html.dark-mode .demo-view-overlay .new-agent-btn`  (2829)
+- `html.dark-mode .demo-view-overlay .new-agent-btn:hover`  (2834)
+- `html.dark-mode .demo-view-overlay .sidebar-footer`  (2853)
+- `html.dark-mode .demo-view-overlay .sidebar-footer .footer-text`  (2858)
+- `html.dark-mode .demo-history-header`  (2874)
+- `html.dark-mode .demo-view-overlay .demo-history-header`  (2893)
+_… 108 more_
+
+### `css/clash-manager.css` — 231 orphans
+- `html.dark-mode`  (21)
+- `html.dark-mode .qa-manager-body`  (51)
+- `html.dark-mode .qa-manager`  (74)
+- `.qa-manager.dragging`  (80)
+- `html.dark-mode .qa-manager.dragging`  (86)
+- `html.dark-mode .qa-titlebar`  (172)
+- `html.dark-mode .qa-titlebar-text`  (186)
+- `html.dark-mode .brand-build`  (202)
+- `html.dark-mode .brand-variant`  (203)
+- `html.dark-mode .brand-dot`  (204)
+- `html.dark-mode .titlebar-subtitle`  (215)
+- `html.dark-mode .titlebar-menu-btn`  (244)
+- `html.dark-mode .titlebar-menu-btn:hover`  (245)
+- `html.dark-mode .menu-dropdown-content`  (263)
+- `html.dark-mode .menu-item`  (282)
+- `html.dark-mode .menu-divider`  (299)
+- `html.dark-mode .menu-submenu`  (318)
+- `html.dark-mode .qa-titlebar-btn.theme-toggle:hover`  (357)
+- `html.dark-mode .theme-icon`  (360)
+- `html.dark-mode .qa-ribbon`  (369)
+- `html.dark-mode .qa-ribbon .ribbon-tabs`  (380)
+- `html.dark-mode .qa-ribbon .ribbon-tab`  (401)
+- `html.dark-mode .qa-ribbon .ribbon-tab:hover`  (402)
+- `html.dark-mode .qa-ribbon .ribbon-tab.active`  (403)
+- `html.dark-mode .qa-ribbon .ribbon-group-label`  (460)
+- `html.dark-mode .qa-ribbon .ribbon-separator`  (472)
+- `html.dark-mode .qa-ribbon .ribbon-btn`  (499)
+- `html.dark-mode .qa-ribbon .ribbon-btn:hover:not(:disabled)`  (500)
+- `html.dark-mode .qa-ribbon .ribbon-btn.primary`  (551)
+- `html.dark-mode .qa-body`  (563)
+- `html.dark-mode .qa-results-header`  (586)
+- `html.dark-mode .qa-count`  (607)
+- `html.dark-mode .qa-select`  (626)
+- `html.dark-mode .qa-results-table-wrapper`  (642)
+- `html.dark-mode .qa-results-table thead`  (661)
+- `html.dark-mode .qa-results-table th`  (677)
+- `.qa-results-table th .col-resize-handle`  (680)
+- `.qa-results-table th .col-resize-handle:hover`  (691)
+- `.qa-results-table th .col-resize-handle.resizing`  (691)
+- `html.dark-mode .qa-results-table th .col-resize-handle:hover`  (697)
+- `html.dark-mode .qa-results-table th .col-resize-handle.resizing`  (697)
+- `html.dark-mode .qa-results-table td`  (717)
+- `html.dark-mode .qa-results-table tbody tr:hover`  (731)
+- `html.dark-mode .qa-results-table tbody tr.active`  (732)
+- `.view-btn`  (749)
+- `.view-btn:hover`  (759)
+- `.error-type-badge`  (761)
+- `.error-type-badge.connectivity`  (769)
+- `.error-type-badge.fire-safety`  (770)
+- `.error-type-badge.hosting`  (771)
+- `.error-type-badge.insulation`  (772)
+- `.error-type-badge.clashes`  (773)
+- `.error-type-badge.documentation`  (774)
+- `.error-type-badge.data`  (775)
+- `.error-type-badge.brief`  (776)
+- `.status-dot`  (778)
+- `.status-dot.new`  (786)
+- `.status-dot.active`  (787)
+- `.status-dot.reviewed`  (788)
+- `.status-dot.resolved`  (789)
+- `html.dark-mode .qa-element-details`  (810)
+- `html.dark-mode .details-header`  (826)
+- `html.dark-mode .qa-view-panel`  (858)
+- `html.dark-mode .view-header`  (876)
+- `html.dark-mode .view-nav-btn`  (903)
+- `html.dark-mode .view-content`  (922)
+- `html.dark-mode .qa-statusbar`  (971)
+- `html.dark-mode .qa-results-table-wrapper::-webkit-scrollbar-thumb`  (1010)
+- `html.dark-mode .details-content::-webkit-scrollbar-thumb`  (1010)
+- `html.dark-mode .qa-chat-messages::-webkit-scrollbar-thumb`  (1010)
+- `html.dark-mode .history-list::-webkit-scrollbar-thumb`  (1010)
+- `.clash-modal-overlay`  (1018)
+- `.clash-modal-overlay.active`  (1034)
+- `.clash-modal-container`  (1039)
+- `.clash-modal-iframe`  (1047)
+- `html.dark-mode .qa-manager .right-column .demo-chat-history-sidebar`  (1085)
+- `html.dark-mode .qa-chat-overlay .right-column .demo-chat-history-sidebar`  (1144)
+- `.qa-chat-panel .design-options-bar`  (1163)
+- `html.dark-mode .qa-chat-panel .design-options-bar`  (1173)
+- `.qa-chat-panel .design-tabs`  (1179)
+- `.qa-chat-panel .design-tab`  (1186)
+- `.qa-chat-panel .design-tab:hover`  (1200)
+- `.qa-chat-panel .design-tab.active`  (1205)
+- `html.dark-mode .qa-chat-panel .design-tab`  (1210)
+- `html.dark-mode .qa-chat-panel .design-tab:hover`  (1214)
+- `html.dark-mode .qa-chat-panel .design-tab.active`  (1219)
+- `.qa-chat-panel .design-tab .tab-label`  (1224)
+- `.qa-chat-panel .design-tab.active .tab-label`  (1230)
+- `.qa-chat-panel .design-tab .tab-close`  (1234)
+- `.qa-chat-panel .design-tab:hover .tab-close`  (1245)
+- `.qa-chat-panel .design-tab .tab-close:hover`  (1249)
+- `html.dark-mode .qa-chat-panel .design-tab .tab-close`  (1254)
+- `html.dark-mode .qa-chat-panel .design-tab .tab-close:hover`  (1258)
+- `.qa-chat-panel .design-option-add`  (1263)
+- `.qa-chat-panel .design-option-add:hover`  (1279)
+- `.qa-chat-panel .design-option-add .plus-icon`  (1284)
+- `.qa-chat-panel .design-option-add .branch-icon`  (1289)
+- `html.dark-mode .qa-chat-panel .design-option-add`  (1294)
+- `html.dark-mode .qa-chat-panel .design-option-add:hover`  (1298)
+- `html.dark-mode .qa-chat-panel .design-option-add .branch-icon`  (1303)
+- `.qa-chat-panel .demo-chat-messages`  (1308)
+- `html.dark-mode .qa-chat-panel .demo-chat-messages`  (1321)
+- `.qa-chat-panel .demo-chat-input-row`  (1326)
+- `html.dark-mode .qa-chat-panel .demo-chat-input-row`  (1332)
+- `.qa-chat-panel .chat-input-wrapper`  (1337)
+- `html.dark-mode .qa-chat-panel .chat-input-wrapper`  (1347)
+- `.qa-chat-panel .chat-input-placeholder`  (1352)
+- `.qa-chat-panel .chat-input-placeholder:empty:before`  (1361)
+- `html.dark-mode .qa-chat-panel .chat-input-placeholder`  (1366)
+- `html.dark-mode .qa-chat-panel .chat-input-placeholder:empty:before`  (1370)
+- `.qa-chat-panel .chat-input-controls`  (1374)
+- `.qa-chat-panel .chat-input-left`  (1380)
+- `.qa-chat-panel .chat-input-right`  (1386)
+- `.qa-chat-panel .chat-send-btn`  (1393)
+- `.qa-chat-panel .chat-share-btn`  (1393)
+- `.qa-chat-panel .chat-meeting-btn`  (1393)
+- `.qa-chat-panel .chat-send-btn`  (1408)
+- `.qa-chat-panel .chat-send-btn:hover`  (1413)
+- `.qa-chat-panel .chat-share-btn`  (1417)
+- `.qa-chat-panel .chat-meeting-btn`  (1417)
+- `.qa-chat-panel .chat-share-btn:hover`  (1423)
+- `.qa-chat-panel .chat-meeting-btn:hover`  (1423)
+- `html.dark-mode .qa-chat-panel .chat-share-btn`  (1429)
+- `html.dark-mode .qa-chat-panel .chat-meeting-btn`  (1429)
+- `html.dark-mode .qa-chat-panel .chat-share-btn:hover`  (1434)
+- `html.dark-mode .qa-chat-panel .chat-meeting-btn:hover`  (1434)
+- `.qa-chat-panel .demo-chat-history-sidebar`  (1441)
+- `html.dark-mode .qa-chat-panel .demo-chat-history-sidebar`  (1448)
+- `.qa-chat-panel .sidebar-tab-bar`  (1453)
+- `html.dark-mode .qa-chat-panel .sidebar-tab-bar`  (1461)
+- `.qa-chat-panel .sidebar-tab`  (1466)
+- `.qa-chat-panel .sidebar-tab:hover`  (1481)
+- `.qa-chat-panel .sidebar-tab.active`  (1486)
+- `html.dark-mode .qa-chat-panel .sidebar-tab`  (1491)
+- `html.dark-mode .qa-chat-panel .sidebar-tab:hover`  (1495)
+- `html.dark-mode .qa-chat-panel .sidebar-tab.active`  (1500)
+- `.qa-chat-panel .sidebar-tab svg`  (1505)
+- `.qa-chat-panel .share-chat-btn`  (1510)
+- `.qa-chat-panel .share-chat-btn:hover`  (1521)
+- `html.dark-mode .qa-chat-panel .share-chat-btn:hover`  (1526)
+- `.qa-chat-panel .sidebar-panel`  (1532)
+- `.qa-chat-panel .sidebar-panel.active`  (1540)
+- `.qa-chat-panel .demo-history-search`  (1545)
+- `.qa-chat-panel .history-search-input`  (1550)
+- `.qa-chat-panel .history-search-input:focus`  (1563)
+- `.qa-chat-panel .history-search-input::placeholder`  (1568)
+- `html.dark-mode .qa-chat-panel .demo-history-search`  (1572)
+- `html.dark-mode .qa-chat-panel .history-search-input`  (1576)
+- `html.dark-mode .qa-chat-panel .history-search-input:focus`  (1582)
+- `html.dark-mode .qa-chat-panel .history-search-input::placeholder`  (1587)
+- `.qa-chat-panel .new-agent-btn`  (1592)
+- `.qa-chat-panel .new-agent-btn:hover`  (1607)
+- `html.dark-mode .qa-chat-panel .new-agent-btn`  (1612)
+- `html.dark-mode .qa-chat-panel .new-agent-btn:hover`  (1617)
+- `.qa-chat-panel .sidebar-footer`  (1623)
+- `.qa-chat-panel .sidebar-footer .footer-text`  (1631)
+- `html.dark-mode .qa-chat-panel .sidebar-footer`  (1637)
+- `html.dark-mode .qa-chat-panel .sidebar-footer .footer-text`  (1642)
+- `.qa-chat-panel .demo-history-list`  (1647)
+- `.qa-chat-panel .demo-history-item`  (1655)
+- `.qa-chat-panel .demo-history-item:hover`  (1667)
+- `html.dark-mode .qa-chat-panel .demo-history-item`  (1671)
+- `html.dark-mode .qa-chat-panel .demo-history-item:hover`  (1676)
+- `.qa-chat-panel .demo-history-item.active`  (1680)
+- `html.dark-mode .qa-chat-panel .demo-history-item.active`  (1685)
+- `.qa-chat-panel .demo-history-item-content`  (1690)
+- `.qa-chat-panel .demo-history-item-title`  (1695)
+- `html.dark-mode .qa-chat-panel .demo-history-item-title`  (1705)
+- `.qa-chat-panel .demo-history-item-preview`  (1709)
+- `html.dark-mode .qa-chat-panel .demo-history-item-preview`  (1719)
+- `.qa-chat-panel .demo-history-item.manager-item`  (1724)
+- `.qa-chat-panel .demo-history-item.manager-item:hover`  (1729)
+- `html.dark-mode .qa-chat-panel .demo-history-item.manager-item`  (1733)
+- `.qa-chat-panel .agent-progress-ring`  (1739)
+- `.qa-chat-panel .agent-progress-ring .ring-bg`  (1743)
+- `.qa-chat-panel .agent-progress-ring .ring-fill`  (1749)
+- `html.dark-mode .qa-chat-panel .agent-progress-ring .ring-bg`  (1756)
+- `html.dark-mode .qa-chat-panel .agent-progress-ring .ring-fill`  (1760)
+- `.qa-chat-panel .chat-model-dropdown`  (1765)
+- `.qa-chat-panel .chat-model-label`  (1772)
+- `.qa-chat-panel .chat-model-label:hover`  (1782)
+- `html.dark-mode .qa-chat-panel .chat-model-label`  (1786)
+- `html.dark-mode .qa-chat-panel .chat-model-label:hover`  (1790)
+- `.qa-chat-panel .menu-icon`  (1794)
+- `.qa-chat-panel .dropdown-arrow`  (1800)
+- `.qa-chat-panel .chat-agent-dropdown`  (1806)
+- `.qa-chat-panel .chat-agent-badge`  (1810)
+- `.qa-chat-panel .chat-agent-badge:hover`  (1823)
+- `html.dark-mode .qa-chat-panel .chat-agent-badge`  (1827)
+- `html.dark-mode .qa-chat-panel .chat-agent-badge:hover`  (1831)
+- `.qa-chat-panel .brand-build`  (1836)
+- `.qa-chat-panel .brand-variant`  (1841)
+- `.qa-chat-panel .brand-dot`  (1846)
+- `html.dark-mode .qa-chat-panel .brand-build`  (1850)
+- `html.dark-mode .qa-chat-panel .brand-variant`  (1850)
+- `html.dark-mode .qa-chat-panel .brand-dot`  (1850)
+- `.qa-chat-panel .chat-persistent-node-wrapper`  (1857)
+- `.qa-chat-panel .chat-neural-node`  (1864)
+- `.qa-chat-panel .chat-node-core`  (1872)
+- `.qa-chat-panel .agent-progress-container`  (1884)
+_… 31 more_
+
+### `css/index-styles.css` — 488 orphans
+- `html.dark-mode`  (57)
+- `.center-absolute`  (89)
+- `.hidden-state`  (97)
+- `.hidden-state.visible`  (103)
+- `.section-indicator.hidden`  (135)
+- `.section-trail-ball.animating`  (189)
+- `html.dark-mode .section-dot`  (199)
+- `html.dark-mode .section-dot:hover`  (203)
+- `html.dark-mode .section-dot.active`  (207)
+- `html.dark-mode .section-active-ball`  (211)
+- `html.dark-mode .section-trail-ball`  (211)
+- `.hero-text-container.fade-out`  (237)
+- `.hero-text-container.fade-out .hero-text-inner`  (243)
+- `.hero-text-container.left-position`  (268)
+- `html.dark-mode .hero-text-container .hero-heading`  (297)
+- `html.dark-mode .hero-text-container .hero-subheading`  (301)
+- `html.dark-mode .toggle-switch`  (351)
+- `html.dark-mode .toggle-switch::after`  (355)
+- `html.dark-mode .color-palette-btn .palette-icon`  (387)
+- `html.dark-mode .color-palette-btn:hover .palette-icon`  (391)
+- `html.dark-mode .color-palette-dropdown`  (419)
+- `html.dark-mode .palette-header`  (450)
+- `html.dark-mode .color-swatch`  (486)
+- `html.dark-mode .color-swatch.active`  (490)
+- `html.dark-mode .more-colors-btn`  (522)
+- `html.dark-mode .more-colors-btn:hover`  (527)
+- `html.dark-mode body`  (563)
+- `html.dark-mode canvas`  (567)
+- `html.dark-mode .right-panel`  (573)
+- `html.dark-mode .right-panel .panel-content`  (578)
+- `html.dark-mode .dark-toggle-label`  (582)
+- `html.dark-mode .service-item-title`  (587)
+- `html.dark-mode .service-item-body`  (591)
+- `html.dark-mode .scroll-indicator-text`  (595)
+- `html.dark-mode .scroll-indicator-arrow svg`  (599)
+- `.download-buttons`  (605)
+- `.build-label-bottom-right`  (669)
+- `.build-label-bottom-right .teal`  (680)
+- `html.dark-mode .build-label-bottom-right`  (684)
+- `html.dark-mode .riba-card-left.expanded`  (790)
+- `html.dark-mode .riba-backdrop`  (812)
+- `.riba-clone-expanded`  (824)
+- `.riba-clone-expanded > *`  (837)
+- `.riba-clone-expanded.show-content > *`  (843)
+- `.riba-clone-expanded.show-scrollbar`  (848)
+- `body.riba-expanded-lock`  (853)
+- `.riba-left-panel.scroll-locked`  (858)
+- `.riba-clone-expanded.expanded .riba-desc-left`  (946)
+- `.riba-clone-expanded.expanded .riba-details-left`  (992)
+- `.riba-clone-expanded.expanded .riba-details-left`  (998)
+- `.riba-clone-expanded.expanded .riba-section-left`  (1011)
+- `.riba-clone-expanded.expanded .riba-section-left:first-child`  (1017)
+- `.riba-clone-expanded.expanded .riba-section-left:last-child`  (1022)
+- `html.dark-mode .riba-card-left`  (1068)
+- `html.dark-mode .riba-card-left:hover`  (1073)
+- `html.dark-mode .riba-num-left`  (1078)
+- `html.dark-mode .riba-title-left`  (1078)
+- `html.dark-mode .riba-desc-left`  (1083)
+- `html.dark-mode .riba-list-left li`  (1083)
+- `html.dark-mode .ring-seg-left`  (1088)
+- `html.dark-mode .riba-toggle-left`  (1092)
+- `html.dark-mode .riba-section-left`  (1092)
+- `html.dark-mode .riba-panel-header`  (1097)
+- `html.dark-mode .riba-clone-expanded`  (1103)
+- `html.dark-mode .riba-clone-expanded.expanded .riba-section-left:first-child`  (1108)
+- `.typing-word`  (1112)
+- `.typing-cursor`  (1116)
+- `.typing-cursor.hidden`  (1131)
+- `.subtitle-line`  (1135)
+- `.subtitle-line .highlight-blue`  (1144)
+- `.panel-blurb`  (1148)
+- `.panel-blurb.visible`  (1160)
+- `.panel-blurb .line`  (1165)
+- `.panel-blurb .line.visible`  (1171)
+- `.overlay-node`  (1192)
+- `.overlay-node .node-title`  (1202)
+- `html.dark-mode .overlay-node .node-title`  (1217)
+- `.overlay-node.show-title .node-title`  (1221)
+- `.overlay-node .node-hint`  (1227)
+- `html.dark-mode .overlay-node .node-hint`  (1242)
+- `.overlay-node .node-arrow`  (1246)
+- `html.dark-mode .overlay-node .node-arrow`  (1257)
+- `.overlay-node.show-hint .node-hint`  (1261)
+- `.overlay-node.show-hint .node-arrow`  (1261)
+- `.overlay-node.mep-shine .node-core`  (1274)
+- `.overlay-node.mep-shine::after`  (1278)
+- `.overlay-node .node-code`  (1309)
+- `.overlay-node .node-code.visible`  (1323)
+- `.overlay-node.synced .node-core`  (1328)
+- `.overlay-node.synced .node-glow`  (1333)
+- `.overlay-node.synced .node-pulse-ring`  (1339)
+- `html.dark-mode .project-complete-overlay.visible`  (1393)
+- `html.dark-mode .project-complete-tick`  (1500)
+- `html.dark-mode .project-complete-text`  (1505)
+- `html.dark-mode .project-complete-savings`  (1509)
+- `.overlay-node .node-core`  (1514)
+- `.overlay-node .node-glow`  (1526)
+- `.overlay-node .node-pulse-ring`  (1539)
+- `.overlay-node:hover .node-core`  (1552)
+- `.overlay-node:hover .node-glow`  (1557)
+- `.overlay-node:hover .node-pulse-ring`  (1563)
+- `.overlay-node .loading-ring`  (1569)
+- `.overlay-node .loading-ring circle`  (1580)
+- `.overlay-node.loading .loading-ring`  (1591)
+- `.overlay-node.loading .loading-ring circle`  (1595)
+- `.overlay-node.loaded .loading-ring`  (1599)
+- `.overlay-node.loaded .loading-ring circle`  (1603)
+- `html.dark-mode .overlay-node .loading-ring circle`  (1635)
+- `html.dark-mode .overlay-node.loaded .loading-ring circle`  (1640)
+- `html.dark-mode .overlay-node .node-core`  (1657)
+- `html.dark-mode .overlay-node .node-glow`  (1661)
+- `html.dark-mode .overlay-node:hover .node-core`  (1665)
+- `html.dark-mode .overlay-node:hover .node-glow`  (1670)
+- `html.dark-mode .overlay-node:hover .node-pulse-ring`  (1674)
+- `html.dark-mode .overlay-node.synced .node-core`  (1679)
+- `html.dark-mode .overlay-node.synced .node-glow`  (1684)
+- `html.dark-mode .overlay-node.synced .node-pulse-ring`  (1688)
+- `html.dark-mode .overlay-node.mep-shine .node-core`  (1693)
+- `html.dark-mode .overlay-node.mep-shine::after`  (1697)
+- `.services-label`  (1712)
+- `.services-label.visible`  (1716)
+- `.services-grid-3`  (1721)
+- `.services-full-width`  (1728)
+- `.service-item`  (1732)
+- `.service-item:last-child`  (1736)
+- `.service-item .line`  (1740)
+- `.service-item .line.visible`  (1745)
+- `.service-item-title .line`  (1749)
+- `.service-item-body .line`  (1753)
+- `.service-item-title`  (1757)
+- `.service-item-title .teal`  (1766)
+- `.service-item-body`  (1770)
+- `.solution-text`  (1810)
+- `.solution-text:last-child`  (1821)
+- `html.dark-mode .solution-heading`  (1825)
+- `html.dark-mode .solution-text`  (1829)
+- `.brain-overlay-node`  (1844)
+- `.brain-overlay-node.visible`  (1855)
+- `.brain-overlay-node .overlay-core`  (1859)
+- `.brain-overlay-node .overlay-glow`  (1871)
+- `.brain-overlay-node .overlay-ring`  (1884)
+- `.brain-overlay-node:hover .overlay-core`  (1897)
+- `.brain-overlay-node:hover .overlay-glow`  (1902)
+- `.brain-overlay-node:hover .overlay-ring`  (1908)
+- `html.dark-mode .brain-overlay-node .overlay-core`  (1925)
+- `html.dark-mode .brain-overlay-node:hover .overlay-core`  (1929)
+- `html.dark-mode .software-carousel`  (2182)
+- `html.dark-mode .carousel-label`  (2186)
+- `html.dark-mode .carousel-item`  (2190)
+- `html.dark-mode .carousel-item:hover`  (2194)
+- `html.dark-mode .carousel-item span`  (2199)
+- `html.dark-mode .demo-view-overlay .demo-text-panel`  (2261)
+- `html.dark-mode .demo-view-overlay .demo-hero-heading`  (2275)
+- `html.dark-mode .demo-view-overlay .demo-text-heading`  (2288)
+- `html.dark-mode .demo-view-overlay .demo-text-body`  (2302)
+- `.demo-view-overlay .demo-containers-panel .demo-intro-image`  (2328)
+- `.demo-view-overlay .demo-intro-image`  (2351)
+- `.qa-manager-container`  (2370)
+- `.qa-manager-container .qa-manager`  (2380)
+- `.qa-view-placeholder`  (2392)
+- `html.dark-mode .qa-view-placeholder`  (2405)
+- `body.view-7-active .qa-manager`  (2412)
+- `.demo-video-container`  (2422)
+- `.demo-video-container .video-poster`  (2427)
+- `.demo-video-container .demo-background-video`  (2438)
+- `.demo-video-container .demo-background-video.playing`  (2450)
+- `html.dark-mode .demo-example-btn`  (2495)
+- `html.dark-mode .demo-example-btn:hover`  (2499)
+- `html.dark-mode .demo-btn-dropdown`  (2577)
+- `html.dark-mode .demo-btn-dropdown .blurb`  (2582)
+- `html.dark-mode .coming-soon-overlay h3`  (2626)
+- `html.dark-mode .demo-view-overlay .sidebar-tab-bar`  (2670)
+- `html.dark-mode .demo-view-overlay .sidebar-tab`  (2674)
+- `html.dark-mode .demo-view-overlay .sidebar-tab:hover`  (2678)
+- `html.dark-mode .demo-view-overlay .sidebar-tab.active`  (2683)
+- `html.dark-mode .demo-view-overlay .sidebar-footer`  (2740)
+- `html.dark-mode .demo-view-overlay .sidebar-footer .footer-text`  (2745)
+- `.demo-output-icon.docx`  (2815)
+- `html.dark-mode .demo-outputs-header`  (2826)
+- `html.dark-mode .demo-output-file:hover`  (2830)
+- `html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb`  (2862)
+- `html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb:hover`  (2866)
+- `.demo-outputs-section.project-structure .file-icon.docx`  (2954)
+- `.demo-outputs-section.project-structure .file-icon.docx::before`  (2955)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-header`  (2957)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-header:hover`  (2961)
+- `html.dark-mode .demo-outputs-section.project-structure .folder-icon`  (2965)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-folder-content`  (2969)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-file`  (2973)
+- `html.dark-mode .demo-outputs-section.project-structure .tree-file:hover`  (2977)
+- `.demo-placeholder-text`  (2982)
+- `html.dark-mode .demo-placeholder-text`  (2998)
+- `body .demo-view-overlay:not(#specWritingOverlay) .demo-containers-stack .demo-chat-wrapper .demo-chat-box:not(.free-floating)`  (3049)
+- `.demo-view-overlay:not(#specWritingOverlay) .demo-chat-box.free-floating`  (3069)
+- `.demo-view-overlay:not(#specWritingOverlay) .demo-revit-box.free-floating`  (3069)
+- `.demo-chat-box.free-floating`  (3077)
+- `.demo-revit-box.free-floating`  (3077)
+- `.demo-chat-box.dragging`  (3083)
+- `.demo-revit-box.dragging`  (3083)
+- `html.dark-mode .demo-chat-box.dragging`  (3091)
+_… 288 more_
+
+### `css/shared-styles.css` — 150 orphans
+- `html.dark-mode h1`  (59)
+- `html.dark-mode h2`  (59)
+- `html.dark-mode h3`  (64)
+- `html.dark-mode p`  (68)
+- `html.dark-mode .logo`  (90)
+- `html.dark-mode .logo .ai`  (94)
+- `.menu-highlight.bright`  (133)
+- `.menu-highlight.dimming`  (138)
+- `.menu-highlight.moving`  (143)
+- `.menu-highlight.fading`  (147)
+- `.menu-tail.moving`  (169)
+- `.menu-tail.fading`  (173)
+- `html.dark-mode .menu-highlight`  (177)
+- `html.dark-mode .menu-highlight.bright`  (181)
+- `html.dark-mode .menu-highlight.dimming`  (186)
+- `html.dark-mode .menu-tail`  (191)
+- `html.dark-mode .menu-link`  (208)
+- `html.dark-mode .dark-toggle-label`  (262)
+- `html.dark-mode .toggle-switch`  (266)
+- `.btn-chat-blue`  (271)
+- `.btn-chat-blue:hover`  (286)
+- `.btn-chat-blue:disabled`  (291)
+- `html.dark-mode .btn-chat-blue`  (297)
+- `html.dark-mode .btn-chat-blue:hover`  (301)
+- `html.dark-mode .btn-chat-blue:disabled`  (305)
+- `.btn-chat-grey`  (309)
+- `.btn-chat-grey:hover`  (324)
+- `html.dark-mode .btn-chat-grey`  (329)
+- `html.dark-mode .btn-chat-grey:hover`  (333)
+- `html.dark-mode .btn-primary`  (356)
+- `html.dark-mode .btn-primary:hover`  (360)
+- `html.dark-mode .btn-secondary`  (382)
+- `html.dark-mode .btn-secondary:hover`  (386)
+- `html.dark-mode .coming-soon-badge`  (404)
+- `.chat-text`  (411)
+- `html.dark-mode .demo-msg-user`  (461)
+- `html.dark-mode .demo-msg-user:hover`  (465)
+- `html.dark-mode .demo-msg-bot`  (478)
+- `html.dark-mode .demo-chat-history-sidebar`  (493)
+- `html.dark-mode .demo-history-header`  (509)
+- `html.dark-mode .demo-history-item`  (536)
+- `html.dark-mode .demo-history-item:hover`  (540)
+- `html.dark-mode .demo-history-item.active`  (549)
+- `html.dark-mode .demo-chat-input-row`  (564)
+- `html.dark-mode .demo-chat-input`  (590)
+- `html.dark-mode .demo-chat-input:focus`  (596)
+- `html.dark-mode .demo-chat-send`  (629)
+- `html.dark-mode .demo-chat-send:hover`  (633)
+- `html.dark-mode .demo-chat-send:disabled`  (637)
+- `html.dark-mode .demo-chat-messages`  (652)
+- `html.dark-mode .demo-ready-prompt`  (669)
+- `html.dark-mode .demo-ready-prompt strong`  (680)
+- `.section-trail-ball.animating`  (745)
+- `html.dark-mode .section-dot`  (754)
+- `html.dark-mode .section-dot:hover`  (758)
+- `html.dark-mode .section-dot.active`  (762)
+- `html.dark-mode .section-active-ball`  (766)
+- `html.dark-mode .section-trail-ball`  (766)
+- `.scroll-indicator.hidden`  (788)
+- `html.dark-mode .scroll-indicator-text`  (823)
+- `html.dark-mode .scroll-indicator-arrow svg`  (827)
+- `html.dark-mode .back-to-top-arrow svg`  (876)
+- `html.dark-mode .back-to-top-text`  (880)
+- `.footer-content-compact`  (913)
+- `.footer-brand`  (917)
+- `.footer-brand .footer-copyright`  (921)
+- `.footer-logo`  (925)
+- `.footer-logo-adelphos`  (933)
+- `.footer-logo-ai`  (942)
+- `.footer-tagline`  (952)
+- `.footer-links`  (961)
+- `.footer-links-column`  (967)
+- `.footer-links-title`  (971)
+- `.footer-links-list`  (981)
+- `.footer-links-list li`  (987)
+- `.footer-links-list a`  (991)
+- `.footer-links-list a:hover`  (1000)
+- `.footer-bottom`  (1005)
+- `.footer-content-compact + .footer-bottom`  (1018)
+- `.footer-copyright`  (1022)
+- `.footer-legal`  (1030)
+- `.footer-legal a`  (1035)
+- `.footer-legal a:hover`  (1044)
+- `html.dark-mode .site-footer`  (1049)
+- `html.dark-mode .footer-logo-adelphos`  (1054)
+- `html.dark-mode .footer-tagline`  (1058)
+- `html.dark-mode .footer-links-title`  (1062)
+- `html.dark-mode .footer-links-list a`  (1066)
+- `html.dark-mode .footer-links-list a:hover`  (1070)
+- `html.dark-mode .footer-bottom`  (1074)
+- `html.dark-mode .footer-copyright`  (1078)
+- `html.dark-mode .footer-legal a`  (1078)
+- `html.dark-mode .footer-legal a:hover`  (1083)
+- `.footer-brand` @media(@media (max-width: 768px))  (7)
+- `.footer-links` @media(@media (max-width: 768px))  (11)
+- `.footer-links-column` @media(@media (max-width: 768px))  (16)
+- `.footer-bottom` @media(@media (max-width: 768px))  (21)
+- `.signup-modal`  (1116)
+- `.signup-modal.active`  (1131)
+- `.signup-modal-overlay`  (1136)
+- `.signup-modal-content`  (1146)
+- `.signup-modal.active .signup-modal-content`  (1159)
+- `.signup-modal-close`  (1163)
+- `.signup-modal-close:hover`  (1181)
+- `.signup-modal-title`  (1186)
+- `.signup-modal-subtitle`  (1194)
+- `.signup-form`  (1202)
+- `.signup-field`  (1208)
+- `.signup-field label`  (1214)
+- `.signup-field input`  (1221)
+- `.signup-field input::placeholder`  (1233)
+- `.signup-field input:focus`  (1237)
+- `.signup-field select:focus`  (1237)
+- `.signup-field textarea:focus`  (1237)
+- `.signup-field textarea`  (1245)
+- `.signup-field textarea::placeholder`  (1259)
+- `.signup-field select`  (1263)
+- `.signup-field select option`  (1281)
+- `.signup-field-hint`  (1287)
+- `.signup-submit-btn`  (1293)
+- `.signup-submit-btn::before`  (1309)
+- `.signup-submit-btn:hover:not(:disabled)`  (1335)
+- `.signup-submit-btn:disabled`  (1339)
+- `.signup-message`  (1344)
+- `.signup-message.success`  (1352)
+- `.signup-message.error`  (1356)
+- `html:not(.dark-mode) .signup-modal-content`  (1361)
+- `html:not(.dark-mode) .signup-modal-title`  (1366)
+- `html:not(.dark-mode) .signup-modal-subtitle`  (1370)
+- `html:not(.dark-mode) .signup-field label`  (1374)
+- `html:not(.dark-mode) .signup-field input`  (1378)
+- `html:not(.dark-mode) .signup-field input::placeholder`  (1384)
+- `html:not(.dark-mode) .signup-field input:focus`  (1388)
+- `html:not(.dark-mode) .signup-field select:focus`  (1388)
+- `html:not(.dark-mode) .signup-field textarea:focus`  (1388)
+- `html:not(.dark-mode) .signup-field textarea`  (1395)
+- `html:not(.dark-mode) .signup-field textarea::placeholder`  (1401)
+- `html:not(.dark-mode) .signup-field select`  (1405)
+- `html:not(.dark-mode) .signup-field select option`  (1412)
+- `html:not(.dark-mode) .signup-field-hint`  (1417)
+- `.signup-modal-content` @media(@media (max-width: 480px))  (2)
+- `.signup-modal-title` @media(@media (max-width: 480px))  (7)
+- `.footer-logo-adelphos` @media(@media (max-width: 767px))  (79)
+- `.footer-logo-ai` @media(@media (max-width: 767px))  (79)
+- `.footer-bottom` @media(@media (max-width: 767px))  (84)
+- `html.dark-mode .hamburger-btn span`  (1580)
+- `html.dark-mode .mobile-menu-overlay`  (1615)
+- `html.dark-mode .mobile-menu-overlay .mobile-menu-link`  (1639)
+- `html.dark-mode .mobile-menu-overlay .mobile-menu-link:hover`  (1643)
+- `html.dark-mode .mobile-menu-overlay .mobile-menu-divider`  (1654)
+
+### `css/thinking-animation.css` — 84 orphans
+- `.thinking-container.collapsing`  (24)
+- `.thinking-container.hidden`  (29)
+- `html.dark-mode .thinking-container`  (37)
+- `html.dark-mode .steps-count`  (69)
+- `html.dark-mode .thinking-header`  (81)
+- `html.dark-mode .thinking-header:hover`  (85)
+- `html.dark-mode .thinking-header:hover .steps-toggle`  (89)
+- `html.dark-mode .pulsing-node::before`  (143)
+- `html.dark-mode .pulsing-node::after`  (148)
+- `html.dark-mode .steps-toggle`  (177)
+- `.steps-list.animating-1`  (210)
+- `.steps-list.animating-2`  (219)
+- `.steps-list.animating`  (228)
+- `.steps-list.fully-expanded`  (237)
+- `.steps-list li.preview-hidden`  (283)
+- `.steps-list.fully-expanded li.preview-hidden`  (288)
+- `html.dark-mode .steps-list li`  (294)
+- `html.dark-mode .steps-list li::before`  (298)
+- `html.dark-mode .step-icon.dot`  (340)
+- `html.dark-mode .step-icon.check`  (344)
+- `html.dark-mode .step-icon.edit`  (348)
+- `html.dark-mode .step-icon.error`  (364)
+- `html.dark-mode .step-changes .changes-box`  (420)
+- `html.dark-mode .step-changes .added`  (425)
+- `html.dark-mode .step-changes .removed`  (429)
+- `html.dark-mode .step-changes .filename`  (433)
+- `.thought-status`  (439)
+- `.thinking-container.complete .thought-status`  (445)
+- `.thought-status-text`  (449)
+- `html.dark-mode .thought-status`  (473)
+- `html.dark-mode .thought-status-text`  (477)
+- `.thought-trail`  (494)
+- `.thinking-container.complete .thought-trail`  (501)
+- `.thought-trail-header`  (505)
+- `.thought-trail-label`  (512)
+- `.thought-duration`  (519)
+- `.thought-trail-expand`  (523)
+- `.thought-trail-header:hover .thought-trail-expand`  (530)
+- `.thought-trail.expanded .thought-trail-expand`  (534)
+- `.thought-trail-content`  (539)
+- `.thought-trail.expanded .thought-trail-content`  (546)
+- `.thought-trail-content p`  (552)
+- `html.dark-mode .thought-trail`  (562)
+- `html.dark-mode .thought-trail-label`  (566)
+- `html.dark-mode .thought-duration`  (570)
+- `html.dark-mode .thought-trail-expand`  (574)
+- `html.dark-mode .thought-trail-content p`  (578)
+- `.files-changed-section`  (583)
+- `.files-changed-section.visible`  (598)
+- `.files-changed-header`  (603)
+- `.files-changed-count`  (612)
+- `.files-changed-actions`  (619)
+- `.files-action-btn`  (624)
+- `.files-action-btn:hover`  (636)
+- `.files-action-btn.primary`  (640)
+- `.files-action-btn.primary:hover`  (647)
+- `.files-changed-list`  (651)
+- `.file-changed-item`  (655)
+- `.file-changed-item:hover`  (665)
+- `.file-lang-icon`  (669)
+- `.file-lang-icon.js`  (682)
+- `.file-lang-icon.html`  (683)
+- `.file-lang-icon.css`  (684)
+- `.file-lang-icon.py`  (685)
+- `.file-lang-icon.rvt`  (686)
+- `.file-lang-icon.dwg`  (687)
+- `.file-lang-icon.pdf`  (688)
+- `.file-lang-icon.xlsx`  (689)
+- `.file-lang-icon.docx`  (690)
+- `.file-lang-icon.default`  (691)
+- `.file-name`  (693)
+- `.file-changes`  (701)
+- `.file-changes .added`  (706)
+- `.file-changes .removed`  (710)
+- `html.dark-mode .files-changed-section`  (715)
+- `html.dark-mode .files-changed-header`  (720)
+- `html.dark-mode .files-changed-count`  (725)
+- `html.dark-mode .files-action-btn`  (729)
+- `html.dark-mode .files-action-btn:hover`  (733)
+- `html.dark-mode .files-action-btn.primary`  (737)
+- `html.dark-mode .files-action-btn.primary:hover`  (741)
+- `html.dark-mode .file-changed-item:hover`  (745)
+- `html.dark-mode .file-name`  (749)
+- `html.dark-mode .file-changes`  (753)
+
+### `dist/agentic-services/document-controller/index.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `dist/agentic-services/email-cobie/index.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `dist/agentic-services/email-revit-modelling/index.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `dist/agentic-services/email-schematics/index.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `dist/agentic-services/email-specifications/index.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `dist/agentic-services/finances/index.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `dist/agentic-services/project-management/index.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `dist/apps/adelphos-chat/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/autocad-copilot/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/cobie-manager/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/document-controller/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/excel-add-in/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/index.html<style#0>` — 2 orphans
+- `html.dark-mode .flagship`  (111)
+- `html.dark-mode .app-tile .visual`  (114)
+
+### `dist/apps/qa-manager/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/report-builder/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/revit-copilot/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/schedule-builder/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/specbuilder/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/apps/word-add-in/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/features/autoroute/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/features/clash-solver/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/features/index.html<style#0>` — 2 orphans
+- `html.dark-mode .flagship`  (111)
+- `html.dark-mode .app-tile .visual`  (114)
+
+### `dist/features/pdf-to-3d/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/features/plantroom-designer-3d/index.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `dist/index.html<style#1>` — 10 orphans
+- `.home-hero .draggable-chat.is-dragging`  (144)
+- `.banner-card.hero-banner`  (308)
+- `.banner-card.hero-banner .copy`  (313)
+- `.banner-card.hero-banner h2`  (326)
+- `.banner-card.hero-banner .claim`  (333)
+- `.home-section-head a.see-all`  (395)
+- `.home-section-head a.see-all:hover`  (399)
+- `.scene-modal.open`  (537)
+- `.row-1up`  (579)
+- `html.dark-mode .end-cta`  (667)
+
+### `dist/workflows/schedules/index.html<style#0>` — 28 orphans
+- `.phase > h3.phase-title`  (41)
+- `.phase .phase-num`  (45)
+- `.phase .phase-video`  (50)
+- `.phase .phase-video video`  (55)
+- `.phase .phase-video img`  (55)
+- `.phase .phase-video .poster-fallback`  (55)
+- `.phase .phase-video .poster-fallback`  (58)
+- `.step`  (65)
+- `.step h4`  (73)
+- `.step h4 .step-num`  (77)
+- `.step .step-media`  (83)
+- `.step .step-media img`  (91)
+- `.step .step-media .ph`  (91)
+- `.step .step-media .ph`  (93)
+- `.tools-row`  (99)
+- `.tools-row .lab`  (104)
+- `.tools-row code`  (109)
+- `.agent-says`  (115)
+- `.try-prompt`  (115)
+- `.agent-says`  (121)
+- `.agent-says .lab`  (124)
+- `.try-prompt .lab`  (124)
+- `.try-prompt`  (130)
+- `.try-prompt .lab`  (134)
+- `.conditions`  (136)
+- `.conditions strong`  (140)
+- `.when-triggers`  (142)
+- `.when-triggers strong`  (149)
+
+### `index.html<style#0>` — 10 orphans
+- `html.fonts-loaded`  (4)
+- `html.dark-mode`  (5)
+- `html.dark-mode body`  (5)
+- `html.dark-mode canvas`  (6)
+- `html.dark-mode .riba-card-left`  (8)
+- `html.dark-mode .riba-clone-expanded`  (8)
+- `html.dark-mode .riba-backdrop`  (9)
+- `html.dark-mode .coming-soon-dropdown .blurb`  (27)
+- `html.dark-mode .coming-soon-dropdown`  (30)
+- `html.dark-mode .coming-soon-dropdown li`  (31)
+
+### `sandbox/roadmap/index.html<style#0>` — 10 orphans
+- `html.fonts-loaded`  (4)
+- `html.dark-mode`  (5)
+- `html.dark-mode body`  (5)
+- `html.dark-mode canvas`  (6)
+- `html.dark-mode .riba-card-left`  (8)
+- `html.dark-mode .riba-clone-expanded`  (8)
+- `html.dark-mode .riba-backdrop`  (9)
+- `html.dark-mode .coming-soon-dropdown .blurb`  (27)
+- `html.dark-mode .coming-soon-dropdown`  (30)
+- `html.dark-mode .coming-soon-dropdown li`  (31)
+
+### `sandbox/sandbox.css` — 65 orphans
+- `html.dark-mode`  (83)
+- `html.dark-mode body`  (107)
+- `html.dark-mode .coming-soon-dropdown`  (138)
+- `html.dark-mode .coming-soon-dropdown .blurb`  (139)
+- `html.dark-mode .coming-soon-dropdown li`  (140)
+- `.menu-item-dropdown`  (143)
+- `.menu-item-dropdown > .menu-link`  (144)
+- `.menu-item-dropdown::after`  (147)
+- `.menu-item-dropdown:hover::after`  (155)
+- `.menu-item-dropdown:focus-within::after`  (155)
+- `.menu-item-dropdown .dropdown-panel`  (158)
+- `.menu-item-dropdown .dropdown-panel *`  (174)
+- `.menu-item-dropdown:hover .dropdown-panel`  (175)
+- `.menu-item-dropdown:focus-within .dropdown-panel`  (175)
+- `.menu-item-dropdown .dropdown-panel .blurb`  (180)
+- `.menu-item-dropdown .dropdown-list`  (186)
+- `.menu-item-dropdown .dropdown-list li`  (187)
+- `.menu-item-dropdown .dropdown-list a`  (188)
+- `.menu-item-dropdown .dropdown-list a:hover`  (194)
+- `.menu-item-dropdown .dropdown-list a strong`  (195)
+- `.menu-item-dropdown .dropdown-list a .ds`  (199)
+- `html.dark-mode .menu-item-dropdown .dropdown-panel`  (203)
+- `.sandbox-bar ~ .docs-layout`  (270)
+- `.sandbox-bar`  (280)
+- `.sandbox-bar strong`  (288)
+- `.sandbox-bar a`  (289)
+- `.sandbox-bar .spacer`  (290)
+- `.docs-left .nav-section`  (300)
+- `.docs-left .nav-section-title`  (301)
+- `.docs-left .nav-link`  (306)
+- `.docs-left .nav-link:hover`  (313)
+- `.docs-left .nav-link.active`  (316)
+- `.docs-left .nav-link .nav-count`  (319)
+- `.docs-left .nav-link.active .nav-count`  (324)
+- `.docs-left .nav-sub`  (327)
+- `.docs-right .toc-title`  (335)
+- `.docs-right .toc-link`  (339)
+- `.docs-right .toc-link:hover`  (345)
+- `.docs-right .toc-link.active`  (346)
+- `.docs-right .toc-link.toc-h3`  (351)
+- `main.sandbox-main`  (355)
+- `main.sandbox-main h1`  (361)
+- `main.sandbox-main h2`  (367)
+- `main.sandbox-main h3`  (373)
+- `main.sandbox-main p`  (374)
+- `main.sandbox-main a`  (375)
+- `html.dark-mode .callout code`  (526)
+- `html.dark-mode .callout::after`  (542)
+- `html.dark-mode .demo-card::after`  (660)
+- `html.dark-mode .sandbox-tile::after`  (786)
+- `.sandbox-footer`  (833)
+- `.sandbox-footer .footer-inner`  (839)
+- `.sandbox-footer .footer-grid`  (840)
+- `.sandbox-footer .footer-brand`  (845)
+- `.sandbox-footer .footer-brand .ai`  (851)
+- `.sandbox-footer .footer-tag`  (852)
+- `.sandbox-footer h4`  (853)
+- `.sandbox-footer ul`  (857)
+- `.sandbox-footer li`  (858)
+- `.sandbox-footer a`  (859)
+- `.sandbox-footer a:hover`  (863)
+- `.sandbox-footer .footer-bottom`  (864)
+- `.sandbox-footer .footer-bottom .legal a`  (869)
+- `.sandbox-footer .footer-grid` @media(@media (max-width: 900px))  (2)
+- `.sandbox-footer .footer-brand` @media(@media (max-width: 900px))  (3)
+
+### `templates/agentic-service-page.html<style#0>` — 2 orphans
+- `html.dark-mode .svc-hero-card`  (195)
+- `html.dark-mode .end-cta`  (196)
+
+### `templates/app-page.html<style#0>` — 2 orphans
+- `html.dark-mode .app-hero-card`  (15)
+- `html.dark-mode .end-cta`  (255)
+
+### `templates/apps-inventory.html<style#0>` — 2 orphans
+- `html.dark-mode .flagship`  (111)
+- `html.dark-mode .app-tile .visual`  (114)
+
+### `templates/home.html<style#0>` — 10 orphans
+- `.home-hero .hero-video .fallback`  (102)
+- `.banner-card.hero-banner`  (128)
+- `.banner-card.hero-banner .copy`  (133)
+- `.banner-card.hero-banner h2`  (146)
+- `.banner-card.hero-banner .claim`  (153)
+- `.home-section-head a.see-all`  (215)
+- `.home-section-head a.see-all:hover`  (219)
+- `.scene-modal.open`  (357)
+- `.row-1up`  (399)
+- `html.dark-mode .end-cta`  (487)
+
+### `templates/workflow-page.html<style#0>` — 28 orphans
+- `.phase > h3.phase-title`  (41)
+- `.phase .phase-num`  (45)
+- `.phase .phase-video`  (50)
+- `.phase .phase-video video`  (55)
+- `.phase .phase-video img`  (55)
+- `.phase .phase-video .poster-fallback`  (55)
+- `.phase .phase-video .poster-fallback`  (58)
+- `.step`  (65)
+- `.step h4`  (73)
+- `.step h4 .step-num`  (77)
+- `.step .step-media`  (83)
+- `.step .step-media img`  (91)
+- `.step .step-media .ph`  (91)
+- `.step .step-media .ph`  (93)
+- `.tools-row`  (99)
+- `.tools-row .lab`  (104)
+- `.tools-row code`  (109)
+- `.agent-says`  (115)
+- `.try-prompt`  (115)
+- `.agent-says`  (121)
+- `.agent-says .lab`  (124)
+- `.try-prompt .lab`  (124)
+- `.try-prompt`  (130)
+- `.try-prompt .lab`  (134)
+- `.conditions`  (136)
+- `.conditions strong`  (140)
+- `.when-triggers`  (142)
+- `.when-triggers strong`  (149)

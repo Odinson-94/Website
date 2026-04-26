@@ -1,0 +1,31 @@
+{
+  "class": "DuctRouteDrawPlaceholderInCurrentViewCommand",
+  "desc": "Draw one straight duct placeholder from (startXYZ) to (endXYZ).",
+  "summary": "Draw one straight duct placeholder from (startXYZ) to (endXYZ).",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "ductroutedrawplaceholderincurrentview",
+    "draw duct placeholder"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

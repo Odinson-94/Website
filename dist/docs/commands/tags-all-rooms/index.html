@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tags All Rooms — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Tags All Rooms</div>
+
+  <h1 id="overview">Tags All Rooms</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Phase 8 Command: Tags all rooms in the current view. Supports rooms from both host document and linked models. Uses room tag families filtered by &quot;room&quot; keyword.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open with a valid plan or section view active. At least one room must exist in the model (host or linked). At least one room tag family must be loaded in the document. View must support annotation (not 3D or schedules).</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>All visible rooms in the current view are tagged with room tags. Rooms from linked models are tagged using room tags in the host document. Tags are placed at room center points. Summary dialog shows count of tags created and any failures.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/tags-all-rooms/thumbnail.svg"
+           data-src="/sandbox/demo-assets/tags-all-rooms/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop tags-all-rooms/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to tag all rooms in a floor plan quickly.</li>
+    <li>User needs to add room tags to rooms from linked architectural model.</li>
+    <li>User wants to verify all rooms are properly tagged before issue.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Custom UI required for rich tag-type picker. AI path is JSON-first and dialog-free.</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>View</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>View</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>View to tag rooms in (defaults to active view)</td>
+  </tr><tr>
+    <td><code>TagType</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>FamilySymbol</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>Room tag type to use</td>
+  </tr><tr>
+    <td><code>WithLeader</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>bool</code></td>
+    <td class="req-no">no</td>
+    <td>false</td>
+    <td>Whether to add leader lines to tags</td>
+  </tr><tr>
+    <td><code>IncludeLinkedRooms</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>bool</code></td>
+    <td class="req-no">no</td>
+    <td>true</td>
+    <td>Whether to include rooms from linked models</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>TagsCreated</code></td><td><code>int</code></td><td>Number of room tags successfully created</td></tr><tr><td><code>TagsFailed</code></td><td><code>int</code></td><td>Number of rooms that could not be tagged</td></tr><tr><td><code>RoomsTagged</code></td><td><code>List&lt;string&gt;</code></td><td>Names of rooms that were tagged</td></tr></tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree"><span class="lt-check">check:</span> activeView.isValidForAnnotation → proceed<span class="lt-check">check:</span> activeView.is3D || activeView.isSchedule → fail &quot;Cannot tag in this view type&quot;<span class="lt-check">check:</span> loadedRoomTags.count == 0 → fail &quot;No room tag families loaded&quot;<span class="lt-check">check:</span> visibleRooms.count == 0 → fail &quot;No rooms visible in current view&quot;<span class="lt-check">check:</span> selectedTagType != null → useSelectedTagType<span class="lt-check">check:</span> selectedTagType == null → useFirstAvailableTagType<span class="lt-resolve">resolve:</span> includeLinkedRooms == true → GetAllIncludingLinks, else → GetAll</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Tagging all rooms in the current view...<br>Starting room annotation workflow...</div>
+    <div class="lab">thinking</div><div class="msg">Validating view supports annotation...<br>Finding available room tag families...<br>Collecting rooms from host and linked models...<br>Filtering rooms visible in current view...<br>Placing room tags at centroids...</div>
+    <div class="lab">on success</div><div class="msg">Tagged <span class="placeholder">{TagsCreated}</span> rooms in view. <span class="placeholder">{TagsFailed}</span> skipped.</div>
+    <div class="lab">on failure</div><div class="msg">Room tagging failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/tags_all_rooms</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">tag rooms · room tags · tag all rooms · annotation · linked rooms · architectural rooms · room annotation<br><span style="font-size:12px;">Patterns: <code>tag * rooms</code> · <code>tag all rooms</code> · <code>add room tags</code> · <code>annotate rooms</code> · <code>room tag * all</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>CreateSectionFromGridlineCommand</code> · <code>PlaceViewOnSheetCommand</code> · <code>TagAllCommand</code></td></tr><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

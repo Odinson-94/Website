@@ -1,0 +1,33 @@
+{
+  "name": "finish_branch",
+  "desc": "Branch agent self-terminator. Call this LAST, after applying all changes, to set the result summary, close the tool window, and return control to the parent chat which will auto-resume. Only available inside branch sessions (Parameter Editor, Drawing Exporter).",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "windowType",
+      "type": "string",
+      "description": "The window this branch is running inside. Must match the handoff TargetContext. Valid values: 'ParameterEditor', 'DrawingExporter'.",
+      "required": true
+    },
+    {
+      "name": "summary",
+      "type": "string",
+      "description": "One-sentence past-tense summary of what was done. This is what the parent chat receives as the branch result. Example: 'Updated Checked By to Jordan James on 12 drainage sheets.'",
+      "required": true
+    }
+  ],
+  "keywords": [
+    "finish",
+    "complete",
+    "done",
+    "close branch",
+    "end branch",
+    "handoff complete",
+    "branch finished",
+    "task complete",
+    "merge back"
+  ]
+}

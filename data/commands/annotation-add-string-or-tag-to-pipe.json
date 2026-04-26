@@ -1,0 +1,45 @@
+{
+  "class": "AnnotationAddStringOrTagToPipeCommand",
+  "desc": "AnnotationAddStringOrTagToPipeCommand — write to pipe Comments.",
+  "summary": "AnnotationAddStringOrTagToPipeCommand — write to pipe Comments.",
+  "usecase": "Annotating a pipe post-analysis.",
+  "notfor": "Visible tag families — that's a TagAll workflow.",
+  "precondition": "Pipe resolvable; Comments parameter writable.",
+  "postcondition": "One parameter write inside a Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve pipe (resolver or selection).\n2) Read Comments param; append or overwrite based on Resolver_Append.\n3) Single Transaction; Commit / rollback.\n4) Emit final_comment.",
+  "keywords": [
+    "annotationaddstringortagtopipe",
+    "annotate pipe",
+    "pipe comments set"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"placement_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Adding annotation comment to pipe…"
+    ],
+    "thinkingsteps": [
+      "Resolving pipe + Comments param…"
+    ],
+    "successprompts": [
+      "Comment set."
+    ],
+    "failureprompts": [
+      "Annotation failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

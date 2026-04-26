@@ -1,0 +1,35 @@
+{
+  "class": "ProjectSettingsSetSharedParameterFilePathCommand",
+  "desc": "Set the application-scoped shared parameter file path.",
+  "summary": "Set the application-scoped shared parameter file path.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings set shared parameter file path",
+    "project_settings_set_shared_parameter_file_path"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running project settings set shared parameter file path…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "project settings set shared parameter file path: done."
+    ],
+    "failureprompts": [
+      "project settings set shared parameter file path failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

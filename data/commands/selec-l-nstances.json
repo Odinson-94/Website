@@ -1,0 +1,80 @@
+{
+  "class": "SelectAllInstancesCommand",
+  "desc": "Selects ALL instances of a family (and optionally a specific type) across the entire model.",
+  "summary": "Selects ALL instances of a family (and optionally a specific type) across the entire model. If no parameters given, uses the first selected FamilyInstance to determine family/type. Uses CommandExecutor to read parameters from Claude. Uses FilteredElementCollector to scan the entire project. Related: SelectByCategoryCommand for category-wide selection. Related: FilterSelectionCommand for narrowing an existing selection.",
+  "usecase": "User selects one socket and says \"select all of these in the model\". User wants to count all instances of a specific family type across all levels. User wants to bulk-edit all instances of a specific family.",
+  "notfor": "Selecting in current view only (use SelectByFamilyNameCommand with scope=view). Category-wide selection (use SelectByCategoryCommand). Filtering an existing selection (use FilterSelectionCommand).",
+  "precondition": "Active document must be open. Either familyName parameter must be provided, or user must have a FamilyInstance selected.",
+  "postcondition": "Revit selection is replaced with ALL instances of the matching family/type in the entire model. Returns JSON with totalSelected and breakdown by level and type.",
+  "sideeffects": "",
+  "logictree": "check: parameters.familyName → use directly\rcheck: selection has FamilyInstance → derive family/type from it\rcheck: parameters.typeName → if set, match type too (not just family)\rdefault: match family name only (all types)",
+  "keywords": [
+    "select all instances",
+    "all in model",
+    "all of this family",
+    "same family",
+    "select all same",
+    "every instance"
+  ],
+  "intent_patterns": [
+    "select all instances *",
+    "select all * in model",
+    "select every *",
+    "select all of these"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "familyName",
+      "type": "string",
+      "description": "Family name to match (or leave empty to use current selection)",
+      "default": ""
+    },
+    {
+      "name": "typeName",
+      "type": "string",
+      "description": "Optional type name for exact match",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "All matching instance IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Count and breakdown by level"
+    }
+  ],
+  "related_commands": [
+    "SelectByCategoryCommand",
+    "SelectByFamilyNameCommand",
+    "FilterSelectionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Selecting all matching instances in the model...",
+      "Finding every instance of this family..."
+    ],
+    "thinkingsteps": [
+      "Resolving family name...",
+      "Scanning entire model for instances...",
+      "Filtering by family and type...",
+      "Setting Revit selection..."
+    ],
+    "successprompts": [
+      "Selected {totalSelected} instances of {familyName} across the model.",
+      "Done — {totalSelected} instances found and selected."
+    ],
+    "failureprompts": [
+      "Could not select instances: {error}",
+      "Instance selection failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

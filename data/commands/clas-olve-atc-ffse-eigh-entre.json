@@ -1,0 +1,46 @@
+{
+  "class": "ClashSolverMatchOffsetHeightByCentreCommand",
+  "desc": "ClashSolverMatchOffsetHeightByCentreCommand — PDF \"MATCH_OFFSET_HEIGHT_CENTRE\".",
+  "summary": "ClashSolverMatchOffsetHeightByCentreCommand — PDF \"MATCH_OFFSET_HEIGHT_CENTRE\".",
+  "usecase": "Solver pair vertical-centre alignment.",
+  "notfor": "Top / Underside alignment — use the sibling commands.",
+  "precondition": "Active document; reference + mover(s) resolvable; all have BoundingBox.",
+  "postcondition": "Delegates a (0,0,ΔZ) MoveElement sequence inside the inner command's Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ReferenceUniqueId + Resolver_MoverUniqueIds[] required OR 2-or-more selection (first = reference).\n2) Resolve ids to ElementIds; WireError on any missing.\n3) Instantiate ElementAlignmentMatchHeightByCentreCommand with those ids.\n4) Delegate Execute; tag tracker with solver context (clash_id, delegated_to).",
+  "keywords": [
+    "clashsolvermatchoffsetheightbycentre",
+    "match offset height centre",
+    "solver height centre"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Matching solver pair to vertical centre…"
+    ],
+    "thinkingsteps": [
+      "Resolving reference + movers…",
+      "Delegating to ElementAlignmentMatchHeightByCentreCommand…"
+    ],
+    "successprompts": [
+      "Height-centre alignment delegated."
+    ],
+    "failureprompts": [
+      "Height-centre alignment failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

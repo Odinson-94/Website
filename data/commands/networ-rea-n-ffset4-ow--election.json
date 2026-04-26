@@ -1,0 +1,38 @@
+{
+  "class": "NetworkBreakAndOffset45DownOnSelectionCommand",
+  "desc": "NetworkBreakAndOffset45DownOnSelectionCommand — break the selected pipe(s) and insert a 45° downward ramp that re-joins below.",
+  "summary": "NetworkBreakAndOffset45DownOnSelectionCommand — break the selected pipe(s) and insert a 45° downward ramp that re-joins below.",
+  "usecase": "User needs to dodge a clash by stepping a run down-and-under.",
+  "notfor": "Rectangular-duct offsets (need a separate fitting-lookup strategy).",
+  "precondition": "Active document must be open. At least one pipe selected in the UI.",
+  "postcondition": "Selected pipes are broken and re-joined through a 45° down-ramp of the requested ΔZ.",
+  "sideeffects": "",
+  "logictree": "1) Pull selection → require ≥1 Pipe. 2) Resolve ΔZ (resolver, default 150 mm). 3) For each pipe: compute plan via GetBreakAndOffsetGeometry. 4) Open Transaction \"Break & Offset 45° Down\". 5) Apply each plan via ApplyBreakAndOffsetToPipe. 6) Commit, report counts. 7) Failure → ErrorWire.WireFault + CentralWarningLogger.LogError.",
+  "keywords": [
+    "networkbreakandoffset45downonselection"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running NetworkBreakAndOffset45DownOnSelectionCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating selection...",
+      "Computing 45° down ramp geometry...",
+      "Applying ramps inside transaction..."
+    ],
+    "successprompts": [
+      "NetworkBreakAndOffset45DownOnSelectionCommand completed successfully."
+    ],
+    "failureprompts": [
+      "NetworkBreakAndOffset45DownOnSelectionCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

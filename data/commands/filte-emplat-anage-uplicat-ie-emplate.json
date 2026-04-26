@@ -1,0 +1,36 @@
+{
+  "class": "FilterTemplateManagerDuplicateViewTemplateCommand",
+  "desc": "Duplicates an existing view template under a new name.",
+  "summary": "Duplicates an existing view template under a new name.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "A view template named in SourceTemplateName must exist.",
+  "postcondition": "A new view template with copied graphic + filter settings exists.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "duplicate view template",
+    "filter_template_manager_duplicate_view_template",
+    "clone template"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Duplicating template…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Template duplicated."
+    ],
+    "failureprompts": [
+      "Couldn't duplicate template: {error}"
+    ]
+  },
+  "has_restapi": false
+}

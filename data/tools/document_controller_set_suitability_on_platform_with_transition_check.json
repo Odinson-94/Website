@@ -1,0 +1,41 @@
+{
+  "name": "document_controller_set_suitability_on_platform_with_transition_check",
+  "desc": "Sets suitability code (S0-S7) on a document. Validates transition rules before making the API call.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 5,
+  "parameters": [
+    {
+      "name": "documentId",
+      "type": "string",
+      "description": "Platform document identifier",
+      "required": true
+    },
+    {
+      "name": "currentSuitability",
+      "type": "string",
+      "description": "Current suitability code",
+      "required": true
+    },
+    {
+      "name": "targetSuitability",
+      "type": "string",
+      "description": "Target suitability code to set",
+      "required": true
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Platform: vfp, asite, acc",
+      "required": true
+    },
+    {
+      "name": "projectId",
+      "type": "string",
+      "description": "Project identifier for rule lookup",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

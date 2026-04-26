@@ -1,0 +1,22 @@
+{
+  "name": "compare_standards_between_source_and_target_project",
+  "desc": "Diff source vs target project: identifies new items, conflicts (same name exists), and unchanged items per category.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "source_path",
+      "type": "string",
+      "description": "Path to the source .rvt file",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "compare standards",
+    "diff template",
+    "what conflicts",
+    "transfer preview"
+  ]
+}

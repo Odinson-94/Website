@@ -1,0 +1,8 @@
+{
+  "slug": "clash-report",
+  "category": "reports",
+  "title": "Clash Report",
+  "desc": "Issue-quality PDF + BCF clash report from the latest run.",
+  "duration": "1:12",
+  "status": "live"
+}

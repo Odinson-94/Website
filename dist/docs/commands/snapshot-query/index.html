@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snapshot Query — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Snapshot Query</div>
+
+  <h1 id="overview">Snapshot Query</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">External command that queries the SQLite model snapshot. Runs in Add-In Manager ALC context so Microsoft.Data.Sqlite resolves correctly. Requires a prior export via SnapshotExportCommand. Tools.MCPSnapshotQuery routes here via execute_command. Uses SnapshotDatabase.QueryAsJson for raw SQL and structured queries. Uses SnapshotRegistry to retrieve the current snapshot instance.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>A snapshot must have been exported via SnapshotExportCommand (snapshot_export). The SnapshotRegistry.Current must be non-null and IsReady.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Returns JSON query results via CommandExecutor.SetResultObject. No model changes — read-only operation on the SQLite database.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/snapshot-query/thumbnail.svg"
+           data-src="/sandbox/demo-assets/snapshot-query/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop snapshot-query/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>User wants to query elements by category, level, or parameter value from the snapshot.</li>
+    <li>User wants to run raw SQL joins across elements and parameters tables.</li>
+    <li>User wants snapshot metadata (element counts, export time, scope).</li>
+    <li>AI sub-agents need fast parallel reads without hitting the Revit thread.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Exporting/creating a snapshot (use SnapshotExportCommand instead). Writing parameter changes (use snapshot_write/snapshot_apply instead). Live Revit model queries that need real-time data (use MCP context tools instead).</p></div>
+  
+
+  <h2 id="inputs">Inputs</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Kind</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+    <tbody><tr>
+    <td><code>sql</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>Raw SQL query (SELECT only)</td>
+  </tr><tr>
+    <td><code>table</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>Table to query (structured mode)</td>
+  </tr><tr>
+    <td><code>filters</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>JSON column=value filters for structured query</td>
+  </tr><tr>
+    <td><code>include_parameters</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>Comma-separated parameter names to join</td>
+  </tr><tr>
+    <td><code>limit</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>&quot;200&quot;</td>
+    <td>Max rows returned</td>
+  </tr><tr>
+    <td><code>info</code></td>
+    <td><span class="pill pill-category">config</span></td>
+    <td><code>string</code></td>
+    <td class="req-no">no</td>
+    <td>null</td>
+    <td>Set to 'true' for snapshot metadata</td>
+  </tr></tbody>
+  </table>
+
+  <h2 id="returns">Returns</h2>
+  <table class="ref-table">
+    <thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody><tr><td><code>QueryResult</code></td><td><code>JSON</code></td><td>Query results as JSON array or metadata object</td></tr></tbody>
+  </table>
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree"><span class="lt-check">check:</span> info == &quot;true&quot; → return snapshot metadata<span class="lt-check">check:</span> sql provided → validate read-only → execute raw SQL<span class="lt-check">check:</span> table provided → build structured query with filters → executefallback: → return snapshot metadata (info)</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Querying model snapshot...<br>Running snapshot query...<br>Fetching data from snapshot database...</div>
+    <div class="lab">thinking</div><div class="msg">Checking snapshot availability...<br>Parsing query parameters...<br>Executing SQLite query...<br>Formatting results...</div>
+    <div class="lab">on success</div><div class="msg">Query returned <span class="placeholder">{RowCount}</span> rows.</div>
+    <div class="lab">on failure</div><div class="msg">Snapshot query failed: <span class="placeholder">{error}</span></div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/snapshot_query</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">snapshot query · query snapshot · sqlite query · model snapshot query · elements query · parameters query · rooms query · levels query<br><span style="font-size:12px;">Patterns: <code>query * snapshot</code> · <code>snapshot * query</code> · <code>search * snapshot</code> · <code>find * in snapshot</code> · <code>get * from snapshot</code></span></p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th style="width:140px;">Related commands</th><td><code>SnapshotExportCommand</code></td></tr><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

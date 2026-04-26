@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{seo_head}}
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+{{json_ld}}
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  /* APP DETAIL PAGE ──────────────────────────────────────────────────────
+     Crown-jewel app page. Hero with bold claim, outcomes strip, before/after
+     shift, what-makes-it-special, and a strong CTA.
+     Source: sandbox/data/apps.json (per-app object)
+  */
+
+  /* full-bleed prose for this page */
+  .demo-detail .lead, .demo-detail > p, .demo-detail > ul, .demo-detail > ol { max-width: none; }
+
+  /* Cinematic hero — dark navy in light mode, brighter blue in dark mode */
+  .app-hero-card {
+    background: linear-gradient(135deg, #0e1c25 0%, #1a3441 50%, #156082 100%);
+    border-radius: var(--radius-lg); overflow: hidden;
+    margin: 0 0 var(--space-2xl);
+    box-shadow: 0 20px 60px rgba(21,96,130,0.18);
+    position: relative;
+  }
+  html.dark-mode .app-hero-card {
+    background: linear-gradient(135deg, #156082 0%, #1f7ba8 55%, #2c9bcf 100%);
+  }
+  .app-hero-card::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 80% 0%, rgba(255,255,255,0.10), transparent 50%),
+      radial-gradient(circle at 0% 100%, rgba(21,96,130,0.30), transparent 50%);
+    pointer-events: none;
+  }
+  .app-hero-card .inner { position: relative; padding: 56px 56px 48px; color: #fff; }
+  .app-hero-card .crumb {
+    font-size: 12px; color: rgba(255,255,255,0.65);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;
+  }
+  .app-hero-card .crumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .app-hero-card .crumb a:hover { color: #fff; text-decoration: underline; }
+
+  .app-hero-card .head {
+    display: grid; grid-template-columns: 80px 1fr; gap: 24px; align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+  .app-hero-card .head img {
+    width: 80px; height: 80px; border-radius: var(--radius-md); object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+  }
+  .app-hero-card h1 {
+    margin: 0; font-size: 56px; font-weight: 600; letter-spacing: -0.03em;
+    line-height: 1.05; color: #fff;
+  }
+  .app-hero-card .surf {
+    display: block; font-size: 12px; color: rgba(255,255,255,0.65);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px;
+  }
+  .app-hero-card .claim {
+    font-size: 26px; font-weight: 300; line-height: 1.35; letter-spacing: -0.015em;
+    color: rgba(255,255,255,0.95); margin: 0 0 var(--space-md); max-width: 760px;
+  }
+  .app-hero-card .tag {
+    font-size: 17px; line-height: 1.55; color: rgba(255,255,255,0.80);
+    margin: 0 0 var(--space-lg); max-width: 720px;
+  }
+  .app-hero-card .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .app-hero-card .btn-primary {
+    background: #fff; color: #156082; padding: 12px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .app-hero-card .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.20); }
+  .app-hero-card .btn-secondary {
+    background: rgba(255,255,255,0.12); color: #fff; padding: 12px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.20);
+    transition: background 0.18s;
+  }
+  .app-hero-card .btn-secondary:hover { background: rgba(255,255,255,0.20); }
+  @media (max-width: 720px) {
+    .app-hero-card .inner { padding: 32px; }
+    .app-hero-card .head { grid-template-columns: 60px 1fr; gap: 16px; }
+    .app-hero-card h1 { font-size: 32px; }
+    .app-hero-card .claim { font-size: 20px; }
+  }
+
+  /* Outcomes strip directly under hero */
+  .outcomes-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius-md); overflow: hidden;
+    margin: -1.5rem 0 var(--space-2xl); position: relative; z-index: 2;
+    box-shadow: var(--shadow-sm);
+  }
+  .outcomes-strip .ostat { padding: 24px 26px; border-right: 1px solid var(--border); }
+  .outcomes-strip .ostat:last-child { border-right: none; }
+  .outcomes-strip .ostat .num {
+    display: block; font-size: 32px; font-weight: 600; line-height: 1.05;
+    color: var(--brand-teal); letter-spacing: -0.015em;
+  }
+  .outcomes-strip .ostat .lbl {
+    display: block; font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;
+  }
+
+  /* Hero video — same width / radius as everything else */
+  .demo-detail .hero-video { max-width: none; border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+
+  /* The shift (before / after) */
+  .shift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin: var(--space-md) 0 var(--space-xl); }
+  .shift { padding: 24px 26px; border-radius: var(--radius-md); border: 1px solid var(--border); }
+  .shift .lab {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    margin: 0 0 10px;
+  }
+  .shift p { font-size: 15px; line-height: 1.6; color: var(--text); margin: 0; }
+  .shift.before { background: rgba(150,30,30,0.04); border-color: rgba(150,30,30,0.18); }
+  .shift.before .lab { color: #c43a3a; }
+  .shift.after  { background: rgba(46,125,50,0.05); border-color: rgba(46,125,50,0.20); }
+  .shift.after  .lab { color: #2e7d32; }
+  @media (max-width: 720px) { .shift-grid { grid-template-columns: 1fr; } }
+
+  /* Audience pills */
+  .audience-row { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--space-md) 0 var(--space-xl); }
+  .audience-row .ap {
+    padding: 10px 16px; background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: 999px; font-size: 14px; color: var(--text);
+  }
+
+  /* DESCRIPTION LAYOUT ─────────────────────────────────────────────
+     Two-column grid under the "Description" H2.
+     LEFT  (.why-detail) : long, specific paragraph with quantified
+                          time savings (per-app from apps.json).
+     RIGHT (.why-quote)  : the brand pull-quote from brand.json.
+     Below 1100px the quote drops below the detail paragraph.
+  */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: center;                    /* vertically centre the quote against the body */
+    margin: var(--space-md) 0 var(--space-2xl);
+  }
+  .why-grid .why-detail { min-width: 0; }
+  .why-grid .why-detail p {
+    font-size: 16px; line-height: 1.7; color: var(--text);
+    margin: 0 0 var(--space-md);
+  }
+  .why-grid .why-detail p:last-child { margin-bottom: 0; }
+  .why-grid .why-quote { /* sits centred vertically thanks to align-items above */ }
+  .why-grid .why-quote blockquote {
+    /* matches the section-lead H1 size on the inventory pages */
+    margin: 0;
+    font-size: 36px; font-weight: 500; line-height: 1.2;
+    letter-spacing: -0.025em; color: var(--text);
+  }
+  @media (max-width: 1100px) {
+    .why-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+    .why-grid .why-quote blockquote { font-size: 28px; }
+  }
+
+  /* FEATURES (capabilities) — clean editorial 2-column text grid.
+     No boxes, no borders, no fills. Just typography and whitespace.
+     Driven by apps.json `features` or `feature_groups`. */
+  .feat-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 56px;
+    margin: var(--space-lg) 0 var(--space-xl);
+    list-style: none; padding: 0;
+  }
+  @media (max-width: 800px) { .feat-list { grid-template-columns: 1fr; gap: 24px; } }
+  .feat-list li { padding: 0; }
+  .feat-list li .name {
+    display: block;
+    font-size: 17px; font-weight: 600; color: var(--text);
+    letter-spacing: -0.005em; margin: 0 0 6px;
+    padding-left: 16px; position: relative;
+  }
+  .feat-list li .name::before {
+    content: ''; position: absolute; left: 0; top: 9px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--brand-teal);
+  }
+  .feat-list li .desc {
+    display: block;
+    font-size: 14px; line-height: 1.6; color: var(--text-muted);
+    margin: 0; padding-left: 16px;
+  }
+
+  /* Grouped (QA Manager) variant */
+  .features-group { margin: var(--space-lg) 0; }
+  .features-group:first-child { margin-top: 0; }
+  .features-group > h3 {
+    /* Group label is small and quiet — the H2 is the page-level "Features" header */
+    font-size: 12px !important; font-weight: 700 !important;
+    text-transform: uppercase; letter-spacing: 0.10em;
+    color: var(--brand-teal) !important;
+    margin: 0 0 var(--space-sm) !important;
+    padding: 0 !important;
+  }
+  .features-group > h3 .count {
+    font-weight: 500; color: var(--text-muted); margin-left: 8px; letter-spacing: 0;
+  }
+
+  /* INSTALL — its own H2 section. Three-column platform strip on top,
+     requirements + sign-in below as a quiet inline rail, then a primary CTA. */
+  .install-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: var(--space-lg) 0 var(--space-xl);
+  }
+  .install-strip .platform .pname {
+    display: block;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--brand-teal);
+    margin: 0 0 6px;
+  }
+  .install-strip .platform .pspec {
+    display: block;
+    font-size: 14px; line-height: 1.5; color: var(--text);
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .install-meta {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl); margin-bottom: var(--space-xl);
+  }
+  @media (max-width: 800px) { .install-meta { grid-template-columns: 1fr; gap: var(--space-md); } }
+  .install-meta .meta-block h4 {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.10em;
+    color: var(--text-muted); margin: 0 0 8px;
+  }
+  .install-meta .meta-block ul { list-style: none; padding: 0; margin: 0; }
+  .install-meta .meta-block li {
+    font-size: 14px; line-height: 1.6; color: var(--text); margin: 0 0 4px;
+    padding-left: 14px; position: relative;
+  }
+  .install-meta .meta-block li::before {
+    content: '·'; position: absolute; left: 0; color: var(--brand-teal);
+    font-weight: 700; font-size: 18px; top: 2px;
+  }
+  .install-meta .meta-block .auth-text {
+    font-size: 14px; line-height: 1.6; color: var(--text); margin: 0;
+  }
+
+  .install-cta-row {
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    margin-bottom: var(--space-2xl);
+  }
+  .install-cta-row .cta-primary {
+    background: var(--brand-teal); color: #fff;
+    padding: 14px 24px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .install-cta-row .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(21,96,130,0.25); }
+  .install-cta-row .cta-secondary {
+    color: var(--brand-teal); padding: 14px 8px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+  }
+  .install-cta-row .cta-secondary:hover { text-decoration: underline; }
+
+  /* Bottom CTA */
+  .end-cta {
+    margin-top: var(--space-2xl); padding: 32px 36px;
+    background: linear-gradient(135deg, #156082, #1a3441); color: #fff;
+    border-radius: var(--radius-lg); text-align: center;
+  }
+  html.dark-mode .end-cta {
+    background: linear-gradient(135deg, #156082, #1f7ba8);
+  }
+  .end-cta h3 { font-size: 24px; font-weight: 500; margin: 0 0 12px; color: #fff; }
+  .end-cta p { color: rgba(255,255,255,0.85); margin: 0 0 18px; font-size: 15px; }
+  .end-cta a {
+    display: inline-block; background: #fff; color: #156082;
+    padding: 12px 26px; border-radius: 999px; font-weight: 600; text-decoration: none;
+    transition: transform 0.18s;
+  }
+  .end-cta a:hover { transform: translateY(-2px); }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout wide">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="app-hero-card">
+    <div class="inner">
+      <div class="crumb"><a href="/dist/apps/index.html">Apps</a> &nbsp;›&nbsp; {{title}}</div>
+      <div class="head">
+        <img src="/{{icon}}" alt="{{title}} icon" onerror="this.style.background='rgba(255,255,255,0.10)';this.removeAttribute('src');">
+        <div>
+          <h1 id="overview">{{title}}</h1>
+          <span class="surf">{{surface}}</span>
+        </div>
+      </div>
+      <p class="claim">{{headline_claim}}</p>
+      <p class="tag">{{tagline}}</p>
+      <div class="actions">
+        <a class="btn-primary" href="{{cta_href}}">{{cta_label}} →</a>
+        <a class="btn-secondary" href="{{cta2_href}}">{{cta2_label}}</a>
+      </div>
+    </div>
+  </div>
+
+  {{outcomes_strip}}
+
+  <h2 id="description">Description</h2>
+  <div class="why-grid">
+    <div class="why-detail">{{detail_paragraphs_html}}</div>
+    <aside class="why-quote">
+      <blockquote>{{pullquote}}</blockquote>
+    </aside>
+  </div>
+
+  {{hero_video_block}}
+
+  <h2 id="the-shift">The shift</h2>
+  <p style="color:var(--text-muted);">What working looks like today, versus what working looks like with {{title}}.</p>
+  {{shift_block}}
+
+  <h2 id="features">Features</h2>
+  <p style="color:var(--text-muted);max-width:880px;margin:0;">What {{title}} actually does. Each item is a real capability, not a marketing slogan.</p>
+  {{features_block}}
+
+  <h2 id="install">Install &amp; system</h2>
+  <p style="color:var(--text-muted);max-width:880px;margin:0;">Where {{title}} runs, what you need, and how to get it.</p>
+  {{install_block}}
+
+  <h2 id="best-for">Who it's for</h2>
+  <div class="audience-row">{{audience_html}}</div>
+
+  {{related_block}}
+
+  {{faq_block}}
+
+  <div class="end-cta">
+    <h3>Ready to put {{title}} to work?</h3>
+    <p>{{end_cta_blurb}}</p>
+    <a href="{{cta_href}}">{{cta_label}} →</a>
+  </div>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code>{{generated_at}}</code> from <code>sandbox/data/apps.json</code>. Re-run with <code>adelphos_CLI auto-all</code>.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  document.querySelectorAll('video[data-src]').forEach(v => { if (!v.src) v.src = v.dataset.src; });
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

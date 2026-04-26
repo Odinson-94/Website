@@ -1,0 +1,29 @@
+{
+  "name": "functionality_wiring_run_live_ui_sweep",
+  "desc": "Live UI toggle sweep — for every Phase-8 fixed item, press the UI control via ui_toggle_assert_wire and confirm the expected C# wire fires. Surfaces each press in the error panel as a WireRecoverable timeline entry. Skipped items are reported as 'requires_live_revit'.",
+  "bridge": "",
+  "category": "action",
+  "always": true,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "agent",
+      "type": "string",
+      "description": "Optional: limit sweep to a single agent's items (e.g. 01).",
+      "required": false
+    },
+    {
+      "name": "dry_run",
+      "type": "boolean",
+      "description": "If true, walk the item list without invoking presses (still surfaces would-press timeline). Default false.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "live ui sweep",
+    "run wiring live ui sweep",
+    "phase 8 live sweep",
+    "live ui toggle sweep",
+    "press every ui toggle"
+  ]
+}

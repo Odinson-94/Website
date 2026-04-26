@@ -1,0 +1,39 @@
+{
+  "class": "ShowAIChatCommand",
+  "desc": "Opens or toggles the BUILD X AI Chat panel inside Revit.",
+  "summary": "Opens or toggles the BUILD X AI Chat panel inside Revit. On first invocation it bootstraps CommandExecutor and registers the RevitContextBridge so that MCP tools (get_selection, get_parameters, etc.) become available to Claude. Subsequent calls simply toggle the panel visibility. Prefers a modeless WPF window during Add-in Manager development; otherwise uses the Revit dockable pane.",
+  "usecase": "Click the BUILD X ribbon button to open the AI assistant.",
+  "notfor": "Not for headless/batch automation — requires an active Revit UI session.",
+  "precondition": "Revit is running with a valid UIApplication context.",
+  "postcondition": "The AI Chat panel is visible and the RevitContextBridge is registered.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "open ai chat",
+    "show build x",
+    "toggle chat panel",
+    "ai assistant"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening the BUILD X chat panel…"
+    ],
+    "thinkingsteps": [
+      "Initializing CommandExecutor and registering bridges…"
+    ],
+    "successprompts": [
+      "Chat panel is now visible."
+    ],
+    "failureprompts": [
+      "Failed to open chat panel: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture Create Schedule For Category With Field List — Commands — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Architecture Create Schedule For Category With Field List</div>
+
+  <h1 id="overview">Architecture Create Schedule For Category With Field List</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar"></span>
+    <span class="pill pill-category">writes to model</span>
+    <span class="pill pill-coming">Public API · not yet exposed</span>
+  </div>
+
+  <p class="lead">Create a ViewSchedule for a category and add the supplied fields.</p>
+
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document open; category is a valid BuiltInCategory int value; field_names non-empty; project has at least one element in the category (Revit will still create an empty schedule, but we warn via WireRecoverable).</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>Exactly one new ViewSchedule added. One committed Transaction. Audit entry recorded.</p></div>
+
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/demo-assets/architecture-create-schedule-for-category-with-field-list/thumbnail.svg"
+           data-src="/sandbox/demo-assets/architecture-create-schedule-for-category-with-field-list/video.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop architecture-create-schedule-for-category-with-field-list/video.mp4 in to play'}));"></video>
+  </div>
+
+  <h2 id="when-to-use">When to use this</h2>
+  <ul style="padding-left:22px;">
+    <li>Architectural door / window / furniture schedule creation — or any bespoke category schedule with custom fields.</li>
+  </ul>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Editing an existing ViewSchedule (use the dedicated edit commands).</p></div>
+  
+
+  
+
+  
+
+  <h2 id="decision-flow">Decision flow</h2>
+  <pre class="logictree">1) User or Bot supplies Resolver_CategoryIntValue (BuiltInCategory cast to int), Resolver_ScheduleName, Resolver_FieldNamesCsv. 2) Validate — category id is a known BuiltInCategory; schedule name non-empty; at least one field name. Else WireError + abort. 3) Open Transaction 'Create category schedule'. 4) schedule = ViewSchedule.CreateSchedule(doc, new ElementId(category)); try set schedule.Name (swallow NameClash with WireRecoverable). 5) fields = GetScheduleFieldsByName.Find(doc, schedule.Definition, splitCsv). 6) For each field: schedule.Definition.AddField(field). 7) Commit. 8) Bot: JSON {ok, schedule_id, schedule_name, added_field_count}. User: toast 'Schedule {schedule.Name} created with {n} field(s).' 9) Any exception → tracker.Fail(ex); WireFault {category, schedule_name, field_count}.</pre>
+
+  <h2 id="what-youll-see">What you'll see in the chat</h2>
+  <div class="ai-dialogue">
+    <div class="lab">on start</div><div class="msg">Creating schedule for category with field list…</div>
+    <div class="lab">thinking</div><div class="msg">Resolving schedulable fields for supplied names…<br>Adding fields in order…</div>
+    <div class="lab">on success</div><div class="msg">Schedule '<span class="placeholder">{schedule_name}</span>' created with <span class="placeholder">{field_count}</span> field(s).</div>
+    <div class="lab">on failure</div><div class="msg">Could not create schedule: <span class="placeholder">{error}</span>.</div>
+  </div>
+
+  <h2 id="rest-api">REST API</h2>
+  <div class="callout callout-warn">
+    <strong>Not yet exposed</strong>
+    <p>This command does not carry a <code>[RestApi]</code> attribute today. Once tagged, this section will auto-populate with:</p>
+    <ul style="padding-left:22px;margin-top:8px;">
+      <li><code>POST /api/v1/commands/architecture_create_schedule_for_category_with_field_list</code></li>
+      <li>Request body schema (from <code>[RestApiParam]</code>)</li>
+      <li>Response schema (from <code>[RestApiResponse]</code>)</li>
+      <li>curl / JS / Python code examples</li>
+    </ul>
+  </div>
+
+  <h2 id="keywords">Keywords &amp; intent patterns</h2>
+  <p style="color:var(--text-muted);font-size:14px;">architecturecreatescheduleforcategorywithfieldlist · schedule · category · architecture</p>
+
+  <h2 id="related">Related</h2>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
+
+  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
+    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
+  </p>
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  const v = document.querySelector('.hero-video video');
+  if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
+</script>
+<script src="/sandbox/docs-shell.js"></script>
+</body>
+</html>

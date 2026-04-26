@@ -1,0 +1,33 @@
+{
+  "name": "run_j3_wiring_self_test",
+  "desc": "Internal: J3 wiring self-test executor. Not for direct use.",
+  "bridge": "",
+  "category": "debug",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "test_id",
+      "type": "string",
+      "description": "The __j3_*_test__ tool name to execute",
+      "required": false
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "description": "Test action",
+      "required": false
+    },
+    {
+      "name": "input",
+      "type": "string",
+      "description": "Test input data",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "j3 test",
+    "self test j3",
+    "wiring test"
+  ]
+}

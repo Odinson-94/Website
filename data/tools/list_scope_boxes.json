@@ -1,0 +1,12 @@
+{
+  "name": "list_scope_boxes",
+  "desc": "List all scope boxes with name and bounds.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list scope boxes"
+  ]
+}

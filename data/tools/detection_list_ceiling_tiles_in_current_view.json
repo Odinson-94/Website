@@ -1,0 +1,12 @@
+{
+  "name": "detection_list_ceiling_tiles_in_current_view",
+  "desc": "detection_list_ceiling_tiles_in_current_view — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "detection list ceiling tiles in current view"
+  ]
+}

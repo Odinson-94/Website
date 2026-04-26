@@ -1,0 +1,30 @@
+{
+  "class": "ClashSolverExecuteApprovedPlanEndToEndCommand",
+  "desc": "Headless bot run — skip 3D navigation / preview.",
+  "summary": "Headless bot run — skip 3D navigation / preview.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clashsolverexecuteapprovedplanendtoend"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"clash_tolerances\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

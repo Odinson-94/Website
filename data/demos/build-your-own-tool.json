@@ -1,0 +1,8 @@
+{
+  "slug": "build-your-own-tool",
+  "category": "build-your-own-tool",
+  "title": "Build Your Own Tool",
+  "desc": "Describe a tool in English; BUILD X writes the C#, compiles, tests, ships.",
+  "duration": "2:21",
+  "status": "live"
+}

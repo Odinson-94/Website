@@ -1,0 +1,12 @@
+{
+  "name": "plantroom_list_equipment_requirements_for_room",
+  "desc": "plantroom_list_equipment_requirements_for_room — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "plantroom list equipment requirements for room"
+  ]
+}

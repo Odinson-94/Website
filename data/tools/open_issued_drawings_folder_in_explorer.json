@@ -1,0 +1,15 @@
+{
+  "name": "open_issued_drawings_folder_in_explorer",
+  "desc": "Open the issued drawings folder in Windows Explorer. Opens the most recent issued folder or the base output folder.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "open folder",
+    "open issued",
+    "explorer",
+    "show folder"
+  ]
+}

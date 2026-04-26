@@ -1,0 +1,12 @@
+{
+  "name": "space_analysis_detect_ceiling_height_for_room",
+  "desc": "space_analysis_detect_ceiling_height_for_room — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "space analysis detect ceiling height for room"
+  ]
+}

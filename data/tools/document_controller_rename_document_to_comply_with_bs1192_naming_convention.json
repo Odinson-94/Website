@@ -1,0 +1,29 @@
+{
+  "name": "document_controller_rename_document_to_comply_with_bs1192_naming_convention",
+  "desc": "Renames a document to comply with BS 1192/ISO 19650 naming convention. Validates the new name, renames on the platform, logs the change.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "documentCode",
+      "type": "string",
+      "description": "Current document code",
+      "required": true
+    },
+    {
+      "name": "newCode",
+      "type": "string",
+      "description": "New document code following naming convention",
+      "required": true
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Platform where document lives",
+      "required": true
+    }
+  ],
+  "keywords": []
+}

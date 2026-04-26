@@ -1,0 +1,36 @@
+{
+  "class": "NetworkBreakAndOffset45UpOnSelectionCommand",
+  "desc": "NetworkBreakAndOffset45UpOnSelectionCommand — break the selected pipe(s) and insert a 45° upward ramp that re-joins above.",
+  "summary": "NetworkBreakAndOffset45UpOnSelectionCommand — break the selected pipe(s) and insert a 45° upward ramp that re-joins above.",
+  "usecase": "User needs to clear an obstacle overhead by stepping a run up-and-over.",
+  "notfor": "Rectangular-duct offsets (separate strategy).",
+  "precondition": "Active document must be open. At least one pipe selected.",
+  "postcondition": "Selected pipes are broken and re-joined through a 45° up-ramp of the requested ΔZ.",
+  "sideeffects": "",
+  "logictree": "1) Selection → ≥1 Pipe. 2) Resolve ΔZ + flat-top. 3) Plan via geometry service. 4) Transaction \"Break & Offset 45° Up\". 5) Apply via applier service. 6) Commit, report. 7) Failures → ErrorWire.WireFault + CentralWarningLogger.",
+  "keywords": [
+    "networkbreakandoffset45uponselection"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running NetworkBreakAndOffset45UpOnSelectionCommand..."
+    ],
+    "thinkingsteps": [
+      "Computing 45° up ramp geometry..."
+    ],
+    "successprompts": [
+      "NetworkBreakAndOffset45UpOnSelectionCommand completed successfully."
+    ],
+    "failureprompts": [
+      "NetworkBreakAndOffset45UpOnSelectionCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

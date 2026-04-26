@@ -1,0 +1,20 @@
+{
+  "name": "object_styles_list_fill_patterns",
+  "desc": "List all FillPatternElement entries (drafting + model). Returns id, name, target, host orientation, scale.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "target",
+      "type": "string",
+      "description": "Optional: Drafting | Model. Filters the list.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "list fill patterns",
+    "object_styles_list_fill_patterns"
+  ]
+}

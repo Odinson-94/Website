@@ -1,0 +1,12 @@
+{
+  "name": "pipework_get_rotation_axis_from_selected_reference_pipe",
+  "desc": "PipeworkGetRotationAxisFromSelectedReferencePipe — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "PipeworkGetRotationAxisFromSelectedReferencePipe"
+  ]
+}

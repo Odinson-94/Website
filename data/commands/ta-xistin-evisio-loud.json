@@ -1,0 +1,45 @@
+{
+  "class": "TagExistingRevisionCloud",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "tag revision cloud",
+    "label revision cloud",
+    "revision cloud tag",
+    "annotate cloud"
+  ],
+  "intent_patterns": [
+    "tag * revision cloud *",
+    "label * cloud *",
+    "annotate * cloud *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "cloudId",
+      "type": "int",
+      "description": "Revision cloud element ID to tag",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Created tag element ID"
+    }
+  ],
+  "related_commands": [
+    "PlaceRevisionCloudOnView"
+  ],
+  "aiprompts": null,
+  "has_restapi": false
+}

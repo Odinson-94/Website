@@ -1,0 +1,15 @@
+{
+  "name": "list_service_types",
+  "desc": "List unique service type values found on model elements.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list service types",
+    "service type values",
+    "show services",
+    "mep services"
+  ]
+}

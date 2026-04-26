@@ -1,0 +1,47 @@
+{
+  "class": "DismissSpecificRevitWarningByIndex",
+  "desc": "Dismisses a specific Revit warning by its index position in the warnings list.",
+  "summary": "Dismisses a specific Revit warning by its index position in the warnings list. Requires user confirmation before execution (AI must ask first). Uses Document.GetWarnings() to locate the target warning, then opens a transaction with a custom IFailuresPreprocessor that calls FailuresAccessor.DeleteWarning(FailureMessageAccessor).",
+  "usecase": "User confirms a warning is safe to dismiss after AI review.",
+  "notfor": "Dismissing all warnings of a type (use DismissAllRevitWarningsOfSameType instead).",
+  "precondition": "Active document must have at least one warning.",
+  "postcondition": "The targeted warning is dismissed. Warning count reduced by 1.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "dismiss warning",
+    "remove warning",
+    "clear warning",
+    "delete warning"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "WarningIndex",
+      "type": "integer",
+      "description": "Zero-based index of the warning to dismiss",
+      "default": "0"
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Dismissing the selected warning..."
+    ],
+    "thinkingsteps": [
+      "Locating warning by index...",
+      "Opening transaction for warning dismissal..."
+    ],
+    "successprompts": [
+      "Warning dismissed successfully. {remaining} warnings remain."
+    ],
+    "failureprompts": [
+      "Could not dismiss warning: {error}"
+    ]
+  },
+  "has_restapi": false
+}

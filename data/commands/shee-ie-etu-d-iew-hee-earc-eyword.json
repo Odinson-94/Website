@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupAddViewsToSheetBySearchKeywordCommand",
+  "desc": "Add Views To Sheet By Search Keyword.",
+  "summary": "Add Views To Sheet By Search Keyword.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add views by search",
+    "search views to sheet",
+    "keyword add views"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Add Views To Sheet By Search Keyword…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Add Views To Sheet By Search Keyword: completed."
+    ],
+    "failureprompts": [
+      "Add Views To Sheet By Search Keyword: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

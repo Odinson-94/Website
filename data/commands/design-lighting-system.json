@@ -1,0 +1,91 @@
+{
+  "class": "DesignLightingSystemCommand",
+  "desc": "Imports lighting systems from a MEPBridge JSON file with Neural Loading visualization.",
+  "summary": "Imports lighting systems from a MEPBridge JSON file with Neural Loading visualization. Uses JsonModelLoader to parse the JSON DTO, then routes through MepSegmentCreator, PlaceElbowAtCorner, TakeoffPlacementService, PlaceTransitionBetweenSizes, and FamilyHostingResolver for intelligent fixture placement. Family downloads handled by LoadFamilyFromAdelphosCloud with background prefetch via FindFamilyInAdelphos. Also imports polylines as detail lines via ImportDetailLinesFromLinkedDwg and MText as text notes via ImportTextFromLinkedDwg. Base point resolved via DesignSystemBasePointHelper. Related: DesignContainmentSystemCommand, DesignSmallPowerSystemCommand.",
+  "usecase": "User wants to import a lighting layout from AutoCAD via MEPBridge JSON. User needs to place luminaires with correct ceiling hosting and containment routes.",
+  "notfor": "Creating lighting manually. Importing fire alarm or small power systems. Editing existing lighting layouts.",
+  "precondition": "Active Revit document must be open. MEPBridge JSON file must exist at the configured path. Cable tray family types must be loaded. Level must exist near the base point Z. For hosting resolution, ceiling elements or a 2700mm fake ceiling height is used.",
+  "postcondition": "MEP segments, fittings, lighting fixtures, detail lines, and text notes are created. Fixtures are placed using intelligent hosting resolution (ceiling/wall/floor detection). A run log and placement report are written.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "design lighting",
+    "design the lighting",
+    "lighting system",
+    "create lighting",
+    "place lights"
+  ],
+  "intent_patterns": [
+    "design * lighting",
+    "create * lighting",
+    "lighting * design",
+    "place * lights"
+  ],
+  "pillar": "Lighting",
+  "pillar_raw": "Lighting",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Base point for lighting placement",
+      "prompt": "Pick Revit basepoint (target origin for import)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to MEPBridge JSON file",
+      "default": "null"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CurvesCreated",
+      "type": "int",
+      "description": "Number of MEP curve segments created"
+    },
+    {
+      "name": "ElbowsPlaced",
+      "type": "int",
+      "description": "Number of elbow fittings placed"
+    },
+    {
+      "name": "TeesPlaced",
+      "type": "int",
+      "description": "Number of tee fittings placed"
+    },
+    {
+      "name": "BlocksPlaced",
+      "type": "int",
+      "description": "Number of family instances placed"
+    }
+  ],
+  "related_commands": [
+    "DesignContainmentSystemCommand",
+    "DesignSmallPowerSystemCommand",
+    "DesignFireAlarmSystemCommand",
+    "DesignMechPowerSystemCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Importing lighting system from JSON...",
+      "Setting up lighting layout with fixture hosting..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON lighting data...",
+      "Resolving MEP types and levels...",
+      "Creating MEP segments...",
+      "Calculating lux levels and placing fixtures...",
+      "Importing polylines and text annotations...",
+      "Finalizing lighting model..."
+    ],
+    "successprompts": [
+      "Lighting imported! Created {CurvesCreated} segments, {ElbowsPlaced} elbows, {BlocksPlaced} fixtures."
+    ],
+    "failureprompts": [
+      "Lighting import failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

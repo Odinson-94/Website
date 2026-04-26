@@ -1,0 +1,32 @@
+{
+  "class": "SheetSetupCreatePlanningElevationsForBuildingCommand",
+  "desc": "Create N (4/8) planning elevations orbiting the building BB centre.",
+  "summary": "Create N (4/8) planning elevations orbiting the building BB centre.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "sheetsetupcreateplanningelevationsforbuilding",
+    "create planning elevations",
+    "auto elevations"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"showme_config\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

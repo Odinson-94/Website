@@ -1,0 +1,23 @@
+{
+  "name": "sync_spec_from_revit_model",
+  "desc": "Sync specification project context from the active Revit model via MEPBridgeAdapter.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "revitModelPath",
+      "type": "string",
+      "description": "Path to the Revit model file",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "sync revit",
+    "revit model",
+    "model sync",
+    "import from revit",
+    "MEPBridge sync"
+  ]
+}

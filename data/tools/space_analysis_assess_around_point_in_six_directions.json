@@ -1,0 +1,39 @@
+{
+  "name": "space_analysis_assess_around_point_in_six_directions",
+  "desc": "Fire six cardinal rays (±X, ±Y, ±Z) and return distance + hit-element per direction. Use before recommending an equipment position.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "x",
+      "type": "number",
+      "description": "X of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "Y of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "z",
+      "type": "number",
+      "description": "Z of the point (feet).",
+      "required": true
+    },
+    {
+      "name": "max_distance_ft",
+      "type": "number",
+      "description": "Optional max cast distance (feet). Default 100 ft.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "space analysis assess around point in six directions",
+    "six direction assess",
+    "full sphere clearance"
+  ]
+}

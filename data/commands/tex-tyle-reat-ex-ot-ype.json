@@ -1,0 +1,35 @@
+{
+  "class": "TextStylesCreateTextNoteTypeCommand",
+  "desc": "Create a new TextNoteType with given font + size + colour.",
+  "summary": "Create a new TextNoteType with given font + size + colour.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "text styles create text note type",
+    "text_styles_create_text_note_type"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running text styles create text note type…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "text styles create text note type: done."
+    ],
+    "failureprompts": [
+      "text styles create text note type failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

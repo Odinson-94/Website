@@ -1,0 +1,40 @@
+{
+  "class": "ArchitectureCreateScheduleForCategoryWithFieldListCommand",
+  "desc": "Create a ViewSchedule for a category and add the supplied fields.",
+  "summary": "Create a ViewSchedule for a category and add the supplied fields.",
+  "usecase": "Architectural door / window / furniture schedule creation — or any bespoke category schedule with custom fields.",
+  "notfor": "Editing an existing ViewSchedule (use the dedicated edit commands).",
+  "precondition": "Active document open; category is a valid BuiltInCategory int value; field_names non-empty; project has at least one element in the category (Revit will still create an empty schedule, but we warn via WireRecoverable).",
+  "postcondition": "Exactly one new ViewSchedule added. One committed Transaction. Audit entry recorded.",
+  "sideeffects": "",
+  "logictree": "1) User or Bot supplies Resolver_CategoryIntValue (BuiltInCategory cast to int), Resolver_ScheduleName, Resolver_FieldNamesCsv. 2) Validate — category id is a known BuiltInCategory; schedule name non-empty; at least one field name. Else WireError + abort. 3) Open Transaction 'Create category schedule'. 4) schedule = ViewSchedule.CreateSchedule(doc, new ElementId(category)); try set schedule.Name (swallow NameClash with WireRecoverable). 5) fields = GetScheduleFieldsByName.Find(doc, schedule.Definition, splitCsv). 6) For each field: schedule.Definition.AddField(field). 7) Commit. 8) Bot: JSON {ok, schedule_id, schedule_name, added_field_count}. User: toast 'Schedule {schedule.Name} created with {n} field(s).' 9) Any exception → tracker.Fail(ex); WireFault {category, schedule_name, field_count}.",
+  "keywords": [
+    "architecturecreatescheduleforcategorywithfieldlist",
+    "schedule",
+    "category",
+    "architecture"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Creating schedule for category with field list…"
+    ],
+    "thinkingsteps": [
+      "Resolving schedulable fields for supplied names…",
+      "Adding fields in order…"
+    ],
+    "successprompts": [
+      "Schedule '{schedule_name}' created with {field_count} field(s)."
+    ],
+    "failureprompts": [
+      "Could not create schedule: {error}."
+    ]
+  },
+  "has_restapi": false
+}

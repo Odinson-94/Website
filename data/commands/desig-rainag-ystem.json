@@ -1,0 +1,137 @@
+{
+  "class": "DesignDrainageSystemCommand",
+  "desc": "Design Drainage System Command: Imports drainage/sanitary systems from a MEPBridge JSON file with Neural Loading visualization.",
+  "summary": "Design Drainage System Command: Imports drainage/sanitary systems from a MEPBridge JSON file with Neural Loading visualization. User selects TWO inputs: 1. JSON file path 2. Base point for placement. Uses silent Excel auto-mapping for blocks (no manual mapping UI). Creates pipes, fittings (elbows, tees, transitions), and places notes for SVPs and fixtures.",
+  "usecase": "User wants to design the drainage system from AutoCAD JSON export. User wants to import drainage pipework from coordinated model. User wants automated drainage routing from a coordinated JSON model. User says \"design the drainage\" or \"create drainage system\". User says \"design sanitary\" or \"design soil\" or \"design waste\".",
+  "notfor": "Creating drainage from scratch without JSON input. Manual pipe routing (use standard Revit tools). Editing existing drainage systems.",
+  "precondition": "Active document must be open. User must have MEPBridge JSON file. At least one level must exist in the model. Appropriate pipe types (Soil, PVC, Cast Iron) must be loaded in the model.",
+  "postcondition": "MEP elements (pipes), fittings (elbows, tees, transitions), and notes are created. Log file is written next to the JSON file with .drainage.log.txt extension. Neural Loading dialog shows completion summary.",
+  "sideeffects": "",
+  "logictree": "check: jsonPath.isValid → proceed\ncheck: basePoint.isSelected → proceed\ncheck: dto.Edges.count > 0 → proceed\nresolve: excelMapper.exists → autoMap silently",
+  "keywords": [
+    "design drain",
+    "design drainage",
+    "design the drain system",
+    "design the drainage",
+    "design the drainage system",
+    "can you please design the drainage",
+    "please design the drain",
+    "design the drainage please",
+    "create drainage",
+    "import drainage",
+    "design sanitary",
+    "design the sanitary",
+    "design soil",
+    "design the soil",
+    "design waste",
+    "design the waste"
+  ],
+  "intent_patterns": [
+    "design * drainage",
+    "create * drainage",
+    "design * drain",
+    "drainage * design",
+    "drain * system",
+    "import * drainage",
+    "design * sanitary",
+    "design * soil",
+    "design * waste"
+  ],
+  "pillar": "Drainage",
+  "pillar_raw": "Drainage",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Base point for drainage placement",
+      "prompt": "Pick Revit basepoint (target origin for import)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to MEPBridge JSON file",
+      "default": "null"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "PipesCreated",
+      "type": "int",
+      "description": "Number of MEP pipe segments created"
+    },
+    {
+      "name": "ElbowsPlaced",
+      "type": "int",
+      "description": "Number of elbow fittings placed"
+    },
+    {
+      "name": "TeesPlaced",
+      "type": "int",
+      "description": "Number of tee fittings placed"
+    },
+    {
+      "name": "TransitionsPlaced",
+      "type": "int",
+      "description": "Number of transitions placed"
+    },
+    {
+      "name": "BlocksPlaced",
+      "type": "int",
+      "description": "Number of family instances placed"
+    },
+    {
+      "name": "PipeNotesPlaced",
+      "type": "int",
+      "description": "Number of pipe notes placed"
+    },
+    {
+      "name": "FixtureNotesPlaced",
+      "type": "int",
+      "description": "Number of fixture notes placed"
+    }
+  ],
+  "related_commands": [
+    "ImportCommand",
+    "DesignVentilationCommand",
+    "DesignContainmentCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Designing your drainage system...",
+      "Setting up drainage import...",
+      "Preparing to create your drainage pipework..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON file...",
+      "Loading block mapper...",
+      "Downloading cloud families...",
+      "Exporting room context to JSON...",
+      "Reading context JSON...",
+      "Identifying fixtures (WHB, WC, Sink)...",
+      "Calculating room centroids...",
+      "Finding model group bounding boxes...",
+      "Resolving types and levels...",
+      "Building node coordinates...",
+      "Creating pipe segments...",
+      "Building fitting index...",
+      "Placing elbow fittings...",
+      "Placing tee fittings...",
+      "Placing transitions...",
+      "Calculating drainage system bounds...",
+      "Placing pipe notes (SVP, slopes)...",
+      "Placing fixture notes (WC, WHB, Sink)..."
+    ],
+    "successprompts": [
+      "Drainage system created successfully! {PipesCreated} pipes, {ElbowsPlaced} elbows, {PipeNotesPlaced} notes placed.",
+      "Done! Your drainage system is ready with {PipesCreated} pipes.",
+      "Drainage design complete! Created {PipesCreated} pipes with {ElbowsPlaced} fittings."
+    ],
+    "failureprompts": [
+      "Couldn't create drainage system: {error}",
+      "Drainage design failed - {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,62 @@
+{
+  "class": "UnpinAllGridsCommand",
+  "desc": "Unpins all host grids that are on open worksets in the active document.",
+  "summary": "Unpins all host grids that are on open worksets in the active document. Linked grids are skipped because they cannot be edited from the host model. Uses Pin.UnpinGridsInOpenWorksets for the unpin logic. Related: ToggleGridsCommand for toggling pin state instead.",
+  "usecase": "User wants to unpin all grids before repositioning them. User needs to adjust grid layout and all grids are currently locked. User wants to batch-unpin after receiving a new architectural model.",
+  "notfor": "Not for toggling pin state (use ToggleGridsCommand instead). Not for unpinning grids in linked models. Not for autonomous AI execution — requires interactive Revit UI context.",
+  "precondition": "Active document must be open. At least one grid must exist in the model. Worksets containing grids must be open for modification.",
+  "postcondition": "All host grids on open worksets are unpinned. Linked grids and grids on closed worksets remain unchanged. Already-unpinned grids are reported but not modified.",
+  "sideeffects": "",
+  "logictree": "check: document.isValid → proceed\rcheck: grids.count > 0 → proceed\raction: unpinGridsInOpenWorksets → report results",
+  "keywords": [
+    "unpin all grids",
+    "unpin grids",
+    "unlock grids",
+    "free grids",
+    "release grid pins"
+  ],
+  "intent_patterns": [
+    "unpin * grids",
+    "unpin all grids",
+    "unlock * grids",
+    "free * grids"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "Unpinned",
+      "type": "int",
+      "description": "Number of grids that were unpinned"
+    },
+    {
+      "name": "AlreadyUnpinned",
+      "type": "int",
+      "description": "Number of grids that were already unpinned"
+    }
+  ],
+  "related_commands": [
+    "ToggleGridsCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Unpinning all host grids in the model...",
+      "Releasing pin locks on all grids..."
+    ],
+    "thinkingsteps": [
+      "Finding all host grids in open worksets...",
+      "Unpinning each pinned grid..."
+    ],
+    "successprompts": [
+      "Unpinned {Unpinned} grids. {AlreadyUnpinned} were already unpinned.",
+      "All grids are now unpinned and editable."
+    ],
+    "failureprompts": [
+      "Grid unpin failed: {error}",
+      "Could not unpin grids — {error}"
+    ]
+  },
+  "has_restapi": false
+}

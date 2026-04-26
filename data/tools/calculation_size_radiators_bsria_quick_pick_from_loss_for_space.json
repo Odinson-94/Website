@@ -1,0 +1,12 @@
+{
+  "name": "calculation_size_radiators_bsria_quick_pick_from_loss_for_space",
+  "desc": "calculation_size_radiators_bsria_quick_pick_from_loss_for_space — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "calculation size radiators bsria quick pick from loss for space"
+  ]
+}

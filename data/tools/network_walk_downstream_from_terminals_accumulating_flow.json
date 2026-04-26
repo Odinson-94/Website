@@ -1,0 +1,12 @@
+{
+  "name": "network_walk_downstream_from_terminals_accumulating_flow",
+  "desc": "network_walk_downstream_from_terminals_accumulating_flow — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "network walk downstream from terminals accumulating flow"
+  ]
+}

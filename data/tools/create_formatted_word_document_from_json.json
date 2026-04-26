@@ -1,0 +1,38 @@
+{
+  "name": "create_formatted_word_document_from_json",
+  "desc": "Create a formatted Word document (.docx) from structured JSON. ",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 3,
+  "parameters": [
+    {
+      "name": "content_json",
+      "type": "string",
+      "description": "JSON object with report structure: { title, subtitle?, author?, sections: [{ heading, level?, paragraphs?, table?: { headers, rows }, list?: [] }] }",
+      "required": true
+    },
+    {
+      "name": "output_path",
+      "type": "string",
+      "description": "Output .docx file path. If omitted, writes to .mepbridge/qa/exports/",
+      "required": false
+    },
+    {
+      "name": "convert_to_pdf",
+      "type": "string",
+      "description": "Set to 'true' to also convert the document to PDF after creation",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "create word report",
+    "word document",
+    "docx report",
+    "generate report word",
+    "clash report word",
+    "QA report word",
+    "export report docx",
+    "create document"
+  ]
+}

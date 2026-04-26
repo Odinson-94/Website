@@ -1,0 +1,12 @@
+{
+  "name": "error_manager_resolve_entry_by_guid",
+  "desc": "resolve_error — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "resolve error"
+  ]
+}

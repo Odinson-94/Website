@@ -1,0 +1,32 @@
+{
+  "class": "CalculationWriteHeatLossCibseGuideASimpleToSpaceParametersCommand",
+  "desc": "CalculationWriteHeatLossCibseGuideASimpleToSpaceParametersCommand — write HeatLossWatts + fabric_breakdown JSON on the Room.",
+  "summary": "CalculationWriteHeatLossCibseGuideASimpleToSpaceParametersCommand — write HeatLossWatts + fabric_breakdown JSON on the Room.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "calculationwriteheatlosscibseguideasimpletospaceparameters",
+    "write heat loss room",
+    "heat loss param write"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"calculation_defaults\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

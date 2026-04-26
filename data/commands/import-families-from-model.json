@@ -1,0 +1,73 @@
+{
+  "class": "ImportFamiliesFromModelCommand",
+  "desc": "Imports families from another open Revit model into the active document.",
+  "summary": "Imports families from another open Revit model into the active document. Resolves source document and import mode from AI parameters, then delegates to ImportFamiliesFromModel for the actual load. Uses ListFamilies for name-based lookups and ListRoutingPreferencesFromSystem for routing-preference mode. Related: ImportRoutingPreferences for full routing-preference import including rule configuration.",
+  "usecase": "User wants to copy pipe fitting families from a template model. User needs to bring in MEP families from another project. User wants to import families used in routing preferences.",
+  "notfor": "Custom UI required for browse/preview experience. AI path is JSON-first and dialog-free.",
+  "precondition": "At least two project documents must be open in Revit. Active document must not be read-only.",
+  "postcondition": "Selected families are imported into the current document. Parameter values may be overwritten if configured.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "import families",
+    "copy families",
+    "transfer families",
+    "model families",
+    "pipe fittings"
+  ],
+  "intent_patterns": [
+    "import * families * model",
+    "copy * families * from",
+    "transfer * families"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "OverwriteParameters",
+      "type": "bool",
+      "description": "Overwrite existing parameter values",
+      "default": "true"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ImportedFamilies",
+      "type": "List<FamilyImportInfo>",
+      "description": "Families that were imported"
+    },
+    {
+      "name": "SkippedFamilies",
+      "type": "List<FamilyImportInfo>",
+      "description": "Families that were skipped"
+    }
+  ],
+  "related_commands": [
+    "ImportSystemsFromModelCommand",
+    "ImportRoutingPreferencesCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Preparing to import families from the other open model...",
+      "Setting up family transfer between models...",
+      "Getting ready to copy families across..."
+    ],
+    "thinkingsteps": [
+      "Checking for other open project documents...",
+      "Resolving source model and import mode...",
+      "Importing families into current document...",
+      "Verifying import results..."
+    ],
+    "successprompts": [
+      "Imported {ImportedFamilies} families from {SourceModel}.",
+      "Family transfer complete — {ImportedFamilies} imported, {SkippedFamilies} skipped.",
+      "Done! Families are now available in your active document."
+    ],
+    "failureprompts": [
+      "Family import failed: {error}",
+      "Could not import families — {error}"
+    ]
+  },
+  "has_restapi": false
+}

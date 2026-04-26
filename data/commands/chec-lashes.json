@@ -1,0 +1,72 @@
+{
+  "class": "CheckClashesCommand",
+  "desc": "Runs a clash/interference check on the current selection or a provided set of element IDs.",
+  "summary": "Runs a clash/interference check on the current selection or a provided set of element IDs. Delegates to CheckClashes.GetAll for the actual intersection logic. By default writes results to .mepbridge/qa/results_*.xml for the QA Manager. When outputMode=json is passed, returns lightweight JSON instead (MCP path).",
+  "usecase": "User wants to find clashing MEP elements in the current model. User wants to verify no interferences exist after routing changes. AI needs clash data to suggest resolution strategies.",
+  "notfor": "Clashes against linked models (use CheckClashesLinkedCommand). Resolving clashes automatically (use separate resolution commands).",
+  "precondition": "Active document must be open. Either elements must be selected or elementIds parameter provided.",
+  "postcondition": "Default: QA XML written beside the RVT and JSON summary in LastQueryResult. JSON mode: clash pairs with overlap bounds in LastQueryResult (no XML written).",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "check clashes",
+    "interference check",
+    "find clashes",
+    "clash detection",
+    "MEP clashes"
+  ],
+  "intent_patterns": [
+    "check * clashes",
+    "run * interference",
+    "find * clashes",
+    "detect * clashes"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "elementIds",
+      "type": "string",
+      "description": "Optional JSON array of element IDs to check",
+      "default": ""
+    },
+    {
+      "name": "outputMode",
+      "type": "string",
+      "description": "Output mode: 'xml' writes QA XML (default), 'json' returns lightweight JSON only",
+      "default": ""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Result",
+      "type": "JSON",
+      "description": "Clash pairs with overlap bounds, or QA XML summary"
+    }
+  ],
+  "related_commands": [
+    "CheckClashesLinkedCommand",
+    "SectionBoxAroundClashesCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Running clash check on the selected elements...",
+      "Checking for interferences..."
+    ],
+    "thinkingsteps": [
+      "Collecting elements for clash analysis...",
+      "Running bounding box intersection tests...",
+      "Compiling clash results..."
+    ],
+    "successprompts": [
+      "Found {count} clashes in the model.",
+      "Clash check complete — {count} interferences detected."
+    ],
+    "failureprompts": [
+      "Clash check failed: {error}",
+      "Could not run interference check — {error}"
+    ]
+  },
+  "has_restapi": false
+}

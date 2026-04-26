@@ -1,0 +1,36 @@
+{
+  "class": "SheetViewSetupAddExistingLegendViewToSheetCommand",
+  "desc": "Add Existing Legend View To Sheet.",
+  "summary": "Add Existing Legend View To Sheet.",
+  "usecase": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "notfor": "Workflows covered by other SheetViewSetup commands.",
+  "precondition": "Active document must be open.",
+  "postcondition": "See plan — BUILD MEP Plan/ModelSetup/Sheets/Sheet Setup Plan.md.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "add legend to sheet",
+    "place legend on sheet",
+    "existing legend to sheet"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running Add Existing Legend View To Sheet…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "Add Existing Legend View To Sheet: completed."
+    ],
+    "failureprompts": [
+      "Add Existing Legend View To Sheet: failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

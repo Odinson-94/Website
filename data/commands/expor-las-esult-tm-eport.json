@@ -1,0 +1,42 @@
+{
+  "class": "ExportClashResultsToHtmlReport",
+  "desc": "Exports the latest QA clash results as a single self-contained HTML file with embedded screenshots.",
+  "summary": "Exports the latest QA clash results as a single self-contained HTML file with embedded screenshots. Printable to PDF via any browser. Saved under .mepbridge/qa/exports/clash_report_{timestamp}.html.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "export clashes html",
+    "clash report html",
+    "qa html report",
+    "portable clash report",
+    "export errors html"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Building HTML clash report with embedded images…"
+    ],
+    "thinkingsteps": [
+      "Loading latest clashresults XML…",
+      "Embedding screenshots as base64 data URIs…",
+      "Writing self-contained HTML to .mepbridge/qa/exports…"
+    ],
+    "successprompts": [
+      "HTML clash report written to {path} ({rows} rows, {images} embedded images)."
+    ],
+    "failureprompts": [
+      "HTML clash export failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

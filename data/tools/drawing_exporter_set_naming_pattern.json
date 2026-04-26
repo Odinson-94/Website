@@ -1,0 +1,22 @@
+{
+  "name": "drawing_exporter_set_naming_pattern",
+  "desc": "Set the file naming pattern for exported drawings. Supports placeholders like {SheetNumber}, {SheetName}, {Revision}, {Date}.",
+  "bridge": "DrawingExporter",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "pattern",
+      "type": "string",
+      "description": "Naming pattern string, e.g. \\",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "naming pattern",
+    "filename pattern",
+    "file naming",
+    "rename pattern"
+  ]
+}

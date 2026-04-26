@@ -1,0 +1,79 @@
+{
+  "class": "SelectByServiceTypeCommand",
+  "desc": "Selects elements where service type style parameters match provided text.",
+  "summary": "Selects elements where service type style parameters match provided text. Checks multiple parameter name variants: \"Service Type\", \"System Type\", \"System-Type\", \"ServiceType\", \"SystemType\" — covering different MEP disciplines. Uses SelectByFamilyNameCommand.BuildFamilyTypeBreakdown for result summary. Called by CommandExecutor when Claude invokes execute_command. Related: SelectBySystemTypeCommand for MEP system classification search, SelectByParameterCommand for generic deep parameter search.",
+  "usecase": "Select all CHW (chilled water) services by Service Type parameter value. Select all DHW (domestic hot water) elements for tagging. Select all Lighting services before running a lighting calculation.",
+  "notfor": "Generic deep parameter search across all fields (use SelectByParameterCommand). Searching by Revit MEP system classification (use SelectBySystemTypeCommand). Simple category selection (use SelectByCategoryCommand).",
+  "precondition": "Active document and view must be available. Elements in scope must have service type parameters populated.",
+  "postcondition": "Selection is replaced with matching element IDs. Returns JSON with serviceType, scope, totalSearched, totalSelected, and breakdown.",
+  "sideeffects": "",
+  "logictree": "check: parameters.serviceType → required, fail if empty\rcheck: parameters.scope == \"model\" → search entire model\rdefault: search current view only\riterate: each element → check \"Service Type\" / \"System Type\" params for contains match",
+  "keywords": [
+    "select by service type",
+    "service type selection",
+    "select service",
+    "select by service",
+    "select mep service"
+  ],
+  "intent_patterns": [
+    "select * service type",
+    "select * by service type",
+    "select service *"
+  ],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "serviceType",
+      "type": "string",
+      "description": "Service type text to match",
+      "default": ""
+    },
+    {
+      "name": "scope",
+      "type": "string",
+      "description": "view (default) or model",
+      "default": "\"view\""
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Selection",
+      "type": "ElementId[]",
+      "description": "Selected element IDs"
+    },
+    {
+      "name": "Summary",
+      "type": "JSON",
+      "description": "Selection summary with breakdown"
+    }
+  ],
+  "related_commands": [
+    "SelectBySystemTypeCommand",
+    "SelectByParameterCommand",
+    "FilterSelectionCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Selecting elements by service type parameter...",
+      "Searching for service type matches in elements...",
+      "Looking for elements with matching service type..."
+    ],
+    "thinkingsteps": [
+      "Building element collector...",
+      "Checking service type parameters on each element...",
+      "Filtering by parameter value match...",
+      "Applying selection to model..."
+    ],
+    "successprompts": [
+      "Selected {totalSelected} elements with service type matching \"{serviceType}\" from {scope}",
+      "Found {totalSelected} of {totalSearched} elements for service type \"{serviceType}\""
+    ],
+    "failureprompts": [
+      "Service type selection failed: {error}",
+      "Could not select by service type: {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,41 @@
+{
+  "name": "resolve_spec_qa_finding",
+  "desc": "Accept, override, or flag a QA finding for engineer review. Updates the golden thread audit trail.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 4,
+  "parameters": [
+    {
+      "name": "qaFindingId",
+      "type": "string",
+      "description": "The QA finding ID to resolve",
+      "required": true
+    },
+    {
+      "name": "action",
+      "type": "string",
+      "description": "Action: accept, override, flag",
+      "required": true
+    },
+    {
+      "name": "resolution",
+      "type": "string",
+      "description": "Resolution notes (required for override and flag)",
+      "required": false
+    },
+    {
+      "name": "resolvedBy",
+      "type": "string",
+      "description": "Name of the person resolving",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "resolve QA",
+    "accept finding",
+    "override finding",
+    "flag for review",
+    "QA resolution"
+  ]
+}

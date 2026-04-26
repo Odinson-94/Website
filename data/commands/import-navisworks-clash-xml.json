@@ -1,0 +1,41 @@
+{
+  "class": "ImportNavisworksClashXmlCommand",
+  "desc": "External command that imports a Navisworks clash XML file into .mepbridge/qa using ReadWriteClashResultsToXml.MergeImportedXml.",
+  "summary": "External command that imports a Navisworks clash XML file into .mepbridge/qa using ReadWriteClashResultsToXml.MergeImportedXml.",
+  "usecase": "Coordinator merges a Navisworks clash report into the BUILD X clash navigator.",
+  "notfor": "Silent headless import without user file selection in interactive Revit sessions.",
+  "precondition": "Active document should be saved so QA paths resolve beside the RVT.",
+  "postcondition": "New timestamped results_*.xml may be written, or JSON feedback is returned via CommandExecutor.SetResultObject.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "import navisworks",
+    "import clash xml",
+    "navisworks clash report"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Opening file picker for Navisworks clash XML…",
+      "Merging Navisworks clash report into QA results…"
+    ],
+    "thinkingsteps": [
+      "Validating active document and import path…",
+      "Calling ReadWriteClashResultsToXml.MergeImportedXml…",
+      "Reading merged clash count from latest results…"
+    ],
+    "successprompts": [
+      "Import complete — merged {count} clash rows into {outputPath}."
+    ],
+    "failureprompts": [
+      "Navisworks XML import failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

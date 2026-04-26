@@ -1,0 +1,12 @@
+{
+  "name": "architecture_list_enclosures_in_current_project_by_type",
+  "desc": "architecture_list_enclosures_in_current_project_by_type — auto-generated MCP skeleton. Fill workflow body per plan §8.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "architecture list enclosures in current project by type"
+  ]
+}

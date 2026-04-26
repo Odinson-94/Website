@@ -1,0 +1,90 @@
+{
+  "class": "DesignSmallPowerSystemCommand",
+  "desc": "Imports small power and data systems from a MEPBridge JSON file with Neural Loading visualization.",
+  "summary": "Imports small power and data systems from a MEPBridge JSON file with Neural Loading visualization. Uses JsonModelLoader to parse the JSON DTO, then routes through MepSegmentCreator, PlaceElbowAtCorner, TakeoffPlacementService, PlaceTransitionBetweenSizes, and ImportBlocksFromLinkedDwg for element creation. Family downloads handled by FindFamilyInAdelphos. Base point resolved via DesignSystemBasePointHelper. Related: DesignContainmentSystemCommand, DesignLightingSystemCommand.",
+  "usecase": "User wants to import a small power layout from AutoCAD via MEPBridge JSON. User needs to place socket outlets, data points, and associated containment.",
+  "notfor": "Creating small power manually element-by-element. Importing lighting or fire alarm systems (use respective commands).",
+  "precondition": "Active Revit document must be open. MEPBridge JSON file must exist at the configured path. Cable tray family types must be loaded. Level must exist near the base point Z.",
+  "postcondition": "MEP segments, fittings, and power outlets are created in the model. A run log is written.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "design small power",
+    "design the small power",
+    "small power system",
+    "create small power",
+    "place outlets"
+  ],
+  "intent_patterns": [
+    "design * small power",
+    "create * small power",
+    "small power * design",
+    "place * outlets"
+  ],
+  "pillar": "Small  Power",
+  "pillar_raw": "Small Power",
+  "selection_inputs": [
+    {
+      "name": "BasePoint",
+      "type": "XYZ",
+      "description": "Base point for small power placement",
+      "prompt": "Pick Revit basepoint (target origin for import)"
+    }
+  ],
+  "config_inputs": [
+    {
+      "name": "JsonPath",
+      "type": "string",
+      "description": "Path to MEPBridge JSON file",
+      "default": "null"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CurvesCreated",
+      "type": "int",
+      "description": "Number of MEP curve segments created"
+    },
+    {
+      "name": "ElbowsPlaced",
+      "type": "int",
+      "description": "Number of elbow fittings placed"
+    },
+    {
+      "name": "TeesPlaced",
+      "type": "int",
+      "description": "Number of tee fittings placed"
+    },
+    {
+      "name": "BlocksPlaced",
+      "type": "int",
+      "description": "Number of family instances placed"
+    }
+  ],
+  "related_commands": [
+    "DesignContainmentSystemCommand",
+    "DesignLightingSystemCommand",
+    "DesignFireAlarmSystemCommand",
+    "DesignMechPowerSystemCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Importing small power system from JSON...",
+      "Setting up power outlet layout..."
+    ],
+    "thinkingsteps": [
+      "Reading JSON small power data...",
+      "Resolving MEP types and levels...",
+      "Creating MEP segments...",
+      "Placing fittings and power outlets...",
+      "Finalizing small power model..."
+    ],
+    "successprompts": [
+      "Small power imported! Created {CurvesCreated} segments, {ElbowsPlaced} elbows, {BlocksPlaced} outlets."
+    ],
+    "failureprompts": [
+      "Small power import failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

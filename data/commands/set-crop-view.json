@@ -1,0 +1,69 @@
+{
+  "class": "SetCropViewCommand",
+  "desc": "Allows user to draw a rectangle corner-to-corner to set as the view's crop region.",
+  "summary": "Allows user to draw a rectangle corner-to-corner to set as the view's crop region. Uses SetCropView.FromCorners for the crop region geometry calculation. Only works on plan, section, and elevation views — not on sheets, schedules, or 3D views.",
+  "usecase": "User wants to define a custom crop region on a plan or section view for sheet placement.",
+  "notfor": "Cropping 3D views or sheets. Resetting crop to default. Scope box assignment (use SetViewToScopeBoxCommand).",
+  "precondition": "Active view must be a plan, section, or elevation view (not sheet, schedule, or 3D).",
+  "postcondition": "View crop region is set to the rectangle defined by the two picked corners. Crop is enabled.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "set crop view",
+    "crop region",
+    "crop view",
+    "draw crop",
+    "custom crop",
+    "set crop"
+  ],
+  "intent_patterns": [
+    "set crop view",
+    "crop * view",
+    "set * crop region"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "WidthMm",
+      "type": "double",
+      "description": "Crop width in mm"
+    },
+    {
+      "name": "HeightMm",
+      "type": "double",
+      "description": "Crop height in mm"
+    },
+    {
+      "name": "Result",
+      "type": "string",
+      "description": "Summary message"
+    }
+  ],
+  "related_commands": [
+    "SetViewToScopeBoxCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Setting the crop region from picked corners...",
+      "Drawing the crop rectangle..."
+    ],
+    "thinkingsteps": [
+      "Checking view type supports cropping...",
+      "Waiting for corner point 1...",
+      "Waiting for corner point 2...",
+      "Applying crop region..."
+    ],
+    "successprompts": [
+      "Crop region set — {WidthMm}mm × {HeightMm}mm.",
+      "Done — view is now cropped to your rectangle."
+    ],
+    "failureprompts": [
+      "Failed to set crop region: {error}",
+      "Crop region failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

@@ -1,0 +1,40 @@
+{
+  "class": "RunClashDetectionByWorksetsCommand",
+  "desc": "Sweeps clashes between two named user Workset buckets on the host Document, then merges coordination rule findings into the same clashresults export as geometric hits.",
+  "summary": "Sweeps clashes between two named user Workset buckets on the host Document, then merges coordination rule findings into the same clashresults export as geometric hits.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "clash by workset",
+    "workset clash check"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running clash detection by worksets…"
+    ],
+    "thinkingsteps": [
+      "Resolve workset names and clearance tolerance…",
+      "Pairwise clash sweep between workset element sets…",
+      "Execute coordination Error Manager rules and merge rows…",
+      "Write QA XML and append clash history…"
+    ],
+    "successprompts": [
+      "Workset clash run finished — {total} rows ({geometric} geometric, {rules} from rules)."
+    ],
+    "failureprompts": [
+      "Clash finder by worksets failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

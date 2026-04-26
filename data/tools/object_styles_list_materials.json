@@ -1,0 +1,13 @@
+{
+  "name": "object_styles_list_materials",
+  "desc": "List all Material elements with appearance + thermal + structural asset ids. Returns id, name, class, colour, asset triple.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list materials",
+    "object_styles_list_materials"
+  ]
+}

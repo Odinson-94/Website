@@ -1,0 +1,25 @@
+{
+  "class": "RampSecondaryServicesUsingCombinedDiameterIntoVoid",
+  "desc": "",
+  "summary": "",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "rampsecondaryservicesusingcombineddiameterintovoid",
+    "clash group ramp",
+    "ramp into void"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": null,
+  "has_restapi": false
+}

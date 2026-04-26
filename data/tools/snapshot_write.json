@@ -1,0 +1,31 @@
+{
+  "name": "snapshot_write",
+  "desc": "Write proposed parameter changes to the snapshot's pending_changes table. Does NOT modify the Revit model — changes are staged for review and batch application via snapshot_apply. Use snapshot_query first to identify elements and current values.",
+  "bridge": "Snapshot",
+  "category": "snapshot",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "changes",
+      "type": "string",
+      "description": "JSON array of changes: [{\\",
+      "required": false
+    },
+    {
+      "name": "agent_id",
+      "type": "string",
+      "description": "Optional agent identifier for tracking which agent proposed which changes.",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "snapshot write",
+    "write changes",
+    "propose changes",
+    "pending changes",
+    "stage changes",
+    "parameter changes",
+    "batch write"
+  ]
+}

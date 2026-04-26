@@ -1,0 +1,38 @@
+{
+  "class": "ConnectorOpsExtendSelectedNodeByDistanceCommand",
+  "desc": "ConnectorOpsExtendSelectedNodeByDistanceCommand — arbitrary-length connector extension wrapper.",
+  "summary": "ConnectorOpsExtendSelectedNodeByDistanceCommand — arbitrary-length connector extension wrapper.",
+  "usecase": "Connector extension when 100 mm isn't enough.",
+  "notfor": "Extending every connector — use ClashSolverExtendAllUnusedConnectorsBy100mmCommand.",
+  "precondition": "Active doc; element + connector id + length resolvable.",
+  "postcondition": "Delegates one Pipe.Create via the inner command.",
+  "sideeffects": "",
+  "logictree": "1) Resolver_ElementUniqueId + Resolver_ConnectorId + Resolver_LengthMm required.\n2) Delegate to ClashSolverExtendSelectedNodeBy100mmCommand with overrides.\n3) Tag tracker.",
+  "keywords": [
+    "connectoropsextendselectednodebydistance",
+    "extend connector by distance",
+    "connector arbitrary extend"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Extending connector by arbitrary distance…"
+    ],
+    "thinkingsteps": [
+      "Delegating to ClashSolverExtendSelectedNodeBy100mmCommand…"
+    ],
+    "successprompts": [
+      "Extension delegated."
+    ],
+    "failureprompts": [
+      "Extension failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

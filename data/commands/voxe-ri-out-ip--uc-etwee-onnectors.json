@@ -1,0 +1,46 @@
+{
+  "class": "VoxelGridRoutePipeOrDuctBetweenConnectorsCommand",
+  "desc": "VoxelGridRoutePipeOrDuctBetweenConnectorsCommand — voxel A* + placeholder emission in one Transaction.",
+  "summary": "VoxelGridRoutePipeOrDuctBetweenConnectorsCommand — voxel A* + placeholder emission in one Transaction.",
+  "usecase": "Voxel-guided routing.",
+  "notfor": "Multi-service rack — use RouteMultiServiceRack.",
+  "precondition": "Voxel grid cached for scope; start/end points reachable; system + type + level resolvable.",
+  "postcondition": "One or more placeholder pipe/duct segments inside one Transaction.",
+  "sideeffects": "",
+  "logictree": "1) Resolve cached grid from scope_tag. WireError if not cached.\n2) Snap start/end to cells.\n3) Run A* (allow_45).\n4) If not found → WireError + emit reason.\n5) Open Transaction; emit pipe or duct placeholders via service; commit.\n6) Emit placeholder ids + cost + path length.",
+  "keywords": [
+    "voxelgridroutepipeorductbetweenconnectors",
+    "voxel route pipe",
+    "voxel route duct"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [
+    {
+      "name": "PresetKind",
+      "type": "string",
+      "description": "Deterministic config preset",
+      "default": "\"voxel_routing\""
+    }
+  ],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Voxel-routing pipe/duct…"
+    ],
+    "thinkingsteps": [
+      "Running A*…",
+      "Emitting placeholders…"
+    ],
+    "successprompts": [
+      "Routed {placeholder_count} placeholders."
+    ],
+    "failureprompts": [
+      "Route failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

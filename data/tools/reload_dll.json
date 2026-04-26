@@ -1,0 +1,15 @@
+{
+  "name": "reload_dll",
+  "desc": "Signal that a new DLL build is ready. Commands routed through AddInManager will automatically use the new code. MCP tool C# logic requires chat close/reopen.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "reload dll",
+    "hot reload",
+    "reload assembly",
+    "self debug reload"
+  ]
+}

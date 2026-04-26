@@ -1,0 +1,17 @@
+{
+  "name": "list_levels",
+  "desc": "List all levels in the document with name and elevation in mm.",
+  "bridge": "",
+  "category": "context",
+  "always": false,
+  "param_count": 0,
+  "parameters": [],
+  "keywords": [
+    "list levels",
+    "level list",
+    "what levels",
+    "show levels",
+    "all levels",
+    "floor levels"
+  ]
+}

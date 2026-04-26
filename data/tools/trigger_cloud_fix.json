@@ -1,0 +1,29 @@
+{
+  "name": "trigger_cloud_fix",
+  "desc": "Launch a Cursor Cloud Agent to fix code. Provide the prompt with evidence and fix instructions. Returns agent ID for polling.",
+  "bridge": "SelfDebug",
+  "category": "action",
+  "always": false,
+  "param_count": 2,
+  "parameters": [
+    {
+      "name": "prompt",
+      "type": "string",
+      "description": "Fix instructions with evidence (test failures, agent log output, confirmed hypotheses)",
+      "required": true
+    },
+    {
+      "name": "branch_name",
+      "type": "string",
+      "description": "Branch name for the fix (e.g., 'self-debug/fix-cmd-executor')",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "cloud fix",
+    "trigger fix",
+    "cursor agent",
+    "cloud agent",
+    "self debug fix"
+  ]
+}

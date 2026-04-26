@@ -1,0 +1,37 @@
+{
+  "class": "ElementAlignmentMatchHeightByTopCommand",
+  "desc": "Aligns top faces (bbox max.Z) of moving elements to the top face of the reference element.",
+  "summary": "Aligns top faces (bbox max.Z) of moving elements to the top face of the reference element.",
+  "usecase": "Tight-to-ceiling alignment — pipes, ducts, trays hugging a soffit.",
+  "notfor": "Centre-line alignment (ByCentre). Underside alignment (ByUnderside).",
+  "precondition": "Active document. 1 reference + ≥1 mover resolved. Bounding boxes available.",
+  "postcondition": "Each mover translated by (0, 0, dz) feet. Audit entry written.",
+  "sideeffects": "",
+  "logictree": "1) Resolve reference + movers. 2) Validate bboxes. 3) Transaction: ΔZ = refTop − moverTop, MoveElement. 4) Commit, log. 5) Failure → WireFault + rollback.",
+  "keywords": [
+    "elementalignmentmatchheightbytop"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running ElementAlignmentMatchHeightByTopCommand..."
+    ],
+    "thinkingsteps": [
+      "Validating preconditions...",
+      "Applying deterministic steps..."
+    ],
+    "successprompts": [
+      "ElementAlignmentMatchHeightByTopCommand completed successfully."
+    ],
+    "failureprompts": [
+      "ElementAlignmentMatchHeightByTopCommand failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}

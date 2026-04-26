@@ -1,0 +1,40 @@
+{
+  "class": "CaptureAllClashResultImages",
+  "desc": "Batch-captures PNG snapshots for every clash row and re-exports QA XML with updated ClashResult.ImagePath values.",
+  "summary": "Batch-captures PNG snapshots for every clash row and re-exports QA XML with updated ClashResult.ImagePath values. Delegates rendering to CaptureClashScreenshotsFromHiddenView.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "capture clash images",
+    "screenshot clashes",
+    "capture QA images"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Preparing clash image batch export…"
+    ],
+    "thinkingsteps": [
+      "Loading latest clashresults from .mepbridge/qa…",
+      "Capturing image {current} of {total} — please wait…",
+      "Writing refreshed clashresults XML with image paths…"
+    ],
+    "successprompts": [
+      "Captured {captured} clash images; QA XML updated."
+    ],
+    "failureprompts": [
+      "Batch clash image capture failed — {error}"
+    ]
+  },
+  "has_restapi": false
+}

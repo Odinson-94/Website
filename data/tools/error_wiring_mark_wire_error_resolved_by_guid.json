@@ -1,0 +1,22 @@
+{
+  "name": "error_wiring_mark_wire_error_resolved_by_guid",
+  "desc": "Mark an error as resolved/acknowledged. Use after the user has seen and accepted the error.",
+  "bridge": "",
+  "category": "action",
+  "always": false,
+  "param_count": 1,
+  "parameters": [
+    {
+      "name": "error_id",
+      "type": "string",
+      "description": "The GUID of the error to resolve",
+      "required": false
+    }
+  ],
+  "keywords": [
+    "resolve error",
+    "acknowledge error",
+    "dismiss error",
+    "clear error"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "class": "PlaceDropsCommand",
+  "desc": "Places vertical drop pipes with intelligent positioning.",
+  "summary": "Places vertical drop pipes with intelligent positioning. ONE CLICK determines location: detects nearest wall via DetectWall, auto-detects ceiling void centre via CalculateMiddleOfVoid, drops to 200 mm above floor, then starts horizontal drawing. Uses DistanceBetweenServicesCalculator for MPL spacing. Related: MultiServiceDrawerCommand for full interactive draw workflow.",
+  "usecase": "User wants to place service drops near a wall and immediately draw horizontally. User wants one-click intelligent drop placement with void detection.",
+  "notfor": "Drawing horizontal pipes only (use MultiServiceDrawerCommand). Not for AI without useDefaults=true.",
+  "precondition": "Active document with a plan view. At least one PipingSystemType must exist. Ceiling and slab elements should be present for auto-detect to work.",
+  "postcondition": "Vertical drop pipes created at the click point with MPL spacing. Horizontal pipes drawn from drop endpoints along user-picked path.",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "place drops",
+    "service drops",
+    "vertical pipes",
+    "stacked services",
+    "drop and draw"
+  ],
+  "intent_patterns": [
+    "place * drops",
+    "place drops",
+    "drop * services",
+    "vertical * drops"
+  ],
+  "pillar": "General",
+  "pillar_raw": "General",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [
+    {
+      "name": "CreatedDrops",
+      "type": "string",
+      "description": "Number of vertical drop pipes created"
+    }
+  ],
+  "related_commands": [
+    "MultiServiceDrawerCommand"
+  ],
+  "aiprompts": {
+    "preprompts": [
+      "Placing service drops at the selected point...",
+      "Setting up vertical drops with intelligent positioning..."
+    ],
+    "thinkingsteps": [
+      "Detecting nearest wall for offset direction...",
+      "Calculating ceiling void centre height...",
+      "Creating vertical drop pipes with MPL spacing...",
+      "Starting horizontal pipe drawing from drop endpoints..."
+    ],
+    "successprompts": [
+      "Placed {CreatedDrops} drops and drew horizontal pipes.",
+      "Drops placed successfully — horizontal drawing started."
+    ],
+    "failureprompts": [
+      "Place Drops failed: {error}",
+      "Could not place drops: {error}"
+    ]
+  },
+  "has_restapi": false
+}

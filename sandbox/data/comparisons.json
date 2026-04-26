@@ -1,0 +1,60 @@
+{
+  "_comment": "Comparison pages — auto-generated competitor pages. AEO goldmine: AI engines get asked 'X vs Y' constantly.",
+  "competitors": [
+    {
+      "slug": "vs-revit-built-in",
+      "competitor": "Revit's built-in tools",
+      "competitor_short": "Revit out-of-the-box",
+      "summary": "Revit ships with the modelling primitives. Adelphos adds the engineering judgement layer on top — 163 commands and 191 tools that automate the work senior engineers do manually.",
+      "rows": [
+        { "feature": "Schedule cross-checking against the model",          "us": "Continuous, every save",        "them": "Manual, pre-issue only" },
+        { "feature": "Specification authoring from the model",             "us": "Stage 2/3/4 templates, in-browser regeneration", "them": "Not supported" },
+        { "feature": "Drawing QA against house standards",                 "us": "Continuous, element-linked failures",  "them": "Manual checklist" },
+        { "feature": "Connector / system extension automation",            "us": "One prompt across the model",    "them": "Per-element ribbon clicks" },
+        { "feature": "Cross-discipline coordination loop",                 "us": "Agent reads + writes; clash-aware", "them": "Manual coordinator workflow" },
+        { "feature": "AI assistant inside Revit",                          "us": "Yes — 163 commands + 191 tools",  "them": "Insight only (no actions)" },
+        { "feature": "Project memory across sessions",                     "us": "Shared with off-Revit chat",      "them": "Per-session only" }
+      ]
+    },
+    {
+      "slug": "vs-autodesk-build",
+      "competitor": "Autodesk Build",
+      "competitor_short": "Autodesk Build",
+      "summary": "Autodesk Build is excellent at construction admin (RFIs, submittals, daily reports). Adelphos covers the design-side automation Build doesn't touch — model-aware specifications, schedules, QA and reporting.",
+      "rows": [
+        { "feature": "Construction admin (RFIs, submittals)", "us": "Out of scope (we focus on design)",     "them": "Excellent" },
+        { "feature": "MEP specification authoring",            "us": "Specbuilder — model-driven",            "them": "Not supported" },
+        { "feature": "Revit-native AI assistant",              "us": "Revit Copilot",                         "them": "Not native to Revit" },
+        { "feature": "Schedule build + reconciliation",        "us": "Schedule Builder — three-way gap analysis", "them": "Schedule storage only" },
+        { "feature": "Live model + spec + drawing QA",         "us": "QA Manager — cross-surface reconciliation", "them": "Drawing markup only" },
+        { "feature": "Document control automation",            "us": "Document Controller (app + managed service)", "them": "Document storage only" }
+      ]
+    },
+    {
+      "slug": "vs-bluebeam",
+      "competitor": "Bluebeam Revu",
+      "competitor_short": "Bluebeam",
+      "summary": "Bluebeam is the gold standard for PDF markup and takeoff. Adelphos sits earlier in the design loop — the Revit-side automation that produces what Bluebeam later marks up.",
+      "rows": [
+        { "feature": "PDF markup + takeoff",            "us": "Out of scope",                          "them": "Excellent" },
+        { "feature": "Revit add-in agent",              "us": "Revit Copilot",                         "them": "PDF-side only" },
+        { "feature": "Specification authoring",         "us": "Specbuilder",                           "them": "Not supported" },
+        { "feature": "Cross-surface QA reconciliation", "us": "QA Manager — model + schedule + spec",  "them": "PDF-only QA" },
+        { "feature": "AI agent in your projects",       "us": "Yes — Adelphos Chat",                   "them": "No native AI agent" }
+      ]
+    },
+    {
+      "slug": "vs-procore",
+      "competitor": "Procore",
+      "competitor_short": "Procore",
+      "summary": "Procore is the leading construction management platform. Adelphos is the engineering-design automation layer that produces the design data Procore consumes.",
+      "rows": [
+        { "feature": "Construction project management", "us": "Out of scope",                                    "them": "Excellent" },
+        { "feature": "Cost + schedule management",      "us": "Adelphos PM (managed service)",                   "them": "Yes" },
+        { "feature": "Revit-side automation",           "us": "Revit Copilot, Specbuilder, Schedule Builder",     "them": "Not in scope" },
+        { "feature": "Document control",                "us": "Document Controller app + managed service",        "them": "Document storage" },
+        { "feature": "AI assistant in your projects",   "us": "Yes — Adelphos Chat",                              "them": "Limited Procore Copilot" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "class": "ProjectSettingsSetProjectUnitsToMetricCommand",
+  "desc": "Switch every SpecTypeId to its metric FormatOptions equivalent.",
+  "summary": "Switch every SpecTypeId to its metric FormatOptions equivalent.",
+  "usecase": "",
+  "notfor": "",
+  "precondition": "",
+  "postcondition": "",
+  "sideeffects": "",
+  "logictree": "",
+  "keywords": [
+    "project settings set project units to metric",
+    "project_settings_set_project_units_to_metric"
+  ],
+  "intent_patterns": [],
+  "pillar": "",
+  "pillar_raw": "",
+  "selection_inputs": [],
+  "config_inputs": [],
+  "outputs": [],
+  "related_commands": [],
+  "aiprompts": {
+    "preprompts": [
+      "Running project settings set project units to metric…"
+    ],
+    "thinkingsteps": [],
+    "successprompts": [
+      "project settings set project units to metric: done."
+    ],
+    "failureprompts": [
+      "project settings set project units to metric failed: {error}"
+    ]
+  },
+  "has_restapi": false
+}
