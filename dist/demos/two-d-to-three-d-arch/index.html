@@ -14,51 +14,264 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  /* DEMO PAGE — single-law derivative.
+     Hero matches Section 2 / app-page: 2-col, copy LEFT, painted artsy
+     frame RIGHT with the demo video / poster floating inside.        */
+
+  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html.dark-mode body { background: var(--ad-bg-dark); }
+
+  .docs-layout.dm-no-rails {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 80% !important; max-width: none !important;
+    margin-left: auto !important; margin-right: auto !important;
+    padding-left: 0 !important; padding-right: 0 !important;
+  }
+  .docs-layout.dm-no-rails > .docs-left,
+  .docs-layout.dm-no-rails > .docs-right { display: none !important; }
+  @media (max-width: 1100px) {
+    .docs-layout.dm-no-rails { width: 94% !important; }
+  }
+
+  .dm-hero {
+    margin: 56px 0 var(--space-2xl);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 0;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.16);
+  }
+  .dm-hero-copy {
+    padding: clamp(40px, 5vw, 64px);
+    display: flex; flex-direction: column; gap: 18px;
+    justify-content: center;
+    background: var(--ad-panel);
+  }
+  html.dark-mode .dm-hero-copy { background: var(--ad-panel-dark); }
+  .dm-crumb {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-text-5);
+  }
+  .dm-crumb a { color: var(--ad-teal); text-decoration: none; }
+  .dm-crumb a:hover { text-decoration: underline; }
+  .dm-pills {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .dm-pill {
+    background: rgba(21,96,130,0.10);
+    color: var(--ad-teal);
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    padding: 5px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+  }
+  .dm-pill.dm-pill-status {
+    background: var(--ad-card-dark);
+    color: var(--ad-teal-light);
+  }
+  .dm-hero-copy h1 {
+    margin: 0;
+    font-family: var(--ad-font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: var(--ad-w-medium);
+    line-height: var(--ad-lh-hero);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
+    max-width: var(--ad-measure);
+  }
+  .dm-claim {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    max-width: var(--ad-measure);
+  }
+
+  /* Painted artsy frame holding either the demo <video> or a poster image */
+  .dm-hero-frame {
+    position: relative;
+    min-height: 460px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .dm-hero-frame::before {
+    content: ''; position: absolute; inset: 0;
+    background: url('/images/revit-bg.png') center center / cover no-repeat;
+    z-index: 0;
+  }
+  .dm-hero-frame::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--ad-painted-overlay);
+    z-index: 0;
+  }
+  .dm-hero-frame .dm-video-wrap {
+    position: absolute; inset: 24px;
+    z-index: 2;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .dm-hero-frame video {
+    width: 100%; height: 100%;
+    display: block; object-fit: contain;
+  }
+  .dm-hero-frame .dm-poster-fallback {
+    color: rgba(255,255,255,0.55);
+    font-family: var(--ad-font-mono);
+    font-size: 12px;
+    text-align: center;
+    padding: 24px;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 1100px) {
+    .dm-hero { grid-template-columns: 1fr; }
+    .dm-hero-frame { aspect-ratio: 16/10; min-height: auto; }
+  }
+
+  /* Section headings + prose */
+  .docs-content h2 {
+    margin: var(--space-2xl) 0 var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--ad-border);
+    font-family: var(--ad-font-display);
+    font-size: var(--ad-text-h2);
+    font-weight: var(--ad-w-medium);
+    line-height: var(--ad-lh-hero);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
+  }
+  .dm-section-sub {
+    margin: 0 0 var(--space-lg);
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    max-width: var(--ad-measure);
+  }
+
+  .dm-prose p {
+    margin: 0 0 18px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    text-align: justify;
+    max-width: var(--ad-measure);
+  }
+  .dm-prose p:last-child { margin-bottom: 0; }
+
+  /* Steps list — numbered ol with teal markers */
+  .dm-steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: var(--space-md) 0 var(--space-xl);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .dm-steps li {
+    counter-increment: step;
+    padding: 16px 18px 16px 56px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-md);
+    position: relative;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-1);
+  }
+  .dm-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 18px; top: 14px;
+    font-family: var(--ad-font-mono);
+    font-size: 13px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal);
+    background: rgba(21,96,130,0.10);
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+
+  .dm-stamp {
+    margin-top: 48px;
+    padding: 14px 18px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--ad-font-mono);
+    font-size: 12px;
+    color: var(--ad-text-5);
+  }
+</style>
 </head>
 <body>
 
 <script src="/sandbox/shell.js"></script>
 
-<div class="docs-layout">
+<div class="docs-layout wide dm-no-rails">
 <aside class="docs-left"></aside>
-<main class="docs-content demo-detail">
+<main class="docs-content">
 
-  <div class="crumbs">Demos &nbsp;›&nbsp; 2D to 3D Conversion &nbsp;›&nbsp; 2D PDF → 3D Architecture</div>
+  <!-- ═══ HERO — 2-col, copy LEFT, painted frame with video RIGHT ═══ -->
+  <section class="dm-hero">
+    <div class="dm-hero-copy">
+      <nav class="dm-crumb"><a href="/">Home</a> &rsaquo; <a href="/dist/demos/index.html">Demos</a> &rsaquo; 2D to 3D Conversion</nav>
+      <div class="dm-pills">
+        <span class="dm-pill">2D to 3D Conversion</span>
+        <span class="dm-pill dm-pill-status">2:08</span>
+      </div>
+      <h1 id="overview">2D PDF → 3D Architecture</h1>
+      <p class="dm-claim">Trace a PDF or DWG and produce a coordinated 3D model.</p>
+    </div>
+    <div class="dm-hero-frame">
+      <div class="dm-video-wrap">
+        <video controls preload="metadata"
+               poster="/sandbox/demo-assets/two-d-to-three-d-arch/thumbnail.svg"
+               data-src="/sandbox/demo-assets/two-d-to-three-d-arch/video.mp4"
+               onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'dm-poster-fallback',innerText:'demo video coming soon · drop sandbox/demo-assets/two-d-to-three-d-arch/video.mp4 in to play'}));"></video>
+      </div>
+    </div>
+  </section>
 
-  <h1 id="overview">2D PDF → 3D Architecture</h1>
-
-  <div class="meta-row" style="margin-bottom:24px;">
-    <span class="pill pill-pillar">2D to 3D Conversion</span>
-    <span class="pill pill-live">Live</span>
-    <span class="pill pill-category">2:08</span>
+  <!-- ═══ ABOUT THIS DEMO ═══ -->
+  <h2 id="about">About this demo</h2>
+  <div class="dm-prose">
+    <p>2D PDF → 3D Architecture is part of the <strong>2D to 3D Conversion</strong> set inside the Adelphos platform. Trace a PDF or DWG and produce a coordinated 3D model. The video above shows the workflow end-to-end against a sample MEP model — the same agent flow that ships in production.</p>
   </div>
 
-  <p class="lead">Trace a PDF or DWG and produce a coordinated 3D model.</p>
-
-  <div class="hero-video" id="watch">
-    <video controls preload="metadata"
-           poster="/sandbox/demo-assets/two-d-to-three-d-arch/thumbnail.svg"
-           data-src="/sandbox/demo-assets/two-d-to-three-d-arch/video.mp4"
-           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'placeholder · drop two-d-to-three-d-arch/video.mp4 in to play'}));"></video>
-  </div>
-
-  <h2 id="what-it-does">What it does</h2>
-  <p>2D PDF → 3D Architecture is part of the <strong>2D to 3D Conversion</strong> set in BUILD MEP. Trace a PDF or DWG and produce a coordinated 3D model.
-     The video above shows the workflow end-to-end against a sample model.</p>
-
+  <!-- ═══ HOW IT WORKS — numbered steps ═══ -->
   <h2 id="steps">How it works</h2>
-  <ol>
+  <p class="dm-section-sub">Each step happens in the model. No manual exports, no copy-paste from spreadsheets.</p>
+  <ol class="dm-steps">
     
   </ol>
 
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+  <p class="dm-stamp">
     Auto-generated <code></code> by <code></code> from <code>data/demos.json</code>.
-    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Demo%20Page/">Demo Page Skill</a> for the contract.
   </p>
 
 </main>
@@ -66,7 +279,7 @@
 </div>
 
 <script>
-  const v = document.querySelector('.hero-video video');
+  const v = document.querySelector('.dm-hero-frame video');
   if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
 </script>
 <script src="/sandbox/docs-shell.js"></script>
