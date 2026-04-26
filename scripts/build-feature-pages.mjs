@@ -130,7 +130,24 @@ async function renderFeature(f) {
   ].filter(Boolean);
   const relatedBlock = renderRelatedBlock(related);
 
-  const html = tmpl
+  // Phase 8.1: feature hero painted frame should hold a CSS schematic
+  // mockup keyed to the feature, NOT the misleading PNG (the icon
+  // paths in features.json point to app-logo PNGs that don't represent
+  // the feature — flagged as a P3 in CRITIQUE.md). Replace the
+  // <img class="ap-hero-logo"> with a per-slug CSS mockup overlay.
+  // The Three.js scene at full inventory tile scale is too small for
+  // the 240×240 hero slot; the larger CSS mockup reads cleaner.
+  const heroVisual = featureHeroMockup(f.slug);
+  let template = tmpl;
+  // Replace ANY <img class="ap-hero-logo" ...> in the template with the
+  // mockup. Surgical regex — match the whole tag including a self-
+  // closing or onerror trailing attribute set.
+  template = template.replace(
+    /<img class="ap-hero-logo"[^>]*>/g,
+    heroVisual
+  );
+
+  const html = template
     .replaceAll('{{title}}',                  esc(f.title))
     .replaceAll('{{headline_claim}}',         esc(f.headline_claim || f.tagline || ''))
     .replaceAll('{{tagline}}',                esc(f.tagline || ''))
@@ -165,6 +182,47 @@ async function renderFeature(f) {
   await fs.mkdir(path.dirname(out), { recursive: true });
   await fs.writeFile(out, html, 'utf8');
   return out;
+}
+
+// Phase 8.1: per-slug CSS schematic mockup for the feature-page hero
+// painted-frame (replaces the misleading PNG hero). Same shape as the
+// .feat-mock CSS already in templates/apps-inventory.html, just sized
+// up for the larger 240-square hero slot.
+function featureHeroMockup(slug) {
+  let body;
+  if (slug === 'clash-solver') {
+    body = `
+      <div class="feat-mock feat-mock-clash" aria-hidden="true">
+        <div class="feat-mock-duct"></div>
+        <div class="feat-mock-pipe-ramp"></div>
+        <div class="feat-mock-marker feat-mock-marker-1"></div>
+        <div class="feat-mock-marker feat-mock-marker-2"></div>
+      </div>`;
+  } else if (slug === 'autoroute') {
+    body = `
+      <div class="feat-mock feat-mock-autoroute" aria-hidden="true">
+        <div class="feat-mock-pipe feat-mock-pipe-1"></div>
+        <div class="feat-mock-pipe feat-mock-pipe-2"></div>
+        <div class="feat-mock-elbow feat-mock-elbow-1"></div>
+        <div class="feat-mock-elbow feat-mock-elbow-2"></div>
+      </div>`;
+  } else if (slug === 'plantroom-designer-3d') {
+    body = `
+      <div class="feat-mock feat-mock-plantroom" aria-hidden="true">
+        <div class="feat-mock-eq feat-mock-eq-1"></div>
+        <div class="feat-mock-eq feat-mock-eq-2"></div>
+        <div class="feat-mock-eq feat-mock-eq-3"></div>
+        <div class="feat-mock-header"></div>
+      </div>`;
+  } else {
+    body = `
+      <div class="feat-mock feat-mock-generic" aria-hidden="true">
+        <div class="feat-mock-line feat-mock-line-1"></div>
+        <div class="feat-mock-line feat-mock-line-2"></div>
+      </div>`;
+  }
+  // Wrap in a hero-sized panel that fills the .ap-hero-frame interior.
+  return `<div class="feat-hero-mock">${body}</div>`;
 }
 
 // Same dark .ap-features-card.rp-commands-card vocabulary as app-page.
