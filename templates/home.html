@@ -561,6 +561,112 @@
   /* .logo-tile — DELETED in Phase 0. Used the 7-tone palette. Replace
      with .rp-commands-card derivative for service tiles in Phase 5. */
 
+  /* ── SECTION 4: CLASH SOLVER — single row, painted artsy frame +
+        View 6 prose typography. Direct descendant of Section 2's
+        .revit-panel-bottom (painted bg + 30% overlay) and the
+        .demo-text-* prose system in css/chat-panel.css. ───────────── */
+  .clash-section { margin: var(--space-2xl) 0; }
+
+  .clash-row {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 0;
+    margin-top: var(--space-lg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+  }
+
+  .clash-copy {
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+    background: var(--ad-panel);
+  }
+  html.dark-mode .clash-copy { background: var(--ad-panel-dark); }
+
+  .clash-copy .clash-heading {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 44px;
+    font-weight: var(--ad-w-medium);
+    line-height: 1.3;
+    color: var(--ad-text-0);
+    max-width: var(--ad-measure);
+  }
+
+  .clash-copy .clash-body {
+    max-width: var(--ad-measure);
+  }
+  .clash-copy .clash-body p {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    text-align: justify;
+    margin: 0 0 18px;
+    max-width: var(--ad-measure);
+  }
+  .clash-copy .clash-body p:last-child { margin-bottom: 0; }
+  html.dark-mode .clash-copy .clash-body p { color: var(--ad-text-3); }
+
+  .clash-copy .clash-link {
+    align-self: flex-start;
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    margin-top: 6px;
+  }
+  .clash-copy .clash-link:hover { text-decoration: underline; }
+
+  /* The painted artsy frame — IDENTICAL pattern to .revit-panel-bottom
+     in Section 2: revit-bg.png + 30% black overlay, then the 3D scene
+     positioned absolutely on top. */
+  .clash-frame {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .clash-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('/images/revit-bg.png') center center / cover no-repeat;
+    z-index: 0;
+  }
+  .clash-frame::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--ad-painted-overlay);
+    z-index: 0;
+  }
+  .clash-frame .scene-3d {
+    position: absolute; inset: 24px;
+    z-index: 2;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    cursor: zoom-in;
+    background: linear-gradient(135deg, rgba(0,0,0,0.30), rgba(0,0,0,0.55));
+  }
+  .clash-frame .scene-3d canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 1100px) {
+    .clash-row { grid-template-columns: 1fr; }
+    .clash-copy { padding: clamp(32px, 5vw, 56px); }
+    .clash-frame { aspect-ratio: 4 / 3; }
+  }
+
   /* ── END CTA ─────────────────────────────────────────────────────────── */
   .end-cta {
     margin: var(--space-2xl) 0;
@@ -878,48 +984,37 @@
     <a style="color:#156082;font-weight:600;font-size:13px;text-decoration:none;display:inline-block;margin-top:12px;" href="/roadmap/">See roadmap →</a>
   </section>
 
-  <!-- ═══ SECTION 4: 3D SHOWCASE ═══ -->
-  <section class="home-section reveal d3">
+  <!-- ═══ SECTION 4: CLASH SOLVER 3D MODEL — single row ═══
+       Per /workspace/.cursor/plans/redesign_sandbox_home_page.plan.md
+       Section 4: "Clash Solver / 3D model export: kept exactly as we
+       have it now. Put it in a container with the same artsy
+       background as the chat panel. Text on the side describing the
+       feature." SINGULAR. AutoRoute + Plantroom Designer scenes
+       removed (they were added by agents off-plan).
+
+       Layout: text 40% LEFT, 3D scene 60% RIGHT inside the painted
+       artsy frame from Section 2 (revit-bg.png + 30% black overlay).
+       Typography: the View 6 .demo-text-* system from chat-panel.css
+       (44/500 heading, 14/300/1.8/justify body, 400px column).        -->
+  <section class="home-section clash-section reveal d3">
     <div class="home-section-head">
-      <h2>Bespoke 3D automations</h2>
+      <h2>Clash Solver</h2>
       <div class="head-aside">
-        <p>Pipe routing, plantroom layout and clash resolution — generated in the model, not in a spreadsheet.</p>
+        <p>Ingests your ACC clash report, proposes a resolution for every clash, and applies the ones you accept — straight into the live model.</p>
       </div>
     </div>
 
-    <div class="showcase-split">
-      <div class="sc-copy">
-        <span class="sc-kicker">AutoRouting Engine</span>
-        <h3>Route services through the building automatically</h3>
-        <p>Give the agent a start point and a destination. It navigates corridors, dodges beams, drops onto equipment — and hangs every pipe from the slab above.</p>
-        <a class="sc-link" href="/dist/apps/autoroute/index.html">Explore AutoRoute →</a>
-      </div>
-      <div class="sc-visual">
-        <div class="scene-3d" data-scene="autoroute"></div>
-      </div>
-    </div>
-
-    <div class="showcase-split flip">
-      <div class="sc-copy">
-        <span class="sc-kicker">Plantroom Designer</span>
-        <h3>Full plantroom layout from a single prompt</h3>
-        <p>Boilers, pumps, AHU, ductwork, pipe headers and branch drops — placed, connected and dimensioned. The agent coordinates every service run in the void.</p>
-        <a class="sc-link" href="/dist/apps/plantroom/index.html">Explore Plantroom Designer →</a>
-      </div>
-      <div class="sc-visual">
-        <div class="scene-3d" data-scene="plantroom-designer-3d"></div>
-      </div>
-    </div>
-
-    <div class="showcase-split">
-      <div class="sc-copy">
-        <span class="sc-kicker">Clash Solver</span>
-        <h3>Resolve coordination clashes with geometry, not meetings</h3>
-        <p>Detect where a pipe collides with a duct, generate a clean offset — 45-degree ramp up, level run, 45-degree ramp down — and verify clearance automatically.</p>
-        <a class="sc-link" href="/dist/apps/clash-solver/index.html">Explore Clash Solver →</a>
-      </div>
-      <div class="sc-visual">
+    <div class="clash-row">
+      <div class="clash-frame">
         <div class="scene-3d" data-scene="clash-solver"></div>
+      </div>
+      <div class="clash-copy">
+        <h3 class="clash-heading">Stops reporting clashes. Starts solving them.</h3>
+        <div class="clash-body">
+          <p>Connect Clash Solver to your ACC project. It pulls the latest clash report, deduplicates against the previous run, and triages: real clash vs ghost (model-link drift, family swap, view-filter mismatch). For each real clash it proposes a resolution — re-route the smaller service, raise the ceiling void in the affected zone, swap a fitting, etc. — and shows you what the model would look like after.</p>
+          <p>You accept, refine, or reject each proposal. Accepted resolutions are applied to the live model as auditable Revit transactions (one-click undo). Rejected ones go into a 'why we kept this' log so the next sync doesn't propose the same thing.</p>
+        </div>
+        <a class="clash-link" href="/dist/features/clash-solver/index.html">Open Clash Solver →</a>
       </div>
     </div>
   </section>
@@ -1292,284 +1387,16 @@
     });
   }
 
-  /* ──────────────────────────────────────────────────────────────────── */
-  /*  Scene 1 — AutoRoute                                                 */
-  /*  A real ceiling-void scenario: structural slab + downstand beams     */
-  /*  overhead, two corridor walls opening into a room at the far end,    */
-  /*  a fan-coil unit inside the room. A primary pipe + a passing         */
-  /*  service run the length of the corridor, both supported by clevis    */
-  /*  hangers from the slab; the primary turns into the room and drops    */
-  /*  onto the FCU connection stub.                                       */
-  /* ──────────────────────────────────────────────────────────────────── */
-  function buildAutoroute(scene) {
-    // Floor plate
-    const floor = new THREE.Mesh(new THREE.BoxGeometry(8, 0.12, 5), matSlab);
-    floor.position.y = -0.06; scene.add(floor);
+  /* AutoRoute scene factory DELETED in Phase 2.
+     Per /workspace/.cursor/plans/redesign_sandbox_home_page.plan.md
+     Section 4 the home page only shows the Clash Solver scene.
+     AutoRoute remains as its own /dist/features/autoroute/index.html
+     page with its own scene (built by feature-page template). */
 
-    // STRUCTURAL SLAB + downstand beams overhead — gives the routing a real
-    // ceiling void to live in.
-    const slabY = 3.0;
-    const slab = new THREE.Mesh(new THREE.BoxGeometry(7.5, 0.16, 4.6), matStructure);
-    slab.position.y = slabY; scene.add(slab);
-    // beams running across the corridor (perpendicular to its long axis)
-    [-1.5, 0.6].forEach(x => {
-      const beam = new THREE.Mesh(new THREE.BoxGeometry(0.20, 0.30, 4.6), matStructure);
-      beam.position.set(x, slabY - 0.20, 0); scene.add(beam);
-    });
-
-    // Walls — slightly more opaque so they read as building partitions
-    // (clone of the shared matWall, opacity bumped for this scene only)
-    const arWall = matWall.clone();
-    arWall.opacity = 0.65;
-    const wallH = 2.40, wallT = 0.16;
-    function wall(x, z, w, d) {
-      const m = new THREE.Mesh(new THREE.BoxGeometry(w, wallH, d), arWall);
-      m.position.set(x, wallH / 2, z); scene.add(m);
-    }
-    // CORRIDOR — two parallel walls running in X
-    wall(-1.35,  1.00, 4.30, wallT);
-    wall(-1.35, -1.00, 4.30, wallT);
-    // ROOM — back wall + two side walls forming a U opening toward the corridor
-    wall( 3.50,  0.00, wallT, 4.40);
-    wall( 2.15,  2.20, 2.70, wallT);
-    wall( 2.15, -2.20, 2.70, wallT);
-
-    // FAN-COIL UNIT inside the room (the destination)
-    const fcuX = 2.60, fcuZ = 1.20;
-    const body = new THREE.Mesh(new THREE.BoxGeometry(1.30, 0.60, 0.60), matAHU);
-    body.position.set(fcuX, 0.30, fcuZ); scene.add(body);
-    const grille = new THREE.Mesh(new THREE.BoxGeometry(1.34, 0.06, 0.65), matAHUTrim);
-    grille.position.set(fcuX, 0.61, fcuZ); scene.add(grille);
-    const ctl = new THREE.Mesh(new THREE.BoxGeometry(0.20, 0.22, 0.04), matBoilerPanel);
-    ctl.position.set(fcuX + 0.45, 0.32, fcuZ + 0.31); scene.add(ctl);
-    // teal service stub on top of FCU
-    const stub = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.22, 16), matPipeA);
-    stub.position.set(fcuX, 0.71, fcuZ); scene.add(stub);
-    const stubFl = new THREE.Mesh(new THREE.CylinderGeometry(0.115, 0.115, 0.04, 18), matFlange);
-    stubFl.position.set(fcuX, 0.84, fcuZ); scene.add(stubFl);
-
-    // PRIMARY PIPE — runs down the corridor, enters the room, drops to FCU
-    const yH = 2.65;          // header centre-line in the void (above walls, below slab)
-    const pipeR = 0.085;
-    drawPipe(scene, [
-      [-3.85, yH,   0.00],
-      [ 1.60, yH,   0.00],
-      [ 1.60, yH,   fcuZ],
-      [ fcuX, yH,   fcuZ],
-      [ fcuX, 0.92, fcuZ],
-    ], pipeR, matPipeA, { elbowR: 0.30 });
-
-    // SECONDARY PASSING SERVICE (red) — runs the full length at lower elevation
-    drawPipe(scene, [
-      [-3.85, 2.30, -0.45],
-      [ 3.20, 2.30, -0.45],
-    ], 0.065, matPipeB, { elbowR: 0.20 });
-
-    // Hangers from the slab to both pipe runs
-    [-3.0, -1.5, 0.0, 1.5].forEach(x => addHanger(scene, x, yH, 0.0, slabY, pipeR));
-    addHanger(scene, fcuX, yH, fcuZ, slabY, pipeR);
-    [-3.0, -1.5, 0.0, 1.5, 2.5].forEach(x => addHanger(scene, x, 2.30, -0.45, slabY, 0.065));
-
-    return { camera: { pos: [6.4, 3.2, 6.0], lookAt: [0.4, 1.75, 0] } };
-  }
-
-  /* ──────────────────────────────────────────────────────────────────── */
-  /*  Scene 2 — 3D Plantroom Designer                                     */
-  /*  Cabinet boiler with flue + control panel, two end-suction pumps     */
-  /*  on a concrete plinth with motors + flexible connectors + flanges,   */
-  /*  sectional AHU with supply/return ducts (proper galvanised look),    */
-  /*  flow + return headers along the back wall with branched drops.      */
-  /* ──────────────────────────────────────────────────────────────────── */
-  function buildPlantroom(scene) {
-    // floor + L-shape walls
-    const floor = new THREE.Mesh(new THREE.BoxGeometry(7.6, 0.12, 5.6), matSlab);
-    floor.position.y = -0.06; scene.add(floor);
-    const wallH = 2.6, wallT = 0.14;
-    const backWall = new THREE.Mesh(new THREE.BoxGeometry(7.6, wallH, wallT), matWall);
-    backWall.position.set(0, wallH / 2, -2.73); scene.add(backWall);
-    const sideWall = new THREE.Mesh(new THREE.BoxGeometry(wallT, wallH, 5.6), matWall);
-    sideWall.position.set(-3.73, wallH / 2, 0); scene.add(sideWall);
-
-    /* ── BOILER — proper rectangular cabinet (commercial wall-bottom style) */
-    const bX = -2.2, bZ = -2.0;
-    const bW = 0.85, bD = 0.55, bH = 1.7;
-    // cabinet body
-    const cab = new THREE.Mesh(new THREE.BoxGeometry(bW, bH, bD), matBoilerCase);
-    cab.position.set(bX, bH / 2 + 0.05, bZ); scene.add(cab);
-    // recessed front panel (slightly inset darker)
-    const front = new THREE.Mesh(new THREE.BoxGeometry(bW * 0.86, bH * 0.72, 0.04), matAHUTrim);
-    front.position.set(bX, bH / 2 + 0.05, bZ + bD / 2 + 0.005); scene.add(front);
-    // brand purple stripe along the bottom
-    const stripe = new THREE.Mesh(new THREE.BoxGeometry(bW + 0.02, 0.10, bD + 0.02), matBoilerTrim);
-    stripe.position.set(bX, 0.12, bZ); scene.add(stripe);
-    // illuminated control panel
-    const panel = new THREE.Mesh(new THREE.BoxGeometry(bW * 0.45, 0.18, 0.04), matBoilerPanel);
-    panel.position.set(bX, bH * 0.78, bZ + bD / 2 + 0.025); scene.add(panel);
-    // top vent grille
-    for (let k = 0; k < 5; k++) {
-      const slot = new THREE.Mesh(new THREE.BoxGeometry(bW * 0.7, 0.018, 0.04), matAHUTrim);
-      slot.position.set(bX, bH + 0.06 - k * 0.04, bZ + bD / 2 + 0.005);
-      scene.add(slot);
-    }
-    // flue rising from the top
-    const flueY0 = bH + 0.05;
-    const flue = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.10, 1.65, 18), matFlue);
-    flue.position.set(bX, flueY0 + 0.825, bZ); scene.add(flue);
-    const flueCap = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.10, 0.10, 18), matFlue);
-    flueCap.position.set(bX, flueY0 + 1.70, bZ); scene.add(flueCap);
-    // F/R pipe stubs at the bottom (with flanges)
-    [-0.20, 0.20].forEach((dx, i) => {
-      const stubMat = i === 0 ? matPipeA : matPipeB;
-      const stub = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.22, 16), stubMat);
-      stub.position.set(bX + dx, 0.31, bZ + bD / 2 + 0.11);
-      stub.rotation.x = Math.PI / 2;
-      scene.add(stub);
-      const fl = new THREE.Mesh(new THREE.CylinderGeometry(0.115, 0.115, 0.04, 18), matFlange);
-      fl.position.set(bX + dx, 0.31, bZ + bD / 2 + 0.20);
-      fl.rotation.x = Math.PI / 2;
-      scene.add(fl);
-    });
-
-    /* ── PUMPS — end-suction set, motor + volute on a concrete plinth */
-    const plinth = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.18, 0.95), matPlinth);
-    plinth.position.set(0.9, 0.09, -1.9); scene.add(plinth);
-    function buildPump(cx) {
-      const cy = 0.45, cz = -1.9;
-      // pump volute (round end facing camera, axis along +x)
-      const volute = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.30, 24), matPumpCase);
-      volute.rotation.z = Math.PI / 2;
-      volute.position.set(cx + 0.22, cy, cz); scene.add(volute);
-      // suction throat (top of volute → upward elbow on the volute face)
-      const throat = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 0.14, 16), matPumpCase);
-      throat.position.set(cx + 0.36, cy + 0.10, cz); scene.add(throat);
-      // discharge flange on top
-      const dischFl = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.04, 20), matFlange);
-      dischFl.position.set(cx + 0.36, cy + 0.20, cz); scene.add(dischFl);
-      // coupling guard between pump and motor
-      const guard = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.22, 0.22), matAHUTrim);
-      guard.position.set(cx + 0.07, cy, cz); scene.add(guard);
-      // motor body
-      const motor = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.55, 22), matMotorCase);
-      motor.rotation.z = Math.PI / 2;
-      motor.position.set(cx - 0.30, cy, cz); scene.add(motor);
-      // motor cooling fan housing
-      const fan = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.16, 0.10, 20), matMotorCase);
-      fan.rotation.z = Math.PI / 2;
-      fan.position.set(cx - 0.62, cy, cz); scene.add(fan);
-      // baseplate (heavy steel base bonded to plinth)
-      const base = new THREE.Mesh(new THREE.BoxGeometry(1.10, 0.06, 0.45), matFlange);
-      base.position.set(cx - 0.05, 0.21, cz); scene.add(base);
-      // anti-vibration pads under baseplate corners
-      [-0.45, 0.45].forEach(dx => {
-        [-0.18, 0.18].forEach(dz => {
-          const pad = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.04, 0.10), matRubber);
-          pad.position.set(cx + dx, 0.20, cz + dz); scene.add(pad);
-        });
-      });
-      // suction-side flexible (rubber bellows) connector + flange — front of volute
-      const bellows = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.10, 0.18, 18), matRubber);
-      bellows.position.set(cx + 0.22, cy, cz + 0.30); scene.add(bellows);
-      // ridges on the bellows
-      [-0.05, 0, 0.05].forEach(dz => {
-        const ring = new THREE.Mesh(new THREE.TorusGeometry(0.108, 0.012, 8, 18), matRubber);
-        ring.rotation.x = Math.PI / 2;
-        ring.position.set(cx + 0.22, cy, cz + 0.30 + dz); scene.add(ring);
-      });
-      const susFl = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.04, 20), matFlange);
-      susFl.rotation.x = Math.PI / 2;
-      susFl.position.set(cx + 0.22, cy, cz + 0.41); scene.add(susFl);
-    }
-    buildPump(0.30);
-    buildPump(1.50);
-
-    /* ── AHU — sectional unit (3 sections) with supply + return ductwork */
-    const ahuX = 2.6, ahuY = 0.78, ahuZ = 0.6;
-    const sections = [
-      { w: 0.55, mat: matAHU, label: 'filter' },
-      { w: 0.65, mat: matAHU, label: 'coil'   },
-      { w: 0.55, mat: matAHU, label: 'fan'    }
-    ];
-    let ax = ahuX - 0.875;
-    sections.forEach(s => {
-      const sec = new THREE.Mesh(new THREE.BoxGeometry(s.w, 1.55, 1.20), matAHU);
-      sec.position.set(ax + s.w / 2, ahuY, ahuZ); scene.add(sec);
-      // section divider (raised flange between sections)
-      const div = new THREE.Mesh(new THREE.BoxGeometry(0.04, 1.62, 1.26), matAHUTrim);
-      div.position.set(ax + s.w + 0.0, ahuY, ahuZ); scene.add(div);
-      // small access door per section
-      const door = new THREE.Mesh(new THREE.BoxGeometry(s.w * 0.7, 0.85, 0.03), matAHUTrim);
-      door.position.set(ax + s.w / 2, ahuY - 0.05, ahuZ + 0.61); scene.add(door);
-      // door handle
-      const handle = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.08, 0.04), matFlange);
-      handle.position.set(ax + s.w * 0.85, ahuY - 0.05, ahuZ + 0.63); scene.add(handle);
-      ax += s.w;
-    });
-    // end caps (flanges at the AHU outer faces)
-    [ahuX - 0.875, ahuX + 0.875].forEach(fx => {
-      const cap = new THREE.Mesh(new THREE.BoxGeometry(0.04, 1.62, 1.26), matAHUTrim);
-      cap.position.set(fx, ahuY, ahuZ); scene.add(cap);
-    });
-    // supply duct rising from AHU top, then turning forward
-    addDuctRun(scene, ahuX - 0.30, ahuX + 0.30, 1.85, ahuZ, 0.55, 0.55);   // small horiz over AHU
-    const dUp = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.80, 0.55), matDuct);
-    dUp.position.set(ahuX, 1.95, ahuZ); scene.add(dUp);
-    const dForward = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.55, 1.7), matDuct);
-    dForward.position.set(ahuX, 2.32, ahuZ + 0.95); scene.add(dForward);
-    // duct flange between vertical riser and forward run
-    const dFl = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.62, 0.04), matDuctFlange);
-    dFl.position.set(ahuX, 2.05, ahuZ + 0.30); scene.add(dFl);
-    // return duct (smaller) at low level
-    addDuctRun(scene, ahuX - 0.20, ahuX + 0.20, 0.55, ahuZ + 0.95, 0.40, 0.40);
-    const dRet = new THREE.Mesh(new THREE.BoxGeometry(0.40, 0.40, 1.4), matDuct);
-    dRet.position.set(ahuX, 0.55, ahuZ + 1.35); scene.add(dRet);
-
-    /* ── PIPEWORK HEADERS along the back wall + branched drops */
-    const yFlow = 2.40, yRtn = 2.10;
-    drawPipe(scene, [
-      [bX, yFlow, -2.45],
-      [ahuX,  yFlow, -2.45],
-      [ahuX,  yFlow,  ahuZ],
-      [ahuX,  1.55,   ahuZ],
-    ], 0.075, matPipeA, { elbowR: 0.28 });
-    drawPipe(scene, [
-      [bX, yRtn, -2.45],
-      [ahuX,  yRtn, -2.45],
-      [ahuX,  yRtn,  ahuZ + 0.40],
-      [ahuX,  1.30,  ahuZ + 0.40],
-    ], 0.075, matPipeB, { elbowR: 0.28 });
-
-    // Branch drops — flow header tees down to each pump discharge
-    [0.66, 1.86].forEach(bx => {
-      drawPipe(scene, [
-        [bx, yFlow, -2.45],
-        [bx, yFlow, -2.10],
-        [bx, 0.65,  -2.10],
-        [bx, 0.65,  -1.90],
-      ], 0.060, matPipeA, { elbowR: 0.20 });
-    });
-    // Branch drops — return header tees down to each pump suction
-    [0.66, 1.86].forEach(bx => {
-      drawPipe(scene, [
-        [bx + 0.30, yRtn, -2.45],
-        [bx + 0.30, yRtn, -1.55],
-        [bx + 0.30, 0.45, -1.55],
-        [bx + 0.30, 0.45, -1.49],
-      ], 0.060, matPipeB, { elbowR: 0.20 });
-    });
-
-    // ISOLATION VALVE — flat brass body + lever handle on one branch
-    const vBody = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.10, 20), matValve);
-    vBody.position.set(1.86, 1.70, -2.10); scene.add(vBody);
-    // valve flanges either side
-    [1.62, 1.78].forEach(vy => {
-      const f = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.10, 0.025, 18), matFlange);
-      f.position.set(1.86, vy, -2.10); scene.add(f);
-    });
-    const vHandle = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.04, 0.06), matValve);
-    vHandle.position.set(1.86, 1.82, -2.10); scene.add(vHandle);
-
-    return { camera: { pos: [5.4, 3.6, 5.6], lookAt: [0.4, 1.0, -0.6] } };
-  }
+  /* Plantroom Designer scene factory DELETED in Phase 2.
+     Per the original sandbox plan home Section 4 shows the Clash
+     Solver scene only. Plantroom Designer remains as its own
+     /dist/features/plantroom-designer-3d/index.html page. */
 
   /* ──────────────────────────────────────────────────────────────────── */
   /*  Scene 3 — Clash Solver                                              */
@@ -1648,15 +1475,12 @@
     return { camera: { pos: [5.6, 3.4, 5.6], lookAt: [0, 1.95, 0] } };
   }
 
+  // Only the Clash Solver scene is mounted on the sandboxed home.
   const SCENES = {
-    'autoroute':              buildAutoroute,
-    'plantroom-designer-3d':  buildPlantroom,
-    'clash-solver':           buildClashSolver
+    'clash-solver': buildClashSolver
   };
   const TITLES = {
-    'autoroute':              'AutoRoute — pipework routed down a corridor into a room',
-    'plantroom-designer-3d':  '3D Plantroom Designer — boiler, pumps, AHU, services',
-    'clash-solver':           'Clash Solver — pipe ramped over a perpendicular duct'
+    'clash-solver': 'Clash Solver — pipe ramped over a perpendicular duct'
   };
 
   /* ─── Renderer factory ─────────────────────────────────────────────── */
