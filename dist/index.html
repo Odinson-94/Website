@@ -102,6 +102,18 @@
     gap: var(--space-2xl); align-items: center;
   }
   @media (max-width: 1100px) { .home-hero { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) {
+    /* Phase 8.7.3: BUILD cycler is the punchier element on entry,
+       so flip it on top on phone portrait. */
+    .home-hero { display: flex; flex-direction: column-reverse; gap: 32px; }
+    .home-hero .copy { max-width: 100%; }
+    .build-cycler .build-line { font-size: clamp(28px, 9vw, 44px); }
+    .build-cycler .build-fixed,
+    .build-cycler .build-variant { letter-spacing: 3pt; }
+    /* Buttons full-width on phone so they're easy to tap. */
+    .button-row .button-row-inline { flex-direction: column; gap: 12px; }
+    .button-row-inline .signup-btn { width: 100%; }
+  }
   .home-hero .copy { min-width: 0; max-width: 70%; }
   .home-hero .hero-kicker {
     display: inline-block; font-size: 11px; font-weight: 700;
@@ -494,16 +506,43 @@
   @media (max-width: 1100px) {
     .revit-panel-top { grid-template-columns: 1fr; }
     .revit-panel-top .rp-video { min-height: 260px; }
-    .revit-panel-bottom { height: auto; min-height: 600px; }
+    .revit-panel-bottom {
+      height: auto; min-height: 600px;
+      aspect-ratio: auto;     /* drop desktop 1576/1082 ratio on tablet */
+    }
     .revit-panel-bottom .draggable-chat {
       position: relative; top: auto; left: auto;
       width: calc(100% - 48px); height: 480px;
       margin: 24px auto 16px;
     }
     .revit-panel-bottom .rp-commands-card {
-      position: relative; top: auto; right: auto;
-      width: calc(100% - 48px); margin: 0 auto 24px;
+      position: relative; top: auto; right: auto; bottom: auto;
+      width: calc(100% - 48px); height: auto;
+      margin: 0 auto 24px;
+      padding: 28px 24px;     /* tighter than 36px on mobile */
     }
+    .rp-commands-card .rp-card-header {
+      font-size: 28px;        /* down from 44px on small viewports */
+    }
+  }
+  @media (max-width: 480px) {
+    .revit-panel-top .rp-copy { padding: 28px 24px; }
+    .revit-panel-top .rp-copy .rp-logo {
+      width: 200px; height: 200px;    /* down from 312px so it fits */
+      border-radius: 32px;
+    }
+    .revit-panel-top .rp-copy h2 { font-size: 26px; }
+    .revit-panel-bottom .draggable-chat {
+      width: calc(100% - 24px); height: 380px;
+      margin: 16px auto 8px;
+    }
+    .revit-panel-bottom .rp-commands-card {
+      width: calc(100% - 24px);
+      padding: 24px 18px;
+    }
+    .rp-commands-card .rp-card-header { font-size: 22px; }
+    .rp-feat-title { font-size: 16px; }
+    .rp-feat-desc { font-size: 14px; }
   }
 
   /* ── LAYOUT — no rails, 80% boxed ───────────────────────────────── */
