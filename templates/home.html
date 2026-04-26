@@ -498,8 +498,8 @@
   }
 
   /* ── LAYOUT — no rails, 80% boxed ───────────────────────────────── */
-  body { background: #f5f3ef; }
-  html.dark-mode body { background: #1a1a1a; }
+  body { background: var(--ad-bg); }
+  html.dark-mode body { background: var(--ad-bg-dark); }
   .docs-layout.home-no-rails {
     grid-template-columns: minmax(0, 1fr) !important;
     width: 80% !important; max-width: none !important;
