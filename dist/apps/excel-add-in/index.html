@@ -504,6 +504,13 @@
     color: var(--ad-teal-light);
     display: inline-flex; align-items: center; justify-content: center;
     font-size: 14px;
+    /* Phase 7.4: 4px translate on row hover only (not infinite). */
+    transition: transform 0.18s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  @media (hover: hover) {
+    .ap-features-card .rp-feat-item:hover .ap-feat-chev {
+      transform: translateX(4px);
+    }
   }
   .ap-feat-group-label {
     margin: var(--space-md) 0 8px;
@@ -627,6 +634,120 @@
     }
     .install-cta-row .cta-secondary:hover { text-decoration: underline; }
   }
+
+  /* ── RELATED — dark .rp-commands-card derivative, 3-up.
+        Per Phase 7.6: same dark-card style as the home Section 3
+        carousel. Overrides the legacy .related-* rules in
+        css/bundles/page.css (which used --bg-card / --text — i.e.
+        the light surface vocabulary). */
+  .related-section { margin: var(--space-2xl) 0 var(--space-xl); }
+  .related-section h2 {
+    margin: 0 0 var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--ad-border);
+    font-family: var(--ad-font-display);
+    font-size: var(--ad-text-h2);
+    font-weight: var(--ad-w-medium);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .related-card {
+    background: var(--ad-card-dark);
+    border: none;
+    border-radius: 14px;
+    padding: 22px 24px;
+    color: #fff;
+    text-decoration: none;
+    display: flex; flex-direction: column; gap: 6px;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  @media (hover: hover) {
+    .related-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    }
+  }
+  .related-card .related-kind {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-teal-light);
+  }
+  .related-card strong {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-card);
+    font-weight: var(--ad-w-card);
+    line-height: 1.25;
+    color: #fff;
+  }
+  .related-card .related-desc {
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-light);
+    line-height: 1.45;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* FAQ — keep the <details> behaviour but switch to single-law
+     surfaces. Light-mode answers sit on a white panel so they don't
+     compete with the dark related cards above. */
+  .faq-section h2 {
+    margin: var(--space-2xl) 0 var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--ad-border);
+    font-family: var(--ad-font-display);
+    font-size: var(--ad-text-h2);
+    font-weight: var(--ad-w-medium);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
+  }
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+  .faq-item {
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    transition: border-color 0.18s;
+  }
+  .faq-item[open] { border-color: rgba(21,96,130,0.30); }
+  .faq-item summary {
+    font-family: var(--ad-font-body);
+    font-size: 15px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-text-1);
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-right: 24px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ad-teal);
+    font-size: 18px;
+    font-weight: var(--ad-w-medium);
+    transition: transform 0.18s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item .faq-answer {
+    margin-top: 10px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+  }
+  .faq-item .faq-answer p { margin: 0; }
 
   /* ── AUDIENCE PILLS ──────────────────────────────────────────────── */
   .ap-audience {
@@ -846,7 +967,7 @@
   </div>
 
   <p class="ap-stamp">
-    Auto-generated <code>2026-04-26T08:49:27.228Z</code> from <code>sandbox/data/apps.json</code>.
+    Auto-generated <code>2026-04-26T09:08:25.975Z</code> from <code>sandbox/data/apps.json</code>.
     Re-run with <code>adelphos_CLI auto-all</code>.
   </p>
 
