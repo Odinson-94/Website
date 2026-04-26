@@ -94,6 +94,18 @@ export async function buildHome() {
   // Each card surfaces real PNG logo + apps.json headline_claim.
   const appsCarousel = renderAppsCarousel(apps);
 
+  // ── SECTION 7: Agentic services — TRUTH ONLY ───────────────────────
+  // Source: sandbox/data/agentic-services.json. Three managed
+  // services (kind="Agentic Module") + four email services
+  // (kind="Email Service"). NO fabricated entries — the 3 invented
+  // services from the previous build (Procurement / Resource /
+  // Compliance) are explicitly excluded by filtering on real slugs.
+  const realManagedSlugs = ['finances', 'project-management', 'document-controller'];
+  const realEmailSlugs   = ['email-cobie', 'email-revit-modelling', 'email-schematics', 'email-specifications'];
+  const managed = realManagedSlugs.map(slug => services.find(s => s.slug === slug)).filter(Boolean);
+  const emails  = realEmailSlugs.map(slug => services.find(s => s.slug === slug)).filter(Boolean);
+  const agenticServices = renderAgenticServices(managed, emails);
+
   // SEO
   const seoHead = await renderSeoHead({
     title: 'Adelphos AI — apps, agentic services and bespoke automations for MEP',
@@ -122,6 +134,7 @@ export async function buildHome() {
     .replaceAll('{{command_count}}',          String(cmdCount))
     .replaceAll('{{tool_count}}',             String(toolCount))
     .replaceAll('{{apps_carousel}}',            appsCarousel)
+    .replaceAll('{{agentic_services}}',         agenticServices)
     .replaceAll('{{seo_head}}',                 seoHead)
     .replaceAll('{{json_ld}}',                  jsonLd);
 
@@ -312,6 +325,59 @@ function roadmapCard(r) {
       <div class="app-card-foot">
         <span class="app-card-surf">Roadmap</span>
       </div>
+    </div>`;
+}
+
+/* ──────────────────────────────  AGENTIC SERVICES  (Section 7)
+   Truth-only: every card lifts copy verbatim from the JSON.
+   Card vocabulary = .rp-commands-card. Two layouts:
+     Row A: 3-up of dark managed-service cards
+     Row B: 1 full-width dark card "Just email us — we handle it"
+            with 4 email service rows (each row = .rp-feat-item with
+            mailto link in mono in the right slot). */
+function renderAgenticServices(managed, emails) {
+  const managedCards = managed.map(s => managedServiceCard(s)).join('');
+  const emailRows    = emails.map(s => emailServiceRow(s)).join('');
+  return `
+    <div class="agentic-row agentic-managed-row">${managedCards}</div>
+
+    <div class="agentic-email-card rp-commands-card">
+      <h3 class="agentic-email-header">Just email us — we handle it.</h3>
+      <p class="agentic-email-tagline">Four agent-run services that work over email. Forward the brief or the model, receive the deliverable.</p>
+      <div class="rp-feat-list">${emailRows}</div>
+    </div>`;
+}
+
+function managedServiceCard(s) {
+  const claim = (s.headline_claim || s.tagline || '').trim();
+  const features = (s.features || []).slice(0, 3);
+  const featRows = features.map(f => `
+    <div class="rp-feat-item">
+      <div class="rp-feat-copy">
+        <span class="rp-feat-title">${esc(f.title || f.name)}</span>
+        <span class="rp-feat-desc">${esc(f.desc)}</span>
+      </div>
+      <div class="rp-agent-spinner"></div>
+    </div>`).join('');
+  return `
+    <a class="agentic-card rp-commands-card" href="/dist/agentic-services/${esc(s.slug)}/index.html">
+      <span class="agentic-card-kicker">Agentic module</span>
+      <h3 class="agentic-card-title">${esc(s.title)}</h3>
+      <p class="agentic-card-claim">${esc(claim)}</p>
+      <div class="rp-feat-list">${featRows}</div>
+      <span class="agentic-card-cta">${esc(s.cta_label || 'Request a walkthrough')} →</span>
+    </a>`;
+}
+
+function emailServiceRow(s) {
+  const email = s.email || '';
+  return `
+    <div class="rp-feat-item agentic-email-row">
+      <div class="rp-feat-copy">
+        <span class="rp-feat-title">${esc(s.title)}</span>
+        <span class="rp-feat-desc">${esc(s.tagline || s.headline_claim || '')}</span>
+      </div>
+      <a class="agentic-email-mailto" href="mailto:${esc(email)}">${esc(email)}</a>
     </div>`;
 }
 

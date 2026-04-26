@@ -1010,6 +1010,131 @@
      from chat-panel.css. Phase 4 rebuilds Section 6 as document
      mockups inside the same painted frame. */
 
+  /* ── SECTION 7: AGENTIC SERVICES — .rp-commands-card derivatives.
+        Single dark card vocabulary applied at 2 sizes:
+        - .agentic-card  (Row A, 3-up): smaller version, 4 feature
+                           rows max, "Agentic module" kicker,
+                           agent-spinner per row, CTA at bottom.
+        - .agentic-email-card (Row B, full-width): exactly the
+                           Section 2 .rp-commands-card with 4
+                           rp-feat-item rows where the right-hand
+                           slot holds a mailto: link in mono. */
+  .agentic-row {
+    margin-top: var(--space-lg);
+  }
+  .agentic-managed-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .agentic-card {
+    /* Inherits .rp-commands-card from the Section 2 panel CSS in
+       chat-panel.css / page.css — single law preserved. We only
+       override sizing and per-card padding here. */
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 28px 28px 24px;
+    margin: 0;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    user-select: auto;
+    display: flex; flex-direction: column; gap: 8px;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  @media (hover: hover) {
+    .agentic-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    }
+  }
+  .agentic-card .agentic-card-kicker {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-teal-light);
+  }
+  .agentic-card .agentic-card-title {
+    margin: 4px 0 0;
+    font-family: var(--ad-font-body);
+    font-size: 22px;
+    font-weight: var(--ad-w-card);    /* 600 — dark-card-only */
+    line-height: 1.2;
+    color: #fff;
+  }
+  .agentic-card .agentic-card-claim {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-row);    /* 16px */
+    font-weight: var(--ad-w-light);   /* 300 */
+    line-height: var(--ad-lh-row);
+    color: rgba(255,255,255,0.65);
+  }
+  .agentic-card .rp-feat-list {
+    margin-top: 8px;
+  }
+  .agentic-card .agentic-card-cta {
+    margin-top: auto;
+    padding-top: 14px;
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal-light);
+    letter-spacing: 0.02em;
+  }
+
+  /* Row B: full-width email-services card (exact Section 2 surface) */
+  .agentic-email-card {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: 18px 0 0;
+    padding: 32px 36px 28px;
+    color: #fff;
+    cursor: default;
+    user-select: auto;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .agentic-email-card .agentic-email-header {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 28px;
+    font-weight: var(--ad-w-card);
+    line-height: 1.2;
+    color: #fff;
+  }
+  .agentic-email-card .agentic-email-tagline {
+    margin: 0 0 6px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-row);
+    font-weight: var(--ad-w-light);
+    color: rgba(255,255,255,0.65);
+    max-width: 60ch;
+  }
+  .agentic-email-row .agentic-email-mailto {
+    font-family: var(--ad-font-mono);
+    font-size: 13px;
+    color: var(--ad-teal-light);
+    text-decoration: none;
+    background: rgba(255,255,255,0.06);
+    padding: 6px 12px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .agentic-email-row .agentic-email-mailto:hover {
+    background: rgba(255,255,255,0.10);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 1100px) {
+    .agentic-managed-row { grid-template-columns: 1fr; gap: 16px; }
+  }
+
   /* ── SECTION 8: CALCULATOR BADGES ──────────────────────────────── */
   .calc-row {
     display: flex; flex-wrap: wrap; gap: 12px; padding: 8px 0;
@@ -1387,65 +1512,26 @@
     </div>
   </section>
 
-  <!-- ═══ SECTION 7: AGENTIC MODULES ═══ -->
+  <!-- ═══ SECTION 7: AGENTIC MODULES — TRUTH ONLY ═══
+       3 real managed services + 4 real email services from
+       sandbox/data/agentic-services.json. The 3 fabricated services
+       (Procurement Agent / Resource Planning / Compliance Monitoring)
+       are GONE — they were never in the JSON. All cards = .rp-commands-
+       card derivatives (single dark surface, white type, agent
+       spinners). See scripts/build-home.mjs renderAgenticServices(). -->
   <section class="home-section reveal d5">
     <div class="home-section-head">
-      <h2>Agentic modules</h2>
+      <h2>Agentic services</h2>
       <div class="head-aside">
-        <p>Managed services where Adelphos runs the agent against your business — finances, project management, document control.</p>
+        <p>Managed services where Adelphos runs the agent against your business — finances, project management, document control. Plus four email services for one-off work.</p>
       </div>
     </div>
-    <div class="row-3up">
-      <div class="logo-tile" data-tone="amber">
-        <div class="logo-area"></div>
-        <div class="body">
-          <span class="surf">Managed service</span>
-          <h3>Financial Forecasting</h3>
-          <p class="claim">Cash-flow projections, cost tracking and variance analysis pulled from your live project data every week.</p>
-        </div>
-      </div>
-      <div class="logo-tile" data-tone="blue">
-        <div class="logo-area"></div>
-        <div class="body">
-          <span class="surf">Managed service</span>
-          <h3>Project Management Agent</h3>
-          <p class="claim">Programme tracking, milestone alerts and resource utilisation — compiled from model progress and team logs.</p>
-        </div>
-      </div>
-      <div class="logo-tile" data-tone="midnight">
-        <div class="logo-area"></div>
-        <div class="body">
-          <span class="surf">Managed service</span>
-          <h3>Document Control</h3>
-          <p class="claim">Transmittals, revision registers and distribution logs — generated, tracked and archived automatically.</p>
-        </div>
-      </div>
-      <div class="logo-tile" data-tone="green">
-        <div class="logo-area"></div>
-        <div class="body">
-          <span class="surf">Managed service</span>
-          <h3>Procurement Agent</h3>
-          <p class="claim">Material take-offs, supplier quotes and purchase order tracking driven by the model bill of quantities.</p>
-        </div>
-      </div>
-      <div class="logo-tile" data-tone="teal">
-        <div class="logo-area"></div>
-        <div class="body">
-          <span class="surf">Managed service</span>
-          <h3>Resource Planning</h3>
-          <p class="claim">Workforce allocation, subcontractor scheduling and equipment bookings aligned to the live programme.</p>
-        </div>
-      </div>
-      <div class="logo-tile" data-tone="red">
-        <div class="logo-area"></div>
-        <div class="body">
-          <span class="surf">Managed service</span>
-          <h3>Compliance Monitoring</h3>
-          <p class="claim">Regulatory checks, certification tracking and audit trails — flagged before a deadline is missed.</p>
-        </div>
-      </div>
-    </div>
+    {{agentic_services}}
   </section>
+
+  <!-- (Legacy 6-card row with 3 fabricated services DELETED in Phase 5;
+        replaced above by {{agentic_services}} which surfaces the 7
+        REAL services from sandbox/data/agentic-services.json.) -->
 
   <!-- ═══ SECTION 8: CALCULATOR ENGINES ═══ -->
   <section class="home-section reveal d5">
