@@ -233,10 +233,26 @@ export async function renderJsonLd({ kind, ...d }) {
 }
 
 /**
- * Auto-generate FAQ Q/A pairs from the page entity.
- * Used by `app` and `agentic-service` kinds. Returns [{q, a}].
+ * Build FAQ Q/A pairs for a page entity.
+ *
+ * Phase 7.6 / 8.1 / 8.2: the entity's `.faq[]` array (if present and
+ * non-empty) is the single source of truth — every Q/A is lifted
+ * verbatim. When the JSON has no `.faq[]`, fall back to auto-derived
+ * questions from the existing fields (tagline, detail_paragraphs,
+ * the_shift, key_outcomes, surface, best_for, primary_cta,
+ * engagement).
+ *
+ * Returns [{q, a}]; the renderer hides the FAQ section when the
+ * array is empty.
  */
 export function buildAutoFaqs(entity, kind = 'app') {
+  // Verbatim FAQ from JSON wins.
+  if (Array.isArray(entity.faq) && entity.faq.length) {
+    return entity.faq
+      .filter(f => f && (f.q || f.question) && (f.a || f.answer))
+      .map(f => ({ q: f.q || f.question, a: f.a || f.answer }));
+  }
+
   const out = [];
   const name = entity.title;
   const isApp = kind === 'app';

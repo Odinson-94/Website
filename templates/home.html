@@ -1385,7 +1385,12 @@
         <a href="#" class="signup-btn suggestion" onclick="window.adelphosSignup.openModal('suggestion'); return false;">Got a suggestion? We'd be happy to include it.</a>
       </div>
     </div>
-    <div class="build-cycler">
+    <!-- Phase 8.7.5: aria-hidden on the cycler — the cycling word IS
+         meaningful product copy, but a screen reader reading it on
+         a 2.5s interval is hostile. The product/audience list is
+         conveyed by the apps carousel + agentic services section
+         later on the page (which screen readers DO announce). -->
+    <div class="build-cycler" aria-hidden="true">
       <div class="build-line">
         <span class="build-fixed">BUILD</span>
         <div class="build-variant-wrap">
@@ -1399,15 +1404,26 @@
           'Reports.','Schematics.','X.','Lighting.','Ventilation.','Heating.','Fire Alarms.'];
         var el = document.getElementById('buildVariant');
         if (!el) return;
+        // Phase 8.7.5: pause the cycler when prefers-reduced-motion is on.
+        // The user sees one fixed product word ('MEP.') instead of a
+        // 12-word loop. Listens to live preference changes.
+        var rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
         var i = 0;
-        setInterval(function(){
-          el.className = 'build-variant scroll-out';
-          setTimeout(function(){
-            i = (i + 1) % words.length;
-            el.textContent = words[i];
-            el.className = 'build-variant scroll-in';
-          }, 450);
-        }, 2500);
+        var timer = null;
+        function start() {
+          if (timer) return;
+          timer = setInterval(function(){
+            el.className = 'build-variant scroll-out';
+            setTimeout(function(){
+              i = (i + 1) % words.length;
+              el.textContent = words[i];
+              el.className = 'build-variant scroll-in';
+            }, 450);
+          }, 2500);
+        }
+        function stop() { if (timer) { clearInterval(timer); timer = null; } }
+        if (!rmq.matches) start();
+        rmq.addEventListener('change', function(e){ e.matches ? stop() : start(); });
       })();
     </script>
   </section>
