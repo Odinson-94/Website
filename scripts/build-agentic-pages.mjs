@@ -85,9 +85,10 @@ async function renderService(svc) {
   ].filter(Boolean);
   const relatedBlock = renderRelatedBlock(related);
 
+  // Inline stat line (Phase 8.2): no dashboard tile cliché.
   const outcomesStrip = (svc.key_outcomes || []).length
-    ? `<div class="outcomes-strip">${svc.key_outcomes.map(o => `
-        <div class="ostat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('')}</div>`
+    ? `<p class="ap-stats-inline">${svc.key_outcomes.map(o => `
+        <span><span class="ap-stat-num">${esc(o.stat)}</span>${esc(o.label)}</span>`).join('<span aria-hidden="true">·</span>')}</p>`
     : '';
 
   const shiftBlock = svc.the_shift
@@ -98,24 +99,39 @@ async function renderService(svc) {
     : '';
 
   const offers = (svc.what_we_offer || []).map(o => `<li>${esc(o)}</li>`).join('');
-  const stages = (svc.how_it_becomes_agentic || []).map(s => `<div class="stage">${esc(s)}</div>`).join('');
+  const stages = (svc.how_it_becomes_agentic || []).map((s, i) => {
+    // Each stage may be a plain string OR an object {title, desc}.
+    if (typeof s === 'string') {
+      return `<div class="stage">
+        <span class="stage-num">Stage ${String(i + 1).padStart(2, '0')}</span>
+        <h4>${esc(s)}</h4>
+      </div>`;
+    }
+    return `<div class="stage">
+      <span class="stage-num">Stage ${String(i + 1).padStart(2, '0')}</span>
+      <h4>${esc(s.title || s.name || '')}</h4>
+      ${s.desc ? `<p>${esc(s.desc)}</p>` : ''}
+    </div>`;
+  }).join('');
 
   // Short engagement label for the hero ("Monthly subscription + ...")
   const engagementShort = (svc.engagement || '').split('+')[0].trim() || 'Managed service';
 
   // Email-service flavour: bespoke email address + SLA + mailto CTA
-  const isEmail = svc.kind === 'email-service';
-  const emailStrip = isEmail && svc.email_address ? `
+  // Real services use kind="Email Service" (capital E, capital S) per
+  // sandbox/data/agentic-services.json, with email field at svc.email.
+  const isEmail = (svc.kind || '').toLowerCase().includes('email');
+  const emailAddr = svc.email_address || svc.email || '';
+  const emailStrip = isEmail && emailAddr ? `
     <div class="email-strip">
-      <span class="lab">Email</span>
-      <span class="addr">${esc(svc.email_address)}</span>
-      ${svc.sla ? `<span class="sla">SLA: ${esc(svc.sla)}</span>` : ''}
+      <span class="es-label">Email this in</span>
+      <a class="es-mail" href="mailto:${esc(emailAddr)}">${esc(emailAddr)}</a>
     </div>` : '';
   const primaryCtaLabel = isEmail
-    ? `Send a brief to ${svc.email_address || 'us'}`
-    : `Talk to us about deploying ${svc.title}`;
-  const primaryCtaHref = isEmail && svc.email_address
-    ? `mailto:${svc.email_address}?subject=${encodeURIComponent('New project — ' + svc.title)}`
+    ? (svc.cta_label || `Email ${emailAddr || 'us'}`)
+    : (svc.cta_label || `Request a walkthrough`);
+  const primaryCtaHref = isEmail && emailAddr
+    ? `mailto:${emailAddr}?subject=${encodeURIComponent('New project — ' + svc.title)}`
     : '/contact/';
 
   // SEO/AEO H3 phrases (with auto-derived defaults)
@@ -241,24 +257,39 @@ function renderTile(s) {
     </a>`;
 }
 
-// Same editorial 2-column capability list as the apps template.
+// Same dark .ap-features-card.rp-commands-card vocabulary as app-page.
+// JSON has features[] with .title + .desc (not .name like apps.json),
+// so we accept both. No spinner — static teal '›' chevron per row.
 function renderFeatures(entity) {
-  const renderList = items => `<ul class="feat-list">${items.map(f => `
-    <li>
-      <span class="name">${esc(f.name)}</span>
-      <span class="desc">${esc(f.desc)}</span>
-    </li>`).join('')}</ul>`;
+  const norm = items => items.map(f => ({
+    name: f.name || f.title || '',
+    desc: f.desc || ''
+  }));
+  const renderRows = items => norm(items).map(f => `
+    <div class="rp-feat-item">
+      <div class="rp-feat-copy">
+        <span class="rp-feat-title">${esc(f.name)}</span>
+        <span class="rp-feat-desc">${esc(f.desc)}</span>
+      </div>
+      <span class="ap-feat-chev" aria-hidden="true">›</span>
+    </div>`).join('');
+
+  let body = '';
   if (Array.isArray(entity.feature_groups) && entity.feature_groups.length) {
-    return entity.feature_groups.map(g => `
-      <section class="features-group">
-        <h3 style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;color:#2e8b6f;margin:var(--space-lg) 0 var(--space-sm);">${esc(g.title)} <span style="color:var(--text-muted);font-weight:500;letter-spacing:0;">${(g.features || []).length}</span></h3>
-        ${renderList(g.features || [])}
-      </section>`).join('');
+    body = entity.feature_groups.map(g => `
+      <p class="ap-feat-group-label">${esc(g.title)} · ${(g.features || []).length}</p>
+      <div class="rp-feat-list">${renderRows(g.features || [])}</div>`).join('');
+  } else if (Array.isArray(entity.features) && entity.features.length) {
+    body = `<div class="rp-feat-list">${renderRows(entity.features)}</div>`;
+  } else {
+    return '';
   }
-  if (Array.isArray(entity.features) && entity.features.length) {
-    return renderList(entity.features);
-  }
-  return '';
+
+  return `
+    <div class="ap-features-card rp-commands-card">
+      <h3 class="ap-features-header">${esc(entity.title)} features</h3>
+      ${body}
+    </div>`;
 }
 
 export async function buildAllAgenticServicePages() {

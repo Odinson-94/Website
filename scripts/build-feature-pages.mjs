@@ -54,9 +54,10 @@ async function renderFeature(f) {
     <script>document.querySelectorAll('video[data-src]').forEach(v => { if (!v.src) v.src = v.dataset.src; });</script>
   ` : '';
 
+  // Inline stat line (Phase 7.2 / 8.1): no dashboard tile cliché.
   const outcomesStrip = (f.key_outcomes || []).length
-    ? `<div class="outcomes-strip">${f.key_outcomes.map(o => `
-        <div class="ostat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('')}</div>`
+    ? `<p class="ap-stats-inline">${f.key_outcomes.map(o => `
+        <span><span class="ap-stat-num">${esc(o.stat)}</span>${esc(o.label)}</span>`).join('<span aria-hidden="true">·</span>')}</p>`
     : '';
 
   const shiftBlock = f.the_shift
@@ -150,14 +151,24 @@ async function renderFeature(f) {
   return out;
 }
 
+// Same dark .ap-features-card.rp-commands-card vocabulary as app-page.
+// No spinners (Phase 7.4); static teal '›' chevron per row instead.
 function renderCapabilities(entity) {
-  const renderList = items => `<ul class="feat-list">${items.map(f => `
-    <li>
-      <span class="name">${esc(f.name)}</span>
-      <span class="desc">${esc(f.desc)}</span>
-    </li>`).join('')}</ul>`;
-  if (Array.isArray(entity.features) && entity.features.length) return renderList(entity.features);
-  return '';
+  const items = Array.isArray(entity.features) ? entity.features : [];
+  if (!items.length) return '';
+  const rows = items.map(f => `
+    <div class="rp-feat-item">
+      <div class="rp-feat-copy">
+        <span class="rp-feat-title">${esc(f.name)}</span>
+        <span class="rp-feat-desc">${esc(f.desc)}</span>
+      </div>
+      <span class="ap-feat-chev" aria-hidden="true">›</span>
+    </div>`).join('');
+  return `
+    <div class="ap-features-card rp-commands-card">
+      <h3 class="ap-features-header">${esc(entity.title)} capabilities</h3>
+      <div class="rp-feat-list">${rows}</div>
+    </div>`;
 }
 
 function renderInstall(entity) {
@@ -166,7 +177,7 @@ function renderInstall(entity) {
   const strip = (i.platforms || []).length ? `
     <div class="install-strip">
       ${i.platforms.map(p => `
-        <div class="platform">
+        <div class="install-tile">
           <span class="pname">${esc(p.name)}</span>
           <span class="pspec">${esc(p.spec)}</span>
         </div>`).join('')}

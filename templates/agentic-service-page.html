@@ -15,279 +15,536 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
 <style>
-  /* AGENTIC SERVICE DETAIL ──────────────────────────────────────────────
-     Crown-jewel layout matching the Apps page, but with a green/teal
-     "managed service" palette and a dedicated "How it becomes agentic"
-     stages section instead of just "what's special".
-  */
+  /* ════════════════════════════════════════════════════════════════════
+     AGENTIC SERVICE DETAIL — same single-law as app-page.
+     Hero: 2-col, copy LEFT, painted artsy frame with SVG icon RIGHT
+     (these services don't have a PNG logo, so we render an inline SVG
+     glyph centred in the frame instead).
+     Features: dark .ap-features-card.rp-commands-card.
+     End CTA: dark .rp-commands-card.
+     ════════════════════════════════════════════════════════════════════ */
 
-  .demo-detail .lead, .demo-detail > p, .demo-detail > ul, .demo-detail > ol { max-width: none; }
+  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html.dark-mode body { background: var(--ad-bg-dark); }
 
-  .svc-hero-card {
-    background: linear-gradient(135deg, #0e2a1f 0%, #1a4a3a 50%, #2e8b6f 100%);
-    border-radius: var(--radius-lg); overflow: hidden;
-    margin: 0 0 var(--space-2xl);
-    box-shadow: 0 20px 60px rgba(46,139,111,0.18);
-    position: relative;
+  .docs-layout.svc-no-rails {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 80% !important; max-width: none !important;
+    margin-left: auto !important; margin-right: auto !important;
+    padding-left: 0 !important; padding-right: 0 !important;
   }
-  .svc-hero-card::before {
-    content: ''; position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 80% 0%, rgba(255,255,255,0.10), transparent 50%),
-      radial-gradient(circle at 0% 100%, rgba(46,139,111,0.30), transparent 50%);
-    pointer-events: none;
+  .docs-layout.svc-no-rails > .docs-left,
+  .docs-layout.svc-no-rails > .docs-right { display: none !important; }
+  @media (max-width: 1100px) {
+    .docs-layout.svc-no-rails { width: 94% !important; }
   }
-  .svc-hero-card .inner { position: relative; padding: 56px 56px 48px; color: #fff; }
-  .svc-hero-card .crumb {
-    font-size: 12px; color: rgba(255,255,255,0.65);
-    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px;
+
+  @keyframes svcRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
   }
-  .svc-hero-card .crumb a { color: rgba(255,255,255,0.85); text-decoration: none; }
-  .svc-hero-card .crumb a:hover { color: #fff; text-decoration: underline; }
-  .svc-hero-card .head {
-    display: grid; grid-template-columns: 80px 1fr; gap: 24px; align-items: center;
-    margin-bottom: var(--space-lg);
+  .svc-reveal { animation: svcRise 0.6s ease both; }
+  .svc-reveal.d1 { animation-delay: 0.05s; }
+  .svc-reveal.d2 { animation-delay: 0.15s; }
+  @media (prefers-reduced-motion: reduce) { .svc-reveal { animation: none; } }
+
+  /* HERO — same as app-page .ap-hero */
+  .svc-hero {
+    margin: 56px 0 var(--space-2xl);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 0;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.16);
   }
-  .svc-hero-card .head img {
-    width: 80px; height: 80px; border-radius: var(--radius-md); object-fit: cover;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+  .svc-hero-copy {
+    padding: clamp(40px, 5vw, 64px);
+    display: flex; flex-direction: column; gap: 18px;
+    justify-content: center;
+    background: var(--ad-panel);
   }
-  .svc-hero-card h1 {
-    margin: 0; font-size: 56px; font-weight: 600; letter-spacing: -0.03em;
-    line-height: 1.05; color: #fff;
+  html.dark-mode .svc-hero-copy { background: var(--ad-panel-dark); }
+  .svc-crumb {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-text-5);
   }
-  .svc-hero-card .surf {
-    display: block; font-size: 12px; color: rgba(255,255,255,0.65);
-    text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px;
+  .svc-crumb a { color: var(--ad-teal); text-decoration: none; }
+  .svc-crumb a:hover { text-decoration: underline; }
+  .svc-badge {
+    align-self: flex-start;
+    background: rgba(21,96,130,0.10);
+    color: var(--ad-teal);
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    padding: 6px 14px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
   }
-  .svc-hero-card .claim {
-    font-size: 26px; font-weight: 300; line-height: 1.35; letter-spacing: -0.015em;
-    color: rgba(255,255,255,0.95); margin: 0 0 var(--space-md); max-width: 760px;
+  .svc-hero-copy h1 {
+    margin: 0;
+    font-family: var(--ad-font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: var(--ad-w-medium);
+    line-height: var(--ad-lh-hero);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
+    max-width: var(--ad-measure);
   }
-  .svc-hero-card .tag {
-    font-size: 17px; line-height: 1.55; color: rgba(255,255,255,0.80);
-    margin: 0 0 var(--space-lg); max-width: 720px;
+  .svc-claim {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 18px;
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-row);
+    color: var(--ad-text-1);
+    max-width: var(--ad-measure);
   }
-  /* Email-service hero: bespoke email + SLA badges */
-  .svc-hero-card .email-strip {
-    display: flex; flex-wrap: wrap; gap: 12px;
-    padding: 12px 14px; margin: 0 0 var(--space-md);
-    background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18);
-    border-radius: var(--radius-md); align-items: center;
-    backdrop-filter: blur(6px);
+  .svc-tag {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    max-width: var(--ad-measure);
   }
-  .svc-hero-card .email-strip .lab {
-    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.10em;
-    color: rgba(255,255,255,0.75); margin-right: 4px;
+  .svc-actions {
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    margin-top: 8px;
   }
-  .svc-hero-card .email-strip .addr {
-    font-family: var(--font-mono); font-size: 15px; font-weight: 600; color: #fff;
-    user-select: all;
-  }
-  .svc-hero-card .email-strip .sla {
-    margin-left: auto; font-size: 13px; color: rgba(255,255,255,0.85);
-  }
-  .svc-hero-card .actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .svc-hero-card .btn-primary {
-    background: #fff; color: #2e8b6f; padding: 12px 22px; border-radius: 999px;
-    font-size: 14px; font-weight: 600; text-decoration: none;
+  .svc-btn-primary {
+    background: var(--ad-teal);
+    color: #fff;
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-medium);
+    text-decoration: none;
     transition: transform 0.18s, box-shadow 0.18s;
   }
-  .svc-hero-card .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.20); }
-  .svc-hero-card .btn-secondary {
-    background: rgba(255,255,255,0.12); color: #fff; padding: 12px 22px; border-radius: 999px;
-    font-size: 14px; font-weight: 500; text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.20);
+  .svc-btn-secondary {
+    color: var(--ad-teal);
+    padding: 13px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(21,96,130,0.30);
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-medium);
+    text-decoration: none;
     transition: background 0.18s;
   }
-  .svc-hero-card .btn-secondary:hover { background: rgba(255,255,255,0.20); }
-  @media (max-width: 720px) {
-    .svc-hero-card .inner { padding: 32px; }
-    .svc-hero-card .head { grid-template-columns: 60px 1fr; gap: 16px; }
-    .svc-hero-card h1 { font-size: 32px; }
-    .svc-hero-card .claim { font-size: 20px; }
+  @media (hover: hover) {
+    .svc-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(21,96,130,0.30);
+    }
+    .svc-btn-secondary:hover { background: rgba(21,96,130,0.06); }
   }
 
-  .outcomes-strip {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0; background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: var(--radius-md); overflow: hidden;
-    margin: -1.5rem 0 var(--space-2xl); position: relative; z-index: 2;
-    box-shadow: var(--shadow-sm);
+  /* Painted artsy frame holding an inline SVG glyph (services have no PNG) */
+  .svc-hero-frame {
+    position: relative;
+    min-height: 460px;
+    overflow: hidden;
+    background: #1a1a1a;
   }
-  .outcomes-strip .ostat { padding: 24px 26px; border-right: 1px solid var(--border); }
-  .outcomes-strip .ostat:last-child { border-right: none; }
-  .outcomes-strip .ostat .num {
-    display: block; font-size: 32px; font-weight: 600; line-height: 1.05;
-    color: #2e8b6f; letter-spacing: -0.015em;
+  .svc-hero-frame::before {
+    content: ''; position: absolute; inset: 0;
+    background: url('/images/revit-bg.png') center center / cover no-repeat;
+    z-index: 0;
   }
-  .outcomes-strip .ostat .lbl {
-    display: block; font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;
+  .svc-hero-frame::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--ad-painted-overlay);
+    z-index: 0;
+  }
+  .svc-hero-glyph {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 200px; height: 200px;
+    border-radius: 36px;
+    background: var(--ad-card-dark);
+    color: var(--ad-teal-light);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+  }
+  .svc-hero-glyph svg { width: 88px; height: 88px; }
+
+  @media (max-width: 1100px) {
+    .svc-hero { grid-template-columns: 1fr; }
+    .svc-hero-frame { aspect-ratio: 16/10; min-height: auto; }
+    .svc-hero-glyph { width: 140px; height: 140px; }
+    .svc-hero-glyph svg { width: 64px; height: 64px; }
   }
 
-  /* Before / After */
-  .shift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin: var(--space-md) 0 var(--space-xl); }
-  .shift { padding: 24px 26px; border-radius: var(--radius-md); border: 1px solid var(--border); }
-  .shift .lab { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 10px; }
-  .shift p { font-size: 15px; line-height: 1.6; color: var(--text); margin: 0; }
-  .shift.before { background: rgba(150,30,30,0.04); border-color: rgba(150,30,30,0.18); }
-  .shift.before .lab { color: #c43a3a; }
-  .shift.after  { background: rgba(46,125,50,0.05); border-color: rgba(46,125,50,0.20); }
-  .shift.after  .lab { color: #2e7d32; }
-  @media (max-width: 720px) { .shift-grid { grid-template-columns: 1fr; } }
+  /* Section headings, prose, shift, features, end-cta, stamp — all
+     reuse the same style names as app-page.html (.docs-content h2,
+     .ap-section-sub, .shift-grid, .ap-features-card, .ap-end-cta).
+     We import them by repeating the rules below — keeps the template
+     self-contained even if app-page CSS hasn't loaded. */
 
-  /* What we offer — clean tile list */
-  .offer-list { list-style: none; padding: 0; margin: var(--space-sm) 0 var(--space-xl); }
-  .offer-list li {
-    display: grid; grid-template-columns: 28px 1fr; gap: var(--space-sm);
-    padding: 14px 18px; margin-bottom: 8px;
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm);
-    font-size: 15px; line-height: 1.5;
+  .docs-content h2 {
+    margin: var(--space-2xl) 0 var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--ad-border);
+    font-family: var(--ad-font-display);
+    font-size: var(--ad-text-h2);
+    font-weight: var(--ad-w-medium);
+    line-height: var(--ad-lh-hero);
+    letter-spacing: var(--ad-ls-hero);
+    color: var(--ad-text-1);
   }
-  .offer-list li::before {
-    content: '→'; color: #2e8b6f; font-weight: 700; font-size: 18px; line-height: 1.3;
-  }
-
-  /* Maturity ladder — numbered stages */
-  .stages-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); margin: var(--space-sm) 0 var(--space-xl); }
-  .stages-grid .stage {
-    padding: 14px 18px; background: var(--bg-soft);
-    border-left: 3px solid #2e8b6f; border-radius: var(--radius-sm);
-    font-size: 15px; line-height: 1.6; color: var(--text);
+  .svc-section-sub {
+    margin: 0 0 var(--space-lg);
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    max-width: var(--ad-measure);
   }
 
-  /* Engagement card */
-  .engagement-card {
-    padding: 18px 22px; background: var(--bg-card);
-    border: 1px solid var(--border); border-radius: var(--radius-md);
-    margin-bottom: var(--space-xl);
-  }
-  .engagement-card h3 {
-    margin: 0 0 6px; font-size: 12px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted);
-  }
-  .engagement-card p { margin: 0; font-size: 16px; color: var(--text); }
-
-  /* Description: 2-col grid (detail left, brand quote right). */
-  .why-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl);
-    align-items: center;                    /* vertical centre */
+  .svc-why {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-2xl); align-items: start;
     margin: var(--space-md) 0 var(--space-2xl);
   }
-  .why-grid .why-detail { min-width: 0; }
-  .why-grid .why-detail p { font-size: 16px; line-height: 1.7; color: var(--text); margin: 0 0 var(--space-md); }
-  .why-grid .why-detail p:last-child { margin-bottom: 0; }
-  .why-grid .why-quote { }
-  .why-grid .why-quote blockquote {
-    /* matches the section-lead H1 size on the inventory pages */
+  .svc-why-detail p {
+    margin: 0 0 18px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    text-align: justify;
+    max-width: var(--ad-measure);
+  }
+  .svc-why-detail p:last-child { margin-bottom: 0; }
+  .svc-why-quote blockquote {
     margin: 0;
-    font-size: 36px; font-weight: 500; line-height: 1.2;
-    letter-spacing: -0.025em; color: var(--text);
+    padding: 0 0 0 24px;
+    border-left: 3px solid var(--ad-teal);
+    font-family: var(--ad-font-body);
+    font-size: 20px;
+    font-weight: var(--ad-w-light);
+    line-height: 1.4;
+    color: var(--ad-text-1);
   }
-  @media (max-width: 1100px) {
-    .why-grid { grid-template-columns: 1fr; gap: var(--space-md); }
-    .why-grid .why-quote blockquote { font-size: 28px; }
-  }
-
-  /* Features (capabilities) — same editorial 2-column layout as apps. */
-  .feat-list {
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px 56px; margin: var(--space-lg) 0 var(--space-xl);
-    list-style: none; padding: 0;
-  }
-  @media (max-width: 800px) { .feat-list { grid-template-columns: 1fr; gap: 24px; } }
-  .feat-list li .name {
-    display: block; font-size: 17px; font-weight: 600; color: var(--text);
-    letter-spacing: -0.005em; margin: 0 0 6px;
-    padding-left: 16px; position: relative;
-  }
-  .feat-list li .name::before {
-    content: ''; position: absolute; left: 0; top: 9px;
-    width: 8px; height: 8px; border-radius: 50%; background: #2e8b6f;
-  }
-  .feat-list li .desc {
-    display: block; font-size: 14px; line-height: 1.6; color: var(--text-muted);
-    margin: 0; padding-left: 16px;
+  @media (max-width: 900px) {
+    .svc-why { grid-template-columns: 1fr; gap: var(--space-lg); }
   }
 
-  /* Dark-mode swap on hero + CTA so the bright service green pops on dark bg */
-  /* Dark-mode swap on hero + CTA so the bright service green pops on dark bg */
-  html.dark-mode .svc-hero-card { background: linear-gradient(135deg, #2e8b6f 0%, #4ab78f 100%); }
-  html.dark-mode .end-cta { background: linear-gradient(135deg, #4ab78f, #2e8b6f); }
+  /* Engagement card — light surface with teal kicker */
+  .engagement-card {
+    margin: var(--space-md) 0 var(--space-xl);
+    padding: 28px 32px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-md);
+    max-width: 60ch;
+  }
+  .engagement-card h3 {
+    margin: 0 0 8px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-teal);
+  }
+  .engagement-card p {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-1);
+  }
 
-  /* End CTA — green gradient, contact-driven (this is a service, not an app) */
+  /* Email strip — for the email services */
+  .email-strip {
+    margin: 4px 0 0;
+    padding: 14px 18px;
+    background: var(--ad-card-dark);
+    color: #fff;
+    border-radius: var(--radius-md);
+    display: inline-flex; align-items: center; gap: 12px;
+    max-width: 100%;
+  }
+  .email-strip .es-label {
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-teal-light);
+  }
+  .email-strip .es-mail {
+    font-family: var(--ad-font-mono);
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .email-strip .es-mail:hover { text-decoration: underline; }
+
+  /* Inline stat line */
+  .ap-stats-inline {
+    margin: 4px 0 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-text-2);
+    font-variant-numeric: tabular-nums;
+    display: flex; flex-wrap: wrap; gap: 4px 14px;
+    max-width: var(--ad-measure);
+  }
+  .ap-stats-inline .ap-stat-num { color: var(--ad-teal); margin-right: 4px; }
+
+  /* Shift grid — copied from app-page */
+  .shift-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .shift {
+    padding: 24px 26px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--ad-border);
+    background: var(--ad-panel);
+  }
+  .shift .lab {
+    margin: 0 0 10px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-text-5);
+  }
+  .shift p:last-of-type {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+  }
+  .shift.after .lab { color: var(--ad-teal); }
+  @media (max-width: 720px) { .shift-grid { grid-template-columns: 1fr; } }
+
+  /* Stages grid — How it becomes agentic */
+  .stages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .stage {
+    padding: 22px 24px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-md);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .stage .stage-num {
+    font-family: var(--ad-font-mono);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal);
+    letter-spacing: 0.05em;
+  }
+  .stage h4 {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-card);
+    font-weight: var(--ad-w-medium);
+    line-height: 1.3;
+    color: var(--ad-text-1);
+  }
+  .stage p {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+  }
+
+  /* Features card + offer list — same vocabulary as app-page */
+  .ap-features-card {
+    position: static; width: 100%; height: auto;
+    margin: var(--space-md) 0 var(--space-xl);
+    padding: 32px 36px 28px;
+    color: #fff;
+    cursor: default; user-select: auto;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+  }
+  .ap-features-card .ap-features-header {
+    margin: 0 0 12px;
+    font-family: var(--ad-font-body);
+    font-size: 22px;
+    font-weight: var(--ad-w-card);
+    line-height: 1.2;
+    color: #fff;
+  }
+  .ap-feat-chev {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    color: var(--ad-teal-light);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .offer-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; gap: 14px;
+    margin-bottom: var(--space-xl);
+  }
+  .offer-list li {
+    padding: 16px 18px 16px 38px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-md);
+    position: relative;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-1);
+  }
+  .offer-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 14px; top: 14px;
+    color: var(--ad-teal);
+    font-weight: var(--ad-w-medium);
+  }
+
+  /* End CTA + stamp */
   .end-cta {
-    margin-top: var(--space-2xl); padding: 32px 36px;
-    background: linear-gradient(135deg, #2e8b6f, #1a4a3a); color: #fff;
-    border-radius: var(--radius-lg); text-align: center;
+    position: static; width: 100%; height: auto;
+    margin: var(--space-2xl) 0 var(--space-lg);
+    padding: 36px 40px;
+    color: #fff;
+    cursor: default; user-select: auto;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    display: flex; flex-direction: column; gap: 8px;
   }
-  .end-cta h3 { font-size: 24px; font-weight: 500; margin: 0 0 12px; color: #fff; }
-  .end-cta p { color: rgba(255,255,255,0.88); margin: 0 0 18px; font-size: 15px; }
+  .end-cta h3 {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 28px;
+    font-weight: var(--ad-w-card);
+    line-height: 1.2;
+    color: #fff;
+  }
+  .end-cta p {
+    margin: 0 0 8px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-row);
+    font-weight: var(--ad-w-light);
+    color: rgba(255,255,255,0.65);
+    max-width: 60ch;
+  }
   .end-cta a {
-    display: inline-block; background: #fff; color: #2e8b6f;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600; text-decoration: none;
-    transition: transform 0.18s;
+    align-self: flex-start;
+    background: #fff;
+    color: var(--ad-teal);
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-medium);
+    text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
   }
-  .end-cta a:hover { transform: translateY(-2px); }
+  @media (hover: hover) {
+    .end-cta a:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
+  }
+
+  .svc-stamp {
+    margin-top: 48px;
+    padding: 14px 18px;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--ad-font-mono);
+    font-size: 12px;
+    color: var(--ad-text-5);
+  }
 </style>
 </head>
 <body>
 
 <script src="/sandbox/shell.js"></script>
 
-<div class="docs-layout wide">
+<div class="docs-layout wide svc-no-rails">
 <aside class="docs-left"></aside>
-<main class="docs-content demo-detail">
+<main class="docs-content">
 
-  <div class="svc-hero-card">
-    <div class="inner">
-      <div class="crumb"><a href="/dist/agentic-services/index.html">Agentic Services</a> &nbsp;›&nbsp; {{title}}</div>
-      <div class="head">
-        <img src="/{{icon}}" alt="{{title}} icon" onerror="this.style.background='rgba(255,255,255,0.10)';this.removeAttribute('src');">
-        <div>
-          <h1 id="overview">{{title}}</h1>
-          <span class="surf">Managed by Adelphos · {{engagement_short}}</span>
-        </div>
-      </div>
-      <p class="claim">{{headline_claim}}</p>
-      <p class="tag">{{tagline}}</p>
+  <!-- ═══ HERO — 2-col, painted frame with SVG glyph right ═══ -->
+  <section class="svc-hero svc-reveal d1">
+    <div class="svc-hero-copy">
+      <nav class="svc-crumb"><a href="/">Home</a> &rsaquo; <a href="/dist/agentic-services/index.html">Agentic services</a> &rsaquo; {{title}}</nav>
+      <span class="svc-badge">Managed by Adelphos</span>
+      <h1 id="overview">{{title}}</h1>
+      <p class="svc-claim">{{headline_claim}}</p>
+      <p class="svc-tag">{{tagline}}</p>
+      {{outcomes_strip}}
       {{email_strip}}
-      <div class="actions">
-        <a class="btn-primary" href="{{primary_cta_href}}">{{primary_cta_label}} →</a>
-        <a class="btn-secondary" href="#how-it-becomes-agentic">See how it works</a>
+      <div class="svc-actions">
+        <a class="svc-btn-primary" href="{{primary_cta_href}}">{{primary_cta_label}} &rarr;</a>
+        <a class="svc-btn-secondary" href="#how-it-becomes-agentic">See how it works</a>
       </div>
     </div>
-  </div>
+    <div class="svc-hero-frame">
+      <div class="svc-hero-glyph">
+        <!-- Inline SVG glyph (services have no PNG; use a simple icon to
+             keep the painted frame populated). The build script can
+             override the d= path per service kind. -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </div>
+    </div>
+  </section>
 
-  {{outcomes_strip}}
-
-  <h2 id="description">Description</h2>
-  <div class="why-grid">
-    <div class="why-detail">{{detail_paragraphs_html}}</div>
-    <aside class="why-quote">
-      <blockquote>{{pullquote}}</blockquote>
-    </aside>
+  <h2 id="description">Why use {{title}}</h2>
+  <div class="svc-why svc-reveal d2">
+    <div class="svc-why-detail">{{detail_paragraphs_html}}</div>
+    <aside class="svc-why-quote"><blockquote>{{pullquote}}</blockquote></aside>
   </div>
 
   <h2 id="the-shift">The shift</h2>
-  <p style="color:var(--text-muted);">What running this part of the business looks like today, versus with {{title}}.</p>
+  <p class="svc-section-sub">What running this part of the business looks like today, versus with {{title}}.</p>
   {{shift_block}}
 
   <h2 id="what-we-offer">What we offer</h2>
   <ul class="offer-list">{{offers_html}}</ul>
 
   <h2 id="how-it-becomes-agentic">How it becomes agentic</h2>
-  <p>We don't drop a tool on your desk and walk away. We move you up an automation maturity ladder over weeks, not years, with a human on every step until the agent has earned autonomy.</p>
+  <p class="svc-section-sub">We don't drop a tool on your desk and walk away. We move you up an automation maturity ladder over weeks, not years, with a human on every step until the agent has earned autonomy.</p>
   <div class="stages-grid">{{stages_html}}</div>
 
   <h2 id="features">Features</h2>
-  <p style="color:var(--text-muted);max-width:880px;margin:0 0 var(--space-md);">Everything {{title}} ships with as a managed service. Each item is a concrete capability — no marketing fluff.</p>
+  <p class="svc-section-sub">Everything {{title}} ships with as a managed service. Each line is a concrete capability.</p>
   {{features_block}}
 
   <h2 id="engagement">How we work together</h2>
@@ -300,13 +557,13 @@
 
   {{faq_block}}
 
-  <div class="end-cta">
-    <h3>Ready to hand over the admin?</h3>
-    <p>Book a 30-minute walkthrough on your live data and see exactly what we'd take off your plate.</p>
-    <a href="/contact/">Talk to us →</a>
+  <div class="end-cta rp-commands-card">
+    <h3>{{primary_cta_label}}.</h3>
+    <p>Book a 30-minute walk-through on your live data and see exactly what we'd take off your plate.</p>
+    <a href="{{primary_cta_href}}">{{primary_cta_label}} &rarr;</a>
   </div>
 
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
+  <p class="svc-stamp">
     Auto-generated <code>{{generated_at}}</code> from <code>sandbox/data/agentic-services.json</code>. Re-run with <code>adelphos_CLI auto-all</code>.
   </p>
 
