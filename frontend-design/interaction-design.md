@@ -36,6 +36,99 @@ Follow these steps when creating or modifying interactive UI:
 
 ---
 
+## Adelphos Brand Override
+
+The generic interaction patterns above are the foundation. The rules below document **what actually ships on the Adelphos website** and take precedence wherever they conflict with the generic guidance.
+
+### View Navigation System
+
+The site uses a **scroll-hijacked view system** (`view-controller.js`):
+
+- 12 views (0–11) transitioned by scroll events.
+- Section indicator dots on the left side (`left: 40px`).
+- Dots: `10px × 10px`, gap `12px`, with trail-fade animation.
+- Scroll indicator: bounce animation at bottom of viewport.
+
+### Interactive States (Production)
+
+#### Buttons (`.demo-example-btn`)
+
+| State | Treatment |
+|-------|-----------|
+| Default | `background: #156082; color: white; border-radius: 6px; padding: 12px 24px` |
+| Hover | `background: #0e4560; transform: scale(1.02)` |
+| Active/Press | `transform 0.1s ease` (quick response) |
+| Continuous shine | `btn-shine 2.5s ease-in-out infinite` — pseudo-element gradient sweep |
+| Focus | **Currently missing.** Add `:focus-visible` ring (see rule 4 below). |
+
+#### Carousel Items
+
+| State | Treatment |
+|-------|-----------|
+| Default | `background: rgba(0,0,0,0.02); border-radius: 8px; padding: 10px 12px` |
+| Hover | `background: rgba(21, 96, 130, 0.08); box-shadow: 0 4px 15px rgba(21, 96, 130, 0.15); transform: translateY(-2px)` |
+| Hover shine | `linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.8) 50%, transparent 60%)` sweep at `0.6s ease` |
+| Dark-mode hover | `background: rgba(78, 205, 196, 0.1); box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2)` |
+
+#### Menu Links
+
+- `font-size: 14px; font-weight: 300`
+- Hover states managed via CSS.
+
+#### "Coming Soon" Dropdowns
+
+- Appear above button (`bottom: 100%`).
+- `border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15)`
+- Contain badge + blurb text.
+- Fade in via `opacity 0.2s, visibility 0.2s`.
+
+### Chat Panel Interactions
+
+The chat panel is the most interaction-dense component:
+
+- History sidebar with message threading.
+- Typing indicators.
+- Ghost text completion.
+- Thinking animations with step-by-step reveal.
+- Node animation (slides left during thinking, slides right on completion).
+- Collapsible thinking steps with sliding window of 2 visible.
+
+### Thinking Animation Sequence (`view6-chat.js`)
+
+1. Node slides left (400 ms).
+2. Pause (300 ms).
+3. Node starts pulsing.
+4. Thinking container fades in (`opacity 0.3s`, `max-height 0.4s ease-out`).
+5. Steps reveal one-by-one (350 ms each).
+6. Steps collapse (400 ms).
+7. Bot message fades in (0.8 s).
+8. Files section appears (100 ms delay).
+9. Node slides right (400 ms).
+
+### The RIBA Stage Cards
+
+- SVG progress rings with per-stage colours (`--stage-0` through `--stage-7`).
+- Expand/collapse with clone animation.
+- Backdrop blur on expand.
+
+### Dark Mode Toggle
+
+- Position: `z-index: 1005`.
+- Triggers class `html.dark-mode`.
+- Panels transition to `background: transparent`.
+- All text shifts to light-grey values.
+
+### Key Adelphos Interaction Rules
+
+1. **Hover effects are minimal** — `translateY(-2px)` + tinted shadow is the maximum. No card lifts, no glow rings, no colour explosions.
+2. **Sequential revealing** — content appears in staged order, never all at once.
+3. **The button shine is the only continuous animation on interactive elements** — subtle ambient life.
+4. **Focus rings are missing and need adding** — `:focus-visible` with `outline: 3px solid #156082; outline-offset: 2px` across all interactive elements.
+5. **The thinking animation is the hero interaction** — the chat panel's step-by-step reveal is the most distinctive interaction on the site.
+6. **Light dismiss patterns** — dropdowns use `opacity`/`visibility` transitions, not `display:none` toggling.
+
+---
+
 ### 1. The Eight Interactive States
 
 Every interactive element exists in up to eight states. Design ALL of them — not just default and hover.

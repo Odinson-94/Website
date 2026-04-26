@@ -34,6 +34,89 @@ Follow these steps for any colour work:
 
 ---
 
+## Adelphos Brand Override
+
+> **This section documents the ACTUAL colour system used on the Adelphos website.**
+> It takes precedence over the generic examples elsewhere in this file.
+> The generic guidance (OKLCH, contrast ratios, 60-30-10, dark mode principles) still applies — but when you need concrete values, use these.
+
+### Greyscale Gradient (the core hierarchy)
+
+The Adelphos site achieves hierarchy through a greyscale gradient, NOT through accent colour variation:
+
+| Token / Hex | Role |
+|-------------|------|
+| `#000` | Subheadings, high-emphasis text |
+| `#222` / `var(--text-primary)` | Headings, primary text |
+| `#333` | h3 headings |
+| `#444` / `var(--text-secondary)` | Body text, service descriptions |
+| `#555` / `var(--text-muted)` | About-us body copy, secondary paragraphs |
+| `#666` | Tertiary text, carousel item labels |
+| `#888` | Labels, carousel section headers, muted UI text |
+| `#999` | Subtle indicators |
+
+### Brand Accent (Single Hue — Earned Through Restraint)
+
+| Token / Hex | Role |
+|-------------|------|
+| **Primary Teal** `#156082` | Logo accent, CTA buttons, interactive highlights. Never for backgrounds, never for decoration. |
+| **Teal Light** `#4a9bb8` | Hover states, dark mode accent shift |
+| **Teal hover (button)** `#0e4560` | Darker on press |
+
+### Semantic / Status
+
+| Token / Hex | Notes |
+|-------------|-------|
+| `var(--accent-blue)`: `#007AFF` | Used sparingly for system-level actions. **Legacy — phase out in favour of teal.** |
+| `#6c757d` | Bootstrap secondary grey that leaked in. **Replace with the greyscale system.** |
+
+### Surface System
+
+**Light mode:**
+
+```css
+--bg-primary:   #ffffff;       /* page background, text panels */
+--bg-secondary: #f8f8f8;       /* card backgrounds */
+--bg-tertiary:  #f0f0f0;       /* subtle surface shifts */
+--bg-card:      rgba(255,255,255,0.95);
+/* Canvas background: #ffffff */
+/* Carousel item bg: rgba(0,0,0,0.02) — barely visible surface tint */
+```
+
+**Dark mode:**
+
+```css
+--bg-primary:   #1a1a1a;       /* NOT pure black */
+--bg-secondary: #252525;
+--bg-tertiary:  #2a2a2a;
+/* Canvas: radial-gradient(ellipse at center, #2a2a2a 0%, #1a1a1a 70%) */
+/* Text panels become transparent so the brain canvas shows through */
+/* Accent shift: teal → #4a9bb8, body text → #aaa, headings → #e0e0e0 */
+```
+
+### Borders
+
+`rgba(0,0,0,0.06)` to `rgba(0,0,0,0.08)` — extremely subtle, never prominent.
+
+### The 60-30-10 at Adelphos
+
+| Proportion | What | Values |
+|------------|------|--------|
+| **60%** | White or transparent panels — the canvas/image IS the background | `#ffffff` / `transparent` |
+| **30%** | Greyscale text hierarchy | `#222` through `#888` |
+| **10%** | Teal — buttons, logo accent, interactive highlights only | `#156082` |
+
+### Adelphos Key Rules
+
+1. **Teal is earned.** It appears ONLY on interactive elements and brand marks. Never for decoration.
+2. **The greyscale does the hierarchy work.** Six distinct grey values create text hierarchy without needing colour.
+3. **Atmosphere comes from content** (brain canvas, images), NOT from CSS background colours or gradients.
+4. **Dark mode doesn't invert** — panels go transparent, canvas shows through, text shifts to light greys.
+5. **No purple. No neon. No gradients for decoration. No high-saturation accents.**
+6. **`#6c757d` (Bootstrap grey) and `#007AFF` (Apple blue) are legacy leaks** to be replaced with the brand greyscale and teal.
+
+---
+
 ## Colour Spaces: Use OKLCH
 
 **Stop using HSL.** HSL is not perceptually uniform — `hsl(60, 100%, 50%)` (yellow) and `hsl(240, 100%, 50%)` (blue) have the same stated lightness but wildly different perceived brightness. Building a palette in HSL means constant manual correction.

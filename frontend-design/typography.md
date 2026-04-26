@@ -35,6 +35,95 @@ Follow these steps for any typography work:
 
 ---
 
+## Adelphos Brand Override
+
+> **This section documents the actual typography system used on the Adelphos website.**
+> It takes precedence over the generic guidance above when working on Adelphos pages.
+> The generic principles (vertical rhythm, accessibility, token architecture) still apply — this section specifies the concrete values.
+
+### Font Families
+
+| Role | Stack | Usage |
+|------|-------|-------|
+| **Primary** | `'Inter Display', 'Inter', sans-serif` | All headings and hero text |
+| **Body** | `'Inter', sans-serif` | All body copy, labels, UI text |
+| **Display / Brand** | `'Gotham Medium', 'Montserrat', Helvetica, Arial, sans-serif` | Logo, service item titles, letter-spaced display text |
+| **Code** | `'JetBrains Mono'` | Sandbox docs only |
+
+### The Type Scale (exact values from production)
+
+| Element | Family | Size | Weight | Line Height | Letter Spacing |
+|---------|--------|------|--------|-------------|----------------|
+| Hero heading | Inter Display | 30px | 500 | 1.3 | normal |
+| Hero subheading | Inter Display | 22px | 300 | 1.5 | 0.5px |
+| Solution heading | Inter Display | 30px | 500 | inherit | normal |
+| Demo text heading | Inter | 30px (overridden to 44px by chat-panel.css) | 500 | 1.3 | normal |
+| About-us body | Inter | 14px | 300 | 1.8 | normal |
+| Service item title | Gotham Medium | 20px | 500 | inherit | 2pt |
+| Service body | Inter | 16px | 300 | 1.7 | normal |
+| Carousel label | Inter | 11px | inherit | inherit | 0.1em |
+| Carousel item text | Inter | 9px | inherit | inherit | 0.05em |
+| Logo | Gotham Medium | 26px | 500 | inherit | 5px |
+| Menu links | Inter | 14px | 300 | inherit | normal |
+
+### Key Adelphos Typography Rules
+
+1. **Hierarchy through weight, not size** — The primary hierarchy tool is the jump from weight 500 (headings) to weight 300 (body). NOT size inflation. Hero heading is only 30px — hierarchy comes from the 500→300 weight contrast.
+
+2. **Body text at 14px / 300 / 1.8** — This is the Adelphos signature. The combination of light weight (300) and generous line-height (1.8) creates an airy, editorial feel. Most body text is 14px, NOT 16px.
+
+3. **Justified text** — Body paragraphs (`.about-us-text`, `.demo-text-body`) use `text-align: justify`, creating clean edge alignment on both sides of the narrow 400px column.
+
+4. **max-width: 400px for text columns** — All text blocks are constrained to 400px, giving approximately 65–70 characters per line at 14px — optimal readability.
+
+5. **Gotham Medium for brand moments** — Service titles and logo use Gotham Medium with generous letter-spacing (2pt / 5px). This creates distinction from the Inter body text without adding visual weight.
+
+6. **Two weights dominate** — 300 (light, body) and 500 (medium, headings). Weight 600/700 almost never appears. This keeps the overall texture light and airy.
+
+7. **Paragraph spacing** — `margin-bottom: 18px` between paragraphs, `margin-bottom: 24px` below headings. Consistent, not arbitrary.
+
+8. **No fluid type on the main pages** — Sizes are fixed px values, not `clamp()`. The text doesn't scale with viewport — the layout adapts instead (panels resize, text columns stay at 400px).
+
+### Adelphos Token Reference
+
+```css
+:root {
+  /* ---- Adelphos font stacks ---- */
+  --adelphos-font-heading:  'Inter Display', 'Inter', sans-serif;
+  --adelphos-font-body:     'Inter', sans-serif;
+  --adelphos-font-brand:    'Gotham Medium', 'Montserrat', Helvetica, Arial, sans-serif;
+  --adelphos-font-mono:     'JetBrains Mono', monospace;
+
+  /* ---- Adelphos weights ---- */
+  --adelphos-weight-light:  300;
+  --adelphos-weight-medium: 500;
+
+  /* ---- Adelphos sizes ---- */
+  --adelphos-text-hero:     30px;
+  --adelphos-text-subhero:  22px;
+  --adelphos-text-service:  20px;
+  --adelphos-text-body:     14px;
+  --adelphos-text-service-body: 16px;
+  --adelphos-text-menu:     14px;
+  --adelphos-text-carousel:  11px;
+  --adelphos-text-carousel-sm: 9px;
+  --adelphos-text-logo:     26px;
+
+  /* ---- Adelphos line heights ---- */
+  --adelphos-lh-hero:       1.3;
+  --adelphos-lh-subhero:    1.5;
+  --adelphos-lh-body:       1.8;
+  --adelphos-lh-service:    1.7;
+
+  /* ---- Adelphos spacing ---- */
+  --adelphos-space-paragraph: 18px;
+  --adelphos-space-heading:   24px;
+  --adelphos-measure:         400px;
+}
+```
+
+---
+
 ### 1. Classic Typography Principles
 
 #### Vertical Rhythm

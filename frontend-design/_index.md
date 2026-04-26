@@ -113,6 +113,16 @@ When a frontend design task involves multiple domains (e.g. a full page build), 
 
 Each agent loads its leaf, applies the rules, and returns findings. The orchestrating agent merges all findings into a prioritised action list.
 
-### BUILD X Brand Override
+### Adelphos Brand Override
 
-When building UI for Adelphos BUILD X products, the brand standards in [web.md](../web.md) take precedence for colour tokens, typography (Segoe UI), and component styles. The design philosophy rules from THIS branch still apply — they govern layout, motion, interaction quality, and anti-patterns. The brand standard governs the specific palette and type choices.
+When building UI for the Adelphos website or any Adelphos product, the brand standards documented as "Adelphos Brand Override" sections in each downstream leaf take precedence. These override generic examples with the actual production values from the Adelphos website.
+
+Key Adelphos overrides:
+- **Colour**: Greyscale hierarchy (#000→#888) + single teal accent (#156082). See [color-and-contrast.md](./color-and-contrast.md).
+- **Typography**: Inter 300/500, 14px body, 30px headings, 400px columns. See [typography.md](./typography.md).
+- **Layout**: Asymmetric 60/40 or 55/45 splits, 400px text columns, whitespace as structural material. See [spatial-design.md](./spatial-design.md).
+- **Motion**: Opacity fades, sequential reveals, custom cubic-bezier(0.65, 0, 0.35, 1). See [motion-design.md](./motion-design.md).
+- **Voice**: Industry professional, direct, deliverable-focused. No startup fluff. See [ux-writing.md](./ux-writing.md).
+- **Taste**: Restrained engineering elegance. DESIGN_VARIANCE 6, MOTION_INTENSITY 4, VISUAL_DENSITY 3. See [taste.md](./taste.md).
+
+The design philosophy rules from the upstream leaves still apply — they govern quality, anti-patterns, and accessibility. The Adelphos Brand Override governs the specific values and identity.

@@ -33,6 +33,92 @@ You are a spatial design specialist building production-grade layout systems. Yo
 
 ---
 
+## Adelphos Brand Override
+
+The following documents the **actual** spatial and layout system used on the Adelphos website. When building or modifying Adelphos pages, these rules take precedence over the general guidance above.
+
+### The Asymmetric Split (Core Layout Pattern)
+
+Every Adelphos page uses an asymmetric split — never centred or equal columns:
+
+- **Hero section**: Text at `left: 55%`, `width: 45%`. Brain canvas occupies the rest. Text is vertically centred with `transform: translateY(-50%)`.
+- **Right panel (services)**: `width: 45%`, `position: fixed`, right-aligned. Content vertically centred with flexbox.
+- **Demo pages (e.g. 3D Model)**: `flex: 0 0 60%` image / `flex: 0 0 40%` text. Reversed layouts use `flex-direction: row-reverse`.
+- **Subpages (about, contact, roadmap)**: All use 40/60 split with `padding: 120px 60px 60px`.
+
+The 60/40 and 55/45 ratios create intentional imbalance — the image/visual always dominates, text always breathes.
+
+### The 400px Content Column
+
+All text content across Adelphos is constrained to `max-width: 400px`. This is the single most important spatial rule:
+
+- Hero text inner: `max-width: 400px; width: 100%`
+- Thinking section: `max-width: 400px; width: 100%`
+- Demo text inner: `max-width: 400px`
+- About-us text body: `max-width: 400px`
+
+This creates ~65–70 characters per line at 14px body text — optimal readability.
+
+### Whitespace (The Breathing Room)
+
+The whitespace comes from the gap between the panel edge and the 400px content column:
+
+- Text panel padding: `0 60px` (demo pages) or `0 40px` (hero)
+- Panel content padding: `100px 2.5rem 2.5rem` (right panel)
+- Reversed layout indent: `padding-left: 80px` (clears section indicator)
+- Net effect: 160–200px of whitespace between image edge and first word of text
+
+### Spacing Values (Production)
+
+| Element | Value |
+|---------|-------|
+| Hero heading margin-bottom | `12px` |
+| Solution heading margin-bottom | `16px` |
+| Demo heading margin-bottom | `24px` |
+| Paragraph spacing | `margin-bottom: 18px` |
+| Services section padding-top | `0.5rem` |
+| Services section margin-top | `0.25rem` |
+| Carousel margin-top | `0.75rem` |
+| Carousel track gap | `1rem` |
+| Carousel item padding | `10px 12px` |
+| Carousel icon-to-text gap | `6px` |
+| Carousel item border-radius | `8px` |
+| Button row gap | `16px` |
+| Button row margin-top | `24px` |
+
+### Depth & Z-Index (Production)
+
+| Layer | Z-Index | Use |
+|-------|---------|-----|
+| Canvas | 0 | Brain neural network |
+| Demo overlays | 500 | Split-view content pages |
+| Scroll indicator | 600 | Navigation hint |
+| Right panel | 1000 | Services/thinking panel |
+| Brain overlay | 1001 | Canvas interaction layer |
+| Hero text | 1002 | Floating hero text |
+| Dark toggle | 1005 | Theme switch |
+| Menubar | 10000 | Navigation |
+| Section indicator | 10001 | View progress dots |
+
+### Shadow Usage
+
+Minimal. The only notable shadow is on carousel item hover:
+
+- `box-shadow: 0 4px 15px rgba(21, 96, 130, 0.15)` — teal-tinted, soft
+- Dropdown shadow: `0 4px 20px rgba(0,0,0,0.15)`
+- No card shadows on the main content. Separation comes from whitespace and panel backgrounds.
+
+### Key Adelphos Spatial Rules
+
+1. **Asymmetric splits only** — 60/40 or 55/45. Never 50/50. Never centred hero layouts.
+2. **400px text column** — every text block is constrained. No exceptions.
+3. **Whitespace is structural** — the 160–200px gap between image and text is intentional, not leftover space.
+4. **Image at 60vh** — demo images fill `60vh` height with `object-fit: cover`. The image provides atmosphere.
+5. **Atmosphere from content, not decoration** — white panels, transparent dark mode panels. No CSS gradient backgrounds.
+6. **Vertical centring via flexbox** — `justify-content: center; align-items: center` on panel containers.
+
+---
+
 ### 1. Spacing Systems
 
 Use a **4pt base unit**, not 8pt. An 8pt grid is too coarse — it forces you to jump from 8px to 16px with nothing in between. 4pt gives you the full range you need:

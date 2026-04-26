@@ -34,6 +34,72 @@ You are a frontend engineer specialising in responsive, device-agnostic interfac
 
 ---
 
+## Adelphos Brand Override
+
+The generic responsive principles above apply everywhere. The rules below document how the **Adelphos** website actually implements responsive design — use these as the authoritative reference when building or modifying the Adelphos site.
+
+### Layout Strategy
+
+The Adelphos site uses a **fixed-position, viewport-filling layout** — NOT a traditional scrolling page:
+
+- `position: fixed` panels that fill 100% height
+- View transitions triggered by scroll events (`view-controller.js`), not by scrolling content
+- The brain canvas sits at `position: fixed; inset: 0` behind everything
+
+### The Split-View Responsive Pattern
+
+**Desktop:** 55/45 or 60/40 flex splits
+
+- Hero: text at `left: 55%, width: 45%`
+- Right panel: `width: 45%`, fixed right
+- Demo pages: `flex: 0 0 60%` image / `flex: 0 0 40%` text
+
+**Mobile collapse** — full-width stacked layout:
+
+- Image first (maintaining visual atmosphere)
+- Text below with `padding: 0 24px` and `max-width: 100%`
+
+### Fixed Sizes, Not Fluid
+
+The Adelphos site uses **fixed pixel values** for typography:
+
+- Headings: `30px`
+- Body: `14px`
+- Labels: `11px`, `9px`
+
+No `clamp()`, no `vw` units for text. The layout adapts (panels resize), text stays fixed.
+
+### Content Dimensions
+
+- Text column: `max-width: 400px` (scales down on mobile but never exceeds 400px)
+- Image height: `60vh` with `object-fit: cover`
+- Panel padding: `0 60px` (desktop), reduces to `0 24px` on mobile
+- Panel content padding: `100px 2.5rem 2.5rem`
+
+### Dark Mode
+
+- Light panels: `background: #ffffff`
+- Dark mode panels: `background: transparent` — the brain canvas shows through
+- Dark mode canvas: `radial-gradient(ellipse at center, #2a2a2a 0%, #1a1a1a 70%)`
+- Dark mode text: headings `#e0e0e0`, body `#aaa`, muted `#888`
+
+### Input Considerations
+
+- Carousel items: `padding: 10px 12px` — small touch targets that should be enlarged on mobile
+- Logo images in carousel: `40px × 40px` — may need scaling up for touch
+- Button CTA: `padding: 12px 24px` — adequate touch target
+- Menu links at `14px`/`300` weight — may need weight increase on mobile for legibility
+
+### Key Adelphos Responsive Rules
+
+1. **The layout collapses, the text column doesn't stretch** — on mobile, the 400px max-width becomes `max-width: 100%` with padding, but text never goes full-bleed edge-to-edge.
+2. **Image maintains atmosphere** — even on mobile, the demo image should retain significant viewport presence (at least `40vh`).
+3. **The brain canvas adapts** — on mobile it may simplify or reduce node count for performance.
+4. **Panel transitions should simplify on mobile** — fade only, no position animations.
+5. **Touch targets need expansion** — carousel items and nav links are designed for mouse precision.
+
+---
+
 ## 1. Mobile-First (`min-width` Queries)
 
 Always write the base styles for the smallest viewport, then layer complexity upward with `min-width`.

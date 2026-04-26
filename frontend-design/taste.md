@@ -33,6 +33,47 @@ You are a design engineer with relentless taste. You build interfaces that look 
 
 ---
 
+## Adelphos Brand Override
+
+### Active Dial Values for Adelphos
+- `DESIGN_VARIANCE`: **6** — asymmetric layouts, distinctive but not experimental
+- `MOTION_INTENSITY`: **4** — opacity fades and one position animation. No spring physics, no bounce, no elastic
+- `VISUAL_DENSITY`: **3** — generous whitespace, one paragraph per section, 400px text columns
+
+### Adelphos Design Identity
+The Adelphos website has a specific aesthetic: **restrained engineering elegance**. It looks like it was designed by someone who builds buildings — precise, measured, confident, not decorative.
+
+Key identity markers:
+1. **The brain canvas**: A WebGL neural network visualization that provides visual interest. The design lets the content provide atmosphere — white panels sit transparently over this canvas in dark mode.
+2. **Greyscale hierarchy**: Six grey values (#000 → #888) create text hierarchy. Colour is reserved exclusively for brand teal (#156082) on interactive elements.
+3. **Asymmetric 60/40 splits**: Visual (image/canvas) always dominates. Text always breathes in a narrow column.
+4. **Weight 300 body text**: The light font weight at 14px with 1.8 line-height creates an airy, premium texture.
+5. **Sequential reveals**: Content fades in piece by piece. Nothing appears simultaneously.
+
+### Adelphos AI Tell Audit
+Current site status:
+- PASS: No purple gradients, no neon, no glassmorphism, no gradient text
+- PASS: No bounce/elastic easing — all curves are ease or custom cubic-bezier
+- PASS: Asymmetric layouts, not centred heroes with 3-column cards
+- WARN: Uses Inter (the "invisible default") — but deployed at weight 300/500 which is distinctive enough
+- WARN: `#6c757d` Bootstrap grey leaked into secondary buttons — should be replaced
+- WARN: `#007AFF` Apple blue used in some CTAs — should be replaced with teal
+
+### Fonts Approved for Adelphos
+- **Inter** at weights 300 and 500 ONLY (not 400/600/700)
+- **Gotham Medium** for brand display moments with generous letter-spacing
+- **JetBrains Mono** for code/technical contexts in docs only
+- NO serif fonts. NO decorative fonts. NO additional sans-serifs.
+
+### Adelphos Material Palette
+- White panels (#ffffff) over canvas/image backgrounds
+- Transparent panels in dark mode
+- `rgba(0,0,0,0.02)` surface tints for subtle card backgrounds
+- No frosted glass, no blur overlays, no gradient surfaces
+- Shadows only on hover: `0 4px 15px rgba(21, 96, 130, 0.15)` — teal-tinted, soft
+
+---
+
 ## 1. Active Baseline Configuration
 
 These dials control the default intensity of design output. Adapt them dynamically based on user requests — a marketing landing page wants higher variance than an internal admin panel.

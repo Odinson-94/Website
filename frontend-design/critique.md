@@ -32,6 +32,62 @@ Never skip to recommendations without completing the evaluation. Never present f
 
 ---
 
+## Adelphos Brand Override
+
+### Adelphos-Specific Critique Dimensions
+
+When critiquing any Adelphos page, add these checks to the standard 10-dimension evaluation:
+
+**Dimension A: Adelphos Identity Compliance**
+- Does the page use the asymmetric 60/40 or 55/45 split? (NOT centred, NOT 50/50)
+- Is text constrained to max-width: 400px?
+- Does atmosphere come from content (images, canvas) NOT from CSS decoration?
+- Is the only accent colour `#156082` teal? No Bootstrap grey, no Apple blue, no purple?
+- Is body text at weight 300 with line-height 1.8?
+- Are panel backgrounds white (#ffffff) in light mode and transparent in dark mode?
+
+**Dimension B: Template Stamping Detection**
+The biggest problem on the current Adelphos site is **template repetition**. Check:
+- Does this page use identical CSS to another page? (Privacy/Terms are copy-pasted)
+- Does it have comments like "EXACT COPY from index.html"?
+- Is the 40/60 split applied mechanically without adapting to the content?
+- Does every section have the same visual weight and density?
+- Does the page change compositional rhythm, or is it one flat viewport?
+
+**Dimension C: Motion Presence**
+The homepage succeeds partly because it has motion — sequential reveals, canvas animation, carousel effects. Static pages feel dead. Check:
+- Does the page have at least one transition (panel reveal, content fade-in)?
+- Are reveals sequential (staged) not simultaneous?
+- Is there any ambient animation (brain canvas, button shine)?
+- Does motion use the Adelphos easing: `cubic-bezier(0.65, 0, 0.35, 1)` or `ease`?
+
+### Current Site Audit Summary (for reference)
+
+**PASS — Homepage hero to chat panel:**
+- Asymmetric layout
+- Sequential motion
+- Brain canvas atmosphere
+- Single teal accent
+- Weight 300/500 hierarchy
+- 400px text column
+
+**FAIL — Privacy, Terms pages:**
+- Copy-pasted inline CSS
+- Placeholder "coming soon" content
+- Zero motion
+- Generic colour values (#000, #333, #666)
+- No brand identity
+
+**WARN — About, Roadmap, Contact pages:**
+- Template-stamped 40/60 splits
+- Same padding, same max-width, same dark mode pattern
+- No compositional variation between pages
+- Bootstrap grey (#6c757d) in buttons
+- Apple blue (#007AFF) in CTAs
+- Comments confirming copy-paste ("EXACT COPY from index.html")
+
+---
+
 ## Phase 1: Design Critique (10 Dimensions)
 
 Evaluate the interface against all 10 dimensions. Score each dimension and provide specific evidence.

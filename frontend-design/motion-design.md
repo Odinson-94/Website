@@ -34,6 +34,129 @@ You are a motion design specialist for production-grade frontend interfaces. You
 
 ---
 
+## Adelphos Brand Override
+
+The generic motion rules above are the baseline. **The Adelphos website overrides several of them.** When building for Adelphos, follow this section — it documents the actual motion system extracted from the live production site.
+
+### The Core Easing Curve
+
+`cubic-bezier(0.65, 0, 0.35, 1)` — used for ALL position transitions (hero text movement, panel slides). This is a slow-start, fast-middle, gentle-stop curve. It feels deliberate and controlled.
+
+> **Note:** The generic rules above ban the `ease` keyword. The Adelphos site uses `ease` extensively for opacity fades and short interactions. For Adelphos work, `ease` is acceptable on opacity and short-duration properties. The custom cubic-bezier is reserved for position/transform transitions.
+
+### Duration Map (Production Values)
+
+| Motion | Duration | Easing | Property |
+|--------|----------|--------|----------|
+| Hero text position | `1s` | `cubic-bezier(0.65, 0, 0.35, 1)` | `top, left, transform` |
+| Hero text fade | `0.5s` | `ease` | `opacity` |
+| Hero text fade-out | `0.5s` | `ease-out` | `opacity` |
+| Right panel reveal | `0.8s` | `ease` | `opacity` |
+| Thinking section appear | `0.4s` | `ease` | `opacity` |
+| Services section expand | `0.5s` | `ease-out` | `max-height` |
+| Services padding/margin | `0.4s` | `ease-out` | `padding, margin` |
+| Services opacity | `0.3s` | `ease` | `opacity` |
+| Demo overlay show | `0.5s` | `ease` | `opacity` |
+| Carousel appear | `0.4s` | `ease` | `opacity, transform` |
+| Carousel item hover | `0.3s` | `ease` | `all` |
+| Carousel shine sweep | `0.6s` | `ease` | `transform` (translateX) |
+| Button hover | `0.2s` | `ease` | `background` |
+| Button press | `0.1s` | `ease` | `transform` |
+| Button shine loop | `2.5s` | `ease-in-out` | `transform` (infinite) |
+
+### View 6 Chat Animation Timing
+
+| Step | Duration |
+|------|----------|
+| Node move (left/right) | `400ms` |
+| Pause between steps | `300ms` |
+| Step reveal | `350ms` |
+| Step collapse | `400ms` |
+| Bot message fade-in | `0.8s ease, transform 0.8s ease` |
+| Files section delay | `100ms` |
+
+### Keyframe Animations (Production)
+
+**Trail fade** (section indicator):
+
+```css
+@keyframes trailFade {
+  0% { opacity: 0.4; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(0.7); }
+}
+```
+
+**Scroll bounce** (subtle navigation hint):
+
+```css
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+```
+
+**Button shine** (continuous CTA shimmer):
+
+```css
+@keyframes btn-shine {
+  0% { transform: rotate(30deg) translateX(-100%); }
+  100% { transform: rotate(30deg) translateX(100%); }
+}
+```
+
+**Carousel item shine** (hover sweep):
+Pseudo-element `::before` with `linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.8) 50%, transparent 60%)` translating from -100% to 100% over 0.6s.
+
+### Adelphos Motion Philosophy
+
+1. **Opacity is the primary animation property.** Almost everything enters/exits via opacity fade. No sliding in from offscreen, no scaling up from zero, no bouncing.
+
+2. **Position changes are slow and deliberate**: 1s with the custom cubic-bezier. The hero text movement from right to left is the most dramatic animation on the site — and it takes a full second with a controlled curve.
+
+3. **Sequential staging, not simultaneous**: Panel fades in (0.8s) → thinking section appears (0.4s) → services expand (0.5s) → carousel slides up (0.4s). Each step waits for the previous one. Nothing happens at once.
+
+4. **The only hover effects**:
+   - Carousel items: `translateY(-2px)` + teal-tinted box-shadow + shine sweep
+   - Buttons: `scale(1.02)` + background darken
+   - That's it. No card lifts, no glow effects, no colour transitions on text.
+
+5. **No bounce, no elastic, no spring**: Every curve is either `ease`, `ease-out`, or the custom `cubic-bezier(0.65, 0, 0.35, 1)`. Zero overshoot.
+
+6. **Infinite animations are subtle**: Button shine at 2.5s loops. Section dot trail fades. These run continuously but are nearly invisible — ambient life, not attention-seeking.
+
+7. **Reduced motion**: The site respects `prefers-reduced-motion` — replace all transforms with instant opacity changes.
+
+### Adelphos Motion Tokens
+
+```css
+:root {
+  /* Adelphos brand curve */
+  --adelphos-ease-position: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Adelphos durations */
+  --adelphos-duration-hero: 1s;
+  --adelphos-duration-panel: 0.8s;
+  --adelphos-duration-fade: 0.5s;
+  --adelphos-duration-section: 0.4s;
+  --adelphos-duration-hover: 0.3s;
+  --adelphos-duration-button: 0.2s;
+  --adelphos-duration-press: 0.1s;
+  --adelphos-duration-shine: 2.5s;
+}
+```
+
+### Where Adelphos Diverges from the Generic Rules
+
+| Generic Rule | Adelphos Override | Why |
+|---|---|---|
+| Never use `ease` | `ease` on opacity and short transitions | Opacity fades don't need directional intent — `ease` is fine here |
+| Animate only `transform` + `opacity` | Also animates `max-height`, `padding`, `margin` | Services section expand uses layout properties for a content-reveal pattern |
+| 100/300/500 duration rule | Hero position runs at 1s, panel reveal at 0.8s | The site's pacing is deliberately slower — it conveys calm authority |
+| Exit ≈ 75% of enter | Fade-out matches fade-in at 0.5s | Symmetric fades feel more intentional in the Adelphos context |
+
+---
+
 ## Duration: The 100/300/500 Rule
 
 Duration communicates importance. Shorter = trivial. Longer = significant.
