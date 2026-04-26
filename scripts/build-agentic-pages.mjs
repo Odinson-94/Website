@@ -17,6 +17,39 @@ const T = (n) => path.join(ROOT, 'templates', n);
 const O = (...p) => path.join(ROOT, 'dist', ...p);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+/* Phase 8.2: inline SVG glyph for the agentic-service-page hero painted
+   frame. Keyed by slug per the plan:
+     finances              → line-chart (rising bars + trend line)
+     project-management    → calendar grid
+     document-controller   → padlock
+     email-*               → envelope
+   Default falls back to the generic cog. All 88×88, currentColor stroke
+   1.5 width — they pick up var(--ad-teal-light) from the parent. */
+function serviceGlyph(slug) {
+  let path;
+  switch (slug) {
+    case 'finances':
+      path = '<rect x="3" y="20" width="3" height="-1"/><path d="M3 20 L3 11M9 20 L9 14M15 20 L15 8M21 20 L21 5"/><path d="M3 8l6 4 6-6 6 3" stroke-dasharray="0"/>';
+      break;
+    case 'project-management':
+      path = '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"/>';
+      break;
+    case 'document-controller':
+      path = '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 1 1 8 0v3"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/>';
+      break;
+    case 'email-cobie':
+    case 'email-revit-modelling':
+    case 'email-schematics':
+    case 'email-specifications':
+      path = '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>';
+      break;
+    default:
+      // Generic cog (fallback for any future service kind).
+      path = '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>';
+  }
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+}
+
 export async function buildAgenticServicePage(slug) {
   const data = await loadJson('sandbox/data/agentic-services.json');
   const svc = data.services.find(s => s.slug === slug);
@@ -168,6 +201,7 @@ async function renderService(svc) {
     .replaceAll('{{seo_shift_h3}}',           esc(seoShift))
     .replaceAll('{{seo_special_h3}}',         esc(seoSpecial))
     .replaceAll('{{seo_who_h3}}',             esc(seoWho))
+    .replaceAll('{{hero_glyph_svg}}',         serviceGlyph(svc.slug))
     .replaceAll('{{generated_at}}',           new Date().toISOString());
 
   const out = O('agentic-services', svc.slug, 'index.html');

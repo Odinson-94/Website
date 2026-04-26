@@ -695,13 +695,12 @@
     </div>
     <div class="svc-hero-frame">
       <div class="svc-hero-glyph">
-        <!-- Inline SVG glyph (services have no PNG; use a simple icon to
-             keep the painted frame populated). The build script can
-             override the d= path per service kind. -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
+        <!-- Phase 8.2: per-slug SVG glyph injected by build-agentic-pages.mjs.
+             lock        → Document Controller (managed)
+             line-chart  → Finances
+             calendar    → Project Management
+             envelope    → all 4 email services -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
       </div>
     </div>
   </section>
@@ -797,7 +796,7 @@
   </div>
 
   <p class="svc-stamp">
-    Auto-generated <code>2026-04-26T09:37:01.688Z</code> from <code>sandbox/data/agentic-services.json</code>. Re-run with <code>adelphos_CLI auto-all</code>.
+    Auto-generated <code>2026-04-26T10:00:27.051Z</code> from <code>sandbox/data/agentic-services.json</code>. Re-run with <code>adelphos_CLI auto-all</code>.
   </p>
 
 </main>
