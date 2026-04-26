@@ -862,23 +862,77 @@
     .clash-frame { aspect-ratio: 4 / 3; }
   }
 
-  /* ── END CTA ─────────────────────────────────────────────────────────── */
+  /* ── END CTA — dark .rp-commands-card surface, verb+object headline.
+        DELETED: the linear-gradient(135deg, #156082, #1a3441) banner —
+        gradients-as-decoration is banned by the single-law +
+        frontend-design/taste.md. */
   .end-cta {
-    margin: var(--space-2xl) 0;
-    padding: 36px 36px;
-    background: linear-gradient(135deg, #156082, #1a3441); color: #fff;
-    border-radius: var(--radius-lg); text-align: center;
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: var(--space-2xl) 0 var(--space-lg);
+    padding: 40px 44px;
+    text-align: left;
+    cursor: default;
+    user-select: auto;
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    display: flex; flex-direction: column; gap: 8px;
   }
-  html.dark-mode .end-cta { background: linear-gradient(135deg, #156082, #1f7ba8); }
-  .end-cta h3 { font-size: 26px; font-weight: 500; margin: 0 0 12px; color: #fff; letter-spacing: -0.015em; }
-  .end-cta p { color: rgba(255,255,255,0.85); margin: 0 0 20px; font-size: 16px; }
-  .end-cta a {
-    display: inline-block; background: #fff; color: #156082;
-    padding: 12px 26px; border-radius: 999px; font-weight: 600; text-decoration: none;
-    transition: transform 0.18s; margin: 0 6px;
+  .end-cta-headline {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: 32px;
+    font-weight: var(--ad-w-card);
+    line-height: 1.15;
+    letter-spacing: var(--ad-ls-card);
+    color: #fff;
   }
-  .end-cta a.secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.35); }
-  .end-cta a:hover { transform: translateY(-2px); }
+  .end-cta-body {
+    margin: 0 0 8px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-row);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-row);
+    color: rgba(255,255,255,0.65);
+    max-width: 60ch;
+  }
+  .end-cta-actions {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .end-cta-primary {
+    background: #fff;
+    color: var(--ad-teal);
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-medium);
+    text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .end-cta-secondary {
+    background: transparent;
+    color: #fff;
+    padding: 13px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.30);
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-medium);
+    text-decoration: none;
+    transition: background 0.18s;
+  }
+  @media (hover: hover) {
+    .end-cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.30);
+    }
+    .end-cta-secondary:hover { background: rgba(255,255,255,0.10); }
+  }
+  .end-cta-primary:active,
+  .end-cta-secondary:active { transform: scale(0.98); }
 
   /* ── SECTION 3: POPULAR APPS CAROUSEL — .rp-commands-card derivative
         Same dark #2f2f2f surface as Section 2, white type, app logo
@@ -1203,16 +1257,44 @@
     background: rgba(74,155,184,0.08);
   }
 
-  /* ── SECTION 9: PRIVACY NOTE ───────────────────────────────────── */
-  .privacy-note {
-    margin: var(--space-lg) 0; padding: 0; max-width: 54em;
+  /* ── SECTION 9: PRIVACY BANNER — dark .rp-commands-card derivative.
+        Same surface as Section 2, single-accent (teal padlock icon),
+        no gradient. */
+  .privacy-banner {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: var(--space-lg) 0 0;
+    padding: 24px 32px;
+    cursor: default;
+    user-select: auto;
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: center;
   }
-  .privacy-note p {
-    font-size: 15px; line-height: 1.65; color: #666;
+  .privacy-banner .privacy-icon {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    border-radius: 999px;
+    background: rgba(21,96,130,0.20);
+    color: var(--ad-teal-light);
+    display: flex; align-items: center; justify-content: center;
   }
-  .privacy-note p strong { color: #222; font-weight: 500; }
-  html.dark-mode .privacy-note p { color: #999; }
-  html.dark-mode .privacy-note p strong { color: #e0e0e0; }
+  .privacy-banner .privacy-line {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-row);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-row);
+    color: rgba(255,255,255,0.85);
+  }
+  .privacy-banner .privacy-line strong {
+    font-weight: var(--ad-w-medium);
+    color: #fff;
+  }
 </style>
 </head>
 <body>
@@ -2478,12 +2560,15 @@
     </div> which surfaces the 7
         REAL services from sandbox/data/agentic-services.json.) -->
 
-  <!-- ═══ SECTION 8: CALCULATOR ENGINES ═══ -->
+  <!-- ═══ SECTION 8: CALCULATOR ENGINES ═══
+       Compact pill row, single-accent (teal). The agent calls these
+       calc engines during design — they are infrastructure, not
+       headline products. Visual weight matches that role. -->
   <section class="home-section reveal d5">
     <div class="home-section-head">
-      <h2>Calculator engines</h2>
+      <h2>Calculation engines</h2>
       <div class="head-aside">
-        <p>Verified calculation modules that the agent calls during design. Each engine runs server-side, returns auditable results.</p>
+        <p>Verified calc modules the agent calls during design. Each engine runs server-side and returns auditable results.</p>
       </div>
     </div>
     <div class="calc-row">
@@ -2495,21 +2580,35 @@
       <span class="calc-badge">Thermal Calculations</span>
       <span class="calc-badge">Pipe &amp; Duct Sizing</span>
     </div>
+    <a class="apps-roadmap-link" href="/dist/docs/index.html">Read about the calc layer →</a>
   </section>
 
-  <!-- ═══ SECTION 9: PRIVACY NOTE ═══ -->
+  <!-- ═══ SECTION 9: PRIVACY NOTE — dark #2f2f2f banner with weight ═══
+       Per /opt/cursor/artifacts/PLAN.md Phase 6: privacy gets visible
+       weight as a unit (not a floating paragraph at the end of a long
+       page). Same dark .rp-commands-card surface. -->
   <section class="home-section reveal d6">
-    <div class="privacy-note">
-      <p><strong>No data stored, no chase-ups, no spam.</strong> All uploaded data lives on an AWS / Azure backend — we don't see it. Your models, your documents, your calculations stay yours.</p>
+    <div class="privacy-banner rp-commands-card">
+      <div class="privacy-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="11" width="16" height="9" rx="2"></rect>
+          <path d="M8 11V8a4 4 0 1 1 8 0v3"></path>
+        </svg>
+      </div>
+      <div class="privacy-copy">
+        <p class="privacy-line"><strong>No data stored. No chase-ups. No spam.</strong> Uploaded data lives on AWS / Azure infrastructure you control — we don't see it. Your models, your documents, your calculations stay yours.</p>
+      </div>
     </div>
   </section>
 
-  <!-- END CTA -->
-  <section class="end-cta">
-    <h3>Ready to put Adelphos to work?</h3>
-    <p>Most of the platform is self-serve. The agentic modules need a 30-minute walkthrough.</p>
-    <a href="/dist/apps/index.html">Try an app →</a>
-    <a class="secondary" href="/contact/">Talk to us</a>
+  <!-- END CTA — verb+object headline (banned vague AI phrasing) -->
+  <section class="end-cta rp-commands-card">
+    <h3 class="end-cta-headline">Try the Revit Copilot.</h3>
+    <p class="end-cta-body">Most of the platform is self-serve — the agentic services need a 30-minute walk-through.</p>
+    <div class="end-cta-actions">
+      <a class="end-cta-primary" href="/dist/downloads/index.html">Download the Revit add-in</a>
+      <a class="end-cta-secondary" href="/contact/">Talk to us</a>
+    </div>
   </section>
 
 </main>
