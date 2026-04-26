@@ -25,43 +25,14 @@
 <link rel="stylesheet" href="/css/bundles/page.css">
 <style>
   /* HOME — uses inventory chrome (.docs-layout.wide + .docs-content).
-     Two tile styles:
-       .banner-card  — cinematic full-width, colour gradient, big logo
-       .logo-tile    — compact, colour band + 3 feature bullets
-     Per-entity colour driven by JSON `tone` field.
-     Tones supported: blue · midnight · red · green · amber · purple · teal
+     The single law: every card on every page is a derivative of the
+     dark .rp-commands-card from Section 2 (#2f2f2f bg, white type,
+     rp-feat-item rows, optional rp-agent-spinner) OR its light twin.
+     The 7-tone palette has been DELETED in Phase 0 because it
+     introduced gradients that violated the single-accent rule and
+     included AI-purple #6a3ac4 (banned by frontend-design/taste.md).
+     See: /opt/cursor/artifacts/PLAN.md "The single law"
   */
-
-  /* ── colour tones — one place to retune the brand palette ─────────── */
-  :root {
-    --tone-blue:       linear-gradient(135deg, #0e1c25 0%, #1a3441 50%, #156082 100%);
-    --tone-blue-soft:  rgba(21,96,130,0.10);
-    --tone-blue-bar:   #156082;
-
-    --tone-midnight:      linear-gradient(135deg, #0a0f1a 0%, #1a2740 50%, #2c3e6a 100%);
-    --tone-midnight-soft: rgba(44,62,106,0.10);
-    --tone-midnight-bar:  #2c3e6a;
-
-    --tone-red:        linear-gradient(135deg, #1a0808 0%, #4a1414 50%, #c43a3a 100%);
-    --tone-red-soft:   rgba(196,58,58,0.10);
-    --tone-red-bar:    #c43a3a;
-
-    --tone-green:      linear-gradient(135deg, #0a1a14 0%, #1a4030 50%, #2e8b6f 100%);
-    --tone-green-soft: rgba(46,139,111,0.10);
-    --tone-green-bar:  #2e8b6f;
-
-    --tone-amber:      linear-gradient(135deg, #1a1408 0%, #4a3a14 50%, #c4923a 100%);
-    --tone-amber-soft: rgba(196,146,58,0.10);
-    --tone-amber-bar:  #c4923a;
-
-    --tone-purple:     linear-gradient(135deg, #100a1f 0%, #281a4a 50%, #6a3ac4 100%);
-    --tone-purple-soft:rgba(106,58,196,0.10);
-    --tone-purple-bar: #6a3ac4;
-
-    --tone-teal:       linear-gradient(135deg, #082020 0%, #144a4a 50%, #2eb8b8 100%);
-    --tone-teal-soft:  rgba(46,184,184,0.10);
-    --tone-teal-bar:   #2eb8b8;
-  }
 
   /* ── motion ──────────────────────────────────────────────────────────── */
   @keyframes rise {
@@ -502,91 +473,9 @@
     .docs-layout.home-no-rails { width: 94% !important; }
   }
 
-  /* ── BANNER CARD — cinematic, full-width, per-tone gradient ─────────── */
-  .banner-card {
-    display: grid; grid-template-columns: 1.1fr 1fr; gap: 0;
-    background: var(--tone-blue);              /* fallback = blue */
-    border-radius: var(--radius-lg); overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.16);
-    margin-bottom: var(--space-lg);
-    text-decoration: none; color: #fff;
-    transition: transform 0.25s, box-shadow 0.25s;
-    min-height: 320px;
-  }
-  .banner-card[data-tone="blue"]     { background: var(--tone-blue); }
-  .banner-card[data-tone="midnight"] { background: var(--tone-midnight); }
-  .banner-card[data-tone="red"]      { background: var(--tone-red); }
-  .banner-card[data-tone="green"]    { background: var(--tone-green); }
-  .banner-card[data-tone="amber"]    { background: var(--tone-amber); }
-  .banner-card[data-tone="purple"]   { background: var(--tone-purple); }
-  .banner-card[data-tone="teal"]     { background: var(--tone-teal); }
-
-  .banner-card.hero-banner { min-height: 380px; }
-  .banner-card:hover { transform: translateY(-5px); box-shadow: 0 30px 70px rgba(0,0,0,0.24); }
-  .banner-card .copy {
-    padding: 48px; display: flex; flex-direction: column; gap: 14px; align-self: center;
-  }
-  .banner-card.hero-banner .copy { padding: 56px; gap: 18px; }
-  .banner-card .badge {
-    align-self: flex-start;
-    background: rgba(255,255,255,0.16); color: #fff;
-    font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
-    text-transform: uppercase; letter-spacing: 0.10em;
-  }
-  .banner-card h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(28px, 3.2vw, 42px); font-weight: 600;
-    line-height: 1.05; letter-spacing: -0.025em;
-    margin: 0; color: #fff;
-  }
-  .banner-card.hero-banner h2 { font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.03em; }
-  .banner-card .claim {
-    font-size: clamp(15px, 1.4vw, 18px); font-weight: 300;
-    line-height: 1.45; letter-spacing: -0.005em;
-    color: rgba(255,255,255,0.92); margin: 0;
-    max-width: 30em;
-  }
-  .banner-card.hero-banner .claim { font-size: clamp(18px, 1.6vw, 22px); }
-  .banner-card .feat-bullets {
-    list-style: none; padding: 0; margin: 8px 0 0;
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px 22px;
-  }
-  .banner-card .feat-bullets li {
-    font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.85);
-    padding-left: 16px; position: relative;
-  }
-  .banner-card .feat-bullets li::before {
-    content: ''; position: absolute; left: 0; top: 8px;
-    width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.55);
-  }
-  .banner-card .arrow {
-    align-self: flex-start; margin-top: 6px;
-    background: #fff; color: #1a2740;
-    padding: 12px 22px; border-radius: 999px;
-    font-size: 14px; font-weight: 600;
-    transition: transform 0.18s;
-  }
-  .banner-card:hover .arrow { transform: translateX(4px); }
-  .banner-card .visual {
-    position: relative;
-    background: linear-gradient(135deg, rgba(0,0,0,0.18), rgba(0,0,0,0.40));
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .banner-card .visual img {
-    max-width: 70%; max-height: 70%;
-    object-fit: contain;
-    filter: drop-shadow(0 12px 32px rgba(0,0,0,0.40));
-    transition: transform 0.4s ease;
-  }
-  .banner-card:hover .visual img { transform: scale(1.05); }
-  @media (max-width: 900px) {
-    .banner-card { grid-template-columns: 1fr; }
-    .banner-card .copy { padding: 32px; }
-    .banner-card .visual { min-height: 220px; }
-    .banner-card .feat-bullets { grid-template-columns: 1fr; }
-  }
+  /* .banner-card — DELETED in Phase 0. Used the deleted 7-tone palette
+     and white text on a coloured gradient background; not a derivative
+     of Sections 1+2. Replace with .rp-commands-card (dark-card family). */
 
   /* ── SECTION HEADER ──────────────────────────────────────────────────── */
   .home-section { margin: var(--space-2xl) 0; }
@@ -614,136 +503,10 @@
   }
   .home-section-head a.see-all:hover { text-decoration: underline; }
 
-  /* ── COMBINED HERO + BUNDLE BANNER ────────────────────────────────────
-     A cinematic banner that does TWO jobs: top half is the parent app's
-     full hero (logo, headline, claim, CTA) — bottom half is N inner
-     mini-cards showing the features that ship inside the parent.
-     Used for Revit Copilot + the 3 bespoke automations on the home. */
-  .bundle-banner {
-    display: flex; flex-direction: column; gap: 0;
-    background: var(--tone-blue);
-    border-radius: var(--radius-lg); overflow: hidden;
-    box-shadow: 0 24px 70px rgba(0,0,0,0.22);
-    margin-bottom: var(--space-2xl);
-    color: #fff;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .bundle-banner:hover { transform: translateY(-3px); box-shadow: 0 30px 80px rgba(0,0,0,0.28); }
-  .bundle-banner[data-tone="blue"]     { background: var(--tone-blue); }
-  .bundle-banner[data-tone="midnight"] { background: var(--tone-midnight); }
-  .bundle-banner[data-tone="red"]      { background: var(--tone-red); }
-  .bundle-banner[data-tone="green"]    { background: var(--tone-green); }
-  .bundle-banner[data-tone="amber"]    { background: var(--tone-amber); }
-  .bundle-banner[data-tone="purple"]   { background: var(--tone-purple); }
-  .bundle-banner[data-tone="teal"]     { background: var(--tone-teal); }
-
-  /* HERO half — left column copy, right column logo */
-  .bundle-banner .bundle-hero {
-    display: grid; grid-template-columns: 1.15fr 1fr;
-    gap: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.14);
-  }
-  .bundle-banner .bundle-hero .copy {
-    padding: 56px; display: flex; flex-direction: column; gap: 18px; align-self: center;
-  }
-  .bundle-banner .bundle-hero .badge {
-    align-self: flex-start;
-    background: rgba(255,255,255,0.16); color: #fff;
-    font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
-    text-transform: uppercase; letter-spacing: 0.10em;
-  }
-  .bundle-banner .bundle-hero h2 {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    font-size: clamp(34px, 4vw, 52px);
-    font-weight: 600; line-height: 1.05; letter-spacing: -0.03em;
-    color: #fff;
-  }
-  .bundle-banner .bundle-hero .claim {
-    font-size: clamp(18px, 1.6vw, 22px); font-weight: 300;
-    line-height: 1.4; letter-spacing: -0.01em;
-    color: rgba(255,255,255,0.92); margin: 0;
-    max-width: 30em;
-  }
-  .bundle-banner .bundle-hero .arrow {
-    align-self: flex-start; margin-top: 6px;
-    background: #fff; color: #1a2740;
-    padding: 13px 24px; border-radius: 999px;
-    font-size: 14px; font-weight: 600;
-    text-decoration: none; display: inline-block;
-  }
-  .bundle-banner .bundle-hero .visual {
-    background: linear-gradient(135deg, rgba(0,0,0,0.20), rgba(0,0,0,0.40));
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .bundle-banner .bundle-hero .visual img {
-    max-width: 70%; max-height: 70%; object-fit: contain;
-    filter: drop-shadow(0 12px 32px rgba(0,0,0,0.40));
-    transition: transform 0.4s ease;
-  }
-  .bundle-banner:hover .bundle-hero .visual img { transform: scale(1.05); }
-
-  /* DIVIDER STRIP between hero and inner-card grid */
-  .bundle-banner .bundle-divider {
-    padding: 16px 56px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.10em;
-    text-transform: uppercase; color: rgba(255,255,255,0.70);
-    background: rgba(0,0,0,0.18);
-  }
-
-  /* Inner-card grid */
-  .bundle-banner .bundle-grid {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    padding: 24px 36px 36px;
-  }
-  .bundle-banner .inner-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: var(--radius-md);
-    padding: 0;                  /* the 3D scene goes edge-to-edge at the top */
-    display: flex; flex-direction: column; gap: 0;
-    color: #fff; text-decoration: none;
-    transition: transform 0.22s, background 0.22s, border-color 0.22s;
-    backdrop-filter: blur(4px);
-    overflow: hidden;
-  }
-  .bundle-banner .inner-card:hover {
-    transform: translateY(-4px);
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.28);
-  }
-  /* 3D viewport — ~16:9 strip at the top of every inner-card */
-  .bundle-banner .inner-card .scene-3d {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, rgba(0,0,0,0.30), rgba(0,0,0,0.55));
-    cursor: zoom-in;
-    position: relative;
-    overflow: hidden;
-  }
-  .bundle-banner .inner-card .scene-3d canvas {
-    display: block; width: 100%; height: 100%;
-  }
-  .bundle-banner .inner-card .ic-body {
-    padding: 18px 22px 22px;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .bundle-banner .inner-card .ic-surf {
-    font-size: 10px; color: rgba(255,255,255,0.65);
-    text-transform: uppercase; letter-spacing: 0.10em; font-weight: 700;
-  }
-  .bundle-banner .inner-card h4 {
-    margin: 0; font-size: 18px; font-weight: 600; color: #fff; letter-spacing: -0.01em;
-  }
-  .bundle-banner .inner-card .ic-claim {
-    margin: 0; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.85);
-  }
-  .bundle-banner .inner-card .ic-more {
-    margin-top: 6px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.92);
-  }
-  .bundle-banner .inner-card:hover .ic-more::after { content: ' →'; }
+  /* .bundle-banner — DELETED in Phase 0. Used the 7-tone palette,
+     introduced rgba glassmorphism inner-cards (banned by frontend-design
+     /taste.md) and a 3-up grid (banned). Replace with .rp-commands-card
+     family. */
 
   /* ── 3D MODAL — fullscreen expansion when a scene is clicked ────────── */
   .scene-modal {
@@ -788,13 +551,6 @@
     width: 100%; height: 100%; display: block;
   }
 
-  @media (max-width: 900px) {
-    .bundle-banner .bundle-hero { grid-template-columns: 1fr; }
-    .bundle-banner .bundle-hero .copy { padding: 32px; }
-    .bundle-banner .bundle-hero .visual { min-height: 220px; }
-    .bundle-banner .bundle-divider { padding: 12px 24px; }
-    .bundle-banner .bundle-grid { grid-template-columns: 1fr; padding: 16px 24px 24px; }
-  }
   /* ── ROW LAYOUTS ────────────────────────────────────────────────────── */
   .row-1up { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
   .row-2up { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
@@ -802,80 +558,8 @@
   @media (max-width: 1100px) { .row-3up { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 720px)  { .row-2up, .row-3up { grid-template-columns: 1fr; } }
 
-  /* ── MINI BANNER TILE — solid colour, white text, logo + features ──── */
-  .logo-tile {
-    display: flex; flex-direction: column;
-    background: var(--tone-blue);                 /* tone gradient, not white */
-    border-radius: var(--radius-lg);
-    overflow: hidden; text-decoration: none; color: #fff;
-    transition: transform 0.22s, box-shadow 0.22s;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
-    min-height: 360px;
-  }
-  .logo-tile[data-tone="blue"]     { background: var(--tone-blue); }
-  .logo-tile[data-tone="midnight"] { background: var(--tone-midnight); }
-  .logo-tile[data-tone="red"]      { background: var(--tone-red); }
-  .logo-tile[data-tone="green"]    { background: var(--tone-green); }
-  .logo-tile[data-tone="amber"]    { background: var(--tone-amber); }
-  .logo-tile[data-tone="purple"]   { background: var(--tone-purple); }
-  .logo-tile[data-tone="teal"]     { background: var(--tone-teal); }
-
-  .logo-tile:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 26px 60px rgba(0,0,0,0.22);
-  }
-
-  .logo-tile .logo-area {
-    aspect-ratio: 2.2 / 1;
-    display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, rgba(0,0,0,0.18), rgba(0,0,0,0.32));
-    overflow: hidden;
-  }
-  .logo-tile .logo-area img {
-    max-width: 55%; max-height: 78%;
-    object-fit: contain;
-    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
-    transition: transform 0.3s ease;
-  }
-  .logo-tile:hover .logo-area img { transform: scale(1.05); }
-
-  .logo-tile .body {
-    padding: 20px 24px 24px;
-    display: flex; flex-direction: column; gap: 8px; flex: 1;
-    color: #fff;
-  }
-  .logo-tile .surf {
-    font-size: 11px; color: rgba(255,255,255,0.70);
-    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;
-  }
-  .logo-tile h3 {
-    margin: 0; font-size: 20px; font-weight: 600;
-    color: #fff; letter-spacing: -0.015em; line-height: 1.2;
-  }
-  .logo-tile .claim {
-    margin: 0;
-    font-size: 14px; line-height: 1.5;
-    color: rgba(255,255,255,0.85);
-  }
-  .logo-tile .feat-mini {
-    list-style: none; padding: 0; margin: 6px 0 0;
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .logo-tile .feat-mini li {
-    font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.92);
-    padding-left: 14px; position: relative;
-  }
-  .logo-tile .feat-mini li::before {
-    content: ''; position: absolute; left: 0; top: 8px;
-    width: 5px; height: 5px; border-radius: 50%;
-    background: rgba(255,255,255,0.65);
-  }
-  .logo-tile .email {
-    margin-top: 10px; font-family: var(--font-mono); font-size: 11px;
-    color: #fff; background: rgba(255,255,255,0.16);
-    padding: 4px 10px; border-radius: 999px;
-    align-self: flex-start;
-  }
+  /* .logo-tile — DELETED in Phase 0. Used the 7-tone palette. Replace
+     with .rp-commands-card derivative for service tiles in Phase 5. */
 
   /* ── END CTA ─────────────────────────────────────────────────────────── */
   .end-cta {
@@ -939,63 +623,12 @@
     letter-spacing: 0.10em; color: #888;
   }
 
-  /* ── SECTIONS 4–6: ALTERNATING SHOWCASE ────────────────────────── */
-  .showcase-split {
-    display: grid; grid-template-columns: 1fr 1.2fr;
-    gap: 0; border-radius: var(--radius-lg); overflow: hidden;
-    margin-bottom: var(--space-lg);
-    box-shadow: 0 12px 36px rgba(0,0,0,0.08);
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .showcase-split:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.14);
-  }
-  .showcase-split.flip { direction: rtl; }
-  .showcase-split.flip > * { direction: ltr; }
-  .showcase-split .sc-copy {
-    padding: clamp(32px, 4vw, 56px);
-    display: flex; flex-direction: column; gap: 14px;
-    justify-content: center; background: #f5f3ef;
-  }
-  html.dark-mode .showcase-split .sc-copy { background: #222; }
-  .showcase-split .sc-kicker {
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.10em; color: #156082;
-  }
-  .showcase-split .sc-copy h3 {
-    margin: 0; font-size: clamp(24px, 2.6vw, 36px); font-weight: 600;
-    line-height: 1.12; letter-spacing: -0.025em; color: #222;
-  }
-  html.dark-mode .showcase-split .sc-copy h3 { color: #e0e0e0; }
-  .showcase-split .sc-copy p {
-    margin: 0; font-size: 15px; font-weight: 300;
-    line-height: 1.6; color: #666; max-width: 30em;
-  }
-  html.dark-mode .showcase-split .sc-copy p { color: #999; }
-  .showcase-split .sc-link {
-    font-size: 13px; font-weight: 600; color: #156082;
-    text-decoration: none; align-self: flex-start;
-    transition: opacity 0.18s;
-  }
-  .showcase-split .sc-link:hover { text-decoration: underline; }
-  .showcase-split .sc-visual {
-    background: linear-gradient(160deg, #1a1a1a, #0e1c25);
-    display: flex; align-items: center; justify-content: center;
-    min-height: 340px; position: relative; overflow: hidden;
-  }
-  .showcase-split .sc-visual .scene-3d {
-    position: absolute; inset: 0; cursor: zoom-in;
-  }
-  .showcase-split .vis-placeholder {
-    font-size: 13px; color: rgba(255,255,255,0.40);
-    text-transform: uppercase; letter-spacing: 0.10em; font-weight: 500;
-  }
-  @media (max-width: 900px) {
-    .showcase-split { grid-template-columns: 1fr; }
-    .showcase-split.flip { direction: ltr; }
-    .showcase-split .sc-visual { min-height: 260px; }
-  }
+  /* .showcase-split — DELETED in Phase 0. Black-gradient visual columns
+     and clamp() body sizes that don't match the View 6 prose system.
+     Phase 2 rebuilds Section 4 as ONE Clash Solver row using the
+     painted artsy frame from Section 2 + the .demo-text-* prose system
+     from chat-panel.css. Phase 4 rebuilds Section 6 as document
+     mockups inside the same painted frame. */
 
   /* ── SECTION 8: CALCULATOR BADGES ──────────────────────────────── */
   .calc-row {

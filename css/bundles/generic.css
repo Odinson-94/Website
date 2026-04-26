@@ -11,7 +11,116 @@
  *   - css/index-styles.css
  *   - css/shared-styles.css
  *   - sandbox/sandbox.css
+ *
+ * MANUAL ADDITION: the Adelphos design-token :root block at the top.
+ * If consolidate_css.py is re-run, preserve this :root block.
  */
+
+/* ────────────────────────────────────────────────────────────────────
+   Adelphos design tokens — derived from Sections 1+2 of templates/home.html
+   THE single law: every token here traces to a value used on the hero,
+   the BUILD cycler, the Revit feature panel, the painted artsy frame,
+   or the dark #2f2f2f rp-commands-card. Nothing else. Anything new
+   needs explicit user sign-off.
+   See: /opt/cursor/artifacts/PLAN.md "The single law"
+   See: /workspace/frontend-design/_index.md (Adelphos brand override)
+   ──────────────────────────────────────────────────────────────────── */
+:root {
+  /* Surfaces */
+  --ad-bg:           #f5f3ef;            /* warm off-white body bg (Section 2) */
+  --ad-bg-dark:      #1a1a1a;            /* dark mode body — never pure black */
+  --ad-panel:        #ffffff;            /* light panel surface inside content cards */
+  --ad-panel-dark:   transparent;        /* dark mode panels go transparent */
+  --ad-card-dark:    #2f2f2f;            /* THE dark feature card surface (rp-commands-card) */
+  --ad-painted-overlay: rgba(0,0,0,0.30);/* the 30% black overlay on revit-bg.png */
+
+  /* Brand + greyscale (single accent) */
+  --ad-teal:         #156082;
+  --ad-teal-light:   #4a9bb8;            /* dark-mode accent shift */
+  --ad-teal-deep:    #0e4560;            /* button hover darken */
+  --ad-text-0:       #000000;            /* highest emphasis */
+  --ad-text-1:       #222222;            /* body headings */
+  --ad-text-2:       #444444;            /* body text on light bg */
+  --ad-text-3:       #555555;            /* prose body (the View 6 standard) */
+  --ad-text-4:       #666666;            /* tertiary text */
+  --ad-text-5:       #888888;            /* muted UI labels */
+  --ad-text-6:       #999999;            /* subtle indicators */
+  --ad-border:       rgba(0,0,0,0.06);   /* thin separator lines */
+  --ad-border-card:  rgba(255,255,255,0.12); /* row separators inside dark cards */
+
+  /* Type stacks */
+  --ad-font-display: 'Inter Display', 'Inter', sans-serif;
+  --ad-font-body:    'Inter', sans-serif;
+  --ad-font-brand:   'Gotham Medium', 'Montserrat', Helvetica, Arial, sans-serif;
+  --ad-font-mono:    'JetBrains Mono', monospace;
+
+  /* Type sizes (the Adelphos production scale) */
+  --ad-text-hero:     30px;              /* hero H1 base; clamps to 44px on large viewports */
+  --ad-text-h2:       30px;              /* section H2 default */
+  --ad-text-h2-big:   44px;              /* dark-card hero (rp-card-header) */
+  --ad-text-card:     18px;              /* feature row title in dark cards (rp-feat-title) */
+  --ad-text-row:      16px;              /* feature row desc + service body */
+  --ad-text-body:     14px;              /* THE Adelphos body size (View 6) */
+  --ad-text-mini:     11px;              /* badges, kickers, surfs */
+
+  /* Weights — only 300 + 500 + 600 (last only in dark cards) */
+  --ad-w-light:       300;
+  --ad-w-medium:      500;
+  --ad-w-card:        600;               /* DARK CARD HEADINGS ONLY */
+
+  /* Line heights */
+  --ad-lh-hero:       1.18;
+  --ad-lh-card:       1.15;              /* tight on the rp-card-header */
+  --ad-lh-h3:         1.4;
+  --ad-lh-row:        1.4;               /* dark card row desc */
+  --ad-lh-prose:      1.7;               /* service description on light cards */
+  --ad-lh-body:       1.8;               /* THE View 6 body line-height */
+
+  /* Letter-spacing */
+  --ad-ls-hero:       -0.025em;          /* hero + section H2 */
+  --ad-ls-card:       -0.025em;
+  --ad-ls-row:        -0.01em;           /* feature row title */
+  --ad-ls-mini:       0.10em;            /* badge / kicker uppercase */
+  --ad-ls-display:    5pt;               /* BUILD cycler / logo Gotham */
+  --ad-ls-service:    2pt;               /* service item title Gotham */
+
+  /* Reading column */
+  --ad-measure:       400px;             /* THE Adelphos prose column */
+
+  /* Motion (Adelphos override values) */
+  --ad-curve-pos:     cubic-bezier(0.65, 0, 0.35, 1);
+  --ad-d-position:   1s;                 /* hero text travel */
+  --ad-d-panel:      0.8s;                /* right panel reveal */
+  --ad-d-fade:       0.5s;                /* opacity in/out */
+  --ad-d-section:    0.4s;                /* services expand etc. */
+  --ad-d-hover:      0.3s;
+  --ad-d-button:     0.2s;
+  --ad-d-press:      0.1s;
+  --ad-d-shine:      2.5s;                /* infinite button shine */
+}
+
+html.dark-mode {
+  --ad-bg:           var(--ad-bg-dark);
+  --ad-panel:        var(--ad-panel-dark);
+  --ad-text-0:       #ffffff;
+  --ad-text-1:       #e0e0e0;
+  --ad-text-2:       #cccccc;
+  --ad-text-3:       #aaaaaa;
+  --ad-text-4:       #999999;
+  --ad-text-5:       #888888;
+  --ad-text-6:       #666666;
+  --ad-border:       rgba(255,255,255,0.10);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ──────────────────────────────────────────────────────────────────── */
 
 * {
   box-sizing: border-box;
