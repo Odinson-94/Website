@@ -145,13 +145,22 @@
   will-change: transform;
 }
 
+/* Phase 9.2: footer pass — body bg, greyscale type, no decorative
+   colour cells. The legacy footer used `var(--bg-soft)` (#f8f8f8)
+   which clashed against the new warm `--ad-bg` (#f5f3ef). Single law:
+   atmosphere from content, not a coloured panel under it. */
 .sandbox-footer {
-  background: var(--bg-soft);
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  font-family: var(--font-sans);
+  background: var(--ad-bg, var(--bg-soft));
+  border-top: 1px solid var(--ad-border, var(--border));
+  color: var(--ad-text-3, var(--text-muted));
+  font-family: var(--ad-font-body, var(--font-sans));
   margin-top: var(--space-4xl);
   padding: var(--space-3xl) var(--space-2xl) var(--space-2xl);
+}
+html.dark-mode .sandbox-footer {
+  background: var(--ad-bg-dark, #1a1a1a);
+  border-top-color: var(--ad-border, rgba(255,255,255,0.10));
+  color: var(--ad-text-3, #aaa);
 }
 
 .sandbox-bar strong {
@@ -177,13 +186,15 @@
 }
 
 .sandbox-footer h4 {
-  color: var(--text);
+  color: var(--ad-text-1, var(--text));
+  font-family: var(--ad-font-body, var(--font-sans));
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 500;          /* was 700 — Phase 9.2: greyscale + lighter weight */
+  letter-spacing: 0.10em;
   margin-bottom: var(--space-md);
   text-transform: uppercase;
 }
+html.dark-mode .sandbox-footer h4 { color: var(--ad-text-1, #e0e0e0); }
 
 .sandbox-footer ul {
   list-style: none;
@@ -196,10 +207,20 @@
 }
 
 .sandbox-footer a {
-  color: var(--text-muted);
+  color: var(--ad-text-3, var(--text-muted));
+  font-family: var(--ad-font-body, var(--font-sans));
   font-size: 13px;
+  font-weight: 300;          /* Phase 9.2: 14/300 footer rhythm */
   text-decoration: none;
-  transition: color var(--motion-fast);
+  transition: color 0.18s cubic-bezier(0.65, 0, 0.35, 1);
+}
+@media (hover: hover) {
+  .sandbox-footer a:hover { color: var(--ad-teal, #156082); }
+}
+.sandbox-footer a:focus-visible {
+  outline: 2px solid var(--ad-teal, #156082);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .docs-content > h1,
@@ -415,26 +436,33 @@ main.sandbox-main h2 {
 }
 
 .sandbox-footer .footer-brand {
-  color: var(--text);
-  font-family: var(--font-display);
+  color: var(--ad-text-1, var(--text));
+  font-family: var(--ad-font-body, var(--font-display));
   font-size: 22px;
   font-weight: 500;
   letter-spacing: 0.04em;
   margin-bottom: var(--space-md);
 }
+html.dark-mode .sandbox-footer .footer-brand { color: var(--ad-text-1, #e0e0e0); }
 
 .sandbox-footer .footer-tag {
+  color: var(--ad-text-3, var(--text-muted));
+  font-family: var(--ad-font-body, var(--font-sans));
   font-size: 13px;
-  line-height: 1.55;
+  font-weight: 300;
+  line-height: 1.65;
   max-width: 280px;
 }
 
 .sandbox-footer .footer-bottom {
   align-items: center;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--ad-border, var(--border));
+  color: var(--ad-text-5, var(--text-muted));
   display: flex;
   flex-wrap: wrap;
+  font-family: var(--ad-font-body, var(--font-sans));
   font-size: 12px;
+  font-weight: 300;
   gap: var(--space-md);
   justify-content: space-between;
   padding-top: var(--space-lg);
@@ -466,10 +494,9 @@ html.dark-mode .btn-secondary {
   transform: translateX(110%) skewX(-12deg);
 }
 
-.sandbox-footer a:hover {
-  color: var(--brand-teal);
-  text-decoration: none;
-}
+/* Note: hover on .sandbox-footer a is now defined inside the
+   @media (hover: hover) block above (Phase 9.2 + interaction-agent
+   brief: hover wrapped to prevent sticking on touch devices). */
 
 html.dark-mode .sandbox-tile::after {
   background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.10) 50%, transparent 65%);

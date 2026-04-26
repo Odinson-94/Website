@@ -156,23 +156,64 @@
       }
     }
 
-    // Highlight current page
+    // Highlight current page — teal underline rather than inline colour
+    // override (Phase 9.1: matches the live SPA menubar pattern, animated
+    // with the Adelphos cubic-bezier curve).
     const pathName = location.pathname;
     document.querySelectorAll('#menubar .menu-link[href]').forEach(a => {
       const href = a.getAttribute('href');
       if (pathName === href || (href !== '/' && pathName.startsWith(href.replace(/\/index\.html$/, '/')))) {
-        a.style.color = '#156082';
-        a.style.fontWeight = '600';
+        a.classList.add('menu-link-active');
       }
     });
   })();
 
-  // === MENUBAR SCROLL OPACITY ===============================================
+  // === MENUBAR SCROLL OPACITY + ACTIVE STATE ================================
+  // Active state uses a teal underline that grows with the Adelphos
+  // cubic-bezier curve (Phase 9.1). Hover state uses a thin teal under-
+  // line that grows from 0 to full width via the same curve.
   const scrollStyle = document.createElement('style');
   scrollStyle.textContent = `
     .menubar { background: transparent; border-radius: 999px; padding: 6px 16px; transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s; }
     .menubar.scrolled { background: rgba(255,255,255,0.92); box-shadow: 0 4px 24px rgba(0,0,0,0.10); backdrop-filter: blur(12px); }
     html.dark-mode .menubar.scrolled { background: rgba(30,30,30,0.92); box-shadow: 0 4px 24px rgba(0,0,0,0.30); }
+
+    /* Menu link base state — uses --ad-text-1 (#222) per Phase 9.1. */
+    #menubar .menu-link {
+      position: relative;
+      color: var(--ad-text-1, #222);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    html.dark-mode #menubar .menu-link { color: var(--ad-text-1, #e0e0e0); }
+    #menubar .menu-link::after {
+      content: '';
+      position: absolute;
+      left: 14px; right: 14px;
+      bottom: 4px;
+      height: 2px;
+      background: var(--ad-teal, #156082);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    @media (hover: hover) {
+      #menubar .menu-link:hover { color: var(--ad-teal, #156082); }
+      #menubar .menu-link:hover::after { transform: scaleX(1); }
+    }
+    #menubar .menu-link.menu-link-active {
+      color: var(--ad-teal, #156082);
+    }
+    #menubar .menu-link.menu-link-active::after {
+      transform: scaleX(1);
+    }
+    /* Focus ring matches the same teal accent for keyboard parity. */
+    #menubar .menu-link:focus-visible {
+      outline: 2px solid var(--ad-teal, #156082);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
   `;
   document.head.appendChild(scrollStyle);
   window.addEventListener('scroll', function() {
@@ -218,7 +259,7 @@
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><img src="/logos/adelphos-brand.svg" alt="Adelphos" style="height:68px;vertical-align:middle;"> <div class="logo-node"><div class="nn-glow"></div><div class="nn-core"></div><div class="nn-ring"></div></div></div>
+          <div class="footer-brand"><img src="/logos/adelphos-brand.svg" alt="Adelphos" style="height:48px;vertical-align:middle;"></div>
           <p class="footer-tag">One platform for AI-enabled construction delivery. One suite, one build, all services.</p>
         </div>
         <div>
