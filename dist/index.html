@@ -2344,9 +2344,8 @@
        Two .clash-row rows in alternating direction. Each frame holds
        a CSS document mockup (paper-stack for Report Builder, single
        A4 page with regenerated-clause highlight for Specbuilder).
-       NO <span>preview</span> placeholders. Body copy lifted from
-       sandbox/data/apps.json {report-builder,specbuilder}.{blurb,
-       detail_paragraphs[0]}. -->
+       Body copy lifted from sandbox/data/apps.json
+       {report-builder, specbuilder}.{blurb, detail_paragraphs[0]}. -->
   <section class="home-section clash-section reveal d4">
     <div class="home-section-head">
       <h2>Templates you own</h2>
@@ -2419,12 +2418,11 @@
     </div>
   </section>
 
-  <!-- ═══ SECTION 7: AGENTIC MODULES — TRUTH ONLY ═══
-       3 real managed services + 4 real email services from
-       sandbox/data/agentic-services.json. The 3 fabricated services
-       (Procurement Agent / Resource Planning / Compliance Monitoring)
-       are GONE — they were never in the JSON. All cards = .rp-commands-
-       card derivatives (single dark surface, white type, agent
+  <!-- ═══ SECTION 7: AGENTIC SERVICES — TRUTH ONLY ═══
+       Surfaces ONLY the services that exist in
+       sandbox/data/agentic-services.json: 3 managed services + 4
+       email services = 7 total. Every card uses the .rp-commands-
+       card vocabulary (single dark surface, white type, agent
        spinners). See scripts/build-home.mjs renderAgenticServices(). -->
   <section class="home-section reveal d5">
     <div class="home-section-head">
@@ -2555,8 +2553,8 @@
     </div>
   </section>
 
-  <!-- (Legacy 6-card row with 3 fabricated services DELETED in Phase 5;
-        replaced above by 
+  <!-- (The legacy 6-card .row-3up agentic block was deleted in Phase 5
+        and replaced above by the 
     <div class="agentic-row agentic-managed-row">
     <a class="agentic-card rp-commands-card" href="/dist/agentic-services/finances/index.html">
       <span class="agentic-card-kicker">Agentic module</span>
@@ -2675,8 +2673,9 @@
       </div>
       <a class="agentic-email-mailto" href="mailto:specs@adelphos.ai">specs@adelphos.ai</a>
     </div></div>
-    </div> which surfaces the 7
-        REAL services from sandbox/data/agentic-services.json.) -->
+    </div> token which
+        surfaces only the 7 real services from
+        sandbox/data/agentic-services.json.) -->
 
   <!-- ═══ SECTION 8: CALCULATOR ENGINES ═══
        Compact pill row, single-accent (teal). The agent calls these
