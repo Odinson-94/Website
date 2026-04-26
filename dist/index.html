@@ -728,6 +728,133 @@
     box-shadow: 0 22px 50px rgba(30,52,72,0.22);
   }
 
+  /* Section 6 — document mockups inside the painted frame.
+     Same shadow + radius as the chat panel in Section 2; no new
+     card style introduced. */
+  .clash-frame .doc-mock {
+    position: absolute; inset: 24px;
+    z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .clash-frame .doc-page {
+    position: absolute;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+  }
+  /* Report Builder — paper-stack of 3 pages */
+  .clash-frame .doc-mock-stack .doc-page {
+    width: 60%; height: 78%;
+  }
+  .clash-frame .doc-mock-stack .doc-page-3 {
+    transform: translate(-12%, -8%) rotate(-4deg);
+    background: #f3f1ed;
+    box-shadow: 0 14px 30px rgba(30,52,72,0.18);
+  }
+  .clash-frame .doc-mock-stack .doc-page-2 {
+    transform: translate(0, 0) rotate(-1deg);
+    background: #f7f5f2;
+    box-shadow: 0 18px 38px rgba(30,52,72,0.20);
+  }
+  .clash-frame .doc-mock-stack .doc-page-1 {
+    transform: translate(12%, 6%) rotate(2deg);
+    padding: 22px 26px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .clash-frame .doc-header {
+    font-family: var(--ad-font-body);
+    font-size: 11px;
+    font-weight: var(--ad-w-medium);
+    letter-spacing: 0.18em;
+    color: var(--ad-teal);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--ad-teal);
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+  }
+  .clash-frame .doc-line {
+    height: 6px; border-radius: 3px;
+    background: rgba(0,0,0,0.06);
+  }
+  .clash-frame .doc-line.w90 { width: 90%; }
+  .clash-frame .doc-line.w85 { width: 85%; }
+  .clash-frame .doc-line.w80 { width: 80%; }
+  .clash-frame .doc-line.w75 { width: 75%; }
+  .clash-frame .doc-line.w70 { width: 70%; }
+  .clash-frame .doc-line.w65 { width: 65%; }
+  .clash-frame .doc-line.w60 { width: 60%; }
+  .clash-frame .doc-chart {
+    margin: 8px 0;
+    display: flex; align-items: flex-end; gap: 8px;
+    height: 60px;
+  }
+  .clash-frame .doc-chart-bar {
+    flex: 1;
+    background: rgba(21,96,130,0.55);
+    border-radius: 2px 2px 0 0;
+  }
+  .clash-frame .doc-chart-bar.h35 { height: 35%; }
+  .clash-frame .doc-chart-bar.h45 { height: 45%; }
+  .clash-frame .doc-chart-bar.h60 { height: 60%; }
+  .clash-frame .doc-chart-bar.h70 { height: 70%; }
+  .clash-frame .doc-chart-bar.h80 { height: 80%; }
+
+  /* Specbuilder — single A4 page with regenerated-clause highlight */
+  .clash-frame .doc-mock-spec .doc-page-spec {
+    position: relative;
+    width: 70%; height: 84%;
+    padding: 22px 26px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .clash-frame .spec-clause {
+    display: flex; align-items: center; gap: 12px;
+    padding: 6px 0;
+  }
+  .clash-frame .spec-num {
+    font-family: var(--ad-font-mono);
+    font-size: 11px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-text-5);
+    min-width: 24px;
+  }
+  .clash-frame .spec-line {
+    flex: 1; height: 6px; border-radius: 3px;
+    background: rgba(0,0,0,0.06);
+  }
+  .clash-frame .spec-line.w90 { width: 90%; }
+  .clash-frame .spec-line.w85 { width: 85%; }
+  .clash-frame .spec-line.w80 { width: 80%; }
+  .clash-frame .spec-line.w75 { width: 75%; }
+  .clash-frame .spec-line.w70 { width: 70%; }
+  .clash-frame .spec-line.w65 { width: 65%; }
+  .clash-frame .spec-line.w60 { width: 60%; }
+  .clash-frame .spec-clause-active {
+    background: rgba(21,96,130,0.08);
+    border-left: 3px solid var(--ad-teal);
+    margin-left: -8px; padding-left: 8px;
+    border-radius: 0 4px 4px 0;
+  }
+  .clash-frame .spec-clause-active .spec-num,
+  .clash-frame .spec-clause-active .spec-line {
+    background: rgba(21,96,130,0.18);
+  }
+  .clash-frame .spec-clause-active .spec-num {
+    color: var(--ad-teal);
+    background: transparent;
+  }
+  .clash-frame .spec-tag {
+    font-family: var(--ad-font-body);
+    font-size: 9px;
+    font-weight: var(--ad-w-medium);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ad-teal);
+    background: rgba(21,96,130,0.10);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+
   @media (max-width: 1100px) {
     .clash-row,
     .clash-row.clash-row-reverse { grid-template-columns: 1fr; }
@@ -1888,38 +2015,81 @@
     </div>
   </section>
 
-  <!-- ═══ SECTION 6: REPORT BUILDER + SPECBUILDER ═══ -->
-  <section class="home-section reveal d4">
+  <!-- ═══ SECTION 6: REPORT BUILDER + SPECBUILDER ═══
+       Two .clash-row rows in alternating direction. Each frame holds
+       a CSS document mockup (paper-stack for Report Builder, single
+       A4 page with regenerated-clause highlight for Specbuilder).
+       NO <span>preview</span> placeholders. Body copy lifted from
+       sandbox/data/apps.json {report-builder,specbuilder}.{blurb,
+       detail_paragraphs[0]}. -->
+  <section class="home-section clash-section reveal d4">
     <div class="home-section-head">
       <h2>Templates you own</h2>
       <div class="head-aside">
-        <p>Create your own templates — sell your own templates. Two authoring engines that turn your standards into repeatable deliverables.</p>
+        <p>Create your own templates — sell your own templates. Two engines that turn your standards into repeatable deliverables.</p>
       </div>
     </div>
 
-    <div class="showcase-split">
-      <div class="sc-copy">
-        <span class="sc-kicker">Report Builder</span>
-        <h3>Automated technical reports from model data</h3>
-        <p>Define a report template once — cover page, tables, charts, appendices. Point it at a project and the agent populates every section from live model data, calculation results and QA logs.</p>
-        <p>Export to PDF or Word. Rebrand it, resell it, or keep it for your own QA pipeline.</p>
-        <a class="sc-link" href="/dist/apps/report-builder/index.html">Open Report Builder →</a>
+    <!-- Row A: Report Builder — frame LEFT, text RIGHT -->
+    <div class="clash-row tpl-row">
+      <div class="clash-frame">
+        <div class="doc-mock doc-mock-stack" aria-hidden="true">
+          <div class="doc-page doc-page-3"></div>
+          <div class="doc-page doc-page-2"></div>
+          <div class="doc-page doc-page-1">
+            <div class="doc-header">REPORT</div>
+            <div class="doc-line w90"></div>
+            <div class="doc-line w70"></div>
+            <div class="doc-line w80"></div>
+            <div class="doc-chart">
+              <div class="doc-chart-bar h60"></div>
+              <div class="doc-chart-bar h80"></div>
+              <div class="doc-chart-bar h45"></div>
+              <div class="doc-chart-bar h70"></div>
+              <div class="doc-chart-bar h35"></div>
+            </div>
+            <div class="doc-line w85"></div>
+            <div class="doc-line w65"></div>
+          </div>
+        </div>
       </div>
-      <div class="sc-visual">
-        <span class="vis-placeholder">Report preview</span>
+      <div class="clash-copy">
+        <h3 class="clash-heading">Every recurring report — composed and traceable to source.</h3>
+        <div class="clash-body">
+          <p>Report Builder turns the most repetitive part of an engineer's week into a five-minute review. Every report stays versioned, every claim is traceable to the source data — model, calcs, photos, minutes — and the formatting matches your house style.</p>
+          <p>Eight templates ship in the box: site report, MEP strategy, option appraisal, IESVE report, clash report, Stage 2 submission, Stage 3 submission, survey writeup. Point any template at a project and it pulls the model views, calc outputs, meeting minutes and site photos — and assembles the draft.</p>
+        </div>
+        <a class="clash-link" href="/dist/apps/report-builder/index.html">Open Report Builder →</a>
       </div>
     </div>
 
-    <div class="showcase-split flip">
-      <div class="sc-copy">
-        <span class="sc-kicker">Specbuilder</span>
-        <h3>Technical specifications written from the model</h3>
-        <p>Select a system, pick a specification standard, and the agent writes clause-by-clause from your project data. NBS, CIBSE, ASHRAE or your own house template.</p>
-        <p>Version-controlled, diff-tracked, and always in sync with what's actually in the model.</p>
-        <a class="sc-link" href="/dist/apps/specbuilder/index.html">Open Specbuilder →</a>
+    <!-- Row B: Specbuilder — frame RIGHT, text LEFT -->
+    <div class="clash-row clash-row-reverse tpl-row">
+      <div class="clash-copy">
+        <h3 class="clash-heading">The MEP specification, drafted from your live model.</h3>
+        <div class="clash-body">
+          <p>Specbuilder is the tool every MEP practice has tried to build in-house and given up on. It cross-references your live Revit model against the brief, applies your house standards, layers in your preferred manufacturer data, and writes a stage-appropriate specification.</p>
+          <p>Lock sections you've hand-edited, regenerate only what's changed downstream. NBS, CIBSE, ASHRAE or your own house template. Outputs to Word, PDF, or your DMS in one click.</p>
+        </div>
+        <a class="clash-link" href="/dist/apps/specbuilder/index.html">Open Specbuilder →</a>
       </div>
-      <div class="sc-visual">
-        <span class="vis-placeholder">Spec preview</span>
+      <div class="clash-frame">
+        <div class="doc-mock doc-mock-spec" aria-hidden="true">
+          <div class="doc-page doc-page-spec">
+            <div class="doc-header">SPEC · MEP · 2.1</div>
+            <div class="spec-clause"><span class="spec-num">1.1</span><span class="spec-line w80"></span></div>
+            <div class="spec-clause"><span class="spec-num">1.2</span><span class="spec-line w65"></span></div>
+            <div class="spec-clause spec-clause-active">
+              <span class="spec-num">2.1</span>
+              <span class="spec-line w90"></span>
+              <span class="spec-tag">regenerated</span>
+            </div>
+            <div class="spec-clause"><span class="spec-num">2.2</span><span class="spec-line w70"></span></div>
+            <div class="spec-clause"><span class="spec-num">3.1</span><span class="spec-line w85"></span></div>
+            <div class="spec-clause"><span class="spec-num">3.2</span><span class="spec-line w60"></span></div>
+            <div class="spec-clause"><span class="spec-num">4.1</span><span class="spec-line w75"></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
