@@ -1358,7 +1358,7 @@
     color: #fff;
     box-shadow: 0 8px 22px rgba(30,52,72,0.16);
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;   /* Phase 6: icon · copy · link */
     gap: 18px;
     align-items: center;
   }
@@ -1381,6 +1381,35 @@
   .privacy-banner .privacy-line strong {
     font-weight: var(--ad-w-medium);
     color: #fff;
+  }
+  .privacy-banner .privacy-link {
+    flex-shrink: 0;
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal-light);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: background 0.18s, border-color 0.18s;
+  }
+  @media (hover: hover) {
+    .privacy-banner .privacy-link:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.30);
+    }
+  }
+  @media (max-width: 720px) {
+    .privacy-banner {
+      grid-template-columns: auto 1fr;     /* on phone: link wraps to row 2 */
+    }
+    .privacy-banner .privacy-link {
+      grid-column: 1 / -1;
+      justify-self: flex-start;
+    }
   }
 </style>
 </head>
@@ -2715,6 +2744,7 @@
       <div class="privacy-copy">
         <p class="privacy-line"><strong>No data stored. No chase-ups. No spam.</strong> Uploaded data lives on AWS / Azure infrastructure you control — we don't see it. Your models, your documents, your calculations stay yours.</p>
       </div>
+      <a class="privacy-link" href="/privacy/">View security note &rarr;</a>
     </div>
   </section>
 
