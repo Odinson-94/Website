@@ -5045,3 +5045,16 @@ body .demo-view-overlay:not(#specWritingOverlay) .demo-containers-stack .demo-ch
   min-width: 0 !important;
   width: 100% !important;
 }
+
+/* Phase 8.7.4 — iOS auto-zoom guard on the chat input.
+   Mobile Safari zooms-in any focused input below 16px. The desktop
+   chat panel design uses 12px to fit the dense chat layout, but on
+   mobile we bump to 16px specifically to defeat the auto-zoom. The
+   visual change at <=480px is negligible because the chat panel is
+   already full-width with its own mobile breakpoint stack. */
+@media (max-width: 480px) {
+  .demo-chat-input,
+  .demo-view-overlay .history-search-input {
+    font-size: 16px;
+  }
+}

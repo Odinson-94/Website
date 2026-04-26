@@ -2591,6 +2591,11 @@ html.dark-mode {
   font-size: 13px;
   padding: 7px 10px;
 }
+@media (max-width: 480px) {
+  /* Phase 8.7.4: 16 px floor on small viewports to stop iOS auto-zoom. */
+  .filter-row input[type=search],
+  .filter-row select { font-size: 16px; }
+}
 
 .callout::before {
   background-position: center;
