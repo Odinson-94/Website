@@ -219,6 +219,15 @@
     font-size: 12px;
     color: var(--ad-text-5);
   }
+
+  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ───────────────────── */
+  .demo-card:focus-visible,
+  .dg-catnav a:focus-visible {
+    outline: 2px solid var(--ad-teal);
+    outline-offset: 2px;
+    border-radius: 14px;
+  }
+  .demo-card:active { transform: scale(0.99); }
 </style>
 </head>
 <body>
@@ -1434,7 +1443,7 @@
     
 
   <p class="dg-stamp">
-    Auto-generated <code>2026-04-26T08:49:27.112Z</code> from <code>sandbox/data/demos.json</code> (60 demos).
+    Auto-generated <code>2026-04-26T09:37:01.462Z</code> from <code>sandbox/data/demos.json</code> (60 demos).
     Re-run with <code>adelphos_CLI build gallery demos</code>.
   </p>
 

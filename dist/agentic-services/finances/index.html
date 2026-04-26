@@ -650,6 +650,27 @@
     font-size: 12px;
     color: var(--ad-text-5);
   }
+
+  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ───────────────────── */
+  .svc-btn-primary,
+  .svc-btn-secondary,
+  .end-cta a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .svc-btn-primary:focus-visible,
+  .svc-btn-secondary:focus-visible,
+  .end-cta a:focus-visible,
+  .svc-crumb a:focus-visible {
+    outline: 2px solid var(--ad-teal);
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
+  .svc-btn-primary:active,
+  .svc-btn-secondary:active,
+  .end-cta a:active { transform: scale(0.98); }
 </style>
 </head>
 <body>
@@ -786,7 +807,7 @@
   </div>
 
   <p class="svc-stamp">
-    Auto-generated <code>2026-04-26T09:25:33.943Z</code> from <code>sandbox/data/agentic-services.json</code>. Re-run with <code>adelphos_CLI auto-all</code>.
+    Auto-generated <code>2026-04-26T09:37:01.647Z</code> from <code>sandbox/data/agentic-services.json</code>. Re-run with <code>adelphos_CLI auto-all</code>.
   </p>
 
 </main>

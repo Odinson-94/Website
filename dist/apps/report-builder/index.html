@@ -857,6 +857,40 @@
     font-size: 12px;
     color: var(--ad-text-5);
   }
+
+  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ─────────────────────
+        Touch-target ≥ 44 px on every interactive surface, focus-visible
+        ring on every keyboard-reachable element, :active scale-down
+        feedback for touch users. Hover wrapped in @media (hover: hover)
+        elsewhere in the file. */
+  .ap-cta-primary,
+  .ap-cta-ghost,
+  .install-cta-row .cta-primary,
+  .install-cta-row .cta-secondary,
+  .ap-end-cta a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ap-cta-primary:focus-visible,
+  .ap-cta-ghost:focus-visible,
+  .install-cta-row .cta-primary:focus-visible,
+  .install-cta-row .cta-secondary:focus-visible,
+  .ap-end-cta a:focus-visible,
+  .clash-link:focus-visible,
+  .apps-roadmap-link:focus-visible,
+  .related-card:focus-visible,
+  .ap-crumb a:focus-visible {
+    outline: 2px solid var(--ad-teal);
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
+  .ap-cta-primary:active,
+  .ap-cta-ghost:active,
+  .install-cta-row .cta-primary:active,
+  .ap-end-cta a:active,
+  .related-card:active { transform: scale(0.98); }
 </style>
 </head>
 <body>
@@ -1077,7 +1111,7 @@
   </div>
 
   <p class="ap-stamp">
-    Auto-generated <code>2026-04-26T09:25:33.767Z</code> from <code>sandbox/data/apps.json</code>.
+    Auto-generated <code>2026-04-26T09:37:01.540Z</code> from <code>sandbox/data/apps.json</code>.
     Re-run with <code>adelphos_CLI auto-all</code>.
   </p>
 

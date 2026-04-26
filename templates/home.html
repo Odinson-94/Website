@@ -1372,6 +1372,37 @@
       justify-self: flex-start;
     }
   }
+
+  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ─────────────────────
+        Touch-target ≥ 44 px on every dist home interactive element,
+        focus-visible ring everywhere, :active feedback for touch. */
+  .clash-link,
+  .apps-roadmap-link,
+  .privacy-link,
+  .end-cta-primary,
+  .end-cta-secondary {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .clash-link:focus-visible,
+  .apps-roadmap-link:focus-visible,
+  .privacy-link:focus-visible,
+  .end-cta-primary:focus-visible,
+  .end-cta-secondary:focus-visible,
+  .app-card:focus-visible,
+  .agentic-card:focus-visible,
+  .integration-tile:focus-visible {
+    outline: 2px solid var(--ad-teal);
+    outline-offset: 2px;
+    border-radius: 14px;
+  }
+  .end-cta-primary:active,
+  .end-cta-secondary:active,
+  .clash-link:active,
+  .apps-roadmap-link:active,
+  .privacy-link:active { transform: scale(0.98); }
 </style>
 </head>
 <body>

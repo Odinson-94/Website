@@ -488,6 +488,27 @@
     font-size: 12px;
     color: var(--ad-text-5);
   }
+
+  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ───────────────────── */
+  .svc-btn-primary,
+  .svc-btn-secondary,
+  .end-cta a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .svc-btn-primary:focus-visible,
+  .svc-btn-secondary:focus-visible,
+  .end-cta a:focus-visible,
+  .svc-crumb a:focus-visible {
+    outline: 2px solid var(--ad-teal);
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
+  .svc-btn-primary:active,
+  .svc-btn-secondary:active,
+  .end-cta a:active { transform: scale(0.98); }
 </style>
 </head>
 <body>
