@@ -18,6 +18,22 @@ const T = (n) => path.join(ROOT, 'templates', n);
 const O = (...p) => path.join(ROOT, 'dist', ...p);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+// Phase 7.5: install platform glyph (same set as build-app-pages.mjs).
+function platformGlyph(rawName) {
+  const n = String(rawName || '').toLowerCase();
+  let path;
+  if (/revit/.test(n))                         path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17V8h5a3 3 0 0 1 0 6H7m6 3-3-3"/>';
+  else if (/autocad/.test(n))                  path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 16l5-9 5 9M9 13h6"/>';
+  else if (/word/.test(n))                     path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M6 8l2 9 3-7 3 7 2-9"/>';
+  else if (/excel/.test(n))                    path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8l8 8M16 8l-8 8"/>';
+  else if (/(macos|mac os|apple)/.test(n))     path = '<path d="M16 9c-1 0-3 1-4 1s-3-1-4-1c-3 0-4 3-4 5 0 4 3 8 5 8 1 0 1.5-.5 3-.5s2 .5 3 .5c2 0 5-4 5-8 0-2-1-5-4-5z"/><path d="M13 6c0-1 1-3 2-3"/>';
+  else if (/win|windows/.test(n))              path = '<path d="M3 5l8-1v8H3zM12 4l9-1v9h-9zM3 13h8v8l-8-1zM12 13h9v9l-9-1z"/>';
+  else if (/web|browser|chrome|firefox|safari/.test(n)) path = '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>';
+  else if (/server|service|daemon|background/.test(n)) path = '<rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="0.6"/><circle cx="7" cy="17" r="0.6"/>';
+  else                                          path = '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 10h18M7 4v14"/>';
+  return `<svg class="install-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+}
+
 export async function buildFeaturePage(slug) {
   const data = await loadJson('sandbox/data/features.json');
   const f = data.features.find(x => x.slug === slug);
@@ -178,6 +194,7 @@ function renderInstall(entity) {
     <div class="install-strip">
       ${i.platforms.map(p => `
         <div class="install-tile">
+          ${platformGlyph(p.name)}
           <span class="pname">${esc(p.name)}</span>
           <span class="pspec">${esc(p.spec)}</span>
         </div>`).join('')}
@@ -259,11 +276,55 @@ function renderFlagship(f) {
     </a>`;
 }
 
+// Phase 8.4: feature tile uses a painted-frame 16:9 strip at the top.
+// Each feature gets a per-slug CSS schematic mockup inside the painted
+// frame — AutoRoute (corridor pipework), Plantroom (equipment +
+// headers), Clash Solver (the canonical pipe-over-duct ramp). The
+// LIVE Three.js scene only mounts on the feature detail page (linked
+// from the tile's anchor). Same dark .rp-commands-card surface across
+// all tiles.
 function renderTile(f) {
+  let visual;
+  if (f.slug === 'clash-solver') {
+    // CSS schematic: a horizontal duct + a pipe ramping over it (the
+    // signature Clash Solver geometry).
+    visual = `
+      <div class="feat-mock feat-mock-clash" aria-hidden="true">
+        <div class="feat-mock-duct"></div>
+        <div class="feat-mock-pipe-ramp"></div>
+        <div class="feat-mock-marker feat-mock-marker-1"></div>
+        <div class="feat-mock-marker feat-mock-marker-2"></div>
+      </div>`;
+  } else if (f.slug === 'autoroute') {
+    // CSS schematic mockup: pipe routes turning through a corridor void.
+    visual = `
+      <div class="feat-mock feat-mock-autoroute" aria-hidden="true">
+        <div class="feat-mock-pipe feat-mock-pipe-1"></div>
+        <div class="feat-mock-pipe feat-mock-pipe-2"></div>
+        <div class="feat-mock-elbow feat-mock-elbow-1"></div>
+        <div class="feat-mock-elbow feat-mock-elbow-2"></div>
+      </div>`;
+  } else if (f.slug === 'plantroom-designer-3d') {
+    // CSS schematic mockup: equipment rectangles connected by header pipes.
+    visual = `
+      <div class="feat-mock feat-mock-plantroom" aria-hidden="true">
+        <div class="feat-mock-eq feat-mock-eq-1"></div>
+        <div class="feat-mock-eq feat-mock-eq-2"></div>
+        <div class="feat-mock-eq feat-mock-eq-3"></div>
+        <div class="feat-mock-header"></div>
+      </div>`;
+  } else {
+    // Generic schematic mockup for any other feature added later.
+    visual = `
+      <div class="feat-mock feat-mock-generic" aria-hidden="true">
+        <div class="feat-mock-line feat-mock-line-1"></div>
+        <div class="feat-mock-line feat-mock-line-2"></div>
+      </div>`;
+  }
   return `
-    <a class="app-tile" href="/dist/features/${esc(f.slug)}/index.html">
-      <div class="visual">
-        <img src="/${esc(f.icon || 'logos/Node Logo.png')}" alt="${esc(f.title)} logo" onerror="this.style.opacity=0">
+    <a class="app-tile feat-tile" href="/dist/features/${esc(f.slug)}/index.html">
+      <div class="feat-tile-frame">
+        ${visual}
       </div>
       <div class="body">
         <span class="surf">Feature</span>

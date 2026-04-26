@@ -555,7 +555,13 @@
     background: var(--ad-panel);
     border: 1px solid var(--ad-border);
     border-radius: var(--radius-md);
-    display: flex; flex-direction: column; gap: 4px;
+    display: flex; flex-direction: column; gap: 6px;
+    color: var(--ad-teal);
+  }
+  .install-strip .install-glyph {
+    width: 22px; height: 22px;
+    color: var(--ad-teal);
+    margin-bottom: 2px;
   }
   .install-strip .pname {
     font-family: var(--ad-font-body);
@@ -864,6 +870,7 @@
     <div class="install-strip">
       
         <div class="install-tile">
+          <svg class="install-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
           <span class="pname">Web</span>
           <span class="pspec">Any modern browser. No install required.</span>
         </div>
@@ -949,7 +956,7 @@
   </div>
 
   <p class="ap-stamp">
-    Auto-generated <code>2026-04-26T06:59:15.896Z</code> from <code>sandbox/data/apps.json</code>.
+    Auto-generated <code>2026-04-26T08:49:27.177Z</code> from <code>sandbox/data/apps.json</code>.
     Re-run with <code>adelphos_CLI auto-all</code>.
   </p>
 

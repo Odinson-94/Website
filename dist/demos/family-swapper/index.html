@@ -126,7 +126,7 @@
     z-index: 2;
     border-radius: 14px;
     overflow: hidden;
-    background: #000;
+    background: var(--ad-card-dark);
     box-shadow: 0 22px 50px rgba(30,52,72,0.22);
     display: flex; align-items: center; justify-content: center;
   }
@@ -216,6 +216,75 @@
     border-radius: 6px;
   }
 
+  /* Phase 8.3: Related demos strip — 3 dark .rp-commands-card-style
+     tiles. Same vocabulary as the demos-gallery .demo-card grid; just
+     placed at the bottom of each detail page. */
+  .dm-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .dm-related-card {
+    background: var(--ad-card-dark);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  @media (hover: hover) {
+    .dm-related-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    }
+  }
+  .dm-related-card .dm-related-poster {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, rgba(0,0,0,0.30), rgba(0,0,0,0.55)),
+      url('/images/revit-bg.png') center/cover no-repeat;
+  }
+  .dm-related-card .dm-related-duration {
+    position: absolute;
+    bottom: 8px; right: 8px;
+    font-family: var(--ad-font-mono);
+    font-size: 11px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .dm-related-card .dm-related-body {
+    padding: 14px 16px 14px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .dm-related-card .dm-related-cat {
+    font-family: var(--ad-font-body);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: rgba(255,255,255,0.55);
+  }
+  .dm-related-card .dm-related-title {
+    font-family: var(--ad-font-body);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #fff;
+  }
+  .dm-related-card .dm-related-desc {
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.65);
+  }
+
   .dm-stamp {
     margin-top: 48px;
     padding: 14px 18px;
@@ -269,6 +338,43 @@
   <ol class="dm-steps">
     
   </ol>
+
+  <!-- ═══ RELATED DEMOS — 3 dark-card tiles in the same category ═══ -->
+  <h2 id="related">Related demos</h2>
+  <p class="dm-section-sub">Other demos in the same category — same agent, same workflow shape.</p>
+  <div class="dm-related-grid">
+    
+      <a class="dm-related-card" href="/dist/demos/cobie-manager/index.html">
+        <div class="dm-related-poster" aria-hidden="true">
+          <span class="dm-related-duration">1:42</span>
+        </div>
+        <div class="dm-related-body">
+          <span class="dm-related-cat">BIM</span>
+          <span class="dm-related-title">COBie Manager</span>
+          <span class="dm-related-desc">Populate, validate and export COBie data.</span>
+        </div>
+      </a>
+      <a class="dm-related-card" href="/dist/demos/bim-compliance/index.html">
+        <div class="dm-related-poster" aria-hidden="true">
+          <span class="dm-related-duration">1:31</span>
+        </div>
+        <div class="dm-related-body">
+          <span class="dm-related-cat">BIM</span>
+          <span class="dm-related-title">BIM Compliance</span>
+          <span class="dm-related-desc">Check the model against the BEP and report gaps.</span>
+        </div>
+      </a>
+      <a class="dm-related-card" href="/dist/demos/drawing-numbering/index.html">
+        <div class="dm-related-poster" aria-hidden="true">
+          <span class="dm-related-duration">1:08</span>
+        </div>
+        <div class="dm-related-body">
+          <span class="dm-related-cat">BIM</span>
+          <span class="dm-related-title">Drawing Numbering</span>
+          <span class="dm-related-desc">Re-number every sheet against the project numbering convention.</span>
+        </div>
+      </a>
+  </div>
 
   <p class="dm-stamp">
     Auto-generated <code></code> by <code></code> from <code>data/demos.json</code>.

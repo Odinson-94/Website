@@ -15,6 +15,41 @@ const T = (n) => path.join(ROOT, 'templates', n);
 const O = (...p) => path.join(ROOT, 'dist', ...p);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+/* Phase 7.5: small inline SVG glyph for an install platform. Keyed by
+   case-insensitive substring match on the platform name. Falls back to
+   a generic terminal/box glyph. All glyphs are 22×22, currentColor
+   stroke, 1.5 width — they pick up the .install-tile color = teal. */
+function platformGlyph(rawName) {
+  const n = String(rawName || '').toLowerCase();
+  let path;
+  if (/revit/.test(n)) {
+    path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17V8h5a3 3 0 0 1 0 6H7m6 3-3-3"/>';
+  } else if (/autocad/.test(n)) {
+    path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 16l5-9 5 9M9 13h6"/>';
+  } else if (/word/.test(n)) {
+    path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M6 8l2 9 3-7 3 7 2-9"/>';
+  } else if (/excel/.test(n)) {
+    path = '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8l8 8M16 8l-8 8"/>';
+  } else if (/(macos|mac os|apple)/.test(n)) {
+    path = '<path d="M16 9c-1 0-3 1-4 1s-3-1-4-1c-3 0-4 3-4 5 0 4 3 8 5 8 1 0 1.5-.5 3-.5s2 .5 3 .5c2 0 5-4 5-8 0-2-1-5-4-5z"/><path d="M13 6c0-1 1-3 2-3"/>';
+  } else if (/win|windows/.test(n)) {
+    path = '<path d="M3 5l8-1v8H3zM12 4l9-1v9h-9zM3 13h8v8l-8-1zM12 13h9v9l-9-1z"/>';
+  } else if (/linux|ubuntu/.test(n)) {
+    path = '<circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="0.6"/><circle cx="15" cy="10" r="0.6"/><path d="M9 14c1 1 5 1 6 0"/>';
+  } else if (/web|browser|chrome|firefox|safari/.test(n)) {
+    path = '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>';
+  } else if (/(addsource|appsource|microsoft 365|m365)/.test(n)) {
+    path = '<rect x="3" y="3" width="9" height="9"/><rect x="12" y="12" width="9" height="9"/><rect x="12" y="3" width="9" height="9"/><rect x="3" y="12" width="9" height="9"/>';
+  } else if (/server|service|daemon|background/.test(n)) {
+    path = '<rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="0.6"/><circle cx="7" cy="17" r="0.6"/>';
+  } else if (/iphone|ios|mobile|android/.test(n)) {
+    path = '<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 19h2"/>';
+  } else {
+    path = '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 10h18M7 4v14"/>';
+  }
+  return `<svg class="install-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+}
+
 export async function buildAppPage(slug) {
   const data = await loadJson('sandbox/data/apps.json');
   const app = data.apps.find(a => a.slug === slug);
@@ -274,6 +309,7 @@ function renderInstall(entity) {
     <div class="install-strip">
       ${i.platforms.map(p => `
         <div class="install-tile">
+          ${platformGlyph(p.name)}
           <span class="pname">${esc(p.name)}</span>
           <span class="pspec">${esc(p.spec)}</span>
         </div>`).join('')}
