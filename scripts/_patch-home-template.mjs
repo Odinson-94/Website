@@ -96,9 +96,9 @@ const oldBtnCSS = `  .home-hero .button-row {
   }
   .home-hero .signup-btn.primary:hover { background: #1a7a9e; }
   .home-hero .signup-btn.secondary {
-    background: #6c757d; color: #fff;
+    background: #444; color: #fff;
   }
-  .home-hero .signup-btn.secondary:hover { background: #5a6268; }
+  .home-hero .signup-btn.secondary:hover { background: #222; }
   .home-hero .signup-btn.suggestion {
     background: transparent; color: #156082;
     border: 1px solid #156082;
@@ -130,8 +130,8 @@ const newBtnCSS = `  .button-row {
     50%, 100% { transform: translateX(100%); }
   }
   .signup-btn.primary:hover { background: #1a7a9e; }
-  .signup-btn.secondary { background: #6c757d; color: #fff; border: none; }
-  .signup-btn.secondary:hover { background: #5a6268; }
+  .signup-btn.secondary { background: #444; color: #fff; border: none; }
+  .signup-btn.secondary:hover { background: #222; }
   .signup-btn.suggestion { background: transparent; color: #156082; border: 1px solid #156082; }
   .signup-btn.suggestion:hover { background: rgba(21, 96, 130, 0.1); }`;
 

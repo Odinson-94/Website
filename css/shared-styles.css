@@ -265,7 +265,7 @@ html.dark-mode .menu-link {
 }
 
 .toggle-switch.active {
-  background: #007AFF;
+  background: #156082;
 }
 
 .toggle-switch.active::after {
@@ -289,7 +289,7 @@ html.dark-mode .toggle-switch {
   font-size: 11px;
   font-weight: 500;
   color: white;
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -299,7 +299,7 @@ html.dark-mode .toggle-switch {
 }
 
 .btn-chat-blue:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
@@ -310,11 +310,11 @@ html.dark-mode .toggle-switch {
 }
 
 html.dark-mode .btn-chat-blue {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .btn-chat-blue:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 html.dark-mode .btn-chat-blue:disabled {
@@ -327,7 +327,7 @@ html.dark-mode .btn-chat-blue:disabled {
   font-size: 11px;
   font-weight: 500;
   color: white;
-  background: #6c757d;
+  background: #444;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -337,7 +337,7 @@ html.dark-mode .btn-chat-blue:disabled {
 }
 
 .btn-chat-grey:hover {
-  background: #5a6268;
+  background: #222;
   transform: scale(1.02);
 }
 
@@ -358,7 +358,7 @@ html.dark-mode .btn-chat-grey:hover {
   font-size: 14px;
   font-weight: 500;
   color: white;
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -366,16 +366,16 @@ html.dark-mode .btn-chat-grey:hover {
 }
 
 .btn-primary:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
 html.dark-mode .btn-primary {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .btn-primary:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 .btn-secondary {
@@ -384,7 +384,7 @@ html.dark-mode .btn-primary:hover {
   font-size: 14px;
   font-weight: 500;
   color: white;
-  background: #6c757d;
+  background: #444;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -392,7 +392,7 @@ html.dark-mode .btn-primary:hover {
 }
 
 .btn-secondary:hover {
-  background: #5a6268;
+  background: #222;
   transform: scale(1.02);
 }
 
@@ -414,7 +414,7 @@ html.dark-mode .btn-secondary:hover {
   font-size: 11px;
   font-weight: 600;
   color: white;
-  background: #6c757d;
+  background: #444;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -466,7 +466,7 @@ html.dark-mode .coming-soon-badge {
 
 /* Chat message styling */
 .demo-msg-user {
-  background: #007AFF;
+  background: #156082;
   color: #fff;
   padding: 12px 14px;
   border-radius: 10px;
@@ -476,15 +476,15 @@ html.dark-mode .coming-soon-badge {
 }
 
 .demo-msg-user:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 html.dark-mode .demo-msg-user {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .demo-msg-user:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 .demo-msg-bot {
@@ -563,12 +563,12 @@ html.dark-mode .demo-history-item:hover {
 }
 
 .demo-history-item.active {
-  background: #007AFF;
+  background: #156082;
   color: #fff;
 }
 
 html.dark-mode .demo-history-item.active {
-  background: #007AFF;
+  background: #156082;
   color: #fff;
 }
 
@@ -603,7 +603,7 @@ html.dark-mode .demo-chat-input-row {
 }
 
 .demo-chat-input:focus {
-  border-color: #007AFF;
+  border-color: #156082;
   background: #fff;
   box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
 }
@@ -615,7 +615,7 @@ html.dark-mode .demo-chat-input {
 }
 
 html.dark-mode .demo-chat-input:focus {
-  border-color: #007AFF;
+  border-color: #156082;
   background: #222;
   box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
 }
@@ -627,7 +627,7 @@ html.dark-mode .demo-chat-input:focus {
   font-size: 11px;
   font-weight: 500;
   color: white;
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -637,7 +637,7 @@ html.dark-mode .demo-chat-input:focus {
 }
 
 .demo-chat-send:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
@@ -648,11 +648,11 @@ html.dark-mode .demo-chat-input:focus {
 }
 
 html.dark-mode .demo-chat-send {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .demo-chat-send:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 html.dark-mode .demo-chat-send:disabled {
@@ -683,18 +683,18 @@ html.dark-mode .demo-chat-messages {
   text-align: center;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
-  color: #007AFF;
+  color: #156082;
   margin-top: 8px;
 }
 
 html.dark-mode .demo-ready-prompt {
   background: linear-gradient(135deg, rgba(0, 122, 255, 0.15) 0%, rgba(0, 86, 214, 0.15) 100%);
   border-color: rgba(0, 122, 255, 0.4);
-  color: #007AFF;
+  color: #156082;
 }
 
 .demo-ready-prompt strong {
-  color: #007AFF;
+  color: #156082;
   font-weight: 600;
 }
 

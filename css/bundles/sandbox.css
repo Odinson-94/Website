@@ -41,7 +41,7 @@
 }
 
 .btn-secondary {
-  background: #6c757d;
+  background: #444;
   border: none;
   border-radius: 8px;
   color: white;
@@ -279,7 +279,7 @@ main.sandbox-main h2 {
 }
 
 .btn-secondary:hover {
-  background: #5a6268;
+  background: #222;
   transform: scale(1.02);
 }
 

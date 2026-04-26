@@ -241,7 +241,7 @@
 }
 
 .demo-example-btn {
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 6px;
   color: white;
@@ -1838,7 +1838,7 @@
 }
 
 .coming-soon-badge {
-  background: #6c757d;
+  background: #444;
   border-radius: 20px;
   color: white;
   display: inline-block;
@@ -2891,7 +2891,7 @@ html.dark-mode .editor-paper:focus {
 }
 
 .demo-example-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 

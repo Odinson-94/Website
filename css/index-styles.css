@@ -26,10 +26,10 @@
   /* Brand colors */
   --teal: #156082;
   --teal-light: #4a9bb8;
-  --accent-blue: #007AFF;
-  --accent-blue-hover: #0056D6;
-  --accent-green: #007AFF;
-  --accent-green-hover: #0056D6;
+  --accent-blue: #156082;
+  --accent-blue-hover: #0e4560;
+  --accent-green: #156082;
+  --accent-green-hover: #0e4560;
   
   /* Backgrounds */
   --bg-primary: #ffffff;
@@ -353,7 +353,7 @@ html.dark-mode .hero-text-container .hero-subheading {
 /* Toggle state is driven by html.dark-mode, not .active class */
 /* This ensures no flash - CSS applies immediately with inline head script */
 html.dark-mode .toggle-switch {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .toggle-switch::after {
@@ -2345,7 +2345,7 @@ html.dark-mode .demo-view-overlay .demo-text-body {
   font-size: 14px;
   font-weight: 500;
   color: white;
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -2373,16 +2373,16 @@ html.dark-mode .demo-view-overlay .demo-text-body {
 }
 
 .demo-example-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
 html.dark-mode .demo-example-btn {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .demo-example-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 /* Coming Soon Badge */
@@ -3393,7 +3393,7 @@ html.dark-mode .demo-view-overlay .demo-msg-bot {
 }
 
 html.dark-mode .demo-view-overlay .demo-msg-user {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .demo-view-overlay .demo-msg-user p {
@@ -3419,12 +3419,12 @@ html.dark-mode .demo-view-overlay .demo-msg-user p {
   font-weight: 300;
   font-size: 0.66rem;
   line-height: 1.5;
-  color: #007AFF;
+  color: #156082;
   margin-top: 0.5rem;
   font-weight: 300;
   font-size: 0.7rem;
   line-height: 1.5;
-  color: #007AFF;
+  color: #156082;
   margin-top: 0.5rem;
 }
 
@@ -3561,7 +3561,7 @@ html.dark-mode .demo-view-overlay .demo-chat-input {
 
 .demo-view-overlay .demo-chat-send {
   padding: 0.625rem 1.125rem;
-  background: #007AFF;
+  background: #156082;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -3573,7 +3573,7 @@ html.dark-mode .demo-view-overlay .demo-chat-input {
 }
 
 .demo-view-overlay .demo-chat-send:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 /* ============================================
@@ -4657,7 +4657,7 @@ html.dark-mode .demo-view-overlay .demo-revit-placeholder {
   font-size: 14px;
   font-weight: 500;
   color: white;
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -4698,7 +4698,7 @@ html.dark-mode .demo-view-overlay .demo-revit-placeholder {
 }
 
 .open-chat-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
@@ -4724,7 +4724,7 @@ html.dark-mode .demo-view-overlay .demo-revit-placeholder {
 }
 
 .open-chat-btn.secondary-btn {
-  background: #6c757d;
+  background: #444;
 }
 
 .open-chat-btn.secondary-btn::before {
@@ -4732,23 +4732,23 @@ html.dark-mode .demo-view-overlay .demo-revit-placeholder {
 }
 
 .open-chat-btn.secondary-btn:hover {
-  background: #5a6268;
+  background: #222;
 }
 
 html.dark-mode .open-chat-btn {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .open-chat-btn.secondary-btn {
-  background: #6c757d;
+  background: #444;
 }
 
 html.dark-mode .open-chat-btn.secondary-btn:hover {
-  background: #5a6268;
+  background: #222;
 }
 
 html.dark-mode .open-chat-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 /* View 3: Right Panel Background - REMOVED (unused) */
@@ -5125,7 +5125,7 @@ html.dark-mode .demo-chat-container .demo-chat-titlebar-text {
 
 .demo-option-btn {
   padding: 8px 16px;
-  background: #007AFF;
+  background: #156082;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -5137,24 +5137,24 @@ html.dark-mode .demo-chat-container .demo-chat-titlebar-text {
 }
 
 .demo-option-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
 .demo-option-btn.active {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .demo-option-btn {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .demo-option-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 html.dark-mode .demo-option-btn.active {
-  background: #007AFF;
+  background: #156082;
 }
 
 /* History sidebar within chat */
@@ -5278,7 +5278,7 @@ html.dark-mode .demo-history-item.active {
 }
 
 .demo-chat-container .demo-msg-user {
-  background: #007AFF;
+  background: #156082;
   color: #fff;
   align-self: flex-end;
   margin-left: auto;
@@ -5314,7 +5314,7 @@ html.dark-mode .demo-chat-container .demo-msg-bot {
   font-weight: 300;
   font-size: 0.7rem;
   line-height: 1.5;
-  color: #007AFF;
+  color: #156082;
   margin-top: 0.5rem;
 }
 
@@ -5362,7 +5362,7 @@ html.dark-mode .demo-chat-container .demo-chat-input {
 
 .demo-chat-container .demo-chat-send {
   padding: 0.625rem 1.125rem;
-  background: #007AFF;
+  background: #156082;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -5374,7 +5374,7 @@ html.dark-mode .demo-chat-container .demo-chat-input {
 }
 
 .demo-chat-container .demo-chat-send:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 .demo-chat-messages-area {
@@ -5427,7 +5427,7 @@ html.dark-mode .demo-chat-container .demo-chat-input {
 }
 
 .user-message {
-  background: #007AFF;
+  background: #156082;
   padding: 10px 14px;
   border-radius: 10px;
   margin-left: 40px;
@@ -5726,7 +5726,7 @@ html.dark-mode .chat-steps-list {
   font-size: 12px;
   font-weight: 500;
   color: white;
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -5757,12 +5757,12 @@ html.dark-mode .chat-steps-list {
 }
 
 .inline-demo-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
 .inline-demo-btn.active {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 .inline-demo-btn.active::before {
@@ -5779,11 +5779,11 @@ html.dark-mode .chat-steps-list {
 }
 
 html.dark-mode .see-output-btn {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .see-output-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 .demo-chat-footer {
@@ -5809,12 +5809,12 @@ html.dark-mode .see-output-btn:hover {
 }
 
 .demo-chat-input:focus {
-  border-color: #007AFF;
+  border-color: #156082;
 }
 
 .demo-chat-send-btn {
   padding: 10px 24px;
-  background: #007AFF;
+  background: #156082;
   color: white;
   border: none;
   border-radius: 8px;
@@ -5845,7 +5845,7 @@ html.dark-mode .see-output-btn:hover {
 }
 
 .demo-chat-send-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
@@ -5926,7 +5926,7 @@ html.dark-mode .bot-message p {
 }
 
 html.dark-mode .user-message {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .user-message p {
@@ -5943,25 +5943,25 @@ html.dark-mode .thinking-text {
 
 html.dark-mode .inline-demo-btn {
   color: white;
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .inline-demo-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   color: white;
 }
 
 html.dark-mode .inline-demo-btn.active {
-  background: #0056D6;
+  background: #0e4560;
   color: white;
 }
 
 html.dark-mode .revit-demo-btn {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .revit-demo-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 html.dark-mode .demo-chat-footer {
@@ -5976,16 +5976,16 @@ html.dark-mode .demo-chat-input {
 }
 
 html.dark-mode .demo-chat-input:focus {
-  border-color: #007AFF;
+  border-color: #156082;
 }
 
 html.dark-mode .demo-chat-send-btn {
-  background: #007AFF;
+  background: #156082;
   color: white;
 }
 
 html.dark-mode .demo-chat-send-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   color: white;
   transform: scale(1.02);
 }
@@ -6363,13 +6363,13 @@ body.view-dark-header .logo .ai {
 }
 
 .buildx-signup-btn.primary {
-  background: #007AFF;
+  background: #156082;
   color: #fff;
   border: none;
 }
 
 .buildx-signup-btn.primary:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 

@@ -131,7 +131,7 @@
 
 .demo-msg-user {
   align-self: flex-end;
-  background: #007AFF;
+  background: #156082;
   border-radius: 10px;
   color: #fff;
   margin-left: 40px;
@@ -175,7 +175,7 @@
 }
 
 .demo-chat-send {
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 6px;
   color: white;
@@ -1319,7 +1319,7 @@
 
 .demo-history-item.active,
 html.dark-mode .demo-history-item.active {
-  background: #007AFF;
+  background: #156082;
   color: #fff;
 }
 
@@ -1442,7 +1442,7 @@ html.dark-mode .demo-history-item.active {
 html.dark-mode .demo-chat-send:hover,
 html.dark-mode .demo-msg-user:hover,
 html.dark-mode .open-chat-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
 }
 
 .demo-view-overlay .demo-chat-box {
@@ -1505,7 +1505,7 @@ html.dark-mode .open-chat-btn:hover {
 
 .demo-chat-input:focus {
   background: #fff;
-  border-color: #007AFF;
+  border-color: #156082;
   box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
 }
 
@@ -1531,7 +1531,7 @@ html.dark-mode .open-chat-btn:hover {
 
 .demo-chat-send:hover,
 .open-chat-btn:hover {
-  background: #0056D6;
+  background: #0e4560;
   transform: scale(1.02);
 }
 
@@ -1542,7 +1542,7 @@ html.dark-mode .open-chat-btn:hover {
 }
 
 .demo-view-overlay .demo-chat-send {
-  background: #007AFF;
+  background: #156082;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -2375,7 +2375,7 @@ html.dark-mode .demo-history-item.active {
 
 .open-chat-btn.secondary-btn,
 html.dark-mode .open-chat-btn.secondary-btn {
-  background: #6c757d;
+  background: #444;
 }
 
 .demo-chat-container.visible {
@@ -2543,7 +2543,7 @@ html.dark-mode .demo-history-item {
 
 html.dark-mode .demo-chat-send,
 html.dark-mode .demo-msg-user {
-  background: #007AFF;
+  background: #156082;
 }
 
 html.dark-mode .demo-msg-bot {
@@ -3594,7 +3594,7 @@ html.dark-mode .agent-progress-container.complete .progress-percent {
 
 .open-chat-btn.secondary-btn:hover,
 html.dark-mode .open-chat-btn.secondary-btn:hover {
-  background: #5a6268;
+  background: #222;
 }
 
 .demo-chat-container .demo-titlebar-btn.min {
@@ -3777,7 +3777,7 @@ html.dark-mode .demo-view-overlay .demo-chat-box {
 
 html.dark-mode .demo-chat-input:focus {
   background: #222;
-  border-color: #007AFF;
+  border-color: #156082;
   box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
 }
 
