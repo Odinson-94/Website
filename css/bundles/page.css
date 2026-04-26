@@ -2431,10 +2431,18 @@ html.dark-mode {
   border-radius: 8px;
   color: #fff;
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
+  /* Phase 8.7.4: 16px floor stops iOS auto-zooming on focus.
+     14px is the body-text minimum on Adelphos but inputs need 16px
+     specifically because Mobile Safari zooms anything below it. */
+  font-size: 16px;
   outline: none;
   padding: 14px 16px;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.signup-field input:focus-visible {
+  outline: 2px solid var(--ad-teal-light, #4a9bb8);
+  outline-offset: 2px;
+  border-color: var(--ad-teal-light, #4a9bb8);
 }
 
 .signup-field textarea {

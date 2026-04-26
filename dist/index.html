@@ -169,14 +169,28 @@
       font-size: 13px;
       font-weight: 500;
       padding: 12px 28px;
+      /* Phase 8.7.4: touch-target ≥ 44px on every interactive surface. */
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 6px;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: background 0.2s ease, transform 0.1s ease;
       cursor: pointer;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
+    /* Phase 8.7.5: focus-visible ring on every signup-btn for
+       keyboard parity. Uses brand teal at AA contrast. */
+    .signup-btn:focus-visible {
+      outline: 2px solid var(--ad-teal);
+      outline-offset: 2px;
+    }
+    /* Tap-state pressed feedback so touch users get a clear
+       confirmation. Wrapped + the desktop hover sticks correctly. */
+    .signup-btn:active { transform: scale(0.98); }
     
     .signup-btn.primary {
       background: #156082;
@@ -210,28 +224,23 @@
       }
     }
     
-    .signup-btn.primary:hover {
-      background: #1a7a9e;
-    }
-    
     .signup-btn.secondary {
       background: #444;
       color: #fff;
       border: none;
     }
-    
-    .signup-btn.secondary:hover {
-      background: #222;
-    }
-    
+
     .signup-btn.suggestion {
       background: transparent;
       color: #156082;
       border: 1px solid #156082;
     }
-    
-    .signup-btn.suggestion:hover {
-      background: rgba(21, 96, 130, 0.1);
+
+    /* Phase 8.7.4: hover wrapped so it doesn't stick on touch devices. */
+    @media (hover: hover) {
+      .signup-btn.primary:hover    { background: #1a7a9e; }
+      .signup-btn.secondary:hover  { background: #222; }
+      .signup-btn.suggestion:hover { background: rgba(21, 96, 130, 0.1); }
     }
 
   /* ── BUILD text cycler — right column of hero ──────────────────── */
