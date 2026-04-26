@@ -155,17 +155,36 @@ async function renderService(svc) {
   // sandbox/data/agentic-services.json, with email field at svc.email.
   const isEmail = (svc.kind || '').toLowerCase().includes('email');
   const emailAddr = svc.email_address || svc.email || '';
+  // Phase 8.2: the GIANT mailto: link IS the CTA on email-service
+  // hero. The whole .email-strip is now an <a>, so the entire pill
+  // is the click target — kicker label sits on top of the email
+  // address that reads as the dominant text.
   const emailStrip = isEmail && emailAddr ? `
-    <div class="email-strip">
-      <span class="es-label">Email this in</span>
-      <a class="es-mail" href="mailto:${esc(emailAddr)}">${esc(emailAddr)}</a>
-    </div>` : '';
+    <a class="email-strip" href="mailto:${esc(emailAddr)}?subject=${encodeURIComponent('New project — ' + svc.title)}">
+      <span class="es-label">Email ${esc(svc.title)}</span>
+      <span class="es-mail">${esc(emailAddr)} &rarr;</span>
+    </a>` : '';
+
   const primaryCtaLabel = isEmail
     ? (svc.cta_label || `Email ${emailAddr || 'us'}`)
     : (svc.cta_label || `Request a walkthrough`);
   const primaryCtaHref = isEmail && emailAddr
     ? `mailto:${emailAddr}?subject=${encodeURIComponent('New project — ' + svc.title)}`
     : '/contact/';
+
+  // Phase 8.2: managed services keep the standard 2-button CTA row
+  // (primary 'Request a walkthrough' + secondary 'See how it works').
+  // Email services drop the primary button — the giant .email-strip
+  // above already covers it — and just keep the secondary 'See how
+  // it works' as a quieter inline link.
+  const svcActionsBlock = isEmail
+    ? `<div class="svc-actions svc-actions-email">
+         <a class="svc-btn-secondary" href="#how-it-becomes-agentic">See how it works</a>
+       </div>`
+    : `<div class="svc-actions">
+         <a class="svc-btn-primary" href="${primaryCtaHref}">${esc(primaryCtaLabel)} &rarr;</a>
+         <a class="svc-btn-secondary" href="#how-it-becomes-agentic">See how it works</a>
+       </div>`;
 
   // SEO/AEO H3 phrases (with auto-derived defaults)
   const seo = svc.seo || {};
@@ -195,6 +214,7 @@ async function renderService(svc) {
     .replaceAll('{{engagement}}',             esc(svc.engagement || 'Tailored to your project'))
     .replaceAll('{{engagement_short}}',       esc(engagementShort))
     .replaceAll('{{email_strip}}',            emailStrip)
+    .replaceAll('{{svc_actions_block}}',      svcActionsBlock)
     .replaceAll('{{primary_cta_label}}',      esc(primaryCtaLabel))
     .replaceAll('{{primary_cta_href}}',       primaryCtaHref)
     .replaceAll('{{seo_why_h3}}',             esc(seoWhy))

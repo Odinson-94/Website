@@ -278,14 +278,39 @@
   }
 
   /* Email strip — for the email services */
+  /* Phase 8.2: GIANT mailto: link as the email-service hero CTA.
+     Per the plan: 'For the email services: hero gets a giant mailto:
+     link as the CTA (Email cobie@adelphos.ai →)'. The .email-strip
+     IS the CTA — full-width on the 400px text column, mono email
+     address as the dominant text, hover lift like the .signup-btn.
+     Tap state + focus ring carry through the existing brand pill
+     vocabulary. */
   .email-strip {
-    margin: 4px 0 0;
-    padding: 14px 18px;
+    margin: 8px 0 4px;
+    padding: 18px 24px;
     background: var(--ad-card-dark);
     color: #fff;
-    border-radius: var(--radius-md);
-    display: inline-flex; align-items: center; gap: 12px;
-    max-width: 100%;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    max-width: var(--ad-measure);
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  @media (hover: hover) {
+    .email-strip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    }
+  }
+  .email-strip:active { transform: scale(0.99); }
+  .email-strip:focus-visible {
+    outline: 2px solid var(--ad-teal);
+    outline-offset: 2px;
   }
   .email-strip .es-label {
     font-family: var(--ad-font-body);
@@ -297,11 +322,13 @@
   }
   .email-strip .es-mail {
     font-family: var(--ad-font-mono);
-    font-size: 14px;
+    /* clamp 18→24 px so the email reads as the dominant CTA on
+       desktop without bursting the 400px column on phone */
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: var(--ad-w-medium);
     color: #fff;
-    text-decoration: none;
+    word-break: break-all;     /* long emails wrap inside the pill */
   }
-  .email-strip .es-mail:hover { text-decoration: underline; }
 
   /* Inline stat line */
   .ap-stats-inline {
@@ -529,10 +556,7 @@
       <p class="svc-tag">{{tagline}}</p>
       {{outcomes_strip}}
       {{email_strip}}
-      <div class="svc-actions">
-        <a class="svc-btn-primary" href="{{primary_cta_href}}">{{primary_cta_label}} &rarr;</a>
-        <a class="svc-btn-secondary" href="#how-it-becomes-agentic">See how it works</a>
-      </div>
+      {{svc_actions_block}}
     </div>
     <div class="svc-hero-frame">
       <div class="svc-hero-glyph">
