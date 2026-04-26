@@ -120,6 +120,30 @@ export async function buildHome() {
   });
 
   const tmpl = await fs.readFile(T('home.html'), 'utf8');
+
+  // Defensive token-occurrence audit. The home template once had
+  // `{{agentic_services}}` mentioned twice — once as the real injection
+  // point and once inside an explanatory HTML comment. replaceAll()
+  // doesn't know about HTML comment boundaries, so the entire Section 7
+  // block was being injected twice and shipped to users. This audit
+  // runs at build time and fails loudly if any non-trivial token
+  // (anything that injects a multi-line block) appears more than once
+  // in the template source.
+  const blockTokens = [
+    'apps_carousel', 'agentic_services',
+    'revit_copilot_combined',
+    'tier4_coord', 'tier5_chat_banner', 'tier6_build',
+    'tier7_autocad_banner', 'tier8_integrations',
+    'tier9_email', 'tier10_agentic',
+  ];
+  for (const t of blockTokens) {
+    const literal = `{{${t}}}`;
+    const matches = tmpl.split(literal).length - 1;
+    if (matches > 1) {
+      throw new Error(`build-home: token "${literal}" appears ${matches} times in templates/home.html — block tokens MUST appear exactly once or replaceAll() will duplicate the block (likely a token-mentioned-in-a-comment bug). Rephrase any HTML comments to avoid the literal token.`);
+    }
+  }
+
   const html = tmpl
     .replaceAll('{{brand_quote_html}}',         brandQuoteHtml)
     .replaceAll('{{count_summary}}',            esc(countSummary))
