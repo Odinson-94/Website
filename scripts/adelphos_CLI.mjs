@@ -4,6 +4,12 @@
  * ============
  * Single entry point for the website build pipeline.
  *
+ * !! DO NOT USE for non-docs pages !!
+ * All non-docs build scripts (home, apps, agentic services, features,
+ * workflows, demos, SEO roots, comparisons, changelog, glossary) have
+ * been intentionally deleted. Those pages are now static / manually
+ * maintained. Only tool pages and command pages are build-generated.
+ *
  * USAGE
  *   adelphos_CLI draft   <type> <slug>            generate a YAML draft via Claude (or stub)
  *   adelphos_CLI promote <type> <slug>            move draft to data/, snapshot to _archive/
@@ -25,16 +31,8 @@ import { draft } from './lib/drafter.mjs';
 import { extractCommandRegistry, extractMcpRegistry } from './lib/extractor.mjs';
 import { buildToolPage }     from './build-tool-pages.mjs';
 import { buildCommandPage }  from './build-command-pages.mjs';
-import { buildWorkflowPage } from './build-workflow-pages.mjs';
-import { buildDemoPage }     from './build-demo-pages.mjs';
-import { buildToolsInventory, buildCommandsInventory, buildDemosGallery, buildDocsIndex } from './build-inventory-pages.mjs';
-import { buildAppPage, buildAppsInventory, buildAllAppPages } from './build-app-pages.mjs';
-import { buildAgenticServicePage, buildAgenticServicesInventory, buildAllAgenticServicePages } from './build-agentic-pages.mjs';
-import { buildFeaturePage, buildFeaturesInventory, buildAllFeaturePages } from './build-feature-pages.mjs';
-import { buildWorkflowsInventory, buildResourcesInventory, buildDownloadsInventory } from './build-section-inventories.mjs';
-import { buildSitemap, buildRobots, buildLlmsTxt } from './build-seo-roots.mjs';
-import { buildComparisons, buildChangelog, buildGlossary } from './build-tier3-4.mjs';
-import { buildHome } from './build-home.mjs';
+import { buildToolsInventory, buildCommandsInventory, buildDocsIndex } from './build-inventory-pages.mjs';
+import { safeWriteFile } from './lib/backup.mjs';
 import fsBuiltin from 'node:fs/promises';
 
 // Where the MEP Bridge clone lives on this machine.
@@ -46,10 +44,6 @@ const SCAN_PATH = path.join(MEPBRIDGE_REPO, 'MEPBridge.Revit');
 const SKILL_FOLDERS = {
   tool:     'Tool Page',
   command:  'Command Page',
-  workflow: 'Workflow Page',
-  demo:     'Demo Page',
-  pillar:   'Pillar Page',
-  bridge:   'Bridge Page',
 };
 
 const args = process.argv.slice(2);
@@ -63,8 +57,6 @@ const cmd  = args[0];
       case 'promote':   return await cmdPromote(args[1], args[2]);
       case 'build':     return await cmdBuild(args[1], args[2]);
       case 'inventory': return await cmdInventory(args[1]);
-      case 'gallery':   return await cmdGallery(args[1]);
-      case 'index':     return await cmdIndex(args[1]);
       case 'auto':      return await cmdAuto(args[1], args[2]);
       case 'auto-all':  return await cmdAutoAll();
       case 'rollback':  return await cmdRollback(args[1], args[2], parseFlag('--to'));
@@ -90,13 +82,20 @@ function parseFlag(name) {
 
 function printHelp() {
   console.log(`
-adelphos_CLI
+adelphos_CLI — DOCS ONLY (tools + commands)
+
+  !! All non-docs build scripts have been deleted.          !!
+  !! Home, apps, features, agentic services, workflows,     !!
+  !! demos, SEO roots, comparisons, changelog, glossary      !!
+  !! are now static pages — DO NOT rebuild them.             !!
 
   extract                           scan the MEP Bridge .cs source → JSON registries
   auto     <type> <slug>            extract → draft → promote → build, end-to-end
+  auto-all                          rebuild all tool + command pages and inventories
   draft    <type> <slug>            generate a YAML draft via Claude (or stub)
   promote  <type> <slug>            move draft to data/, snapshot to _archive/
   build    <type> <slug>            generate the HTML page from data/
+  inventory tools|commands          rebuild the inventory index page
   rollback <type> <slug> --to <iso> restore from _archive/
 
   types: ${Object.keys(SKILL_FOLDERS).join(' | ')}
@@ -107,8 +106,9 @@ ENV
                      if unset, draft uses a deterministic stub for testing
 
 EXAMPLES
-  adelphos_CLI extract                         (re-scan codebase → command_registry.json + tools.json)
-  adelphos_CLI auto command extend-all-connectors   (extract → draft → promote → build → live URL)
+  adelphos_CLI extract                                      (re-scan codebase → registries)
+  adelphos_CLI auto command extend-all-connectors           (extract → draft → promote → build)
+  adelphos_CLI auto-all                                     (rebuild all tools + commands)
 `.trim());
 }
 
@@ -120,9 +120,8 @@ async function cmdExtract() {
 
   const cmdPath  = path.join(ROOT, 'data', 'registries', 'command_registry.json');
   const toolPath = path.join(ROOT, 'sandbox', 'data', 'tools.json');
-  await fsBuiltin.mkdir(path.dirname(cmdPath), { recursive: true });
-  await fsBuiltin.writeFile(cmdPath,  JSON.stringify(cmds, null, 2),  'utf8');
-  await fsBuiltin.writeFile(toolPath, JSON.stringify(tools, null, 2), 'utf8');
+  await safeWriteFile(cmdPath,  JSON.stringify(cmds, null, 2),  'utf8');
+  await safeWriteFile(toolPath, JSON.stringify(tools, null, 2), 'utf8');
 
   console.log(`✓ ${cmds.length}  commands → ${rel(cmdPath)}`);
   console.log(`✓ ${tools.length} tools    → ${rel(toolPath)}`);
@@ -138,65 +137,53 @@ async function cmdInventory(what) {
     console.log(`✓ ${r.count} commands → ${rel(r.out)}`);
   } else throw new Error('inventory: tools | commands');
 }
-async function cmdGallery(what) {
-  if (what !== 'demos') throw new Error('gallery: demos');
-  const r = await buildDemosGallery();
-  console.log(`✓ ${r.count} demos → ${rel(r.out)}`);
-}
-async function cmdIndex(what) {
-  if (what !== 'docs') throw new Error('index: docs');
-  const r = await buildDocsIndex();
-  console.log(`✓ docs landing → ${rel(r.out)}`);
-}
 
 /* -------------------------------------------------------------- auto-all */
 async function cmdAutoAll() {
-  console.log('\n=== FULL AUTOMATION RUN ===\n');
+  console.log('\n=== DOCS-ONLY BUILD (tools + commands) ===\n');
 
   console.log('[1] extract registries from MEP Bridge .cs source');
   try { await cmdExtract(); }
   catch (e) { console.warn(`    (skipping extract — MEP Bridge not at expected path: ${e.message})`); }
 
-  console.log('\n[2] generate inventory + gallery + landing pages');
-  const t  = await buildToolsInventory();             console.log(`    ✓ ${rel(t.out)}  (${t.count} tools)`);
-  const c  = await buildCommandsInventory();          console.log(`    ✓ ${rel(c.out)}  (${c.count} commands)`);
-  const d  = await buildDemosGallery();               console.log(`    ✓ ${rel(d.out)}  (${d.count} demos)`);
-  const i  = await buildDocsIndex();                  console.log(`    ✓ ${rel(i.out)}`);
-  const a  = await buildAppsInventory();              console.log(`    ✓ ${rel(a.out)}  (${a.count} apps)`);
-  const fInv = await buildFeaturesInventory();        console.log(`    ✓ ${rel(fInv.out)}  (${fInv.count} features)`);
-  const ag = await buildAgenticServicesInventory();   console.log(`    ✓ ${rel(ag.out)}  (${ag.count} services)`);
-  const w  = await buildWorkflowsInventory();         console.log(`    ✓ ${rel(w.out)}  (${w.count} workflows)`);
-  const r  = await buildResourcesInventory();         console.log(`    ✓ ${rel(r.out)}  (${r.count} resource categories)`);
-  const dl = await buildDownloadsInventory();         console.log(`    ✓ ${rel(dl.out)}  (${dl.count} downloads)`);
+  console.log('\n[2] generate inventory pages');
+  const t = await buildToolsInventory();      console.log(`    ✓ ${rel(t.out)}  (${t.count} tools)`);
+  const c = await buildCommandsInventory();   console.log(`    ✓ ${rel(c.out)}  (${c.count} commands)`);
+  const i = await buildDocsIndex();           console.log(`    ✓ ${rel(i.out)}`);
 
-  console.log('\n[3] generate per-app + per-service + per-feature detail pages');
-  const apps  = await buildAllAppPages();              for (const o of apps)  console.log(`    ✓ ${rel(o)}`);
-  const feats = await buildAllFeaturePages();          for (const o of feats) console.log(`    ✓ ${rel(o)}`);
-  const svcs  = await buildAllAgenticServicePages();   for (const o of svcs)  console.log(`    ✓ ${rel(o)}`);
+  console.log('\n[3] generate individual tool pages');
+  const tools = await loadJson('sandbox/data/tools.json');
+  let toolCount = 0;
+  for (const tool of tools) {
+    try {
+      const out = await buildToolPage(tool.name);
+      toolCount++;
+    } catch (e) {
+      console.warn(`    ⚠ ${tool.name}: ${e.message}`);
+    }
+  }
+  console.log(`    ✓ ${toolCount} tool pages built`);
 
-  console.log('\n[3b] new homepage');
-  const home = await buildHome();                     console.log(`    ✓ ${rel(home.out)}`);
-
-  console.log('\n[4] tier-3 SEO pages (comparisons + changelog + glossary)');
-  const cmp = await buildComparisons();    for (const o of cmp.outs) console.log(`    ✓ ${rel(o)}`);
-  const chg = await buildChangelog();      console.log(`    ✓ ${rel(chg.out)}  (${chg.count} releases)`);
-  const gls = await buildGlossary();       console.log(`    ✓ ${rel(gls.out)}  (${gls.count} terms)`);
-
-  console.log('\n[5] tier-1 SEO roots (sitemap + robots + llms.txt)');
-  const sm = await buildSitemap();         console.log(`    ✓ ${rel(sm.out)}  (${sm.count} URLs)`);
-  const rb = await buildRobots();          console.log(`    ✓ ${rel(rb.out)}`);
-  const lm = await buildLlmsTxt();         console.log(`    ✓ ${rel(lm.out)}`);
+  console.log('\n[4] generate individual command pages');
+  let cmds = await loadJson('data/registries/command_registry.json');
+  if (!Array.isArray(cmds)) cmds = [cmds];
+  let cmdCount = 0;
+  for (const cmd of cmds) {
+    const slug = slugify(cmd.class);
+    try {
+      const out = await buildCommandPage(slug);
+      cmdCount++;
+    } catch (e) {
+      console.warn(`    ⚠ ${slug}: ${e.message}`);
+    }
+  }
+  console.log(`    ✓ ${cmdCount} command pages built`);
 
   console.log('\n=== DONE ===');
   console.log('\nOpen these URLs to review:');
-  console.log('  http://localhost:8765/apps/index.html');
-  console.log('  http://localhost:8765/agentic-services/index.html');
-  console.log('  http://localhost:8765/compare/index.html');
-  console.log('  http://localhost:8765/changelog/index.html');
-  console.log('  http://localhost:8765/glossary/index.html');
-  console.log('  http://localhost:8765/sitemap.xml');
-  console.log('  http://localhost:8765/robots.txt');
-  console.log('  http://localhost:8765/llms.txt');
+  console.log('  http://localhost:8765/docs/tools/index.html');
+  console.log('  http://localhost:8765/docs/commands/index.html');
+  console.log('  http://localhost:8765/docs/index.html');
 }
 
 /* ------------------------------------------------------------------ auto */
@@ -291,13 +278,9 @@ async function cmdPromote(type, slug) {
 /* ---------------------------------------------------------------- build */
 async function cmdBuild(type, slug) {
   let out;
-  if (type === 'tool')               out = await buildToolPage(slug);
-  else if (type === 'command')       out = await buildCommandPage(slug);
-  else if (type === 'workflow')      out = await buildWorkflowPage(slug);
-  else if (type === 'demo')          out = await buildDemoPage(slug);
-  else if (type === 'app')           out = await buildAppPage(slug);
-  else if (type === 'agentic')       out = await buildAgenticServicePage(slug);
-  else throw new Error(`build not implemented for type "${type}"`);
+  if (type === 'tool')          out = await buildToolPage(slug);
+  else if (type === 'command')  out = await buildCommandPage(slug);
+  else throw new Error(`"${type}" is not a docs type — only tool | command are build-generated. All other pages are static.`);
   console.log(`✓ built ${rel(out)}`);
   console.log(`  open  http://localhost:8765/${path.relative(ROOT, out).replace(/\\/g,'/')}`);
 }
@@ -324,15 +307,6 @@ async function loadSourceData(type, slug) {
     let cmds = await loadJson('data/registries/command_registry.json');
     if (!Array.isArray(cmds)) cmds = [cmds];
     return cmds.find(c => c.class === slug || slugify(c.class) === slug);
-  }
-  if (type === 'workflow') {
-    // slug == name of the markdown file in data/source-skills/
-    const md = await fsBuiltin.readFile(path.join(ROOT, 'data', 'source-skills', `${slug}.md`), 'utf8');
-    return { slug, source_path: `BUILD MEP Plan/Skills/${slug}.md`, markdown: md };
-  }
-  if (type === 'demo') {
-    const all = await loadJson('sandbox/data/demos.json');
-    return all.demos.find(d => d.slug === slug);
   }
   return null;
 }

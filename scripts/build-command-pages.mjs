@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { ROOT, parseSimpleYaml, loadJson } from './lib/registry.mjs';
+import { safeWriteFile } from './lib/backup.mjs';
 
 const TEMPLATE = path.join(ROOT, 'templates', 'command-page.html');
 const PRE_LAUNCH = true;  // flip to false to reveal real names + descriptions
@@ -119,8 +120,7 @@ export async function buildCommandPage(slug) {
     .replaceAll('{{source_sha}}',             esc(yaml.source_sha || ''));
 
   const out = path.join(ROOT, 'dist', 'docs', 'commands', slug, 'index.html');
-  await fs.mkdir(path.dirname(out), { recursive: true });
-  await fs.writeFile(out, html, 'utf8');
+  await safeWriteFile(out, html, 'utf8');
   return out;
 }
 

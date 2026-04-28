@@ -25,7 +25,9 @@ export async function loadYaml(rel) {
 }
 
 export async function writeFile(rel, content) {
+  const { backupBeforeWrite } = await import('./backup.mjs');
   const full = path.join(ROOT, rel);
+  await backupBeforeWrite(full);
   await fs.mkdir(path.dirname(full), { recursive: true });
   await fs.writeFile(full, content, 'utf8');
   return full;

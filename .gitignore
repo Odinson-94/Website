@@ -366,3 +366,6 @@ FodyWeavers.xsd
 Videos/
 .Capcut POC/
 .vercel
+
+# Build-script pre-write backups
+_backup/

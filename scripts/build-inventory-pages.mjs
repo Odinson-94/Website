@@ -10,6 +10,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { ROOT, loadJson } from './lib/registry.mjs';
+import { safeWriteFile } from './lib/backup.mjs';
 
 const T = (n) => path.join(ROOT, 'templates', n);
 const O = (...p) => path.join(ROOT, 'dist', ...p);
@@ -65,8 +66,7 @@ export async function buildToolsInventory() {
     .replaceAll('{{generated_at}}',     new Date().toISOString());
 
   const out = O('docs', 'tools', 'index.html');
-  await fs.mkdir(path.dirname(out), { recursive: true });
-  await fs.writeFile(out, html, 'utf8');
+  await safeWriteFile(out, html, 'utf8');
   return { out, count: tools.length };
 }
 
@@ -158,8 +158,7 @@ export async function buildCommandsInventory() {
     .replaceAll('{{generated_at}}',    new Date().toISOString());
 
   const out = O('docs', 'commands', 'index.html');
-  await fs.mkdir(path.dirname(out), { recursive: true });
-  await fs.writeFile(out, html, 'utf8');
+  await safeWriteFile(out, html, 'utf8');
   return { out, count: cmds.length };
 }
 
@@ -221,8 +220,7 @@ export async function buildDemosGallery() {
     .replaceAll('{{generated_at}}', new Date().toISOString());
 
   const out = O('demos', 'index.html');
-  await fs.mkdir(path.dirname(out), { recursive: true });
-  await fs.writeFile(out, html, 'utf8');
+  await safeWriteFile(out, html, 'utf8');
   return { out, count: demos.length };
 }
 
@@ -249,8 +247,7 @@ export async function buildDocsIndex() {
     .replaceAll('{{generated_at}}',    new Date().toISOString());
 
   const out = O('docs', 'index.html');
-  await fs.mkdir(path.dirname(out), { recursive: true });
-  await fs.writeFile(out, html, 'utf8');
+  await safeWriteFile(out, html, 'utf8');
   return { out };
 }
 

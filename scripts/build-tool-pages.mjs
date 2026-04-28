@@ -9,6 +9,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { ROOT, parseSimpleYaml } from './lib/registry.mjs';
+import { safeWriteFile } from './lib/backup.mjs';
 
 const TEMPLATE_PATH = path.join(ROOT, 'templates', 'tool-page.html');
 const PRE_LAUNCH = true;  // flip to false to reveal real names + descriptions
@@ -99,8 +100,7 @@ export async function buildToolPage(slug) {
     .replaceAll('{{source_sha}}',           esc(tool.source_sha || ''));
 
   const outPath = path.join(ROOT, 'dist', 'docs', 'tools', slug, 'index.html');
-  await fs.mkdir(path.dirname(outPath), { recursive: true });
-  await fs.writeFile(outPath, html, 'utf8');
+  await safeWriteFile(outPath, html, 'utf8');
   return outPath;
 }
 
