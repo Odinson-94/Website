@@ -96,7 +96,6 @@
   /* == HERO -- 2 columns: brand quote left, BUILD cycler right ------- */
   .home-hero {
     padding: 56px 0 64px;
-    border-bottom: 1px solid var(--border);
     margin-bottom: 120px;
     display: grid; grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl); align-items: center;
@@ -1641,7 +1640,6 @@
         </div>
         <a href="#" class="signup-btn suggestion" onclick="window.adelphosSignup.openModal('suggestion'); return false;">Got a suggestion? We'd be happy to include it.</a>
       </div>
-      <h2 style="margin:var(--space-lg) 0 0; font-size:clamp(28px, 3.4vw, 44px); font-weight:500; line-height:1.18; letter-spacing:-0.025em; color:var(--ad-text-1, #2f2f2f); width:100%; max-width:none;">From client briefs, site survey reports, MEP specifications, Revit Copilots, QA Managers, to document control, CoBie data, an array of free tools and a framework so business owners can implement AI into their everyday workflow.</h2>
     </div>
     <!-- Phase 8.7.5: aria-hidden on the cycler -- the cycling word IS
          meaningful product copy, but a screen reader reading it on
@@ -1685,6 +1683,8 @@
       })();
     </script>
   </section>
+
+  <h2 style="margin:0; padding:40px 24px 48px; font-size:clamp(28px, 3.4vw, 44px); font-weight:500; line-height:1.18; letter-spacing:-0.025em; color:var(--ad-text-1, #2f2f2f); max-width:var(--content-max, 1200px); margin-left:auto; margin-right:auto; text-align:left;">From client briefs, site survey reports, MEP specifications, Revit Copilot, QA Managers, to document control, CoBie data, an array of free tools and a framework so business owners can implement AI into their everyday workflow.</h2>
 
   <!-- === SECTION 2: REVIT COPILOT FEATURE PANEL === -->
   <section class="revit-panel reveal d2">
