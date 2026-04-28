@@ -238,21 +238,21 @@
         <div>
           <h4>Product</h4>
           <ul>
-            <li><a href="/dist/index.html">Home</a></li>
-            <li><a href="/dist/demos/index.html">Demos</a></li>
-            <li><a href="/dist/docs/tools/index.html">Tools (395)</a></li>
-            <li><a href="/dist/docs/commands/index.html">Commands (532)</a></li>
-            <li><a href="/dist/workflows/index.html">Workflows</a></li>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/demos/index.html">Demos</a></li>
+            <li><a href="/docs/tools/index.html">Tools (395)</a></li>
+            <li><a href="/docs/commands/index.html">Commands (532)</a></li>
+            <li><a href="/workflows/index.html">Workflows</a></li>
           </ul>
         </div>
         <div>
           <h4>Resources</h4>
           <ul>
-            <li><a href="/dist/resources/index.html">Free Families</a></li>
-            <li><a href="/dist/resources/index.html">Free Templates</a></li>
-            <li><a href="/dist/resources/index.html">Free Asset Data</a></li>
-            <li><a href="/dist/docs/index.html">Documentation</a></li>
-            <li><a href="/dist/docs/index.html">API Reference</a></li>
+            <li><a href="/resources/index.html">Free Families</a></li>
+            <li><a href="/resources/index.html">Free Templates</a></li>
+            <li><a href="/resources/index.html">Free Asset Data</a></li>
+            <li><a href="/docs/index.html">Documentation</a></li>
+            <li><a href="/docs/index.html">API Reference</a></li>
           </ul>
         </div>
         <div>

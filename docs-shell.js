@@ -57,7 +57,7 @@
       NAV.push({
         title: 'By category',
         links: catOrder.filter(k => byCat[k]).map(k => ({
-          href: '/dist/docs/tools/index.html#cat-' + k,
+          href: '/docs/tools/index.html#cat-' + k,
           label: CATEGORY_LABELS[k] || k,
           count: byCat[k].length,
           filter: k
@@ -73,7 +73,7 @@
         NAV.push({
           title: 'By bridge',
           links: Object.keys(byBridge).sort().map(k => ({
-            href: '/dist/docs/tools/index.html#bridge-' + k.toLowerCase(),
+            href: '/docs/tools/index.html#bridge-' + k.toLowerCase(),
             label: BRIDGE_LABELS[k] || k,
             count: byBridge[k].length,
             filter: k
@@ -95,7 +95,7 @@
       NAV.push({
         title: 'By mini-project',
         links: sorted.map(k => ({
-          href: '/dist/docs/commands/index.html#pillar-' + k.toLowerCase().replace(/\s+/g,'-'),
+          href: '/docs/commands/index.html#pillar-' + k.toLowerCase().replace(/\s+/g,'-'),
           label: k,
           count: byPillar[k].length
         }))
@@ -107,12 +107,12 @@
   NAV.push({
     title: 'Documentation',
     links: [
-      { href: '/dist/docs/index.html',            label: 'Docs home' },
-      { href: '/dist/docs/tools/index.html',      label: 'All MCP tools' },
-      { href: '/dist/docs/commands/index.html',    label: 'All Revit commands' },
-      { href: '/dist/docs/calc-engines/index.html',label: 'Calculation engines' },
-      { href: '/dist/demos/index.html',            label: 'Demos' },
-      { href: '/dist/workflows/index.html',        label: 'Workflows' },
+      { href: '/docs/index.html',            label: 'Docs home' },
+      { href: '/docs/tools/index.html',      label: 'All MCP tools' },
+      { href: '/docs/commands/index.html',    label: 'All Revit commands' },
+      { href: '/docs/calc-engines/index.html',label: 'Calculation engines' },
+      { href: '/demos/index.html',            label: 'Demos' },
+      { href: '/workflows/index.html',        label: 'Workflows' },
     ]
   });
 
