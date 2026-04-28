@@ -1868,7 +1868,7 @@ html.dark-mode .toggle-switch {
   margin-top: 10px;
   max-width: calc(100vw - 32px);
   opacity: 0;
-  overflow: hidden;
+  overflow: visible;
   padding: 14px 16px;
   pointer-events: none;
   position: absolute;
