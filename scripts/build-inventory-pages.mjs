@@ -14,6 +14,13 @@ import { ROOT, loadJson } from './lib/registry.mjs';
 const T = (n) => path.join(ROOT, 'templates', n);
 const O = (...p) => path.join(ROOT, 'dist', ...p);
 
+const PRE_LAUNCH = true;  // flip to false to reveal full names, descriptions, and crawlability
+const redact = (s) => PRE_LAUNCH ? 'Coming soon' : s;
+let _toolIdx = 0;
+let _cmdIdx = 0;
+const redactToolName = (name) => PRE_LAUNCH ? `Tool ${String(++_toolIdx).padStart(3, '0')}` : name;
+const redactCmdName  = (name) => PRE_LAUNCH ? `Command ${String(++_cmdIdx).padStart(3, '0')}` : name;
+
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* ─────────────────────────────────────────────────────────────────  TOOLS  */
@@ -35,16 +42,19 @@ export async function buildToolsInventory() {
   const bridgeOpts   = bridges.map(b => `<option value="${esc(b)}">${esc(prettyBridge(b))}</option>`).join('');
   const categoryOpts = categories.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
 
-  const rowsHtml = tools.map(t => `
-    <tr data-bridge="${esc(t.bridge || '')}" data-category="${esc(t.category)}" data-always="${t.always}" data-search="${esc((t.name + ' ' + (t.desc||'')).toLowerCase())}">
-      <td><a href="/dist/docs/tools/${esc(t.name)}/index.html"><code>${esc(t.name)}</code></a></td>
-      <td style="color:var(--text-muted);">${esc(t.desc || '')}</td>
+  _toolIdx = 0;
+  const rowsHtml = tools.map(t => {
+    const displayName = redactToolName(t.name);
+    return `
+    <tr data-bridge="${esc(t.bridge || '')}" data-category="${esc(t.category)}" data-always="${t.always}" data-search="${esc((displayName + ' ' + redact(t.desc||'')).toLowerCase())}">
+      <td><code>${esc(displayName)}</code></td>
+      <td style="color:var(--text-muted);">${esc(redact(t.desc || ''))}</td>
       <td>${t.bridge ? `<span class="pill pill-bridge">${esc(prettyBridge(t.bridge))}</span>` : '<span style="color:var(--text-muted);">—</span>'}</td>
       <td><span class="pill pill-category">${esc(t.category)}</span></td>
       <td>${t.always ? '<span class="pill pill-always">always</span>' : '<span style="color:var(--text-muted);">on demand</span>'}</td>
       <td style="color:var(--text-muted);">${t.param_count || 0}</td>
-    </tr>
-  `).join('');
+    </tr>`;
+  }).join('');
 
   const html = (await fs.readFile(T('tools-inventory.html'), 'utf8'))
     .replaceAll('{{count}}',            String(tools.length))
@@ -104,16 +114,18 @@ export async function buildCommandsInventory() {
   const pillarOptions = orderedPillars
     .map(p => `<option value="${esc(p)}">${esc(p)} (${groups[p].length})</option>`).join('');
 
+  _cmdIdx = 0;
   const renderRow = (c) => {
-    const display = c.command_display || c.class.replace(/Command$/, '').replace(/([A-Z])/g, ' $1').trim();
+    const realDisplay = c.command_display || c.class.replace(/Command$/, '').replace(/([A-Z])/g, ' $1').trim();
+    const display = redactCmdName(realDisplay);
     const slug = c.class.replace(/Command$/, '').replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
     const inputCount = (c.selection_inputs?.length || 0) + (c.config_inputs?.length || 0);
     const outCount = (c.outputs || []).length;
     const ck = b => b ? '<span class="check">✓</span>' : '<span class="cross">✗</span>';
     return `
-    <tr data-rest="${c.has_restapi}" data-search="${esc((display + ' ' + (c.desc||'')).toLowerCase())}">
-      <td><a href="/dist/docs/commands/${esc(slug)}/index.html"><code>${esc(display)}</code></a></td>
-      <td style="color:var(--text-muted);max-width:540px;">${esc(c.desc || '—')}</td>
+    <tr data-rest="${c.has_restapi}" data-search="${esc((display + ' ' + redact(c.desc||'')).toLowerCase())}">
+      <td><code>${esc(display)}</code></td>
+      <td style="color:var(--text-muted);max-width:540px;">${esc(redact(c.desc || '—'))}</td>
       <td style="text-align:center;">${inputCount > 0 ? `<span class="check">${inputCount}</span>` : '<span style="color:var(--text-muted);">—</span>'}</td>
       <td style="text-align:center;">${outCount    > 0 ? `<span class="check">${outCount}</span>`    : '<span style="color:var(--text-muted);">—</span>'}</td>
       <td style="text-align:center;">${ck(c.has_restapi)}</td>

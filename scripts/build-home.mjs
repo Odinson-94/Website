@@ -313,15 +313,24 @@ function renderAppsCarousel(apps) {
   const roadmapCards = roadmap.map(r => roadmapCard(r)).join('');
 
   return `
-    <div class="apps-scroll">${liveCards}<div class="carousel-divider">Coming after</div>${roadmapCards}</div>
+    <div class="apps-carousel-wrap">
+      <button class="carousel-arrow carousel-arrow-left" type="button" aria-label="Scroll left" tabindex="0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="apps-scroll">${liveCards}<div class="carousel-divider">Coming after</div>${roadmapCards}</div>
+      <button class="carousel-arrow carousel-arrow-right" type="button" aria-label="Scroll right" tabindex="0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
     <a class="apps-roadmap-link" href="/sandbox/roadmap/">See the full roadmap →</a>`;
 }
 
 function appCard(a) {
   const claim = (a.headline_claim || a.tagline || '').trim();
   const surface = (a.surface || '').split('·')[0].trim();
+  const tone = a.tone || 'blue';
   return `
-    <a class="app-card" href="/dist/apps/${esc(a.slug)}/index.html">
+    <a class="app-card" data-tone="${esc(tone)}" href="/dist/apps/${esc(a.slug)}/index.html">
       <div class="app-logo-wrap">
         <img class="app-logo-img" src="/${esc(a.icon)}" alt="${esc(a.title)} logo" loading="lazy">
       </div>

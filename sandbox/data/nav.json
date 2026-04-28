@@ -2,22 +2,18 @@
   "_comment": "Single source of truth for the top menubar. Used by /sandbox/shell.js. Three dropdown styles: 'dropdown' (children loaded from another JSON), 'dropdown-inline' (children listed inline), 'coming-soon' (decorative).",
   "items": [
     { "label": "Home",     "href": "/dist/index.html" },
-    { "label": "About Us", "href": "/about/" },
     { "label": "Roadmap",  "href": "/sandbox/roadmap/" },
-    { "label": "Contact",  "href": "/contact/" },
+    { "label": "Contact",  "href": "/sandbox/contact/" },
     {
       "label": "Apps",
       "type": "dropdown",
       "href": "/dist/apps/index.html",
       "children_from": "sandbox/data/apps.json",
-      "children_root": "/dist/apps/"
-    },
-    {
-      "label": "Features",
-      "type": "dropdown",
-      "href": "/dist/features/index.html",
-      "children_from": "sandbox/data/features.json",
-      "children_root": "/dist/features/"
+      "children_root": "/dist/apps/",
+      "nested_from": "sandbox/data/features.json",
+      "nested_root": "/dist/features/",
+      "nested_parent_slug": "revit-copilot",
+      "nested_label": "Features"
     },
     {
       "label": "Agentic Services",

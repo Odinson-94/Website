@@ -42,67 +42,53 @@ export async function buildFeaturePage(slug) {
 }
 
 async function renderFeature(f) {
-  // We re-use the app-page template — features share its crown-jewel structure.
-  const tmpl = await fs.readFile(T('app-page.html'), 'utf8');
+  const tmpl = await fs.readFile(T('feature-showcase.html'), 'utf8');
 
-  let brand = {};
-  try { brand = await loadJson('sandbox/data/brand.json'); } catch {}
-  const pullquote = f.pullquote || brand.pullquote || '';
-
-  const paragraphs = Array.isArray(f.detail_paragraphs) && f.detail_paragraphs.length
-    ? f.detail_paragraphs
-    : [f.detail_paragraph || f.blurb || ''];
-  const detailParagraphsHtml = paragraphs
-    .filter(Boolean)
-    .map(p => `<p>${esc(p)}</p>`)
-    .join('\n      ');
-
-  const featuresBlock = renderCapabilities(f);
-  const installBlock  = renderInstall(f);
-
-  const heroVideo = f.hero_video ? `
-    <div class="hero-video" id="watch">
-      <video controls preload="metadata"
-             poster="/sandbox/feature-assets/${esc(f.slug)}/hero.svg"
-             data-src="${esc(f.hero_video)}"
-             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'demo video — drop hero.mp4 in /Videos/ to play'}));"></video>
-    </div>
-    <script>document.querySelectorAll('video[data-src]').forEach(v => { if (!v.src) v.src = v.dataset.src; });</script>
-  ` : '';
-
-  // Inline stat line (Phase 7.2 / 8.1): no dashboard tile cliché.
-  const outcomesStrip = (f.key_outcomes || []).length
-    ? `<p class="ap-stats-inline">${f.key_outcomes.map(o => `
-        <span><span class="ap-stat-num">${esc(o.stat)}</span>${esc(o.label)}</span>`).join('<span aria-hidden="true">·</span>')}</p>`
-    : '';
-
-  const shiftBlock = f.the_shift
-    ? `<div class="shift-grid">
-         <div class="shift before"><p class="lab">Before</p><p>${esc(f.the_shift.before || '')}</p></div>
-         <div class="shift after"><p class="lab">After ${esc(f.title)}</p><p>${esc(f.the_shift.after || '')}</p></div>
-       </div>`
-    : '';
-
-  const audience = (f.best_for || []).map(b => `<span class="ap">${esc(b)}</span>`).join('');
-
-  const ctaLabel  = (f.install && f.install.download_label) || 'Try this feature';
-  const ctaHref   = (f.install && f.install.download_href)  || '/contact/';
-  const cta2Label = 'See related apps';
+  const ctaLabel  = 'Open Revit Copilot';
+  const ctaHref   = '/dist/apps/revit-copilot/index.html';
+  const cta2Label = 'See all apps';
   const cta2Href  = '/dist/apps/index.html';
-  const endCtaBlurb = 'Built into the Adelphos platform. Self-serve where possible, managed where useful.';
+  const endCtaBlurb = 'Built into the Adelphos platform. Available through the Revit Copilot.';
 
-  // SEO / AEO
+  const outcomesStrip = (f.key_outcomes || []).length
+    ? `<p class="fs-stats">${f.key_outcomes.map(o => `
+        <span><span class="num">${esc(o.stat)}</span>${esc(o.label)}</span>`).join('<span aria-hidden="true">\u00b7</span>')}</p>`
+    : '';
+
+  const heroVideoInner = f.hero_video
+    ? `<video autoplay muted loop playsinline preload="auto" data-src="${esc(f.hero_video)}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fs-video-placeholder',innerText:'demo video \u2014 coming soon'}));"></video>
+       <script>document.querySelectorAll('video[data-src]').forEach(v=>{if(!v.src)v.src=v.dataset.src;});</script>`
+    : `<div class="fs-video-placeholder">demo video \u2014 coming soon</div>`;
+
+  const rows = (f.showcase_rows || []).map((row, i) => {
+    const flipClass = i % 2 === 1 ? ' flip' : '';
+    const delayClass = `fs-reveal d${Math.min(i + 2, 4)}`;
+    return `
+  <div class="fs-row${flipClass} ${delayClass}">
+    <div class="fs-row-media">
+      <div class="fs-video-placeholder">video ${i + 1} \u2014 coming soon</div>
+    </div>
+    <div class="fs-row-copy">
+      <p class="fs-display">${esc(row.display)}</p>
+      <p class="fs-body">${esc(row.body)}</p>
+    </div>
+  </div>`;
+  }).join('\n');
+
+  const breadcrumbHtml = `<a href="/">Home</a> &rsaquo; <a href="/dist/apps/revit-copilot/index.html">Revit Copilot</a> &rsaquo; ${esc(f.title)}`;
+
+  // SEO
   const pagePath = `/dist/features/${f.slug}/index.html`;
   const lastmod = await gitLastMod('sandbox/data/features.json');
   const seoHead = await renderSeoHead({
-    title: `${f.title} — Features`,
-    description: f.headline_claim || f.tagline,
+    title: `${f.title} \u2014 Features`,
+    description: f.hero_statement || f.headline_claim || f.tagline,
     path: pagePath, type: 'product',
-    keywords: ['Adelphos AI', f.title, 'MEP automation', ...(f.best_for || [])],
+    keywords: ['Adelphos AI', f.title, 'MEP automation', 'AI engineering', ...(f.best_for || [])],
     lastmod
   });
   const faqs = buildAutoFaqs(f, 'app');
-  const faqBlock = renderFaqBlock(faqs);
+  const faqBlock = renderShowcaseFaq(faqs);
   const breadcrumbs = [
     { name: 'Home',     url: '/' },
     { name: 'Features', url: '/dist/features/index.html' },
@@ -112,76 +98,68 @@ async function renderFeature(f) {
     kind: 'app', path: pagePath,
     title: f.title,
     description: f.detail_paragraphs?.[0] || f.tagline,
-    surface: (f.install && f.install.platforms?.[0]?.spec) || 'Service',
-    features: f.features,
+    surface: 'Feature',
+    features: f.features || f.showcase_rows?.map(r => ({ name: r.display.slice(0, 60), desc: r.body })),
     faqs, breadcrumbs
   });
 
-  // Related: 1 sibling feature + 2 most-relevant apps
-  const apps    = (await loadJson('sandbox/data/apps.json')).apps;
-  const others  = (await loadJson('sandbox/data/features.json')).features.filter(x => x.slug !== f.slug);
-  const sibling = others[0];
-  const relatedApps = apps.slice(0, 2);
-  const related = [
-    sibling && { kind: 'Feature', title: sibling.title, desc: sibling.tagline,
-                 url: `/dist/features/${sibling.slug}/index.html` },
-    ...relatedApps.map(a => ({ kind: 'App', title: a.title, desc: a.tagline,
-                               url: `/dist/apps/${a.slug}/index.html` }))
-  ].filter(Boolean);
-  const relatedBlock = renderRelatedBlock(related);
+  // Related apps
+  const apps = (await loadJson('sandbox/data/apps.json')).apps;
+  const relatedApps = apps.filter(a => ['revit-copilot', 'adelphos-chat', 'schedule-builder'].includes(a.slug)).slice(0, 3);
+  const relatedBlock = renderShowcaseRelated(relatedApps);
 
-  // Phase 8.1: feature hero painted frame should hold a CSS schematic
-  // mockup keyed to the feature, NOT the misleading PNG (the icon
-  // paths in features.json point to app-logo PNGs that don't represent
-  // the feature — flagged as a P3 in CRITIQUE.md). Replace the
-  // <img class="ap-hero-logo"> with a per-slug CSS mockup overlay.
-  // The Three.js scene at full inventory tile scale is too small for
-  // the 240×240 hero slot; the larger CSS mockup reads cleaner.
-  const heroVisual = featureHeroMockup(f.slug);
-  let template = tmpl;
-  // Replace ANY <img class="ap-hero-logo" ...> in the template with the
-  // mockup. Surgical regex — match the whole tag including a self-
-  // closing or onerror trailing attribute set.
-  template = template.replace(
-    /<img class="ap-hero-logo"[^>]*>/g,
-    heroVisual
-  );
-
-  const html = template
-    .replaceAll('{{title}}',                  esc(f.title))
-    .replaceAll('{{headline_claim}}',         esc(f.headline_claim || f.tagline || ''))
-    .replaceAll('{{tagline}}',                esc(f.tagline || ''))
-    .replaceAll('{{blurb}}',                  esc(f.blurb || ''))
-    .replaceAll('{{surface}}',                esc((f.install && f.install.platforms?.[0]?.name) || 'Adelphos service'))
-    .replaceAll('{{icon}}',                   esc(f.icon || 'logos/Node Logo.png'))
-    .replaceAll('{{what_makes_it_special}}',  esc(f.what_makes_it_special || ''))
-    .replaceAll('{{cta_label}}',              esc(ctaLabel))
-    .replaceAll('{{cta_href}}',               esc(ctaHref))
-    .replaceAll('{{cta2_label}}',             esc(cta2Label))
-    .replaceAll('{{cta2_href}}',              esc(cta2Href))
-    .replaceAll('{{end_cta_blurb}}',          esc(endCtaBlurb))
-    .replaceAll('{{outcomes_strip}}',         outcomesStrip)
-    .replaceAll('{{detail_paragraphs_html}}', detailParagraphsHtml)
-    .replaceAll('{{pullquote}}',              esc(pullquote))
-    .replaceAll('{{features_block}}',         featuresBlock)
-    .replaceAll('{{install_block}}',          installBlock)
-    .replaceAll('{{hero_video_block}}',       heroVideo)
-    .replaceAll('{{shift_block}}',            shiftBlock)
-    .replaceAll('{{audience_html}}',          audience)
-    .replaceAll('{{seo_why_h3}}',             esc(f.seo?.why_h3     || `What ${f.title} changes`))
-    .replaceAll('{{seo_shift_h3}}',           esc(f.seo?.shift_h3   || `Manual workflow vs ${f.title}`))
-    .replaceAll('{{seo_special_h3}}',         esc(f.seo?.special_h3 || `What makes ${f.title} different`))
-    .replaceAll('{{seo_who_h3}}',             esc(f.seo?.who_h3     || `Who ${f.title} is built for`))
-    .replaceAll('{{seo_head}}',               seoHead)
-    .replaceAll('{{json_ld}}',                jsonLd)
-    .replaceAll('{{faq_block}}',              faqBlock)
-    .replaceAll('{{related_block}}',          relatedBlock)
-    .replaceAll('{{generated_at}}',           new Date().toISOString());
+  const html = tmpl
+    .replaceAll('{{title}}',              esc(f.title))
+    .replaceAll('{{hero_statement}}',     esc(f.hero_statement || f.headline_claim || ''))
+    .replaceAll('{{outcomes_strip}}',     outcomesStrip)
+    .replaceAll('{{cta_label}}',          esc(ctaLabel))
+    .replaceAll('{{cta_href}}',           esc(ctaHref))
+    .replaceAll('{{cta2_label}}',         esc(cta2Label))
+    .replaceAll('{{cta2_href}}',          esc(cta2Href))
+    .replaceAll('{{hero_video_inner}}',   heroVideoInner)
+    .replaceAll('{{showcase_rows}}',      rows)
+    .replaceAll('{{breadcrumb_html}}',    breadcrumbHtml)
+    .replaceAll('{{end_cta_heading}}',    esc(f.end_cta_heading || `Try ${f.title}`))
+    .replaceAll('{{end_cta_blurb}}',      esc(endCtaBlurb))
+    .replaceAll('{{seo_head}}',           seoHead)
+    .replaceAll('{{json_ld}}',            jsonLd)
+    .replaceAll('{{faq_block}}',          faqBlock)
+    .replaceAll('{{related_block}}',      relatedBlock)
+    .replaceAll('{{generated_at}}',       new Date().toISOString());
 
   const out = O('features', f.slug, 'index.html');
   await fs.mkdir(path.dirname(out), { recursive: true });
   await fs.writeFile(out, html, 'utf8');
   return out;
+}
+
+function renderShowcaseFaq(faqs) {
+  if (!faqs || !faqs.length) return '';
+  const items = faqs.map((faq, i) => `
+    <details class="fs-faq-item"${i === 0 ? ' open' : ''}>
+      <summary>${esc(faq.question || faq.name)}</summary>
+      <div class="answer"><p>${esc(faq.answer || faq.acceptedAnswer?.text || '')}</p></div>
+    </details>`).join('');
+  return `
+  <section class="fs-faq" id="faq" aria-label="Frequently asked questions">
+    <h2>Frequently asked questions</h2>
+    <div class="fs-faq-list">${items}</div>
+  </section>`;
+}
+
+function renderShowcaseRelated(apps) {
+  if (!apps || !apps.length) return '';
+  const cards = apps.map(a => `
+    <a class="fs-related-card" href="/dist/apps/${esc(a.slug)}/index.html">
+      <span class="kind">App</span>
+      <strong>${esc(a.title)}</strong>
+      <span class="desc">${esc(a.tagline || '')}</span>
+    </a>`).join('');
+  return `
+  <section class="fs-related" id="related" aria-label="Runs inside these apps">
+    <h2>Runs inside these apps</h2>
+    <div class="fs-related-grid">${cards}</div>
+  </section>`;
 }
 
 // Phase 8.1: per-slug CSS schematic mockup for the feature-page hero
@@ -214,6 +192,22 @@ function featureHeroMockup(slug) {
         <div class="feat-mock-eq feat-mock-eq-3"></div>
         <div class="feat-mock-header"></div>
       </div>`;
+  } else if (slug === 'pdf-to-3d') {
+    body = `
+      <div class="feat-mock feat-mock-pdf" aria-hidden="true">
+        <div class="feat-mock-doc">
+          <div class="feat-mock-doc-line feat-mock-doc-line-1"></div>
+          <div class="feat-mock-doc-line feat-mock-doc-line-2"></div>
+          <div class="feat-mock-doc-line feat-mock-doc-line-3"></div>
+          <div class="feat-mock-doc-line feat-mock-doc-line-4"></div>
+        </div>
+        <div class="feat-mock-arrow"></div>
+        <div class="feat-mock-cube">
+          <div class="feat-mock-cube-face feat-mock-cube-front"></div>
+          <div class="feat-mock-cube-face feat-mock-cube-top"></div>
+          <div class="feat-mock-cube-face feat-mock-cube-side"></div>
+        </div>
+      </div>`;
   } else {
     body = `
       <div class="feat-mock feat-mock-generic" aria-hidden="true">
@@ -221,7 +215,6 @@ function featureHeroMockup(slug) {
         <div class="feat-mock-line feat-mock-line-2"></div>
       </div>`;
   }
-  // Wrap in a hero-sized panel that fills the .ap-hero-frame interior.
   return `<div class="feat-hero-mock">${body}</div>`;
 }
 
@@ -289,7 +282,7 @@ export async function buildFeaturesInventory() {
   const tilesHtml = others.map(f => renderTile(f)).join('');
 
   const seoHead = await renderSeoHead({
-    title: 'Features — Adelphos AI',
+    title: 'Features',
     description: data.section_blurb,
     path: '/dist/features/index.html',
     type: 'website',
@@ -321,15 +314,15 @@ export async function buildFeaturesInventory() {
 // Same vocabulary as apps-inventory: .ai-flagship + .app-tile.
 function renderFlagship(f) {
   return `
-    <a class="ai-flagship" href="/dist/features/${esc(f.slug)}/index.html">
+    <a class="ai-flagship fi-reveal d2" href="/dist/features/${esc(f.slug)}/index.html">
       <div class="copy">
         <span class="badge">Flagship feature</span>
         <h2>${esc(f.title)}</h2>
-        <p class="claim">${esc(f.headline_claim || f.tagline || '')}</p>
-        <span class="arrow">Open ${esc(f.title)} →</span>
+        <p class="claim">${esc(f.hero_statement || f.headline_claim || f.tagline || '')}</p>
+        <span class="arrow">Open ${esc(f.title)} \u2192</span>
       </div>
       <div class="visual">
-        <img src="/${esc(f.icon || 'logos/Node Logo.png')}" alt="${esc(f.title)} logo" onerror="this.style.opacity=0">
+        <div class="flagship-video-placeholder">demo video \u2014 coming soon</div>
       </div>
     </a>`;
 }
@@ -342,53 +335,16 @@ function renderFlagship(f) {
 // from the tile's anchor). Same dark .rp-commands-card surface across
 // all tiles.
 function renderTile(f) {
-  let visual;
-  if (f.slug === 'clash-solver') {
-    // CSS schematic: a horizontal duct + a pipe ramping over it (the
-    // signature Clash Solver geometry).
-    visual = `
-      <div class="feat-mock feat-mock-clash" aria-hidden="true">
-        <div class="feat-mock-duct"></div>
-        <div class="feat-mock-pipe-ramp"></div>
-        <div class="feat-mock-marker feat-mock-marker-1"></div>
-        <div class="feat-mock-marker feat-mock-marker-2"></div>
-      </div>`;
-  } else if (f.slug === 'autoroute') {
-    // CSS schematic mockup: pipe routes turning through a corridor void.
-    visual = `
-      <div class="feat-mock feat-mock-autoroute" aria-hidden="true">
-        <div class="feat-mock-pipe feat-mock-pipe-1"></div>
-        <div class="feat-mock-pipe feat-mock-pipe-2"></div>
-        <div class="feat-mock-elbow feat-mock-elbow-1"></div>
-        <div class="feat-mock-elbow feat-mock-elbow-2"></div>
-      </div>`;
-  } else if (f.slug === 'plantroom-designer-3d') {
-    // CSS schematic mockup: equipment rectangles connected by header pipes.
-    visual = `
-      <div class="feat-mock feat-mock-plantroom" aria-hidden="true">
-        <div class="feat-mock-eq feat-mock-eq-1"></div>
-        <div class="feat-mock-eq feat-mock-eq-2"></div>
-        <div class="feat-mock-eq feat-mock-eq-3"></div>
-        <div class="feat-mock-header"></div>
-      </div>`;
-  } else {
-    // Generic schematic mockup for any other feature added later.
-    visual = `
-      <div class="feat-mock feat-mock-generic" aria-hidden="true">
-        <div class="feat-mock-line feat-mock-line-1"></div>
-        <div class="feat-mock-line feat-mock-line-2"></div>
-      </div>`;
-  }
   return `
     <a class="app-tile feat-tile" href="/dist/features/${esc(f.slug)}/index.html">
       <div class="feat-tile-frame">
-        ${visual}
+        <div class="feat-video-placeholder">demo video \u2014 coming soon</div>
       </div>
       <div class="body">
         <span class="surf">Feature</span>
         <h3>${esc(f.title)}</h3>
-        <p class="claim">${esc(f.headline_claim || f.tagline || '')}</p>
-        <span class="more">Open ${esc(f.title)} →</span>
+        <p class="claim">${esc(f.hero_statement || f.headline_claim || f.tagline || '')}</p>
+        <span class="more">Open ${esc(f.title)} \u2192</span>
       </div>
     </a>`;
 }

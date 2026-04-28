@@ -86,10 +86,16 @@ async function renderApp(app) {
     title: `${app.title} — Apps`,
     description: app.headline_claim || app.tagline,
     path: pagePath, type: 'product',
-    keywords: ['Adelphos AI', app.title, 'MEP', 'Revit', ...(app.best_for || [])],
+    keywords: [
+      'Adelphos AI', app.title, 'MEP', 'Revit',
+      ...(app.seo_keywords || []),
+      ...(app.best_for || [])
+    ],
     lastmod
   });
-  const faqs = buildAutoFaqs(app, 'app');
+  const faqs = Array.isArray(app.custom_faqs) && app.custom_faqs.length
+    ? app.custom_faqs
+    : buildAutoFaqs(app, 'app');
   const faqBlock = renderFaqBlock(faqs);
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -109,8 +115,7 @@ async function renderApp(app) {
 
   const heroVideo = app.hero_video ? `
     <div class="hero-video" id="watch">
-      <video controls preload="metadata"
-             poster="/sandbox/app-assets/${esc(app.slug)}/hero.svg"
+      <video autoplay muted loop playsinline preload="auto"
              data-src="${esc(app.hero_video)}"
              onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'demo video — drop hero.mp4 in for play'}));"></video>
     </div>
@@ -123,12 +128,8 @@ async function renderApp(app) {
         <span><span class="ap-stat-num">${esc(o.stat)}</span>${esc(o.label)}</span>`).join('<span aria-hidden="true">·</span>')}</p>`
     : '';
 
-  const shiftBlock = app.the_shift
-    ? `<div class="shift-grid">
-         <div class="shift before"><p class="lab">Before</p><p>${esc(app.the_shift.before || '')}</p></div>
-         <div class="shift after"><p class="lab">After {{title}}</p><p>${esc(app.the_shift.after || '')}</p></div>
-       </div>`.replaceAll('{{title}}', esc(app.title))
-    : '';
+  const shiftLeftHtml = app.the_shift ? `<p>${esc(app.the_shift.before || '')}</p>` : '';
+  const shiftRightHtml = app.the_shift ? `<p>${esc(app.the_shift.after || '')}</p>` : '';
 
   const audience = (app.best_for || []).map(b => `<span class="ap">${esc(b)}</span>`).join('');
 
@@ -149,6 +150,7 @@ async function renderApp(app) {
 
   const html = tmpl
     .replaceAll('{{title}}',                  esc(app.title))
+    .replaceAll('{{slug}}',                   esc(app.slug))
     .replaceAll('{{headline_claim}}',         esc(app.headline_claim || app.tagline || ''))
     .replaceAll('{{tagline}}',                esc(app.tagline || ''))
     .replaceAll('{{blurb}}',                  esc(app.blurb || ''))
@@ -163,7 +165,7 @@ async function renderApp(app) {
     .replaceAll('{{end_cta_blurb}}',          esc(endCtaBlurb))
     .replaceAll('{{outcomes_strip}}',         outcomesStrip)
     .replaceAll('{{detail_paragraphs_html}}', detailParagraphsHtml)
-    .replaceAll('{{pullquote}}',              esc(pullquote))
+    .replaceAll('{{pullquote}}',              esc(pullquote).replace(/\{\{accent\}\}/g, '<span class="accent">').replace(/\{\{\/accent\}\}/g, '</span>'))
     .replaceAll('{{features_block}}',         featuresBlock)
     .replaceAll('{{install_block}}',          installBlock)
     .replaceAll('{{hero_video_block}}',       heroVideo)
@@ -171,7 +173,8 @@ async function renderApp(app) {
     .replaceAll('{{json_ld}}',                jsonLd)
     .replaceAll('{{faq_block}}',              faqBlock)
     .replaceAll('{{related_block}}',          relatedBlock)
-    .replaceAll('{{shift_block}}',            shiftBlock)
+    .replaceAll('{{shift_left_html}}',         shiftLeftHtml)
+    .replaceAll('{{shift_right_html}}',        shiftRightHtml)
     .replaceAll('{{audience_html}}',          audience)
     .replaceAll('{{seo_why_h3}}',             esc(seoWhy))
     .replaceAll('{{seo_shift_h3}}',           esc(seoShift))
@@ -191,6 +194,17 @@ export async function buildAppsInventory() {
 
   const flagship = data.apps.find(a => a.is_flagship);
   const others   = data.apps.filter(a => !a.is_flagship);
+
+  const TILE_ORDER = [
+    'qa-manager', 'cobie-manager', 'adelphos-chat', 'specbuilder',
+    'report-builder', 'schedule-builder', 'document-controller',
+    'autocad-copilot', 'excel-add-in', 'word-add-in'
+  ];
+  others.sort((a, b) => {
+    const ai = TILE_ORDER.indexOf(a.slug);
+    const bi = TILE_ORDER.indexOf(b.slug);
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+  });
 
   const flagshipHtml = flagship ? renderFlagship(flagship) : '';
   const tilesHtml = others.map(a => renderTile(a)).join('');
@@ -260,15 +274,6 @@ function renderTile(a) {
     </a>`;
 }
 
-// Renders features as rp-feat-item separator rows with agent spinners.
-// Two variants:
-//   • Flat features[]      → single .rp-feat-list
-//   • feature_groups[]     → grouped sections; each group has its own .rp-feat-list
-// Renders the Features block as ONE dark .ap-features-card.rp-commands-card
-// (single-law: same dark-card vocabulary as Section 2 of the home).
-// NO rp-agent-spinner per row — Phase 7.4: 11 simultaneous spinners is
-// motion noise. Each row gets a static teal chevron (the same teal-tinted
-// chevron used as the "right-side accent" on agentic email rows).
 function renderFeatures(entity) {
   const renderItems = items => items.map(f => `
     <div class="rp-feat-item">
@@ -276,7 +281,7 @@ function renderFeatures(entity) {
         <span class="rp-feat-title">${esc(f.name)}</span>
         <span class="rp-feat-desc">${esc(f.desc)}</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>`).join('');
 
   let body = '';
@@ -292,7 +297,7 @@ function renderFeatures(entity) {
 
   return `
     <div class="ap-features-card rp-commands-card">
-      <h3 class="ap-features-header">${esc(entity.title)} features</h3>
+      <h2 class="rp-card-header">${esc(entity.title)} features</h2>
       ${body}
     </div>`;
 }

@@ -202,6 +202,8 @@ async function renderService(svc) {
     .replaceAll('{{outcomes_strip}}',         outcomesStrip)
     .replaceAll('{{detail_paragraphs_html}}', detailParagraphsHtml)
     .replaceAll('{{pullquote}}',              esc(pullquote))
+    .replaceAll('{{pullquote_stats_html}}',  renderPullquoteStats(svc))
+    .replaceAll('{{integrations_block}}',   renderIntegrations(svc))
     .replaceAll('{{features_block}}',         featuresBlock)
     .replaceAll('{{shift_block}}',            shiftBlock)
     .replaceAll('{{seo_head}}',               seoHead)
@@ -281,29 +283,65 @@ export async function buildAgenticServicesInventory() {
   return { out, count: data.services.length };
 }
 
-// SVG glyph for service tiles (services don't have a PNG logo).
-const SERVICE_GLYPH = `
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="3"/>
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-  </svg>`;
-const EMAIL_GLYPH = `
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="M3 7l9 6 9-6"/>
-  </svg>`;
+// Per-slug SVG glyphs for inventory tiles: calendar (PM), lock (doc controller).
+function tileGlyph(slug) {
+  switch (slug) {
+    case 'project-management':
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"/></svg>`;
+    case 'document-controller':
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 1 1 8 0v3"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/></svg>`;
+    default:
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>`;
+  }
+}
+
+const WORKFLOW_TAGS = {
+  'project-management': 'Programme &rarr; Risk register &rarr; Status report &rarr; Stakeholder update',
+  'document-controller': 'Transmittal in &rarr; Auto-register &rarr; Chase approvals &rarr; Dashboard',
+  'email-specifications': 'Email brief &rarr; NBS clauses selected &rarr; Word doc returned',
+  'email-revit-modelling': 'Email markup &rarr; Agent updates model &rarr; RVT + changelog returned',
+  'email-cobie': 'Email model &rarr; Schema validated &rarr; COBie spreadsheet returned',
+  'email-schematics': 'Email brief &rarr; Schematic generated &rarr; DWG + PDF returned',
+};
+
+function workflowMini(slug) {
+  const tag = WORKFLOW_TAGS[slug];
+  if (!tag) return '';
+  const steps = tag.split('&rarr;').length;
+  const dots = Array.from({length: steps}, (_, i) =>
+    `<span class="wf-tile-dot">${i + 1}</span>${i < steps - 1 ? '<span class="wf-tile-line"></span>' : ''}`
+  ).join('');
+  return `<div class="wf-tile-steps">${dots}</div>\n        <span class="wf-tile-tag">${tag}</span>`;
+}
 
 function renderFlagship(s) {
+  const desc = s.description || s.tagline || '';
+  const featsHtml = (s.features || []).map(f =>
+    `<li><strong>${esc(f.title || f.name || '')}</strong> &mdash; ${esc(f.desc || '')}</li>`
+  ).join('\n          ');
+
   return `
     <a class="ai-flagship" href="/dist/agentic-services/${esc(s.slug)}/index.html">
       <div class="copy">
-        <span class="badge">Flagship · Managed by Adelphos</span>
+        <span class="badge">Enterprise &middot; Managed by Adelphos</span>
         <h2>${esc(s.title)}</h2>
-        <p class="claim">${esc(s.headline_claim || s.tagline || '')}</p>
-        <span class="arrow">Open ${esc(s.title)} →</span>
+        <p class="claim">${esc(s.headline_claim || s.tagline || '')} ${esc(desc)}</p>
+        ${featsHtml ? `<ul class="feat-list">${featsHtml}</ul>` : ''}
+        <span class="tier-note">Available on the Enterprise tier</span>
+        <span class="arrow">Open ${esc(s.title)} &rarr;</span>
       </div>
       <div class="visual">
-        <img src="/${esc(s.icon || 'logos/Node Logo.png')}" alt="${esc(s.title)} logo" onerror="this.style.opacity=0">
+        <div class="wf-mock">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-label">Ask Jason in Adelphos Chat or @Jason in Teams</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-label">Agent reconciles invoices against POs in real time</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-label">See cashflow, upcoming payments, risk of missed deadlines</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">4</span><span class="wf-label">Monthly management accounts generated &mdash; ready for sign-off</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">5</span><span class="wf-label">Fee proposals auto-drafted from your job history &amp; win/loss data</span></div>
+        </div>
       </div>
     </a>`;
 }
@@ -311,12 +349,13 @@ function renderFlagship(s) {
 function renderTile(s) {
   return `
     <a class="svc-tile" href="/dist/agentic-services/${esc(s.slug)}/index.html">
-      <div class="visual">${SERVICE_GLYPH}</div>
+      <div class="visual">${tileGlyph(s.slug)}</div>
       <div class="body">
         <span class="surf">Managed service</span>
         <h3>${esc(s.title)}</h3>
         <p class="claim">${esc(s.headline_claim || s.tagline || '')}</p>
-        <span class="more">Open ${esc(s.title)} →</span>
+        ${workflowMini(s.slug)}
+        <span class="more">Open ${esc(s.title)} &rarr;</span>
       </div>
     </a>`;
 }
@@ -325,15 +364,36 @@ function renderEmailTile(s) {
   const email = s.email_address || s.email || '';
   return `
     <a class="svc-tile" href="/dist/agentic-services/${esc(s.slug)}/index.html">
-      <div class="visual">${EMAIL_GLYPH}</div>
+      <div class="visual">${tileGlyph(s.slug)}</div>
       <div class="body">
         <span class="surf">Email service</span>
         <h3>${esc(s.title)}</h3>
         <p class="claim">${esc(s.tagline || s.headline_claim || '')}</p>
         ${email ? `<span class="email-line">${esc(email)}</span>` : ''}
-        <span class="more">Open ${esc(s.title)} →</span>
+        ${workflowMini(s.slug)}
+        <span class="more">Open ${esc(s.title)} &rarr;</span>
       </div>
     </a>`;
+}
+
+function renderIntegrations(svc) {
+  const integ = svc.integrations;
+  if (!Array.isArray(integ) || !integ.length) return '';
+  const tiles = integ.map(i =>
+    `<div class="integration-tile"><img src="${esc(i.logo)}" alt="${esc(i.name)} logo" onerror="this.parentElement.innerHTML='<span class=\\'int-fallback\\'>${esc(i.name)}</span>'"></div>`
+  ).join('');
+  return `<section class="svc-integrations">
+    <h2>Integrates with</h2>
+    <div class="integrations-strip">${tiles}</div>
+  </section>`;
+}
+
+function renderPullquoteStats(svc) {
+  const stats = svc.pullquote_stats;
+  if (!Array.isArray(stats) || !stats.length) return '';
+  return `<div class="pq-stats">${stats.map(s =>
+    `<div class="pq-stat"><span class="pq-stat-num">${esc(s.stat)}</span><span class="pq-stat-label">${esc(s.label)}</span></div>`
+  ).join('')}</div>`;
 }
 
 // Same dark .ap-features-card.rp-commands-card vocabulary as app-page.
@@ -350,7 +410,7 @@ function renderFeatures(entity) {
         <span class="rp-feat-title">${esc(f.name)}</span>
         <span class="rp-feat-desc">${esc(f.desc)}</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>`).join('');
 
   let body = '';
@@ -366,7 +426,7 @@ function renderFeatures(entity) {
 
   return `
     <div class="ap-features-card rp-commands-card">
-      <h3 class="ap-features-header">${esc(entity.title)} features</h3>
+      <h2 class="rp-card-header">${esc(entity.title)} features</h2>
       ${body}
     </div>`;
 }

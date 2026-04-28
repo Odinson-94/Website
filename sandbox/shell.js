@@ -1,51 +1,14 @@
 /**
- * sandbox/shell.js
- * Injects the real Adelphos site shell (logo + menubar + dark toggle + hamburger)
- * into every sandbox page. Reuses /css/shared-styles.css so the visual matches
- * the existing site exactly.
- *
- * Usage in any sandbox page:
- *   <head>
- *     <link rel="stylesheet" href="/css/shared-styles.css">
- *     <link rel="stylesheet" href="/sandbox/sandbox.css">
- *     <script>document.documentElement.classList.toggle('dark-mode',
- *       document.cookie.match(/(?:^|; )darkMode=([^;]*)/)?.[1]==='true' ||
- *       localStorage.getItem('darkMode')==='true');</script>
- *   </head>
- *   <body>
- *     <script src="/sandbox/shell.js"></script>
- *     <main>...page content...</main>
- *   </body>
+ * shell.js — Adelphos site shell
+ * Injects logo, menubar, dark toggle, hamburger and footer into every page.
+ * Menubar is data-driven from /sandbox/data/nav.json.
  */
 (function(){
-  // === SANDBOX BANNER (so user knows they're on a preview page) ============
-  const sandboxBar = document.createElement('div');
-  sandboxBar.className = 'sandbox-bar';
-  const title = document.title || 'Sandbox';
-  sandboxBar.innerHTML = `
-    <strong>SANDBOX</strong>
-    <span style="opacity:0.85;">${title}</span>
-    <span class="spacer"></span>
-    <a href="/sandbox/">Back to sandbox index</a>
-  `;
-  document.body.insertBefore(sandboxBar, document.body.firstChild);
-
   // === LOGO (top-left) =====================================================
-  // Neural node pulse CSS
-  const nodeStyle = document.createElement('style');
-  nodeStyle.textContent = `
-    .logo-node { position:relative; width:28px; height:28px; display:inline-block; vertical-align:middle; margin-left:8px; }
-    .logo-node .nn-glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:22px; height:22px; border-radius:50%; background:rgba(21,96,130,0.30); filter:blur(6px); }
-    .logo-node .nn-core { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg,#1a7a9e,#156082); box-shadow:0 0 10px rgba(21,96,130,0.50); }
-    .logo-node .nn-ring { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:12px; height:12px; border-radius:50%; border:3px solid rgba(21,96,130,0.50); box-sizing:border-box; animation:nnPulse 1.5s ease-out infinite; }
-    @keyframes nnPulse { 0%{transform:translate(-50%,-50%) scale(1);opacity:0.7;} 100%{transform:translate(-50%,-50%) scale(3);opacity:0;} }
-  `;
-  document.head.appendChild(nodeStyle);
-
   const logo = document.createElement('div');
   logo.className = 'logo';
   logo.id = 'logo';
-  logo.innerHTML = '<img src="/logos/adelphos-brand.svg" alt="Adelphos" style="height:100px;vertical-align:middle;"><div class="logo-node" style="margin-left:2px;"><div class="nn-glow"></div><div class="nn-core"></div><div class="nn-ring"></div></div>';
+  logo.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 28" preserveAspectRatio="xMidYMid meet" style="height:100px;vertical-align:middle;" aria-label="Adelphos"><text x="0" y="22" font-family="Segoe UI,system-ui,-apple-system,sans-serif" font-size="20" font-weight="500" letter-spacing="-0.4" fill="currentColor">Adelphos<tspan font-weight="700" fill="#156082">.</tspan></text></svg>';
   document.body.appendChild(logo);
 
   // === HAMBURGER BUTTON (mobile only via shared-styles.css) ================
@@ -100,12 +63,11 @@
     try {
       nav = await fetch('/sandbox/data/nav.json').then(r => r.json());
     } catch (e) {
-      console.warn('nav.json not loaded:', e); return;
+      return;
     }
 
     for (const item of nav.items) {
       if (item.type === 'dropdown') {
-        // Children loaded from another JSON registry (apps.json, services.json, ...)
         const wrap = document.createElement('div');
         wrap.className = 'menu-item-dropdown';
         wrap.innerHTML = `<a href="${esc(item.href)}" class="menu-link">${esc(item.label)}</a>`;
@@ -114,7 +76,24 @@
           const data = await fetch('/' + item.children_from).then(r => r.json());
           children = data.apps || data.services || data.features || [];
         } catch {}
-        const list = children.map(c => `<li><a href="${esc(item.children_root + c.slug + '/')}"><strong>${esc(c.title)}</strong><span class="ds">${esc(c.tagline || c.blurb || '')}</span></a></li>`).join('');
+
+        let nested = [];
+        if (item.nested_from) {
+          try {
+            const nData = await fetch('/' + item.nested_from).then(r => r.json());
+            nested = nData.apps || nData.services || nData.features || [];
+          } catch {}
+        }
+
+        const list = children.map(c => {
+          const hasNested = item.nested_parent_slug && c.slug === item.nested_parent_slug && nested.length;
+          let subHtml = '';
+          if (hasNested) {
+            const subList = nested.map(n => `<li><a href="${esc(item.nested_root + n.slug + '/')}"><strong>${esc(n.title)}</strong><span class="ds">${esc(n.tagline || n.headline_claim || '')}</span></a></li>`).join('');
+            subHtml = `<div class="dropdown-nested-panel"><p class="nested-label">${esc(item.nested_label || 'Features')}</p><ul class="dropdown-list">${subList}</ul></div>`;
+          }
+          return `<li class="${hasNested ? 'has-nested' : ''}"><a href="${esc(item.children_root + c.slug + '/')}"><strong>${esc(c.title)}</strong><span class="ds">${esc(c.tagline || c.blurb || '')}</span></a>${subHtml}</li>`;
+        }).join('');
         wrap.innerHTML += `
           <div class="dropdown-panel">
             <p class="blurb">${esc(item.label === 'Apps'
@@ -156,9 +135,7 @@
       }
     }
 
-    // Highlight current page — teal underline rather than inline colour
-    // override (Phase 9.1: matches the live SPA menubar pattern, animated
-    // with the Adelphos cubic-bezier curve).
+    // Highlight current page with teal underline.
     const pathName = location.pathname;
     document.querySelectorAll('#menubar .menu-link[href]').forEach(a => {
       const href = a.getAttribute('href');
@@ -168,17 +145,14 @@
     });
   })();
 
-  // === MENUBAR SCROLL OPACITY + ACTIVE STATE ================================
-  // Active state uses a teal underline that grows with the Adelphos
-  // cubic-bezier curve (Phase 9.1). Hover state uses a thin teal under-
-  // line that grows from 0 to full width via the same curve.
+  // === MENUBAR SCROLL + ACTIVE STATE ========================================
   const scrollStyle = document.createElement('style');
   scrollStyle.textContent = `
     .menubar { background: transparent; border-radius: 999px; padding: 6px 16px; transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s; }
     .menubar.scrolled { background: rgba(255,255,255,0.92); box-shadow: 0 4px 24px rgba(0,0,0,0.10); backdrop-filter: blur(12px); }
     html.dark-mode .menubar.scrolled { background: rgba(30,30,30,0.92); box-shadow: 0 4px 24px rgba(0,0,0,0.30); }
 
-    /* Menu link base state — uses --ad-text-1 (#222) per Phase 9.1. */
+    /* Menu link base state */
     #menubar .menu-link {
       position: relative;
       color: var(--ad-text-1, #222);
@@ -208,7 +182,7 @@
     #menubar .menu-link.menu-link-active::after {
       transform: scaleX(1);
     }
-    /* Focus ring matches the same teal accent for keyboard parity. */
+    /* Focus ring */
     #menubar .menu-link:focus-visible {
       outline: 2px solid var(--ad-teal, #156082);
       outline-offset: 2px;
@@ -218,6 +192,7 @@
   document.head.appendChild(scrollStyle);
   window.addEventListener('scroll', function() {
     menubar.classList.toggle('scrolled', window.scrollY > 80);
+    logo.classList.toggle('logo-hidden', window.scrollY > 80);
   }, { passive: true });
 
   // === DARK TOGGLE (top right) =============================================
@@ -251,64 +226,52 @@
     mobileMenu.classList.toggle('active');
   });
 
-  // === FOOTER (must run AFTER the body's content has been parsed,
-  //     otherwise it appears at the TOP of the page because everything
-  //     after the <script src="shell.js"> tag is still pending parse) ======
+  // === FOOTER ==============================================================
   const year = new Date().getFullYear();
   const footerHtml = `
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand"><img src="/logos/adelphos-brand.svg" alt="Adelphos" style="height:48px;vertical-align:middle;"></div>
+          <div class="footer-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 28" preserveAspectRatio="xMidYMid meet" style="height:48px;vertical-align:middle;" aria-label="Adelphos"><text x="0" y="22" font-family="Segoe UI,system-ui,-apple-system,sans-serif" font-size="20" font-weight="500" letter-spacing="-0.4" fill="currentColor">Adelphos<tspan font-weight="700" fill="#156082">.</tspan></text></svg></div>
           <p class="footer-tag">One platform for AI-enabled construction delivery. One suite, one build, all services.</p>
         </div>
         <div>
           <h4>Product</h4>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/sandbox/demos/">Demos</a></li>
-            <li><a href="/sandbox/docs/tools/inventory.html">Tools (191)</a></li>
-            <li><a href="/sandbox/docs/commands/inventory.html">Commands (163)</a></li>
-            <li><a href="/sandbox/workflows/new-job-from-brief.html">Workflows</a></li>
+            <li><a href="/dist/index.html">Home</a></li>
+            <li><a href="/dist/demos/index.html">Demos</a></li>
+            <li><a href="/dist/docs/tools/index.html">Tools (395)</a></li>
+            <li><a href="/dist/docs/commands/index.html">Commands (532)</a></li>
+            <li><a href="/dist/workflows/index.html">Workflows</a></li>
           </ul>
         </div>
         <div>
           <h4>Resources</h4>
           <ul>
-            <li><a href="#">Free Families</a></li>
-            <li><a href="#">Free Templates</a></li>
-            <li><a href="#">Free Asset Data</a></li>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">API Reference</a></li>
+            <li><a href="/dist/resources/index.html">Free Families</a></li>
+            <li><a href="/dist/resources/index.html">Free Templates</a></li>
+            <li><a href="/dist/resources/index.html">Free Asset Data</a></li>
+            <li><a href="/dist/docs/index.html">Documentation</a></li>
+            <li><a href="/dist/docs/index.html">API Reference</a></li>
           </ul>
         </div>
         <div>
           <h4>Company</h4>
           <ul>
             <li><a href="/about/">About Us</a></li>
-            <li><a href="/roadmap/">Roadmap</a></li>
-            <li><a href="/contact/">Contact</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Plan docs</h4>
-          <ul>
-            <li><a href="/BUILD%20WEB%20Plan/Codebase%20Inventory.md">Codebase Inventory</a></li>
-            <li><a href="/BUILD%20WEB%20Plan/Attribute%20to%20Webpage%20Map.md">Attribute Map</a></li>
-            <li><a href="/BUILD%20WEB%20Plan/Codebase%20Coverage%20Report.md">Coverage Report</a></li>
-            <li><a href="/BUILD%20WEB%20Plan/Page%20Structures.md">Page Structures</a></li>
-            <li><a href="/BUILD%20WEB%20Plan/Site%20Map.md">Site Map</a></li>
+            <li><a href="/sandbox/roadmap/">Roadmap</a></li>
+            <li><a href="/sandbox/contact/">Contact</a></li>
+            <li><a href="/sandbox/contact/">Press</a></li>
+            <li><a href="/sandbox/contact/">Careers</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© ${year} JPA Designs Ltd. Adelphos AI is a trading division.</span>
+        <span>&copy; ${year} Adelphos AI. All rights reserved.</span>
         <span class="legal">
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>
-          <a href="/contact/">Contact</a>
+          <a href="/sandbox/contact/">Contact</a>
         </span>
       </div>
     </div>

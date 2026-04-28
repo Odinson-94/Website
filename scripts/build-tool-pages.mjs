@@ -11,18 +11,31 @@ import path from 'node:path';
 import { ROOT, parseSimpleYaml } from './lib/registry.mjs';
 
 const TEMPLATE_PATH = path.join(ROOT, 'templates', 'tool-page.html');
+const PRE_LAUNCH = true;  // flip to false to reveal real names + descriptions
 
 export async function buildToolPage(slug) {
   const jsonPath = path.join(ROOT, 'data', 'tools', `${slug}.json`);
-  const tool = JSON.parse(await fs.readFile(jsonPath, 'utf8'));
+  const tool = JSON.parse(await fs.readFile(jsonPath, 'utf8').catch(() => '{}'));
 
-  // The YAML doesn't restate parameters; the generator pulls them from source.
   let sourceTxt = await fs.readFile(path.join(ROOT, 'sandbox/data/tools.json'), 'utf8').catch(() => '[]');
   if (sourceTxt.charCodeAt(0) === 0xFEFF) sourceTxt = sourceTxt.slice(1);
   const sourceTools = JSON.parse(sourceTxt);
   const sourceTool  = sourceTools.find(t => t.name === slug) || {};
   const params      = sourceTool.parameters || [];
   const keywords    = sourceTool.keywords || [];
+
+  // Fall back to registry data when the promoted data file is empty/stub
+  if (!tool.title)            tool.title = sourceTool.name || slug;
+  if (!tool.display_title)    tool.display_title = tool.title;
+  if (!tool.description)      tool.description = sourceTool.desc || '';
+  if (PRE_LAUNCH) {
+    tool.title = tool.title;
+    tool.display_title = tool.display_title;
+    tool.description = 'Coming soon';
+  }
+  if (!tool.category_label)   tool.category_label = sourceTool.category || 'context';
+  if (!tool.bridge_label && sourceTool.bridge) tool.bridge_label = sourceTool.bridge;
+  if (tool.always_available == null) tool.always_available = sourceTool.always || false;
 
   const tmpl = await fs.readFile(TEMPLATE_PATH, 'utf8');
 

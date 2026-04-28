@@ -40,11 +40,11 @@
     const raw = 0.5 + 0.5 * Math.sin(t * 1.8);        // slower cycle (~3.5s)
     const pulse = 0.25 + 0.75 * (raw * raw * (3 - 2 * raw)); // smoothstep ease
 
-    // Outer glow – fills nearly the whole 64x64 canvas
-    const glowRadius = 30 * (0.85 + pulse * 0.15);
+    // Outer glow – fills the whole 64x64 canvas
+    const glowRadius = 32 * (0.9 + pulse * 0.1);
     const outerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowRadius);
-    outerGlow.addColorStop(0, `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.55 * pulse})`);
-    outerGlow.addColorStop(0.4, `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.28 * pulse})`);
+    outerGlow.addColorStop(0, `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.6 * pulse})`);
+    outerGlow.addColorStop(0.5, `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.3 * pulse})`);
     outerGlow.addColorStop(1, `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, 0)`);
     ctx.beginPath();
     ctx.arc(cx, cy, glowRadius, 0, Math.PI * 2);
@@ -52,33 +52,33 @@
     ctx.fill();
 
     // Inner glow (brighter core)
-    const innerR = 20;
+    const innerR = 26;
     const innerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, innerR);
-    innerGlow.addColorStop(0, `rgba(${TEAL_R + 60}, ${TEAL_G + 80}, ${TEAL_B + 60}, ${0.8 * pulse})`);
+    innerGlow.addColorStop(0, `rgba(${TEAL_R + 60}, ${TEAL_G + 80}, ${TEAL_B + 60}, ${0.85 * pulse})`);
     innerGlow.addColorStop(1, `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, 0)`);
     ctx.beginPath();
     ctx.arc(cx, cy, innerR, 0, Math.PI * 2);
     ctx.fillStyle = innerGlow;
     ctx.fill();
 
-    // Node circle (solid core)
-    const coreRadius = 11 + pulse * 2;
+    // Node circle (solid core) — fills most of the favicon
+    const coreRadius = 20 + pulse * 3;
     ctx.beginPath();
     ctx.arc(cx, cy, coreRadius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.88 + pulse * 0.12})`;
+    ctx.fillStyle = `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.92 + pulse * 0.08})`;
     ctx.fill();
 
     // Bright center highlight
     ctx.beginPath();
-    ctx.arc(cx, cy, 5.5, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${TEAL_R + 100}, ${TEAL_G + 120}, ${TEAL_B + 100}, ${0.55 + pulse * 0.45})`;
+    ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${TEAL_R + 100}, ${TEAL_G + 120}, ${TEAL_B + 100}, ${0.5 + pulse * 0.5})`;
     ctx.fill();
 
     // Ring outline
     ctx.beginPath();
-    ctx.arc(cx, cy, 16 + pulse * 2, 0, Math.PI * 2);
-    ctx.strokeStyle = `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.3 + pulse * 0.3})`;
-    ctx.lineWidth = 1.8;
+    ctx.arc(cx, cy, 26 + pulse * 3, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(${TEAL_R}, ${TEAL_G}, ${TEAL_B}, ${0.3 + pulse * 0.4})`;
+    ctx.lineWidth = 2.5;
     ctx.stroke();
 
     // Update favicon

@@ -1,6 +1,6 @@
 /**
  * sandbox/docs-shell.js
- * Renders the Cursor-style three-column docs layout:
+ * Renders the three-column docs layout:
  *   left rail = site-wide nav (sections + counts)
  *   right rail = "On this page" (auto-built from H2/H3 inside <main class="docs-content">)
  *
@@ -22,85 +22,107 @@
   if (!left || !main) return;
 
   // ============================================================
-  // LEFT RAIL — site-wide navigation
+  // LEFT RAIL — auto-generated from live data
   //
-  // TEST-RUN MODE: when serving from /dist/, show only the 4 generated pages.
-  // This is the constraint Jordan asked for — at test-run stage the nav should
-  // reflect what's actually been built, not the full future site.
+  // Detects which section the user is in (tools, commands, demos,
+  // etc.) and builds a category index from the registry JSON.
   // ============================================================
-  const isTestRun = location.pathname.startsWith('/dist/');
+  const here = location.pathname;
+  const esc  = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-  const TEST_RUN_NAV = [
-    {
-      title: 'Test run · auto-generated',
-      links: [
-        { href: '/dist/docs/tools/list_rooms/index.html',                       label: 'Tool · list_rooms' },
-        { href: '/dist/docs/commands/extend-all-connectors/index.html',         label: 'Command · Extend All Connectors' },
-        { href: '/dist/workflows/schedules/index.html',                          label: 'Workflow · Schedules (from skill)' },
-        { href: '/dist/demos/place-svp/index.html',                              label: 'Demo · Place SVP' },
-      ]
-    },
-    {
-      title: 'Pipeline',
-      links: [
-        { href: '/handoff/HANDOFF.md',                                           label: 'Handoff doc' },
-        { href: '/BUILD%20WEB%20Plan/End%20to%20End%20Automation%20Pipeline.md', label: 'Pipeline plan' },
-      ]
-    }
-  ];
+  const CATEGORY_LABELS = {
+    action: 'Action (write)', context: 'Context (read)', adelphos: 'Adelphos',
+    calculator: 'Calculators', debug: 'Debug', snapshot: 'Snapshot'
+  };
+  const BRIDGE_LABELS = {
+    SelfDebug: 'Debug', DrawingExporter: 'Drawing exporter', RevitContext: 'Revit',
+    ParameterEditor: 'Parameter editor', QAManager: 'QA Manager', Snapshot: 'Snapshot'
+  };
 
-  // Pull demo categories live from the data file so the (full) nav stays in sync
-  let demoCats = [];
-  try {
-    const r = await fetch('/sandbox/data/demos.json');
-    if (r.ok) { const j = await r.json(); demoCats = j.categories.map(c => ({ ...c, count: j.demos.filter(d => d.category === c.slug).length })); }
-  } catch {}
+  let NAV = [];
 
-  const FULL_NAV = [
-    {
-      title: 'Demos',
-      links: demoCats.map(c => ({
-        href: '/sandbox/demos/#cat-' + c.slug,
-        label: c.title,
-        count: c.count
-      }))
-    },
-    {
-      title: 'Reference',
-      links: [
-        { href: '/sandbox/docs/tools/inventory.html',    label: 'All MCP tools',     count: 191 },
-        { href: '/sandbox/docs/commands/inventory.html', label: 'All Revit commands', count: 163 },
-        { href: '/sandbox/docs/tools/list_rooms.html',   label: 'Tool example' },
-        { href: '/sandbox/docs/commands/extend-all-connectors.html', label: 'Command example' },
-      ]
-    },
-    {
-      title: 'Workflows',
-      links: [
-        { href: '/sandbox/workflows/new-job-from-brief.html', label: 'New job from brief' },
-      ]
-    },
-    {
-      title: 'Plan docs',
-      links: [
-        { href: '/BUILD%20WEB%20Plan/Codebase%20Inventory.md',        label: 'Codebase Inventory' },
-        { href: '/BUILD%20WEB%20Plan/Attribute%20to%20Webpage%20Map.md', label: 'Attribute → Webpage Map' },
-        { href: '/BUILD%20WEB%20Plan/Codebase%20Coverage%20Report.md', label: 'Coverage Report' },
-        { href: '/BUILD%20WEB%20Plan/Page%20Structures.md',           label: 'Page Structures' },
-        { href: '/BUILD%20WEB%20Plan/Site%20Map.md',                  label: 'Site Map' },
-      ]
-    }
-  ];
+  const isToolsSection   = here.includes('/docs/tools');
+  const isCommandSection = here.includes('/docs/commands');
 
-  const NAV = isTestRun ? TEST_RUN_NAV : FULL_NAV;
+  if (isToolsSection) {
+    try {
+      const tools = await fetch('/sandbox/data/tools.json').then(r => r.json());
+      const byCat = {};
+      tools.forEach(t => {
+        const k = t.category || 'uncategorised';
+        if (!byCat[k]) byCat[k] = [];
+        byCat[k].push(t);
+      });
+      const catOrder = ['context','action','adelphos','snapshot','calculator','debug','uncategorised'];
+      NAV.push({
+        title: 'By category',
+        links: catOrder.filter(k => byCat[k]).map(k => ({
+          href: '/dist/docs/tools/index.html#cat-' + k,
+          label: CATEGORY_LABELS[k] || k,
+          count: byCat[k].length,
+          filter: k
+        }))
+      });
 
-  const path = location.pathname + location.hash;
+      const byBridge = {};
+      tools.forEach(t => {
+        const k = t.bridge || '';
+        if (k) { if (!byBridge[k]) byBridge[k] = []; byBridge[k].push(t); }
+      });
+      if (Object.keys(byBridge).length) {
+        NAV.push({
+          title: 'By bridge',
+          links: Object.keys(byBridge).sort().map(k => ({
+            href: '/dist/docs/tools/index.html#bridge-' + k.toLowerCase(),
+            label: BRIDGE_LABELS[k] || k,
+            count: byBridge[k].length,
+            filter: k
+          }))
+        });
+      }
+    } catch {}
+  } else if (isCommandSection) {
+    try {
+      const cmds = await fetch('/data/registries/command_registry.json').then(r => r.json());
+      const arr = Array.isArray(cmds) ? cmds : [cmds];
+      const byPillar = {};
+      arr.forEach(c => {
+        const k = c.pillar || 'Uncategorised';
+        if (!byPillar[k]) byPillar[k] = [];
+        byPillar[k].push(c);
+      });
+      const sorted = Object.keys(byPillar).sort((a,b) => a === 'Uncategorised' ? 1 : b === 'Uncategorised' ? -1 : a.localeCompare(b));
+      NAV.push({
+        title: 'By mini-project',
+        links: sorted.map(k => ({
+          href: '/dist/docs/commands/index.html#pillar-' + k.toLowerCase().replace(/\s+/g,'-'),
+          label: k,
+          count: byPillar[k].length
+        }))
+      });
+    } catch {}
+  }
+
+  // Cross-section links at bottom
+  NAV.push({
+    title: 'Documentation',
+    links: [
+      { href: '/dist/docs/index.html',            label: 'Docs home' },
+      { href: '/dist/docs/tools/index.html',      label: 'All MCP tools' },
+      { href: '/dist/docs/commands/index.html',    label: 'All Revit commands' },
+      { href: '/dist/docs/calc-engines/index.html',label: 'Calculation engines' },
+      { href: '/dist/demos/index.html',            label: 'Demos' },
+      { href: '/dist/workflows/index.html',        label: 'Workflows' },
+    ]
+  });
+
+  const path = here + location.hash;
   left.innerHTML = NAV.map(section => `
     <div class="nav-section">
       <div class="nav-section-title">${section.title}</div>
       ${section.links.map(l => {
         const isActive = (l.href === path) || (location.hash && l.href.endsWith(location.hash));
-        return `<a class="nav-link ${isActive ? 'active' : ''}" href="${l.href}">
+        return `<a class="nav-link ${isActive ? 'active' : ''}" href="${l.href}"${l.filter ? ' data-filter="'+esc(l.filter)+'"' : ''}>
           <span>${l.label}</span>
           ${l.count != null ? `<span class="nav-count">${l.count}</span>` : ''}
         </a>`;
@@ -108,14 +130,29 @@
     </div>
   `).join('');
 
-  // Highlight active page in the simple cases
-  const here = location.pathname;
+  // Click on a category/bridge link filters the main table if on an inventory page
+  left.querySelectorAll('.nav-link[data-filter]').forEach(a => {
+    a.addEventListener('click', e => {
+      const f = a.dataset.filter;
+      const catSel = document.getElementById('categoryFilter');
+      const bridgeSel = document.getElementById('bridgeFilter');
+      const pillarSel = document.getElementById('pillarFilter');
+      if (catSel && a.closest('[class*="nav-section"]').querySelector('.nav-section-title').textContent.includes('category')) {
+        catSel.value = f; catSel.dispatchEvent(new Event('input'));
+      } else if (bridgeSel && a.closest('[class*="nav-section"]').querySelector('.nav-section-title').textContent.includes('bridge')) {
+        bridgeSel.value = f; bridgeSel.dispatchEvent(new Event('input'));
+      } else if (pillarSel) {
+        pillarSel.value = f; pillarSel.dispatchEvent(new Event('input'));
+      }
+    });
+  });
+
+  // Highlight active page
   left.querySelectorAll('.nav-link').forEach(a => {
     const href = a.getAttribute('href').split('#')[0];
     if (href === here) a.classList.add('active');
   });
 
-  // Re-highlight on hash change so anchors in left nav stay accurate
   window.addEventListener('hashchange', () => {
     left.querySelectorAll('.nav-link').forEach(a => {
       const isActive = a.getAttribute('href') === location.pathname + location.hash;

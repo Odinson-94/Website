@@ -3,6 +3,7 @@ import path from 'node:path';
 import { ROOT, parseSimpleYaml, loadJson } from './lib/registry.mjs';
 
 const TEMPLATE = path.join(ROOT, 'templates', 'command-page.html');
+const PRE_LAUNCH = true;  // flip to false to reveal real names + descriptions
 
 export async function buildCommandPage(slug) {
   // Find the matching command in the registry by slugified class name
@@ -100,7 +101,7 @@ export async function buildCommandPage(slug) {
     .replaceAll('{{slug}}',                   esc(slug))
     .replaceAll('{{pillar}}',                 esc(yaml.pillar || cmd.pillar || ''))
     .replaceAll('{{rest_pill}}',              restPill)
-    .replaceAll('{{lead}}',                   esc(yaml.lead || cmd.summary || ''))
+    .replaceAll('{{lead}}',                   esc(PRE_LAUNCH ? 'Coming soon' : (yaml.lead || cmd.summary || '')))
     .replaceAll('{{before_callout}}',         before)
     .replaceAll('{{after_callout}}',          after)
     .replaceAll('{{usecase_block}}',          usecase)

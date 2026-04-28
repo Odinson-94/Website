@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUILD X. Specification Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/shared-styles.css">
+  <link rel="stylesheet" href="./css/index-styles.css">
+  <link rel="stylesheet" href="./css/chat-panel.css">
+  <link rel="stylesheet" href="./css/thinking-animation.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: transparent;
+    }
+    #specWritingOverlay {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      background: transparent;
+    }
+    /* Panel fills most of the iframe — leaves room for expand animation */
+    #specWritingOverlay .v8-three-column {
+      gap: 0 !important;
+      padding: 0 3% !important;
+      justify-content: center !important;
+    }
+    #specWritingOverlay .v8-text-column {
+      display: none !important;
+    }
+    #specWritingOverlay .v8-center-panel {
+      height: 94% !important;
+      flex: 0 0 94% !important;
+      max-width: none !important;
+    }
+    #specWritingOverlay .v8-center-panel .demo-chat-wrapper {
+      min-width: 0 !important;
+    }
+    /* Wider chat + history sidebar */
+    .right-column {
+      width: 440px !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-view-overlay" id="specWritingOverlay">
+  <div class="v8-three-column">
+    <div class="v8-text-column v8-text-left">
+      <h2 class="demo-hero-heading">A deterministic MEP specification — derived from the brief, the drawings and the decisions.</h2>
+      <div class="demo-text-body">
+        <p>No hallucinations, no invented content. The AI writes from your data — manufacturers, product codes, capacities all verified. Every clause is traceable to a decision, a calculation or a drawing.</p>
+        <p>Your project folder is the single source of truth. Schedules, drawings, model data — cross-referenced automatically. Design changes flag affected sections for review.</p>
+        <p>Export to Word, PDF, or industry-standard formats. Templates match your company style out of the box. Version controlled, fully tracked, ready for collaboration.</p>
+        <button class="demo-example-btn" id="tabToCompleteBtn" onclick="(function(){ var wrapper = document.getElementById('ghostTextWrapper'); if(wrapper) { wrapper.click(); } })()">⇥ Tab to complete</button>
+      </div>
+    </div>
+    <div class="v8-center-panel">
+      <div class="demo-chat-wrapper">
+        <div class="demo-chat-box">
+              <div class="demo-chat-titlebar">
+                <span class="demo-chat-titlebar-text"><span class="titlebar-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="titlebar-subtitle">Specification Builder</span></span>
+                <div class="titlebar-menu">
+                  <!-- FILE MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">File</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item" data-shortcut="Ctrl+N">New Specification</div>
+                      <div class="menu-item" data-shortcut="Ctrl+O">Open</div>
+                      <div class="menu-item">Open from Contract</div>
+                      <div class="menu-item">Open from Project</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+S">Save</div>
+                      <div class="menu-item" data-shortcut="Ctrl+Shift+S">Save As</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Export
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">Export to PDF</div>
+                          <div class="menu-item">Export to Word</div>
+                          <div class="menu-item">Export to IFC/COBie</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Import (SMART)
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu smart-menu">
+                          <div class="menu-item" title="Smart import — auto-matches to your project systems">Import Specification</div>
+                          <div class="menu-item" title="Smart import — pre-filled with your equipment and requirements">Import Section</div>
+                          <div class="menu-item" title="Smart import — auto-matched from your synced Revit model">Import Equipment Schedule</div>
+                          <div class="menu-item" title="Pull clauses already tagged to your project's Uniclass codes">Import from Project Data</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">Recent</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+P">Print</div>
+                      <div class="menu-item" data-shortcut="Ctrl+W">Close</div>
+                    </div>
+                  </div>
+                  
+                  <!-- EDIT MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Edit</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item" data-shortcut="Ctrl+Z">Undo</div>
+                      <div class="menu-item" data-shortcut="Ctrl+Y">Redo</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+X">Cut</div>
+                      <div class="menu-item" data-shortcut="Ctrl+C">Copy</div>
+                      <div class="menu-item" data-shortcut="Ctrl+V">Paste</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item" data-shortcut="Ctrl+H">Find & Replace</div>
+                      <div class="menu-item" data-shortcut="Ctrl+A">Select All</div>
+                      <div class="menu-item" data-shortcut="Ctrl+G">Go to Section</div>
+                    </div>
+                  </div>
+                  
+                  <!-- VIEW MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">View</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Zoom In</div>
+                      <div class="menu-item">Zoom Out</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item menu-toggle" data-toggle="nav-panel">Navigation Panel</div>
+                      <div class="menu-item menu-toggle" data-toggle="ai-assistant">AI Assistant</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item menu-toggle" data-toggle="dark-mode">Dark Mode</div>
+                      <div class="menu-item" data-shortcut="F11">Full Screen</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item menu-toggle" data-toggle="clause-codes">Show Clause Codes</div>
+                    </div>
+                  </div>
+                  
+                  <!-- INSERT MENU (SMART) -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Insert</button>
+                    <div class="menu-dropdown-content smart-menu">
+                      <div class="menu-item has-submenu smart-feature">
+                        AI Write
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Writes spec using your actual equipment, systems and requirements. Minimal input needed.">Write Specification</div>
+                          <div class="menu-item" title="Completes this section using your project's specific data. Just review and approve.">Complete Section</div>
+                          <div class="menu-item" title="Suggests content based on your project context and cursor position.">Suggest Content</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Sections
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">New Section</div>
+                          <div class="menu-item" title="Imports section pre-filled with your project's equipment. Already knows your model.">Import Entire Section</div>
+                          <div class="menu-item" title="Template auto-populated with your project-specific data.">Import from Template</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Clauses
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Shows clauses relevant to your project, filtered by your systems and equipment.">Insert Clause</div>
+                          <div class="menu-item" title="Quick access to clauses prioritised by relevance to current section.">Quick Clause</div>
+                          <div class="menu-item" title="Browse all clauses with filters based on your Uniclass codes and systems.">Browse Clause Library</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Schedules
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Pulls equipment from your synced Revit model. Auto-matched, ready to insert.">Import Equipment Schedule</div>
+                          <div class="menu-item" title="Schedule table pre-filled with your equipment. Just review columns.">Insert Schedule Table</div>
+                          <div class="menu-item" title="Links to equipment data — updates when the model changes.">Link to External Schedule</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Appendices
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Auto-suggests which specification sections it relates to.">Attach Appendix (PDF)</div>
+                          <div class="menu-item" title="Auto-links to relevant equipment and schedules in your project.">Attach Appendix (Excel)</div>
+                          <div class="menu-item" title="Identifies which systems/areas the drawing covers.">Attach Drawing</div>
+                          <div class="menu-item" title="Appendices organised by system and section automatically.">Manage Appendices</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Media
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Auto-generates figure numbers and cross-references.">Image/Drawing</div>
+                          <div class="menu-item">Hyperlink</div>
+                          <div class="menu-item" title="Suggests relevant sections to cross-reference based on content.">Cross-Reference</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Codes
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Shows Uniclass codes in your project first. Quick access to what you need.">Uniclass Code</div>
+                          <div class="menu-item" title="NRM2 codes filtered by your project's work packages.">NRM2 Code</div>
+                          <div class="menu-item" title="Data pulled from your linked NEC4 contract automatically.">Works Information Item</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- FORMAT MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Format</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item has-submenu">
+                        Text
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" data-shortcut="Ctrl+B">Bold</div>
+                          <div class="menu-item" data-shortcut="Ctrl+I">Italic</div>
+                          <div class="menu-item" data-shortcut="Ctrl+U">Underline</div>
+                          <div class="menu-item">Strikethrough</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Subscript</div>
+                          <div class="menu-item">Superscript</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Font...</div>
+                          <div class="menu-item">Font Size...</div>
+                          <div class="menu-item">Font Color...</div>
+                          <div class="menu-item">Highlight...</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Paragraph
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">Heading 1</div>
+                          <div class="menu-item">Heading 2</div>
+                          <div class="menu-item">Heading 3</div>
+                          <div class="menu-item">Heading 4</div>
+                          <div class="menu-item">Normal</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Bullet List</div>
+                          <div class="menu-item">Numbered List</div>
+                          <div class="menu-item">Multilevel List</div>
+                          <div class="menu-divider"></div>
+                          <div class="menu-item">Alignment...</div>
+                          <div class="menu-item">Indent...</div>
+                        </div>
+                      </div>
+                      <div class="menu-item has-submenu">
+                        Styles
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item">Apply Style...</div>
+                          <div class="menu-item">Clause Style</div>
+                          <div class="menu-item">Note Style</div>
+                          <div class="menu-item">Table Style...</div>
+                        </div>
+                      </div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item has-submenu">
+                        Structure
+                        <span class="submenu-arrow">▸</span>
+                        <div class="menu-submenu">
+                          <div class="menu-item" title="Automatically detects and applies document structure from imported files.">Detect Structure</div>
+                          <div class="menu-item">Apply Uniclass Structure</div>
+                          <div class="menu-item">Clear Formatting</div>
+                          <div class="menu-item">Reveal Formatting</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- TOOLS MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Tools</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Spell Check</div>
+                      <div class="menu-item">Version Compare</div>
+                      <div class="menu-item">Clash Detection</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">AI Suggestions</div>
+                      <div class="menu-item">Manage Libraries</div>
+                    </div>
+                  </div>
+                  
+                  <!-- CONTRACTS MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Contracts</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Link to Contract</div>
+                      <div class="menu-item">Contract Data</div>
+                      <div class="menu-item">Z Clauses</div>
+                      <div class="menu-item">Option Selection</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">Tender Documents</div>
+                    </div>
+                  </div>
+                  
+                  <!-- HELP MENU -->
+                  <div class="menu-dropdown">
+                    <button class="titlebar-menu-btn">Help</button>
+                    <div class="menu-dropdown-content">
+                      <div class="menu-item">Documentation</div>
+                      <div class="menu-item">NEC4 Guide</div>
+                      <div class="menu-item">Uniclass Reference</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">Keyboard Shortcuts</div>
+                      <div class="menu-divider"></div>
+                      <div class="menu-item">About</div>
+                    </div>
+                  </div>
+                  
+                  <!-- ELLIPSIS MENU -->
+                  <div class="menu-dropdown ellipsis-dropdown">
+                    <button class="titlebar-menu-ellipsis" title="More menus">⋯</button>
+                    <div class="menu-dropdown-content ellipsis-menu-content">
+                      <div class="menu-item">File</div>
+                      <div class="menu-item">Edit</div>
+                      <div class="menu-item">View</div>
+                      <div class="menu-item">Insert</div>
+                      <div class="menu-item">Format</div>
+                      <div class="menu-item">Tools</div>
+                      <div class="menu-item">Contracts</div>
+                      <div class="menu-item">Help</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-chat-titlebar-btns">
+                  <button class="demo-titlebar-btn theme-toggle" id="darkModeToggle" title="Toggle Light/Dark Mode">
+                    <span class="theme-icon">◐</span>
+                  </button>
+                  <div class="chat-settings-wrapper">
+                    <button class="demo-titlebar-btn settings" id="chatSettingsBtn" title="Settings">⚙</button>
+                    <div class="color-palette-dropdown word-style chat-palette" id="chatColorPaletteDropdown">
+                      <div class="palette-section">
+                        <div class="palette-header">Theme Colors</div>
+                        <div class="palette-grid theme-colors">
+                          <button class="color-swatch" data-color="#FFFFFF" title="White"></button>
+                          <button class="color-swatch" data-color="#000000" title="Black"></button>
+                          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+                          <button class="color-swatch" data-color="#c55a11" title="Orange"></button>
+                          <button class="color-swatch" data-color="#2e7d32" title="Green"></button>
+                          <button class="color-swatch active" data-color="#156082" title="Teal (Default)"></button>
+                          <button class="color-swatch" data-color="#9c27b0" title="Magenta"></button>
+                          <button class="color-swatch" data-color="#00838f" title="Cyan"></button>
+                          <button class="color-swatch" data-color="#558b2f" title="Olive"></button>
+                          <button class="color-swatch" data-color="#f2f2f2" title="White 5%"></button>
+                          <button class="color-swatch" data-color="#7f7f7f" title="Black 50%"></button>
+                          <button class="color-swatch" data-color="#d6dce5" title="Dark Blue 80%"></button>
+                          <button class="color-swatch" data-color="#e1d5e7" title="Purple 80%"></button>
+                          <button class="color-swatch" data-color="#fbe5d6" title="Orange 80%"></button>
+                          <button class="color-swatch" data-color="#e2efda" title="Green 80%"></button>
+                          <button class="color-swatch" data-color="#deebf7" title="Teal 80%"></button>
+                          <button class="color-swatch" data-color="#f3e5f5" title="Magenta 80%"></button>
+                          <button class="color-swatch" data-color="#e0f7fa" title="Cyan 80%"></button>
+                          <button class="color-swatch" data-color="#f1f8e9" title="Olive 80%"></button>
+                          <button class="color-swatch" data-color="#d9d9d9" title="White 15%"></button>
+                          <button class="color-swatch" data-color="#595959" title="Black 35%"></button>
+                          <button class="color-swatch" data-color="#adb9ca" title="Dark Blue 60%"></button>
+                          <button class="color-swatch" data-color="#c3abd0" title="Purple 60%"></button>
+                          <button class="color-swatch" data-color="#f7cbac" title="Orange 60%"></button>
+                          <button class="color-swatch" data-color="#c5e0b4" title="Green 60%"></button>
+                          <button class="color-swatch" data-color="#bdd7ee" title="Teal 60%"></button>
+                          <button class="color-swatch" data-color="#e1bee7" title="Magenta 60%"></button>
+                          <button class="color-swatch" data-color="#b2ebf2" title="Cyan 60%"></button>
+                          <button class="color-swatch" data-color="#dcedc8" title="Olive 60%"></button>
+                          <button class="color-swatch" data-color="#bfbfbf" title="White 25%"></button>
+                          <button class="color-swatch" data-color="#404040" title="Black 25%"></button>
+                          <button class="color-swatch" data-color="#8497b0" title="Dark Blue 40%"></button>
+                          <button class="color-swatch" data-color="#a481b8" title="Purple 40%"></button>
+                          <button class="color-swatch" data-color="#f4b183" title="Orange 40%"></button>
+                          <button class="color-swatch" data-color="#a9d18e" title="Green 40%"></button>
+                          <button class="color-swatch" data-color="#9cc3e5" title="Teal 40%"></button>
+                          <button class="color-swatch" data-color="#ce93d8" title="Magenta 40%"></button>
+                          <button class="color-swatch" data-color="#80deea" title="Cyan 40%"></button>
+                          <button class="color-swatch" data-color="#c5e1a5" title="Olive 40%"></button>
+                          <button class="color-swatch" data-color="#a6a6a6" title="White 35%"></button>
+                          <button class="color-swatch" data-color="#262626" title="Black 15%"></button>
+                          <button class="color-swatch" data-color="#324a5f" title="Dark Blue 25%"></button>
+                          <button class="color-swatch" data-color="#6b3d7a" title="Purple 25%"></button>
+                          <button class="color-swatch" data-color="#c55a11" title="Orange 25%"></button>
+                          <button class="color-swatch" data-color="#538135" title="Green 25%"></button>
+                          <button class="color-swatch" data-color="#2e75b6" title="Teal 25%"></button>
+                          <button class="color-swatch" data-color="#8e24aa" title="Magenta 25%"></button>
+                          <button class="color-swatch" data-color="#00acc1" title="Cyan 25%"></button>
+                          <button class="color-swatch" data-color="#7cb342" title="Olive 25%"></button>
+                          <button class="color-swatch" data-color="#808080" title="White 50%"></button>
+                          <button class="color-swatch" data-color="#0d0d0d" title="Black 5%"></button>
+                          <button class="color-swatch" data-color="#1e3a5f" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#4a2c6a" title="Purple"></button>
+                          <button class="color-swatch" data-color="#974706" title="Orange Dark"></button>
+                          <button class="color-swatch" data-color="#385723" title="Green Dark"></button>
+                          <button class="color-swatch" data-color="#1f4e79" title="Teal Dark"></button>
+                          <button class="color-swatch" data-color="#6a1b9a" title="Magenta Dark"></button>
+                          <button class="color-swatch" data-color="#006064" title="Cyan Dark"></button>
+                          <button class="color-swatch" data-color="#33691e" title="Olive Dark"></button>
+                        </div>
+                      </div>
+                      <div class="palette-section">
+                        <div class="palette-header">Standard Colors</div>
+                        <div class="palette-grid standard-colors">
+                          <button class="color-swatch" data-color="#c00000" title="Dark Red"></button>
+                          <button class="color-swatch" data-color="#ff0000" title="Red"></button>
+                          <button class="color-swatch" data-color="#ffc000" title="Orange"></button>
+                          <button class="color-swatch" data-color="#ffff00" title="Yellow"></button>
+                          <button class="color-swatch" data-color="#92d050" title="Light Green"></button>
+                          <button class="color-swatch" data-color="#00b050" title="Green"></button>
+                          <button class="color-swatch" data-color="#00b0f0" title="Light Blue"></button>
+                          <button class="color-swatch" data-color="#0070c0" title="Blue"></button>
+                          <button class="color-swatch" data-color="#002060" title="Dark Blue"></button>
+                          <button class="color-swatch" data-color="#7030a0" title="Purple"></button>
+                        </div>
+                      </div>
+                      <button class="more-colors-btn chat-more-colors">
+                        <span class="more-colors-icon">🎨</span>
+                        <span>More Colors...</span>
+                      </button>
+                      <input type="color" class="hidden-color-input chat-custom-color" value="#156082">
+                    </div>
+                  </div>
+                  <button class="demo-titlebar-btn min"></button>
+                  <button class="demo-titlebar-btn max"></button>
+                  <button class="demo-titlebar-btn close"></button>
+                </div>
+              </div>
+              <div class="demo-chat-body">
+                <!-- LEFT COLUMN -->
+                <div class="left-column" id="leftColumn">
+                  <div class="headings-section" id="headingsSection">
+                    <div class="section-header">Headings</div>
+                    <ul class="headings-list" id="headingsList">
+                    </ul>
+                  </div>
+                  <div class="v-resizer" id="vResizer1" data-top="headingsSection" data-bottom="projectSection"></div>
+                  <div class="project-section" id="projectSection">
+                    <div class="project-box">
+                      <div class="project-label">Project Connected</div>
+                      <div class="project-name">MEP_Floorplan_Model</div>
+                      <button class="project-ref-btn">+ Reference previous project</button>
+                    </div>
+                                      <div class="section-header" style="margin-top: 12px;">Files</div>
+                    <div class="files-list">
+                      <div class="file-tree">
+                        <!-- Project root folder -->
+                        <div class="tree-folder expanded">
+                          <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="folder-icon">▼</span> Project
+                          </div>
+                          <div class="tree-folder-content">
+                            <!-- Documents folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Documents
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <span class="tree-file-name">Specification_v1.docx</span>
+                                </div>
+                                <div class="tree-file">
+                                  <span class="tree-file-name">MEP_Coordination.pdf</span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Drawings folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Drawings
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <span class="tree-file-name">Floorplan_L01.dwg</span>
+                                </div>
+                                <div class="tree-file">
+                                  <span class="tree-file-name">Floorplan_L02.dwg</span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Models folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Models
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <span class="tree-file-name">MEP_Model_v3.rvt</span>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Schedules folder -->
+                            <div class="tree-folder expanded">
+                              <div class="tree-folder-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span class="folder-icon">▼</span> Schedules
+                              </div>
+                              <div class="tree-folder-content">
+                                <div class="tree-file">
+                                  <span class="tree-file-name">Equipment_Schedule.xlsx</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- UI Options Footer -->
+                  <div class="ui-options-footer">
+                    <div class="footer-separator"></div>
+                    <div class="footer-content">
+                      <div class="ui-option-row">
+                        <label class="ui-toggle-label" title="BUILD X. senses what you're trying to achieve and auto-completes tasks based on project context, standards, and previous specifications.">
+                          <span class="toggle-text"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> Intelligent Completion</span>
+                          <label class="ui-toggle">
+                            <input type="checkbox" id="intelligentCompletionToggle" checked>
+                            <span class="toggle-slider"></span>
+                          </label>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="resizer" id="resizer1" data-left="leftColumn" data-right="centerColumn"></div>
+                
+                <!-- CENTER COLUMN -->
+                <div class="center-column" id="centerColumn">
+                  <div class="ribbon">
+                    <div class="ribbon-tabs">
+                      <button class="ribbon-tab active" data-tab="home">Home</button>
+                      <button class="ribbon-tab" data-tab="insert">Insert</button>
+                      <button class="ribbon-tab" data-tab="layout">Layout</button>
+                      <button class="ribbon-tab" data-tab="references">References</button>
+                      <button class="ribbon-tab" data-tab="review">Review</button>
+                      <button class="ribbon-tab" data-tab="contracts">Contracts</button>
+                    </div>
+                    
+                    <!-- HOME TAB CONTENT -->
+                    <div class="ribbon-content active" data-tab="home">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Paste">
+                            <span class="ribbon-icon">📋</span>
+                            <span class="ribbon-label">Paste</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Cut (Ctrl+X)">✂ Cut</button>
+                            <button class="ribbon-btn small" title="Copy (Ctrl+C)">📄 Copy</button>
+                            <button class="ribbon-btn small" title="Format Painter">🖌 Format</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Clipboard</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <select class="ribbon-select font-select" title="Font">
+                              <option>Arial</option>
+                              <option>Calibri</option>
+                              <option selected>Inter</option>
+                              <option>Times New Roman</option>
+                            </select>
+                            <select class="ribbon-select size-select" title="Font Size">
+                              <option>10</option>
+                              <option selected>11</option>
+                              <option>12</option>
+                              <option>14</option>
+                              <option>16</option>
+                            </select>
+                            <button class="ribbon-btn icon" title="Grow Font">A↑</button>
+                            <button class="ribbon-btn icon" title="Shrink Font">A↓</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn icon" title="Bold (Ctrl+B)"><strong>B</strong></button>
+                            <button class="ribbon-btn icon" title="Italic (Ctrl+I)"><em>I</em></button>
+                            <button class="ribbon-btn icon" title="Underline (Ctrl+U)"><u>U</u></button>
+                            <button class="ribbon-btn icon" title="Strikethrough"><s>S</s></button>
+                            <button class="ribbon-btn icon" title="Subscript">X₂</button>
+                            <button class="ribbon-btn icon" title="Superscript">X²</button>
+                            <button class="ribbon-btn icon color" title="Text Color" style="border-bottom: 3px solid #000;">A</button>
+                            <button class="ribbon-btn icon highlight" title="Highlight">🖍</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Font</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn icon" title="Bullets">•≡</button>
+                            <button class="ribbon-btn icon" title="Numbering">1≡</button>
+                            <button class="ribbon-btn icon" title="Multilevel">⫶≡</button>
+                            <button class="ribbon-btn icon" title="Decrease Indent">⇤</button>
+                            <button class="ribbon-btn icon" title="Increase Indent">⇥</button>
+                            <button class="ribbon-btn icon" title="Sort">↕</button>
+                            <button class="ribbon-btn icon" title="Show/Hide ¶">¶</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn icon active" title="Align Left">⫷</button>
+                            <button class="ribbon-btn icon" title="Center">⫿</button>
+                            <button class="ribbon-btn icon" title="Align Right">⫸</button>
+                            <button class="ribbon-btn icon" title="Justify">☰</button>
+                            <button class="ribbon-btn icon" title="Line Spacing">⫼</button>
+                            <button class="ribbon-btn icon" title="Shading">▧</button>
+                            <button class="ribbon-btn icon" title="Borders">⊞</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Paragraph</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content styles-gallery">
+                          <button class="ribbon-style-btn active" title="Normal">Normal</button>
+                          <button class="ribbon-style-btn h1" title="Heading 1">H1</button>
+                          <button class="ribbon-style-btn h2" title="Heading 2">H2</button>
+                          <button class="ribbon-style-btn h3" title="Heading 3">H3</button>
+                          <button class="ribbon-style-btn clause" title="Clause">Clause</button>
+                          <button class="ribbon-style-btn note" title="Note">Note</button>
+                        </div>
+                        <div class="ribbon-group-label">Styles</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Find (Ctrl+F)">🔍 Find</button>
+                            <button class="ribbon-btn small" title="Replace (Ctrl+H)">⇄ Replace</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Select All">☑ Select</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Editing</div>
+                      </div>
+                      
+                    </div>
+                    
+                    <!-- INSERT TAB CONTENT -->
+                    <div class="ribbon-content" data-tab="insert">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Create a blank section.">New Section</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Imports section pre-filled with your project's equipment.">Import ▾</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Sections</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Shows clauses relevant to your project.">Insert ▾</button>
+                            <button class="ribbon-btn small smart" title="Quick access to clauses.">Quick</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Browse all clauses.">Browse</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Clauses</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Pulls equipment from your synced Revit model.">Import ▾</button>
+                            <button class="ribbon-btn small smart" title="Schedule table pre-filled with your equipment.">Table</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Links to equipment data.">Link</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Schedules</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Attaches your file.">Attach ▾</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Manage appendices.">Manage</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Appendices</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Insert hyperlink.">🔗 Link</button>
+                            <button class="ribbon-btn small smart" title="Cross-reference.">↗ Ref</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Insert bookmark">🔖 Mark</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Links</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content two-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small smart" title="Uniclass codes.">Uniclass ▾</button>
+                            <button class="ribbon-btn small smart" title="NRM2 codes.">NRM2</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="CAWS classification">CAWS</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Codes</div>
+                      </div>
+                    </div>
+                    
+                    <!-- LAYOUT TAB CONTENT -->
+                    <div class="ribbon-content" data-tab="layout">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Page margins">
+                            <span class="ribbon-icon">▭</span>
+                            <span class="ribbon-label">Margins</span>
+                          </button>
+                          <button class="ribbon-btn large" title="Page orientation">
+                            <span class="ribbon-icon">⬍</span>
+                            <span class="ribbon-label">Orientation</span>
+                          </button>
+                          <button class="ribbon-btn large" title="Paper size">
+                            <span class="ribbon-icon">📄</span>
+                            <span class="ribbon-label">Size</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small paper-size-btn" data-size="a4" title="A4">A4</button>
+                            <button class="ribbon-btn small paper-size-btn active" data-size="a3" title="A3">A3</button>
+                            <button class="ribbon-btn small paper-orient-btn active" data-orient="landscape" title="Landscape">↔ Land</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Page Setup</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Columns">
+                            <span class="ribbon-icon">☷</span>
+                            <span class="ribbon-label">Columns</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Page break">Page Brk</button>
+                            <button class="ribbon-btn small" title="Section break">Section</button>
+                            <button class="ribbon-btn small" title="Line numbers">Line #</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Page</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content three-rows">
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Indent left">← Indent</button>
+                            <button class="ribbon-btn small" title="Indent right">Indent →</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Spacing before">↑ Space</button>
+                            <button class="ribbon-btn small" title="Spacing after">Space ↓</button>
+                          </div>
+                          <div class="ribbon-row">
+                            <button class="ribbon-btn small" title="Line spacing">Line ▾</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Paragraph</div>
+                      </div>
+                    </div>
+                    
+                    <!-- REFERENCES TAB CONTENT -->
+                    <div class="ribbon-content" data-tab="references">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Table of Contents">
+                            <span class="ribbon-icon">☰</span>
+                            <span class="ribbon-label">TOC</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Add text">Add Text</button>
+                            <button class="ribbon-btn small" title="Update table">Update</button>
+                            <button class="ribbon-btn small" title="Insert footnote">Footnote</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Table of Contents</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="NEC4 Clauses">
+                            <span class="ribbon-icon">§</span>
+                            <span class="ribbon-label">NEC4</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Core clauses">Core</button>
+                            <button class="ribbon-btn small" title="Option clauses">Options ▾</button>
+                            <button class="ribbon-btn small" title="Z Clauses">Z Clauses</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Contracts</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Uniclass">
+                            <span class="ribbon-icon">🏷</span>
+                            <span class="ribbon-label">Uniclass</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="NRM2">NRM2</button>
+                            <button class="ribbon-btn small" title="BS EN Standards">BS EN</button>
+                            <button class="ribbon-btn small" title="ISO Standards">ISO</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Classification</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Insert citation">
+                            <span class="ribbon-icon">📚</span>
+                            <span class="ribbon-label">Citation</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Manage sources">Sources</button>
+                            <button class="ribbon-btn small" title="Bibliography">Biblio</button>
+                            <button class="ribbon-btn small" title="Insert index">Index</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Citations</div>
+                      </div>
+                    </div>
+                    
+                    <!-- REVIEW TAB CONTENT -->
+                    <div class="ribbon-content" data-tab="review">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Spelling & Grammar">
+                            <span class="ribbon-icon">✓</span>
+                            <span class="ribbon-label">Spelling</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Thesaurus">Thesaurus</button>
+                            <button class="ribbon-btn small" title="Word count">Word Count</button>
+                            <button class="ribbon-btn small" title="Language">Language</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Proofing</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="New comment">
+                            <span class="ribbon-icon">💬</span>
+                            <span class="ribbon-label">Comment</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Previous">Previous</button>
+                            <button class="ribbon-btn small" title="Next">Next</button>
+                            <button class="ribbon-btn small" title="Delete">Delete</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Comments</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Track changes">
+                            <span class="ribbon-icon">📝</span>
+                            <span class="ribbon-label">Track</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Accept">Accept ▾</button>
+                            <button class="ribbon-btn small" title="Reject">Reject ▾</button>
+                            <button class="ribbon-btn small" title="Compare">Compare</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Tracking</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large smart" title="Compliance check">
+                            <span class="ribbon-icon">⚡</span>
+                            <span class="ribbon-label">Comply</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small smart" title="Validate NEC4">NEC4</button>
+                            <button class="ribbon-btn small smart" title="Check Standards">Standards</button>
+                            <button class="ribbon-btn small smart" title="Clash Report">Clash</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Compliance</div>
+                      </div>
+                    </div>
+                    
+                    <!-- CONTRACTS TAB CONTENT -->
+                    <div class="ribbon-content" data-tab="contracts">
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Connect to contract">
+                            <span class="ribbon-icon">🔗</span>
+                            <span class="ribbon-label">Connect</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="View contract">View</button>
+                            <button class="ribbon-btn small" title="Sync data">Sync</button>
+                            <button class="ribbon-btn small" title="Disconnect">Disconnect</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Contract</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Contract data">
+                            <span class="ribbon-icon">📋</span>
+                            <span class="ribbon-label">Data</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Part 1 (Client)">Part 1</button>
+                            <button class="ribbon-btn small" title="Part 2 (Contractor)">Part 2</button>
+                            <button class="ribbon-btn small" title="Activity Schedule">Schedule</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Data</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Contract options">
+                            <span class="ribbon-icon">⚙</span>
+                            <span class="ribbon-label">Options</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Main Option A-F">Main ▾</button>
+                            <button class="ribbon-btn small" title="Dispute W1/W2">Dispute ▾</button>
+                            <button class="ribbon-btn small" title="Secondary">Secondary ▾</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Options</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Works information">
+                            <span class="ribbon-icon">📄</span>
+                            <span class="ribbon-label">Works</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Works Info">Works</button>
+                            <button class="ribbon-btn small" title="Site Info">Site</button>
+                            <button class="ribbon-btn small" title="Scope">Scope</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Works Info</div>
+                      </div>
+                      
+                      <div class="ribbon-separator"></div>
+                      
+                      <div class="ribbon-group">
+                        <div class="ribbon-group-content">
+                          <button class="ribbon-btn large" title="Tender documents">
+                            <span class="ribbon-icon">📑</span>
+                            <span class="ribbon-label">Tender</span>
+                          </button>
+                          <div class="ribbon-btn-stack">
+                            <button class="ribbon-btn small" title="Link Tender">Link</button>
+                            <button class="ribbon-btn small" title="Compare">Compare</button>
+                            <button class="ribbon-btn small" title="Awarded">Awarded</button>
+                          </div>
+                        </div>
+                        <div class="ribbon-group-label">Tender</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="editor-wrapper">
+                    <div class="editor-area" id="editorArea">
+                      <!-- Title Page -->
+                      <div class="editor-paper a3 landscape title-page" id="titlePage" contenteditable="true">
+                        <div class="title-page-content">
+                          <div class="title-logo-space">[Logo Space]</div>
+                          <h1 class="title-heading-1">MEP Specification</h1>
+                          <div class="title-separator"></div>
+                          <h2 class="title-heading-2">Aurora House Office Fit-Out</h2>
+                          <h3 class="title-heading-3">45 Broadgate Circle, London EC2M</h3>
+                        </div>
+                        <div class="title-date">January 2026</div>
+                      </div>
+                      
+                      <!-- Main Document Page -->
+                      <div class="editor-paper a3 landscape" id="editorPaper" contenteditable="true">
+                        <h1>MEP Specification</h1>
+                        <h2>1. Introduction</h2>
+                        <h3>1.1 Introduction</h3>
+                        <p>The work described in this document covers the supply, installation, setting to work and commissioning of the Mechanical, Electrical and Plumbing services installation for the Aurora House office fit-out works at 45 Broadgate Circle, London EC2M. The intention of the specification is to cover all MEP services for the Cat A and Cat B fit-out and will be supplemented with additional scope of works as the project develops.</p>
+                        
+                        <p class="editor-cursor-line" id="cursorLine"><span class="ghost-text-wrapper" id="ghostTextWrapper"><span class="ghost-text-inline" id="ghostTextInline">⇥ Tab to complete specification</span></span></p>
+                      </div>
+                      <div class="zoom-indicator" id="zoomIndicator">100%</div>
+                    </div>
+                    <!-- Editor Status Bar -->
+                    <div class="editor-status-bar">
+                      <div class="status-left">
+                        <span class="status-item page-count">Page 2 of 2</span>
+                        <span class="status-divider">|</span>
+                        <span class="status-item word-count" id="wordCount">0 words</span>
+                      </div>
+                      <div class="status-right">
+                        <span class="status-item structure-status detected">
+                          <span class="status-icon">✓</span>
+                          Structure detected
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- RESIZER 2: Center | Right -->
+                <div class="resizer" id="resizer2" data-left="centerColumn" data-right="rightColumn"></div>
+                
+                <!-- RIGHT COLUMN (chat + history) -->
+                <div class="right-column" id="rightColumn">
+                <div class="demo-chat-main">
+                  <div class="design-options-bar">
+                    <div class="design-tabs">
+                      <button class="design-tab active" data-tab="main">Option 1 <span class="tab-label">(main)</span><span class="tab-close">×</span></button>
+                      <button class="design-option-add" title="Add design option - allow the agent to run parallel design options so you can best decide which is best."><span class="plus-icon">+</span><span class="branch-icon">⑂</span></button>
+                    </div>
+                  </div>
+                  <div class="demo-chat-messages" id="chatMessagesIndex8">
+                  </div>
+                  <!-- Persistent Neural Node with Status -->
+                  <div class="chat-persistent-node-wrapper">
+                    <div class="chat-neural-node" id="chatPersistentNodeIndex8">
+                      <div class="chat-node-core"></div>
+                      <div class="chat-node-glow"></div>
+                      <div class="chat-node-pulse-ring"></div>
+                    </div>
+                    <div class="chat-node-status" id="chatNodeStatus">
+                      <span class="status-text"></span>
+                    </div>
+                  </div>
+                  <div class="demo-chat-input-row cursor-style">
+                    <div class="chat-input-wrapper">
+                      <span class="chat-input-placeholder" id="chatInputIndex8" contenteditable="true" data-placeholder="Message..." data-ghost="⇥ Tab to complete specification"></span>
+                      <div class="chat-input-controls">
+                        <div class="chat-input-left">
+                          <div class="chat-agent-dropdown">
+                            <span class="chat-agent-badge active-mode">∞ <span class="agent-mode-display">Designer</span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu agent-menu">
+                              <div class="dropdown-section-header">Mode</div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Designer">
+                                <div class="mode-info">
+                                  <span class="mode-icon">∞</span>
+                                  <span class="mode-name">Designer</span>
+                                  <span class="mode-tooltip">Full autonomous design mode - creates and places elements</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Designer" checked>
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Plan">
+                                <div class="mode-info">
+                                  <span class="mode-icon">☰</span>
+                                  <span class="mode-name">Plan</span>
+                                  <span class="mode-tooltip">Planning mode - outlines steps before executing</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Plan">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Debug">
+                                <div class="mode-info">
+                                  <span class="mode-icon">⚙</span>
+                                  <span class="mode-name">Debug</span>
+                                  <span class="mode-tooltip">Debug mode - identifies and fixes issues in existing designs</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Debug">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item mode-toggle-row" data-mode="Query">
+                                <div class="mode-info">
+                                  <span class="mode-icon">?</span>
+                                  <span class="mode-name">Query</span>
+                                  <span class="mode-tooltip">Query the model for answers and golden thread decision making logic</span>
+                                </div>
+                                <label class="mode-toggle">
+                                  <input type="checkbox" name="agentMode" value="Query">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="chat-model-dropdown">
+                            <span class="menu-icon" title="Model options">☰</span>
+                            <span class="chat-model-label"><span class="model-display"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> <span class="model-version-inline">0.1</span></span> <span class="dropdown-arrow">▾</span></span>
+                            <div class="chat-dropdown-menu model-menu">
+                              <div class="dropdown-section-header">Model</div>
+                              <div class="dropdown-item model-option active" data-model="Build X 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Advanced premium model incorporating every service</span></div>
+                              <div class="dropdown-item model-option" data-model="Build MEP 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">MEP</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Production-ready model optimized for mechanical, electrical and plumbing systems</span></div>
+                              <div class="dropdown-item model-option" data-model="Build A 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">A</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Architectural coordination model for space planning and layout optimization</span></div>
+                              <div class="dropdown-divider"></div>
+                              <div class="dropdown-item llm-toggle-row" title="Not recommended: LLM has not been specifically trained on inputs and is likely to make more mistakes. Please only use LLM for language exercises like specification and schedule writing.">
+                                <span>LLM Mode</span>
+                                <label class="llm-toggle">
+                                  <input type="checkbox" id="llmModeToggle">
+                                  <span class="toggle-slider"></span>
+                                </label>
+                              </div>
+                              <div class="dropdown-item llm-option disabled">Opus 4.5</div>
+                              <div class="dropdown-item llm-option disabled">Chat GPT 5.2</div>
+                              <div class="dropdown-item llm-option disabled">Gemini 3.0</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chat-input-right">
+                          <button class="chat-share-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                          <button class="chat-meeting-btn" id="meetingModeBtn" title="Activate meeting mode when in calls, so the agent can understand what the team discussion results in, allowing them to make changes instantly.">👥</button>
+                          <button class="chat-send-btn" id="chatSendIndex8" title="Send">↑</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="inner-resizer" id="innerResizer"></div>
+                <div class="demo-chat-history-sidebar">
+                  <!-- Sidebar Tab Switcher -->
+                  <div class="sidebar-tab-bar">
+                    <button class="sidebar-tab active" data-panel="agents" title="View all designer conversations">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span>Designers</span>
+                    </button>
+                    <button class="share-chat-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                  </div>
+                  
+                  <!-- Agents Panel -->
+                  <div class="sidebar-panel active" data-panel="agents">
+                    <div class="demo-history-search">
+                      <input type="text" class="history-search-input" id="agentHistorySearch" name="agentHistorySearch" placeholder="Search...">
+                    </div>
+                    <button class="new-agent-btn" title="Start a new designer conversation">+ New Designer</button>
+                    <div class="demo-history-list" id="chatHistoryIndex8">
+                      <!-- Specbuilder Manager -->
+                      <div class="demo-history-item manager-item active" data-conversation="manager" data-system="manager">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">
+                            <span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span>
+                          </div>
+                          <div class="demo-history-item-preview">Specbuilder Manager</div>
+                        </div>
+                      </div>
+                      
+                      <!-- Section Agents -->
+                      <div class="demo-history-item agent-item" data-conversation="introduction" data-system="introduction">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Introduction</div>
+                          <div class="demo-history-item-preview">Preparing overview...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="drainage" data-system="drainage">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Drainage</div>
+                          <div class="demo-history-item-preview">Analysing requirements...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="water" data-system="water">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Water Services</div>
+                          <div class="demo-history-item-preview">Checking systems...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="heating" data-system="heating">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Heating & Cooling</div>
+                          <div class="demo-history-item-preview">Evaluating HVAC...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="ventilation" data-system="ventilation">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Ventilation</div>
+                          <div class="demo-history-item-preview">Reviewing ventilation...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="controls" data-system="controls">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Controls & Plant</div>
+                          <div class="demo-history-item-preview">Checking BMS...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="containment" data-system="containment">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Containment</div>
+                          <div class="demo-history-item-preview">Planning routes...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="power" data-system="power">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Power</div>
+                          <div class="demo-history-item-preview">Analysing distribution...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="lighting" data-system="lighting">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Lighting</div>
+                          <div class="demo-history-item-preview">Calculating lux levels...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="firealarms" data-system="firealarms">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Fire Alarms</div>
+                          <div class="demo-history-item-preview">Checking zones...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                      <div class="demo-history-item agent-item" data-conversation="security" data-system="security">
+                        <div class="demo-history-item-content">
+                          <div class="demo-history-item-title">Security & Access</div>
+                          <div class="demo-history-item-preview">Reviewing access points...</div>
+                        </div>
+                        <svg class="agent-progress-ring" width="16" height="16" viewBox="0 0 16 16"><circle class="ring-bg" cx="8" cy="8" r="6"/><circle class="ring-fill" cx="8" cy="8" r="6" stroke-dasharray="37.7" stroke-dashoffset="37.7"/></svg>
+                      </div>
+                    </div>
+                    <div class="sidebar-footer">
+                      <div class="agent-progress-container" id="agentProgressContainer">
+                        <svg class="agent-progress-ring" width="20" height="20" viewBox="0 0 20 20">
+                          <circle class="progress-ring-bg" cx="10" cy="10" r="8" fill="none" stroke="#e0e0e0" stroke-width="2"/>
+                          <circle class="progress-ring-fill" id="progressRingFill" cx="10" cy="10" r="8" fill="none" stroke="#156082" stroke-width="2" stroke-linecap="round" stroke-dasharray="50.27" stroke-dashoffset="50.27" transform="rotate(-90 10 10)"/>
+                        </svg>
+                        <span class="progress-percent" id="progressPercent">0%</span>
+                      </div>
+                      <span class="footer-text" id="designerCount"><span id="agentCountNum">##</span> section agents</span>
+                    </div>
+                  </div>
+                </div>
+                </div> <!-- Close right-column -->
+              </div> <!-- Close demo-chat-body -->
+              <!-- Window Resize Edges -->
+              <div class="v8-resize-edge v8-resize-top" data-v8-edge="n"></div>
+              <div class="v8-resize-edge v8-resize-right" data-v8-edge="e"></div>
+              <div class="v8-resize-edge v8-resize-bottom" data-v8-edge="s"></div>
+              <div class="v8-resize-edge v8-resize-left" data-v8-edge="w"></div>
+              <div class="v8-resize-edge v8-resize-corner-se" data-v8-edge="se"></div>
+              <div class="v8-resize-edge v8-resize-corner-nw" data-v8-edge="nw"></div>
+              <div class="v8-resize-edge v8-resize-corner-ne" data-v8-edge="ne"></div>
+              <div class="v8-resize-edge v8-resize-corner-sw" data-v8-edge="sw"></div>
+            </div> <!-- Close demo-chat-box -->
+          </div> <!-- Close demo-chat-wrapper -->
+        </div> <!-- Close v8-center-panel -->
+    <!-- Right text column removed — content merged into left column -->
+  </div> <!-- Close v8-three-column -->
+</div>
+
+<script src="./js/WPFapplication.js"></script>
+<script src="./js/specbuilder.js"></script>
+<script>
+window.addEventListener('message', function(e) {
+  if (e.data === 'tabToComplete') {
+    var chatInput = document.getElementById('chatInputIndex8');
+    var chatSend = document.getElementById('chatSendIndex8');
+    var ghostWrapper = document.getElementById('ghostTextWrapper');
+    if (ghostWrapper) {
+      ghostWrapper.innerHTML = '<span style="color: #156082;">Generating specification...</span>';
+      setTimeout(function(){ ghostWrapper.style.display = 'none'; }, 2000);
+    }
+    if (chatInput && chatSend) {
+      chatInput.textContent = 'Finish Specification';
+      chatInput.dispatchEvent(new Event('input', { bubbles: true }));
+      setTimeout(function(){ chatSend.click(); }, 100);
+    }
+    var agents = document.querySelectorAll('.demo-history-item.agent-item');
+    agents.forEach(function(agent, i){
+      setTimeout(function(){ agent.classList.add('active'); agent.click(); }, 200 + i * 150);
+    });
+  }
+});
+</script>
+</body>
+</html>
