@@ -211,19 +211,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/accept_fix/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/add_revision_to_sheets_for_export/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/add_spec_custom_clause/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -290,12 +278,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/annotation_preferences_list_available_annotations/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/append_to_debug_action_log/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -470,12 +452,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/bounding_box_analysis_combine_parallel_services_into_thread/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/browse_files/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -805,19 +781,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/cancel_spec_generation_job/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/chat_resolve_at_reference_to_project_or_model_item_by_display_name/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/check_employer_requirements/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -877,12 +841,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/clash_manager_get_all_clash_results_from_latest_check/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/clash_manager_get_all_results_with_optional_filter/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -890,12 +848,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/clash_manager_get_clash_result_counts_over_time_from_history_file/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/clash_manager_get_clash_result_summary_counts_by_status_from_latest_check/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -913,37 +865,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/clash_manager_group_clash_results_from_latest_check_by_clash_test_name/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/clash_manager_group_clash_results_from_latest_check_by_level_and_proximity_zone/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/clash_manager_group_clash_results_from_latest_check_by_mep_category/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/clash_manager_group_clash_results_from_latest_check_by_mep_system_type/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/clash_manager_group_results_by_category/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/clash_manager_group_results_by_clash_test/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -992,12 +914,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/clash_solver_verify_resolution_for_element_pair/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/cloud_fix_status/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1129,12 +1045,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/conversation_search/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/convert_linked_rooms_to_host_mep_spaces/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -1165,30 +1075,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/create_spec_generation_job/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/debug_log/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/debug_status/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/debug_status/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/detect_ceiling_grid_tiles_and_free_points/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -1196,12 +1082,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/detect_project_folder_from_model_path/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/detect_spec_model_clashes/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1261,384 +1141,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_add_iso7200_revision_clouds_to_pdf_at_detected_changes/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_archive_superseded_drawing_revisions_to_archive_folder/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_build_date_matrix_drawing_issue_sheet_from_issued_folders/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_bulk_set_suitability_for_documents_on_cde_platform/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_compare_two_pdf_drawing_revisions_and_detect_changes/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_connect_to_asite_cde_using_session_credentials/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_connect_to_autodesk_forma_using_aps_oauth/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_connect_to_viewpoint_for_projects_using_oauth/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_detect_naming_convention_type_from_drawing_filename/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_detect_unbubbled_changes_and_add_revision_clouds_to_pdf/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_download_specific_revision_of_document_from_cde_platform/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_export_drawing_register_to_excel_in_aec_format/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_extract_drawing_number_from_pdf_title_block/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_generate_document_status_report_with_kpi_summary/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_generate_transmittal_issue_sheet_pdf_for_drawing_package/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_get_cross_platform_audit_trail_for_document/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_get_full_metadata_and_revision_history_for_document/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_get_issue_history_and_transmittal_references_for_document/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_get_master_document_register_for_project/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_get_revit_sheet_list_from_currently_open_model/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_issue_drawings_with_transmittal_to_recipients_on_platform/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_list_documents_across_all_connected_cde_platforms/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_list_suitability_codes_and_transitions_for_project/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_log_incoming_document_received_from_external_party/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_match_revit_sheets_to_exported_pdf_files_in_folder/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_refresh_master_register_from_all_connected_sources/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_rename_document_to_comply_with_bs1192_naming_convention/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_scan_connected_workspace_folder_for_drawing_files/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_scan_local_issued_folder_for_drawings_by_date/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_search_documents_by_code_title_or_discipline/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_send_issue_email_to_recipients_with_download_links/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_set_suitability_on_platform_with_transition_check/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_sync_document_between_cde_platforms_with_metadata/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_upload_drawing_to_viewpoint_with_naming_validation/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_upload_drawing_with_validation_comparison_and_clouds/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_upload_pdf_drawing_to_asite_cde_with_validation/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_upload_pdf_drawing_to_autodesk_forma_with_validation/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/document_controller_validate_filename_against_bs1192_naming_rules_for_project/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_add_revision/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_apply_renames/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_create_group/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_create_issued_folder/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_detect_project_folder/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_execute_export/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_generate_register/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_get_dwg_presets/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_get_groups/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_get_register_data/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_get_selection/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_get_settings/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_get_summary/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_load_configuration/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_open_issued_folder/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_read_sheets/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_rename_sheets/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_save_configuration/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_select_sheets/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_set_dwg_preset/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_set_format/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_set_merge_compress/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_set_naming_pattern/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_set_output_folder/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/drawing_exporter_update_group/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/error_manager_detect_corridors_below_compliance_width/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -1670,18 +1172,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/error_manager_find_rooms_below_compliance_area/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/error_manager_get_error_check_summary_from_latest_run_on_active_model/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/error_manager_get_error_results_from_latest_run_by_navigator_group/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1735,12 +1225,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/execute_command/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/execute_drawing_export_to_pdf_or_dwg/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -1753,37 +1237,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/export_clashes_xml/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/export_elements_as_json_by_category_or_room/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/export_spec_to_cobie/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/export_spec_to_pdf/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/export_spec_to_word/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/family_swap/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1885,12 +1339,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/functionality_wiring_run_self_test/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/functionality_wiring_run_workflow_corpus/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -1916,12 +1364,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/get_central_warning_log_summary/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_company_brand_profile/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1987,12 +1429,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/get_document_info/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/get_drawing_exporter_status_summary/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -2041,25 +1477,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/get_error_log/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/get_error_summary/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_error_summary/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_family_parameters_and_values/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2072,12 +1490,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/get_floor_slab_level/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_parameters/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2113,12 +1525,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/get_selection/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/get_sheet_export_groups/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -2137,60 +1543,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_applicable_standards/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_change_log/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_compliance_report/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_design_parameters/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_equipment_data/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_job/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_project_context/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_qa_findings/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_spec_version_diff/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/get_transfer_standards_history_for_project/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -2198,18 +1550,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/get_unresolved_errors/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_unresolved_errors/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/get_user_preferences/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2239,18 +1579,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/import_spec_survey_data/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/inject_chat_message/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/inject_chat_message/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -2270,12 +1598,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/layout_report_last_solver_run_details/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/link_spec_to_contract/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2443,12 +1765,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/list_spec_jobs/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/list_system_types/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -2504,12 +1820,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/load_saved_export_configuration_by_name/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/navigate_to_clash/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2588,24 +1898,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/open_issued_drawings_folder_in_explorer/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/parameter_editor_apply/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/parameter_editor_read/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/parameter_editor_update/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2767,12 +2059,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/qa_manager_run_smoke_test_for_error_check_capture_and_export_pipeline/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/qa_manager_supabase_family_probe_download_or_run_error_rules_on_instances/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -2786,18 +2072,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/read_file/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/read_file/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/read_memory/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2839,79 +2113,19 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/recent_chats/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/refresh_webview2_chat_ui/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/regenerate_spec_section/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/reject_fix/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/reject_fix/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/reload_dll/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/reload_ui/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/resolve_error/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/resolve_spec_qa_finding/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/routing_preferences_list_all_rules/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/run_j3_wiring_self_test/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/run_self_test_checklist/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/run_spec_compliance_check/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2929,30 +2143,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/search_files/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/search_parameters/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/search_spec_clause_library/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/select_by_ids/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/select_by_ids/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -2960,18 +2156,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/select_by_location/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/select_by_location/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/select_by_room/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -2984,12 +2168,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/select_sheets_for_export_by_criteria/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/self_test/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3031,31 +2209,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/set_parameter_values/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/set_parameters/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/set_parameters/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/set_spec_design_parameter/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/set_spec_manufacturer_preferences/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3079,18 +2233,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/snapshot_apply/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/snapshot_export/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/snapshot_export/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -3103,25 +2245,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/snapshot_query/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/snapshot_review/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/snapshot_review/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/snapshot_write/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3205,24 +2329,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/spawn_agent/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/stop_cloud_agent_and_disable_debug_mode/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/stop_debug/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/supermemory_add/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -3247,12 +2353,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/sync_spec_from_revit_model/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/tagging_preferences_get_smart_tag_placement_diagnostics/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -3260,12 +2360,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/tagging_preferences_list_auto_tag_rules/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/task_list/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3337,25 +2431,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/trigger_cloud_fix/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/ui_action_wpf/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/ui_action_wpf/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/ui_clipboard_read/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3373,25 +2449,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/ui_console_log/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/ui_inspect_webview/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/ui_inspect_webview/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/ui_inspect_wpf/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3421,18 +2479,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/update_file_access_permissions/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/update_memory/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/update_memory/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -3451,31 +2497,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/update_spec_clause/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/update_spec_project_context/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/tools/update_user_preferences/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/update_user_preferences/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/upload_company_brand_profile/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3494,18 +2516,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/tools/web_fetch/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/web_fetch/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/tools/web_search/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3565,12 +2575,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/tools/write_file/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/acknowledge-central-warning-log-entry/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -3602,12 +2606,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/add-filter-to-view/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/add-in-manager-manual/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3823,12 +2821,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/architecture-create-stairwell-shaft-and-stairs-between-two-levels/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/architecture-create-walls-from-flattened-curves/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -3961,12 +2953,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/assembly-code-family-export/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/auto-resolve-revit-warnings-with-default-fix/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -3974,12 +2960,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/batch-add-revision-to-sheets-by-filter/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/bip-checker/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -4232,12 +3212,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/capture-single-clash-result-image/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/categories/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -4711,18 +3685,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/compare-property/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/compare-two-ele/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/configure-view-template/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -4813,18 +3775,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/count-export-json-batch/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/count-export-json/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/create3-dsection-box/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -4903,12 +3853,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/create-solid/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/create-text-note/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -4928,36 +3872,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/cycle-through-clash-results-in-model/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/debug-canvas-size/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/debug-room-centroid/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/debug-scope-box-fit/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/debug-sheet-viewport/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/debug-void-heights/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -5005,12 +3919,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/detach-and-save/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/detection-find-external-unit-location-from-envelope/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -5036,12 +3944,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/dismiss-specific-revit-warning-by-index/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/dockable/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -5174,12 +4076,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/execute-approved-clash-plan-stub/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/execute-dynamic-code/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -5341,12 +4237,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/face-intersect/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/family-swap-batch-across-current-view/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -5402,12 +4292,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/filter-template-manager-rename-view-template/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/find-intersect/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -5581,12 +4465,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/mep-network-find-shortest-path-between-two-connected-elements/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/mepsystem-auto-fillet/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -5707,24 +4585,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/open-model-and-sync/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/open-model-from-cloud-simple/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/open-model-from-cloud-update-assembly-code/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/open-object-settings-and-styles-window/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -5786,12 +4646,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/operations-rotate-pipe-fitting-around-reference-pipe-axis/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/overall/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -6211,12 +5065,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/rvt-links/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/schematic-build-lv-from-amtech-export-to-dwg/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -6571,12 +5419,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/show-aichat/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/show-me-dispatch-by-element-count-router/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -6661,12 +5503,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/snapshot-export/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/snapshot-query/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -6680,12 +5516,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/snap-to-wall/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/soild-intersect/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -6757,36 +5587,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/test-create-sheets/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/test-eva/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/test-neural-loading/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/test-place-family-on-view/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/test-sheet-setup/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/text-styles-create-text-note-type/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -6853,31 +5653,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/unload-and-save-model-as-cloud/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/unpin-all-grids/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/update-assembly-code/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/update-clash-result-status/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/update-ufcode-base-family/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -6943,25 +5725,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://adelphos.ai/docs/commands/wall-opening/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/warning/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://adelphos.ai/docs/commands/workset-manager-batch-rename-and-assign-elements-by-category/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/workset-manager-create-standard-mep-worksets/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -6998,12 +5762,6 @@
   </url>
   <url>
     <loc>https://adelphos.ai/docs/commands/workset-manager-set-workset-visibility-default/index.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://adelphos.ai/docs/commands/worksets/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -7369,7 +6127,31 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://adelphos.ai/workflows/auto-tagging/index.html</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://adelphos.ai/workflows/drawing-export/index.html</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
     <loc>https://adelphos.ai/workflows/schedules/index.html</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://adelphos.ai/workflows/sheet-creation/index.html</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://adelphos.ai/workflows/workset-setup/index.html</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>

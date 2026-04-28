@@ -14,11 +14,49 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Display:opsz,wght@14..32,300;500;600&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  body { background: var(--ad-bg, #f5f3ef); }
+  html.dark-mode body { background: var(--ad-bg-dark, #1a1a1a); }
+
+  .demo-detail h1, .demo-detail h2, .demo-detail h3 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+  }
+  .demo-detail .lead, .demo-detail p, .demo-detail ul, .demo-detail ol,
+  .demo-detail .hero-video { max-width: none; }
+
+  .ref-table {
+    background: #eae8e4; border: none; border-radius: 14px; overflow: hidden;
+  }
+  .ref-table th {
+    background: rgba(0,0,0,0.04); color: var(--ad-teal, #156082);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-family: 'Inter Display', sans-serif; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .ref-table td { border-bottom: 1px solid rgba(0,0,0,0.06); color: #444; }
+  .ref-table tr:hover td { background: rgba(0,0,0,0.03); }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table code { font-family: 'Inter Display', sans-serif; font-size: 13px; font-weight: 500; color: #222; }
+
+  .pill { border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 500; }
+  .pill-pillar { background: rgba(21,96,130,0.12); color: var(--ad-teal, #156082); }
+  .pill-category { background: rgba(0,0,0,0.06); color: #555; }
+  .pill-coming { background: rgba(0,0,0,0.04); color: #999; }
+
+  html.dark-mode .ref-table { background: #2f2f2f; box-shadow: 0 8px 22px rgba(0,0,0,0.25); }
+  html.dark-mode .ref-table th { background: rgba(255,255,255,0.06); color: var(--ad-teal-light, #4a9bb8); border-bottom-color: rgba(255,255,255,0.10); }
+  html.dark-mode .ref-table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .ref-table tr:hover td { background: rgba(255,255,255,0.04); }
+  html.dark-mode .ref-table code { color: #fff; }
+  html.dark-mode .pill-pillar { background: rgba(74,155,184,0.18); color: var(--ad-teal-light, #4a9bb8); }
+  html.dark-mode .pill-category { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .pill-coming { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.40); }
+</style>
 </head>
 <body>
 
@@ -28,17 +66,17 @@
 <aside class="docs-left"></aside>
 <main class="docs-content demo-detail">
 
-  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Architecture Dimension From Element Edge To Wall</div>
+  <div class="crumbs"><a href="/docs/commands/index.html">Commands</a> &nbsp;›&nbsp; Annotation &nbsp;›&nbsp; Architecture Dimension From Element Edge To Wall</div>
 
   <h1 id="overview">Architecture Dimension From Element Edge To Wall</h1>
 
   <div class="meta-row" style="margin-bottom:24px;">
-    <span class="pill pill-pillar"></span>
+    <span class="pill pill-pillar">Annotation</span>
     <span class="pill pill-category">writes to model</span>
     <span class="pill pill-coming">Public API · not yet exposed</span>
   </div>
 
-  <p class="lead">Places a Dimension between the edge of a source element and the centreline reference of a target Wall, in the active plan view. Pure-logic edge picking is delegated to GetElementEdges.</p>
+  <p class="lead">Coming soon</p>
 
   <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document open; active view is a ViewPlan; selection contains one source element + one Wall, or both IDs supplied via resolvers.</p></div>
   <div class="callout callout-post"><strong>After it runs</strong><p>Exactly one new Dimension added to the active view, inside a single committed Transaction, audit trail recorded.</p></div>
@@ -47,7 +85,7 @@
     <video controls preload="metadata"
            poster="/sandbox/demo-assets/architecture-dimension-from-element-edge-to-wall/thumbnail.svg"
            data-src="/sandbox/demo-assets/architecture-dimension-from-element-edge-to-wall/video.mp4"
-           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop architecture-dimension-from-element-edge-to-wall/video.mp4 in to play'}));"></video>
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerHTML:'<svg width=&quot;48&quot; height=&quot;48&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.25)&quot; stroke-width=&quot;1.5&quot;><polygon points=&quot;5 3 19 12 5 21 5 3&quot;/></svg>'}));"></video>
   </div>
 
   <h2 id="when-to-use">When to use this</h2>
@@ -62,7 +100,7 @@
   
 
   <h2 id="decision-flow">Decision flow</h2>
-  <pre class="logictree">1) User or Bot picks source element + wall (resolvers: Resolver_SourceElementId, Resolver_WallId, Resolver_OffsetMm default=300). 2) Validate preconditions — Active view is ViewPlan; source element and wall exist in Doc; wall has a linear LocationCurve; else ErrorWire.WireError with reason and abort. 3) Open Transaction &quot;Dim edge → wall&quot;. 4) Call GetElementEdges.GetReferencesForDimension(Doc, [source, wall]) to obtain ReferenceArray; if count &amp;lt; 2 WireError + abort. 5) Compute the dimension line: midpoint between source BB centre and wall centreline, offset perpendicular to the wall centreline by Resolver_OffsetMm. 6) doc.Create.NewDimension(activeView, dimLine, refArray); commit Transaction. 7) Bot: return JSON {ok, dimension_id, value_mm, source_element_id, wall_id, view_id}. User: ribbon toast &quot;Dimension placed — {value_mm} mm.&quot; 8) Any exception during resolving / computing / creating → tracker.Fail(ex); ErrorWire.WireFault with structured payload {source_id, wall_id, view_id, offset_mm}. Transaction rolls back.</pre>
+  <pre class="logictree">1) User or Bot picks source element + wall (resolvers: source element id, wall id, offset mm default=300). 2) Validate preconditions — Active view is ViewPlan; source element and wall exist in Doc; wall has a linear LocationCurve; else ErrorWire.WireError with reason and abort. 3) Open Transaction &quot;Dim edge → wall&quot;. 4) Call GetElementEdges.GetReferencesForDimension(Doc, [source, wall]) to obtain ReferenceArray; if count &amp;lt; 2 WireError + abort. 5) Compute the dimension line: midpoint between source BB centre and wall centreline, offset perpendicular to the wall centreline by offset mm. 6) doc.Create.NewDimension(activeView, dimLine, refArray); commit Transaction. 7) Bot: return JSON {ok, dimension_id, value_mm, source_element_id, wall_id, view_id}. User: ribbon toast &quot;Dimension placed — {value_mm} mm.&quot; 8) Any exception during resolving / computing / creating → tracker.Fail(ex); ErrorWire.WireFault with structured payload {source_id, wall_id, view_id, offset_mm}. Transaction rolls back.</pre>
 
   <h2 id="what-youll-see">What you'll see in the chat</h2>
   <div class="ai-dialogue">
@@ -85,15 +123,10 @@
   </div>
 
   <h2 id="keywords">Keywords &amp; intent patterns</h2>
-  <p style="color:var(--text-muted);font-size:14px;">architecturedimensionfromelementedgetowall · dimension · wall · edge · architecture</p>
+  <p style="color:var(--text-muted);font-size:14px;">dimension to wall · edge to wall · element to wall dimension · drawing dimension · wall coordination dimension</p>
 
   <h2 id="related">Related</h2>
-  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
-
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
-    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
-    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
-  </p>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td>Annotation</td></tr></tbody></table>
 
 </main>
 <aside class="docs-right"></aside>
@@ -103,6 +136,6 @@
   const v = document.querySelector('.hero-video video');
   if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

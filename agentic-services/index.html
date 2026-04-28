@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agentic Services — Adelphos AI — Adelphos AI</title>
-<meta name="description" content="Adelphos AI ships seven flagship apps and three managed agentic services that take hours per week off MEP engineers — built on the MEP Bridge platform with 191 MCP tools and 163 Revit commands.">
+<meta name="description" content="Three managed services and four email agents that take hours per week off MEP engineers. Enterprise clients get Jason embedded in Teams, Adelphos Chat and the full project management UI.">
 <meta name="keywords" content="Adelphos AI agentic services, managed AI service, engineering practice services, AI Finances, AI Project Management, AI Document Controller, Specification Writer, Revit Modelling Agent, COBie Generator, Schematic Designer">
 <link rel="canonical" href="https://adelphos.ai/agentic-services/index.html">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="theme-color" content="#156082">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Agentic Services — Adelphos AI — Adelphos AI">
-<meta property="og:description" content="Adelphos AI ships seven flagship apps and three managed agentic services that take hours per week off MEP engineers — built on the MEP Bridge platform with 191 MCP tools and 163 Revit commands.">
+<meta property="og:description" content="Three managed services and four email agents that take hours per week off MEP engineers. Enterprise clients get Jason embedded in Teams, Adelphos Chat and the full project management UI.">
 <meta property="og:url" content="https://adelphos.ai/agentic-services/index.html">
 <meta property="og:image" content="https://adelphos.ai/images/og/default.png">
 <meta property="og:site_name" content="Adelphos AI">
@@ -19,7 +36,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@adelphos_ai">
 <meta name="twitter:title" content="Agentic Services — Adelphos AI — Adelphos AI">
-<meta name="twitter:description" content="Adelphos AI ships seven flagship apps and three managed agentic services that take hours per week off MEP engineers — built on the MEP Bridge platform with 191 MCP tools and 163 Revit commands.">
+<meta name="twitter:description" content="Three managed services and four email agents that take hours per week off MEP engineers. Enterprise clients get Jason embedded in Teams, Adelphos Chat and the full project management UI.">
 <meta name="twitter:image" content="https://adelphos.ai/images/og/default.png">
 <link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
 <script type="application/ld+json">
@@ -55,6 +72,7 @@
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Adelphos Agentic Services",
+  "description": "Three managed services and four email agents that take hours per week off MEP engineers. Enterprise clients get Jason embedded in Teams, Adelphos Chat and the full project management UI.",
   "url": "https://adelphos.ai/agentic-services/index.html",
   "mainEntity": {
     "@type": "ItemList",
@@ -141,9 +159,7 @@
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
 <style>
-  /* AGENTIC SERVICES INVENTORY — same vocabulary as apps-inventory.
-     One flagship section + grid of dark .app-tile derivatives. */
-
+  html { height: auto; overflow-y: auto; overflow-x: hidden; }
   body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
   html.dark-mode body { background: var(--ad-bg-dark); }
 
@@ -182,7 +198,177 @@
     margin: 0; max-width: 60ch;
   }
 
-  /* Section labels between managed + email rows */
+  /* Flagship card */
+  .ai-flagship {
+    margin: 0 0 var(--space-2xl);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 0;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 22px 50px rgba(30,52,72,0.16);
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  @media (hover: hover) {
+    .ai-flagship:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 30px 70px rgba(30,52,72,0.22);
+    }
+  }
+  .ai-flagship .copy {
+    padding: clamp(40px, 5vw, 56px);
+    display: flex; flex-direction: column; gap: 14px;
+    justify-content: center;
+    background: var(--ad-panel);
+  }
+  html.dark-mode .ai-flagship .copy { background: var(--ad-panel-dark); }
+  .ai-flagship .badge {
+    align-self: flex-start;
+    background: rgba(21,96,130,0.10);
+    color: var(--ad-teal);
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    padding: 5px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+  }
+  .ai-flagship h2 {
+    margin: 0;
+    font-family: var(--ad-font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #222;
+    max-width: var(--ad-measure);
+  }
+  .ai-flagship .claim {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+    max-width: var(--ad-measure);
+  }
+  .ai-flagship .feat-list {
+    list-style: none; padding: 0; margin: 6px 0 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ai-flagship .feat-list li {
+    padding: 0 0 0 20px;
+    position: relative;
+    font-family: var(--ad-font-body);
+    font-size: 14px;
+    font-weight: var(--ad-w-light);
+    line-height: 1.5;
+    color: var(--ad-text-3);
+  }
+  .ai-flagship .feat-list li::before {
+    content: '\2713'; position: absolute; left: 0; color: var(--ad-teal);
+    font-weight: var(--ad-w-medium);
+  }
+  .ai-flagship .feat-list li strong {
+    font-weight: var(--ad-w-medium); color: var(--ad-text-1);
+  }
+  .ai-flagship .tier-note {
+    margin-top: 4px;
+    font-family: var(--ad-font-mono);
+    font-size: 12px;
+    color: var(--ad-text-5);
+    letter-spacing: 0.02em;
+  }
+  .ai-flagship .arrow {
+    align-self: flex-start;
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: var(--ad-w-medium);
+    color: var(--ad-teal);
+    margin-top: 6px;
+  }
+  .ai-flagship .visual {
+    position: relative;
+    min-height: 480px;
+    overflow: hidden;
+    background: #f0f6fa;
+    display: flex; align-items: center; justify-content: center;
+  }
+  html.dark-mode .ai-flagship .visual { background: #1e2d3a; }
+
+  /* Workflow mockup inside flagship visual */
+  .wf-mock {
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 32px 28px;
+    width: 90%; max-width: 320px;
+  }
+  .wf-step {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 16px rgba(21,96,130,0.10);
+  }
+  html.dark-mode .wf-step { background: rgba(30,45,58,0.90); }
+  .wf-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--ad-teal);
+    color: #fff;
+    font-family: var(--ad-font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .wf-label {
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ad-text-1);
+    line-height: 1.35;
+  }
+  html.dark-mode .wf-label { color: #e0e0e0; }
+  .wf-connector {
+    width: 2px; height: 10px;
+    background: var(--ad-teal);
+    margin-left: 41px;
+    opacity: 0.4;
+  }
+
+  /* Tile workflow mini-steps */
+  .wf-tile-steps {
+    display: flex; gap: 6px; align-items: center;
+    padding: 10px 0 0;
+  }
+  .wf-tile-dot {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(21,96,130,0.15);
+    color: var(--ad-teal);
+    font-family: var(--ad-font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .wf-tile-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(21,96,130,0.20);
+  }
+  .wf-tile-tag {
+    font-family: var(--ad-font-body);
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.02em;
+    padding: 4px 0 0;
+  }
+
   .ai-section-label {
     margin: var(--space-2xl) 0 var(--space-md);
     font-family: var(--ad-font-display);
@@ -195,7 +381,6 @@
     border-top: 1px solid var(--ad-border);
   }
 
-  /* Tile grid — same .app-tile vocabulary as apps-inventory */
   .svc-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -220,20 +405,15 @@
   .svc-tile .visual {
     position: relative;
     aspect-ratio: 16 / 9;
-    background: rgba(255,255,255,0.05);
+    background: linear-gradient(135deg, #d6eaf3 0%, #e8f1f8 50%, #dce9f2 100%);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
-  }
-  .svc-tile .visual::before {
-    content: ''; position: absolute; inset: 0;
-    background: url('/images/revit-bg.png') center/cover no-repeat;
-    opacity: 0.12; z-index: 0;
   }
   .svc-tile .visual svg {
     position: relative; z-index: 1;
     width: 56px; height: 56px;
-    color: var(--ad-teal-light);
-    filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
+    color: var(--ad-teal);
+    filter: drop-shadow(0 8px 22px rgba(21,96,130,0.20));
   }
   .svc-tile .body {
     padding: 18px 20px 14px;
@@ -293,7 +473,6 @@
     color: var(--ad-text-5);
   }
 
-  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ───────────────────── */
   .ai-flagship:focus-visible,
   .svc-tile:focus-visible {
     outline: 2px solid var(--ad-teal);
@@ -302,6 +481,12 @@
   }
   .ai-flagship:active,
   .svc-tile:active { transform: scale(0.99); }
+
+  @media (max-width: 1100px) {
+    .ai-flagship { grid-template-columns: 1fr; }
+    .ai-flagship .visual { min-height: 260px; }
+    .wf-mock { max-width: 280px; }
+  }
 </style>
 </head>
 <body>
@@ -314,118 +499,120 @@
 
   <div class="ai-intro">
     <h1>Agentic Services</h1>
-    <p class="lead"></p>
+    <p class="lead">Three managed services and four email agents that take hours per week off MEP engineers. Enterprise clients get Jason embedded in Teams, Adelphos Chat and the full project management UI.</p>
   </div>
 
   
     <a class="ai-flagship" href="/agentic-services/finances/index.html">
       <div class="copy">
-        <span class="badge">Flagship · Managed by Adelphos</span>
+        <span class="badge">Enterprise &middot; Managed by Adelphos</span>
         <h2>AI Finances</h2>
-        <p class="claim">Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.</p>
-        <span class="arrow">Open AI Finances →</span>
+        <p class="claim">Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data. Adelphos monitors your project accounts in real time, reconciles incoming invoices against purchase orders, and generates monthly management accounts without manual data entry. The agent flags anomalies before they become problems and produces cash-flow forecasts based on your programme milestones.</p>
+        <ul class="feat-list"><li><strong>Automated Reconciliation</strong> &mdash; Matches invoices to POs and flags discrepancies within minutes</li>
+          <li><strong>Cash-flow Forecasting</strong> &mdash; Rolling 12-month forecast tied to your programme milestones</li>
+          <li><strong>Management Accounts</strong> &mdash; Monthly packs generated from live data — no spreadsheet assembly</li>
+          <li><strong>Anomaly Detection</strong> &mdash; Agent surfaces duplicate invoices, unusual line items, and budget overruns</li>
+          <li><strong>Audit Trail</strong> &mdash; Every transaction logged with full provenance for compliance</li>
+          <li><strong>Fee Proposal Drafting</strong> &mdash; Auto-generated proposals from your firm's job history, scope patterns and win/loss data</li>
+          <li><strong>Payment Risk Scoring</strong> &mdash; Upcoming payments ranked by likelihood of being missed, based on historical patterns</li></ul>
+        <span class="tier-note">Available on the Enterprise tier</span>
+        <span class="arrow">Open AI Finances &rarr;</span>
       </div>
       <div class="visual">
-        <img src="/logos/Node Logo.png" alt="AI Finances logo" onerror="this.style.opacity=0">
+        <div class="wf-mock">
+          <div class="wf-step"><span class="wf-num">1</span><span class="wf-label">Ask Jason in Adelphos Chat or @Jason in Teams</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">2</span><span class="wf-label">Agent reconciles invoices against POs in real time</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">3</span><span class="wf-label">See cashflow, upcoming payments, risk of missed deadlines</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">4</span><span class="wf-label">Monthly management accounts generated &mdash; ready for sign-off</span></div>
+          <div class="wf-connector"></div>
+          <div class="wf-step"><span class="wf-num">5</span><span class="wf-label">Fee proposals auto-drafted from your job history &amp; win/loss data</span></div>
+        </div>
       </div>
     </a>
 
   <h2 class="ai-section-label">Managed services</h2>
   <div class="svc-grid">
     <a class="svc-tile" href="/agentic-services/project-management/index.html">
-      <div class="visual">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="3"/>
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-  </svg></div>
+      <div class="visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"/></svg></div>
       <div class="body">
         <span class="surf">Managed service</span>
         <h3>AI Project Management</h3>
         <p class="claim">Programme tracking, risk registers and reporting — the agent keeps the project on rails.</p>
-        <span class="more">Open AI Project Management →</span>
+        <div class="wf-tile-steps"><span class="wf-tile-dot">1</span><span class="wf-tile-line"></span><span class="wf-tile-dot">2</span><span class="wf-tile-line"></span><span class="wf-tile-dot">3</span><span class="wf-tile-line"></span><span class="wf-tile-dot">4</span></div>
+        <span class="wf-tile-tag">Programme &rarr; Risk register &rarr; Status report &rarr; Stakeholder update</span>
+        <span class="more">Open AI Project Management &rarr;</span>
       </div>
     </a>
     <a class="svc-tile" href="/agentic-services/document-controller/index.html">
-      <div class="visual">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="3"/>
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-  </svg></div>
+      <div class="visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 1 1 8 0v3"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/></svg></div>
       <div class="body">
         <span class="surf">Managed service</span>
         <h3>AI Document Controller</h3>
         <p class="claim">Transmittals, registers, revision tracking — the agent runs your document control.</p>
-        <span class="more">Open AI Document Controller →</span>
+        <div class="wf-tile-steps"><span class="wf-tile-dot">1</span><span class="wf-tile-line"></span><span class="wf-tile-dot">2</span><span class="wf-tile-line"></span><span class="wf-tile-dot">3</span><span class="wf-tile-line"></span><span class="wf-tile-dot">4</span></div>
+        <span class="wf-tile-tag">Transmittal in &rarr; Auto-register &rarr; Chase approvals &rarr; Dashboard</span>
+        <span class="more">Open AI Document Controller &rarr;</span>
       </div>
     </a></div>
 
   <h2 class="ai-section-label">Email services</h2>
   <div class="svc-grid">
     <a class="svc-tile" href="/agentic-services/email-specifications/index.html">
-      <div class="visual">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="M3 7l9 6 9-6"/>
-  </svg></div>
+      <div class="visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
       <div class="body">
         <span class="surf">Email service</span>
         <h3>Specification Writer</h3>
         <p class="claim">Forward a brief, receive a complete MEP specification section.</p>
-        <span class="email-line">specs@adelphos.ai</span>
-        <span class="more">Open Specification Writer →</span>
+        
+        <div class="wf-tile-steps"><span class="wf-tile-dot">1</span><span class="wf-tile-line"></span><span class="wf-tile-dot">2</span><span class="wf-tile-line"></span><span class="wf-tile-dot">3</span></div>
+        <span class="wf-tile-tag">Email brief &rarr; NBS clauses selected &rarr; Word doc returned</span>
+        <span class="more">Open Specification Writer &rarr;</span>
       </div>
     </a>
     <a class="svc-tile" href="/agentic-services/email-revit-modelling/index.html">
-      <div class="visual">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="M3 7l9 6 9-6"/>
-  </svg></div>
+      <div class="visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
       <div class="body">
         <span class="surf">Email service</span>
         <h3>Revit Modelling Agent</h3>
         <p class="claim">Email a markup, receive the Revit model update.</p>
-        <span class="email-line">model@adelphos.ai</span>
-        <span class="more">Open Revit Modelling Agent →</span>
+        
+        <div class="wf-tile-steps"><span class="wf-tile-dot">1</span><span class="wf-tile-line"></span><span class="wf-tile-dot">2</span><span class="wf-tile-line"></span><span class="wf-tile-dot">3</span></div>
+        <span class="wf-tile-tag">Email markup &rarr; Agent updates model &rarr; RVT + changelog returned</span>
+        <span class="more">Open Revit Modelling Agent &rarr;</span>
       </div>
     </a>
     <a class="svc-tile" href="/agentic-services/email-cobie/index.html">
-      <div class="visual">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="M3 7l9 6 9-6"/>
-  </svg></div>
+      <div class="visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
       <div class="body">
         <span class="surf">Email service</span>
         <h3>COBie Generator</h3>
         <p class="claim">Forward the model, receive a validated COBie deliverable.</p>
-        <span class="email-line">cobie@adelphos.ai</span>
-        <span class="more">Open COBie Generator →</span>
+        
+        <div class="wf-tile-steps"><span class="wf-tile-dot">1</span><span class="wf-tile-line"></span><span class="wf-tile-dot">2</span><span class="wf-tile-line"></span><span class="wf-tile-dot">3</span></div>
+        <span class="wf-tile-tag">Email model &rarr; Schema validated &rarr; COBie spreadsheet returned</span>
+        <span class="more">Open COBie Generator &rarr;</span>
       </div>
     </a>
     <a class="svc-tile" href="/agentic-services/email-schematics/index.html">
-      <div class="visual">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="M3 7l9 6 9-6"/>
-  </svg></div>
+      <div class="visual"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
       <div class="body">
         <span class="surf">Email service</span>
         <h3>Schematic Designer</h3>
         <p class="claim">Describe the system, receive a production-ready schematic.</p>
-        <span class="email-line">schematics@adelphos.ai</span>
-        <span class="more">Open Schematic Designer →</span>
+        
+        <div class="wf-tile-steps"><span class="wf-tile-dot">1</span><span class="wf-tile-line"></span><span class="wf-tile-dot">2</span><span class="wf-tile-line"></span><span class="wf-tile-dot">3</span></div>
+        <span class="wf-tile-tag">Email brief &rarr; Schematic generated &rarr; DWG + PDF returned</span>
+        <span class="more">Open Schematic Designer &rarr;</span>
       </div>
     </a></div>
-
-  <p class="svci-stamp">
-    Auto-generated <code>2026-04-26T09:37:01.490Z</code> from <code>sandbox/data/agentic-services.json</code> (7 services).
-  </p>
 
 </main>
 <aside class="docs-right"></aside>
 </div>
 
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

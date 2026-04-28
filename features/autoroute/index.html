@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AutoRoute — Features — Adelphos AI</title>
-<meta name="description" content="Pipework auto-routed to its destinations — coordinated against structure, services and access.">
-<meta name="keywords" content="Adelphos AI, AutoRoute, MEP automation, Retrofit MEP schemes, Coordination-heavy commercial floors, Healthcare + lab plantrooms">
+<meta name="description" content="AI-driven spatial coordination of services through a real building — structure, other services, maintenance access, fall, and your office routing preferences.">
+<meta name="keywords" content="Adelphos AI, AutoRoute, MEP automation, AI engineering, Retrofit MEP schemes, Coordination-heavy commercial floors, Healthcare + lab plantrooms">
 <link rel="canonical" href="https://adelphos.ai/features/autoroute/index.html">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="theme-color" content="#156082">
 <meta property="og:type" content="product">
 <meta property="og:title" content="AutoRoute — Features — Adelphos AI">
-<meta property="og:description" content="Pipework auto-routed to its destinations — coordinated against structure, services and access.">
+<meta property="og:description" content="AI-driven spatial coordination of services through a real building — structure, other services, maintenance access, fall, and your office routing preferences.">
 <meta property="og:url" content="https://adelphos.ai/features/autoroute/index.html">
 <meta property="og:image" content="https://adelphos.ai/images/og/default.png">
 <meta property="og:site_name" content="Adelphos AI">
@@ -20,7 +37,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@adelphos_ai">
 <meta name="twitter:title" content="AutoRoute — Features — Adelphos AI">
-<meta name="twitter:description" content="Pipework auto-routed to its destinations — coordinated against structure, services and access.">
+<meta name="twitter:description" content="AI-driven spatial coordination of services through a real building — structure, other services, maintenance access, fall, and your office routing preferences.">
 <meta name="twitter:image" content="https://adelphos.ai/images/og/default.png">
 <link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
 <script type="application/ld+json">
@@ -60,7 +77,7 @@
   "url": "https://adelphos.ai/features/autoroute/index.html",
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "BIM / MEP Engineering",
-  "operatingSystem": "Revit 2022 → 2026 · Windows · loaded with the Revit Copilot.",
+  "operatingSystem": "Feature",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -177,1024 +194,339 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Inter narrowed to 300;500 (Adelphos override). No Montserrat. -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
 <style>
-  /* ════════════════════════════════════════════════════════════════════
-     APP DETAIL PAGE — single-law: every block is a derivative of
-     Sections 1+2 of templates/home.html. No new card style. Painted
-     artsy frame for the hero showcase, dark .rp-commands-card for
-     features/related/CTA, View 6 .demo-text-* for prose.
-     See: /opt/cursor/artifacts/PLAN.md Phase 7
-     ════════════════════════════════════════════════════════════════════ */
-
-  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html, body { overflow-y: auto !important; overflow-x: hidden !important; height: auto !important; }
+  body { background: var(--ad-bg); }
   html.dark-mode body { background: var(--ad-bg-dark); }
 
-  /* Wide layout, no rails (matches home) */
-  .docs-layout.ap-no-rails {
+  .docs-layout.fs-no-rails {
     grid-template-columns: minmax(0, 1fr) !important;
     width: 80% !important; max-width: none !important;
     margin-left: auto !important; margin-right: auto !important;
     padding-left: 0 !important; padding-right: 0 !important;
   }
-  .docs-layout.ap-no-rails > .docs-left,
-  .docs-layout.ap-no-rails > .docs-right { display: none !important; }
-  @media (max-width: 1100px) {
-    .docs-layout.ap-no-rails { width: 94% !important; }
-  }
+  .docs-layout.fs-no-rails > .docs-left,
+  .docs-layout.fs-no-rails > .docs-right { display: none !important; }
+  @media (max-width: 1100px) { .docs-layout.fs-no-rails { width: 94% !important; } }
 
-  /* ── MOTION ────────────────────────────────────────────────────────── */
-  @keyframes apRise {
+  @keyframes fsRise {
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: none; }
   }
-  .ap-reveal { animation: apRise 0.6s ease both; }
-  .ap-reveal.d1 { animation-delay: 0.05s; }
-  .ap-reveal.d2 { animation-delay: 0.15s; }
-  .ap-reveal.d3 { animation-delay: 0.25s; }
-  .ap-reveal.d4 { animation-delay: 0.35s; }
-  @media (prefers-reduced-motion: reduce) { .ap-reveal { animation: none; } }
+  .fs-reveal { animation: fsRise 0.6s ease both; }
+  .fs-reveal.d1 { animation-delay: 0.05s; }
+  .fs-reveal.d2 { animation-delay: 0.15s; }
+  .fs-reveal.d3 { animation-delay: 0.25s; }
+  .fs-reveal.d4 { animation-delay: 0.35s; }
+  @media (prefers-reduced-motion: reduce) { .fs-reveal { animation: none; } }
 
-  /* ── HERO — Section 2 derivative (two-column, painted frame right) ──── */
-  .ap-hero {
+  /* HERO — copy LEFT, video RIGHT (matches homepage .revit-panel-top) */
+  .fs-hero {
     margin: 56px 0 var(--space-2xl);
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 0;
-    align-items: stretch;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 0; align-items: stretch;
+    border-radius: var(--radius-lg); overflow: hidden;
     box-shadow: 0 22px 50px rgba(30,52,72,0.16);
   }
-
-  /* LEFT — copy column (white panel light / transparent dark) */
-  .ap-hero-copy {
-    padding: clamp(40px, 5vw, 64px);
+  .fs-hero-copy {
+    padding: clamp(36px, 5vw, 56px);
     display: flex; flex-direction: column; gap: 18px;
-    justify-content: center;
-    background: var(--ad-panel);
+    justify-content: center; background: var(--ad-panel);
   }
-  html.dark-mode .ap-hero-copy { background: var(--ad-panel-dark); }
-
-  .ap-crumb {
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-    color: var(--ad-text-5);
+  html.dark-mode .fs-hero-copy { background: var(--ad-panel-dark); }
+  .fs-crumb {
+    font-family: var(--ad-font-body); font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium); text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini); color: var(--ad-text-5);
   }
-  .ap-crumb a { color: var(--ad-teal); text-decoration: none; }
-  .ap-crumb a:hover { text-decoration: underline; }
-
-  .ap-badge {
-    align-self: flex-start;
-    background: rgba(21,96,130,0.10);
-    color: var(--ad-teal);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    padding: 6px 14px;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
+  .fs-crumb a { color: var(--ad-teal); text-decoration: none; }
+  .fs-crumb a:hover { text-decoration: underline; }
+  .fs-badge {
+    align-self: flex-start; background: rgba(21,96,130,0.10); color: var(--ad-teal);
+    font-family: var(--ad-font-body); font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium); padding: 6px 14px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: var(--ad-ls-mini);
   }
-
-  .ap-hero-copy h1 {
-    margin: 0;
-    font-family: var(--ad-font-display);
-    font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
-    max-width: var(--ad-measure);
+  .fs-hero-copy h1 {
+    margin: 0; font-size: clamp(30px, 3.6vw, 48px); font-weight: 600;
+    line-height: 1.05; letter-spacing: -0.03em; color: #222;
   }
-
-  .ap-claim {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: 18px;
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-row);
-    color: var(--ad-text-1);
-    max-width: var(--ad-measure);
+  .fs-hero-claim {
+    margin: 0; font-size: clamp(15px, 1.3vw, 18px); font-weight: 300;
+    line-height: 1.5; color: var(--ad-text-3); max-width: 30em;
   }
-
-  .ap-tag {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-    max-width: var(--ad-measure);
+  .fs-stats {
+    margin: 4px 0 0; font-family: var(--ad-font-body); font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-medium); color: var(--ad-text-2);
+    font-variant-numeric: tabular-nums; display: flex; flex-wrap: wrap; gap: 4px 14px;
   }
-
-  .ap-stats-inline {
-    margin: 4px 0 0;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-medium);
-    color: var(--ad-text-2);
-    font-variant-numeric: tabular-nums;
-    display: flex; flex-wrap: wrap; gap: 4px 14px;
-    max-width: var(--ad-measure);
+  .fs-stats .num { color: var(--ad-teal); margin-right: 4px; }
+  .fs-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+  .fs-cta-primary {
+    background: var(--ad-teal); color: #fff; padding: 13px 24px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s; min-height: 44px;
+    display: inline-flex; align-items: center;
   }
-  .ap-stats-inline .ap-stat-num {
-    color: var(--ad-teal);
-    margin-right: 4px;
-  }
-
-  .ap-actions {
-    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
-    margin-top: 8px;
-  }
-  .ap-cta-primary {
-    background: var(--ad-teal);
-    color: #fff;
-    padding: 13px 24px;
-    border-radius: 999px;
-    font-family: var(--ad-font-body);
-    font-size: 14px;
-    font-weight: var(--ad-w-medium);
-    text-decoration: none;
-    transition: transform 0.18s, box-shadow 0.18s;
-  }
-  .ap-cta-ghost {
-    color: var(--ad-teal);
-    padding: 13px 22px;
-    border-radius: 999px;
-    border: 1px solid rgba(21,96,130,0.30);
-    font-family: var(--ad-font-body);
-    font-size: 14px;
-    font-weight: var(--ad-w-medium);
-    text-decoration: none;
-    transition: background 0.18s;
+  .fs-cta-ghost {
+    color: var(--ad-teal); padding: 13px 22px; border-radius: 999px;
+    border: 1px solid rgba(21,96,130,0.30); font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: background 0.18s; min-height: 44px;
+    display: inline-flex; align-items: center;
   }
   @media (hover: hover) {
-    .ap-cta-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(21,96,130,0.30);
-    }
-    .ap-cta-ghost:hover { background: rgba(21,96,130,0.06); }
+    .fs-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(21,96,130,0.30); }
+    .fs-cta-ghost:hover { background: rgba(21,96,130,0.06); }
   }
-  .ap-cta-primary:active,
-  .ap-cta-ghost:active { transform: scale(0.98); }
-
-  /* RIGHT — painted artsy frame (Section 2 .revit-panel-bottom pattern) */
-  .ap-hero-frame {
-    position: relative;
-    min-height: 460px;
-    overflow: hidden;
-    background: #1a1a1a;
+  .fs-hero-video {
+    background: #111; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; min-height: 400px;
   }
-  .ap-hero-frame::before {
-    content: ''; position: absolute; inset: 0;
-    background: url('/images/revit-bg.png') center center / cover no-repeat;
-    z-index: 0;
+  .fs-hero-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .fs-video-placeholder {
+    color: rgba(255,255,255,0.35); font-family: var(--ad-font-mono); font-size: 13px;
+    display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
   }
-  .ap-hero-frame::after {
-    content: ''; position: absolute; inset: 0;
-    background: var(--ad-painted-overlay);
-    z-index: 0;
-  }
-  .ap-hero-frame .ap-hero-logo {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 240px; height: 240px;
-    object-fit: contain;
-    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55));
-    border-radius: 36px;
-  }
-
-  /* Phase 8.1: feature-page heroes don't use a PNG (the icon paths in
-     features.json point to app-logo PNGs that don't represent the
-     feature). Instead we hold a CSS schematic mockup at hero size. */
-  .ap-hero-frame .feat-hero-mock {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 380px; max-width: 88%;
-    aspect-ratio: 4 / 3;
-    border-radius: 18px;
-    background: rgba(20, 24, 32, 0.55);
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
-  }
-  .ap-hero-frame .feat-hero-mock .feat-mock {
-    position: absolute; inset: 0;
-  }
-
-  /* Per-slug schematic mockups (same shapes as the inventory tiles, just
-     scaled to hero size). Clash Solver: duct + pipe ramping over.
-     AutoRoute: 2 horizontal pipe lines with elbow indicators.
-     Plantroom: 3 equipment rectangles + a header pipe. Generic
-     fallback: 2 muted teal lines. */
-  .feat-mock-clash .feat-mock-duct {
-    position: absolute; left: 0; right: 0; top: 50%;
-    height: 14px; background: #b6bdc6;
-    transform: translateY(-50%);
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.20);
-  }
-  .feat-mock-clash .feat-mock-pipe-ramp {
-    position: absolute; left: 8%; right: 8%; top: 50%;
-    height: 38px;
-    background: #2eb8b8;
-    transform: translateY(-50%);
-    clip-path: polygon(0 60%, 28% 60%, 38% 0%, 62% 0%, 72% 60%, 100% 60%, 100% 100%, 72% 100%, 62% 40%, 38% 40%, 28% 100%, 0 100%);
-  }
-  .feat-mock-clash .feat-mock-marker {
-    position: absolute; top: 50%;
-    width: 14px; height: 14px;
-    background: #ff4d4d;
-    border-radius: 50%;
-    transform: translateY(-50%);
-    box-shadow: 0 0 12px rgba(255,77,77,0.8);
-  }
-  .feat-mock-clash .feat-mock-marker-1 { left: 32%; }
-  .feat-mock-clash .feat-mock-marker-2 { right: 32%; }
-
-  .feat-mock-autoroute .feat-mock-pipe {
-    position: absolute; left: 6%; right: 6%;
-    height: 8px;
-    border-radius: 4px;
-  }
-  .feat-mock-autoroute .feat-mock-pipe-1 { top: 32%; background: #2eb8b8; }
-  .feat-mock-autoroute .feat-mock-pipe-2 { top: 60%; background: #c43a3a; height: 6px; }
-  .feat-mock-autoroute .feat-mock-elbow {
-    position: absolute;
-    width: 14px; height: 14px;
-    border: 2px solid #2eb8b8;
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-    border-radius: 50% 0 0 0;
-  }
-  .feat-mock-autoroute .feat-mock-elbow-1 { left: 26%; top: calc(32% - 7px); }
-  .feat-mock-autoroute .feat-mock-elbow-2 { left: 70%; top: calc(32% - 7px); }
-
-  .feat-mock-plantroom .feat-mock-eq {
-    position: absolute; bottom: 16%;
-    width: 18%; height: 38%;
-    background: #9aa5b1;
-    border-radius: 4px;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.20);
-  }
-  .feat-mock-plantroom .feat-mock-eq-1 { left: 12%; }
-  .feat-mock-plantroom .feat-mock-eq-2 { left: 41%; }
-  .feat-mock-plantroom .feat-mock-eq-3 { left: 70%; }
-  .feat-mock-plantroom .feat-mock-header {
-    position: absolute; left: 8%; right: 8%; top: 30%;
-    height: 6px;
-    background: #2eb8b8;
-    border-radius: 3px;
-  }
-
-  .feat-mock-generic .feat-mock-line {
-    position: absolute; left: 10%; right: 10%;
-    height: 5px;
-    background: rgba(46,184,184,0.65);
-    border-radius: 3px;
-  }
-  .feat-mock-generic .feat-mock-line-1 { top: 38%; }
-  .feat-mock-generic .feat-mock-line-2 { top: 58%; right: 30%; }
-
   @media (max-width: 1100px) {
-    .ap-hero { grid-template-columns: 1fr; }
-    .ap-hero-frame { aspect-ratio: 16/10; min-height: auto; }
-    .ap-hero-frame .ap-hero-logo { width: 180px; height: 180px; }
-    .ap-hero-frame .feat-hero-mock { width: 320px; }
+    .fs-hero { grid-template-columns: 1fr; }
+    .fs-hero-video { aspect-ratio: 16/9; min-height: auto; }
   }
 
-  /* ── SECTION HEADINGS ───────────────────────────────────────────────── */
-  .docs-content h2 {
-    margin: var(--space-2xl) 0 var(--space-sm);
-    padding-top: var(--space-md);
+  /* ALTERNATING ROWS — image one side, 44px quote + detail other side */
+  .fs-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl); align-items: center;
+    padding: var(--space-xl) 0;
     border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
   }
-  html.dark-mode .docs-content h2 { color: var(--ad-text-1); }
-
-  .ap-section-sub {
-    margin: 0 0 var(--space-lg);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-    max-width: var(--ad-measure);
+  .fs-row.flip { direction: rtl; }
+  .fs-row.flip > * { direction: ltr; }
+  .fs-row-media {
+    border-radius: var(--radius-md); overflow: hidden;
+    background: #111; aspect-ratio: 16/10;
+    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    display: flex; align-items: center; justify-content: center;
   }
-
-  /* ── DESCRIPTION — two-column: detail + pull-quote ─────────────────── */
-  .ap-why {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-2xl);
-    align-items: start;
-    margin: var(--space-md) 0 var(--space-2xl);
+  .fs-row-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .fs-row-copy { display: flex; flex-direction: column; gap: 16px; }
+  .fs-row-copy .fs-display {
+    margin: 0; font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: clamp(24px, 2.8vw, 44px); font-weight: 500;
+    line-height: 1.15; letter-spacing: -0.025em; color: var(--ad-text-1);
   }
-  .ap-why-detail p {
-    margin: 0 0 18px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-    text-align: justify;
-    max-width: var(--ad-measure);
-  }
-  .ap-why-detail p:last-child { margin-bottom: 0; }
-  .ap-why-quote blockquote {
-    margin: 0;
-    padding: 0 0 0 24px;
-    border-left: 3px solid var(--ad-teal);
-    font-family: var(--ad-font-body);
-    font-size: 20px;
-    font-weight: var(--ad-w-light);
-    line-height: 1.4;
-    color: var(--ad-text-1);
+  .fs-row-copy .fs-body {
+    margin: 0; font-size: 18px; font-weight: 300; line-height: 1.6;
+    color: var(--ad-text-3); max-width: 50ch;
   }
   @media (max-width: 900px) {
-    .ap-why { grid-template-columns: 1fr; gap: var(--space-lg); }
-    .ap-why-quote blockquote { font-size: 18px; }
+    .fs-row, .fs-row.flip { grid-template-columns: 1fr; direction: ltr; gap: var(--space-lg); }
   }
 
-  /* ── WHAT MAKES IT DIFFERENT ──────────────────────────────────────── */
-  .ap-special {
-    margin: var(--space-sm) 0 var(--space-xl);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-row);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-row);
-    color: var(--ad-text-1);
-    max-width: 60ch;
-  }
-
-  /* ── THE SHIFT — two cards side by side ────────────────────────── */
-  .shift-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
-    margin: var(--space-md) 0 var(--space-xl);
-  }
-  .shift {
-    padding: 24px 26px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--ad-border);
-    background: var(--ad-panel);
-  }
-  .shift .lab {
-    margin: 0 0 10px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-    color: var(--ad-text-5);
-  }
-  .shift p:last-of-type {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-  }
-  .shift.before .lab { color: var(--ad-text-5); }
-  .shift.after .lab { color: var(--ad-teal); }
-  @media (max-width: 720px) { .shift-grid { grid-template-columns: 1fr; } }
-
-  /* ── FEATURES — dark .rp-commands-card with rp-feat-item rows.
-        Per Phase 7.4: NO rp-agent-spinner here (11 simultaneous
-        spinners on every app page is motion noise). Replace with
-        a static teal chevron. ─────────────────────────────────────── */
-  .ap-features-card {
-    position: static;
-    width: 100%;
-    height: auto;
-    margin: var(--space-md) 0 var(--space-xl);
-    padding: 32px 36px 28px;
-    color: #fff;
-    cursor: default;
-    user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
-  }
-  .ap-features-card .ap-features-header {
-    margin: 0 0 12px;
-    font-family: var(--ad-font-body);
-    font-size: 22px;
-    font-weight: var(--ad-w-card);
-    line-height: 1.2;
-    color: #fff;
-  }
-  .ap-features-card .ap-feat-chev {
-    width: 18px; height: 18px;
-    flex-shrink: 0;
-    color: var(--ad-teal-light);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    /* Phase 7.4: 4px translate on row hover only (not infinite). */
-    transition: transform 0.18s cubic-bezier(0.65, 0, 0.35, 1);
-  }
-  @media (hover: hover) {
-    .ap-features-card .rp-feat-item:hover .ap-feat-chev {
-      transform: translateX(4px);
-    }
-  }
-  .ap-feat-group-label {
-    margin: var(--space-md) 0 8px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-    color: var(--ad-teal-light);
-  }
-  .ap-feat-group-label:first-child { margin-top: 0; }
-
-  /* ── INSTALL ─────────────────────────────────────────────────────── */
-  .install-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--space-md);
-    padding: 22px 0;
+  /* RELATED APPS */
+  .fs-related { margin: var(--space-2xl) 0 var(--space-xl); }
+  .fs-related h2 {
+    margin: 0 0 var(--space-md); padding-top: var(--space-md);
     border-top: 1px solid var(--ad-border);
-    border-bottom: 1px solid var(--ad-border);
-    margin: var(--space-md) 0 var(--space-xl);
+    font-size: 32px; font-weight: 500; letter-spacing: -0.025em;
+    line-height: 1.15; color: var(--ad-text-1);
   }
-  .install-strip .install-tile {
-    padding: 16px 18px;
-    background: var(--ad-panel);
-    border: 1px solid var(--ad-border);
-    border-radius: var(--radius-md);
-    display: flex; flex-direction: column; gap: 6px;
-    color: var(--ad-teal);
+  .fs-related-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;
   }
-  .install-strip .install-glyph {
-    width: 22px; height: 22px;
-    color: var(--ad-teal);
-    margin-bottom: 2px;
-  }
-  .install-strip .pname {
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-    color: var(--ad-teal);
-  }
-  .install-strip .pspec {
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-1);
-  }
-
-  .install-meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-xl);
-  }
-  @media (max-width: 800px) { .install-meta { grid-template-columns: 1fr; gap: var(--space-md); } }
-  .install-meta h4 {
-    margin: 0 0 8px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-    color: var(--ad-text-5);
-  }
-  .install-meta ul { list-style: none; padding: 0; margin: 0; }
-  .install-meta li {
-    margin: 0 0 4px;
-    padding-left: 14px;
-    position: relative;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-1);
-  }
-  .install-meta li::before {
-    content: '·';
-    position: absolute; left: 0; top: 1px;
-    color: var(--ad-teal);
-    font-weight: var(--ad-w-medium);
-    font-size: 18px;
-  }
-  .install-meta .auth-text {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    color: var(--ad-text-1);
-  }
-
-  .install-cta-row {
-    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
-    margin-bottom: var(--space-xl);
-  }
-  .install-cta-row .cta-primary {
-    background: var(--ad-teal);
-    color: #fff;
-    padding: 13px 24px;
-    border-radius: 999px;
-    font-family: var(--ad-font-body);
-    font-size: 14px;
-    font-weight: var(--ad-w-medium);
-    text-decoration: none;
-    transition: transform 0.18s, box-shadow 0.18s;
-  }
-  .install-cta-row .cta-secondary {
-    color: var(--ad-teal);
-    padding: 13px 8px;
-    font-family: var(--ad-font-body);
-    font-size: 14px;
-    font-weight: var(--ad-w-medium);
-    text-decoration: none;
-  }
-  @media (hover: hover) {
-    .install-cta-row .cta-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(21,96,130,0.30);
-    }
-    .install-cta-row .cta-secondary:hover { text-decoration: underline; }
-  }
-
-  /* ── RELATED — dark .rp-commands-card derivative, 3-up.
-        Per Phase 7.6: same dark-card style as the home Section 3
-        carousel. Overrides the legacy .related-* rules in
-        css/bundles/page.css (which used --bg-card / --text — i.e.
-        the light surface vocabulary). */
-  .related-section { margin: var(--space-2xl) 0 var(--space-xl); }
-  .related-section h2 {
-    margin: 0 0 var(--space-md);
-    padding-top: var(--space-md);
-    border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
-  }
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 14px;
-  }
-  .related-card {
-    background: var(--ad-card-dark);
-    border: none;
-    border-radius: 14px;
-    padding: 22px 24px;
-    color: #fff;
-    text-decoration: none;
+  .fs-related-card {
+    background: var(--ad-card-dark); border: none; border-radius: 14px;
+    padding: 22px 24px; color: #fff; text-decoration: none;
     display: flex; flex-direction: column; gap: 6px;
     box-shadow: 0 8px 22px rgba(30,52,72,0.16);
     transition: transform 0.18s, box-shadow 0.18s;
   }
   @media (hover: hover) {
-    .related-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
-    }
+    .fs-related-card:hover { transform: translateY(-2px); box-shadow: 0 22px 50px rgba(30,52,72,0.22); }
   }
-  .related-card .related-kind {
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-    color: var(--ad-teal-light);
+  .fs-related-card .kind {
+    font-size: var(--ad-text-mini); font-weight: var(--ad-w-medium);
+    text-transform: uppercase; letter-spacing: var(--ad-ls-mini); color: var(--ad-teal-light);
   }
-  .related-card strong {
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-card);
-    font-weight: var(--ad-w-card);
-    line-height: 1.25;
-    color: #fff;
-  }
-  .related-card .related-desc {
-    font-family: var(--ad-font-body);
-    font-size: 14px;
-    font-weight: var(--ad-w-light);
-    line-height: 1.45;
-    color: rgba(255,255,255,0.65);
-  }
+  .fs-related-card strong { font-size: var(--ad-text-card); font-weight: var(--ad-w-card); line-height: 1.25; color: #fff; }
+  .fs-related-card .desc { font-size: 14px; font-weight: 300; line-height: 1.45; color: rgba(255,255,255,0.65); }
 
-  /* FAQ — keep the <details> behaviour but switch to single-law
-     surfaces. Light-mode answers sit on a white panel so they don't
-     compete with the dark related cards above. */
-  .faq-section h2 {
-    margin: var(--space-2xl) 0 var(--space-md);
-    padding-top: var(--space-md);
+  /* FAQ */
+  .fs-faq h2 {
+    margin: var(--space-2xl) 0 var(--space-md); padding-top: var(--space-md);
     border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
+    font-size: 32px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.15; color: var(--ad-text-1);
   }
-  .faq-list { display: flex; flex-direction: column; gap: 8px; }
-  .faq-item {
-    background: var(--ad-panel);
-    border: 1px solid var(--ad-border);
-    border-radius: var(--radius-md);
-    padding: 14px 18px;
-    transition: border-color 0.18s;
+  .fs-faq-list { display: flex; flex-direction: column; gap: 8px; }
+  .fs-faq-item {
+    background: var(--ad-panel); border: 1px solid var(--ad-border);
+    border-radius: var(--radius-md); padding: 14px 18px; transition: border-color 0.18s;
   }
-  .faq-item[open] { border-color: rgba(21,96,130,0.30); }
-  .faq-item summary {
-    font-family: var(--ad-font-body);
-    font-size: 15px;
-    font-weight: var(--ad-w-medium);
-    color: var(--ad-text-1);
-    cursor: pointer;
-    list-style: none;
-    position: relative;
-    padding-right: 24px;
+  .fs-faq-item[open] { border-color: rgba(21,96,130,0.30); }
+  .fs-faq-item summary {
+    font-size: 15px; font-weight: 500; color: var(--ad-text-1);
+    cursor: pointer; list-style: none; position: relative; padding-right: 24px;
   }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after {
-    content: '+';
-    position: absolute; right: 0; top: 50%;
-    transform: translateY(-50%);
-    color: var(--ad-teal);
-    font-size: 18px;
-    font-weight: var(--ad-w-medium);
-    transition: transform 0.18s;
+  .fs-faq-item summary::-webkit-details-marker { display: none; }
+  .fs-faq-item summary::after {
+    content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    color: var(--ad-teal); font-size: 18px; font-weight: 500; transition: transform 0.18s;
   }
-  .faq-item[open] summary::after { content: '−'; }
-  .faq-item .faq-answer {
-    margin-top: 10px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-  }
-  .faq-item .faq-answer p { margin: 0; }
-
-  /* ── AUDIENCE PILLS ──────────────────────────────────────────────── */
-  .ap-audience {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin: var(--space-sm) 0 var(--space-xl);
-  }
-  .ap-audience .ap {
-    padding: 10px 18px;
-    background: var(--ad-panel);
-    border: 1px solid var(--ad-border);
-    border-radius: 999px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    color: var(--ad-text-1);
+  .fs-faq-item[open] summary::after { content: '\2212'; }
+  .fs-faq-item .answer {
+    margin-top: 10px; font-size: var(--ad-text-body); font-weight: 300;
+    line-height: var(--ad-lh-body); color: var(--ad-text-3);
   }
 
-  /* ── END CTA — same dark .rp-commands-card as the home ─────────── */
-  .ap-end-cta {
-    position: static;
-    width: 100%;
-    height: auto;
-    margin: var(--space-2xl) 0 var(--space-lg);
-    padding: 36px 40px;
-    color: #fff;
-    cursor: default;
-    user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+  /* END CTA */
+  .fs-end-cta {
+    margin: var(--space-2xl) 0 var(--space-lg); padding: 36px 40px;
+    background: var(--ad-panel); border: 1px solid var(--ad-border);
+    border-radius: 14px; box-shadow: 0 8px 22px rgba(30,52,72,0.10);
     display: flex; flex-direction: column; gap: 8px;
   }
-  .ap-end-cta h3 {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: 28px;
-    font-weight: var(--ad-w-card);
-    line-height: 1.2;
-    color: #fff;
+  .fs-end-cta h3 {
+    margin: 0; font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 28px; font-weight: 500; line-height: 1.2; color: #333; letter-spacing: -0.02em;
   }
-  .ap-end-cta p {
-    margin: 0 0 8px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-row);
-    font-weight: var(--ad-w-light);
-    color: rgba(255,255,255,0.65);
-    max-width: 60ch;
+  .fs-end-cta p { margin: 0 0 8px; font-size: 14px; font-weight: 300; line-height: 1.55; color: var(--ad-text-3); max-width: 60ch; }
+  .fs-end-cta a {
+    align-self: flex-start; background: var(--ad-teal); color: #fff;
+    padding: 13px 24px; border-radius: 999px; font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: transform 0.18s, box-shadow 0.18s;
   }
-  .ap-end-cta a {
-    align-self: flex-start;
-    background: #fff;
-    color: var(--ad-teal);
-    padding: 13px 24px;
-    border-radius: 999px;
-    font-family: var(--ad-font-body);
-    font-size: 14px;
-    font-weight: var(--ad-w-medium);
-    text-decoration: none;
-    transition: transform 0.18s, box-shadow 0.18s;
-  }
-  @media (hover: hover) {
-    .ap-end-cta a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.30);
-    }
-  }
-  .ap-end-cta a:active { transform: scale(0.98); }
+  @media (hover: hover) { .fs-end-cta a:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(21,96,130,0.30); } }
 
-  /* ── HERO VIDEO (only when app.hero_video exists) ────────────────── */
-  .hero-video {
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    margin: 0 0 var(--space-2xl);
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+  /* FOCUS + ACTIVE */
+  .fs-cta-primary:focus-visible, .fs-cta-ghost:focus-visible, .fs-end-cta a:focus-visible,
+  .fs-crumb a:focus-visible, .fs-related-card:focus-visible {
+    outline: 2px solid var(--ad-teal); outline-offset: 2px; border-radius: 999px;
   }
-  .hero-video video { display: block; width: 100%; }
-
-  /* ── TIMESTAMP (build provenance, sub-footer) ─────────────────── */
-  .ap-stamp {
-    margin-top: 48px;
-    padding: 14px 18px;
-    background: var(--ad-panel);
-    border: 1px solid var(--ad-border);
-    border-radius: var(--radius-sm);
-    font-family: var(--ad-font-mono);
-    font-size: 12px;
-    color: var(--ad-text-5);
-  }
-
-  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ─────────────────────
-        Touch-target ≥ 44 px on every interactive surface, focus-visible
-        ring on every keyboard-reachable element, :active scale-down
-        feedback for touch users. Hover wrapped in @media (hover: hover)
-        elsewhere in the file. */
-  .ap-cta-primary,
-  .ap-cta-ghost,
-  .install-cta-row .cta-primary,
-  .install-cta-row .cta-secondary,
-  .ap-end-cta a {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .ap-cta-primary:focus-visible,
-  .ap-cta-ghost:focus-visible,
-  .install-cta-row .cta-primary:focus-visible,
-  .install-cta-row .cta-secondary:focus-visible,
-  .ap-end-cta a:focus-visible,
-  .clash-link:focus-visible,
-  .apps-roadmap-link:focus-visible,
-  .related-card:focus-visible,
-  .ap-crumb a:focus-visible {
-    outline: 2px solid var(--ad-teal);
-    outline-offset: 2px;
-    border-radius: 999px;
-  }
-  .ap-cta-primary:active,
-  .ap-cta-ghost:active,
-  .install-cta-row .cta-primary:active,
-  .ap-end-cta a:active,
-  .related-card:active { transform: scale(0.98); }
+  .fs-cta-primary:active, .fs-cta-ghost:active, .fs-end-cta a:active,
+  .fs-related-card:active { transform: scale(0.98); }
 </style>
 </head>
 <body>
 
 <script src="/sandbox/shell.js"></script>
 
-<div class="docs-layout wide ap-no-rails">
+<div class="docs-layout wide fs-no-rails">
 <aside class="docs-left"></aside>
 <main class="docs-content">
 
-  <!-- ═══ HERO — 2-col: copy LEFT, painted artsy frame with logo RIGHT ═══ -->
-  <section class="ap-hero ap-reveal d1">
-    <div class="ap-hero-copy">
-      <nav class="ap-crumb"><a href="/">Home</a> &rsaquo; <a href="/apps/index.html">Apps</a> &rsaquo; AutoRoute</nav>
-      <span class="ap-badge">Revit add-in</span>
+  <section class="fs-hero fs-reveal d1">
+    <div class="fs-hero-copy">
+      <nav class="fs-crumb"><a href="/">Home</a> &rsaquo; <a href="/apps/revit-copilot/index.html">Revit Copilot</a> &rsaquo; AutoRoute</nav>
+      <span class="fs-badge">Feature</span>
       <h1 id="overview">AutoRoute</h1>
-      <p class="ap-claim">Pipework auto-routed to its destinations — coordinated against structure, services and access.</p>
-      <p class="ap-tag">Tell AutoRoute the source and the destinations. It routes the run, picks the fittings, sizes the pipe, and hands you back an approved geometry.</p>
-      <p class="ap-stats-inline">
-        <span><span class="ap-stat-num">10–20 min</span>for 30–60 routes on a commercial floor</span><span aria-hidden="true">·</span>
-        <span><span class="ap-stat-num">Clash-free</span>against structure + other services</span><span aria-hidden="true">·</span>
-        <span><span class="ap-stat-num">House rules</span>applied automatically</span><span aria-hidden="true">·</span>
-        <span><span class="ap-stat-num">Audited</span>every clash resolved is logged</span></p>
-      <div class="ap-actions">
-        <a class="ap-cta-primary" href="https://app.adelphos.ai/autoroute">Run AutoRoute &rarr;</a>
-        <a class="ap-cta-ghost" href="/apps/index.html">See related apps</a>
+      <p class="fs-hero-claim">AI-driven spatial coordination of services through a real building — structure, other services, maintenance access, fall, and your office routing preferences.</p>
+      <p class="fs-stats">
+        <span><span class="num">10–20 min</span>for 30–60 routes on a commercial floor</span><span aria-hidden="true">·</span>
+        <span><span class="num">Clash-free</span>against structure + other services</span><span aria-hidden="true">·</span>
+        <span><span class="num">House rules</span>applied automatically</span><span aria-hidden="true">·</span>
+        <span><span class="num">Audited</span>every clash resolved is logged</span></p>
+      <div class="fs-actions">
+        <a class="fs-cta-primary" href="/apps/revit-copilot/index.html">Open Revit Copilot &rarr;</a>
+        <a class="fs-cta-ghost" href="/apps/index.html">See all apps</a>
       </div>
     </div>
-    <div class="ap-hero-frame">
-      <div class="feat-hero-mock">
-      <div class="feat-mock feat-mock-autoroute" aria-hidden="true">
-        <div class="feat-mock-pipe feat-mock-pipe-1"></div>
-        <div class="feat-mock-pipe feat-mock-pipe-2"></div>
-        <div class="feat-mock-elbow feat-mock-elbow-1"></div>
-        <div class="feat-mock-elbow feat-mock-elbow-2"></div>
-      </div></div>
+    <div class="fs-hero-video">
+      <div class="fs-video-placeholder">demo video — coming soon</div>
     </div>
   </section>
 
   
-
-  <!-- ═══ DESCRIPTION ═══ -->
-  <h2 id="description">Why use AutoRoute</h2>
-  <div class="ap-why ap-reveal d2">
-    <div class="ap-why-detail"><p>Provide a source (e.g. plant connection), a list of destinations (e.g. terminal units), and the live model. AutoRoute returns the optimal route considering the structural model, other services, maintenance access, fall (for drainage), and your office's routing preferences (e.g. avoid above electrical panels, prefer ceiling void over floor void).</p>
-      <p>Fittings are selected from your house family library and the pipe is sized per system rules (CIBSE / industry guides by default; your house rules if configured). The agent reports every clash it resolved and every assumption it made.</p>
-      <p>For a typical commercial floor with 30–60 routes, AutoRoute returns a coordinated geometry in 10–20 minutes against what is normally a half-day of senior engineer + modeller time. The biggest impact is on retrofit schemes where existing geometry constraints are dense — what would take a day of fighting takes 20 minutes of agent runtime.</p></div>
-    <aside class="ap-why-quote"><blockquote>AutoRoute will be the only routing service that designs against your real building — structure, services, access — and tells you what it changed and why.</blockquote></aside>
+  <div class="fs-row fs-reveal d2">
+    <div class="fs-row-media">
+      <div class="fs-video-placeholder">video 1 — coming soon</div>
+    </div>
+    <div class="fs-row-copy">
+      <p class="fs-display">Define source and destinations. The AI returns the optimal route considering the structural model, existing services, ceiling void depth and your house routing rules.</p>
+      <p class="fs-body">Provide a source connection, a list of terminal destinations and the live model. The AI considers the structural grid, other services already routed, ceiling void available depth, and your office preferences — avoid above electrical panels, prefer ceiling void over floor void, maintain minimum separation distances.</p>
+    </div>
   </div>
 
-  <!-- ═══ THE SHIFT ═══ -->
-  <h2 id="the-shift">The shift</h2>
-  <p class="ap-section-sub">What working looks like today versus with AutoRoute.</p>
-  <div class="shift-grid">
-         <div class="shift before"><p class="lab">Before</p><p>Pipework routing is iterative: route, clash, re-route, repeat. Most senior engineers spend more time fighting the route than designing the system.</p></div>
-         <div class="shift after"><p class="lab">After AutoRoute</p><p>Define the source, the destinations, and the constraints. AutoRoute returns the optimal route — coordinated, clash-free, fittings selected, sized, ready for review.</p></div>
-       </div>
+  <div class="fs-row flip fs-reveal d3">
+    <div class="fs-row-media">
+      <div class="fs-video-placeholder">video 2 — coming soon</div>
+    </div>
+    <div class="fs-row-copy">
+      <p class="fs-display">Fittings selected from your house family library. Pipe sized per CIBSE or your house rules. Drainage fall maintained automatically for SVP, AAV, foul and surface water.</p>
+      <p class="fs-body">The AI picks fittings from your office library, not a generic catalogue. Pipe sizing follows CIBSE or your configured house rules. For drainage runs, gradient and fall are maintained automatically — SVP, AAV, foul and surface water all handled with the correct minimum gradients.</p>
+    </div>
+  </div>
 
-  <!-- ═══ WHAT MAKES IT DIFFERENT ═══ -->
-  <h2 id="special">What makes it different</h2>
-  <p class="ap-special"></p>
-
-  <!-- ═══ FEATURES — dark .rp-commands-card, no spinners ═══ -->
-  <h2 id="features">Features</h2>
-  <p class="ap-section-sub">What AutoRoute does. Each line is a shipped capability.</p>
-  
-    <div class="ap-features-card rp-commands-card">
-      <h3 class="ap-features-header">AutoRoute capabilities</h3>
-      <div class="rp-feat-list">
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">Multi-destination routing</span>
-        <span class="rp-feat-desc">One source → many destinations, optimised as a network not a single run.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+  <div class="fs-row fs-reveal d4">
+    <div class="fs-row-media">
+      <div class="fs-video-placeholder">video 3 — coming soon</div>
     </div>
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">Live model awareness</span>
-        <span class="rp-feat-desc">Routes against the actual structural model and other live services.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+    <div class="fs-row-copy">
+      <p class="fs-display">Every clash the AI resolved is logged. Every constraint it relaxed is documented. One-click re-route when you change a constraint — only the affected runs recalculate.</p>
+      <p class="fs-body">Full auditability on every routing decision. Change a constraint — add a no-go zone, reduce the ceiling void, re-route a structural beam — and the AI recalculates only the affected runs. The rest stay put. What would take a senior engineer half a day takes the AI 10–20 minutes.</p>
     </div>
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">House routing preferences</span>
-        <span class="rp-feat-desc">Ceiling-void preference, no-go zones (e.g. above electrical), fall + access rules.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
-    </div>
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">Fittings + pipe sizing</span>
-        <span class="rp-feat-desc">Fittings from your house library; sizing per CIBSE / your house rules.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
-    </div>
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">Drainage fall handling</span>
-        <span class="rp-feat-desc">Maintains gradient / fall for SVP, AAV, foul + surface water routes.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
-    </div>
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">Maintenance access</span>
-        <span class="rp-feat-desc">HTM-08 / CIBSE Guide M clearances honoured along every route.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
-    </div>
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">Clash resolution log</span>
-        <span class="rp-feat-desc">Reports every clash it solved and every constraint it relaxed.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
-    </div>
-    <div class="rp-feat-item">
-      <div class="rp-feat-copy">
-        <span class="rp-feat-title">Refine + re-route</span>
-        <span class="rp-feat-desc">One-click change a constraint and the agent re-routes only the affected runs.</span>
-      </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
-    </div></div>
-    </div>
-
-  <!-- ═══ INSTALL ═══ -->
-  <h2 id="install">Install &amp; system</h2>
-  <p class="ap-section-sub">Where AutoRoute runs, what you need, and how to get it.</p>
-  
-    <div class="install-strip">
-      
-        <div class="install-tile">
-          <svg class="install-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17V8h5a3 3 0 0 1 0 6H7m6 3-3-3"/></svg>
-          <span class="pname">Revit add-in</span>
-          <span class="pspec">Revit 2022 → 2026 · Windows · loaded with the Revit Copilot.</span>
-        </div>
-        <div class="install-tile">
-          <svg class="install-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="0.6"/><circle cx="7" cy="17" r="0.6"/></svg>
-          <span class="pname">Service</span>
-          <span class="pspec">Or run via Adelphos — send the model and constraints, get the routed geometry back.</span>
-        </div>
-    </div>
-    <div class="install-meta">
-      
-        <div class="meta-block">
-          <h4>Requirements</h4>
-          <ul><li>Revit 2022+ if running in-Revit; otherwise Adelphos account only.</li><li>A live Revit model with structural + other-services link present.</li><li>Optional: house family library + routing-preferences config for best output.</li></ul>
-        </div>
-      
-        <div class="meta-block">
-          <h4>Sign-in</h4>
-          <p class="auth-text">Microsoft 365 SSO recommended.</p>
-        </div>
-    </div>
-    <div class="install-cta-row">
-      <a class="cta-primary" href="https://app.adelphos.ai/autoroute">Run AutoRoute →</a>
-      <a class="cta-secondary" href="/docs/index.html">Read the docs first</a>
-    </div>
-
-  <!-- ═══ WHO IT'S FOR ═══ -->
-  <h2 id="best-for">Who it's for</h2>
-  <div class="ap-audience"><span class="ap">Retrofit MEP schemes</span><span class="ap">Coordination-heavy commercial floors</span><span class="ap">Healthcare + lab plantrooms</span></div>
+  </div>
 
   
-    <section class="related-section" id="related" aria-label="Related content">
-      <h2>Related</h2>
-      <div class="related-grid"><a class="related-card" href="/features/plantroom-designer-3d/index.html">
-       <span class="related-kind">Feature</span>
-       <strong>3D Plantroom Designer</strong>
-       <span class="related-desc">An agentic 3D modeller that designs the plantroom, sizes the equipment, routes the services, and hands you a Revit model ready for issue.</span>
-     </a><a class="related-card" href="/apps/revit-copilot/index.html">
-       <span class="related-kind">App</span>
-       <strong>Revit Copilot</strong>
-       <span class="related-desc">Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.</span>
-     </a><a class="related-card" href="/apps/adelphos-chat/index.html">
-       <span class="related-kind">App</span>
-       <strong>Adelphos Chat</strong>
-       <span class="related-desc">Same agent. Same project context. Browser, phone, or desktop. The Adelphos Chat is the agent untethered from any one tool.</span>
-     </a></div>
-    </section>
+  <section class="fs-related" id="related" aria-label="Runs inside these apps">
+    <h2>Runs inside these apps</h2>
+    <div class="fs-related-grid">
+    <a class="fs-related-card" href="/apps/revit-copilot/index.html">
+      <span class="kind">App</span>
+      <strong>Revit Copilot</strong>
+      <span class="desc">Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.</span>
+    </a>
+    <a class="fs-related-card" href="/apps/adelphos-chat/index.html">
+      <span class="kind">App</span>
+      <strong>Adelphos Chat</strong>
+      <span class="desc">Same agent. Same project context. Browser, phone, or desktop. The Adelphos Chat is the agent untethered from any one tool.</span>
+    </a>
+    <a class="fs-related-card" href="/apps/schedule-builder/index.html">
+      <span class="kind">App</span>
+      <strong>Schedule Builder</strong>
+      <span class="desc">Schedule Builder asks for your data, applies your office templates and preferred manufacturers, builds the schedules into Revit, and runs a gap analysis against the live model.</span>
+    </a></div>
+  </section>
 
   
-    <section class="faq-section" id="faq" aria-label="Frequently asked questions">
-      <h2>Frequently asked questions</h2>
-      <p style="color:var(--text-muted);max-width:880px;margin:0 0 var(--space-md);">Quick answers AI engines (and humans) can pull from.</p>
-      <div class="faq-list">
-    <details class="faq-item" open>
-      <summary>What is AutoRoute?</summary>
-      <div class="faq-answer"><p>Tell AutoRoute the source and the destinations. It routes the run, picks the fittings, sizes the pipe, and hands you back an approved geometry.</p></div>
+  <section class="fs-faq" id="faq" aria-label="Frequently asked questions">
+    <h2>Frequently asked questions</h2>
+    <div class="fs-faq-list">
+    <details class="fs-faq-item" open>
+      <summary></summary>
+      <div class="answer"><p></p></div>
     </details>
-    <details class="faq-item">
-      <summary>What does AutoRoute do?</summary>
-      <div class="faq-answer"><p>Provide a source (e.g. plant connection), a list of destinations (e.g. terminal units), and the live model. AutoRoute returns the optimal route considering the structural model, other services, maintenance access, fall (for drainage), and your office's routing preferences (e.g. avoid above electrical panels, prefer ceiling void over floor void).</p></div>
+    <details class="fs-faq-item">
+      <summary></summary>
+      <div class="answer"><p></p></div>
     </details>
-    <details class="faq-item">
-      <summary>How is AutoRoute different from the manual workflow?</summary>
-      <div class="faq-answer"><p>Without AutoRoute: Pipework routing is iterative: route, clash, re-route, repeat. Most senior engineers spend more time fighting the route than designing the system. With AutoRoute: Define the source, the destinations, and the constraints. AutoRoute returns the optimal route — coordinated, clash-free, fittings selected, sized, ready for review.</p></div>
+    <details class="fs-faq-item">
+      <summary></summary>
+      <div class="answer"><p></p></div>
     </details>
-    <details class="faq-item">
-      <summary>How much time does AutoRoute save?</summary>
-      <div class="faq-answer"><p>Headline outcomes for AutoRoute: 10–20 min (for 30–60 routes on a commercial floor); Clash-free (against structure + other services); House rules (applied automatically); Audited (every clash resolved is logged).</p></div>
+    <details class="fs-faq-item">
+      <summary></summary>
+      <div class="answer"><p></p></div>
     </details>
-    <details class="faq-item">
-      <summary>Who is AutoRoute for?</summary>
-      <div class="faq-answer"><p>Retrofit MEP schemes; Coordination-heavy commercial floors; Healthcare + lab plantrooms.</p></div>
+    <details class="fs-faq-item">
+      <summary></summary>
+      <div class="answer"><p></p></div>
     </details></div>
-    </section>
+  </section>
 
-  <div class="ap-end-cta rp-commands-card">
-    <h3>Run AutoRoute.</h3>
-    <p>Built into the Adelphos platform. Self-serve where possible, managed where useful.</p>
-    <a href="https://app.adelphos.ai/autoroute">Run AutoRoute &rarr;</a>
+  <div class="fs-end-cta">
+    <h3>Try AutoRoute.</h3>
+    <p>Built into the Adelphos platform. Available through the Revit Copilot.</p>
+    <a href="/apps/revit-copilot/index.html">Open Revit Copilot &rarr;</a>
   </div>
-
-  <p class="ap-stamp">
-    Auto-generated <code>2026-04-26T09:55:41.489Z</code> from <code>sandbox/data/apps.json</code>.
-    Re-run with <code>adelphos_CLI auto-all</code>.
-  </p>
 
 </main>
 <aside class="docs-right"></aside>
 </div>
 
-<script>
-  document.querySelectorAll('video[data-src]').forEach(function(v){ if (!v.src) v.src = v.dataset.src; });
-</script>
 <script src="/sandbox/docs-shell.js"></script>
 </body>
 </html>

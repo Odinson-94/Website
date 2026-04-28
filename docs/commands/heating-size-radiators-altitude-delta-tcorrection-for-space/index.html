@@ -14,11 +14,49 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Display:opsz,wght@14..32,300;500;600&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  body { background: var(--ad-bg, #f5f3ef); }
+  html.dark-mode body { background: var(--ad-bg-dark, #1a1a1a); }
+
+  .demo-detail h1, .demo-detail h2, .demo-detail h3 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+  }
+  .demo-detail .lead, .demo-detail p, .demo-detail ul, .demo-detail ol,
+  .demo-detail .hero-video { max-width: none; }
+
+  .ref-table {
+    background: #eae8e4; border: none; border-radius: 14px; overflow: hidden;
+  }
+  .ref-table th {
+    background: rgba(0,0,0,0.04); color: var(--ad-teal, #156082);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-family: 'Inter Display', sans-serif; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .ref-table td { border-bottom: 1px solid rgba(0,0,0,0.06); color: #444; }
+  .ref-table tr:hover td { background: rgba(0,0,0,0.03); }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table code { font-family: 'Inter Display', sans-serif; font-size: 13px; font-weight: 500; color: #222; }
+
+  .pill { border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 500; }
+  .pill-pillar { background: rgba(21,96,130,0.12); color: var(--ad-teal, #156082); }
+  .pill-category { background: rgba(0,0,0,0.06); color: #555; }
+  .pill-coming { background: rgba(0,0,0,0.04); color: #999; }
+
+  html.dark-mode .ref-table { background: #2f2f2f; box-shadow: 0 8px 22px rgba(0,0,0,0.25); }
+  html.dark-mode .ref-table th { background: rgba(255,255,255,0.06); color: var(--ad-teal-light, #4a9bb8); border-bottom-color: rgba(255,255,255,0.10); }
+  html.dark-mode .ref-table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .ref-table tr:hover td { background: rgba(255,255,255,0.04); }
+  html.dark-mode .ref-table code { color: #fff; }
+  html.dark-mode .pill-pillar { background: rgba(74,155,184,0.18); color: var(--ad-teal-light, #4a9bb8); }
+  html.dark-mode .pill-category { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .pill-coming { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.40); }
+</style>
 </head>
 <body>
 
@@ -28,7 +66,7 @@
 <aside class="docs-left"></aside>
 <main class="docs-content demo-detail">
 
-  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Heating Size Radiators Altitude Delta T Correction For Space</div>
+  <div class="crumbs"><a href="/docs/commands/index.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Heating Size Radiators Altitude Delta T Correction For Space</div>
 
   <h1 id="overview">Heating Size Radiators Altitude Delta T Correction For Space</h1>
 
@@ -38,7 +76,7 @@
     <span class="pill pill-coming">Public API · not yet exposed</span>
   </div>
 
-  <p class="lead">HeatingSizeRadiatorsAltitudeDeltaTCorrectionForSpaceCommand — altitude-corrected sizing.</p>
+  <p class="lead">Coming soon</p>
 
   
   
@@ -47,7 +85,7 @@
     <video controls preload="metadata"
            poster="/sandbox/demo-assets/heating-size-radiators-altitude-delta-tcorrection-for-space/thumbnail.svg"
            data-src="/sandbox/demo-assets/heating-size-radiators-altitude-delta-tcorrection-for-space/video.mp4"
-           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop heating-size-radiators-altitude-delta-tcorrection-for-space/video.mp4 in to play'}));"></video>
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerHTML:'<svg width=&quot;48&quot; height=&quot;48&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.25)&quot; stroke-width=&quot;1.5&quot;><polygon points=&quot;5 3 19 12 5 21 5 3&quot;/></svg>'}));"></video>
   </div>
 
   
@@ -94,11 +132,6 @@
   <h2 id="related">Related</h2>
   <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
 
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
-    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
-    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
-  </p>
-
 </main>
 <aside class="docs-right"></aside>
 </div>
@@ -107,6 +140,6 @@
   const v = document.querySelector('.hero-video video');
   if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

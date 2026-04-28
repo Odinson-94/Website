@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Documentation — Adelphos AI</title>
@@ -145,14 +162,14 @@
   <div class="dx-grid">
 
     <a class="dx-tile" href="/docs/tools/index.html">
-      <span class="head">561 MCP tools</span>
+      <span class="head">395 MCP tools</span>
       <span class="name">Read &amp; query tools</span>
       <span class="title">/docs/tools/</span>
       <span class="desc">Read-only utilities the AI calls to query the model — list rooms, get document info, snapshot queries.</span>
     </a>
 
     <a class="dx-tile" href="/docs/commands/index.html">
-      <span class="head">573 Revit commands</span>
+      <span class="head">532 Revit commands</span>
       <span class="name">Action commands</span>
       <span class="title">/docs/commands/</span>
       <span class="desc">Action commands that modify the Revit model — place SVPs, extend connectors, generate sheets.</span>
@@ -188,15 +205,10 @@
 
   </div>
 
-  <p class="dx-stamp">
-    Auto-generated <code>2026-04-26T09:37:01.477Z</code> from the live registries.
-    Re-run with <code>adelphos_CLI auto-all</code>.
-  </p>
-
 </main>
 <aside class="docs-right"></aside>
 </div>
 
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

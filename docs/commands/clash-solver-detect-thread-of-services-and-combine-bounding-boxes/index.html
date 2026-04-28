@@ -14,11 +14,49 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Display:opsz,wght@14..32,300;500;600&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  body { background: var(--ad-bg, #f5f3ef); }
+  html.dark-mode body { background: var(--ad-bg-dark, #1a1a1a); }
+
+  .demo-detail h1, .demo-detail h2, .demo-detail h3 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+  }
+  .demo-detail .lead, .demo-detail p, .demo-detail ul, .demo-detail ol,
+  .demo-detail .hero-video { max-width: none; }
+
+  .ref-table {
+    background: #eae8e4; border: none; border-radius: 14px; overflow: hidden;
+  }
+  .ref-table th {
+    background: rgba(0,0,0,0.04); color: var(--ad-teal, #156082);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-family: 'Inter Display', sans-serif; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .ref-table td { border-bottom: 1px solid rgba(0,0,0,0.06); color: #444; }
+  .ref-table tr:hover td { background: rgba(0,0,0,0.03); }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table code { font-family: 'Inter Display', sans-serif; font-size: 13px; font-weight: 500; color: #222; }
+
+  .pill { border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 500; }
+  .pill-pillar { background: rgba(21,96,130,0.12); color: var(--ad-teal, #156082); }
+  .pill-category { background: rgba(0,0,0,0.06); color: #555; }
+  .pill-coming { background: rgba(0,0,0,0.04); color: #999; }
+
+  html.dark-mode .ref-table { background: #2f2f2f; box-shadow: 0 8px 22px rgba(0,0,0,0.25); }
+  html.dark-mode .ref-table th { background: rgba(255,255,255,0.06); color: var(--ad-teal-light, #4a9bb8); border-bottom-color: rgba(255,255,255,0.10); }
+  html.dark-mode .ref-table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .ref-table tr:hover td { background: rgba(255,255,255,0.04); }
+  html.dark-mode .ref-table code { color: #fff; }
+  html.dark-mode .pill-pillar { background: rgba(74,155,184,0.18); color: var(--ad-teal-light, #4a9bb8); }
+  html.dark-mode .pill-category { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .pill-coming { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.40); }
+</style>
 </head>
 <body>
 
@@ -28,17 +66,17 @@
 <aside class="docs-left"></aside>
 <main class="docs-content demo-detail">
 
-  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Clash Solver Detect Thread Of Services And Combine Bounding Boxes</div>
+  <div class="crumbs"><a href="/docs/commands/index.html">Commands</a> &nbsp;›&nbsp; Clash Manager / Solver &nbsp;›&nbsp; Clash Solver Detect Thread Of Services And Combine Bounding Boxes</div>
 
   <h1 id="overview">Clash Solver Detect Thread Of Services And Combine Bounding Boxes</h1>
 
   <div class="meta-row" style="margin-bottom:24px;">
-    <span class="pill pill-pillar"></span>
+    <span class="pill pill-pillar">Clash Manager / Solver</span>
     <span class="pill pill-category">writes to model</span>
     <span class="pill pill-coming">Public API · not yet exposed</span>
   </div>
 
-  <p class="lead">ClashSolverDetectThreadOfServicesAndCombineBoundingBoxesCommand — PDF &quot;THREAD_OF_SERVICES&quot;. Identify parallel-run groups and return combined BBs.</p>
+  <p class="lead">Coming soon</p>
 
   <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document; input element ids (resolver or selection); each element has a BoundingBox.</p></div>
   <div class="callout callout-post"><strong>After it runs</strong><p>No mutation; audit records threads + unthreaded.</p></div>
@@ -47,7 +85,7 @@
     <video controls preload="metadata"
            poster="/sandbox/demo-assets/clash-solver-detect-thread-of-services-and-combine-bounding-boxes/thumbnail.svg"
            data-src="/sandbox/demo-assets/clash-solver-detect-thread-of-services-and-combine-bounding-boxes/video.mp4"
-           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop clash-solver-detect-thread-of-services-and-combine-bounding-boxes/video.mp4 in to play'}));"></video>
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerHTML:'<svg width=&quot;48&quot; height=&quot;48&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.25)&quot; stroke-width=&quot;1.5&quot;><polygon points=&quot;5 3 19 12 5 21 5 3&quot;/></svg>'}));"></video>
   </div>
 
   <h2 id="when-to-use">When to use this</h2>
@@ -73,9 +111,9 @@
   
 
   <h2 id="decision-flow">Decision flow</h2>
-  <pre class="logictree">1) Resolve input ids: Resolver_ElementIds (Bot) else active selection (Human).
+  <pre class="logictree">1) Resolve input ids: element ids (Bot) else active selection (Human).
 2) WireError if fewer than 2 element ids (nothing to thread).
-3) angle_tol_deg = Resolver_AngleTolDeg ?? 5.0; lateral_tol_mm = Resolver_LateralTolMm ?? 300.0.
+3) angle_tol_deg = angle tol deg ?? 5.0; lateral_tol_mm = lateral tol mm ?? 300.0.
 4) Call CombineBoundingBoxesSafely.Combine(doc, ids, angle, lateral).
 5) Serialise threads + unthreaded into tracker outputs.
 6) Human path: TaskDialog summary &quot;N threads, X unthreaded&quot;.</pre>
@@ -104,12 +142,7 @@
   <p style="color:var(--text-muted);font-size:14px;">clashsolverdetectthreadofservicesandcombineboundingboxes · thread of services · combine parallel bb</p>
 
   <h2 id="related">Related</h2>
-  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
-
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
-    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
-    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
-  </p>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td>Clash Manager / Solver</td></tr></tbody></table>
 
 </main>
 <aside class="docs-right"></aside>
@@ -119,6 +152,6 @@
   const v = document.querySelector('.hero-video video');
   if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

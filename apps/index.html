@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apps — Adelphos AI — Adelphos AI</title>
@@ -172,8 +189,19 @@
      (same .app-card vocabulary as Section 3 of the home).
      NO uniform 3-col grid (banned). NO multi-tone gradients. */
 
-  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html, body { overflow-y: auto !important; overflow-x: hidden !important; height: auto !important; }
+  body { background: var(--ad-bg); }
   html.dark-mode body { background: var(--ad-bg-dark); }
+
+  @keyframes fiRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .fi-reveal { animation: fiRise 0.6s ease both; }
+  .fi-reveal.d1 { animation-delay: 0.05s; }
+  .fi-reveal.d2 { animation-delay: 0.15s; }
+  .fi-reveal.d3 { animation-delay: 0.25s; }
+  @media (prefers-reduced-motion: reduce) { .fi-reveal { animation: none; } }
 
   .docs-layout.ai-no-rails {
     grid-template-columns: minmax(0, 1fr) !important;
@@ -288,7 +316,7 @@
   }
   .ai-flagship .visual {
     position: relative;
-    min-height: 380px;
+    min-height: 460px;
     overflow: hidden;
     background: #1a1a1a;
   }
@@ -301,6 +329,12 @@
     content: ''; position: absolute; inset: 0;
     background: var(--ad-painted-overlay);
     z-index: 0;
+  }
+  .flagship-video-placeholder, .feat-video-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    color: rgba(255,255,255,0.35); font-family: var(--ad-font-mono); font-size: 13px;
+    position: relative; z-index: 2;
   }
   .ai-flagship .visual img {
     position: absolute; top: 50%; left: 50%;
@@ -353,7 +387,7 @@
   }
   .app-tile .visual img {
     position: relative; z-index: 1;
-    width: 100px; height: 80px;
+    width: 180px; height: 180px;
     object-fit: contain;
     filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
   }
@@ -448,6 +482,32 @@
     border-radius: 3px;
   }
 
+  /* PDF to 3D: document outline left, 3D wireframe cube right */
+  .feat-mock-pdf .feat-mock-doc {
+    position: absolute; left: 8%; top: 14%; bottom: 14%; width: 32%;
+    border: 2px solid rgba(255,255,255,0.35); border-radius: 3px; background: rgba(255,255,255,0.06);
+  }
+  .feat-mock-pdf .feat-mock-doc-line {
+    position: absolute; left: 12%; right: 12%; height: 2px; background: rgba(255,255,255,0.25); border-radius: 1px;
+  }
+  .feat-mock-pdf .feat-mock-doc-line-1 { top: 20%; }
+  .feat-mock-pdf .feat-mock-doc-line-2 { top: 35%; right: 25%; }
+  .feat-mock-pdf .feat-mock-doc-line-3 { top: 50%; }
+  .feat-mock-pdf .feat-mock-doc-line-4 { top: 65%; right: 30%; }
+  .feat-mock-pdf .feat-mock-arrow {
+    position: absolute; left: 44%; top: 50%; width: 12%; height: 2px;
+    background: #2eb8b8; transform: translateY(-50%);
+  }
+  .feat-mock-pdf .feat-mock-arrow::after {
+    content: ''; position: absolute; right: -4px; top: -3px;
+    border: 4px solid transparent; border-left: 5px solid #2eb8b8;
+  }
+  .feat-mock-pdf .feat-mock-cube { position: absolute; right: 10%; top: 20%; width: 28%; height: 60%; }
+  .feat-mock-pdf .feat-mock-cube-face { position: absolute; border: 2px solid #2eb8b8; background: rgba(46,184,184,0.08); }
+  .feat-mock-pdf .feat-mock-cube-front { left: 10%; bottom: 0; width: 70%; height: 65%; }
+  .feat-mock-pdf .feat-mock-cube-top { left: 25%; top: 0; width: 70%; height: 35%; transform: skewX(-20deg); border-bottom: none; }
+  .feat-mock-pdf .feat-mock-cube-side { right: 0; bottom: 0; width: 35%; height: 65%; transform: skewY(-20deg); border-left: none; }
+
   /* Generic — just a couple of teal lines for any other feature */
   .feat-mock-generic .feat-mock-line {
     position: absolute; left: 10%; right: 10%;
@@ -496,17 +556,6 @@
     letter-spacing: var(--ad-ls-mini);
   }
 
-  .ai-stamp {
-    margin-top: 48px;
-    padding: 14px 18px;
-    background: var(--ad-panel);
-    border: 1px solid var(--ad-border);
-    border-radius: var(--radius-sm);
-    font-family: var(--ad-font-mono);
-    font-size: 12px;
-    color: var(--ad-text-5);
-  }
-
   /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ───────────────────── */
   .ai-flagship:focus-visible,
   .app-tile:focus-visible {
@@ -526,7 +575,7 @@
 <aside class="docs-left"></aside>
 <main class="docs-content">
 
-  <div class="ai-intro">
+  <div class="ai-intro fi-reveal d1">
     <h1>Eleven flagship apps. One platform.</h1>
     <p class="lead">Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.</p>
   </div>
@@ -544,7 +593,29 @@
       </div>
     </a>
 
-  <div class="apps-grid">
+  <div class="apps-grid fi-reveal d3">
+    <a class="app-tile" href="/apps/qa-manager/index.html">
+      <div class="visual">
+        <img src="/images/app-logos/qa-manager.png" alt="QA Manager logo" onerror="this.style.opacity=0">
+      </div>
+      <div class="body">
+        <span class="surf">Desktop app + Revit add-in</span>
+        <h3>QA Manager</h3>
+        <p class="claim">Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.</p>
+        <span class="more">Open QA Manager →</span>
+      </div>
+    </a>
+    <a class="app-tile" href="/apps/cobie-manager/index.html">
+      <div class="visual">
+        <img src="/images/app-logos/cobie-manager.png" alt="CoBie Manager logo" onerror="this.style.opacity=0">
+      </div>
+      <div class="body">
+        <span class="surf">Revit add-in + web dashboard</span>
+        <h3>CoBie Manager</h3>
+        <p class="claim">A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.</p>
+        <span class="more">Open CoBie Manager →</span>
+      </div>
+    </a>
     <a class="app-tile" href="/apps/adelphos-chat/index.html">
       <div class="visual">
         <img src="/images/app-logos/adelphos-chat.png" alt="Adelphos Chat logo" onerror="this.style.opacity=0">
@@ -578,6 +649,17 @@
         <span class="more">Open Report Builder →</span>
       </div>
     </a>
+    <a class="app-tile" href="/apps/schedule-builder/index.html">
+      <div class="visual">
+        <img src="/images/app-logos/schedule-builder.png" alt="Schedule Builder logo" onerror="this.style.opacity=0">
+      </div>
+      <div class="body">
+        <span class="surf">Revit add-in + web app</span>
+        <h3>Schedule Builder</h3>
+        <p class="claim">Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.</p>
+        <span class="more">Open Schedule Builder →</span>
+      </div>
+    </a>
     <a class="app-tile" href="/apps/document-controller/index.html">
       <div class="visual">
         <img src="/images/app-logos/document-controller.png" alt="Document Controller logo" onerror="this.style.opacity=0">
@@ -587,39 +669,6 @@
         <h3>Document Controller</h3>
         <p class="claim">Single source of truth for every drawing, every revision, every transmittal.</p>
         <span class="more">Open Document Controller →</span>
-      </div>
-    </a>
-    <a class="app-tile" href="/apps/qa-manager/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/qa-manager.png" alt="QA Manager logo" onerror="this.style.opacity=0">
-      </div>
-      <div class="body">
-        <span class="surf">Desktop app + Revit add-in</span>
-        <h3>QA Manager</h3>
-        <p class="claim">Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.</p>
-        <span class="more">Open QA Manager →</span>
-      </div>
-    </a>
-    <a class="app-tile" href="/apps/schedule-builder/index.html">
-      <div class="visual">
-        <img src="/logos/Excel.jpg" alt="Schedule Builder logo" onerror="this.style.opacity=0">
-      </div>
-      <div class="body">
-        <span class="surf">Revit add-in + web app</span>
-        <h3>Schedule Builder</h3>
-        <p class="claim">Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.</p>
-        <span class="more">Open Schedule Builder →</span>
-      </div>
-    </a>
-    <a class="app-tile" href="/apps/cobie-manager/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/cobie-manager.png" alt="CoBie Manager logo" onerror="this.style.opacity=0">
-      </div>
-      <div class="body">
-        <span class="surf">Revit add-in + web dashboard</span>
-        <h3>CoBie Manager</h3>
-        <p class="claim">A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.</p>
-        <span class="more">Open CoBie Manager →</span>
       </div>
     </a>
     <a class="app-tile" href="/apps/autocad-copilot/index.html">
@@ -633,20 +682,9 @@
         <span class="more">Open AutoCAD Copilot →</span>
       </div>
     </a>
-    <a class="app-tile" href="/apps/word-add-in/index.html">
-      <div class="visual">
-        <img src="/logos/Word.jpg" alt="Adelphos for Word logo" onerror="this.style.opacity=0">
-      </div>
-      <div class="body">
-        <span class="surf">Word add-in</span>
-        <h3>Adelphos for Word</h3>
-        <p class="claim">The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.</p>
-        <span class="more">Open Adelphos for Word →</span>
-      </div>
-    </a>
     <a class="app-tile" href="/apps/excel-add-in/index.html">
       <div class="visual">
-        <img src="/logos/Excel.jpg" alt="Adelphos for Excel logo" onerror="this.style.opacity=0">
+        <img src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
         <span class="surf">Excel add-in</span>
@@ -654,16 +692,24 @@
         <p class="claim">The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.</p>
         <span class="more">Open Adelphos for Excel →</span>
       </div>
+    </a>
+    <a class="app-tile" href="/apps/word-add-in/index.html">
+      <div class="visual">
+        <img src="/images/app-logos/word-add-in.png" alt="Adelphos for Word logo" onerror="this.style.opacity=0">
+      </div>
+      <div class="body">
+        <span class="surf">Word add-in</span>
+        <h3>Adelphos for Word</h3>
+        <p class="claim">The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.</p>
+        <span class="more">Open Adelphos for Word →</span>
+      </div>
     </a></div>
 
-  <p class="ai-stamp">
-    Auto-generated <code>2026-04-26T09:37:01.481Z</code> from <code>sandbox/data/apps.json</code> (11 apps).
-  </p>
 
 </main>
 <aside class="docs-right"></aside>
 </div>
 
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

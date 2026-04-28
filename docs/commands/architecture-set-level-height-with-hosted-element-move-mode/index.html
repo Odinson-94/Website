@@ -14,11 +14,49 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Display:opsz,wght@14..32,300;500;600&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  body { background: var(--ad-bg, #f5f3ef); }
+  html.dark-mode body { background: var(--ad-bg-dark, #1a1a1a); }
+
+  .demo-detail h1, .demo-detail h2, .demo-detail h3 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+  }
+  .demo-detail .lead, .demo-detail p, .demo-detail ul, .demo-detail ol,
+  .demo-detail .hero-video { max-width: none; }
+
+  .ref-table {
+    background: #eae8e4; border: none; border-radius: 14px; overflow: hidden;
+  }
+  .ref-table th {
+    background: rgba(0,0,0,0.04); color: var(--ad-teal, #156082);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-family: 'Inter Display', sans-serif; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .ref-table td { border-bottom: 1px solid rgba(0,0,0,0.06); color: #444; }
+  .ref-table tr:hover td { background: rgba(0,0,0,0.03); }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table code { font-family: 'Inter Display', sans-serif; font-size: 13px; font-weight: 500; color: #222; }
+
+  .pill { border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 500; }
+  .pill-pillar { background: rgba(21,96,130,0.12); color: var(--ad-teal, #156082); }
+  .pill-category { background: rgba(0,0,0,0.06); color: #555; }
+  .pill-coming { background: rgba(0,0,0,0.04); color: #999; }
+
+  html.dark-mode .ref-table { background: #2f2f2f; box-shadow: 0 8px 22px rgba(0,0,0,0.25); }
+  html.dark-mode .ref-table th { background: rgba(255,255,255,0.06); color: var(--ad-teal-light, #4a9bb8); border-bottom-color: rgba(255,255,255,0.10); }
+  html.dark-mode .ref-table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .ref-table tr:hover td { background: rgba(255,255,255,0.04); }
+  html.dark-mode .ref-table code { color: #fff; }
+  html.dark-mode .pill-pillar { background: rgba(74,155,184,0.18); color: var(--ad-teal-light, #4a9bb8); }
+  html.dark-mode .pill-category { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .pill-coming { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.40); }
+</style>
 </head>
 <body>
 
@@ -28,33 +66,33 @@
 <aside class="docs-left"></aside>
 <main class="docs-content demo-detail">
 
-  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Architecture Set Level Height With Hosted Element Move Mode</div>
+  <div class="crumbs"><a href="/docs/commands/index.html">Commands</a> &nbsp;›&nbsp; Architecture / Levels &nbsp;›&nbsp; Architecture Set Level Height With Hosted Element Move Mode</div>
 
   <h1 id="overview">Architecture Set Level Height With Hosted Element Move Mode</h1>
 
   <div class="meta-row" style="margin-bottom:24px;">
-    <span class="pill pill-pillar"></span>
+    <span class="pill pill-pillar">Architecture / Levels</span>
     <span class="pill pill-category">writes to model</span>
     <span class="pill pill-coming">Public API · not yet exposed</span>
   </div>
 
-  <p class="lead">ArchitectureSetLevelHeightWithHostedElementMoveModeCommand — auto-generated CMD skeleton. Fill workflow body per plan §8.</p>
+  <p class="lead">Coming soon</p>
 
-  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active document must be open. User has selection or resolvers are filled.</p></div>
-  <div class="callout callout-post"><strong>After it runs</strong><p>Model state changed inside a Transaction. Audit entry recorded.</p></div>
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Level selected. New elevation supplied. Move mode supplied (one of: keep / move / stretch).</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>The level's elevation is updated; hosted elements behave per the chosen move mode; an audit entry records the old elevation, new elevation and mode.</p></div>
 
   <div class="hero-video" id="watch">
     <video controls preload="metadata"
            poster="/sandbox/demo-assets/architecture-set-level-height-with-hosted-element-move-mode/thumbnail.svg"
            data-src="/sandbox/demo-assets/architecture-set-level-height-with-hosted-element-move-mode/video.mp4"
-           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop architecture-set-level-height-with-hosted-element-move-mode/video.mp4 in to play'}));"></video>
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerHTML:'<svg width=&quot;48&quot; height=&quot;48&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.25)&quot; stroke-width=&quot;1.5&quot;><polygon points=&quot;5 3 19 12 5 21 5 3&quot;/></svg>'}));"></video>
   </div>
 
   <h2 id="when-to-use">When to use this</h2>
   <ul style="padding-left:22px;">
-    <li>Deterministic action per the workflow below — User or Bot path.</li>
+    <li>Architectural rework where you need to bump a storey height up or down without breaking the model — choose the right move mode for the situation.</li>
   </ul>
-  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Read-only queries (use the matching MCP tool).</p></div>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Bulk-shifting all levels (separate command), changing the project base point (different routine), or when hosted elements shouldn't move at all (Revit's default level edit).</p></div>
   
 
   
@@ -62,14 +100,18 @@
   
 
   <h2 id="decision-flow">Decision flow</h2>
-  <pre class="logictree">1) User or Bot selects target/context (resolvers filled from chat input or UI). 2) Validate preconditions; WireError + abort if missing required state. 3) Open Transaction, perform deterministic steps, WireRecoverable on any fallback. 4) Bot → MCP success summary. User → ribbon toast + chat + audit trail. 5) Failure on either path → `ErrorWire.WireFault` + `CentralWarningLogger.LogError` with structured payload.</pre>
+  <pre class="logictree">1. Read the current level elevation and snapshot every hosted element's host elevation.
+2. Apply the new elevation to the level.
+3. Per the move mode: keep elements at original Z, move with the level, or stretch heights between adjacent levels.
+4. Persist all of this in one Transaction so partial failures roll back.
+5. Report old / new elevation, mode and the count of elements affected.</pre>
 
   <h2 id="what-youll-see">What you'll see in the chat</h2>
   <div class="ai-dialogue">
-    <div class="lab">on start</div><div class="msg">Running ArchitectureSetLevelHeightWithHostedElementMoveModeCommand...</div>
-    <div class="lab">thinking</div><div class="msg">Validating preconditions...<br>Applying deterministic steps...</div>
-    <div class="lab">on success</div><div class="msg">ArchitectureSetLevelHeightWithHostedElementMoveModeCommand completed successfully.</div>
-    <div class="lab">on failure</div><div class="msg">ArchitectureSetLevelHeightWithHostedElementMoveModeCommand failed: <span class="placeholder">{error}</span></div>
+    <div class="lab">on start</div><div class="msg">I'll change that level's elevation now and move hosted elements per the chosen mode.</div>
+    <div class="lab">thinking</div><div class="msg">Snapshotting hosted-element elevations and applying the move mode after the level shift.</div>
+    <div class="lab">on success</div><div class="msg">Done — <span class="placeholder">{level}</span> moved from <span class="placeholder">{old_elevation}</span> to <span class="placeholder">{new_elevation}</span> mm in &quot;<span class="placeholder">{move_mode}</span>&quot; mode. <span class="placeholder">{n_elements}</span> hosted elements adjusted.</div>
+    <div class="lab">on failure</div><div class="msg">Couldn't change the level height: <span class="placeholder">{error}</span>.</div>
   </div>
 
   <h2 id="rest-api">REST API</h2>
@@ -85,15 +127,10 @@
   </div>
 
   <h2 id="keywords">Keywords &amp; intent patterns</h2>
-  <p style="color:var(--text-muted);font-size:14px;">architecturesetlevelheightwithhostedelementmovemode</p>
+  <p style="color:var(--text-muted);font-size:14px;">change level height · move level · hosted elements move · storey height change · level rework</p>
 
   <h2 id="related">Related</h2>
-  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
-
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
-    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
-    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
-  </p>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td>Architecture / Levels</td></tr></tbody></table>
 
 </main>
 <aside class="docs-right"></aside>
@@ -103,6 +140,6 @@
   const v = document.querySelector('.hero-video video');
   if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

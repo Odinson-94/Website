@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Finances — Agentic Services — Adelphos AI</title>
@@ -57,7 +74,7 @@
   "@type": "Service",
   "serviceType": "Managed AI service for engineering practices",
   "name": "AI Finances",
-  "description": "Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.",
+  "description": "The AI Finances agent connects to your project accounting data — fee schedules, purchase orders, invoices, timesheets — and keeps a running picture of where every pound is. When an invoice arrives, it matches against the PO, flags discrepancies, and logs the result before you've opened the email.",
   "url": "https://adelphos.ai/agentic-services/finances/index.html",
   "provider": {
     "@type": "Organization",
@@ -121,6 +138,20 @@
           "@type": "Service",
           "description": "Every transaction logged with full provenance for compliance"
         }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "description": "Auto-generated proposals from your firm's job history, scope patterns and win/loss data"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "description": "Upcoming payments ranked by likelihood of being missed, based on historical patterns"
+        }
       }
     ]
   }
@@ -137,6 +168,38 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does AI Finances do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The AI Finances agent connects to your project accounting data — fee schedules, purchase orders, invoices, timesheets — and keeps a running picture of where every pound is. When an invoice arrives, it matches against the PO, flags discrepancies, and logs the result before you've opened the email."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is AI Finances different from the manual workflow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Without AI Finances: Your QS spends half a day every week matching invoices to POs in a spreadsheet. Cash-flow is a quarterly guess. Fee proposals take a full day to write from scratch. You find out about budget overruns at the monthly review — after the money's gone. With AI Finances: Invoices match themselves against outstanding POs the moment they arrive. Cash-flow is a live 12-month view tied to your programme milestones. Fee proposals are drafted in minutes from your own win history. You see budget overruns forming before they happen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much time does AI Finances save?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Headline outcomes for AI Finances: 90% (reduction in manual reconciliation time); 12-month (rolling forecast updated daily); 0 (spreadsheets touched for monthly accounts)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the engagement model for AI Finances?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enterprise tier — managed service with dedicated onboarding"
       }
     }
   ]
@@ -192,7 +255,8 @@
      End CTA: dark .rp-commands-card.
      ════════════════════════════════════════════════════════════════════ */
 
-  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html, body { overflow-y: auto !important; overflow-x: hidden !important; height: auto !important; }
+  body { background: var(--ad-bg); }
   html.dark-mode body { background: var(--ad-bg-dark); }
 
   .docs-layout.svc-no-rails {
@@ -259,11 +323,11 @@
   .svc-hero-copy h1 {
     margin: 0;
     font-family: var(--ad-font-display);
-    font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
+    font-size: clamp(30px, 3.6vw, 48px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #222;
     max-width: var(--ad-measure);
   }
   .svc-claim {
@@ -318,23 +382,13 @@
     .svc-btn-secondary:hover { background: rgba(21,96,130,0.06); }
   }
 
-  /* Painted artsy frame holding an inline SVG glyph (services have no PNG) */
   .svc-hero-frame {
     position: relative;
     min-height: 460px;
     overflow: hidden;
-    background: #1a1a1a;
+    background: linear-gradient(135deg, #d6eaf3 0%, #e8f1f8 50%, #dce9f2 100%);
   }
-  .svc-hero-frame::before {
-    content: ''; position: absolute; inset: 0;
-    background: url('/images/revit-bg.png') center center / cover no-repeat;
-    z-index: 0;
-  }
-  .svc-hero-frame::after {
-    content: ''; position: absolute; inset: 0;
-    background: var(--ad-painted-overlay);
-    z-index: 0;
-  }
+  html.dark-mode .svc-hero-frame { background: linear-gradient(135deg, #1a2a36 0%, #1e2d3a 50%, #1a2a36 100%); }
   .svc-hero-glyph {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
@@ -365,51 +419,83 @@
     margin: var(--space-2xl) 0 var(--space-sm);
     padding-top: var(--space-md);
     border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--ad-teal);
   }
   .svc-section-sub {
     margin: 0 0 var(--space-lg);
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-3);
     max-width: var(--ad-measure);
   }
 
   .svc-why {
-    display: grid; grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-2xl); align-items: start;
+    display: grid; grid-template-columns: 2fr 1fr 2fr;
+    align-items: start;
     margin: var(--space-md) 0 var(--space-2xl);
   }
+  .svc-why-detail { grid-column: 1; }
+  .svc-why-quote { grid-column: 3; }
   .svc-why-detail p {
     margin: 0 0 18px;
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-3);
-    text-align: justify;
-    max-width: var(--ad-measure);
   }
   .svc-why-detail p:last-child { margin-bottom: 0; }
   .svc-why-quote blockquote {
     margin: 0;
-    padding: 0 0 0 24px;
-    border-left: 3px solid var(--ad-teal);
-    font-family: var(--ad-font-body);
-    font-size: 20px;
-    font-weight: var(--ad-w-light);
-    line-height: 1.4;
+    padding: 0;
+    border: none;
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     color: var(--ad-text-1);
   }
+  .accent { color: var(--ad-teal); }
+
+  .pq-stats {
+    display: flex; flex-direction: column; gap: 24px;
+    margin-top: 32px;
+  }
+  .pq-stat {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .pq-stat-num {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ad-teal);
+  }
+  .pq-stat-label {
+    font-family: var(--ad-font-body);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--ad-text-3);
+  }
   @media (max-width: 900px) {
-    .svc-why { grid-template-columns: 1fr; gap: var(--space-lg); }
+    .pq-stats { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+    .pq-stat { flex: 1 1 140px; }
+  }
+  @media (max-width: 900px) {
+    .svc-why { grid-template-columns: 1fr; }
+    .svc-why-detail, .svc-why-quote { grid-column: 1; }
+    .svc-why-quote { margin-top: var(--space-lg); }
+    .svc-why-quote blockquote { font-size: 28px; }
   }
 
   /* Engagement card — light surface with teal kicker */
@@ -433,9 +519,9 @@
   .engagement-card p {
     margin: 0;
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-1);
   }
 
@@ -529,9 +615,9 @@
   .shift p:last-of-type {
     margin: 0;
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-3);
   }
   .shift.after .lab { color: var(--ad-teal); }
@@ -569,9 +655,9 @@
   .stage p {
     margin: 0;
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-3);
   }
 
@@ -579,18 +665,59 @@
   .ap-features-card {
     position: static; width: 100%; height: auto;
     margin: var(--space-md) 0 var(--space-xl);
-    padding: 32px 36px 28px;
+    padding: 36px;
+    background: #2f2f2f;
+    border-radius: 14px;
     color: #fff;
     cursor: default; user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    box-shadow: 0 16px 40px rgba(30,52,72,0.28);
+    display: flex; flex-direction: column; gap: 16px;
   }
-  .ap-features-card .ap-features-header {
-    margin: 0 0 12px;
-    font-family: var(--ad-font-body);
-    font-size: 22px;
-    font-weight: var(--ad-w-card);
-    line-height: 1.2;
+  .ap-features-card .rp-card-header {
+    margin: 0 0 8px;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     color: #fff;
+    border: none; padding: 0;
+  }
+  .ap-features-card .rp-feat-list {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 12px;
+  }
+  .ap-features-card .rp-feat-item {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ap-features-card .rp-feat-item:last-child { border-bottom: none; }
+  .ap-features-card .rp-feat-copy {
+    display: flex; flex-direction: column; gap: 2px;
+    min-width: 0; flex: 1 1 auto;
+  }
+  .ap-features-card .rp-feat-title {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 18px; font-weight: 600; color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .ap-features-card .rp-feat-desc {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.4;
+  }
+  @keyframes rpAgentSpin { to { transform: rotate(360deg); } }
+  .rp-agent-spinner {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-top-color: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    animation: rpAgentSpin 0.9s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .rp-agent-spinner { animation: none; } }
+  @media (max-width: 720px) {
+    .ap-features-card .rp-card-header { font-size: 28px; }
+    .ap-features-card .rp-feat-title { font-size: 16px; }
+    .ap-features-card .rp-feat-desc { font-size: 14px; }
   }
   .ap-feat-chev {
     width: 18px; height: 18px;
@@ -612,9 +739,9 @@
     border-radius: var(--radius-md);
     position: relative;
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-1);
   }
   .offer-list li::before {
@@ -625,47 +752,90 @@
     font-weight: var(--ad-w-medium);
   }
 
-  /* End CTA + stamp */
+  /* Integrations strip */
+  .svc-integrations { margin: var(--space-2xl) 0 var(--space-xl); }
+  .svc-integrations h2 {
+    margin: 0 0 var(--space-md);
+  }
+  .svc-integrations .integrations-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .svc-integrations .integration-tile {
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: var(--radius-md);
+    padding: 18px 14px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 70px;
+    transition: box-shadow 0.18s;
+  }
+  .svc-integrations .integration-tile:hover {
+    box-shadow: 0 8px 22px rgba(30,52,72,0.12);
+  }
+  .svc-integrations .integration-tile img {
+    max-height: 36px;
+    max-width: 100%;
+    object-fit: contain;
+    filter: grayscale(1) opacity(0.6);
+    transition: filter 0.18s;
+  }
+  .svc-integrations .integration-tile:hover img {
+    filter: grayscale(0) opacity(1);
+  }
+  .int-fallback {
+    font-family: var(--ad-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ad-text-3);
+    text-align: center;
+  }
+
   .end-cta {
     position: static; width: 100%; height: auto;
     margin: var(--space-2xl) 0 var(--space-lg);
     padding: 36px 40px;
-    color: #fff;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: 14px;
+    color: #333;
     cursor: default; user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    box-shadow: 0 8px 22px rgba(30,52,72,0.10);
     display: flex; flex-direction: column; gap: 8px;
   }
   .end-cta h3 {
     margin: 0;
-    font-family: var(--ad-font-body);
+    font-family: 'Inter Display', 'Inter', sans-serif;
     font-size: 28px;
-    font-weight: var(--ad-w-card);
+    font-weight: 500;
     line-height: 1.2;
-    color: #fff;
+    letter-spacing: -0.02em;
+    color: #333;
   }
   .end-cta p {
     margin: 0 0 8px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-row);
-    font-weight: var(--ad-w-light);
-    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--ad-text-3);
     max-width: 60ch;
   }
   .end-cta a {
     align-self: flex-start;
-    background: #fff;
-    color: var(--ad-teal);
+    background: var(--ad-teal);
+    color: #fff;
     padding: 13px 24px;
     border-radius: 999px;
-    font-family: var(--ad-font-body);
     font-size: 14px;
-    font-weight: var(--ad-w-medium);
+    font-weight: 500;
     text-decoration: none;
     transition: transform 0.18s, box-shadow 0.18s;
   }
   @media (hover: hover) {
-    .end-cta a:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
+    .end-cta a:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(21,96,130,0.30); }
   }
+  .end-cta a:active { transform: scale(0.98); }
 
   .svc-stamp {
     margin-top: 48px;
@@ -715,8 +885,10 @@
       <span class="svc-badge">Managed by Adelphos</span>
       <h1 id="overview">AI Finances</h1>
       <p class="svc-claim">Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.</p>
-      <p class="svc-tag">Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.</p>
-      
+      <p class="ap-stats-inline">
+        <span><span class="ap-stat-num">90%</span>reduction in manual reconciliation time</span><span aria-hidden="true">·</span>
+        <span><span class="ap-stat-num">12-month</span>rolling forecast updated daily</span><span aria-hidden="true">·</span>
+        <span><span class="ap-stat-num">0</span>spreadsheets touched for monthly accounts</span></p>
       
       <div class="svc-actions">
          <a class="svc-btn-primary" href="/contact/">Request a walkthrough &rarr;</a>
@@ -737,69 +909,99 @@
 
   <h2 id="description">Why use AI Finances</h2>
   <div class="svc-why svc-reveal d2">
-    <div class="svc-why-detail"></div>
-    <aside class="svc-why-quote"><blockquote>Adelphos will be the only building services software provider that addresses the entire process, start to finish — designed and built by industry professionals who have experienced the gap in the market.</blockquote></aside>
+    <div class="svc-why-detail"><p>The AI Finances agent connects to your project accounting data — fee schedules, purchase orders, invoices, timesheets — and keeps a running picture of where every pound is. When an invoice arrives, it matches against the PO, flags discrepancies, and logs the result before you've opened the email.</p>
+      <p>Cash-flow is projected 12 months forward, tied to programme milestones. If a milestone slips, the forecast updates automatically and flags the knock-on effect on your payment schedule. You see upcoming payments, the likelihood of them being missed based on historical patterns, and where budget overruns are forming.</p>
+      <p>For directors, the agent auto-drafts fee proposals from your firm's own job history, scope patterns and win/loss data. Ask Jason in Adelphos Chat or @Jason in Teams and the proposal lands in your inbox, pre-filled with the rates and scope breakdown that won similar work.</p></div>
+    <aside class="svc-why-quote"><blockquote>Every pound tracked. Every invoice matched. Every forecast live.</blockquote><div class="pq-stats"><div class="pq-stat"><span class="pq-stat-num">&lt;3 min</span><span class="pq-stat-label">fee proposals — fully editable</span></div><div class="pq-stat"><span class="pq-stat-num">12-month</span><span class="pq-stat-label">rolling financial forecast, updated daily</span></div><div class="pq-stat"><span class="pq-stat-num">100%</span><span class="pq-stat-label">invoice match rate — matched against outstanding POs automatically</span></div></div></aside>
   </div>
 
-  <h2 id="the-shift">The shift</h2>
-  <p class="svc-section-sub">What running this part of the business looks like today, versus with AI Finances.</p>
-  
-
   <h2 id="what-we-offer">What we offer</h2>
-  <ul class="offer-list"></ul>
+  <ul class="offer-list"><li>Automated invoice-to-PO reconciliation with discrepancy flagging</li><li>Rolling 12-month cash-flow forecast tied to programme milestones</li><li>Monthly management account packs generated from live data</li><li>Anomaly detection — duplicate invoices, unusual line items, budget overruns</li><li>Full audit trail with provenance for every transaction</li><li>Auto-drafted fee proposals from your firm's job history and win/loss data</li><li>Upcoming payment dashboard with miss-risk scoring</li></ul>
 
   <h2 id="how-it-becomes-agentic">How it becomes agentic</h2>
   <p class="svc-section-sub">We don't drop a tool on your desk and walk away. We move you up an automation maturity ladder over weeks, not years, with a human on every step until the agent has earned autonomy.</p>
-  <div class="stages-grid"></div>
+  <div class="stages-grid"><div class="stage">
+      <span class="stage-num">Stage 01</span>
+      <h4>Connect</h4>
+      <p>We connect the agent to your accounting system, fee schedules and project data. You approve the data sources.</p>
+    </div><div class="stage">
+      <span class="stage-num">Stage 02</span>
+      <h4>Shadow</h4>
+      <p>The agent runs alongside your existing process for two weeks. It reconciles, flags and forecasts — but you verify every output.</p>
+    </div><div class="stage">
+      <span class="stage-num">Stage 03</span>
+      <h4>Assist</h4>
+      <p>The agent handles reconciliation and reporting autonomously. You review the monthly packs and approve exceptions.</p>
+    </div><div class="stage">
+      <span class="stage-num">Stage 04</span>
+      <h4>Autonomous</h4>
+      <p>The agent runs your project finances end-to-end. You get a dashboard, alerts on exceptions, and sign-off requests when human judgement is needed.</p>
+    </div></div>
 
   <h2 id="features">Features</h2>
   <p class="svc-section-sub">Everything AI Finances ships with as a managed service. Each line is a concrete capability.</p>
   
     <div class="ap-features-card rp-commands-card">
-      <h3 class="ap-features-header">AI Finances features</h3>
+      <h2 class="rp-card-header">AI Finances features</h2>
       <div class="rp-feat-list">
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Automated Reconciliation</span>
         <span class="rp-feat-desc">Matches invoices to POs and flags discrepancies within minutes</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Cash-flow Forecasting</span>
         <span class="rp-feat-desc">Rolling 12-month forecast tied to your programme milestones</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Management Accounts</span>
         <span class="rp-feat-desc">Monthly packs generated from live data — no spreadsheet assembly</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Anomaly Detection</span>
         <span class="rp-feat-desc">Agent surfaces duplicate invoices, unusual line items, and budget overruns</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Audit Trail</span>
         <span class="rp-feat-desc">Every transaction logged with full provenance for compliance</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
+    </div>
+    <div class="rp-feat-item">
+      <div class="rp-feat-copy">
+        <span class="rp-feat-title">Fee Proposal Drafting</span>
+        <span class="rp-feat-desc">Auto-generated proposals from your firm's job history, scope patterns and win/loss data</span>
+      </div>
+      <div class="rp-agent-spinner"></div>
+    </div>
+    <div class="rp-feat-item">
+      <div class="rp-feat-copy">
+        <span class="rp-feat-title">Payment Risk Scoring</span>
+        <span class="rp-feat-desc">Upcoming payments ranked by likelihood of being missed, based on historical patterns</span>
+      </div>
+      <div class="rp-agent-spinner"></div>
     </div></div>
     </div>
 
   <h2 id="engagement">How we work together</h2>
   <div class="engagement-card">
     <h3>Engagement model</h3>
-    <p>Tailored to your project</p>
+    <p>Enterprise tier — managed service with dedicated onboarding</p>
   </div>
+
+  
 
   
     <section class="related-section" id="related" aria-label="Related content">
@@ -823,6 +1025,22 @@
     <details class="faq-item" open>
       <summary>What is AI Finances?</summary>
       <div class="faq-answer"><p>Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>What does AI Finances do?</summary>
+      <div class="faq-answer"><p>The AI Finances agent connects to your project accounting data — fee schedules, purchase orders, invoices, timesheets — and keeps a running picture of where every pound is. When an invoice arrives, it matches against the PO, flags discrepancies, and logs the result before you've opened the email.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>How is AI Finances different from the manual workflow?</summary>
+      <div class="faq-answer"><p>Without AI Finances: Your QS spends half a day every week matching invoices to POs in a spreadsheet. Cash-flow is a quarterly guess. Fee proposals take a full day to write from scratch. You find out about budget overruns at the monthly review — after the money's gone. With AI Finances: Invoices match themselves against outstanding POs the moment they arrive. Cash-flow is a live 12-month view tied to your programme milestones. Fee proposals are drafted in minutes from your own win history. You see budget overruns forming before they happen.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>How much time does AI Finances save?</summary>
+      <div class="faq-answer"><p>Headline outcomes for AI Finances: 90% (reduction in manual reconciliation time); 12-month (rolling forecast updated daily); 0 (spreadsheets touched for monthly accounts).</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>What's the engagement model for AI Finances?</summary>
+      <div class="faq-answer"><p>Enterprise tier — managed service with dedicated onboarding</p></div>
     </details></div>
     </section>
 
@@ -832,14 +1050,10 @@
     <a href="/contact/">Request a walkthrough &rarr;</a>
   </div>
 
-  <p class="svc-stamp">
-    Auto-generated <code>2026-04-26T10:07:42.942Z</code> from <code>sandbox/data/agentic-services.json</code>. Re-run with <code>adelphos_CLI auto-all</code>.
-  </p>
-
 </main>
 <aside class="docs-right"></aside>
 </div>
 
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

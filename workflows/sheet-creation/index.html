@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sheet Creation — Workflows — Adelphos AI</title>
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    const c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    const dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Display:opsz,wght@14..32,300;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  body { background: var(--ad-bg, #f5f3ef); }
+  html.dark-mode body { background: var(--ad-bg-dark, #1a1a1a); }
+
+  .demo-detail h1 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-weight: 500; letter-spacing: -0.025em;
+  }
+  .demo-detail h2 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-weight: 500; letter-spacing: -0.02em;
+  }
+  .demo-detail h3 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+  }
+
+  .demo-detail .lead,
+  .demo-detail > p,
+  .demo-detail > ul,
+  .demo-detail > ol { max-width: none; }
+
+  .demo-detail .hero-video {
+    max-width: none;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  /* step screenshots inside "How it flows" — match hero exactly */
+  .demo-detail .step-media {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #0d1117;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .demo-detail .step-media img,
+  .demo-detail .step-media .ph { width:100%; height:100%; display:block; object-fit:cover; }
+  .demo-detail .step-media .ph {
+    display:flex; align-items:center; justify-content:center;
+    color: rgba(255,255,255,0.40); font-size: 13px; text-align:center; padding: 12px;
+    background: #0a0a0a;
+  }
+
+  /* Phase = scenario from the source skill */
+  .phase {
+    margin: var(--space-3xl) 0;
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border);
+  }
+  .phase:first-of-type { padding-top: 0; border-top: none; }
+  .phase > h3.phase-title {
+    font-size: 26px; font-weight: 500; letter-spacing: -0.015em;
+    margin: 0 0 var(--space-md);
+  }
+  .phase .phase-num {
+    color: var(--text-muted); font-weight: 400; margin-right: var(--space-sm);
+  }
+
+  /* Phase-level video (the "what does this look like" overview) */
+  .phase .phase-video {
+    aspect-ratio: 16/9; background: #0d1117;
+    border-radius: var(--radius-md); overflow: hidden;
+    margin: var(--space-md) 0 var(--space-lg); box-shadow: var(--shadow-md);
+  }
+  .phase .phase-video video,
+  .phase .phase-video img,
+  .phase .phase-video .poster-fallback { width:100%; height:100%; display:block; object-fit:cover; }
+  .phase .phase-video .poster-fallback {
+    display:flex; align-items:center; justify-content:center;
+    color: rgba(255,255,255,0.40); font-size: 13px;
+    background: #0a0a0a;
+  }
+
+  /* Each step inside a phase — text on top, full-width SCREENSHOT below.
+     Bigger imagery, less density. */
+  .step {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+  .step h4 {
+    margin: 0 0 var(--space-sm);
+    font-size: 17px; font-weight: 600; color: var(--text);
+  }
+  .step h4 .step-num {
+    display: inline-block; min-width: 28px;
+    color: var(--brand-teal); font-family: var(--font-mono);
+    font-size: 14px; font-weight: 500;
+  }
+
+  .step .step-media {
+    width: 100%;
+    aspect-ratio: 16/9;            /* large image, not a thumbnail */
+    background: #0d1117;
+    border-radius: var(--radius-sm); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-top: var(--space-lg);
+  }
+  .step .step-media img,
+  .step .step-media .ph { width:100%; height:100%; display:block; object-fit:cover; }
+  .step .step-media .ph {
+    display:flex; align-items:center; justify-content:center;
+    color: rgba(255,255,255,0.40); font-size: 13px; text-align:center; padding: 12px;
+    background: #0a0a0a;
+  }
+
+  .tools-row {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: var(--space-xs) 0 var(--space-md);
+    font-size: 13px;
+  }
+  .tools-row .lab {
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 11px; font-weight: 600;
+    margin-right: var(--space-xs); align-self: center;
+  }
+  .tools-row code {
+    font-family: var(--font-mono); font-size: 12px;
+    background: var(--bg-soft); padding: 2px 8px; border-radius: 999px;
+    color: var(--brand-teal);
+  }
+
+  .agent-says, .try-prompt {
+    font-size: 14px; line-height: 1.55;
+    margin: var(--space-sm) 0;
+    padding: 10px 14px; border-radius: var(--radius-sm);
+    border-left: 3px solid;
+  }
+  .agent-says {
+    background: rgba(21,96,130,0.06); border-color: var(--brand-teal); color: var(--text);
+  }
+  .agent-says .lab,
+  .try-prompt .lab {
+    display:inline-block;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--brand-teal); margin-right: 8px;
+  }
+  .try-prompt {
+    background: rgba(46,125,50,0.06); border-color: #2e7d32; color: var(--text);
+    font-family: var(--font-mono); font-size: 13px;
+  }
+  .try-prompt .lab { color: #2e7d32; font-family: var(--font-sans); }
+
+  .conditions {
+    margin: var(--space-sm) 0; font-size: 13px; color: var(--text-muted);
+    padding-left: var(--space-md); border-left: 2px dashed var(--border-strong);
+  }
+  .conditions strong { color: var(--text); }
+
+  .when-triggers {
+    margin: var(--space-md) 0;
+    padding: 10px 14px;
+    background: var(--bg-soft); border-left: 3px solid var(--brand-teal);
+    border-radius: var(--radius-sm);
+    font-size: 14px; color: var(--text);
+  }
+  .when-triggers strong {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--text-muted); margin-right: 8px;
+  }
+
+  /* ── Light mode: off-grey surfaces ─────────────────────────────── */
+  .step {
+    background: #eae8e4; border: none; border-radius: 14px;
+    box-shadow: none;
+  }
+  .ref-table {
+    background: #eae8e4; border: none; border-radius: 14px; overflow: hidden;
+  }
+  .ref-table th {
+    background: rgba(0,0,0,0.04); color: var(--ad-teal, #156082);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-family: 'Inter Display', sans-serif; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .ref-table td { border-bottom: 1px solid rgba(0,0,0,0.06); color: #444; }
+  .ref-table tr:hover td { background: rgba(0,0,0,0.03); }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table code { font-family: 'Inter Display', sans-serif; font-size: 13px; font-weight: 500; color: #222; }
+
+  .pill { border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 500; }
+  .pill-pillar { background: rgba(21,96,130,0.12); color: var(--ad-teal, #156082); }
+  .pill-category { background: rgba(0,0,0,0.06); color: #555; }
+  .pill-live { background: rgba(21,96,130,0.12); color: var(--ad-teal, #156082); }
+
+  /* ── Dark mode: charcoal surfaces ──────────────────────────────── */
+  html.dark-mode .step { background: #2f2f2f; }
+  html.dark-mode .ref-table { background: #2f2f2f; box-shadow: 0 8px 22px rgba(0,0,0,0.25); }
+  html.dark-mode .ref-table th { background: rgba(255,255,255,0.06); color: var(--ad-teal-light, #4a9bb8); border-bottom-color: rgba(255,255,255,0.10); }
+  html.dark-mode .ref-table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .ref-table tr:hover td { background: rgba(255,255,255,0.04); }
+  html.dark-mode .ref-table code { color: #fff; }
+  html.dark-mode .pill-pillar { background: rgba(74,155,184,0.18); color: var(--ad-teal-light, #4a9bb8); }
+  html.dark-mode .pill-category { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .pill-live { background: rgba(74,155,184,0.18); color: var(--ad-teal-light, #4a9bb8); }
+</style>
+</head>
+<body>
+
+<script src="/sandbox/shell.js"></script>
+
+<div class="docs-layout">
+<aside class="docs-left"></aside>
+<main class="docs-content demo-detail">
+
+  <div class="crumbs">Workflows &nbsp;›&nbsp; Sheet Creation</div>
+
+  <h1 id="overview">Sheet Creation</h1>
+
+  <div class="meta-row" style="margin-bottom:24px;">
+    <span class="pill pill-pillar">Workflow</span>
+    <span class="pill pill-category">2 phases</span>
+    <span class="pill pill-live">Composed from MEP Bridge skill</span>
+  </div>
+
+  <p class="lead">Tell Adelphos what drawings you need and it works out the sheet sizes, picks the right titleblock, creates the sheets with your numbering convention, and places views with the correct layout — single plans, plans with sections, or grid layouts for details.</p>
+
+  <!-- Hero workflow video (overview) -->
+  <div class="hero-video" id="watch">
+    <video controls preload="metadata"
+           poster="/sandbox/workflow-assets/sheet-creation/hero.svg"
+           data-src="/sandbox/workflow-assets/sheet-creation/hero.mp4"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerHTML:'<svg width=&quot;48&quot; height=&quot;48&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.25)&quot; stroke-width=&quot;1.5&quot;><polygon points=&quot;5 3 19 12 5 21 5 3&quot;/></svg>'}));"></video>
+  </div>
+
+  <h2 id="prerequisites">Before you start</h2>
+  <ul><li>Views exist in the model (plans, sections, details) ready to be placed</li><li>At least one titleblock family loaded in the project</li><li>Naming convention established (or use Adelphos defaults based on existing sheets)</li></ul>
+
+  <h2 id="how-it-flows">How it flows</h2>
+  
+    <p>You ask for sheets — &quot;create the mechanical plan sheets&quot; or &quot;set up sheets for all the drainage views&quot;.</p>
+    
+    <div class="step-media" style="margin: var(--space-md) 0 var(--space-xl);">
+      <img src="/sandbox/workflow-assets/sheet-creation/flow-1.svg"
+           alt="flow screenshot 1"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerText:'screenshot · drop flow-1.jpg in'}));">
+    </div>
+  
+    <p>Adelphos checks what sheets already exist, what numbering convention is in use, and what views are available but not yet placed on sheets. It infers your convention from existing sheets or uses your project config.</p>
+    
+  
+    <p>For each view, it calculates the smallest sheet size that fits the content at the target scale — A1 for floor plans, A3 for details, or whatever your titleblock family supports. The right titleblock type is selected automatically.</p>
+    
+    <div class="step-media" style="margin: var(--space-md) 0 var(--space-xl);">
+      <img src="/sandbox/workflow-assets/sheet-creation/flow-3.svg"
+           alt="flow screenshot 3"
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerText:'screenshot · drop flow-3.jpg in'}));">
+    </div>
+  
+    <p>Sheets are created with correct numbers following your convention (M-01-01 for mechanical Level 01, E-02-01 for electrical Level 02, etc.). Views are placed using the appropriate layout strategy: centred for single plans, plan-with-sections for coordination drawings, grid for detail sheets.</p>
+    
+  
+    <p>Titleblock parameters are stamped from project data: project name, client, drawn by, checked by, issue purpose. You get a summary of what was created and any views that couldn't be placed (too large for available sheet sizes, or duplicate placement detected).</p>
+    
+  
+
+  <h2 id="settings">Settings &amp; options</h2>
+  <p style="color:var(--text-muted);font-size:14px;max-width:720px;">
+    Per-workflow toggles. Defined in the skill markdown so the page and the live behaviour stay in sync.
+  </p>
+  <table class="ref-table">
+    <thead><tr><th>Option</th><th>Default</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Numbering convention</strong></td>
+        <td><code>Infer from existing sheets</code></td>
+        <td>Detected from existing sheets in the model. Falls back to {Discipline}-{Level}-{Sequence} if fewer than 3 sheets exist.</td>
+      </tr><tr>
+        <td><strong>Sheet size</strong></td>
+        <td><code>Smallest that fits the view</code></td>
+        <td>Auto-selects the smallest titleblock that fits the view content at target scale.</td>
+      </tr><tr>
+        <td><strong>Layout strategy</strong></td>
+        <td><code>Auto by view type</code></td>
+        <td>Single for standard plans, Plan+Elevations for plantrooms, Grid for details. From ServiceDrawingConfiguration.</td>
+      </tr><tr>
+        <td><strong>Overflow handling</strong></td>
+        <td><code>Create continuation sheets</code></td>
+        <td>Views too large for the sheet get continuation sheets automatically.</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</main>
+<aside class="docs-right"></aside>
+</div>
+
+<script>
+  document.querySelectorAll('video[data-src]').forEach(v => { if (!v.src) v.src = v.dataset.src; });
+</script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
+</body>
+</html>

@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Adelphos for Excel — Apps — Adelphos AI</title>
 <meta name="description" content="The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.">
-<meta name="keywords" content="Adelphos AI, Adelphos for Excel, MEP, Revit, Heat-loss / sizing engineers, IESVE workflow integration, Calc-to-model gap analysis">
+<meta name="keywords" content="Adelphos AI, Adelphos for Excel, MEP, Revit, Excel Revit integration, model-linked spreadsheet, heat loss Excel Revit, calc to model sync, engineering Excel add-in, MEP sizing spreadsheet tool, Heat-loss / sizing engineers, IESVE workflow integration, Calc-to-model gap analysis">
 <link rel="canonical" href="https://adelphos.ai/apps/excel-add-in/index.html">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="theme-color" content="#156082">
@@ -181,10 +198,10 @@
      Sections 1+2 of templates/home.html. No new card style. Painted
      artsy frame for the hero showcase, dark .rp-commands-card for
      features/related/CTA, View 6 .demo-text-* for prose.
-     See: /opt/cursor/artifacts/PLAN.md Phase 7
      ════════════════════════════════════════════════════════════════════ */
 
-  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html, body { overflow-y: auto !important; overflow-x: hidden !important; height: auto !important; }
+  body { background: var(--ad-bg); }
   html.dark-mode body { background: var(--ad-bg-dark); }
 
   /* Wide layout, no rails (matches home) */
@@ -259,31 +276,28 @@
 
   .ap-hero-copy h1 {
     margin: 0;
-    font-family: var(--ad-font-display);
-    font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
+    font-size: clamp(30px, 3.6vw, 48px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #222;
     max-width: var(--ad-measure);
   }
 
   .ap-claim {
     margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: 18px;
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-row);
-    color: var(--ad-text-1);
-    max-width: var(--ad-measure);
+    font-size: clamp(15px, 1.3vw, 18px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ad-text-3);
+    max-width: 30em;
   }
 
   .ap-tag {
     margin: 0;
-    font-family: var(--ad-font-body);
     font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-weight: 300;
+    line-height: 1.55;
     color: var(--ad-text-3);
     max-width: var(--ad-measure);
   }
@@ -465,71 +479,81 @@
   }
 
   /* ── SECTION HEADINGS ───────────────────────────────────────────────── */
-  .docs-content h2 {
-    margin: var(--space-2xl) 0 var(--space-sm);
+  .ap-section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--space-md); flex-wrap: wrap;
+    margin: var(--space-2xl) 0 var(--space-lg);
     padding-top: var(--space-md);
-    border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
+    border-top: 1px solid var(--border);
   }
-  html.dark-mode .docs-content h2 { color: var(--ad-text-1); }
-
-  .ap-section-sub {
-    margin: 0 0 var(--space-lg);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-    max-width: var(--ad-measure);
+  .ap-section-head h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--ad-teal);
+    padding-top: var(--space-md);
+  }
+  .ap-section-head .head-aside {
+    display: flex; gap: var(--space-md); align-items: baseline; flex-wrap: wrap;
+  }
+  .ap-section-head .head-aside p {
+    margin: 0; max-width: 460px; color: var(--ad-text-3);
+    font-size: 14px; line-height: 1.55;
   }
 
-  /* ── DESCRIPTION — two-column: detail + pull-quote ─────────────────── */
+  /* ── DESCRIPTION — 40% detail / 20% whitespace / 40% pull-quote ──── */
   .ap-why {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-2xl);
+    grid-template-columns: 2fr 1fr 2fr;
     align-items: start;
     margin: var(--space-md) 0 var(--space-2xl);
   }
+  .ap-why-detail {
+    grid-column: 1;
+  }
   .ap-why-detail p {
     margin: 0 0 18px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-3);
-    text-align: justify;
-    max-width: var(--ad-measure);
   }
   .ap-why-detail p:last-child { margin-bottom: 0; }
+  .ap-why-quote {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+  }
+  .accent { color: var(--ad-teal); }
   .ap-why-quote blockquote {
     margin: 0;
-    padding: 0 0 0 24px;
-    border-left: 3px solid var(--ad-teal);
-    font-family: var(--ad-font-body);
-    font-size: 20px;
-    font-weight: var(--ad-w-light);
-    line-height: 1.4;
+    padding: 0;
+    border: none;
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     color: var(--ad-text-1);
   }
   @media (max-width: 900px) {
-    .ap-why { grid-template-columns: 1fr; gap: var(--space-lg); }
-    .ap-why-quote blockquote { font-size: 18px; }
+    .ap-why { grid-template-columns: 1fr; }
+    .ap-why-detail, .ap-why-quote { grid-column: 1; }
+    .ap-why-quote { margin-top: var(--space-lg); }
+    .ap-why-quote blockquote { font-size: 28px; }
   }
 
   /* ── WHAT MAKES IT DIFFERENT ──────────────────────────────────────── */
   .ap-special {
     margin: var(--space-sm) 0 var(--space-xl);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-row);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-row);
-    color: var(--ad-text-1);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ad-text-3);
     max-width: 60ch;
   }
 
@@ -576,33 +600,66 @@
     width: 100%;
     height: auto;
     margin: var(--space-md) 0 var(--space-xl);
-    padding: 32px 36px 28px;
+    background: #2f2f2f;
+    border-radius: 14px;
+    padding: 36px;
+    box-shadow: 0 16px 40px rgba(30,52,72,0.28);
     color: #fff;
+    display: flex; flex-direction: column; gap: 16px;
     cursor: default;
     user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
   }
-  .ap-features-card .ap-features-header {
-    margin: 0 0 12px;
-    font-family: var(--ad-font-body);
-    font-size: 22px;
-    font-weight: var(--ad-w-card);
-    line-height: 1.2;
+  .ap-features-card .rp-card-header {
+    margin: 0 0 8px;
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 44px;
+    font-weight: 500;
     color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    border: none;
+    padding: 0;
   }
-  .ap-features-card .ap-feat-chev {
-    width: 18px; height: 18px;
-    flex-shrink: 0;
-    color: var(--ad-teal-light);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    /* Phase 7.4: 4px translate on row hover only (not infinite). */
-    transition: transform 0.18s cubic-bezier(0.65, 0, 0.35, 1);
+  @keyframes rpAgentSpin {
+    to { transform: rotate(360deg); }
   }
-  @media (hover: hover) {
-    .ap-features-card .rp-feat-item:hover .ap-feat-chev {
-      transform: translateX(4px);
-    }
+  .ap-features-card .rp-agent-spinner {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-top-color: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    animation: rpAgentSpin 0.9s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ap-features-card .rp-agent-spinner { animation: none; }
+  }
+  .ap-features-card .rp-feat-list {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 12px;
+  }
+  .ap-features-card .rp-feat-item {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ap-features-card .rp-feat-item:last-child { border-bottom: none; }
+  .ap-features-card .rp-feat-copy {
+    display: flex; flex-direction: column; gap: 2px;
+    min-width: 0; flex: 1 1 auto;
+  }
+  .ap-features-card .rp-feat-title {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 18px; font-weight: 500; color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .ap-features-card .rp-feat-desc {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.65); line-height: 1.4;
+  }
+  @media (max-width: 720px) {
+    .ap-features-card .rp-card-header { font-size: 28px; }
+    .ap-features-card .rp-feat-title { font-size: 16px; }
+    .ap-features-card .rp-feat-desc { font-size: 14px; }
   }
   .ap-feat-group-label {
     margin: var(--space-md) 0 8px;
@@ -736,11 +793,11 @@
   .related-section h2 {
     margin: 0 0 var(--space-md);
     padding-top: var(--space-md);
-    border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    letter-spacing: var(--ad-ls-hero);
+    border-top: 1px solid var(--border);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
     color: var(--ad-text-1);
   }
   .related-grid {
@@ -794,11 +851,11 @@
   .faq-section h2 {
     margin: var(--space-2xl) 0 var(--space-md);
     padding-top: var(--space-md);
-    border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    letter-spacing: var(--ad-ls-hero);
+    border-top: 1px solid var(--border);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
     color: var(--ad-text-1);
   }
   .faq-list { display: flex; flex-direction: column; gap: 8px; }
@@ -863,44 +920,47 @@
     height: auto;
     margin: var(--space-2xl) 0 var(--space-lg);
     padding: 36px 40px;
-    color: #fff;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: 14px;
+    color: #333;
     cursor: default;
     user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    box-shadow: 0 8px 22px rgba(30,52,72,0.10);
     display: flex; flex-direction: column; gap: 8px;
   }
   .ap-end-cta h3 {
     margin: 0;
-    font-family: var(--ad-font-body);
+    font-family: 'Inter Display', 'Inter', sans-serif;
     font-size: 28px;
-    font-weight: var(--ad-w-card);
+    font-weight: 500;
     line-height: 1.2;
-    color: #fff;
+    color: #333;
+    letter-spacing: -0.02em;
   }
   .ap-end-cta p {
     margin: 0 0 8px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-row);
-    font-weight: var(--ad-w-light);
-    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--ad-text-3);
     max-width: 60ch;
   }
   .ap-end-cta a {
     align-self: flex-start;
-    background: #fff;
-    color: var(--ad-teal);
+    background: var(--ad-teal);
+    color: #fff;
     padding: 13px 24px;
     border-radius: 999px;
-    font-family: var(--ad-font-body);
     font-size: 14px;
-    font-weight: var(--ad-w-medium);
+    font-weight: 500;
     text-decoration: none;
     transition: transform 0.18s, box-shadow 0.18s;
   }
   @media (hover: hover) {
     .ap-end-cta a:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.30);
+      box-shadow: 0 12px 30px rgba(21,96,130,0.30);
     }
   }
   .ap-end-cta a:active { transform: scale(0.98); }
@@ -911,19 +971,74 @@
     overflow: hidden;
     margin: 0 0 var(--space-2xl);
     box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    aspect-ratio: 16 / 9;
+    background: #000;
   }
-  .hero-video video { display: block; width: 100%; }
+  .hero-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-  /* ── TIMESTAMP (build provenance, sub-footer) ─────────────────── */
-  .ap-stamp {
-    margin-top: 48px;
-    padding: 14px 18px;
+  /* ── SCREENSHOTS CAROUSEL ────────────────────────────────────────── */
+  .ap-screenshots-carousel {
+    margin: var(--space-2xl) 0;
+    position: relative;
+  }
+  .ap-screenshots-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 8px 20% 20px;
+  }
+  .ap-screenshots-track::-webkit-scrollbar { display: none; }
+  .ap-screenshot-slot {
+    flex: 0 0 60%;
+    scroll-snap-align: center;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    background: #1a1a1a;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+  .ap-screenshot-slot.active,
+  .ap-screenshot-slot:hover {
+    transform: scale(1.02);
+    box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    opacity: 1;
+  }
+  .ap-screenshot-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ap-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
     background: var(--ad-panel);
     border: 1px solid var(--ad-border);
-    border-radius: var(--radius-sm);
-    font-family: var(--ad-font-mono);
-    font-size: 12px;
-    color: var(--ad-text-5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    color: var(--ad-text-1);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+    transition: background 0.18s, box-shadow 0.18s;
+  }
+  .ap-carousel-btn:hover {
+    background: #fff;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+  }
+  .ap-carousel-btn.prev { left: 12px; }
+  .ap-carousel-btn.next { right: 12px; }
+  @media (max-width: 900px) {
+    .ap-screenshots-track { padding: 8px 10% 20px; }
+    .ap-screenshot-slot { flex: 0 0 80%; }
   }
 
   /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ─────────────────────
@@ -984,65 +1099,135 @@
       </div>
     </div>
     <div class="ap-hero-frame">
-      <img class="ap-hero-logo" src="/logos/Excel.jpg" alt="Adelphos for Excel logo" onerror="this.style.opacity=0">
+      <img class="ap-hero-logo" src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel logo" onerror="this.style.opacity=0">
     </div>
   </section>
 
   
 
   <!-- ═══ DESCRIPTION ═══ -->
-  <h2 id="description">Why use Adelphos for Excel</h2>
+  <div class="ap-section-head" id="description">
+    <h2>Why use Adelphos for Excel</h2>
+  </div>
   <div class="ap-why ap-reveal d2">
     <div class="ap-why-detail"><p>Adelphos for Excel turns your calc spreadsheets into live, model-aware workbooks. The values in your sizing tabs stay in sync with the model elements they drive — and any disagreement is flagged inline before it becomes a re-issue.</p></div>
     <aside class="ap-why-quote"><blockquote>Adelphos will be the only building services software provider that addresses the entire process, start to finish — designed and built by industry professionals who have experienced the gap in the market.</blockquote></aside>
   </div>
 
-  <!-- ═══ THE SHIFT ═══ -->
-  <h2 id="the-shift">The shift</h2>
-  <p class="ap-section-sub">What working looks like today versus with Adelphos for Excel.</p>
-  
+  <!-- ═══ HOW IT WORKS + WHAT MAKES IT DIFFERENT ═══ -->
+  <div class="ap-why" style="margin-top:var(--space-2xl);padding-top:var(--space-xl);border-top:1px solid var(--border);">
+    <div class="ap-why-detail">
+      <h3 style="margin:0 0 18px;font-size:32px;font-weight:500;letter-spacing:-0.025em;line-height:1.15;color:var(--ad-teal);">How it works</h3>
+      
+      
+    </div>
+    <div></div>
+    <div class="ap-why-quote" style="align-items:start;">
+      <div>
+        <h3 style="margin:0 0 12px;font-size:32px;font-weight:500;letter-spacing:-0.025em;line-height:1.15;color:var(--ad-teal);">What makes it different</h3>
+        <p style="font-size:18px;font-weight:300;line-height:1.6;color:var(--ad-text-3);"></p>
+      </div>
+    </div>
+  </div>
 
-  <!-- ═══ WHAT MAKES IT DIFFERENT ═══ -->
-  <h2 id="special">What makes it different</h2>
-  <p class="ap-special"></p>
+  <!-- ═══ SCREENSHOTS CAROUSEL ═══ -->
+  <div class="ap-screenshots-carousel" id="screenshots">
+    <button class="ap-carousel-btn prev" aria-label="Previous screenshot">&#8249;</button>
+    <button class="ap-carousel-btn next" aria-label="Next screenshot">&#8250;</button>
+    <div class="ap-screenshots-track">
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/excel-add-in/screen-1.png" alt="Adelphos for Excel screenshot 1" onerror="this.style.display='none'">
+      </div>
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/excel-add-in/screen-2.png" alt="Adelphos for Excel screenshot 2" onerror="this.style.display='none'">
+      </div>
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/excel-add-in/screen-3.png" alt="Adelphos for Excel screenshot 3" onerror="this.style.display='none'">
+      </div>
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/excel-add-in/screen-4.png" alt="Adelphos for Excel screenshot 4" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var carousel = document.getElementById('screenshots');
+    if (!carousel) return;
+    var track = carousel.querySelector('.ap-screenshots-track');
+    var slots = carousel.querySelectorAll('.ap-screenshot-slot');
+    var prev = carousel.querySelector('.prev');
+    var next = carousel.querySelector('.next');
+    var idx = 0;
+    function update() {
+      slots.forEach(function(s,i){ s.classList.toggle('active', i === idx); });
+    }
+    prev.addEventListener('click', function(){
+      idx = Math.max(0, idx - 1);
+      slots[idx].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+      update();
+    });
+    next.addEventListener('click', function(){
+      idx = Math.min(slots.length - 1, idx + 1);
+      slots[idx].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+      update();
+    });
+    track.addEventListener('scrollend', function(){
+      var center = track.scrollLeft + track.offsetWidth / 2;
+      var closest = 0, minDist = Infinity;
+      slots.forEach(function(s,i){
+        var d = Math.abs(s.offsetLeft + s.offsetWidth/2 - center);
+        if (d < minDist){ minDist = d; closest = i; }
+      });
+      idx = closest;
+      update();
+    });
+    update();
+  })();
+  </script>
 
-  <!-- ═══ FEATURES — dark .rp-commands-card, no spinners ═══ -->
-  <h2 id="features">Features</h2>
-  <p class="ap-section-sub">What Adelphos for Excel does. Each line is a shipped capability.</p>
+  <!-- ═══ FEATURES ═══ -->
+  <div class="ap-section-head" id="features">
+    <h2>Features</h2>
+    <div class="head-aside"><p>What Adelphos for Excel does. Each line is a shipped capability.</p></div>
+  </div>
   
     <div class="ap-features-card rp-commands-card">
-      <h3 class="ap-features-header">Adelphos for Excel features</h3>
+      <h2 class="rp-card-header">Adelphos for Excel features</h2>
       <div class="rp-feat-list">
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Live model values</span>
         <span class="rp-feat-desc">Pull values from the model into your sizing tabs.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Push-back to Revit</span>
         <span class="rp-feat-desc">Push calc results back to the model elements.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Inline gap analysis</span>
         <span class="rp-feat-desc">Disagreements flagged in the cell, not weeks later.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div></div>
     </div>
 
   <!-- ═══ INSTALL ═══ -->
-  <h2 id="install">Install &amp; system</h2>
-  <p class="ap-section-sub">Where Adelphos for Excel runs, what you need, and how to get it.</p>
+  <div class="ap-section-head" id="install">
+    <h2>Install &amp; system</h2>
+    <div class="head-aside"><p>Where Adelphos for Excel runs, what you need, and how to get it.</p></div>
+  </div>
   
 
   <!-- ═══ WHO IT'S FOR ═══ -->
-  <h2 id="best-for">Who it's for</h2>
+  <div class="ap-section-head" id="best-for">
+    <h2>Who it's for</h2>
+  </div>
   <div class="ap-audience"><span class="ap">Heat-loss / sizing engineers</span><span class="ap">IESVE workflow integration</span><span class="ap">Calc-to-model gap analysis</span></div>
 
   
@@ -1051,7 +1236,7 @@
       <div class="related-grid"><a class="related-card" href="/apps/revit-copilot/index.html">
        <span class="related-kind">App</span>
        <strong>Revit Copilot</strong>
-       <span class="related-desc">Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.</span>
+       <span class="related-desc">Talk to Revit. The Copilot understands your model, applies your standards, and runs every command and tool on the platform — and it's open, so you can add your own.</span>
      </a><a class="related-card" href="/apps/adelphos-chat/index.html">
        <span class="related-kind">App</span>
        <strong>Adelphos Chat</strong>
@@ -1086,16 +1271,12 @@
     </details></div>
     </section>
 
-  <div class="ap-end-cta rp-commands-card">
+  <div class="ap-end-cta">
     <h3>Get the Excel add-in.</h3>
     <p>Open Adelphos for Excel in your browser — no install needed.</p>
     <a href="/downloads/index.html">Get the Excel add-in &rarr;</a>
   </div>
 
-  <p class="ap-stamp">
-    Auto-generated <code>2026-04-26T09:55:41.634Z</code> from <code>sandbox/data/apps.json</code>.
-    Re-run with <code>adelphos_CLI auto-all</code>.
-  </p>
 
 </main>
 <aside class="docs-right"></aside>
@@ -1104,6 +1285,6 @@
 <script>
   document.querySelectorAll('video[data-src]').forEach(function(v){ if (!v.src) v.src = v.dataset.src; });
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

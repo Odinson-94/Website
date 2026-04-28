@@ -14,11 +14,49 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Display:opsz,wght@14..32,300;500;600&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  body { background: var(--ad-bg, #f5f3ef); }
+  html.dark-mode body { background: var(--ad-bg-dark, #1a1a1a); }
+
+  .demo-detail h1, .demo-detail h2, .demo-detail h3 {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+  }
+  .demo-detail .lead, .demo-detail p, .demo-detail ul, .demo-detail ol,
+  .demo-detail .hero-video { max-width: none; }
+
+  .ref-table {
+    background: #eae8e4; border: none; border-radius: 14px; overflow: hidden;
+  }
+  .ref-table th {
+    background: rgba(0,0,0,0.04); color: var(--ad-teal, #156082);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-family: 'Inter Display', sans-serif; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .ref-table td { border-bottom: 1px solid rgba(0,0,0,0.06); color: #444; }
+  .ref-table tr:hover td { background: rgba(0,0,0,0.03); }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table code { font-family: 'Inter Display', sans-serif; font-size: 13px; font-weight: 500; color: #222; }
+
+  .pill { border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 500; }
+  .pill-pillar { background: rgba(21,96,130,0.12); color: var(--ad-teal, #156082); }
+  .pill-category { background: rgba(0,0,0,0.06); color: #555; }
+  .pill-coming { background: rgba(0,0,0,0.04); color: #999; }
+
+  html.dark-mode .ref-table { background: #2f2f2f; box-shadow: 0 8px 22px rgba(0,0,0,0.25); }
+  html.dark-mode .ref-table th { background: rgba(255,255,255,0.06); color: var(--ad-teal-light, #4a9bb8); border-bottom-color: rgba(255,255,255,0.10); }
+  html.dark-mode .ref-table td { border-bottom-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .ref-table tr:hover td { background: rgba(255,255,255,0.04); }
+  html.dark-mode .ref-table code { color: #fff; }
+  html.dark-mode .pill-pillar { background: rgba(74,155,184,0.18); color: var(--ad-teal-light, #4a9bb8); }
+  html.dark-mode .pill-category { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); }
+  html.dark-mode .pill-coming { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.40); }
+</style>
 </head>
 <body>
 
@@ -28,33 +66,33 @@
 <aside class="docs-left"></aside>
 <main class="docs-content demo-detail">
 
-  <div class="crumbs"><a href="/sandbox/docs/commands/inventory.html">Commands</a> &nbsp;›&nbsp;  &nbsp;›&nbsp; Plantroom Layout Solve Room With Preset</div>
+  <div class="crumbs"><a href="/docs/commands/index.html">Commands</a> &nbsp;›&nbsp; Plantroom Layout &nbsp;›&nbsp; Plantroom Layout Solve Room With Preset</div>
 
   <h1 id="overview">Plantroom Layout Solve Room With Preset</h1>
 
   <div class="meta-row" style="margin-bottom:24px;">
-    <span class="pill pill-pillar"></span>
+    <span class="pill pill-pillar">Plantroom Layout</span>
     <span class="pill pill-category">writes to model</span>
     <span class="pill pill-coming">Public API · not yet exposed</span>
   </div>
 
-  <p class="lead">PlantroomLayoutSolveRoomWithPresetCommand — see Features Plan §8 Plantroom bucket for full workflow.</p>
+  <p class="lead">Coming soon</p>
 
-  <div class="callout callout-pre"><strong>Before you run this</strong><p>See §Preconditions in plan.</p></div>
-  <div class="callout callout-post"><strong>After it runs</strong><p>See §Outputs in plan.</p></div>
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>One plantroom selected. Plantroom preset configured (equipment manifest, clearances, layout strategy). Doors, drains and flue penetration modelled. Exclusion zones drawn if any.</p></div>
+  <div class="callout callout-post"><strong>After it runs</strong><p>The Plantroom Layout panel shows a preview of the solved layout (positions, rotations, clearance halos). On Place, family instances are committed to the Revit model in one Transaction with audit log written.</p></div>
 
   <div class="hero-video" id="watch">
     <video controls preload="metadata"
            poster="/sandbox/demo-assets/plantroom-layout-solve-room-with-preset/thumbnail.svg"
            data-src="/sandbox/demo-assets/plantroom-layout-solve-room-with-preset/video.mp4"
-           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'video placeholder · drop plantroom-layout-solve-room-with-preset/video.mp4 in to play'}));"></video>
+           onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerHTML:'<svg width=&quot;48&quot; height=&quot;48&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.25)&quot; stroke-width=&quot;1.5&quot;><polygon points=&quot;5 3 19 12 5 21 5 3&quot;/></svg>'}));"></video>
   </div>
 
   <h2 id="when-to-use">When to use this</h2>
   <ul style="padding-left:22px;">
-    <li>See §Why and §Bot/Human in plan.</li>
+    <li>You've drawn the plantroom shell and you want a first-pass equipment layout against the preset before iterating with the engineer — saves picking spots one piece at a time.</li>
   </ul>
-  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Cross-cutting responsibilities outside this class's stated purpose.</p></div>
+  <div class="callout callout-warn"><strong>Don't use this when</strong><p>Bespoke layouts where the preset doesn't apply, plantrooms with multiple zones (split into separate runs), or schemes where equipment is selected by performance only.</p></div>
   
 
   
@@ -62,41 +100,18 @@
   
 
   <h2 id="decision-flow">Decision flow</h2>
-  <pre class="logictree">below.
-// CALLS:   ErrorManager, CentralWarningLogger, CommandTracker; see §Helpers
-//          in the plan for the specific Plantroom helper classes this calls.
-// CALLED BY: ribbon / Bot execute_command or upstream orchestrator command
-//            (see §CalledBy in plan).
-
-using System;
-using JetBrains.Annotations;
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.UI;
-using Nice3point.Revit.Toolkit.External;
-using MEPBridge.Revit.Tracking;
-using MEPBridge.Revit.ErrorWiring;
-using MEPBridge.Revit.WarningManager.Services;
-using ErrorWire = MEPBridge.Revit.ErrorWiring.ErrorManager;
-
-namespace MEPBridge.Revit.Plantroom.Commands
-{
-&lt;summary&gt;
-PlantroomLayoutSolveRoomWithPresetCommand — see Features Plan §8 Plantroom bucket for full workflow.
-&lt;/summary&gt;
-&lt;precondition&gt;See §Preconditions in plan.&lt;/precondition&gt;
-&lt;postcondition&gt;See §Outputs in plan.&lt;/postcondition&gt;
-&lt;usecase&gt;See §Why and §Bot/Human in plan.&lt;/usecase&gt;
-&lt;notfor&gt;Cross-cutting responsibilities outside this class's stated purpose.&lt;/notfor&gt;
-&lt;keywords&gt;plantroom, plantroomlayoutsolveroomwithpresetcommand&lt;/keywords&gt;
-&lt;logictree&gt;
-1. **Trigger** — User: ribbon 'Plantroom Layout' opens panel. Bot: `execute_command('PlantroomLayoutSolveRoomWithPresetCommand', {room_id, preset_id, equipment:[...], door_ids, drain_ids, flue_id, exclusion_polygons, objective})`. 2. **Resolvers** — every field above + `Resolver_DryRun: bool` (Bot default false; Human's 'Solve' button sets true; Human's 'Place in Revit' re-invokes with false). 3.</pre>
+  <pre class="logictree">1. Read the plantroom geometry, doors, drains, flue and exclusion zones.
+2. Read the active plantroom preset (equipment manifest + clearances + layout strategy).
+3. Run the layout solver to compute positions, rotations and clearance halos.
+4. Preview the result in the Plantroom Layout panel; await Place from the user.
+5. On Place, commit family instances + halos in one Transaction; write audit log.</pre>
 
   <h2 id="what-youll-see">What you'll see in the chat</h2>
   <div class="ai-dialogue">
-    <div class="lab">on start</div><div class="msg">Running PlantroomLayoutSolveRoomWithPresetCommand...</div>
-    <div class="lab">thinking</div><div class="msg">Validating preconditions...<br>Applying deterministic steps per plan §8...</div>
-    <div class="lab">on success</div><div class="msg">PlantroomLayoutSolveRoomWithPresetCommand completed.</div>
-    <div class="lab">on failure</div><div class="msg">PlantroomLayoutSolveRoomWithPresetCommand failed: <span class="placeholder">{error}</span></div>
+    <div class="lab">on start</div><div class="msg">I'll solve the plantroom layout against the preset and show you the preview.</div>
+    <div class="lab">thinking</div><div class="msg">Reading the room geometry and running the layout solver against the preset.</div>
+    <div class="lab">on success</div><div class="msg">Done — layout solved with <span class="placeholder">{n_equipment}</span> pieces. Preview ready in the panel — press Place when you're happy.</div>
+    <div class="lab">on failure</div><div class="msg">Couldn't solve the plantroom layout: <span class="placeholder">{error}</span>.</div>
   </div>
 
   <h2 id="rest-api">REST API</h2>
@@ -112,15 +127,10 @@ PlantroomLayoutSolveRoomWithPresetCommand — see Features Plan §8 Plantroom bu
   </div>
 
   <h2 id="keywords">Keywords &amp; intent patterns</h2>
-  <p style="color:var(--text-muted);font-size:14px;">plantroomlayoutsolveroomwithpreset</p>
+  <p style="color:var(--text-muted);font-size:14px;">plantroom solver · equipment auto-layout · plantroom preset · layout preview · plantroom design</p>
 
   <h2 id="related">Related</h2>
-  <table class="ref-table"><tbody><tr><th>Pillar</th><td></td></tr></tbody></table>
-
-  <p style="margin-top:48px;padding:14px 18px;background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);">
-    Auto-generated <code></code> by <code></code> from data SHA <code></code>.
-    See <a href="/BUILD%20WEB%20Plan/Page%20Type%20Skills/Command%20Page/">Command Page Skill</a> for the contract.
-  </p>
+  <table class="ref-table"><tbody><tr><th>Pillar</th><td>Plantroom Layout</td></tr></tbody></table>
 
 </main>
 <aside class="docs-right"></aside>
@@ -130,6 +140,6 @@ PlantroomLayoutSolveRoomWithPresetCommand — see Features Plan §8 Plantroom bu
   const v = document.querySelector('.hero-video video');
   if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

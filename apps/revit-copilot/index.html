@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Revit Copilot — Apps — Adelphos AI</title>
 <meta name="description" content="An AI engineer that lives inside Revit and runs the model with you.">
-<meta name="keywords" content="Adelphos AI, Revit Copilot, MEP, Revit, MEP designers, BIM coordinators, Engineers who live in Revit">
+<meta name="keywords" content="Adelphos AI, Revit Copilot, MEP, Revit, Revit AI plugin, AI for Revit, Revit automation, Revit add-in AI, MEP BIM software, Revit copilot, AI MEP design, Revit plugin MEP, BIM automation tool, AI building services, Revit 2025 add-in, MEP coordination software, MEP designers, BIM coordinators, Engineers who live in Revit">
 <link rel="canonical" href="https://adelphos.ai/apps/revit-copilot/index.html">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="theme-color" content="#156082">
@@ -56,7 +73,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Revit Copilot",
-  "description": "The Revit Copilot installs as a Revit add-in that exposes 163 commands and 191 MCP tools to a chat-based agent running inside the model. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination of those — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a transactional Revit operation with one-click undo.",
+  "description": "The Revit Copilot installs as a Revit add-in that gives a chat-based agent access to every command and tool on the platform — and it's open, so the library grows with every release and you can add your own. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a reversible Revit operation with one-click undo.",
   "url": "https://adelphos.ai/apps/revit-copilot/index.html",
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "BIM / MEP Engineering",
@@ -101,58 +118,66 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is Revit Copilot?",
+      "name": "Is there an AI plugin for Revit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform."
+        "text": "Yes. Revit Copilot is an AI-powered Revit add-in that installs natively into Revit 2022–2026. It exposes 163 commands and 191 MCP tools through a chat panel docked inside the model — ask in plain English and the agent picks the right tools and executes the work."
       }
     },
     {
       "@type": "Question",
-      "name": "What does Revit Copilot do?",
+      "name": "Can AI automate MEP design in Revit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Revit Copilot installs as a Revit add-in that exposes 163 commands and 191 MCP tools to a chat-based agent running inside the model. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination of those — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a transactional Revit operation with one-click undo."
+        "text": "Revit Copilot automates routine MEP tasks — extending connectors, placing equipment, building schedules, running clash checks, coordinating across disciplines — all from a single chat prompt. It typically saves 10–18 hours per project on manual Revit work."
       }
     },
     {
       "@type": "Question",
-      "name": "How is Revit Copilot different from the manual workflow?",
+      "name": "What is the best AI tool for MEP engineers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Without Revit Copilot: Click through ribbons. Memorise plug-ins. Copy parameters by hand. Hope the schedule matches the model. With Revit Copilot: Ask. The Copilot picks the right tool, asks the questions a senior would, and writes the result back to the model — already coordinated, already scheduled, already QA'd."
+        "text": "Revit Copilot is built specifically for MEP engineers working in Revit. It understands drainage, ventilation, lighting, mechanical, electrical, public health and fire alarm disciplines, applies your office standards, and shows its working on every change."
       }
     },
     {
       "@type": "Question",
-      "name": "How much time does Revit Copilot save?",
+      "name": "Can I use AI in Revit without learning new tools?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Headline outcomes for Revit Copilot: 163 (Revit commands one prompt away); 191 (MCP tools the agent can chain); 18× (faster than manual on coordination tasks); 0 (context switches — never leave Revit)."
+        "text": "You don't need to learn anything. Just describe what you need — 'build the radiator schedule', 'run a clash check on Level 02', 'extend all unconnected pipes' — and the Copilot figures out which commands to run and in what order."
       }
     },
     {
       "@type": "Question",
-      "name": "What platform does Revit Copilot run on?",
+      "name": "Does Revit Copilot work with Revit 2025 and 2026?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Revit add-in · Revit 2022 → 2026 · Windows"
+        "text": "Yes. Revit Copilot supports Revit 2022, 2023, 2024, 2025 and 2026 on Windows 10 and 11. The add-in auto-loads on startup."
       }
     },
     {
       "@type": "Question",
-      "name": "Who is Revit Copilot for?",
+      "name": "Can I run Revit commands from outside the model?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "MEP designers; BIM coordinators; Engineers who live in Revit."
+        "text": "We're building remote access so you can call the Copilot from a browser, phone or desktop app — run checks, generate schedules, write specifications and clash-coordinate without being in Revit. The agent reads the live model remotely."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I get Revit Copilot?",
+      "name": "How is this different from Autodesk's built-in AI?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Self-serve: Download the add-in at /downloads/index.html. No sales call required."
+        "text": "Revit Copilot has read/write access to your model through 163 commands and 191 tools purpose-built for MEP. It applies your office standards, chains multi-step operations, and every action is reversible with one-click undo. It's an engineering agent, not a general assistant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Revit Copilot free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Self-serve download — install the .msi, sign in with your Adelphos account, and start working. No sales call required."
       }
     }
   ]
@@ -205,10 +230,10 @@
      Sections 1+2 of templates/home.html. No new card style. Painted
      artsy frame for the hero showcase, dark .rp-commands-card for
      features/related/CTA, View 6 .demo-text-* for prose.
-     See: /opt/cursor/artifacts/PLAN.md Phase 7
      ════════════════════════════════════════════════════════════════════ */
 
-  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html, body { overflow-y: auto !important; overflow-x: hidden !important; height: auto !important; }
+  body { background: var(--ad-bg); }
   html.dark-mode body { background: var(--ad-bg-dark); }
 
   /* Wide layout, no rails (matches home) */
@@ -283,31 +308,28 @@
 
   .ap-hero-copy h1 {
     margin: 0;
-    font-family: var(--ad-font-display);
-    font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
+    font-size: clamp(30px, 3.6vw, 48px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #222;
     max-width: var(--ad-measure);
   }
 
   .ap-claim {
     margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: 18px;
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-row);
-    color: var(--ad-text-1);
-    max-width: var(--ad-measure);
+    font-size: clamp(15px, 1.3vw, 18px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ad-text-3);
+    max-width: 30em;
   }
 
   .ap-tag {
     margin: 0;
-    font-family: var(--ad-font-body);
     font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-weight: 300;
+    line-height: 1.55;
     color: var(--ad-text-3);
     max-width: var(--ad-measure);
   }
@@ -489,71 +511,81 @@
   }
 
   /* ── SECTION HEADINGS ───────────────────────────────────────────────── */
-  .docs-content h2 {
-    margin: var(--space-2xl) 0 var(--space-sm);
+  .ap-section-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--space-md); flex-wrap: wrap;
+    margin: var(--space-2xl) 0 var(--space-lg);
     padding-top: var(--space-md);
-    border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
+    border-top: 1px solid var(--border);
   }
-  html.dark-mode .docs-content h2 { color: var(--ad-text-1); }
-
-  .ap-section-sub {
-    margin: 0 0 var(--space-lg);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-    max-width: var(--ad-measure);
+  .ap-section-head h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--ad-teal);
+    padding-top: var(--space-md);
+  }
+  .ap-section-head .head-aside {
+    display: flex; gap: var(--space-md); align-items: baseline; flex-wrap: wrap;
+  }
+  .ap-section-head .head-aside p {
+    margin: 0; max-width: 460px; color: var(--ad-text-3);
+    font-size: 14px; line-height: 1.55;
   }
 
-  /* ── DESCRIPTION — two-column: detail + pull-quote ─────────────────── */
+  /* ── DESCRIPTION — 40% detail / 20% whitespace / 40% pull-quote ──── */
   .ap-why {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-2xl);
+    grid-template-columns: 2fr 1fr 2fr;
     align-items: start;
     margin: var(--space-md) 0 var(--space-2xl);
   }
+  .ap-why-detail {
+    grid-column: 1;
+  }
   .ap-why-detail p {
     margin: 0 0 18px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
     color: var(--ad-text-3);
-    text-align: justify;
-    max-width: var(--ad-measure);
   }
   .ap-why-detail p:last-child { margin-bottom: 0; }
+  .ap-why-quote {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+  }
+  .accent { color: var(--ad-teal); }
   .ap-why-quote blockquote {
     margin: 0;
-    padding: 0 0 0 24px;
-    border-left: 3px solid var(--ad-teal);
-    font-family: var(--ad-font-body);
-    font-size: 20px;
-    font-weight: var(--ad-w-light);
-    line-height: 1.4;
+    padding: 0;
+    border: none;
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     color: var(--ad-text-1);
   }
   @media (max-width: 900px) {
-    .ap-why { grid-template-columns: 1fr; gap: var(--space-lg); }
-    .ap-why-quote blockquote { font-size: 18px; }
+    .ap-why { grid-template-columns: 1fr; }
+    .ap-why-detail, .ap-why-quote { grid-column: 1; }
+    .ap-why-quote { margin-top: var(--space-lg); }
+    .ap-why-quote blockquote { font-size: 28px; }
   }
 
   /* ── WHAT MAKES IT DIFFERENT ──────────────────────────────────────── */
   .ap-special {
     margin: var(--space-sm) 0 var(--space-xl);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-row);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-row);
-    color: var(--ad-text-1);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ad-text-3);
     max-width: 60ch;
   }
 
@@ -600,33 +632,66 @@
     width: 100%;
     height: auto;
     margin: var(--space-md) 0 var(--space-xl);
-    padding: 32px 36px 28px;
+    background: #2f2f2f;
+    border-radius: 14px;
+    padding: 36px;
+    box-shadow: 0 16px 40px rgba(30,52,72,0.28);
     color: #fff;
+    display: flex; flex-direction: column; gap: 16px;
     cursor: default;
     user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
   }
-  .ap-features-card .ap-features-header {
-    margin: 0 0 12px;
-    font-family: var(--ad-font-body);
-    font-size: 22px;
-    font-weight: var(--ad-w-card);
-    line-height: 1.2;
+  .ap-features-card .rp-card-header {
+    margin: 0 0 8px;
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 44px;
+    font-weight: 500;
     color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    border: none;
+    padding: 0;
   }
-  .ap-features-card .ap-feat-chev {
-    width: 18px; height: 18px;
-    flex-shrink: 0;
-    color: var(--ad-teal-light);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    /* Phase 7.4: 4px translate on row hover only (not infinite). */
-    transition: transform 0.18s cubic-bezier(0.65, 0, 0.35, 1);
+  @keyframes rpAgentSpin {
+    to { transform: rotate(360deg); }
   }
-  @media (hover: hover) {
-    .ap-features-card .rp-feat-item:hover .ap-feat-chev {
-      transform: translateX(4px);
-    }
+  .ap-features-card .rp-agent-spinner {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-top-color: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    animation: rpAgentSpin 0.9s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ap-features-card .rp-agent-spinner { animation: none; }
+  }
+  .ap-features-card .rp-feat-list {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 12px;
+  }
+  .ap-features-card .rp-feat-item {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ap-features-card .rp-feat-item:last-child { border-bottom: none; }
+  .ap-features-card .rp-feat-copy {
+    display: flex; flex-direction: column; gap: 2px;
+    min-width: 0; flex: 1 1 auto;
+  }
+  .ap-features-card .rp-feat-title {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 18px; font-weight: 500; color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .ap-features-card .rp-feat-desc {
+    font-family: 'Inter Display', 'Inter', sans-serif;
+    font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.65); line-height: 1.4;
+  }
+  @media (max-width: 720px) {
+    .ap-features-card .rp-card-header { font-size: 28px; }
+    .ap-features-card .rp-feat-title { font-size: 16px; }
+    .ap-features-card .rp-feat-desc { font-size: 14px; }
   }
   .ap-feat-group-label {
     margin: var(--space-md) 0 8px;
@@ -760,11 +825,11 @@
   .related-section h2 {
     margin: 0 0 var(--space-md);
     padding-top: var(--space-md);
-    border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    letter-spacing: var(--ad-ls-hero);
+    border-top: 1px solid var(--border);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
     color: var(--ad-text-1);
   }
   .related-grid {
@@ -818,11 +883,11 @@
   .faq-section h2 {
     margin: var(--space-2xl) 0 var(--space-md);
     padding-top: var(--space-md);
-    border-top: 1px solid var(--ad-border);
-    font-family: var(--ad-font-display);
-    font-size: var(--ad-text-h2);
-    font-weight: var(--ad-w-medium);
-    letter-spacing: var(--ad-ls-hero);
+    border-top: 1px solid var(--border);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
     color: var(--ad-text-1);
   }
   .faq-list { display: flex; flex-direction: column; gap: 8px; }
@@ -887,44 +952,47 @@
     height: auto;
     margin: var(--space-2xl) 0 var(--space-lg);
     padding: 36px 40px;
-    color: #fff;
+    background: var(--ad-panel);
+    border: 1px solid var(--ad-border);
+    border-radius: 14px;
+    color: #333;
     cursor: default;
     user-select: auto;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    box-shadow: 0 8px 22px rgba(30,52,72,0.10);
     display: flex; flex-direction: column; gap: 8px;
   }
   .ap-end-cta h3 {
     margin: 0;
-    font-family: var(--ad-font-body);
+    font-family: 'Inter Display', 'Inter', sans-serif;
     font-size: 28px;
-    font-weight: var(--ad-w-card);
+    font-weight: 500;
     line-height: 1.2;
-    color: #fff;
+    color: #333;
+    letter-spacing: -0.02em;
   }
   .ap-end-cta p {
     margin: 0 0 8px;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-row);
-    font-weight: var(--ad-w-light);
-    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--ad-text-3);
     max-width: 60ch;
   }
   .ap-end-cta a {
     align-self: flex-start;
-    background: #fff;
-    color: var(--ad-teal);
+    background: var(--ad-teal);
+    color: #fff;
     padding: 13px 24px;
     border-radius: 999px;
-    font-family: var(--ad-font-body);
     font-size: 14px;
-    font-weight: var(--ad-w-medium);
+    font-weight: 500;
     text-decoration: none;
     transition: transform 0.18s, box-shadow 0.18s;
   }
   @media (hover: hover) {
     .ap-end-cta a:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.30);
+      box-shadow: 0 12px 30px rgba(21,96,130,0.30);
     }
   }
   .ap-end-cta a:active { transform: scale(0.98); }
@@ -935,19 +1003,74 @@
     overflow: hidden;
     margin: 0 0 var(--space-2xl);
     box-shadow: 0 8px 22px rgba(30,52,72,0.16);
+    aspect-ratio: 16 / 9;
+    background: #000;
   }
-  .hero-video video { display: block; width: 100%; }
+  .hero-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-  /* ── TIMESTAMP (build provenance, sub-footer) ─────────────────── */
-  .ap-stamp {
-    margin-top: 48px;
-    padding: 14px 18px;
+  /* ── SCREENSHOTS CAROUSEL ────────────────────────────────────────── */
+  .ap-screenshots-carousel {
+    margin: var(--space-2xl) 0;
+    position: relative;
+  }
+  .ap-screenshots-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 8px 20% 20px;
+  }
+  .ap-screenshots-track::-webkit-scrollbar { display: none; }
+  .ap-screenshot-slot {
+    flex: 0 0 60%;
+    scroll-snap-align: center;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    background: #1a1a1a;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+  .ap-screenshot-slot.active,
+  .ap-screenshot-slot:hover {
+    transform: scale(1.02);
+    box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+    opacity: 1;
+  }
+  .ap-screenshot-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ap-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
     background: var(--ad-panel);
     border: 1px solid var(--ad-border);
-    border-radius: var(--radius-sm);
-    font-family: var(--ad-font-mono);
-    font-size: 12px;
-    color: var(--ad-text-5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    color: var(--ad-text-1);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+    transition: background 0.18s, box-shadow 0.18s;
+  }
+  .ap-carousel-btn:hover {
+    background: #fff;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+  }
+  .ap-carousel-btn.prev { left: 12px; }
+  .ap-carousel-btn.next { right: 12px; }
+  @media (max-width: 900px) {
+    .ap-screenshots-track { padding: 8px 10% 20px; }
+    .ap-screenshot-slot { flex: 0 0 80%; }
   }
 
   /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ─────────────────────
@@ -1000,12 +1123,12 @@
       <span class="ap-badge">Revit add-in · Revit 2022 → 2026 · Windows</span>
       <h1 id="overview">Revit Copilot</h1>
       <p class="ap-claim">An AI engineer that lives inside Revit and runs the model with you.</p>
-      <p class="ap-tag">Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.</p>
+      <p class="ap-tag">Talk to Revit. The Copilot understands your model, applies your standards, and runs every command and tool on the platform — and it's open, so you can add your own.</p>
       <p class="ap-stats-inline">
-        <span><span class="ap-stat-num">163</span>Revit commands one prompt away</span><span aria-hidden="true">·</span>
-        <span><span class="ap-stat-num">191</span>MCP tools the agent can chain</span><span aria-hidden="true">·</span>
-        <span><span class="ap-stat-num">18×</span>faster than manual on coordination tasks</span><span aria-hidden="true">·</span>
-        <span><span class="ap-stat-num">0</span>context switches — never leave Revit</span></p>
+        <span><span class="ap-stat-num">Every</span>MEP command, one prompt away</span><span aria-hidden="true">·</span>
+        <span><span class="ap-stat-num">Open</span>platform — add your own tools</span><span aria-hidden="true">·</span>
+        <span><span class="ap-stat-num">Growing</span>library updated with every release</span><span aria-hidden="true">·</span>
+        <span><span class="ap-stat-num">Zero</span>context switches — never leave Revit</span></p>
       <div class="ap-actions">
         <a class="ap-cta-primary" href="/downloads/index.html">Download the add-in &rarr;</a>
         <a class="ap-cta-ghost" href="/demos/index.html">Watch a demo</a>
@@ -1018,109 +1141,173 @@
 
   
     <div class="hero-video" id="watch">
-      <video controls preload="metadata"
-             poster="/sandbox/app-assets/revit-copilot/hero.svg"
+      <video autoplay muted loop playsinline preload="auto"
              data-src="/Videos/Final Website Release.mp4"
              onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'demo video — drop hero.mp4 in for play'}));"></video>
     </div>
   
 
   <!-- ═══ DESCRIPTION ═══ -->
-  <h2 id="description">Why use Revit Copilot</h2>
+  <div class="ap-section-head" id="description">
+    <h2>Why use Revit Copilot</h2>
+  </div>
   <div class="ap-why ap-reveal d2">
-    <div class="ap-why-detail"><p>The Revit Copilot installs as a Revit add-in that exposes 163 commands and 191 MCP tools to a chat-based agent running inside the model. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination of those — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a transactional Revit operation with one-click undo.</p>
+    <div class="ap-why-detail"><p>The Revit Copilot installs as a Revit add-in that gives a chat-based agent access to every command and tool on the platform — and it's open, so the library grows with every release and you can add your own. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a reversible Revit operation with one-click undo.</p>
       <p>For an MEP designer, this typically removes 10 to 18 hours per project from manual ribbon-clicking, parameter copy-pasting and schedule cross-checks. For a coordinator, it cuts a typical clash-resolution loop from a half-day to under an hour, because the agent is reading the model continuously rather than waiting for a human to spot the issue.</p>
       <p>Across a Stage 3 MEP package on a typical mixed-use scheme, teams using the Copilot ship the same scope in 35–45% less Revit time than teams without it.</p></div>
-    <aside class="ap-why-quote"><blockquote>Revit Copilot will be the only AI engineer that lives natively inside Revit, runs the platform's commands as a senior would, and shows its working on every change.</blockquote></aside>
+    <aside class="ap-why-quote"><blockquote>Every command and tool on the platform, callable from a single chat — and it's <span class="accent">open</span>, so you can wire in your own.</blockquote></aside>
   </div>
 
-  <!-- ═══ THE SHIFT ═══ -->
-  <h2 id="the-shift">The shift</h2>
-  <p class="ap-section-sub">What working looks like today versus with Revit Copilot.</p>
-  <div class="shift-grid">
-         <div class="shift before"><p class="lab">Before</p><p>Click through ribbons. Memorise plug-ins. Copy parameters by hand. Hope the schedule matches the model.</p></div>
-         <div class="shift after"><p class="lab">After Revit Copilot</p><p>Ask. The Copilot picks the right tool, asks the questions a senior would, and writes the result back to the model — already coordinated, already scheduled, already QA'd.</p></div>
-       </div>
+  <!-- ═══ HOW IT WORKS + WHAT MAKES IT DIFFERENT ═══ -->
+  <div class="ap-why" style="margin-top:var(--space-2xl);padding-top:var(--space-xl);border-top:1px solid var(--border);">
+    <div class="ap-why-detail">
+      <h3 style="margin:0 0 18px;font-size:32px;font-weight:500;letter-spacing:-0.025em;line-height:1.15;color:var(--ad-teal);">How it works</h3>
+      <p>You don't browse tools. You don't memorise commands. You just tell the Copilot what you need — in plain English — and it interprets what you're asking, works out where you are in the process, picks the right tools, and gets it done. Need schedules built? Ask. Need a clash check? Ask. Need the spec updated after a design change? Ask. The Copilot chains the right commands together and runs them as one audited, reversible operation.</p>
+      <p>We're setting this up so you can call the Copilot from anywhere — browser, phone, desktop. You won't even need to be in the model to run checks, generate schedules, write specifications, or clash-coordinate. The agent reads the live model remotely, does the work, and shows you what it changed. Same standards, same project memory, whether you're at the desk or on site.</p>
+    </div>
+    <div></div>
+    <div class="ap-why-quote" style="align-items:start;">
+      <div>
+        <h3 style="margin:0 0 12px;font-size:32px;font-weight:500;letter-spacing:-0.025em;line-height:1.15;color:var(--ad-teal);">What makes it different</h3>
+        <p style="font-size:18px;font-weight:300;line-height:1.6;color:var(--ad-text-3);">It's not a chat window bolted onto the side of Revit. The Copilot has full read/write access to your model through an audited tool surface — every action is reversible, every decision is explainable, and it never changes something without showing you what it did. You don't need to learn anything new. Just describe the outcome you want and the Copilot figures out how to get there.</p>
+      </div>
+    </div>
+  </div>
 
-  <!-- ═══ WHAT MAKES IT DIFFERENT ═══ -->
-  <h2 id="special">What makes it different</h2>
-  <p class="ap-special">It's not a chat window stitched onto Revit. It's a deeply embedded agent with read/write access to your model through a typed, audited tool surface. Every action is reversible. Every decision is explainable.</p>
+  <!-- ═══ SCREENSHOTS CAROUSEL ═══ -->
+  <div class="ap-screenshots-carousel" id="screenshots">
+    <button class="ap-carousel-btn prev" aria-label="Previous screenshot">&#8249;</button>
+    <button class="ap-carousel-btn next" aria-label="Next screenshot">&#8250;</button>
+    <div class="ap-screenshots-track">
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/revit-copilot/screen-1.png" alt="Revit Copilot screenshot 1" onerror="this.style.display='none'">
+      </div>
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/revit-copilot/screen-2.png" alt="Revit Copilot screenshot 2" onerror="this.style.display='none'">
+      </div>
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/revit-copilot/screen-3.png" alt="Revit Copilot screenshot 3" onerror="this.style.display='none'">
+      </div>
+      <div class="ap-screenshot-slot">
+        <img src="/sandbox/app-assets/revit-copilot/screen-4.png" alt="Revit Copilot screenshot 4" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var carousel = document.getElementById('screenshots');
+    if (!carousel) return;
+    var track = carousel.querySelector('.ap-screenshots-track');
+    var slots = carousel.querySelectorAll('.ap-screenshot-slot');
+    var prev = carousel.querySelector('.prev');
+    var next = carousel.querySelector('.next');
+    var idx = 0;
+    function update() {
+      slots.forEach(function(s,i){ s.classList.toggle('active', i === idx); });
+    }
+    prev.addEventListener('click', function(){
+      idx = Math.max(0, idx - 1);
+      slots[idx].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+      update();
+    });
+    next.addEventListener('click', function(){
+      idx = Math.min(slots.length - 1, idx + 1);
+      slots[idx].scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+      update();
+    });
+    track.addEventListener('scrollend', function(){
+      var center = track.scrollLeft + track.offsetWidth / 2;
+      var closest = 0, minDist = Infinity;
+      slots.forEach(function(s,i){
+        var d = Math.abs(s.offsetLeft + s.offsetWidth/2 - center);
+        if (d < minDist){ minDist = d; closest = i; }
+      });
+      idx = closest;
+      update();
+    });
+    update();
+  })();
+  </script>
 
-  <!-- ═══ FEATURES — dark .rp-commands-card, no spinners ═══ -->
-  <h2 id="features">Features</h2>
-  <p class="ap-section-sub">What Revit Copilot does. Each line is a shipped capability.</p>
+  <!-- ═══ FEATURES ═══ -->
+  <div class="ap-section-head" id="features">
+    <h2>Features</h2>
+    <div class="head-aside"><p>What Revit Copilot does. Each line is a shipped capability.</p></div>
+  </div>
   
     <div class="ap-features-card rp-commands-card">
-      <h3 class="ap-features-header">Revit Copilot features</h3>
+      <h2 class="rp-card-header">Revit Copilot features</h2>
       <div class="rp-feat-list">
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Talk-to-Revit</span>
         <span class="rp-feat-desc">A docked chat panel in Revit. Ask in plain English; the Copilot picks the right tool and does the work.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Runs 163 Revit commands</span>
         <span class="rp-feat-desc">Every shipped command — extend connectors, place SVPs, snap to walls, build schedules — callable from chat.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Drives 191 MCP tools</span>
         <span class="rp-feat-desc">Read tools (queries) and action tools (writes) the agent can chain into multi-step operations.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Cross-discipline coordinator</span>
         <span class="rp-feat-desc">Drainage, ventilation, lighting, mechanical, electrical, public health, fire alarm — all in one agent.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">House-standards aware</span>
         <span class="rp-feat-desc">Reads office templates, parameter conventions and naming rules. Applies them automatically.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Audited + reversible</span>
         <span class="rp-feat-desc">Every write wrapped as a Revit transaction. One-click undo on anything the agent did.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Workshare-aware</span>
         <span class="rp-feat-desc">Works on local + central models; respects worksets and ownership.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Live model reading</span>
         <span class="rp-feat-desc">Queries the model in real time. No exports, no snapshots, no stale data.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div>
     <div class="rp-feat-item">
       <div class="rp-feat-copy">
         <span class="rp-feat-title">Shows its working</span>
         <span class="rp-feat-desc">Surfaces every element it touched and every parameter it changed before you accept the change.</span>
       </div>
-      <span class="ap-feat-chev" aria-hidden="true">›</span>
+      <div class="rp-agent-spinner"></div>
     </div></div>
     </div>
 
   <!-- ═══ INSTALL ═══ -->
-  <h2 id="install">Install &amp; system</h2>
-  <p class="ap-section-sub">Where Revit Copilot runs, what you need, and how to get it.</p>
+  <div class="ap-section-head" id="install">
+    <h2>Install &amp; system</h2>
+    <div class="head-aside"><p>Where Revit Copilot runs, what you need, and how to get it.</p></div>
+  </div>
   
     <div class="install-strip">
       
@@ -1168,7 +1355,9 @@
     </div>
 
   <!-- ═══ WHO IT'S FOR ═══ -->
-  <h2 id="best-for">Who it's for</h2>
+  <div class="ap-section-head" id="best-for">
+    <h2>Who it's for</h2>
+  </div>
   <div class="ap-audience"><span class="ap">MEP designers</span><span class="ap">BIM coordinators</span><span class="ap">Engineers who live in Revit</span></div>
 
   
@@ -1195,45 +1384,45 @@
       <p style="color:var(--text-muted);max-width:880px;margin:0 0 var(--space-md);">Quick answers AI engines (and humans) can pull from.</p>
       <div class="faq-list">
     <details class="faq-item" open>
-      <summary>What is Revit Copilot?</summary>
-      <div class="faq-answer"><p>Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.</p></div>
+      <summary>Is there an AI plugin for Revit?</summary>
+      <div class="faq-answer"><p>Yes. Revit Copilot is an AI-powered Revit add-in that installs natively into Revit 2022–2026. It exposes 163 commands and 191 MCP tools through a chat panel docked inside the model — ask in plain English and the agent picks the right tools and executes the work.</p></div>
     </details>
     <details class="faq-item">
-      <summary>What does Revit Copilot do?</summary>
-      <div class="faq-answer"><p>The Revit Copilot installs as a Revit add-in that exposes 163 commands and 191 MCP tools to a chat-based agent running inside the model. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination of those — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a transactional Revit operation with one-click undo.</p></div>
+      <summary>Can AI automate MEP design in Revit?</summary>
+      <div class="faq-answer"><p>Revit Copilot automates routine MEP tasks — extending connectors, placing equipment, building schedules, running clash checks, coordinating across disciplines — all from a single chat prompt. It typically saves 10–18 hours per project on manual Revit work.</p></div>
     </details>
     <details class="faq-item">
-      <summary>How is Revit Copilot different from the manual workflow?</summary>
-      <div class="faq-answer"><p>Without Revit Copilot: Click through ribbons. Memorise plug-ins. Copy parameters by hand. Hope the schedule matches the model. With Revit Copilot: Ask. The Copilot picks the right tool, asks the questions a senior would, and writes the result back to the model — already coordinated, already scheduled, already QA'd.</p></div>
+      <summary>What is the best AI tool for MEP engineers?</summary>
+      <div class="faq-answer"><p>Revit Copilot is built specifically for MEP engineers working in Revit. It understands drainage, ventilation, lighting, mechanical, electrical, public health and fire alarm disciplines, applies your office standards, and shows its working on every change.</p></div>
     </details>
     <details class="faq-item">
-      <summary>How much time does Revit Copilot save?</summary>
-      <div class="faq-answer"><p>Headline outcomes for Revit Copilot: 163 (Revit commands one prompt away); 191 (MCP tools the agent can chain); 18× (faster than manual on coordination tasks); 0 (context switches — never leave Revit).</p></div>
+      <summary>Can I use AI in Revit without learning new tools?</summary>
+      <div class="faq-answer"><p>You don't need to learn anything. Just describe what you need — 'build the radiator schedule', 'run a clash check on Level 02', 'extend all unconnected pipes' — and the Copilot figures out which commands to run and in what order.</p></div>
     </details>
     <details class="faq-item">
-      <summary>What platform does Revit Copilot run on?</summary>
-      <div class="faq-answer"><p>Revit add-in · Revit 2022 → 2026 · Windows</p></div>
+      <summary>Does Revit Copilot work with Revit 2025 and 2026?</summary>
+      <div class="faq-answer"><p>Yes. Revit Copilot supports Revit 2022, 2023, 2024, 2025 and 2026 on Windows 10 and 11. The add-in auto-loads on startup.</p></div>
     </details>
     <details class="faq-item">
-      <summary>Who is Revit Copilot for?</summary>
-      <div class="faq-answer"><p>MEP designers; BIM coordinators; Engineers who live in Revit.</p></div>
+      <summary>Can I run Revit commands from outside the model?</summary>
+      <div class="faq-answer"><p>We're building remote access so you can call the Copilot from a browser, phone or desktop app — run checks, generate schedules, write specifications and clash-coordinate without being in Revit. The agent reads the live model remotely.</p></div>
     </details>
     <details class="faq-item">
-      <summary>How do I get Revit Copilot?</summary>
-      <div class="faq-answer"><p>Self-serve: Download the add-in at /downloads/index.html. No sales call required.</p></div>
+      <summary>How is this different from Autodesk's built-in AI?</summary>
+      <div class="faq-answer"><p>Revit Copilot has read/write access to your model through 163 commands and 191 tools purpose-built for MEP. It applies your office standards, chains multi-step operations, and every action is reversible with one-click undo. It's an engineering agent, not a general assistant.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary>Is Revit Copilot free?</summary>
+      <div class="faq-answer"><p>Self-serve download — install the .msi, sign in with your Adelphos account, and start working. No sales call required.</p></div>
     </details></div>
     </section>
 
-  <div class="ap-end-cta rp-commands-card">
+  <div class="ap-end-cta">
     <h3>Download the add-in.</h3>
     <p>Self-serve install. No sales call, no walkthrough required.</p>
     <a href="/downloads/index.html">Download the add-in &rarr;</a>
   </div>
 
-  <p class="ap-stamp">
-    Auto-generated <code>2026-04-26T09:55:41.541Z</code> from <code>sandbox/data/apps.json</code>.
-    Re-run with <code>adelphos_CLI auto-all</code>.
-  </p>
 
 </main>
 <aside class="docs-right"></aside>
@@ -1242,6 +1431,6 @@
 <script>
   document.querySelectorAll('video[data-src]').forEach(function(v){ if (!v.src) v.src = v.dataset.src; });
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>
