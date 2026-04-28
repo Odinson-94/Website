@@ -2547,6 +2547,44 @@ html.dark-mode .menu-item-dropdown .dropdown-panel {
   border-color: rgba(255,255,255,0.10);
 }
 
+/* Nested features panel — hidden by default, shown on hover of parent li */
+.dropdown-panel li.has-nested { position: relative; }
+.dropdown-nested-panel {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 320px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 12px 36px rgba(30,52,72,0.18);
+  z-index: 10002;
+}
+html.dark-mode .dropdown-nested-panel {
+  background: #2a2a2a;
+  border-color: rgba(255,255,255,0.10);
+}
+.dropdown-panel li.has-nested:hover > .dropdown-nested-panel {
+  display: block;
+}
+.dropdown-nested-panel .nested-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #888);
+  margin: 0 0 8px;
+  padding: 0 0 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+html.dark-mode .dropdown-nested-panel .nested-label {
+  border-bottom-color: rgba(255,255,255,0.08);
+}
+
 .buildx-package-btn .teal,
 .buildx-site-footer .footer-links-list a:hover,
 .buildx-title .teal,
