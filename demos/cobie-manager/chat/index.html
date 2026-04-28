@@ -495,7 +495,6 @@ setTimeout(function() {
   if (window.chrome && window.chrome.webview) {
     window.chrome.webview.postMessage(JSON.stringify({type:'__debug_console__',payload:'log: BOOT CHECK chatAppExists=' + !!window.ChatApp + ' error=' + (window.__chatAppError||'none') + ' href=' + window.location.href}));
   }
-  fetch('http://127.0.0.1:7243/ingest/289e3919-88dc-4289-b64f-1fac50a5f23b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5a852a'},body:JSON.stringify({sessionId:'5a852a',location:'index.html:boot-check',message:'Boot check after 2s',data:{chatAppExists:!!window.ChatApp,thinkingAnimExists:typeof window.ThinkingAnimation,documentReady:document.readyState,locationHref:window.location.href},timestamp:Date.now(),hypothesisId:'H-LOAD'})}).catch(function(){});
 }, 2000);
 </script>
 <!-- #endregion -->

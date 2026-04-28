@@ -13,7 +13,6 @@
   
   // #region agent log - Debug helper (remove after debugging)
   function debugLog(hypothesisId, fnName, msg, data) {
-    fetch('http://127.0.0.1:7243/ingest/48527b0a-4480-4636-ae40-f6f2f93fa549',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hypothesisId,location:'view6-chat.js:'+fnName,message:msg,data,timestamp:Date.now(),sessionId:'debug-session'})}).catch(()=>{});
     console.log('[DebugLog]', hypothesisId, fnName, msg, data);
   }
   debugLog('H-INIT', 'IIFE', 'JS file loaded and executing', { isWebView2: !!(window.chrome && window.chrome.webview) });
@@ -147,9 +146,6 @@
   
    // Helper to reset sending state and process queue
    function resetSendingState() {
-     // #region agent log H-TIMING
-     fetch('http://127.0.0.1:7243/ingest/48527b0a-4480-4636-ae40-f6f2f93fa549',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hypothesisId:'H-TIMING',location:'view6-chat.js:resetSendingState',message:'Signaling ready to C#',data:{isSending,timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session'})}).catch(()=>{});
-     // #endregion
 
      // Reset sending flags - we are now idle
        isSending = false;
@@ -193,9 +189,6 @@
     removeMessage(id) {
       const beforeLen = this.queuedMessages.length;
       
-      // #region agent log H-CANCEL
-      fetch('http://127.0.0.1:7243/ingest/48527b0a-4480-4636-ae40-f6f2f93fa549',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hypothesisId:'H-CANCEL',location:'view6-chat.js:removeMessage',message:'JS cancel - clearing all queued',data:{cancelledId:id,beforeLen},timestamp:Date.now(),sessionId:'debug-session'})}).catch(()=>{});
-      // #endregion
       
       // Clear ALL from JS (C# queue doesn't support removing specific items)
       this.queuedMessages = [];
@@ -403,7 +396,6 @@
         // #region agent log H4: Log token arrival in JS
         if (!window._tokenCount) window._tokenCount = 0;
         window._tokenCount++;
-        if (window._tokenCount <= 3) { fetch('http://127.0.0.1:7243/ingest/289e3919-88dc-4289-b64f-1fac50a5f23b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'0b5a13'},body:JSON.stringify({sessionId:'0b5a13',hypothesisId:'H4',location:'view6-chat.js:token',message:'Token received in JS #' + window._tokenCount,data:{tokenText:data.message?.substring?.(0,30),hasActiveMessage:!!activeStreamingMessage,chatElExists:!!chatEl},timestamp:Date.now()})}).catch(()=>{}); }
         // #endregion
         if (data.message) {
           if (!activeStreamingMessage) {
@@ -435,9 +427,6 @@
         break;
         
        case 'response':
-        // #region agent log UI_RESPONSE: Log response content
-        fetch('http://127.0.0.1:7243/ingest/48527b0a-4480-4636-ae40-f6f2f93fa549',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view6-chat.js:response',message:'Processing response',data:{messageExists:!!data.message,messagePreview:data.message?.substring?.(0,100),messageLength:data.message?.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'UI_RESPONSE'})}).catch(()=>{});
-        // #endregion
          // Claude response - end animation and display
         // Correct sequence:
         // 1. Wait for steps to finish
@@ -474,9 +463,6 @@
           await sleep(500);
           
           // Step 2: Show response message FIRST
-          // #region agent log UI_RESPONSE2
-          fetch('http://127.0.0.1:7243/ingest/48527b0a-4480-4636-ae40-f6f2f93fa549',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view6-chat.js:response:display',message:'About to display message',data:{hasMessage:!!data.message,chatElExists:!!chatEl,wasStreamed:!!activeStreamingMessage},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'UI_RESPONSE2'})}).catch(()=>{});
-          // #endregion
           
           // If we already streamed tokens, the message is already in the DOM
           // Just finalize it. Otherwise, add the full response as a new message.
@@ -520,9 +506,6 @@
             
             // Step 5: Dull down smoothly (remove processing/glow)
             nodeEl.classList.remove('processing');
-            // #region agent log H-TIMING
-            fetch('http://127.0.0.1:7243/ingest/48527b0a-4480-4636-ae40-f6f2f93fa549',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({hypothesisId:'H-TIMING',location:'view6-chat.js:response',message:'Node went DULL',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session'})}).catch(()=>{});
-            // #endregion
           }
           
           thinkingStartTime = null;
@@ -567,9 +550,6 @@
       }
         
       case 'suggestions':
-        // #region agent log SUGGESTIONS
-        fetch('http://127.0.0.1:7243/ingest/48527b0a-4480-4636-ae40-f6f2f93fa549',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'view6-chat.js:suggestions',message:'Processing suggestions',data:{hasCommands:!!data.commands,commandCount:data.commands?.length,hasMessage:!!data.message,originalQuery:data.originalQuery},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'SUGGESTIONS'})}).catch(()=>{});
-        // #endregion
         // "Did you mean?" with command buttons - keep steps visible (fold them)
         (async () => {
           // Wait for step queue to finish

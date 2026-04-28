@@ -1876,18 +1876,12 @@
   }
   
   async function handleChatSend(e) {
-    // #region agent log
-    fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'WPFapplication.js:handleChatSend-entry',message:'handleChatSend CALLED',data:{hasEvent:!!e,isAnimating:isAnimating,activeConversation:activeConversation},timestamp:Date.now(),hypothesisId:'H3'})}).catch(()=>{});
-    // #endregion
     if (e) {
       e.stopImmediatePropagation();
       e.preventDefault();
     }
     
     if (isAnimating) {
-      // #region agent log
-      fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'WPFapplication.js:handleChatSend-blocked',message:'BLOCKED by isAnimating',data:{isAnimating:true},timestamp:Date.now(),hypothesisId:'H3'})}).catch(()=>{});
-      // #endregion
       return;
     }
     
@@ -1896,18 +1890,12 @@
     const chatEl = els.chatMessages;
     
     if (!inputEl || !chatEl) {
-      // #region agent log
-      fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'WPFapplication.js:handleChatSend-noEls',message:'ABORTED - missing elements',data:{hasInput:!!inputEl,hasChat:!!chatEl},timestamp:Date.now(),hypothesisId:'H3'})}).catch(()=>{});
-      // #endregion
       return;
     }
     
     // Support both input elements and contenteditable spans
     const rawInput = inputEl.value !== undefined ? inputEl.value : inputEl.textContent;
     const input = rawInput.trim().toLowerCase();
-    // #region agent log
-    fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'WPFapplication.js:handleChatSend-input',message:'Input value extracted',data:{rawInput:rawInput,input:input,isEmpty:!input},timestamp:Date.now(),hypothesisId:'H3'})}).catch(()=>{});
-    // #endregion
     if (!input) return;
     
     // Add user message with animation
@@ -1963,22 +1951,13 @@
     try {
       // Verify required DOM elements exist
       const els = getElements();
-      // #region agent log
-      fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'WPFapplication.js:init',message:'WPF init called',data:{chatMessages:!!els.chatMessages,persistentNode:!!els.persistentNode,chatInput:!!els.chatInput,chatSend:!!els.chatSend,windowWidth:window.innerWidth,windowHeight:window.innerHeight,iframeContext:window!==window.top},timestamp:Date.now(),hypothesisId:'H1'})}).catch(()=>{});
-      // #endregion
       if (!els.chatMessages) {
-        // #region agent log
-        fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'WPFapplication.js:init-abort',message:'INIT ABORTED - chatMessages not found',data:{},timestamp:Date.now(),hypothesisId:'H1'})}).catch(()=>{});
-        // #endregion
         console.error('View4Chat: Required element chatMessagesIndex8 not found - init aborted');
         return;
       }
       
       // Hide all agent items initially (they spawn during onboarding)
       const agentItems = document.querySelectorAll('#chatHistoryIndex8 .demo-history-item.agent-item');
-      // #region agent log
-      fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'WPFapplication.js:init-agents',message:'Hiding agent items',data:{agentCount:agentItems.length},timestamp:Date.now(),hypothesisId:'H4'})}).catch(()=>{});
-      // #endregion
       agentItems.forEach(item => {
         item.classList.add('hidden');
       });
