@@ -197,14 +197,9 @@
   .app-tile .visual {
     position: relative;
     aspect-ratio: 16 / 9;
-    background: rgba(255,255,255,0.05);
+    background: var(--ad-card-dark);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
-  }
-  .app-tile .visual::before {
-    content: ''; position: absolute; inset: 0;
-    background: url('/images/revit-bg.png') center/cover no-repeat;
-    opacity: 0.12; z-index: 0;
   }
   .app-tile .visual img {
     position: relative; z-index: 1;
