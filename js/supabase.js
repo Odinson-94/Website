@@ -15,13 +15,12 @@
   // ============================================
   async function getUserCountry() {
     try {
-      // Use ip-api.com (free, no API key needed)
-      const response = await fetch('http://ip-api.com/json/?fields=countryCode,country');
+      const response = await fetch('https://ipapi.co/json/');
       if (response.ok) {
         const data = await response.json();
         return {
-          country_code: data.countryCode,
-          country_name: data.country
+          country_code: data.country_code || data.countryCode || 'XX',
+          country_name: data.country_name || data.country || 'Unknown'
         };
       }
     } catch (err) {
