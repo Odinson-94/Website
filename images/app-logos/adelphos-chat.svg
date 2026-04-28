@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <radialGradient id="mirrorGloss" cx="20%" cy="12%" r="55%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="35%"  stop-color="#ffffff" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#1a7a9e"/>
+      <stop offset="100%" stop-color="#156082"/>
+    </linearGradient>
+
+    <!-- Glass shine: sweeping curved highlight across upper portion of the core -->
+    <linearGradient id="glassShine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="50%"  stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+    <filter id="ringBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+    <filter id="coreShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="26"/>
+      <feOffset dx="0" dy="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <clipPath id="enclosure"><rect width="1024" height="1024" rx="230" ry="230"/></clipPath>
+    <!-- Clip the shine to the core circle -->
+    <clipPath id="coreClip"><circle cx="512" cy="512" r="125"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#enclosure)">
+    <rect x="0"   y="0"   width="205" height="205" fill="#dde7eb"/>
+    <rect x="205" y="0"   width="205" height="205" fill="#e8eff2"/>
+    <rect x="410" y="0"   width="205" height="205" fill="#f0f5f7"/>
+    <rect x="615" y="0"   width="205" height="205" fill="#f7f9fa"/>
+    <rect x="820" y="0"   width="204" height="205" fill="#ffffff"/>
+    <rect x="0"   y="205" width="205" height="205" fill="#d0dde2"/>
+    <rect x="205" y="205" width="205" height="205" fill="#dde7eb"/>
+    <rect x="410" y="205" width="205" height="205" fill="#e8eff2"/>
+    <rect x="615" y="205" width="205" height="205" fill="#f0f5f7"/>
+    <rect x="820" y="205" width="204" height="205" fill="#f7f9fa"/>
+    <rect x="0"   y="410" width="205" height="205" fill="#c0d0d6"/>
+    <rect x="205" y="410" width="205" height="205" fill="#d0dde2"/>
+    <rect x="410" y="410" width="205" height="205" fill="#dde7eb"/>
+    <rect x="615" y="410" width="205" height="205" fill="#e8eff2"/>
+    <rect x="820" y="410" width="204" height="205" fill="#f0f5f7"/>
+    <rect x="0"   y="615" width="205" height="205" fill="#abbfc7"/>
+    <rect x="205" y="615" width="205" height="205" fill="#c0d0d6"/>
+    <rect x="410" y="615" width="205" height="205" fill="#d0dde2"/>
+    <rect x="615" y="615" width="205" height="205" fill="#dde7eb"/>
+    <rect x="820" y="615" width="204" height="205" fill="#e8eff2"/>
+    <rect x="0"   y="820" width="205" height="204" fill="#95acb6"/>
+    <rect x="205" y="820" width="205" height="204" fill="#abbfc7"/>
+    <rect x="410" y="820" width="205" height="204" fill="#c0d0d6"/>
+    <rect x="615" y="820" width="205" height="204" fill="#d0dde2"/>
+    <rect x="820" y="820" width="204" height="204" fill="#dde7eb"/>
+
+    <rect width="1024" height="1024" fill="url(#mirrorGloss)"/>
+    <ellipse cx="160" cy="100" rx="280" ry="160" fill="#ffffff" opacity="0.30"/>
+
+    <!-- Neural node -->
+    <circle cx="512" cy="512" r="240" fill="#156082" fill-opacity="0.22" filter="url(#softGlow)"/>
+    <circle cx="512" cy="512" r="246" fill="none" stroke="#156082" stroke-opacity="0.18" stroke-width="13" filter="url(#ringBlur)"/>
+    <circle cx="512" cy="512" r="184" fill="none" stroke="#156082" stroke-opacity="0.35" stroke-width="17" filter="url(#ringBlur)"/>
+
+    <!-- Core -->
+    <circle cx="512" cy="512" r="125" fill="url(#coreGrad)" filter="url(#coreShadow)"/>
+
+    <!-- Glass shine: curved highlight sweeping across the top of the core -->
+    <g clip-path="url(#coreClip)">
+      <!-- Top half wash -->
+      <ellipse cx="512" cy="450" rx="120" ry="80" fill="url(#glassShine)"/>
+      <!-- Curved upper crescent (the classic glass-sphere reflection) -->
+      <path d="M 410 470
+               Q 460 410 555 410
+               Q 605 412 615 440
+               Q 565 425 510 432
+               Q 445 442 410 470 Z"
+            fill="#ffffff" opacity="0.45"/>
+    </g>
+  </g>
+</svg>
