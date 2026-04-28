@@ -5,14 +5,14 @@
     {
       "slug": "revit-addin",
       "title": "Adelphos Revit Add-in",
-      "blurb": "Bundles the Revit Copilot, MEP Bridge, and the 163 commands as a single .addin install.",
+      "blurb": "Bundles the Revit Copilot, Adelphos, and the 163 commands as a single .addin install.",
       "platforms": ["Revit 2022", "Revit 2023", "Revit 2024", "Revit 2025", "Revit 2026"],
       "status": "coming-soon"
     },
     {
       "slug": "autocad-bundle",
       "title": "Adelphos AutoCAD MEP Bundle",
-      "blurb": "MEP Bridge connectors for AutoCAD MEP, including drawing export and clash export tooling.",
+      "blurb": "Adelphos connectors for AutoCAD MEP, including drawing export and clash export tooling.",
       "platforms": ["AutoCAD MEP 2024", "AutoCAD MEP 2025"],
       "status": "coming-soon"
     },

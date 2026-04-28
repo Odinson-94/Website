@@ -78,7 +78,7 @@
 
   <p class="lead">Coming soon</p>
 
-  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active Revit document must be open. MEPBridge JSON file must exist at the configured path. Cable tray family types must be loaded in the model. Level must exist near the base point Z.</p></div>
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>Active Revit document must be open. Adelphos JSON file must exist at the configured path. Cable tray family types must be loaded in the model. Level must exist near the base point Z.</p></div>
   <div class="callout callout-post"><strong>After it runs</strong><p>Cable tray segments, elbow fittings, tee fittings, transitions, and containment accessories are created in the model. A 3D section box is set around imported elements. A run log is written.</p></div>
 
   <div class="hero-video" id="watch">
@@ -90,7 +90,7 @@
 
   <h2 id="when-to-use">When to use this</h2>
   <ul style="padding-left:22px;">
-    <li>User wants to import a containment (cable tray) layout from AutoCAD via MEPBridge JSON.</li>
+    <li>User wants to import a containment (cable tray) layout from AutoCAD via Adelphos JSON.</li>
     <li>User needs to place high-level or low-level containment routes with fittings and accessories.</li>
   </ul>
   <div class="callout callout-warn"><strong>Don't use this when</strong><p>Creating containment manually element-by-element (use Revit native tools). Importing piping or ductwork (use DesignDrainageSystemCommand or ventilation commands). Editing existing containment routes (use Revit editing tools).</p></div>
@@ -112,7 +112,7 @@
     <td><code>string</code></td>
     <td class="req-no">no</td>
     <td>null</td>
-    <td>Path to MEPBridge JSON file</td>
+    <td>Path to Adelphos JSON file</td>
   </tr></tbody>
   </table>
 

@@ -78,7 +78,7 @@
 
   <p class="lead">Coming soon</p>
 
-  <div class="callout callout-pre"><strong>Before you run this</strong><p>One preset selected for export (or the active preset). Local preset store path configured (default %LOCALAPPDATA%\MEPBridge\Presets). Preset content valid (passes the project schema).</p></div>
+  <div class="callout callout-pre"><strong>Before you run this</strong><p>One preset selected for export (or the active preset). Local preset store path configured (default %LOCALAPPDATA%\Adelphos\Presets). Preset content valid (passes the project schema).</p></div>
   <div class="callout callout-post"><strong>After it runs</strong><p>One JSON file written to the local preset store named &quot;{preset_kind}__{preset_id}.json&quot;; existing file with the same id overwritten; audit entry recorded with checksum.</p></div>
 
   <div class="hero-video" id="watch">
@@ -113,7 +113,7 @@
   <h2 id="decision-flow">Decision flow</h2>
   <pre class="logictree">1. Read the selected preset (or the active one).
 2. Validate it against the project preset schema for its kind.
-3. Write it to &quot;{LOCALAPPDATA}/MEPBridge/Presets/{kind}__{id}.json&quot; in one filesystem operation.
+3. Write it to &quot;{LOCALAPPDATA}/Adelphos/Presets/{kind}__{id}.json&quot; in one filesystem operation.
 4. Record a checksum and timestamp in the audit log.
 5. Report the file path and preset id.</pre>
 

@@ -1,7 +1,7 @@
 {
   "section_title": "Apps",
   "section_lead": "Eleven flagship apps. One platform.",
-  "section_blurb": "Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.",
+  "section_blurb": "Each app replaces hours of manual work in a tool you already use. Built on the Adelphos platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.",
   "apps": [
     {
       "slug": "revit-copilot",
@@ -49,7 +49,7 @@
         ],
         "requirements": [
           "Revit 2022 or later, 64-bit, with admin rights for first install.",
-          "MEP Bridge installed (bundled with the Copilot installer).",
+          "Adelphos installed (bundled with the Copilot installer).",
           "Internet connection (the agent runs in the cloud; the model stays local).",
           "An Adelphos account."
         ],
@@ -125,7 +125,7 @@
         "requirements": [
           "Internet connection for chat (offline drafting is limited).",
           "An Adelphos account (free tier available).",
-          "Optional: MEP Bridge installed locally for live Revit read/write."
+          "Optional: Adelphos installed locally for live Revit read/write."
         ],
         "auth": "Sign in with Microsoft, Google or an email magic link.",
         "download_label": "Open in browser or download installer",
@@ -186,7 +186,7 @@
         ],
         "requirements": [
           "An Adelphos account.",
-          "Optional: MEP Bridge connector to read the live Revit model directly.",
+          "Optional: Adelphos connector to read the live Revit model directly.",
           "Optional: connect your DMS (SharePoint, Procore, Autodesk Docs)."
         ],
         "auth": "Single sign-on via Microsoft, Google or email magic link.",
@@ -247,7 +247,7 @@
         ],
         "requirements": [
           "An Adelphos account.",
-          "Optional: MEP Bridge for live Revit views and parameters.",
+          "Optional: Adelphos for live Revit views and parameters.",
           "Optional: connect IESVE / heat-loss / sizing spreadsheets for live calc data.",
           "Optional: ACC connection for live clash report import."
         ],

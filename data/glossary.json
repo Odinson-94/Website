@@ -1,7 +1,7 @@
 {
   "_comment": "Glossary terms surfaced on /glossary/. Each term gets an anchor and is auto-linkable from any page.",
   "terms": [
-    { "term": "MEP Bridge",          "definition": "The Adelphos platform layer that exposes Revit + AutoCAD + project data to AI agents as a typed, audited tool surface." },
+    { "term": "Adelphos Platform",          "definition": "The Adelphos platform layer that exposes Revit + AutoCAD + project data to AI agents as a typed, audited tool surface." },
     { "term": "MCP",                 "definition": "Model Context Protocol — the open standard for connecting AI agents to tool surfaces. Adelphos exposes 191 MCP tools." },
     { "term": "Revit Copilot",       "definition": "The Adelphos AI engineer that lives inside Revit and runs the 163 commands and 191 tools on your behalf." },
     { "term": "Specbuilder",         "definition": "The Adelphos app that drafts MEP specifications from your live Revit model, brief and house manufacturer library." },
