@@ -97,7 +97,7 @@
         wrap.innerHTML += `
           <div class="dropdown-panel">
             <p class="blurb">${esc(item.label === 'Apps'
-              ? 'Production apps that ship today.'
+              ? 'Eleven apps in development — beta Q2 2026.'
               : 'Services where Adelphos runs the agent for you.')}</p>
             <ul class="dropdown-list">${list}</ul>
           </div>`;
