@@ -1,0 +1,386 @@
+/* ============================================
+   chat-messages.css
+   ============================================
+   PURPOSE: Message list and all message bubble types.
+   STYLES:  Messages container/area, user & assistant bubbles,
+            thinking-step display, tool-progress blocks, stream
+            error folds, message action buttons (edit/redo/copy),
+            markdown & code-block rendering, user message styling.
+   LOAD ORDER: 6 of 10 (after chat-tabs.css)
+   CONSUMERS: index.html, MessageList.js, AssistantMessage.js,
+              UserMessage.js, ThinkingStepMessage.js, ErrorMessage.js
+   ============================================ */
+
+/* --- Messages container / area --- */
+
+/* SOURCE: index.html:80,346 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 */
+.demo-chat-messages {
+  flex: 1;
+  min-height: 0;
+  padding: 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  background: #f5f5f5;
+}
+
+/* SOURCE: index.html:80,346 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 */
+.demo-chat-messages > * {
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+/* SOURCE: index.html:2,11,38,80,346 | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 */
+html.dark-mode .demo-chat-messages {
+  background: #1e1e1e;
+}
+
+/* SOURCE: index.html:50,51,80,178,346 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 */
+.demo-view-overlay .demo-chat-messages {
+  padding-inline: var(--chat-inline-gutter, 1rem);
+  padding-bottom: 20px;
+  overscroll-behavior: contain;
+  background: #f8f8f8;
+  min-height: 0;
+  scrollbar-gutter: stable;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+3more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 */
+html.dark-mode .demo-view-overlay .demo-chat-messages {
+  background: #252525;
+}
+
+/* SOURCE: index.html:80,346 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 */
+.demo-chat-container .demo-chat-messages {
+  overscroll-behavior: contain;
+}
+
+/* --- Message bubbles (user, assistant) --- */
+
+/* SOURCE: js/chat/context/RightClickMenu.js:16,84 */
+.user-message {
+  background: #007AFF;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-left: 40px;
+  align-self: flex-end;
+}
+
+/* SOURCE: js/chat/context/RightClickMenu.js:16,84 */
+.user-message p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: white;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 | js/chat/context/RightClickMenu.js:16,84 */
+html.dark-mode .user-message p {
+  color: #1a1a1a;
+}
+
+/* --- Thinking steps --- */
+
+/* SOURCE: index.html:50,51,80,178,346 | js/chat/animation/NeuralNode.js:103 | js/chat/animation/ThinkingAnimation.js:27,36 | js/chat/app/ChatApp.js:770 | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:263,265 | js/chat/controller/ChatTurnStreamController.js:478,556,623,689 | js/chat/messages/ThinkingStepMessage.js:56,60,320,357,363+1more | js/chat/messages/ToolProgressBlock.js:68,98,135 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 | (+1 files) */
+.demo-view-overlay .demo-chat-messages .thinking-container,
+.demo-chat-container .demo-chat-messages .thinking-container {
+  align-self: stretch;
+  font-size: 0.8125rem;
+}
+
+/* SOURCE: index.html:50,51,80,178,346 | js/chat/animation/NeuralNode.js:103,143,184 | js/chat/animation/ThinkingAnimation.js:27,36,125 | js/chat/app/ChatApp.js:770 | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:263,265,284,446 | js/chat/controller/ChatTurnStreamController.js:478,488,556,568,623+3more | js/chat/messages/ThinkingStepMessage.js:56,60,73,158,221+7more | js/chat/messages/ToolProgressBlock.js:68,78,98,135 | js/chat/sidebar/DesignOptionsBar.js:102,114,188,192,240 | (+1 files) */
+.demo-view-overlay .demo-chat-messages .thinking-container .steps-list,
+.demo-chat-container .demo-chat-messages .thinking-container .steps-list {
+  font-size: 0.60rem;
+  font-weight: 200;
+}
+
+/* --- Tool progress --- */
+
+/* SOURCE: js/chat/app/ChatApp.js:824 */
+.review-tool-result {
+  font-size: 10px;
+  color: #6B6B6B;
+  margin-top: 2px;
+}
+
+/* --- Error messages / stream errors --- */
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:41 */
+.chat-stream-error-fold {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:46 */
+.chat-stream-error-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 28px;
+}
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:49 */
+.chat-stream-error-label {
+  font-family: var(--chat-font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  flex: 1;
+  min-width: 0;
+}
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:55 */
+.chat-stream-error-toggle {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #ccc;
+  cursor: pointer;
+  padding: 2px 8px;
+  line-height: 1.2;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 | js/chat/messages/ErrorMessage.js:55 */
+html:not(.dark-mode) .chat-stream-error-toggle {
+  background: #f5f5f5;
+  border-color: #ddd;
+  color: #333;
+}
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:58 */
+.chat-stream-error-chevron {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 11px;
+}
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:58,80 */
+.chat-stream-error-fold--open .chat-stream-error-chevron {
+  transform: rotate(90deg);
+}
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:61 */
+.chat-stream-error-detail {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-height: min(40vh, 280px);
+  overflow: auto;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 | js/chat/messages/ErrorMessage.js:61 */
+html:not(.dark-mode) .chat-stream-error-detail {
+  background: #fafafa;
+  border-color: #e0e0e0;
+}
+
+/* SOURCE: js/chat/messages/ErrorMessage.js:65 */
+.chat-stream-error-detail-text {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Consolas', 'Segoe UI Mono', monospace;
+  color: #ddd;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 | js/chat/messages/ErrorMessage.js:65 */
+html:not(.dark-mode) .chat-stream-error-detail-text {
+  color: #333;
+}
+
+/*
+ * Live thread (#chatMessagesIndex6): render .demo-msg-bot inline like .assistant-text-block.
+ * ErrorMessage uses .demo-msg-bot.demo-msg-error.chat-stream-error-fold — without this, base
+ * .demo-msg-bot + .demo-view-overlay .demo-msg-bot + .demo-chat-container .demo-msg-bot still
+ * draw a card. ID selector beats those. Overlay marketing demo keeps bubbles (no #chatMessagesIndex6).
+ */
+/* SOURCE: js/chat/animation/NeuralNode.js:233 | js/chat/app/ChatApp.js:542,563,674,688,724+4more | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:79 | js/chat/controller/ChatTurnStreamController.js:352 | js/chat/messages/ErrorMessage.js:41 | js/chat/messages/MessageList.js:83,148 */
+#chatMessagesIndex6 > .demo-msg-bot {
+  background: transparent;
+  padding: 0 12px;
+  border-radius: 0;
+  max-width: none;
+  align-self: flex-start;
+  margin-right: 0;
+  margin: 2px 0;
+  color: #E8E8E8;
+}
+/* SOURCE: index.html:2,11,38 | js/chat/animation/NeuralNode.js:233 | js/chat/app/ChatApp.js:542,563,586,588,674+6more | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:79 | js/chat/controller/ChatTurnStreamController.js:352 | js/chat/messages/ErrorMessage.js:41 | js/chat/messages/MessageList.js:83,148 */
+html:not(.dark-mode) #chatMessagesIndex6 > .demo-msg-bot {
+  color: #1e1e1e;
+}
+/* SOURCE: index.html:2,11,38 | js/chat/animation/NeuralNode.js:233 | js/chat/app/ChatApp.js:542,563,586,588,674+6more | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:79 | js/chat/controller/ChatTurnStreamController.js:352 | js/chat/messages/ErrorMessage.js:41 | js/chat/messages/MessageList.js:83,148 */
+html.dark-mode #chatMessagesIndex6 > .demo-msg-bot {
+  background: transparent;
+  color: #ffffff;
+}
+
+/* SOURCE: js/chat/animation/NeuralNode.js:233 | js/chat/app/ChatApp.js:542,563,674,688,724+4more | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:79 | js/chat/controller/ChatTurnStreamController.js:352 | js/chat/messages/ErrorMessage.js:41,61 | js/chat/messages/MessageList.js:83,148 */
+#chatMessagesIndex6 > .demo-msg-bot.chat-stream-error-fold .chat-stream-error-detail {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 4px 0 0 0;
+  margin-top: 4px;
+  max-height: min(50vh, 320px);
+  overflow: auto;
+}
+/* SOURCE: index.html:2,11,38 | js/chat/animation/NeuralNode.js:233 | js/chat/app/ChatApp.js:542,563,586,588,674+6more | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:79 | js/chat/controller/ChatTurnStreamController.js:352 | js/chat/messages/ErrorMessage.js:41,61 | js/chat/messages/MessageList.js:83,148 */
+html:not(.dark-mode) #chatMessagesIndex6 > .demo-msg-bot.chat-stream-error-fold .chat-stream-error-detail {
+  background: transparent;
+  border: none;
+}
+
+/* --- Message actions (edit, redo, copy) --- */
+
+/* SOURCE: js/chat/app/ChatApp.js:1185,1263 | js/chat/messages/MessageList.js:16,17 */
+.msg-edit-btn,
+.msg-redo-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.15s ease, background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 2;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1185,1263 | js/chat/messages/MessageList.js:16,17 */
+.msg-edit-btn svg,
+.msg-redo-btn svg {
+  pointer-events: none;
+}
+
+/* SOURCE: js/chat/animation/NeuralNode.js:233 | js/chat/app/ChatApp.js:542,563,674,688,724+8more | js/chat/commands/CommandSuggestions.js:232 | js/chat/context/RightClickMenu.js:78,79 | js/chat/controller/ChatTurnStreamController.js:352 | js/chat/messages/ErrorMessage.js:41 | js/chat/messages/MessageList.js:16,17,42,49,83+2more | js/chat/messages/UserMessage.js:2,5 | js/chat/session/ChatSessionsStore.js:533,551 */
+.demo-msg-user:hover .msg-edit-btn,
+.demo-msg-bot:hover .msg-redo-btn {
+  opacity: 1;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1185 | js/chat/messages/MessageList.js:16 */
+.msg-edit-btn {
+  color: #9D9D9D;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1185 | js/chat/messages/MessageList.js:16 */
+.msg-edit-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1263 | js/chat/messages/MessageList.js:17 */
+.msg-redo-btn {
+  color: #9D9D9D;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1263 | js/chat/messages/MessageList.js:17 */
+.msg-redo-btn:hover {
+  color: #4a9bb8;
+  background: rgba(74, 155, 184, 0.1);
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588,1263 | js/chat/messages/MessageList.js:17 */
+html.dark-mode .msg-redo-btn:hover {
+  background: rgba(74, 155, 184, 0.15);
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1009,1180,1185,1190 | js/chat/messages/MessageList.js:16,51 */
+.user-msg-row .msg-edit-btn {
+  position: static;
+  flex-shrink: 0;
+  margin-top: 10px;
+  padding: 4px;
+  transition: opacity 0.2s ease;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1009,1180,1185,1190 | js/chat/messages/MessageList.js:16,51 */
+.user-msg-row:hover .msg-edit-btn {
+  opacity: 0.85;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1009,1180,1185,1190 | js/chat/messages/MessageList.js:16,51 */
+.user-msg-row .msg-edit-btn:hover {
+  color: #E8E8E8;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1188,1200,1254 */
+.user-msg-edit-wrap {
+  width: 100%;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1201,1208 */
+.user-msg-edit-textarea {
+  width: 100%;
+  min-height: 88px;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #3c3c3c;
+  background: #252526;
+  color: #E8E8E8;
+  font-family: var(--chat-font-ui);
+  font-size: var(--chat-font-body-size);
+  resize: vertical;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1202 */
+.user-msg-edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1202 */
+.user-msg-edit-actions button {
+  font-family: var(--chat-font-ui);
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1203,1232,1249 */
+.user-msg-edit-send { background: #156082; color: #fff; }
+/* SOURCE: js/chat/app/ChatApp.js:1204,1225,1249 */
+.user-msg-edit-branch { background: #2d2d2d; color: #E8E8E8; border: 1px solid #3c3c3c; }
+/* SOURCE: js/chat/app/ChatApp.js:1205,1216,1249 */
+.user-msg-edit-cancel { background: transparent; color: #9D9D9D; }
+
+/* SOURCE: index.html:291,455 | js/chat/app/ChatApp.js:801,865,868,871,877+2more | js/chat/messages/MessageList.js:12,17 | js/chat/sidebar/FileTreePanel.js:83 | js/chat/ui/ChatFeedbackBar.js:27,73 */
+.chat-feedback-bar.collapsed .msg-redo-btn,
+.chat-feedback-bar.collapsed .chat-feedback-bar-label {
+  display: none;
+}
+
+/* --- Markdown / code blocks --- */
+
+/* SOURCE: js/chat/messages/UserMessage.js:34 */
+.user-markdown {
+  font-size: inherit;
+  line-height: inherit;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

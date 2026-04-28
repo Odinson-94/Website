@@ -1,0 +1,138 @@
+/**
+ * Jupiter Content Blocks — CSS
+ * Self-contained styles for all 8 content block types.
+ * Delete this file to remove all content block styling (blocks still render unstyled).
+ * Uses CSS variables from chat-panel.css for theme compatibility.
+ */
+
+/* ── Shared ──────────────────────────────────────── */
+.jb-search-results, .jb-page-preview, .jb-inline-image, .jb-image-gallery,
+.jb-plan-banner, .jb-plan-review, .jb-user-input, .jb-msg-variants, .jb-visualize {
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid rgba(74, 155, 184, 0.2);
+  background: rgba(0, 0, 0, 0.08);
+  font-size: 0.8125rem;
+  overflow: hidden;
+}
+html:not(.dark-mode) .jb-search-results, html:not(.dark-mode) .jb-page-preview,
+html:not(.dark-mode) .jb-inline-image, html:not(.dark-mode) .jb-image-gallery,
+html:not(.dark-mode) .jb-plan-banner, html:not(.dark-mode) .jb-plan-review,
+html:not(.dark-mode) .jb-user-input, html:not(.dark-mode) .jb-msg-variants,
+html:not(.dark-mode) .jb-visualize {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(74, 155, 184, 0.15);
+}
+
+/* ── Block 1: Search Results ─────────────────────── */
+.jb-search-header { padding: 0.5rem 0.75rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-search-icon { font-size: 1rem; }
+.jb-search-query { font-weight: 600; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jb-search-meta { font-size: 0.6875rem; opacity: 0.5; }
+.jb-search-list { padding: 0.25rem 0; }
+.jb-search-item { padding: 0.4rem 0.75rem; cursor: pointer; transition: background 0.15s; }
+.jb-search-item:hover { background: rgba(74, 155, 184, 0.1); }
+.jb-search-item--hidden { display: none; }
+.jb-search-title { font-weight: 500; color: #4a9bb8; }
+.jb-search-domain { font-size: 0.6875rem; opacity: 0.45; margin-top: 1px; }
+.jb-search-snippet { font-size: 0.75rem; opacity: 0.7; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.jb-search-toggle { display: block; width: 100%; padding: 0.35rem; border: none; background: none; color: #4a9bb8; cursor: pointer; font-size: 0.75rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* ── Block 2: Page Preview ───────────────────────── */
+.jb-preview-header { padding: 0.5rem 0.75rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-preview-icon { font-size: 1rem; }
+.jb-preview-url { color: #4a9bb8; cursor: pointer; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jb-preview-url:hover { text-decoration: underline; }
+.jb-status-ok { color: #22c55e; font-size: 0.6875rem; font-weight: 600; }
+.jb-status-redirect { color: #eab308; font-size: 0.6875rem; font-weight: 600; }
+.jb-status-error { color: #ef4444; font-size: 0.6875rem; font-weight: 600; }
+.jb-preview-meta { font-size: 0.6875rem; opacity: 0.5; }
+.jb-preview-body { padding: 0.5rem 0.75rem; max-height: 400px; overflow-y: auto; }
+.jb-preview-text, .jb-preview-full { white-space: pre-wrap; font-size: 0.75rem; line-height: 1.5; opacity: 0.85; }
+.jb-preview-footer { padding: 0.35rem 0.75rem; display: flex; align-items: center; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.jb-preview-toggle { border: none; background: none; color: #4a9bb8; cursor: pointer; font-size: 0.75rem; }
+.jb-preview-truncated { font-size: 0.6875rem; color: #eab308; }
+
+/* ── Block 3: Inline Image ───────────────────────── */
+.jb-image-container { padding: 0.5rem; text-align: center; }
+.jb-image { max-width: 100%; border-radius: 4px; cursor: pointer; transition: opacity 0.15s; }
+.jb-image:hover { opacity: 0.9; }
+.jb-image-footer { padding: 0.25rem 0.75rem 0.5rem; display: flex; justify-content: space-between; }
+.jb-image-caption { font-size: 0.6875rem; opacity: 0.6; }
+.jb-image-dims { font-size: 0.6875rem; opacity: 0.4; font-family: monospace; }
+.jb-image-placeholder { padding: 2rem; text-align: center; opacity: 0.4; }
+
+/* Lightbox */
+.jb-lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; cursor: pointer; }
+.jb-lightbox-content { max-width: 90vw; max-height: 90vh; cursor: default; }
+.jb-lightbox-img { max-width: 90vw; max-height: 85vh; border-radius: 4px; }
+.jb-lightbox-caption { text-align: center; color: #ccc; padding: 0.5rem; font-size: 0.8rem; }
+
+/* ── Block 4: Image Gallery ──────────────────────── */
+.jb-gallery-header { padding: 0.5rem 0.75rem; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-gallery-count { opacity: 0.5; font-size: 0.6875rem; }
+.jb-gallery-strip { display: flex; gap: 0.5rem; padding: 0.5rem 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; }
+.jb-gallery-thumb { flex: 0 0 80px; height: 70px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; scroll-snap-align: start; transition: border-color 0.15s; }
+.jb-gallery-thumb:hover { border-color: #4a9bb8; }
+.jb-gallery-thumb-placeholder { font-size: 1.5rem; opacity: 0.3; }
+.jb-gallery-thumb-time { font-size: 0.6rem; opacity: 0.4; }
+.jb-gallery-empty { padding: 1rem; text-align: center; opacity: 0.4; }
+
+/* ── Block 5: Plan Mode ──────────────────────────── */
+.jb-plan-banner { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: rgba(74, 155, 184, 0.12); border-color: rgba(74, 155, 184, 0.3); }
+.jb-plan-banner-icon { font-size: 1.25rem; }
+.jb-plan-banner-text { flex: 1; }
+.jb-plan-banner-text strong { display: block; }
+.jb-plan-banner-text span { font-size: 0.75rem; opacity: 0.7; }
+.jb-plan-banner-exit { padding: 0.3rem 0.75rem; border: 1px solid rgba(74, 155, 184, 0.4); background: none; color: #4a9bb8; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+.jb-plan-banner-exit:hover { background: rgba(74, 155, 184, 0.15); }
+
+.jb-plan-review-header { padding: 0.5rem 0.75rem; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-plan-review-body { max-height: 300px; overflow-y: auto; }
+.jb-plan-review-text { padding: 0.5rem 0.75rem; white-space: pre-wrap; font-size: 0.75rem; line-height: 1.5; margin: 0; background: none; border: none; font-family: inherit; }
+.jb-plan-editing { outline: 1px solid #4a9bb8; border-radius: 4px; }
+.jb-plan-review-actions { padding: 0.5rem 0.75rem; display: flex; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.jb-plan-action { padding: 0.3rem 0.75rem; border: 1px solid rgba(255,255,255,0.15); background: none; color: inherit; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+.jb-plan-approve { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+.jb-plan-approve:hover { background: rgba(34,197,94,0.1); }
+.jb-plan-reject { color: #ef4444; border-color: rgba(239,68,68,0.3); }
+.jb-plan-reject:hover { background: rgba(239,68,68,0.1); }
+.jb-plan-edit { color: #4a9bb8; border-color: rgba(74,155,184,0.3); }
+.jb-plan-edit:hover { background: rgba(74,155,184,0.1); }
+
+/* ── Block 6: User Input ─────────────────────────── */
+.jb-input-header { padding: 0.5rem 0.75rem; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-input-questions { padding: 0.5rem 0.75rem; }
+.jb-input-question { margin-bottom: 0.75rem; }
+.jb-input-prompt { font-weight: 500; margin-bottom: 0.35rem; }
+.jb-input-option { display: flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0; cursor: pointer; font-size: 0.8125rem; }
+.jb-input-option input { accent-color: #4a9bb8; }
+.jb-input-actions { padding: 0.5rem 0.75rem; display: flex; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.jb-input-submit { padding: 0.3rem 1rem; background: rgba(74,155,184,0.2); border: 1px solid rgba(74,155,184,0.4); color: #4a9bb8; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+.jb-input-submit:hover { background: rgba(74,155,184,0.3); }
+.jb-input-cancel { padding: 0.3rem 0.75rem; background: none; border: 1px solid rgba(255,255,255,0.15); color: inherit; border-radius: 4px; cursor: pointer; font-size: 0.75rem; opacity: 0.6; }
+.jb-input-submitted { opacity: 0.5; pointer-events: none; }
+.jb-input-empty { padding: 1rem; text-align: center; opacity: 0.4; }
+
+/* ── Block 7: Message Variants ───────────────────── */
+.jb-variants-header { padding: 0.5rem 0.75rem; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-variants-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-variant-tab { flex: 1; padding: 0.4rem 0.75rem; border: none; background: none; color: inherit; cursor: pointer; font-size: 0.75rem; text-align: center; border-bottom: 2px solid transparent; opacity: 0.6; transition: all 0.15s; }
+.jb-variant-tab:hover { opacity: 0.8; }
+.jb-variant-tab--active { opacity: 1; border-bottom-color: #4a9bb8; color: #4a9bb8; }
+.jb-variant-content { padding: 0.5rem 0.75rem; }
+.jb-variant-content--hidden { display: none; }
+.jb-variant-subject { font-weight: 500; margin-bottom: 0.35rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-variant-text { white-space: pre-wrap; font-size: 0.8125rem; line-height: 1.5; }
+.jb-variant-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.jb-variant-copy, .jb-variant-use { padding: 0.25rem 0.6rem; border: 1px solid rgba(255,255,255,0.15); background: none; color: inherit; border-radius: 4px; cursor: pointer; font-size: 0.6875rem; }
+.jb-variant-use { color: #22c55e; border-color: rgba(34,197,94,0.3); }
+.jb-variant-use:hover { background: rgba(34,197,94,0.1); }
+.jb-variants-empty { padding: 1rem; text-align: center; opacity: 0.4; }
+
+/* ── Block 8: Visualize Widget ───────────────────── */
+.jb-viz-header { padding: 0.5rem 0.75rem; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.jb-viz-loading { padding: 1rem; text-align: center; opacity: 0.5; font-size: 0.75rem; }
+.jb-viz-frame-container { padding: 0.25rem; }
+.jb-viz-iframe { width: 100%; border: none; border-radius: 4px; max-height: 500px; }
+.jb-viz-empty { padding: 1rem; text-align: center; opacity: 0.4; }

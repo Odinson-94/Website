@@ -1,0 +1,316 @@
+/* ============================================
+   chat-titlebar.css
+   ============================================
+   PURPOSE: Chat window title bar, menu system, and window controls.
+   STYLES:  Titlebar container, title text & subtitle, traffic-light
+            buttons (min/max/close), settings & theme-toggle buttons,
+            menu bar items, smart menus & submenus, container queries
+            for narrow widths.
+   LOAD ORDER: 4 of 10 (after chat-sidebar.css)
+   CONSUMERS: index.html, ChatApp.js
+   ============================================ */
+
+/* --- Titlebar container --- */
+
+/* SOURCE: index.html:50,51,178 */
+.demo-view-overlay .demo-chat-titlebar {
+  flex-shrink: 0;
+  height: 32px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+  user-select: none;
+  container-type: inline-size;
+  container-name: chat-titlebar;
+  overflow: hidden;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+1more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-chat-titlebar {
+  background: #2d2d2d;
+}
+
+/* SOURCE: index.html:67,181 */
+.demo-chat-box > .demo-chat-titlebar {
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,67,181 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-chat-box > .demo-chat-titlebar {
+  background: #2d2d2d;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-chat-container .demo-chat-titlebar {
+  background: #2d2d2d;
+}
+
+/* --- Title text / subtitle --- */
+
+/* SOURCE: index.html:50,51,178 */
+.demo-view-overlay .demo-chat-titlebar-text {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+1more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-chat-titlebar-text {
+  color: var(--text-primary);
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .titlebar-subtitle {
+  color: #999;
+}
+
+/* SOURCE: index.html:67,181 */
+.demo-chat-box > .demo-chat-titlebar .titlebar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+/* SOURCE: index.html:67,181 */
+.demo-chat-box > .demo-chat-titlebar .titlebar-right {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+/* SOURCE: index.html:2,11,38,67,181 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-chat-box > .demo-chat-titlebar .titlebar-right {
+  color: #999;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-chat-container .demo-chat-titlebar-text {
+  color: var(--text-primary);
+}
+
+/* --- Titlebar buttons (traffic lights, settings, theme) --- */
+
+/* SOURCE: index.html:50,51,178 */
+.demo-view-overlay .demo-chat-titlebar-btns {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+/* SOURCE: js/chat/animation/NeuralNode.js:318,336 */
+.demo-titlebar-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SOURCE: js/chat/animation/NeuralNode.js:318,336 */
+.demo-titlebar-btn.min { background: #f5c542; }
+/* SOURCE: js/chat/animation/NeuralNode.js:318,336 */
+.demo-titlebar-btn.max { background: #5dc65d; }
+/* SOURCE: js/chat/animation/NeuralNode.js:318,336 | js/chat/prompt/PromptVariableEditor.js:38,43,51 */
+.demo-titlebar-btn.close { background: #f25656; }
+/* SOURCE: js/chat/animation/NeuralNode.js:318,336 */
+.demo-titlebar-btn:hover { filter: brightness(0.9); }
+
+/* SOURCE: index.html:50,51,178 | js/chat/animation/NeuralNode.js:318,336 */
+.demo-view-overlay .demo-titlebar-btn {
+  width: 10px;
+  height: 10px;
+}
+
+/* SOURCE: index.html:50,51,178 | js/chat/animation/NeuralNode.js:318,336 */
+.demo-view-overlay .demo-titlebar-btn.max:disabled {
+  background: #a0d4a0;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* SOURCE: index.html:50,51,178,200,255 | js/chat/animation/NeuralNode.js:318,336 */
+.demo-view-overlay .demo-titlebar-btn.settings {
+  background: transparent;
+  color: #666;
+  font-size: 0.7rem;
+  width: auto;
+  height: auto;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* SOURCE: index.html:50,51,178,200,255 | js/chat/animation/NeuralNode.js:318,336 */
+.demo-view-overlay .demo-titlebar-btn.settings:hover {
+  background: rgba(0,0,0,0.08);
+  color: #333;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+3more | js/chat/animation/NeuralNode.js:318,336 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-titlebar-btn.settings {
+  color: #888;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+3more | js/chat/animation/NeuralNode.js:318,336 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-titlebar-btn.settings:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* SOURCE: index.html:50,51,178 | js/chat/animation/NeuralNode.js:318,336 */
+.demo-view-overlay .demo-titlebar-btn.theme-toggle {
+  background: transparent;
+  color: #555;
+  font-size: 0.65rem;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* SOURCE: index.html:50,51,178 | js/chat/animation/NeuralNode.js:318,336 */
+.demo-view-overlay .demo-titlebar-btn.theme-toggle:hover {
+  background: rgba(0,0,0,0.08);
+  color: #222;
+}
+
+/* SOURCE: index.html:50,51,178 | js/chat/animation/NeuralNode.js:318,336 */
+.demo-view-overlay .demo-titlebar-btn.theme-toggle .theme-icon {
+  display: inline;
+  transition: transform 0.3s ease;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+1more | js/chat/animation/NeuralNode.js:318,336 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle {
+  color: #aaa;
+  background: transparent;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+1more | js/chat/animation/NeuralNode.js:318,336 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+1more | js/chat/animation/NeuralNode.js:318,336 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-titlebar-btn.theme-toggle .theme-icon {
+  transform: rotate(180deg);
+}
+
+.demo-view-overlay .demo-chat-box .demo-titlebar-btn.min,
+.demo-view-overlay .demo-chat-box .demo-titlebar-btn.max,
+.demo-view-overlay .demo-titlebar-btn.close,
+.demo-chat-container .demo-titlebar-btn.min,
+/* SOURCE: js/chat/animation/NeuralNode.js:318,336 | js/chat/prompt/PromptVariableEditor.js:38,43,51 */
+.demo-chat-container .demo-titlebar-btn.max,
+.demo-chat-container .demo-titlebar-btn.close {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Menu bar / menu items --- */
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .titlebar-menu-btn,
+html.dark-mode .titlebar-menu-ellipsis {
+  color: #999;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .titlebar-menu-btn:hover,
+html.dark-mode .titlebar-menu-ellipsis:hover {
+  background: rgba(255,255,255,0.08);
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .menu-item {
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .menu-item:hover {
+  background: rgba(74, 155, 184, 0.15);
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .menu-item[data-shortcut]::after {
+  color: #666;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .menu-item .submenu-arrow {
+  color: #666;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .menu-item.smart-feature {
+  color: #4a9bb8;
+}
+
+/* --- Smart menu / submenus --- */
+
+/* SOURCE: js/chat/context/RightClickMenu.js:159 */
+.menu-item.has-submenu {
+  padding-right: 24px;
+}
+
+/* SOURCE: js/chat/context/RightClickMenu.js:159 */
+.menu-item.has-submenu:hover > .menu-submenu {
+  display: block;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .smart-menu .menu-item[title]::before {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:384 | js/chat/input/AgentDropdown.js:27,35,40,45,64+4more | js/chat/input/ModelDropdown.js:61 */
+.menu-item.menu-toggle.checked::before {
+  content: '\2713';
+  background: #156082;
+  border-color: #156082;
+  color: white;
+  font-size: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .menu-item.menu-toggle::before {
+  border-color: #555;
+}
+
+/* SOURCE: index.html:2,11,38,384 | js/chat/app/ChatApp.js:586,588 | js/chat/input/AgentDropdown.js:27,35,40,45,64+4more | js/chat/input/ModelDropdown.js:61 */
+html.dark-mode .menu-item.menu-toggle.checked::before {
+  background: #4a9bb8;
+  border-color: #4a9bb8;
+}
+
+/* --- Container queries --- */
+
+/* SOURCE: js/chat/animation/NeuralNode.js:318,336 */
+@container chat-titlebar (max-width: 280px) {
+  .chat-settings-wrapper,
+  .demo-titlebar-btn.theme-toggle {
+    display: none !important;
+  }
+}

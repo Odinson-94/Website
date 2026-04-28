@@ -1,0 +1,91 @@
+/* ============================================
+   chat-dropdowns.css
+   ============================================
+   PURPOSE: Titlebar brand display and model-dropdown menu icon.
+   STYLES:  Brand colour spans inside .titlebar-brand, model
+            dropdown menu-icon with hover state, dropdown-menu
+            show-on-hover logic, container queries that collapse
+            the model label at narrow widths.
+   LOAD ORDER: 8 of 10 (after chat-input.css)
+   CONSUMERS: index.html, ModelDropdown.js
+   ============================================ */
+
+/* --- Brand display ------------------------------------ */
+
+/* SOURCE: index.html:133,135,424,427,428+1more */
+.titlebar-brand .brand-build,
+.titlebar-brand .brand-dot   { color: #000; font-weight: 500; letter-spacing: 1.1pt; }
+
+/* SOURCE: index.html:134,424,427,428,429 | js/chat/input/ModelDropdown.js:7,95,102 */
+.titlebar-brand .brand-variant { color: #156082; font-weight: 700; letter-spacing: 1.1pt; }
+
+/* SOURCE: index.html:2,11,38,133,135+4more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .titlebar-brand .brand-build,
+html.dark-mode .titlebar-brand .brand-dot   { color: #fff; }
+
+/* SOURCE: index.html:2,11,38,134,424+3more | js/chat/app/ChatApp.js:586,588 | js/chat/input/ModelDropdown.js:7,95,102 */
+html.dark-mode .titlebar-brand .brand-variant { color: #4a9bb8; }
+
+/* --- Model dropdown / menu icon ----------------------- */
+
+/* SOURCE: index.html:87,423 | js/chat/input/ModelDropdown.js:2,18 */
+.chat-model-dropdown .menu-icon {
+  display: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s ease, color 0.15s ease;
+  color: #666;
+}
+
+/* SOURCE: index.html:87,423 | js/chat/input/ModelDropdown.js:2,18 */
+.chat-model-dropdown .menu-icon:hover {
+  background: rgba(21, 96, 130, 0.1);
+  color: #156082;
+}
+
+/* SOURCE: index.html:2,11,38,87,423 | js/chat/app/ChatApp.js:586,588 | js/chat/input/ModelDropdown.js:2,18 */
+html.dark-mode .chat-model-dropdown .menu-icon {
+  color: #888;
+}
+
+/* SOURCE: index.html:2,11,38,87,423 | js/chat/app/ChatApp.js:586,588 | js/chat/input/ModelDropdown.js:2,18 */
+html.dark-mode .chat-model-dropdown .menu-icon:hover {
+  background: rgba(74, 155, 184, 0.15);
+  color: #4a9bb8;
+}
+
+/* --- Dropdown menu visibility ------------------------- */
+
+/* SOURCE: index.html:87,91,106,119,375+3more | js/chat/input/AgentDropdown.js:16,54 | js/chat/input/ModelDropdown.js:2,18,19,20,51 */
+.chat-model-dropdown:has(.menu-icon:hover) .chat-dropdown-menu,
+.chat-model-dropdown .menu-icon:hover + .chat-model-label + .chat-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --- Container queries -------------------------------- */
+
+/* SOURCE: index.html:119,126,133,134,135+2more | js/chat/input/ModelDropdown.js:19 */
+@container chat-input (max-width: 380px) {
+  .chat-model-label .model-display {
+    max-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* SOURCE: index.html:87,126,133,134,135+4more | js/chat/input/ModelDropdown.js:2,18 */
+@container chat-input (max-width: 300px) {
+  .chat-model-dropdown .model-display  { display: none; }
+  .chat-model-dropdown .dropdown-arrow { display: none; }
+  .chat-model-dropdown .menu-icon      { display: inline-block; }
+}
+
+/* SOURCE: index.html:86,373 | js/chat/input/AgentDropdown.js:2,14 */
+@container chat-input (max-width: 160px) {
+  .chat-agent-dropdown { display: none !important; }
+}

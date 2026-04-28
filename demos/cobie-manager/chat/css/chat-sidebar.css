@@ -1,0 +1,960 @@
+/* ============================================
+   chat-sidebar.css
+   ============================================
+   PURPOSE: History sidebar, tab bar, panels, and all sidebar content.
+   STYLES:  Sidebar column, tab bar & tab items, sidebar panels
+            (agents, files, settings), history search & list,
+            new-agent / create-tool buttons, file tree / outputs,
+            settings form, footer. Dark-mode variants grouped inline.
+   LOAD ORDER: 3 of 10 (after chat-layout.css)
+   CONSUMERS: index.html, SidebarTabController.js, AgentPanel.js,
+              ActiveAgentSidebar.js, FileTreePanel.js, SettingsPanel.js,
+              SessionList.js
+   SESSION LIST (#chatHistoryIndex6): .demo-history-item*, .chat-delete-btn,
+            active-agent / busy row — not duplicated in shared-styles.css.
+   ============================================ */
+
+
+/* ── Sidebar container / column ────────────────────────── */
+
+/* SOURCE: index.html:185 | js/chat/sidebar/SidebarTabController.js:81 */
+.demo-chat-history-sidebar {
+  flex: 0 0 30%;
+  background: #ececec;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* SOURCE: index.html:2,11,38,185 | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/SidebarTabController.js:81 */
+html.dark-mode .demo-chat-history-sidebar {
+  background: #1e1e1e;
+}
+
+/* SOURCE: index.html:185 | js/chat/sidebar/SidebarTabController.js:81 */
+.right-column .demo-chat-history-sidebar {
+  order: 3;
+  position: relative !important;
+  min-width: 100px !important;
+  max-width: none !important;
+  height: 100% !important;
+  flex: 1 1 50%;
+  border-right: none !important;
+  border-left: 1px solid #e0e0e0;
+}
+
+/* SOURCE: index.html:2,11,38,185 | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/SidebarTabController.js:81 */
+html.dark-mode .right-column .demo-chat-history-sidebar {
+  border-left-color: #3c3c3c;
+}
+
+/* SOURCE: index.html:50,51,178,185 | js/chat/sidebar/SidebarTabController.js:81 */
+.demo-view-overlay .demo-chat-history-sidebar {
+  overscroll-behavior: contain;
+  border-right: none;
+  min-width: 120px;
+  max-width: 400px;
+}
+
+
+/* ── Tab bar ───────────────────────────────────────────── */
+
+/* SOURCE: index.html:50,51,178,186 */
+.demo-view-overlay .sidebar-tab-bar {
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  gap: 0;
+  background: #e0e0e0;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .sidebar-tab-bar {
+  background: #1a1a1a;
+}
+
+
+/* ── Tab items + states (hover, active) ────────────────── */
+
+/* SOURCE: index.html:50,51,178,187,191+2more | js/chat/sidebar/SidebarTabController.js:9,25,45 */
+.demo-view-overlay .sidebar-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* SOURCE: index.html:50,51,178,187,191+2more | js/chat/sidebar/SidebarTabController.js:9,25,45 */
+.demo-view-overlay .sidebar-tab:hover {
+  background: rgba(0,0,0,0.04);
+  color: #444;
+}
+
+/* SOURCE: index.html:50,51,178,187,191+5more | js/chat/app/ChatApp.js:1087,1114,1135 | js/chat/input/ModelDropdown.js:28,31,40,77,78+1more | js/chat/messages/AssistantMessage.js:99 | js/chat/messages/ThinkingStepMessage.js:252 | js/chat/session/SidebarChatHistoryTree.js:36,54,86,104 | js/chat/session/ChatSessionsStore.js:172,310,841 | js/chat/sidebar/AgentPanel.js:57 | js/chat/sidebar/DesignOptionsBar.js:5,48,49,118,142+10more | js/chat/sidebar/SidebarTabController.js:9,25,42,43,45+3more | (+1 files) */
+.demo-view-overlay .sidebar-tab.active {
+  background: #ececec;
+  color: #333;
+}
+
+/* SOURCE: index.html:50,51,178,187,191+2more | js/chat/sidebar/SidebarTabController.js:9,25,45 */
+.demo-view-overlay .sidebar-tab svg {
+  width: 11px;
+  height: 11px;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+/* SOURCE: index.html:50,51,178,186,199 */
+.demo-view-overlay .sidebar-tab-bar .share-chat-btn {
+  margin-left: auto;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+5more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/SidebarTabController.js:9,25,45 */
+html.dark-mode .demo-view-overlay .sidebar-tab {
+  color: #888;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+5more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/SidebarTabController.js:9,25,45 */
+html.dark-mode .demo-view-overlay .sidebar-tab:hover {
+  background: rgba(255,255,255,0.04);
+  color: #aaa;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+8more | js/chat/app/ChatApp.js:586,588,1087,1114,1135 | js/chat/input/ModelDropdown.js:28,31,40,77,78+1more | js/chat/messages/AssistantMessage.js:99 | js/chat/messages/ThinkingStepMessage.js:252 | js/chat/session/SidebarChatHistoryTree.js:36,54,86,104 | js/chat/session/ChatSessionsStore.js:172,310,841 | js/chat/sidebar/AgentPanel.js:57 | js/chat/sidebar/DesignOptionsBar.js:5,48,49,118,142+10more | js/chat/sidebar/SidebarTabController.js:9,25,42,43,45+3more | (+1 files) */
+html.dark-mode .demo-view-overlay .sidebar-tab.active {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+/* SOURCE: index.html:50,51,178,199 */
+.demo-view-overlay .share-chat-btn {
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background 0.15s ease, color 0.15s ease;
+  position: relative;
+}
+
+/* SOURCE: index.html:50,51,178,199 */
+.demo-view-overlay .share-chat-btn:hover {
+  background: #e8e8e8;
+  color: #666;
+}
+
+/* SOURCE: index.html:50,51,178,199 */
+.demo-view-overlay .share-chat-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: #333;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.4;
+  border-radius: 4px;
+  white-space: normal;
+  width: 150px;
+  z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .share-chat-btn:hover {
+  background: #3a3a3a;
+  color: #999;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .share-chat-btn[title]:hover::after {
+  background: #1a1a1a;
+}
+
+
+/* ── Sidebar panels (agents, files, settings) ──────────── */
+
+/* SOURCE: index.html:50,51,178,207,225+1more | js/chat/sidebar/AgentPanel.js:13 | js/chat/sidebar/FileTreePanel.js:7,14,15,29,30 | js/chat/sidebar/SidebarTabController.js:10,26,46 */
+.demo-view-overlay .sidebar-panel {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* SOURCE: index.html:50,51,178,187,207+4more | js/chat/app/ChatApp.js:1087,1114,1135 | js/chat/input/ModelDropdown.js:28,31,40,77,78+1more | js/chat/messages/AssistantMessage.js:99 | js/chat/messages/ThinkingStepMessage.js:252 | js/chat/session/SidebarChatHistoryTree.js:36,54,86,104 | js/chat/session/ChatSessionsStore.js:172,310,841 | js/chat/sidebar/AgentPanel.js:13,57 | js/chat/sidebar/DesignOptionsBar.js:5,48,49,118,142+10more | js/chat/sidebar/FileTreePanel.js:7,14,15,29,30 | (+2 files) */
+.demo-view-overlay .sidebar-panel.active {
+  display: flex;
+}
+
+/* SOURCE: index.html:50,51,178,207,225+2more | js/chat/sidebar/AgentPanel.js:13 | js/chat/sidebar/FileTreePanel.js:7,14,15,29,30 | js/chat/sidebar/SidebarTabController.js:10,26,46 */
+.demo-view-overlay .sidebar-panel[data-panel="files"] .demo-outputs-section {
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* SOURCE: index.html:50,51,178,207,225+2more | js/chat/sidebar/AgentPanel.js:13 | js/chat/sidebar/FileTreePanel.js:7,14,15,29,30 | js/chat/sidebar/SidebarTabController.js:10,26,46 */
+.demo-view-overlay .sidebar-panel[data-panel="files"] .demo-outputs-tree {
+  min-width: max-content;
+}
+
+/* SOURCE: index.html:50,51,178 */
+.demo-view-overlay .demo-history-header {
+  padding: 0.625rem 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.03125rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-history-header {
+  color: #888;
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+
+
+/* ── History search ────────────────────────────────────── */
+
+/* SOURCE: index.html:50,51,178,208 */
+.demo-view-overlay .demo-history-search {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* SOURCE: index.html:50,51,178,209 */
+.demo-view-overlay .history-search-input {
+  width: 100%;
+  padding: 6px 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  background: #f8f8f8;
+  color: #333;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+/* SOURCE: index.html:50,51,178,209 */
+.demo-view-overlay .history-search-input:focus {
+  border-color: rgba(21, 96, 130, 0.4);
+  background: #fff;
+}
+
+/* SOURCE: index.html:50,51,178,209 */
+.demo-view-overlay .history-search-input::placeholder {
+  color: #999;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .demo-history-search {
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .history-search-input {
+  background: #2a2a2a;
+  border-color: rgba(255,255,255,0.1);
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .history-search-input:focus {
+  border-color: rgba(74, 155, 184, 0.4);
+  background: #333;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .history-search-input::placeholder {
+  color: #666;
+}
+
+
+/* ── History list items ────────────────────────────────── */
+
+/* SOURCE: index.html:216 */
+.demo-history-list {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px;
+}
+
+/* SOURCE: index.html:50,51,178,216 */
+.demo-view-overlay .demo-history-list {
+  min-height: 0;
+  padding-bottom: 0.75rem;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,313 | js/chat/sidebar/AgentPanel.js:57 */
+.demo-history-item {
+  position: relative;
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  background: #e0e0e0;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,313 | js/chat/sidebar/AgentPanel.js:57 */
+.demo-history-item:hover {
+  background: #d5d5d5;
+}
+
+/* BUG-006: parent row (H1) when a child branch (H2) is selected — subtle tint, not shimmer */
+.demo-history-item.parent-active:not(.active) {
+  background: rgba(74, 155, 184, 0.16);
+  color: #444;
+}
+
+.demo-history-item.parent-active:not(.active):hover {
+  background: rgba(74, 155, 184, 0.22);
+}
+
+/* ── Active agent / busy session row (#chatHistoryIndex6) ───────────────
+   JS: js/chat/sidebar/ActiveAgentSidebar.js — toggles .session-row-busy on the
+   current session while generating, sending, or sub-agents are running.
+   Selected row = calm highlight; shimmer + ring only when .session-row-busy. */
+
+/* SOURCE: index.html:187,207,339,427 | js/chat/app/ChatApp.js:1075+ | js/chat/session/SidebarChatHistoryTree.js | js/chat/sidebar/ActiveAgentSidebar.js */
+.demo-history-item.active {
+  background: #aeaeae96;
+  color: #000000;
+}
+
+/* SOURCE: index.html:187,207,339,427 | js/chat/sidebar/ActiveAgentSidebar.js */
+@keyframes demo-history-active-shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes demo-history-busy-spin {
+  to { transform: rotate(360deg); }
+}
+
+.demo-history-item.active.session-row-busy {
+  background: linear-gradient(
+    90deg,
+    rgba(190, 190, 190, 0.72) 0%,
+    rgba(220, 220, 220, 0.92) 42%,
+    rgba(190, 190, 190, 0.72) 100%
+  );
+  background-size: 220% 100%;
+  animation: demo-history-active-shimmer 2.4s ease-in-out infinite;
+  padding-right: 34px;
+}
+
+/* Buffering ring — right of title block, left of delete control */
+.demo-history-item-busy-ring {
+  display: none;
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border: 2px solid rgba(74, 155, 184, 0.28);
+  border-top-color: #4a9bb8;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: demo-history-busy-spin 0.65s linear infinite;
+  pointer-events: none;
+}
+
+.demo-history-item.session-row-busy .demo-history-item-busy-ring {
+  display: block;
+}
+
+/* SOURCE: index.html:50,51,178 | js/chat/app/ChatApp.js:1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,313 | js/chat/sidebar/AgentPanel.js:57 */
+.demo-view-overlay .demo-history-item {
+  font-size: 0.75rem;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588,1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,313 | js/chat/sidebar/AgentPanel.js:57 */
+html.dark-mode .demo-history-item {
+  background: var(--bg-tertiary);
+  color: #aaa;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588,1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,313 | js/chat/sidebar/AgentPanel.js:57 */
+html.dark-mode .demo-history-item:hover {
+  background: #333;
+}
+
+html.dark-mode .demo-history-item.parent-active:not(.active) {
+  background: rgba(74, 155, 184, 0.12);
+  color: #c8c8c8;
+}
+
+html.dark-mode .demo-history-item.parent-active:not(.active):hover {
+  background: rgba(74, 155, 184, 0.18);
+}
+
+/* SOURCE: index.html:2,11,38,187,207+2more | js/chat/sidebar/ActiveAgentSidebar.js */
+html.dark-mode .demo-history-item.active {
+  background: #4a4a4a96;
+  color: #fff;
+}
+
+html.dark-mode .demo-history-item.active.session-row-busy {
+  background: linear-gradient(
+    90deg,
+    rgba(58, 58, 58, 0.88) 0%,
+    rgba(88, 88, 88, 0.98) 45%,
+    rgba(58, 58, 58, 0.88) 100%
+  );
+  background-size: 220% 100%;
+  animation: demo-history-active-shimmer 2.4s ease-in-out infinite;
+  color: #fff;
+}
+
+html.dark-mode .demo-history-item-busy-ring {
+  border-color: rgba(142, 202, 230, 0.22);
+  border-top-color: #8ecae6;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,313 | js/chat/sidebar/AgentPanel.js:57 | js/chat/sidebar/DesignerSidebarAnimator.js:6 */
+.demo-history-item.session-list-item-enter {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,313 | js/chat/sidebar/AgentPanel.js:57 | js/chat/sidebar/DesignerSidebarAnimator.js:8 */
+.demo-history-item.session-list-item-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* SOURCE: js/chat/session/SidebarChatHistoryTree.js:136 | js/chat/sidebar/AgentPanel.js:61 */
+.demo-history-item-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.60rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 0.125rem;
+}
+
+/* SOURCE: js/chat/session/SidebarChatHistoryTree.js:137 | js/chat/sidebar/AgentPanel.js:62 */
+.demo-history-preview,
+.demo-history-item-preview {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+  line-height: 1.2;
+}
+
+/* SOURCE: js/chat/session/SidebarChatHistoryTree.js:137 | js/chat/sidebar/AgentPanel.js:62 */
+.demo-history-item.active .demo-history-item-preview {
+  opacity: 0.8;
+}
+
+/* SOURCE: js/chat/session/SidebarChatHistoryTree.js:138,221,247 */
+.chat-delete-btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  padding: 2px 4px;
+}
+
+/* SOURCE: js/chat/app/ChatApp.js:1075 | js/chat/session/SidebarChatHistoryTree.js:49,85,138 | js/chat/sidebar/AgentPanel.js:57 */
+.demo-history-item:hover .chat-delete-btn {
+  opacity: 1;
+}
+
+/* SOURCE: js/chat/session/SidebarChatHistoryTree.js:138,221,247 */
+.chat-delete-btn:hover {
+  color: #EF4444;
+}
+
+
+/* ── New agent / create tool buttons ───────────────────── */
+
+/* SOURCE: index.html:50,51,178,211 | js/chat/session/NewChatButton.js:2,10 | js/chat/sidebar/AgentPanel.js:17,34 */
+.demo-view-overlay .new-agent-btn {
+  width: calc(100% - 1rem);
+  margin: 0.5rem;
+  padding: 6px 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #156082;
+  background: transparent;
+  border: 1px dashed rgba(21, 96, 130, 0.4);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+/* SOURCE: index.html:50,51,178,211 | js/chat/session/NewChatButton.js:2,10 | js/chat/sidebar/AgentPanel.js:17,34 */
+.demo-view-overlay .new-agent-btn:hover {
+  background: rgba(21, 96, 130, 0.08);
+  border-color: rgba(21, 96, 130, 0.6);
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 | js/chat/session/NewChatButton.js:2,10 | js/chat/sidebar/AgentPanel.js:17,34 */
+html.dark-mode .demo-view-overlay .new-agent-btn {
+  color: #4a9bb8;
+  border-color: rgba(74, 155, 184, 0.4);
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 | js/chat/session/NewChatButton.js:2,10 | js/chat/sidebar/AgentPanel.js:17,34 */
+html.dark-mode .demo-view-overlay .new-agent-btn:hover {
+  background: rgba(74, 155, 184, 0.1);
+  border-color: rgba(74, 155, 184, 0.6);
+}
+
+/* SOURCE: index.html:50,51,178,212 | js/chat/sidebar/CreateToolButton.js:10 */
+.demo-view-overlay .create-tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: calc(100% - 1rem);
+  margin: 0 0.5rem 0.25rem;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px dashed rgba(21, 96, 130, 0.3);
+  border-radius: 4px;
+  color: #156082;
+  font-size: 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+/* SOURCE: index.html:50,51,178,212 | js/chat/sidebar/CreateToolButton.js:10 */
+.demo-view-overlay .create-tool-btn:hover {
+  border-color: rgba(21, 96, 130, 0.6);
+  background: rgba(21, 96, 130, 0.06);
+  color: #156082;
+}
+
+/* SOURCE: index.html:50,51,178,212 | js/chat/sidebar/CreateToolButton.js:10 */
+.demo-view-overlay .create-tool-btn svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* SOURCE: index.html:50,51,178,212 | js/chat/sidebar/CreateToolButton.js:10 */
+.demo-view-overlay .create-tool-btn:hover svg {
+  opacity: 1;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/CreateToolButton.js:10 */
+html.dark-mode .demo-view-overlay .create-tool-btn {
+  color: #9D9D9D;
+  border-color: rgba(74, 155, 184, 0.25);
+}
+
+/* SOURCE: index.html:2,11,38,50,51+2more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/CreateToolButton.js:10 */
+html.dark-mode .demo-view-overlay .create-tool-btn:hover {
+  border-color: rgba(74, 155, 184, 0.6);
+  color: #4a9bb8;
+  background: rgba(74, 155, 184, 0.08);
+}
+
+
+/* ── File tree / outputs ───────────────────────────────── */
+
+/* SOURCE: index.html:226 */
+.demo-outputs-section {
+  margin-top: 0;
+  padding: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: none;
+  flex: 1;
+  max-height: none;
+  overflow: hidden;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-outputs-header {
+  color: #777;
+}
+
+/* SOURCE: index.html:50,51,178,227 | js/chat/sidebar/FileTreePanel.js:14,29 */
+.demo-view-overlay .demo-outputs-tree {
+  overscroll-behavior: contain;
+}
+
+/* SOURCE: index.html:226,227 | js/chat/sidebar/FileTreePanel.js:14,29 */
+.demo-outputs-section.project-structure .demo-outputs-tree {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  padding: 0.25rem;
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* SOURCE: index.html:226,227 | js/chat/sidebar/FileTreePanel.js:14,29 */
+.demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* SOURCE: index.html:226,227 | js/chat/sidebar/FileTreePanel.js:14,29 */
+.demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* SOURCE: index.html:226,227 | js/chat/sidebar/FileTreePanel.js:14,29 */
+.demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 3px;
+}
+
+/* SOURCE: index.html:226,227 | js/chat/sidebar/FileTreePanel.js:14,29 */
+.demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.25);
+}
+
+/* SOURCE: index.html:2,11,38,226,227 | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:14,29 */
+html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+}
+
+/* SOURCE: index.html:2,11,38,226,227 | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:14,29 */
+html.dark-mode .demo-outputs-section.project-structure .demo-outputs-tree::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* SOURCE: index.html:226,228,231,238 | js/chat/sidebar/FileTreePanel.js:8,50,86 */
+.demo-outputs-section.project-structure .tree-folder {
+  margin-bottom: 2px;
+}
+
+/* SOURCE: index.html:226,229,232,239 | js/chat/sidebar/FileTreePanel.js:53,89,107 */
+.demo-outputs-section.project-structure .tree-folder-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #444;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+/* SOURCE: index.html:226,229,232,239 | js/chat/sidebar/FileTreePanel.js:53,89,107 */
+.demo-outputs-section.project-structure .tree-folder-header:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+/* SOURCE: index.html:2,11,38,226,229+2more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:53,89,107 */
+html.dark-mode .demo-outputs-section.project-structure .tree-folder-header {
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,226,229+2more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:53,89,107 */
+html.dark-mode .demo-outputs-section.project-structure .tree-folder-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* SOURCE: index.html:226,229,232,239 | js/chat/sidebar/FileTreePanel.js:54,89 */
+.demo-outputs-section.project-structure .folder-icon {
+  font-size: 0.5rem;
+  color: #888;
+  width: 10px;
+  text-align: center;
+  transition: transform 0.15s ease;
+}
+
+/* SOURCE: index.html:226,228,229,231,232+3more | js/chat/animation/NeuralNode.js:188,189,227,228,317+1more | js/chat/animation/ThinkingAnimation.js:124,126 | js/chat/controller/ChatTurnStreamController.js:489,649,650,651 | js/chat/messages/ThinkingStepMessage.js:166,167,168,298,299+4more | js/chat/sidebar/FileTreePanel.js:8,50,54,83,86+4more | js/thinking-animation.js:70,71,98,99,116+6more */
+.demo-outputs-section.project-structure .tree-folder:not(.expanded) .folder-icon {
+  transform: rotate(-90deg);
+}
+
+/* SOURCE: index.html:2,11,38,226,229+2more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:54,89 */
+html.dark-mode .demo-outputs-section.project-structure .folder-icon {
+  color: #666;
+}
+
+/* SOURCE: index.html:226,230,233,240 | js/chat/sidebar/FileTreePanel.js:58 */
+.demo-outputs-section.project-structure .tree-folder-content {
+  padding-left: 14px;
+  border-left: 1px solid rgba(128, 128, 128, 0.15);
+  margin-left: 5px;
+}
+
+/* SOURCE: index.html:226,228,230,231,233+3more | js/chat/animation/NeuralNode.js:188,189,227,228,317+1more | js/chat/animation/ThinkingAnimation.js:124,126 | js/chat/controller/ChatTurnStreamController.js:489,649,650,651 | js/chat/messages/ThinkingStepMessage.js:166,167,168,298,299+4more | js/chat/sidebar/FileTreePanel.js:8,50,58,83,86+3more | js/thinking-animation.js:70,71,98,99,116+6more */
+.demo-outputs-section.project-structure .tree-folder:not(.expanded) > .tree-folder-content {
+  display: none;
+}
+
+/* SOURCE: index.html:2,11,38,226,230+2more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:58 */
+html.dark-mode .demo-outputs-section.project-structure .tree-folder-content {
+  border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/sidebar/FileTreePanel.js:8,68,113 */
+.demo-outputs-section.project-structure .tree-file {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #555;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/sidebar/FileTreePanel.js:8,68,113 */
+.demo-outputs-section.project-structure .tree-file:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+/* SOURCE: index.html:2,11,38,226,234+3more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:8,68,113 */
+html.dark-mode .demo-outputs-section.project-structure .tree-file {
+  color: #aaa;
+}
+
+/* SOURCE: index.html:2,11,38,226,234+3more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:8,68,113 */
+html.dark-mode .demo-outputs-section.project-structure .tree-file:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.4rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon::before {
+  font-size: 0.35rem;
+  font-weight: 700;
+}
+
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:37 | js/chat/input/AttachmentDock.js:10 | js/chat/input/UploadButton.js:15 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.pdf { background: #e74c3c; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:37 | js/chat/input/AttachmentDock.js:10 | js/chat/input/UploadButton.js:15 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.pdf::before { content: 'PDF'; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:36 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.dwg { background: #e67e22; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:36 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.dwg::before { content: 'DWG'; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:35 | js/chat/session/ChatSessionsStore.js:599 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.rvt { background: #3498db; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:35 | js/chat/session/ChatSessionsStore.js:599 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.rvt::before { content: 'RVT'; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:38 | js/chat/input/AttachmentDock.js:10 | js/chat/input/UploadButton.js:15 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.xlsx { background: #27ae60; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:38 | js/chat/input/AttachmentDock.js:10 | js/chat/input/UploadButton.js:15 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.xlsx::before { content: 'XLS'; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:39 | js/chat/input/AttachmentDock.js:10 | js/chat/input/UploadButton.js:15 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.docx { background: #2980b9; }
+/* SOURCE: index.html:226,234,235,241,242 | js/chat/animation/NeuralNode.js:39 | js/chat/input/AttachmentDock.js:10 | js/chat/input/UploadButton.js:15 | js/chat/sidebar/FileTreePanel.js:70 */
+.demo-outputs-section.project-structure .file-icon.docx::before { content: 'DOC'; }
+
+
+/* ── Settings panel ────────────────────────────────────── */
+
+/* SOURCE: index.html:256 */
+.settings-panel {
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* SOURCE: index.html:257,264,271,279,287+4more */
+.settings-group {
+  margin-bottom: 12px;
+}
+
+/* SOURCE: index.html:258,265,272,280,288+4more */
+.settings-label {
+  display: block;
+  font-size: 11px;
+  color: #9D9D9D;
+  margin-bottom: 4px;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* SOURCE: index.html:2,11,38,258,265+7more | js/chat/app/ChatApp.js:586,588 */
+html:not(.dark-mode) .settings-label {
+  color: #666;
+}
+
+/* SOURCE: index.html:259,266,273,281,289+3more | js/chat/sidebar/SettingsPanel.js:16 */
+.settings-select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 12px;
+  background: #2d2d2d;
+  color: #e8e8e8;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 24px;
+}
+
+/* SOURCE: index.html:259,266,273,281,289+3more | js/chat/sidebar/SettingsPanel.js:16 */
+.settings-select:hover {
+  border-color: #4a9bb8;
+}
+
+/* SOURCE: index.html:259,266,273,281,289+3more | js/chat/sidebar/SettingsPanel.js:16 */
+.settings-select:focus {
+  border-color: #4a9bb8;
+  box-shadow: 0 0 0 1px rgba(74, 155, 184, 0.3);
+}
+
+/* SOURCE: index.html:2,11,38,259,266+6more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/SettingsPanel.js:16 */
+html:not(.dark-mode) .settings-select {
+  background: #fff;
+  color: #333;
+  border-color: #d0d0d0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+/* SOURCE: index.html:2,11,38,259,266+6more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/SettingsPanel.js:16 */
+html:not(.dark-mode) .settings-select:hover {
+  border-color: #4a9bb8;
+}
+
+/* SOURCE: index.html:319 */
+.settings-chat-archive-hint {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* SOURCE: index.html:2,11,38,319 | js/chat/app/ChatApp.js:586,588 */
+html:not(.dark-mode) .settings-chat-archive-hint {
+  color: #666;
+}
+
+/* SOURCE: index.html:320 */
+.settings-chat-archive-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* SOURCE: index.html:321,322 */
+.settings-chat-archive-btn {
+  font-family: var(--chat-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: 1px solid #3c3c3c;
+  background: #2d2d2d;
+  color: #E8E8E8;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+/* SOURCE: index.html:321,322 */
+.settings-chat-archive-btn:hover {
+  background: #3a3a3a;
+  border-color: #4a9bb8;
+}
+
+/* SOURCE: index.html:2,11,38,321,322 | js/chat/app/ChatApp.js:586,588 */
+html:not(.dark-mode) .settings-chat-archive-btn {
+  background: #f0f0f0;
+  color: #333;
+  border-color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,321,322 | js/chat/app/ChatApp.js:586,588 */
+html:not(.dark-mode) .settings-chat-archive-btn:hover {
+  background: #e0e0e0;
+  border-color: #4a9bb8;
+}
+
+
+/* ── Footer ────────────────────────────────────────────── */
+
+/* SOURCE: index.html:50,51,178,219,249+1more */
+.demo-view-overlay .sidebar-footer {
+  padding: 8px 12px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  background: #e8e8e8;
+  flex-shrink: 0;
+}
+
+/* SOURCE: index.html:50,51,178,219,220+4more | js/chat/sidebar/FileTreePanel.js:15,30 */
+.demo-view-overlay .sidebar-footer .footer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  color: #888;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+4more | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-view-overlay .sidebar-footer {
+  border-top-color: rgba(255,255,255,0.06);
+  background: #252525;
+}
+
+/* SOURCE: index.html:2,11,38,50,51+7more | js/chat/app/ChatApp.js:586,588 | js/chat/sidebar/FileTreePanel.js:15,30 */
+html.dark-mode .demo-view-overlay .sidebar-footer .footer-text {
+  color: #666;
+}

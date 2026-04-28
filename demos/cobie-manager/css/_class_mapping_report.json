@@ -1,0 +1,2438 @@
+{
+  "stats": {
+    "files": 10,
+    "total_rules": 1090,
+    "annotated": 980,
+    "not_found": 94
+  },
+  "found": {
+    "active": [
+      "js\\chat\\app\\ChatApp.js:1087",
+      "js\\chat\\app\\ChatApp.js:1114",
+      "js\\chat\\app\\ChatApp.js:1135",
+      "js\\chat\\input\\ModelDropdown.js:28",
+      "js\\chat\\input\\ModelDropdown.js:31",
+      "js\\chat\\input\\ModelDropdown.js:40",
+      "js\\chat\\input\\ModelDropdown.js:77",
+      "js\\chat\\input\\ModelDropdown.js:78",
+      "js\\chat\\input\\ModelDropdown.js:79",
+      "js\\chat\\messages\\AssistantMessage.js:99",
+      "js\\chat\\messages\\ThinkingStepMessage.js:252",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:36",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:54",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:86",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:104",
+      "js\\chat\\session\\ChatSessionsStore.js:172",
+      "js\\chat\\session\\ChatSessionsStore.js:310",
+      "js\\chat\\session\\ChatSessionsStore.js:841",
+      "js\\chat\\sidebar\\AgentPanel.js:57",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:5",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:48",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:49",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:118",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:142",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:147",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:149",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:150",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:153",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:155",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:156",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:182",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:183",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:189",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:228",
+      "js\\chat\\sidebar\\SidebarTabController.js:42",
+      "js\\chat\\sidebar\\SidebarTabController.js:43",
+      "js\\chat\\sidebar\\SidebarTabController.js:48",
+      "js\\chat\\sidebar\\SidebarTabController.js:49",
+      "js\\chat\\sidebar\\SidebarTabController.js:55",
+      "js\\chat\\state\\ChatState.js:79",
+      "index.html:187",
+      "index.html:207",
+      "index.html:339",
+      "index.html:427"
+    ],
+    "active-mode": [
+      "index.html:374"
+    ],
+    "added": [
+      "js\\chat\\animation\\NeuralNode.js:126",
+      "js\\chat\\app\\ChatApp.js:630",
+      "js\\chat\\app\\ChatApp.js:631",
+      "js\\chat\\app\\ChatApp.js:638",
+      "js\\chat\\messages\\MessageList.js:75",
+      "js\\chat\\messages\\MessageList.js:112",
+      "js\\chat\\messages\\ThinkingStepMessage.js:456",
+      "js\\chat\\messages\\UserMessage.js:4",
+      "js\\chat\\session\\ChatSessionsStore.js:623",
+      "js\\chat\\session\\ChatSessionsStore.js:625",
+      "js\\chat\\session\\ChatSessionsStore.js:628",
+      "js\\chat\\session\\ChatSessionsStore.js:630",
+      "js\\chat\\session\\ChatSessionsStore.js:635",
+      "js\\chat\\session\\ChatSessionsStore.js:637",
+      "js\\chat\\session\\ChatSessionsStore.js:664",
+      "js\\chat\\session\\ChatSessionsStore.js:677",
+      "js\\chat\\state\\ChatState.js:96",
+      "js\\thinking-animation.js:176",
+      "js\\thinking-animation.js:191"
+    ],
+    "agent-batch-container": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:456",
+      "js\\chat\\controller\\ChatTurnStreamController.js:459",
+      "js\\chat\\controller\\ChatTurnStreamController.js:469",
+      "js\\chat\\controller\\ChatTurnStreamController.js:548"
+    ],
+    "agent-batch-count": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:463",
+      "js\\chat\\controller\\ChatTurnStreamController.js:504"
+    ],
+    "agent-batch-header": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:460",
+      "js\\chat\\controller\\ChatTurnStreamController.js:590"
+    ],
+    "agent-batch-item": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:477",
+      "js\\chat\\controller\\ChatTurnStreamController.js:503",
+      "js\\chat\\controller\\ChatTurnStreamController.js:518",
+      "js\\chat\\controller\\ChatTurnStreamController.js:583",
+      "js\\chat\\controller\\ChatTurnStreamController.js:584",
+      "js\\chat\\controller\\ChatTurnStreamController.js:612",
+      "js\\chat\\controller\\ChatTurnStreamController.js:642"
+    ],
+    "agent-batch-list": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:465",
+      "js\\chat\\controller\\ChatTurnStreamController.js:472"
+    ],
+    "agent-batch-summary": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:466",
+      "js\\chat\\controller\\ChatTurnStreamController.js:595"
+    ],
+    "agent-batch-title": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:462",
+      "js\\chat\\controller\\ChatTurnStreamController.js:588"
+    ],
+    "agent-done": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:520",
+      "js\\chat\\controller\\ChatTurnStreamController.js:584"
+    ],
+    "agent-employ-card": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:477"
+    ],
+    "agent-employ-thinking": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:478",
+      "js\\chat\\controller\\ChatTurnStreamController.js:521",
+      "js\\chat\\controller\\ChatTurnStreamController.js:613",
+      "js\\chat\\controller\\ChatTurnStreamController.js:645"
+    ],
+    "agent-item-result": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:542"
+    ],
+    "agent-item-steps": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:671",
+      "js\\chat\\controller\\ChatTurnStreamController.js:674"
+    ],
+    "agent-result-line": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:536"
+    ],
+    "agent-step-entry": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:679"
+    ],
+    "agent-step-icon": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:681"
+    ],
+    "agent-step-text": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:681"
+    ],
+    "agent-task-line": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:495",
+      "js\\chat\\controller\\ChatTurnStreamController.js:496"
+    ],
+    "agent-thought-line": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:665"
+    ],
+    "animate-in": [
+      "js\\chat\\messages\\AssistantMessage.js:10",
+      "js\\chat\\messages\\AssistantMessage.js:170"
+    ],
+    "assistant-response": [
+      "js\\chat\\app\\ChatApp.js:770",
+      "js\\chat\\app\\ChatApp.js:1268",
+      "js\\chat\\messages\\MessageList.js:83"
+    ],
+    "assistant-stream-footer": [
+      "js\\chat\\messages\\MessageList.js:148"
+    ],
+    "assistant-text-block": [
+      "js\\chat\\context\\RightClickMenu.js:79",
+      "js\\chat\\messages\\AssistantMessage.js:4",
+      "js\\chat\\messages\\AssistantMessage.js:169",
+      "js\\chat\\messages\\AssistantMessage.js:190",
+      "js\\chat\\messages\\AssistantMessage.js:226",
+      "js\\chat\\messages\\AssistantMessage.js:264"
+    ],
+    "attachment-chip": [
+      "js\\chat\\input\\AttachmentDock.js:79"
+    ],
+    "attachment-chip-icon": [
+      "js\\chat\\input\\AttachmentDock.js:80"
+    ],
+    "attachment-chip-meta": [
+      "js\\chat\\input\\AttachmentDock.js:82"
+    ],
+    "attachment-chip-name": [
+      "js\\chat\\input\\AttachmentDock.js:81"
+    ],
+    "attachment-chip-remove": [
+      "js\\chat\\input\\AttachmentDock.js:83",
+      "js\\chat\\input\\AttachmentDock.js:87"
+    ],
+    "attachment-dock": [
+      "js\\chat\\input\\AttachmentDock.js:52"
+    ],
+    "batch-complete": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:456",
+      "js\\chat\\controller\\ChatTurnStreamController.js:469",
+      "js\\chat\\controller\\ChatTurnStreamController.js:587"
+    ],
+    "bot-message": [
+      "js\\chat\\context\\RightClickMenu.js:16",
+      "js\\chat\\context\\RightClickMenu.js:89"
+    ],
+    "branch-icon": [
+      "index.html:340"
+    ],
+    "brand-build": [
+      "index.html:133",
+      "index.html:424",
+      "index.html:427",
+      "index.html:428",
+      "index.html:429"
+    ],
+    "brand-dot": [
+      "index.html:135",
+      "index.html:424",
+      "index.html:427",
+      "index.html:428",
+      "index.html:429"
+    ],
+    "brand-variant": [
+      "js\\chat\\input\\ModelDropdown.js:7",
+      "js\\chat\\input\\ModelDropdown.js:95",
+      "js\\chat\\input\\ModelDropdown.js:102",
+      "index.html:134",
+      "index.html:424",
+      "index.html:427",
+      "index.html:428",
+      "index.html:429"
+    ],
+    "buggy": [
+      "js\\chat\\app\\ChatApp.js:721",
+      "js\\chat\\app\\ChatApp.js:740"
+    ],
+    "buildx-warmup-banner": [
+      "index.html:350"
+    ],
+    "cancel": [
+      "js\\chat\\app\\ChatApp.js:135",
+      "js\\chat\\app\\ChatApp.js:144",
+      "js\\chat\\app\\ChatApp.js:193",
+      "js\\chat\\app\\ChatApp.js:200",
+      "js\\chat\\commands\\CommandSuggestions.js:254",
+      "js\\chat\\commands\\CommandSuggestions.js:261",
+      "js\\chat\\input\\StopButton.js:2",
+      "js\\chat\\messages\\ToolProgressBlock.js:125",
+      "js\\chat\\prompt\\PromptVariableEditor.js:26",
+      "js\\chat\\prompt\\PromptVariableEditor.js:43"
+    ],
+    "changes-box": [
+      "js\\chat\\messages\\ThinkingStepMessage.js:457"
+    ],
+    "chat-agent-badge": [
+      "js\\chat\\input\\AgentDropdown.js:15",
+      "index.html:374"
+    ],
+    "chat-agent-dropdown": [
+      "js\\chat\\input\\AgentDropdown.js:2",
+      "js\\chat\\input\\AgentDropdown.js:14",
+      "index.html:86",
+      "index.html:373"
+    ],
+    "chat-composer-stack": [
+      "js\\chat\\app\\ChatApp.js:975",
+      "js\\chat\\focus\\FocusDropZone.js:8",
+      "js\\chat\\input\\AttachmentDock.js:56",
+      "js\\chat\\ui\\ChatFeedbackBar.js:5",
+      "index.html:364"
+    ],
+    "chat-context-menu": [
+      "js\\chat\\context\\RightClickMenu.js:64",
+      "js\\chat\\context\\UiDebugContextMenu.js:15"
+    ],
+    "chat-context-menu-arrow": [
+      "js\\chat\\context\\RightClickMenu.js:156"
+    ],
+    "chat-context-menu-divider": [
+      "js\\chat\\context\\RightClickMenu.js:127"
+    ],
+    "chat-context-menu-icon": [
+      "js\\chat\\context\\RightClickMenu.js:137"
+    ],
+    "chat-context-menu-item": [
+      "js\\chat\\context\\RightClickMenu.js:133",
+      "js\\chat\\context\\RightClickMenu.js:166",
+      "js\\chat\\context\\RightClickMenu.js:172",
+      "js\\chat\\context\\UiDebugContextMenu.js:36",
+      "js\\chat\\context\\UiDebugContextMenu.js:50"
+    ],
+    "chat-context-menu-label": [
+      "js\\chat\\context\\RightClickMenu.js:143"
+    ],
+    "chat-context-menu-shortcut": [
+      "js\\chat\\context\\RightClickMenu.js:149"
+    ],
+    "chat-context-menu-submenu": [
+      "js\\chat\\context\\RightClickMenu.js:162"
+    ],
+    "chat-delete-btn": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:138",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:221",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:247"
+    ],
+    "chat-dropdown-menu": [
+      "js\\chat\\input\\AgentDropdown.js:16",
+      "js\\chat\\input\\AgentDropdown.js:54",
+      "js\\chat\\input\\ModelDropdown.js:20",
+      "js\\chat\\input\\ModelDropdown.js:51",
+      "index.html:91",
+      "index.html:106",
+      "index.html:375",
+      "index.html:425"
+    ],
+    "chat-feedback-bar": [
+      "index.html:455"
+    ],
+    "chat-feedback-bar--open": [
+      "js\\chat\\ui\\ChatFeedbackBar.js:6",
+      "js\\chat\\ui\\ChatFeedbackBar.js:35",
+      "js\\chat\\ui\\ChatFeedbackBar.js:55",
+      "js\\chat\\ui\\ChatFeedbackBar.js:77",
+      "js\\chat\\ui\\ChatFeedbackBar.js:80"
+    ],
+    "chat-feedback-bar-collapse": [
+      "js\\chat\\ui\\ChatFeedbackBar.js:26",
+      "js\\chat\\ui\\ChatFeedbackBar.js:72"
+    ],
+    "chat-feedback-bar-inner": [
+      "js\\chat\\ui\\ChatFeedbackBar.js:15",
+      "index.html:456"
+    ],
+    "chat-feedback-bar-label": [
+      "js\\chat\\ui\\ChatFeedbackBar.js:73"
+    ],
+    "chat-input-controls": [
+      "index.html:368"
+    ],
+    "chat-input-left": [
+      "index.html:369"
+    ],
+    "chat-input-placeholder": [
+      "index.html:142",
+      "index.html:148",
+      "index.html:154",
+      "index.html:367"
+    ],
+    "chat-input-right": [
+      "js\\chat\\input\\StopButton.js:35",
+      "index.html:445"
+    ],
+    "chat-input-wrapper": [
+      "js\\chat\\input\\ClipboardHandler.js:185",
+      "index.html:366"
+    ],
+    "chat-meeting-btn": [
+      "index.html:447"
+    ],
+    "chat-model-dropdown": [
+      "js\\chat\\input\\ModelDropdown.js:2",
+      "js\\chat\\input\\ModelDropdown.js:18",
+      "index.html:87",
+      "index.html:423"
+    ],
+    "chat-model-label": [
+      "js\\chat\\input\\ModelDropdown.js:19",
+      "index.html:119",
+      "index.html:424"
+    ],
+    "chat-neural-node": [
+      "index.html:354"
+    ],
+    "chat-node-core": [
+      "index.html:355"
+    ],
+    "chat-node-glow": [
+      "index.html:356"
+    ],
+    "chat-node-pulse-ring": [
+      "index.html:357"
+    ],
+    "chat-node-status": [
+      "index.html:359"
+    ],
+    "chat-persistent-node-wrapper": [
+      "js\\chat\\app\\ChatApp.js:208",
+      "index.html:353"
+    ],
+    "chat-save-prompt-btn": [
+      "js\\chat\\app\\ChatApp.js:1330",
+      "index.html:448"
+    ],
+    "chat-send-btn": [
+      "js\\chat\\input\\StopButton.js:16",
+      "index.html:450"
+    ],
+    "chat-session-link": [
+      "js\\chat\\app\\ChatApp.js:1155",
+      "js\\chat\\app\\ChatApp.js:1160",
+      "js\\chat\\messages\\MessageParser.js:40",
+      "js\\chat\\messages\\MessageParser.js:41",
+      "js\\chat\\messages\\MessageParser.js:48"
+    ],
+    "chat-share-btn": [
+      "index.html:446"
+    ],
+    "chat-sidebar-resize": [
+      "js\\chat\\sidebar\\SidebarTabController.js:12",
+      "js\\chat\\sidebar\\SidebarTabController.js:80",
+      "index.html:333"
+    ],
+    "chat-status-toast": [
+      "js\\chat\\app\\ChatApp.js:974"
+    ],
+    "chat-status-toast--visible": [
+      "js\\chat\\app\\ChatApp.js:986",
+      "js\\chat\\app\\ChatApp.js:988"
+    ],
+    "chat-stop-btn": [
+      "js\\chat\\input\\StopButton.js:15",
+      "js\\chat\\input\\StopButton.js:39",
+      "index.html:449"
+    ],
+    "chat-stream-error-chevron": [
+      "js\\chat\\messages\\ErrorMessage.js:58"
+    ],
+    "chat-stream-error-detail": [
+      "js\\chat\\messages\\ErrorMessage.js:61"
+    ],
+    "chat-stream-error-detail-text": [
+      "js\\chat\\messages\\ErrorMessage.js:65"
+    ],
+    "chat-stream-error-fold": [
+      "js\\chat\\messages\\ErrorMessage.js:41"
+    ],
+    "chat-stream-error-fold--open": [
+      "js\\chat\\messages\\ErrorMessage.js:80"
+    ],
+    "chat-stream-error-head": [
+      "js\\chat\\messages\\ErrorMessage.js:46"
+    ],
+    "chat-stream-error-label": [
+      "js\\chat\\messages\\ErrorMessage.js:49"
+    ],
+    "chat-stream-error-toggle": [
+      "js\\chat\\messages\\ErrorMessage.js:55"
+    ],
+    "chat-toast": [
+      "js\\chat\\app\\ChatApp.js:934"
+    ],
+    "chat-upload-btn": [
+      "index.html:370"
+    ],
+    "chat-welcome-text": [
+      "js\\chat\\session\\ChatSessionsStore.js:380",
+      "js\\chat\\session\\ChatSessionsStore.js:423"
+    ],
+    "check": [
+      "js\\chat\\context\\RightClickMenu.js:95",
+      "js\\chat\\controller\\ChatTurnStreamController.js:572",
+      "js\\chat\\controller\\ChatTurnStreamController.js:657",
+      "js\\chat\\controller\\ChatTurnStreamController.js:695",
+      "js\\chat\\messages\\ThinkingStepMessage.js:309",
+      "js\\chat\\messages\\ThinkingStepMessage.js:445",
+      "js\\thinking-animation.js:175",
+      "js\\thinking-animation.js:183"
+    ],
+    "checked": [
+      "js\\chat\\input\\AgentDropdown.js:27",
+      "js\\chat\\input\\AgentDropdown.js:35",
+      "js\\chat\\input\\AgentDropdown.js:40",
+      "js\\chat\\input\\AgentDropdown.js:45",
+      "js\\chat\\input\\AgentDropdown.js:64",
+      "js\\chat\\input\\AgentDropdown.js:67",
+      "js\\chat\\input\\AgentDropdown.js:81",
+      "js\\chat\\input\\AgentDropdown.js:88",
+      "js\\chat\\input\\AgentDropdown.js:92",
+      "js\\chat\\input\\ModelDropdown.js:61",
+      "index.html:384"
+    ],
+    "chevron": [
+      "js\\chat\\animation\\NeuralNode.js:140",
+      "js\\chat\\app\\ChatApp.js:918",
+      "js\\chat\\app\\ChatApp.js:919",
+      "js\\chat\\controller\\ChatTurnStreamController.js:485",
+      "js\\chat\\messages\\ErrorMessage.js:9",
+      "js\\chat\\messages\\ThinkingStepMessage.js:70",
+      "js\\chat\\messages\\ThinkingStepMessage.js:331",
+      "js\\chat\\messages\\ToolProgressBlock.js:75",
+      "js\\thinking-animation.js:20"
+    ],
+    "clarify": [
+      "js\\chat\\app\\ChatApp.js:519",
+      "js\\chat\\app\\ChatApp.js:521",
+      "js\\chat\\commands\\CommandSuggestions.js:184"
+    ],
+    "close": [
+      "js\\chat\\prompt\\PromptVariableEditor.js:38",
+      "js\\chat\\prompt\\PromptVariableEditor.js:43",
+      "js\\chat\\prompt\\PromptVariableEditor.js:51"
+    ],
+    "collapsed": [
+      "js\\chat\\app\\ChatApp.js:801",
+      "js\\chat\\app\\ChatApp.js:865",
+      "js\\chat\\app\\ChatApp.js:868",
+      "js\\chat\\app\\ChatApp.js:871",
+      "js\\chat\\app\\ChatApp.js:877",
+      "js\\chat\\app\\ChatApp.js:915",
+      "js\\chat\\messages\\MessageList.js:12",
+      "js\\chat\\sidebar\\FileTreePanel.js:83",
+      "js\\chat\\ui\\ChatFeedbackBar.js:27",
+      "index.html:291"
+    ],
+    "collapsing": [
+      "js\\chat\\animation\\ThinkingAnimation.js:46",
+      "js\\chat\\animation\\ThinkingAnimation.js:63",
+      "js\\chat\\animation\\ThinkingAnimation.js:67",
+      "js\\chat\\animation\\ThinkingAnimation.js:120",
+      "js\\thinking-animation.js:104",
+      "js\\thinking-animation.js:120",
+      "js\\thinking-animation.js:144",
+      "js\\thinking-animation.js:148",
+      "js\\thinking-animation.js:162"
+    ],
+    "command-order": [
+      "js\\chat\\commands\\CommandSuggestions.js:76"
+    ],
+    "command-order-actions": [
+      "js\\chat\\commands\\CommandSuggestions.js:118"
+    ],
+    "command-order-header": [
+      "js\\chat\\commands\\CommandSuggestions.js:79"
+    ],
+    "command-order-workflow": [
+      "js\\chat\\commands\\CommandSuggestions.js:80"
+    ],
+    "command-suggestions": [
+      "js\\chat\\commands\\CommandSuggestions.js:32",
+      "js\\chat\\commands\\CommandSuggestions.js:91",
+      "js\\chat\\commands\\CommandSuggestions.js:189"
+    ],
+    "complete": [
+      "js\\chat\\animation\\NeuralNode.js:219",
+      "js\\chat\\app\\ChatApp.js:638",
+      "js\\chat\\controller\\ChatTurnStreamController.js:523",
+      "js\\chat\\controller\\ChatTurnStreamController.js:558",
+      "js\\chat\\controller\\ChatTurnStreamController.js:615",
+      "js\\chat\\controller\\ChatTurnStreamController.js:625",
+      "js\\chat\\messages\\AssistantMessage.js:46",
+      "js\\chat\\messages\\AssistantMessage.js:131",
+      "js\\chat\\messages\\ThinkingStepMessage.js:286",
+      "js\\chat\\messages\\ToolProgressBlock.js:102",
+      "js\\chat\\messages\\ToolProgressBlock.js:140"
+    ],
+    "confirming": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:225",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:262",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:269"
+    ],
+    "create-tool-btn": [
+      "js\\chat\\sidebar\\CreateToolButton.js:10",
+      "index.html:212"
+    ],
+    "cursor-style": [
+      "index.html:365"
+    ],
+    "dark-mode": [
+      "js\\chat\\app\\ChatApp.js:586",
+      "js\\chat\\app\\ChatApp.js:588",
+      "index.html:2",
+      "index.html:11",
+      "index.html:38"
+    ],
+    "default": [
+      "js\\chat\\animation\\NeuralNode.js:41",
+      "js\\chat\\input\\ModelDropdown.js:33",
+      "js\\chat\\messages\\AssistantMessage.js:8",
+      "js\\chat\\messages\\ThinkingStepMessage.js:171",
+      "js\\chat\\messages\\ThinkingStepMessage.js:435",
+      "js\\chat\\session\\ChatSessionsStore.js:14",
+      "js\\chat\\state\\ChatState.js:122",
+      "js\\thinking-animation.js:43",
+      "js\\thinking-animation.js:44",
+      "index.html:438"
+    ],
+    "delete-confirm-action": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:229",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:311",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:312"
+    ],
+    "delete-confirm-clear": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:312"
+    ],
+    "delete-confirm-delete": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:311"
+    ],
+    "delete-confirm-popover": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:246",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:308",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:321"
+    ],
+    "delete-confirm-title": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:310"
+    ],
+    "demo-chat-body": [
+      "index.html:73",
+      "index.html:183"
+    ],
+    "demo-chat-box": [
+      "index.html:67",
+      "index.html:181"
+    ],
+    "demo-chat-history-sidebar": [
+      "js\\chat\\sidebar\\SidebarTabController.js:81",
+      "index.html:185"
+    ],
+    "demo-chat-input": [
+      "js\\chat\\debug\\BugReportOverlay.js:312"
+    ],
+    "demo-chat-input-row": [
+      "js\\chat\\app\\ChatApp.js:214",
+      "js\\chat\\app\\ChatApp.js:975",
+      "js\\chat\\input\\AttachmentDock.js:55",
+      "js\\chat\\input\\ClipboardHandler.js:186",
+      "js\\chat\\input\\InputToolbar.js:4",
+      "js\\chat\\input\\InputToolbar.js:17",
+      "index.html:365"
+    ],
+    "demo-chat-main": [
+      "js\\chat\\app\\ChatApp.js:209",
+      "js\\chat\\app\\ChatApp.js:1364",
+      "index.html:336"
+    ],
+    "demo-chat-messages": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:102",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:114",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:188",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:192",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:240",
+      "index.html:80",
+      "index.html:346"
+    ],
+    "demo-chat-wrapper": [
+      "index.html:62",
+      "index.html:180"
+    ],
+    "demo-history-item": [
+      "js\\chat\\app\\ChatApp.js:1075",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:49",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:85",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:313",
+      "js\\chat\\sidebar\\AgentPanel.js:57"
+    ],
+    "demo-history-item-preview": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:137",
+      "js\\chat\\sidebar\\AgentPanel.js:62"
+    ],
+    "demo-history-item-title": [
+      "js\\chat\\session\\SidebarChatHistoryTree.js:136",
+      "js\\chat\\sidebar\\AgentPanel.js:61"
+    ],
+    "demo-history-list": [
+      "index.html:216"
+    ],
+    "demo-history-search": [
+      "index.html:208"
+    ],
+    "demo-msg-bot": [
+      "js\\chat\\animation\\NeuralNode.js:233",
+      "js\\chat\\app\\ChatApp.js:542",
+      "js\\chat\\app\\ChatApp.js:563",
+      "js\\chat\\app\\ChatApp.js:674",
+      "js\\chat\\app\\ChatApp.js:688",
+      "js\\chat\\app\\ChatApp.js:724",
+      "js\\chat\\app\\ChatApp.js:770",
+      "js\\chat\\app\\ChatApp.js:1023",
+      "js\\chat\\app\\ChatApp.js:1268",
+      "js\\chat\\app\\ChatApp.js:1442",
+      "js\\chat\\commands\\CommandSuggestions.js:232",
+      "js\\chat\\context\\RightClickMenu.js:79",
+      "js\\chat\\controller\\ChatTurnStreamController.js:352",
+      "js\\chat\\messages\\ErrorMessage.js:41",
+      "js\\chat\\messages\\MessageList.js:83",
+      "js\\chat\\messages\\MessageList.js:148"
+    ],
+    "demo-msg-user": [
+      "js\\chat\\app\\ChatApp.js:1007",
+      "js\\chat\\app\\ChatApp.js:1181",
+      "js\\chat\\app\\ChatApp.js:1442",
+      "js\\chat\\context\\RightClickMenu.js:78",
+      "js\\chat\\messages\\MessageList.js:42",
+      "js\\chat\\messages\\MessageList.js:49",
+      "js\\chat\\messages\\MessageList.js:148",
+      "js\\chat\\messages\\MessageList.js:150",
+      "js\\chat\\messages\\UserMessage.js:2",
+      "js\\chat\\messages\\UserMessage.js:5",
+      "js\\chat\\session\\ChatSessionsStore.js:533",
+      "js\\chat\\session\\ChatSessionsStore.js:551"
+    ],
+    "demo-outputs-section": [
+      "index.html:226"
+    ],
+    "demo-outputs-tree": [
+      "js\\chat\\sidebar\\FileTreePanel.js:14",
+      "js\\chat\\sidebar\\FileTreePanel.js:29",
+      "index.html:227"
+    ],
+    "demo-revit-box": [
+      "js\\chat\\animation\\NeuralNode.js:316",
+      "js\\chat\\animation\\NeuralNode.js:334"
+    ],
+    "demo-titlebar-btn": [
+      "js\\chat\\animation\\NeuralNode.js:318",
+      "js\\chat\\animation\\NeuralNode.js:336"
+    ],
+    "demo-view-overlay": [
+      "index.html:50",
+      "index.html:51",
+      "index.html:178"
+    ],
+    "design-option-add": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:11",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:39",
+      "index.html:340"
+    ],
+    "design-options-bar": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:8",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:37",
+      "index.html:337"
+    ],
+    "design-tab": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:10",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:69",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:149",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:155",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:162",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:171",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:182",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:269",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:275",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:298",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:303",
+      "index.html:339"
+    ],
+    "design-tabs": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:9",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:38",
+      "index.html:338"
+    ],
+    "disabled": [
+      "js\\chat\\app\\ChatApp.js:748",
+      "js\\chat\\app\\ChatApp.js:754",
+      "js\\chat\\commands\\CommandSuggestions.js:119",
+      "js\\chat\\commands\\CommandSuggestions.js:142",
+      "js\\chat\\commands\\CommandSuggestions.js:146",
+      "js\\chat\\commands\\CommandSuggestions.js:163",
+      "js\\chat\\context\\RightClickMenu.js:166",
+      "js\\chat\\input\\ModelDropdown.js:9",
+      "js\\chat\\input\\ModelDropdown.js:64",
+      "js\\chat\\input\\ModelDropdown.js:73",
+      "js\\chat\\input\\SendButton.js:31",
+      "js\\chat\\input\\SendButton.js:39",
+      "js\\chat\\session\\NewChatButton.js:22",
+      "js\\chat\\session\\NewChatButton.js:23",
+      "js\\chat\\session\\NewChatButton.js:29",
+      "js\\chat\\session\\NewChatButton.js:30",
+      "index.html:438",
+      "index.html:439",
+      "index.html:440",
+      "index.html:441"
+    ],
+    "docx": [
+      "js\\chat\\animation\\NeuralNode.js:39",
+      "js\\chat\\input\\AttachmentDock.js:10",
+      "js\\chat\\input\\UploadButton.js:15"
+    ],
+    "done": [
+      "js\\chat\\animation\\NeuralNode.js:216",
+      "js\\chat\\animation\\ThinkingAnimation.js:83",
+      "js\\chat\\animation\\ThinkingAnimation.js:122",
+      "js\\chat\\controller\\ChatTurnStreamController.js:525",
+      "js\\chat\\controller\\ChatTurnStreamController.js:560",
+      "js\\chat\\controller\\ChatTurnStreamController.js:591",
+      "js\\chat\\controller\\ChatTurnStreamController.js:617",
+      "js\\chat\\controller\\ChatTurnStreamController.js:627",
+      "js\\chat\\messages\\ThinkingStepMessage.js:288",
+      "js\\chat\\messages\\ThinkingStepMessage.js:309",
+      "js\\chat\\messages\\ThinkingStepMessage.js:325",
+      "js\\chat\\messages\\ThinkingStepMessage.js:433",
+      "js\\chat\\messages\\ThinkingStepMessage.js:444",
+      "js\\chat\\messages\\ToolProgressBlock.js:104",
+      "js\\chat\\messages\\ToolProgressBlock.js:142",
+      "js\\chat\\ui\\ChatFeedbackBar.js:40",
+      "js\\chat\\ui\\ChatFeedbackBar.js:42",
+      "js\\chat\\ui\\ChatFeedbackBar.js:43",
+      "js\\thinking-animation.js:88",
+      "js\\thinking-animation.js:89",
+      "js\\thinking-animation.js:163"
+    ],
+    "dot": [
+      "js\\chat\\messages\\ThinkingStepMessage.js:74",
+      "js\\chat\\messages\\ThinkingStepMessage.js:178",
+      "js\\chat\\messages\\ThinkingStepMessage.js:230",
+      "js\\chat\\messages\\ThinkingStepMessage.js:307",
+      "js\\chat\\messages\\ThinkingStepMessage.js:441",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:100",
+      "js\\thinking-animation.js:25",
+      "js\\thinking-animation.js:175",
+      "js\\thinking-animation.js:178",
+      "js\\thinking-animation.js:182"
+    ],
+    "drag-overlay": [
+      "js\\chat\\app\\ChatApp.js:1358"
+    ],
+    "drag-overlay-content": [
+      "js\\chat\\app\\ChatApp.js:1359"
+    ],
+    "dropdown-arrow": [
+      "index.html:374",
+      "index.html:424"
+    ],
+    "dropdown-divider": [
+      "index.html:430"
+    ],
+    "dropdown-item": [
+      "index.html:377",
+      "index.html:388",
+      "index.html:399",
+      "index.html:410",
+      "index.html:427",
+      "index.html:428",
+      "index.html:429",
+      "index.html:431",
+      "index.html:438",
+      "index.html:439",
+      "index.html:440",
+      "index.html:441"
+    ],
+    "dropdown-section-header": [
+      "index.html:376",
+      "index.html:426"
+    ],
+    "dwg": [
+      "js\\chat\\animation\\NeuralNode.js:36",
+      "index.html:235"
+    ],
+    "edit": [
+      "js\\chat\\app\\ChatApp.js:192",
+      "js\\chat\\app\\ChatApp.js:196",
+      "js\\chat\\app\\ChatApp.js:312",
+      "js\\chat\\app\\ChatApp.js:1220",
+      "js\\chat\\app\\ChatApp.js:1223",
+      "js\\chat\\app\\ChatApp.js:1318",
+      "js\\chat\\messages\\MessageList.js:144",
+      "js\\chat\\messages\\ThinkingStepMessage.js:447",
+      "js\\chat\\session\\ChatSessionsStore.js:512",
+      "js\\thinking-animation.js:175",
+      "js\\thinking-animation.js:184"
+    ],
+    "enabled": [
+      "js\\chat\\app\\ChatApp.js:596",
+      "js\\chat\\debug\\BugReportOverlay.js:109",
+      "js\\chat\\debug\\BugReportOverlay.js:110",
+      "js\\chat\\debug\\BugReportOverlay.js:122",
+      "js\\chat\\input\\AgentDropdown.js:81",
+      "js\\chat\\input\\AgentDropdown.js:82",
+      "js\\chat\\input\\AgentDropdown.js:91",
+      "js\\chat\\input\\AgentDropdown.js:92",
+      "js\\chat\\input\\ModelDropdown.js:61",
+      "js\\chat\\input\\ModelDropdown.js:62",
+      "js\\chat\\input\\ModelDropdown.js:64",
+      "js\\chat\\messages\\AssistantMessage.js:9",
+      "js\\chat\\messages\\AssistantMessage.js:59",
+      "js\\chat\\messages\\AssistantMessage.js:60"
+    ],
+    "error": [
+      "js\\chat\\app\\ChatApp.js:391",
+      "js\\chat\\app\\ChatApp.js:418",
+      "js\\chat\\app\\ChatApp.js:433",
+      "js\\chat\\bridge\\WebViewBridge.js:20",
+      "js\\chat\\bridge\\WebViewBridge.js:40",
+      "js\\chat\\debug\\BugReportOverlay.js:138",
+      "js\\chat\\input\\ClipboardHandler.js:36",
+      "js\\chat\\input\\ClipboardHandler.js:43",
+      "js\\chat\\input\\ClipboardHandler.js:57",
+      "js\\chat\\input\\UploadButton.js:49",
+      "js\\chat\\messages\\ErrorMessage.js:2",
+      "js\\chat\\messages\\ErrorMessage.js:4",
+      "js\\chat\\messages\\ErrorMessage.js:19",
+      "js\\chat\\messages\\ErrorMessage.js:20",
+      "js\\chat\\messages\\ErrorMessage.js:21",
+      "js\\chat\\messages\\ErrorMessage.js:24",
+      "js\\chat\\messages\\ErrorMessage.js:25",
+      "js\\chat\\messages\\ErrorMessage.js:26",
+      "js\\chat\\messages\\ErrorMessage.js:34",
+      "js\\chat\\messages\\ErrorMessage.js:35",
+      "js\\chat\\messages\\ErrorMessage.js:38",
+      "js\\chat\\messages\\ErrorMessage.js:39",
+      "js\\chat\\messages\\ErrorMessage.js:43",
+      "js\\chat\\messages\\ErrorMessage.js:51",
+      "js\\chat\\messages\\ErrorMessage.js:100",
+      "js\\chat\\messages\\ThinkingStepMessage.js:431",
+      "js\\chat\\messages\\ThinkingStepMessage.js:449",
+      "js\\chat\\messages\\ThinkingStepMessage.js:450",
+      "js\\chat\\messages\\ToolProgressBlock.js:125",
+      "js\\chat\\ui\\ErrorLogPanel.js:3",
+      "js\\chat\\ui\\ErrorLogPanel.js:72",
+      "js\\chat\\ui\\ErrorLogPanel.js:77",
+      "js\\thinking-animation.js:60"
+    ],
+    "error-log-body": [
+      "js\\chat\\ui\\ErrorLogPanel.js:50",
+      "js\\chat\\ui\\ErrorLogPanel.js:58"
+    ],
+    "error-log-close": [
+      "js\\chat\\ui\\ErrorLogPanel.js:48",
+      "js\\chat\\ui\\ErrorLogPanel.js:53"
+    ],
+    "error-log-cmd": [
+      "js\\chat\\ui\\ErrorLogPanel.js:71"
+    ],
+    "error-log-ctx": [
+      "js\\chat\\ui\\ErrorLogPanel.js:73"
+    ],
+    "error-log-empty": [
+      "js\\chat\\ui\\ErrorLogPanel.js:64",
+      "js\\chat\\ui\\ErrorLogPanel.js:77"
+    ],
+    "error-log-entry": [
+      "js\\chat\\ui\\ErrorLogPanel.js:69"
+    ],
+    "error-log-header": [
+      "js\\chat\\ui\\ErrorLogPanel.js:46"
+    ],
+    "error-log-msg": [
+      "js\\chat\\ui\\ErrorLogPanel.js:72"
+    ],
+    "error-log-panel": [
+      "js\\chat\\ui\\ErrorLogPanel.js:44"
+    ],
+    "error-log-panel--open": [
+      "js\\chat\\ui\\ErrorLogPanel.js:31",
+      "js\\chat\\ui\\ErrorLogPanel.js:37"
+    ],
+    "error-log-time": [
+      "js\\chat\\ui\\ErrorLogPanel.js:70"
+    ],
+    "error-log-title": [
+      "js\\chat\\ui\\ErrorLogPanel.js:47"
+    ],
+    "execute-order-btn": [
+      "js\\chat\\commands\\CommandSuggestions.js:119",
+      "js\\chat\\commands\\CommandSuggestions.js:138",
+      "js\\chat\\commands\\CommandSuggestions.js:154"
+    ],
+    "expanded": [
+      "js\\chat\\animation\\NeuralNode.js:188",
+      "js\\chat\\animation\\NeuralNode.js:189",
+      "js\\chat\\animation\\NeuralNode.js:227",
+      "js\\chat\\animation\\NeuralNode.js:228",
+      "js\\chat\\animation\\NeuralNode.js:317",
+      "js\\chat\\animation\\NeuralNode.js:337",
+      "js\\chat\\animation\\ThinkingAnimation.js:124",
+      "js\\chat\\animation\\ThinkingAnimation.js:126",
+      "js\\chat\\controller\\ChatTurnStreamController.js:489",
+      "js\\chat\\controller\\ChatTurnStreamController.js:649",
+      "js\\chat\\controller\\ChatTurnStreamController.js:650",
+      "js\\chat\\controller\\ChatTurnStreamController.js:651",
+      "js\\chat\\messages\\ThinkingStepMessage.js:166",
+      "js\\chat\\messages\\ThinkingStepMessage.js:167",
+      "js\\chat\\messages\\ThinkingStepMessage.js:168",
+      "js\\chat\\messages\\ThinkingStepMessage.js:298",
+      "js\\chat\\messages\\ThinkingStepMessage.js:299",
+      "js\\chat\\messages\\ThinkingStepMessage.js:383",
+      "js\\chat\\messages\\ThinkingStepMessage.js:385",
+      "js\\chat\\messages\\ThinkingStepMessage.js:386",
+      "js\\chat\\messages\\ThinkingStepMessage.js:405",
+      "js\\chat\\sidebar\\FileTreePanel.js:50",
+      "js\\chat\\sidebar\\FileTreePanel.js:83",
+      "js\\chat\\sidebar\\FileTreePanel.js:90",
+      "js\\chat\\sidebar\\FileTreePanel.js:93",
+      "js\\chat\\sidebar\\FileTreePanel.js:96",
+      "js\\thinking-animation.js:70",
+      "js\\thinking-animation.js:71",
+      "js\\thinking-animation.js:98",
+      "js\\thinking-animation.js:99",
+      "js\\thinking-animation.js:116",
+      "js\\thinking-animation.js:126",
+      "js\\thinking-animation.js:127",
+      "js\\thinking-animation.js:139",
+      "js\\thinking-animation.js:140",
+      "js\\thinking-animation.js:164",
+      "js\\thinking-animation.js:165",
+      "index.html:228",
+      "index.html:231",
+      "index.html:238",
+      "index.html:290"
+    ],
+    "feedback-confirmed": [
+      "js\\chat\\app\\ChatApp.js:777",
+      "js\\chat\\app\\ChatApp.js:784"
+    ],
+    "file-changed-item": [
+      "js\\chat\\animation\\NeuralNode.js:123"
+    ],
+    "file-changes": [
+      "js\\chat\\animation\\NeuralNode.js:126"
+    ],
+    "file-icon": [
+      "js\\chat\\sidebar\\FileTreePanel.js:70",
+      "index.html:234",
+      "index.html:235",
+      "index.html:241",
+      "index.html:242"
+    ],
+    "file-lang-icon": [
+      "js\\chat\\animation\\NeuralNode.js:124"
+    ],
+    "file-name": [
+      "js\\chat\\animation\\NeuralNode.js:125"
+    ],
+    "filename": [
+      "js\\chat\\animation\\NeuralNode.js:32",
+      "js\\chat\\animation\\NeuralNode.js:33",
+      "js\\chat\\animation\\NeuralNode.js:110",
+      "js\\chat\\animation\\NeuralNode.js:111",
+      "js\\chat\\animation\\NeuralNode.js:112",
+      "js\\chat\\animation\\NeuralNode.js:115",
+      "js\\chat\\animation\\NeuralNode.js:121",
+      "js\\chat\\animation\\NeuralNode.js:125",
+      "js\\chat\\debug\\BugReportOverlay.js:260",
+      "js\\chat\\input\\AttachmentDock.js:4",
+      "js\\chat\\messages\\ThinkingStepMessage.js:307",
+      "js\\chat\\messages\\ThinkingStepMessage.js:308",
+      "js\\chat\\messages\\ThinkingStepMessage.js:457",
+      "js\\chat\\sidebar\\FileTreePanel.js:115",
+      "js\\chat\\sidebar\\FileTreePanel.js:116",
+      "js\\thinking-animation.js:176",
+      "js\\thinking-animation.js:193"
+    ],
+    "files-action-btn": [
+      "js\\chat\\animation\\NeuralNode.js:165",
+      "js\\chat\\animation\\NeuralNode.js:166",
+      "js\\chat\\animation\\NeuralNode.js:167",
+      "js\\chat\\animation\\NeuralNode.js:304",
+      "js\\chat\\animation\\NeuralNode.js:305",
+      "js\\chat\\commands\\CommandSuggestions.js:254",
+      "js\\chat\\commands\\CommandSuggestions.js:255"
+    ],
+    "files-changed-actions": [
+      "js\\chat\\animation\\NeuralNode.js:164",
+      "js\\chat\\animation\\NeuralNode.js:306",
+      "js\\chat\\commands\\CommandSuggestions.js:253"
+    ],
+    "files-changed-count": [
+      "js\\chat\\animation\\NeuralNode.js:163",
+      "js\\chat\\commands\\CommandSuggestions.js:243"
+    ],
+    "files-changed-header": [
+      "js\\chat\\animation\\NeuralNode.js:162",
+      "js\\chat\\commands\\CommandSuggestions.js:242"
+    ],
+    "files-changed-list": [
+      "js\\chat\\animation\\NeuralNode.js:170"
+    ],
+    "files-changed-section": [
+      "js\\chat\\animation\\NeuralNode.js:161",
+      "js\\chat\\animation\\NeuralNode.js:249",
+      "js\\chat\\animation\\NeuralNode.js:250",
+      "js\\chat\\commands\\CommandSuggestions.js:241"
+    ],
+    "folder-icon": [
+      "js\\chat\\sidebar\\FileTreePanel.js:54",
+      "js\\chat\\sidebar\\FileTreePanel.js:89",
+      "index.html:229",
+      "index.html:232",
+      "index.html:239"
+    ],
+    "footer-text": [
+      "js\\chat\\sidebar\\FileTreePanel.js:15",
+      "js\\chat\\sidebar\\FileTreePanel.js:30",
+      "index.html:220",
+      "index.html:250",
+      "index.html:327"
+    ],
+    "fully-expanded": [
+      "js\\chat\\context\\RightClickMenu.js:284",
+      "js\\chat\\context\\RightClickMenu.js:449",
+      "js\\chat\\context\\RightClickMenu.js:450",
+      "js\\chat\\context\\RightClickMenu.js:452",
+      "js\\chat\\controller\\ChatTurnStreamController.js:651",
+      "js\\chat\\messages\\ThinkingStepMessage.js:389",
+      "js\\chat\\messages\\ThinkingStepMessage.js:391"
+    ],
+    "has-submenu": [
+      "js\\chat\\context\\RightClickMenu.js:159"
+    ],
+    "hidden": [
+      "js\\chat\\animation\\NeuralNode.js:315",
+      "js\\chat\\animation\\NeuralNode.js:366",
+      "js\\chat\\animation\\ThinkingAnimation.js:46",
+      "js\\chat\\animation\\ThinkingAnimation.js:66",
+      "js\\chat\\animation\\ThinkingAnimation.js:120",
+      "js\\chat\\app\\ChatApp.js:437",
+      "js\\chat\\app\\ChatApp.js:444",
+      "js\\chat\\debug\\BugReportOverlay.js:165",
+      "js\\chat\\debug\\BugReportOverlay.js:427",
+      "js\\chat\\messages\\ErrorMessage.js:62",
+      "js\\chat\\messages\\ErrorMessage.js:78",
+      "js\\chat\\messages\\ToolProgressBlock.js:80",
+      "js\\chat\\messages\\ToolProgressBlock.js:115",
+      "js\\chat\\messages\\ToolProgressBlock.js:152",
+      "js\\thinking-animation.js:107",
+      "js\\thinking-animation.js:120",
+      "js\\thinking-animation.js:147",
+      "js\\thinking-animation.js:162",
+      "index.html:34",
+      "index.html:47",
+      "index.html:292"
+    ],
+    "history-search-input": [
+      "index.html:209"
+    ],
+    "html": [
+      "js\\chat\\app\\ChatApp.js:716",
+      "js\\chat\\app\\ChatApp.js:724",
+      "js\\chat\\app\\ChatApp.js:812",
+      "js\\chat\\app\\ChatApp.js:814",
+      "js\\chat\\app\\ChatApp.js:815",
+      "js\\chat\\app\\ChatApp.js:820",
+      "js\\chat\\app\\ChatApp.js:824",
+      "js\\chat\\app\\ChatApp.js:826",
+      "js\\chat\\app\\ChatApp.js:828",
+      "js\\chat\\app\\ChatApp.js:829",
+      "js\\chat\\app\\ChatApp.js:880",
+      "js\\chat\\app\\ChatApp.js:881",
+      "js\\chat\\app\\ChatApp.js:882",
+      "js\\chat\\app\\ChatApp.js:883",
+      "js\\chat\\app\\ChatApp.js:885",
+      "js\\chat\\app\\ChatApp.js:887",
+      "js\\chat\\app\\ChatApp.js:888",
+      "js\\chat\\app\\ChatApp.js:889",
+      "js\\chat\\app\\ChatApp.js:891",
+      "js\\chat\\app\\ChatApp.js:899",
+      "js\\chat\\app\\ChatApp.js:900",
+      "js\\chat\\app\\ChatApp.js:901",
+      "js\\chat\\app\\ChatApp.js:902",
+      "js\\chat\\app\\ChatApp.js:903",
+      "js\\chat\\app\\ChatApp.js:905",
+      "js\\chat\\app\\ChatApp.js:907",
+      "js\\chat\\app\\ChatApp.js:1004",
+      "js\\chat\\app\\ChatApp.js:1015",
+      "js\\chat\\app\\ChatApp.js:1024",
+      "js\\chat\\app\\ChatApp.js:1025",
+      "js\\chat\\app\\ChatApp.js:1027",
+      "js\\chat\\app\\ChatApp.js:1450",
+      "js\\chat\\app\\ChatApp.js:1456",
+      "js\\chat\\commands\\CommandSuggestions.js:32",
+      "js\\chat\\commands\\CommandSuggestions.js:40",
+      "js\\chat\\commands\\CommandSuggestions.js:47",
+      "js\\chat\\commands\\CommandSuggestions.js:48",
+      "js\\chat\\commands\\CommandSuggestions.js:78",
+      "js\\chat\\commands\\CommandSuggestions.js:88",
+      "js\\chat\\commands\\CommandSuggestions.js:100",
+      "js\\chat\\commands\\CommandSuggestions.js:111",
+      "js\\chat\\commands\\CommandSuggestions.js:117",
+      "js\\chat\\commands\\CommandSuggestions.js:124",
+      "js\\chat\\commands\\CommandSuggestions.js:186",
+      "js\\chat\\commands\\CommandSuggestions.js:189",
+      "js\\chat\\commands\\CommandSuggestions.js:195",
+      "js\\chat\\commands\\CommandSuggestions.js:201",
+      "js\\chat\\commands\\CommandSuggestions.js:204",
+      "js\\chat\\commands\\CommandSuggestions.js:205",
+      "js\\chat\\context\\KeyboardShortcuts.js:4",
+      "js\\chat\\context\\KeyboardShortcuts.js:20",
+      "js\\chat\\debug\\BugReportOverlay.js:412",
+      "js\\chat\\debug\\BugReportOverlay.js:413",
+      "js\\chat\\debug\\BugReportOverlay.js:414",
+      "js\\chat\\debug\\BugReportOverlay.js:416",
+      "js\\chat\\debug\\BugReportOverlay.js:418",
+      "js\\chat\\debug\\BugReportOverlay.js:422",
+      "js\\chat\\debug\\BugReportOverlay.js:425",
+      "js\\chat\\debug\\BugReportOverlay.js:427",
+      "js\\chat\\debug\\BugReportOverlay.js:430",
+      "js\\chat\\debug\\BugReportOverlay.js:434",
+      "js\\chat\\debug\\BugReportOverlay.js:439",
+      "js\\chat\\debug\\BugReportOverlay.js:441",
+      "js\\chat\\debug\\BugReportOverlay.js:445",
+      "js\\chat\\debug\\BugReportOverlay.js:447",
+      "js\\chat\\input\\ClipboardHandler.js:143",
+      "js\\chat\\input\\ClipboardHandler.js:144",
+      "js\\chat\\input\\ClipboardHandler.js:146",
+      "js\\chat\\input\\ClipboardHandler.js:190",
+      "js\\chat\\input\\ClipboardHandler.js:192",
+      "js\\chat\\input\\ClipboardHandler.js:194",
+      "js\\chat\\input\\ModelDropdown.js:4",
+      "js\\chat\\messages\\MessageList.js:40",
+      "js\\chat\\messages\\MessageList.js:43",
+      "js\\chat\\messages\\MessageList.js:46",
+      "js\\chat\\messages\\MessageList.js:56",
+      "js\\chat\\messages\\MessageList.js:84",
+      "js\\chat\\messages\\MessageList.js:85",
+      "js\\chat\\messages\\MessageList.js:94",
+      "js\\chat\\messages\\MessageParser.js:58",
+      "js\\chat\\messages\\MessageParser.js:62",
+      "js\\chat\\messages\\MessageParser.js:66",
+      "js\\chat\\messages\\MessageParser.js:69",
+      "js\\chat\\messages\\MessageParser.js:75",
+      "js\\chat\\messages\\MessageParser.js:81",
+      "js\\chat\\messages\\MessageParser.js:87",
+      "js\\chat\\messages\\MessageParser.js:93",
+      "js\\chat\\messages\\MessageParser.js:99",
+      "js\\chat\\messages\\MessageParser.js:105",
+      "js\\chat\\messages\\MessageParser.js:108",
+      "js\\chat\\messages\\MessageParser.js:110",
+      "js\\chat\\messages\\MessageParser.js:113",
+      "js\\chat\\messages\\MessageParser.js:115",
+      "js\\chat\\messages\\ToolProgressBlock.js:65",
+      "js\\chat\\messages\\ToolProgressBlock.js:83",
+      "js\\chat\\messages\\UserMessage.js:5",
+      "js\\chat\\session\\ChatSessionsStore.js:126",
+      "js\\chat\\session\\ChatSessionsStore.js:127",
+      "js\\chat\\session\\ChatSessionsStore.js:181",
+      "js\\chat\\session\\ChatSessionsStore.js:197",
+      "js\\chat\\session\\ChatSessionsStore.js:343",
+      "js\\chat\\sidebar\\AgentPanel.js:10",
+      "js\\chat\\sidebar\\FileTreePanel.js:6",
+      "js\\chat\\sidebar\\SidebarTabController.js:4",
+      "js\\chat\\sidebar\\SidebarTabController.js:11",
+      "js\\chat\\surface\\ChatSurface.js:102",
+      "js\\chat\\surface\\ChatSurface.js:109",
+      "js\\chat\\surface\\ChatSurface.js:119",
+      "js\\chat\\surface\\ChatSurface.js:123",
+      "js\\thinking-animation.js:187",
+      "js\\thinking-animation.js:190",
+      "js\\thinking-animation.js:191",
+      "js\\thinking-animation.js:192",
+      "js\\thinking-animation.js:193",
+      "js\\thinking-animation.js:194",
+      "js\\thinking-animation.js:197",
+      "index.html:1",
+      "index.html:2",
+      "index.html:34",
+      "index.html:35",
+      "index.html:38",
+      "index.html:42",
+      "index.html:472"
+    ],
+    "js": [
+      "js\\chat\\animation\\NeuralNode.js:4",
+      "js\\chat\\animation\\NeuralNode.js:23",
+      "js\\chat\\animation\\NeuralNode.js:45",
+      "js\\chat\\animation\\NeuralNode.js:46",
+      "js\\chat\\animation\\ThinkingAnimation.js:3",
+      "js\\chat\\app\\ChatApp.js:4",
+      "js\\chat\\app\\ChatApp.js:19",
+      "js\\chat\\app\\ChatApp.js:20",
+      "js\\chat\\app\\ChatApp.js:21",
+      "js\\chat\\app\\ChatApp.js:22",
+      "js\\chat\\app\\ChatApp.js:23",
+      "js\\chat\\app\\ChatApp.js:24",
+      "js\\chat\\app\\ChatApp.js:25",
+      "js\\chat\\app\\ChatApp.js:26",
+      "js\\chat\\app\\ChatApp.js:27",
+      "js\\chat\\app\\ChatApp.js:28",
+      "js\\chat\\app\\ChatApp.js:29",
+      "js\\chat\\app\\ChatApp.js:30",
+      "js\\chat\\app\\ChatApp.js:31",
+      "js\\chat\\app\\ChatApp.js:32",
+      "js\\chat\\app\\ChatApp.js:33",
+      "js\\chat\\app\\ChatApp.js:34",
+      "js\\chat\\app\\ChatApp.js:35",
+      "js\\chat\\app\\ChatApp.js:36",
+      "js\\chat\\app\\ChatApp.js:37",
+      "js\\chat\\app\\ChatApp.js:38",
+      "js\\chat\\app\\ChatApp.js:39",
+      "js\\chat\\app\\ChatApp.js:40",
+      "js\\chat\\app\\ChatApp.js:41",
+      "js\\chat\\app\\ChatApp.js:42",
+      "js\\chat\\app\\ChatApp.js:43",
+      "js\\chat\\app\\ChatApp.js:44",
+      "js\\chat\\app\\ChatApp.js:45",
+      "js\\chat\\app\\ChatApp.js:46",
+      "js\\chat\\app\\ChatApp.js:47",
+      "js\\chat\\app\\ChatApp.js:48",
+      "js\\chat\\app\\ChatApp.js:49",
+      "js\\chat\\app\\ChatApp.js:50",
+      "js\\chat\\app\\ChatApp.js:51",
+      "js\\chat\\app\\ChatApp.js:52",
+      "js\\chat\\app\\ChatApp.js:53",
+      "js\\chat\\app\\ChatApp.js:54",
+      "js\\chat\\app\\ChatApp.js:55",
+      "js\\chat\\app\\ChatApp.js:56",
+      "js\\chat\\app\\ChatApp.js:57",
+      "js\\chat\\app\\ChatApp.js:1220",
+      "js\\chat\\commands\\CommandSuggestions.js:4",
+      "js\\chat\\commands\\CommandSuggestions.js:10",
+      "js\\chat\\context\\KeyboardShortcuts.js:5",
+      "js\\chat\\context\\UiDebugContextMenu.js:6",
+      "js\\chat\\controller\\ChatTurnStreamController.js:5",
+      "js\\chat\\controller\\ChatTurnStreamController.js:19",
+      "js\\chat\\controller\\ChatTurnStreamController.js:20",
+      "js\\chat\\controller\\ChatTurnStreamController.js:28",
+      "js\\chat\\controller\\ChatTurnStreamController.js:29",
+      "js\\chat\\controller\\ChatTurnStreamController.js:30",
+      "js\\chat\\controller\\ChatTurnStreamController.js:31",
+      "js\\chat\\controller\\ChatTurnStreamController.js:32",
+      "js\\chat\\controller\\ChatTurnStreamController.js:33",
+      "js\\chat\\controller\\ChatTurnStreamController.js:34",
+      "js\\chat\\controller\\ChatTurnStreamController.js:35",
+      "js\\chat\\controller\\ChatTurnStreamController.js:47",
+      "js\\chat\\controller\\ChatTurnStreamController.js:65",
+      "js\\chat\\debug\\BugReportOverlay.js:298",
+      "js\\chat\\debug\\BugReportOverlay.js:310",
+      "js\\chat\\debug\\BugReportOverlay.js:311",
+      "js\\chat\\debug\\BugReportOverlay.js:320",
+      "js\\chat\\debug\\BugReportOverlay.js:334",
+      "js\\chat\\debug\\BugReportOverlay.js:352",
+      "js\\chat\\debug\\BugReportOverlay.js:354",
+      "js\\chat\\debug\\BugReportOverlay.js:441",
+      "js\\chat\\focus\\FocusDropZone.js:7",
+      "js\\chat\\focus\\FocusDropZone.js:9",
+      "js\\chat\\input\\AgentDropdown.js:8",
+      "js\\chat\\input\\AgentDropdown.js:9",
+      "js\\chat\\input\\AttachmentDock.js:16",
+      "js\\chat\\input\\ChatInput.js:12",
+      "js\\chat\\input\\ChatInput.js:15",
+      "js\\chat\\input\\ChatInput.js:16",
+      "js\\chat\\input\\ClipboardHandler.js:16",
+      "js\\chat\\input\\InputToolbar.js:12",
+      "js\\chat\\input\\InputToolbar.js:13",
+      "js\\chat\\input\\ModelDropdown.js:12",
+      "js\\chat\\input\\ModelDropdown.js:13",
+      "js\\chat\\input\\SendButton.js:4",
+      "js\\chat\\input\\SendButton.js:14",
+      "js\\chat\\input\\SendButton.js:15",
+      "js\\chat\\input\\StopButton.js:10",
+      "js\\chat\\input\\StopButton.js:11",
+      "js\\chat\\messages\\AssistantMessage.js:12",
+      "js\\chat\\messages\\AssistantMessage.js:31",
+      "js\\chat\\messages\\AssistantMessage.js:32",
+      "js\\chat\\messages\\AssistantMessage.js:39",
+      "js\\chat\\messages\\ErrorMessage.js:4",
+      "js\\chat\\messages\\ErrorMessage.js:11",
+      "js\\chat\\messages\\MessageList.js:4",
+      "js\\chat\\messages\\MessageList.js:14",
+      "js\\chat\\messages\\MessageList.js:23",
+      "js\\chat\\messages\\MessageParser.js:4",
+      "js\\chat\\messages\\ThinkingStepMessage.js:4",
+      "js\\chat\\messages\\ThinkingStepMessage.js:9",
+      "js\\chat\\messages\\UserMessage.js:14",
+      "js\\chat\\messages\\UserMessage.js:15",
+      "js\\chat\\session\\NewChatButton.js:4",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:1",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:2",
+      "js\\chat\\session\\SidebarChatHistoryTree.js:10",
+      "js\\chat\\session\\ChatSessionsStore.js:8",
+      "js\\chat\\session\\ChatSessionsStore.js:32",
+      "js\\chat\\session\\ChatSessionsStore.js:33",
+      "js\\chat\\session\\ChatSessionsStore.js:34",
+      "js\\chat\\session\\ChatSessionsStore.js:39",
+      "js\\chat\\sidebar\\AgentPanel.js:1",
+      "js\\chat\\sidebar\\AgentPanel.js:2",
+      "js\\chat\\sidebar\\AgentPanel.js:7",
+      "js\\chat\\sidebar\\AgentPanel.js:25",
+      "js\\chat\\sidebar\\AgentPanel.js:26",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:28",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:29",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:30",
+      "js\\chat\\sidebar\\FileTreePanel.js:1",
+      "js\\chat\\sidebar\\FileTreePanel.js:10",
+      "js\\chat\\sidebar\\FileTreePanel.js:23",
+      "js\\chat\\sidebar\\FileTreePanel.js:24",
+      "js\\chat\\sidebar\\SettingsPanel.js:10",
+      "js\\chat\\sidebar\\SettingsPanel.js:11",
+      "js\\chat\\sidebar\\SidebarTabController.js:6",
+      "js\\chat\\sidebar\\SidebarTabController.js:18",
+      "js\\chat\\sidebar\\SidebarTabController.js:19",
+      "js\\chat\\state\\ChatState.js:4",
+      "js\\chat\\state\\ChatState.js:8",
+      "js\\chat\\structure\\ChatStructure.js:11",
+      "js\\chat\\ui\\ChatFeedbackBar.js:1",
+      "js\\chat\\ui\\ChatFeedbackBar.js:11",
+      "js\\thinking-animation.js:4",
+      "index.html:466",
+      "index.html:467",
+      "index.html:468"
+    ],
+    "keep": [
+      "js\\chat\\app\\ChatApp.js:775",
+      "js\\chat\\app\\ChatApp.js:1025",
+      "js\\chat\\messages\\MessageList.js:86",
+      "js\\chat\\messages\\ToolProgressBlock.js:195",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:19",
+      "js\\chat\\ui\\ChatFeedbackBar.js:65"
+    ],
+    "left": [
+      "js\\chat\\animation\\NeuralNode.js:92",
+      "js\\chat\\animation\\NeuralNode.js:273",
+      "js\\chat\\app\\ChatApp.js:900",
+      "js\\chat\\app\\ChatApp.js:901",
+      "js\\chat\\app\\ChatApp.js:1390",
+      "js\\chat\\context\\RightClickMenu.js:211",
+      "js\\chat\\context\\UiDebugContextMenu.js:66",
+      "js\\chat\\controller\\ChatTurnStreamController.js:98",
+      "js\\chat\\controller\\ChatTurnStreamController.js:154",
+      "js\\chat\\controller\\ChatTurnStreamController.js:373",
+      "js\\chat\\controller\\ChatTurnStreamController.js:396",
+      "js\\chat\\debug\\BugReportOverlay.js:223",
+      "js\\chat\\debug\\BugReportOverlay.js:233",
+      "js\\chat\\surface\\ChatSurface.js:90",
+      "index.html:95"
+    ],
+    "llm-option": [
+      "js\\chat\\input\\ModelDropdown.js:63",
+      "index.html:438",
+      "index.html:439",
+      "index.html:440",
+      "index.html:441"
+    ],
+    "llm-toggle": [
+      "index.html:433"
+    ],
+    "llm-toggle-row": [
+      "index.html:431"
+    ],
+    "message-queue-clear": [
+      "js\\chat\\app\\ChatApp.js:174",
+      "js\\chat\\app\\ChatApp.js:176"
+    ],
+    "message-queue-container": [
+      "js\\chat\\app\\ChatApp.js:168"
+    ],
+    "message-queue-header": [
+      "js\\chat\\app\\ChatApp.js:171"
+    ],
+    "message-queue-list": [
+      "js\\chat\\app\\ChatApp.js:180"
+    ],
+    "message-queue-title": [
+      "js\\chat\\app\\ChatApp.js:173"
+    ],
+    "mode-icon": [
+      "index.html:379",
+      "index.html:390",
+      "index.html:401",
+      "index.html:412"
+    ],
+    "mode-info": [
+      "index.html:378",
+      "index.html:389",
+      "index.html:400",
+      "index.html:411"
+    ],
+    "mode-name": [
+      "index.html:380",
+      "index.html:391",
+      "index.html:402",
+      "index.html:413"
+    ],
+    "mode-toggle": [
+      "js\\chat\\input\\AgentDropdown.js:73",
+      "index.html:383",
+      "index.html:394",
+      "index.html:405",
+      "index.html:416"
+    ],
+    "mode-toggle-row": [
+      "js\\chat\\input\\AgentDropdown.js:17",
+      "index.html:377",
+      "index.html:388",
+      "index.html:399",
+      "index.html:410"
+    ],
+    "mode-tooltip": [
+      "index.html:381",
+      "index.html:392",
+      "index.html:403",
+      "index.html:414"
+    ],
+    "model-display": [
+      "index.html:126",
+      "index.html:133",
+      "index.html:134",
+      "index.html:135",
+      "index.html:136",
+      "index.html:424"
+    ],
+    "model-name-brand": [
+      "index.html:427",
+      "index.html:428",
+      "index.html:429"
+    ],
+    "model-option": [
+      "js\\chat\\input\\ModelDropdown.js:6",
+      "js\\chat\\input\\ModelDropdown.js:21",
+      "index.html:427",
+      "index.html:428",
+      "index.html:429",
+      "index.html:438",
+      "index.html:439",
+      "index.html:440",
+      "index.html:441"
+    ],
+    "model-tick": [
+      "index.html:427",
+      "index.html:428",
+      "index.html:429",
+      "index.html:438",
+      "index.html:439",
+      "index.html:440",
+      "index.html:441"
+    ],
+    "model-tooltip": [
+      "index.html:427",
+      "index.html:428",
+      "index.html:429",
+      "index.html:438",
+      "index.html:439",
+      "index.html:440",
+      "index.html:441"
+    ],
+    "model-version": [
+      "index.html:427",
+      "index.html:428",
+      "index.html:429"
+    ],
+    "model-version-display": [
+      "js\\chat\\input\\ModelDropdown.js:7",
+      "js\\chat\\input\\ModelDropdown.js:95",
+      "js\\chat\\input\\ModelDropdown.js:103",
+      "index.html:111",
+      "index.html:136",
+      "index.html:424"
+    ],
+    "msg-edit-btn": [
+      "js\\chat\\app\\ChatApp.js:1185",
+      "js\\chat\\messages\\MessageList.js:16"
+    ],
+    "msg-feedback-btn": [
+      "js\\chat\\app\\ChatApp.js:766",
+      "js\\chat\\app\\ChatApp.js:1025",
+      "js\\chat\\messages\\MessageList.js:86",
+      "js\\chat\\messages\\MessageList.js:87",
+      "js\\chat\\messages\\MessageList.js:88",
+      "js\\chat\\messages\\ToolProgressBlock.js:195",
+      "js\\chat\\messages\\ToolProgressBlock.js:196",
+      "js\\chat\\messages\\ToolProgressBlock.js:197",
+      "js\\chat\\ui\\ChatFeedbackBar.js:65",
+      "js\\chat\\ui\\ChatFeedbackBar.js:66",
+      "js\\chat\\ui\\ChatFeedbackBar.js:67"
+    ],
+    "msg-feedback-row": [
+      "js\\chat\\app\\ChatApp.js:774",
+      "js\\chat\\app\\ChatApp.js:1025",
+      "js\\chat\\messages\\MessageList.js:85",
+      "js\\chat\\messages\\ToolProgressBlock.js:193",
+      "js\\chat\\ui\\ChatFeedbackBar.js:64"
+    ],
+    "msg-redo-btn": [
+      "js\\chat\\app\\ChatApp.js:1263",
+      "js\\chat\\messages\\MessageList.js:17"
+    ],
+    "new-agent-btn": [
+      "js\\chat\\session\\NewChatButton.js:2",
+      "js\\chat\\session\\NewChatButton.js:10",
+      "js\\chat\\sidebar\\AgentPanel.js:17",
+      "js\\chat\\sidebar\\AgentPanel.js:34",
+      "index.html:211"
+    ],
+    "paste-image-preview": [
+      "js\\chat\\input\\ClipboardHandler.js:171",
+      "js\\chat\\input\\ClipboardHandler.js:175"
+    ],
+    "paste-remove": [
+      "js\\chat\\input\\ClipboardHandler.js:178",
+      "js\\chat\\input\\ClipboardHandler.js:180"
+    ],
+    "pdf": [
+      "js\\chat\\animation\\NeuralNode.js:37",
+      "js\\chat\\input\\AttachmentDock.js:10",
+      "js\\chat\\input\\UploadButton.js:15",
+      "index.html:241"
+    ],
+    "plus-icon": [
+      "index.html:340"
+    ],
+    "preview-hidden": [
+      "js\\chat\\animation\\NeuralNode.js:202",
+      "js\\chat\\animation\\NeuralNode.js:206"
+    ],
+    "primary": [
+      "js\\chat\\animation\\NeuralNode.js:167",
+      "js\\chat\\commands\\CommandSuggestions.js:38",
+      "js\\chat\\commands\\CommandSuggestions.js:98",
+      "js\\chat\\commands\\CommandSuggestions.js:255"
+    ],
+    "processing": [
+      "js\\chat\\animation\\NeuralNode.js:97",
+      "js\\chat\\animation\\NeuralNode.js:278",
+      "js\\chat\\animation\\NeuralNode.js:290",
+      "js\\chat\\animation\\NeuralNode.js:292",
+      "js\\chat\\animation\\NeuralNode.js:295",
+      "js\\chat\\animation\\NeuralNode.js:297",
+      "js\\chat\\app\\ChatApp.js:1390",
+      "js\\chat\\controller\\ChatTurnStreamController.js:98",
+      "js\\chat\\controller\\ChatTurnStreamController.js:153",
+      "js\\chat\\controller\\ChatTurnStreamController.js:378",
+      "js\\chat\\controller\\ChatTurnStreamController.js:396",
+      "js\\chat\\messages\\ThinkingStepMessage.js:5",
+      "js\\chat\\state\\ChatState.js:48",
+      "js\\chat\\surface\\ChatSurface.js:90"
+    ],
+    "project-structure": [
+      "index.html:226"
+    ],
+    "prompt-keyword-input": [
+      "js\\chat\\commands\\CommandSuggestions.js:249",
+      "js\\chat\\commands\\CommandSuggestions.js:262"
+    ],
+    "pulsing-node": [
+      "js\\chat\\animation\\NeuralNode.js:136",
+      "js\\chat\\commands\\CommandSuggestions.js:237",
+      "js\\chat\\controller\\ChatTurnStreamController.js:461",
+      "js\\chat\\controller\\ChatTurnStreamController.js:481",
+      "js\\chat\\controller\\ChatTurnStreamController.js:590",
+      "js\\chat\\messages\\ThinkingStepMessage.js:66",
+      "js\\chat\\messages\\ThinkingStepMessage.js:327",
+      "js\\chat\\messages\\ToolProgressBlock.js:71",
+      "js\\thinking-animation.js:18"
+    ],
+    "qa-error-badge": [
+      "js\\chat\\app\\ChatApp.js:431"
+    ],
+    "qa-error-badge--open": [
+      "js\\chat\\app\\ChatApp.js:445"
+    ],
+    "qa-error-badge-chevron": [
+      "js\\chat\\app\\ChatApp.js:435"
+    ],
+    "qa-error-badge-detail": [
+      "js\\chat\\app\\ChatApp.js:437",
+      "js\\chat\\app\\ChatApp.js:439",
+      "js\\chat\\app\\ChatApp.js:449"
+    ],
+    "qa-error-badge-detail-text": [
+      "js\\chat\\app\\ChatApp.js:453"
+    ],
+    "qa-error-badge-toggle": [
+      "js\\chat\\app\\ChatApp.js:433",
+      "js\\chat\\app\\ChatApp.js:438"
+    ],
+    "qa-error-open-log": [
+      "js\\chat\\app\\ChatApp.js:457"
+    ],
+    "queue-action-btn": [
+      "js\\chat\\app\\ChatApp.js:192",
+      "js\\chat\\app\\ChatApp.js:193",
+      "js\\chat\\app\\ChatApp.js:196",
+      "js\\chat\\app\\ChatApp.js:200"
+    ],
+    "queued-message-actions": [
+      "js\\chat\\app\\ChatApp.js:191"
+    ],
+    "queued-message-icon": [
+      "js\\chat\\app\\ChatApp.js:187"
+    ],
+    "queued-message-item": [
+      "js\\chat\\app\\ChatApp.js:99",
+      "js\\chat\\app\\ChatApp.js:184"
+    ],
+    "queued-message-preview": [
+      "js\\chat\\app\\ChatApp.js:186"
+    ],
+    "queued-message-status": [
+      "js\\chat\\app\\ChatApp.js:189"
+    ],
+    "queued-message-text": [
+      "js\\chat\\app\\ChatApp.js:102",
+      "js\\chat\\app\\ChatApp.js:188"
+    ],
+    "ready": [
+      "js\\chat\\animation\\NeuralNode.js:314",
+      "js\\chat\\animation\\NeuralNode.js:367",
+      "js\\chat\\app\\ChatApp.js:312",
+      "js\\chat\\app\\ChatApp.js:499",
+      "js\\chat\\app\\ChatApp.js:1322",
+      "js\\chat\\app\\ChatApp.js:1381",
+      "js\\chat\\app\\ChatApp.js:1404",
+      "js\\chat\\commands\\CommandSuggestions.js:143",
+      "js\\chat\\commands\\CommandSuggestions.js:147",
+      "index.html:161",
+      "index.html:162"
+    ],
+    "removed": [
+      "js\\chat\\messages\\ThinkingStepMessage.js:456",
+      "js\\chat\\state\\ChatState.js:105",
+      "js\\thinking-animation.js:176",
+      "js\\thinking-animation.js:192",
+      "index.html:182"
+    ],
+    "review": [
+      "js\\chat\\animation\\NeuralNode.js:167",
+      "js\\chat\\app\\ChatApp.js:739",
+      "js\\chat\\app\\ChatApp.js:786",
+      "js\\chat\\app\\ChatApp.js:1025",
+      "js\\chat\\messages\\MessageList.js:88",
+      "js\\chat\\messages\\ToolProgressBlock.js:197",
+      "js\\chat\\ui\\ChatFeedbackBar.js:67"
+    ],
+    "review-panel": [
+      "js\\chat\\app\\ChatApp.js:799",
+      "js\\chat\\app\\ChatApp.js:806"
+    ],
+    "review-panel-empty": [
+      "js\\chat\\app\\ChatApp.js:810"
+    ],
+    "review-panel-header": [
+      "js\\chat\\app\\ChatApp.js:812"
+    ],
+    "review-panel-item": [
+      "js\\chat\\app\\ChatApp.js:814"
+    ],
+    "review-panel-list": [
+      "js\\chat\\app\\ChatApp.js:812"
+    ],
+    "review-tool-name": [
+      "js\\chat\\app\\ChatApp.js:815"
+    ],
+    "review-tool-params": [
+      "js\\chat\\app\\ChatApp.js:820"
+    ],
+    "review-tool-result": [
+      "js\\chat\\app\\ChatApp.js:824"
+    ],
+    "rvt": [
+      "js\\chat\\animation\\NeuralNode.js:35",
+      "js\\chat\\session\\ChatSessionsStore.js:599",
+      "index.html:234"
+    ],
+    "saved": [
+      "js\\chat\\app\\ChatApp.js:564",
+      "js\\chat\\app\\ChatApp.js:1341",
+      "js\\chat\\app\\ChatApp.js:1344",
+      "js\\chat\\context\\RightClickMenu.js:7",
+      "js\\chat\\context\\RightClickMenu.js:309",
+      "js\\chat\\context\\RightClickMenu.js:364",
+      "js\\chat\\context\\RightClickMenu.js:365",
+      "js\\chat\\session\\ChatSessionsStore.js:27",
+      "js\\chat\\session\\ChatSessionsStore.js:334",
+      "js\\chat\\session\\ChatSessionsStore.js:599",
+      "index.html:319"
+    ],
+    "selected": [
+      "js\\chat\\commands\\CommandSuggestions.js:132",
+      "js\\chat\\commands\\CommandSuggestions.js:134"
+    ],
+    "selection-status": [
+      "js\\chat\\commands\\CommandSuggestions.js:120",
+      "js\\chat\\commands\\CommandSuggestions.js:139"
+    ],
+    "session-list-item-enter": [
+      "js\\chat\\sidebar\\DesignerSidebarAnimator.js:6"
+    ],
+    "session-list-item-enter-active": [
+      "js\\chat\\sidebar\\DesignerSidebarAnimator.js:8"
+    ],
+    "settings": [
+      "index.html:200",
+      "index.html:255"
+    ],
+    "settings-chat-archive-actions": [
+      "index.html:320"
+    ],
+    "settings-chat-archive-btn": [
+      "index.html:321",
+      "index.html:322"
+    ],
+    "settings-chat-archive-hint": [
+      "index.html:319"
+    ],
+    "settings-group": [
+      "index.html:257",
+      "index.html:264",
+      "index.html:271",
+      "index.html:279",
+      "index.html:287",
+      "index.html:295",
+      "index.html:302",
+      "index.html:309",
+      "index.html:317"
+    ],
+    "settings-label": [
+      "index.html:258",
+      "index.html:265",
+      "index.html:272",
+      "index.html:280",
+      "index.html:288",
+      "index.html:296",
+      "index.html:303",
+      "index.html:310",
+      "index.html:318"
+    ],
+    "settings-panel": [
+      "index.html:256"
+    ],
+    "settings-select": [
+      "js\\chat\\sidebar\\SettingsPanel.js:16",
+      "index.html:259",
+      "index.html:266",
+      "index.html:273",
+      "index.html:281",
+      "index.html:289",
+      "index.html:297",
+      "index.html:304",
+      "index.html:311"
+    ],
+    "share-chat-btn": [
+      "index.html:199"
+    ],
+    "sidebar-footer": [
+      "index.html:219",
+      "index.html:249",
+      "index.html:326"
+    ],
+    "sidebar-panel": [
+      "js\\chat\\sidebar\\AgentPanel.js:13",
+      "js\\chat\\sidebar\\FileTreePanel.js:7",
+      "js\\chat\\sidebar\\FileTreePanel.js:14",
+      "js\\chat\\sidebar\\FileTreePanel.js:15",
+      "js\\chat\\sidebar\\FileTreePanel.js:29",
+      "js\\chat\\sidebar\\FileTreePanel.js:30",
+      "js\\chat\\sidebar\\SidebarTabController.js:10",
+      "js\\chat\\sidebar\\SidebarTabController.js:26",
+      "js\\chat\\sidebar\\SidebarTabController.js:46",
+      "index.html:207",
+      "index.html:225",
+      "index.html:255"
+    ],
+    "sidebar-tab": [
+      "js\\chat\\sidebar\\SidebarTabController.js:9",
+      "js\\chat\\sidebar\\SidebarTabController.js:25",
+      "js\\chat\\sidebar\\SidebarTabController.js:45",
+      "index.html:187",
+      "index.html:191",
+      "index.html:195",
+      "index.html:200"
+    ],
+    "sidebar-tab-bar": [
+      "index.html:186"
+    ],
+    "status-text": [
+      "js\\chat\\animation\\NeuralNode.js:15",
+      "js\\chat\\animation\\NeuralNode.js:53",
+      "js\\chat\\app\\ChatApp.js:1395",
+      "index.html:360"
+    ],
+    "step-changes": [
+      "js\\chat\\messages\\ThinkingStepMessage.js:457",
+      "js\\thinking-animation.js:190"
+    ],
+    "step-content": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:573",
+      "js\\chat\\controller\\ChatTurnStreamController.js:658",
+      "js\\chat\\controller\\ChatTurnStreamController.js:696",
+      "js\\chat\\messages\\ThinkingStepMessage.js:460"
+    ],
+    "step-icon": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:572",
+      "js\\chat\\controller\\ChatTurnStreamController.js:657",
+      "js\\chat\\controller\\ChatTurnStreamController.js:696",
+      "js\\chat\\messages\\ThinkingStepMessage.js:74",
+      "js\\chat\\messages\\ThinkingStepMessage.js:178",
+      "js\\chat\\messages\\ThinkingStepMessage.js:230",
+      "js\\chat\\messages\\ThinkingStepMessage.js:460",
+      "js\\thinking-animation.js:25",
+      "js\\thinking-animation.js:187"
+    ],
+    "step-keyword": [
+      "js\\chat\\commands\\CommandSuggestions.js:90"
+    ],
+    "step-label": [
+      "js\\chat\\commands\\CommandSuggestions.js:90"
+    ],
+    "step-section": [
+      "js\\chat\\commands\\CommandSuggestions.js:89"
+    ],
+    "step-suggestions": [
+      "js\\chat\\commands\\CommandSuggestions.js:91"
+    ],
+    "step-text": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:573",
+      "js\\chat\\controller\\ChatTurnStreamController.js:658",
+      "js\\chat\\controller\\ChatTurnStreamController.js:696",
+      "js\\chat\\messages\\ThinkingStepMessage.js:460"
+    ],
+    "steps-count": [
+      "js\\chat\\animation\\NeuralNode.js:137",
+      "js\\chat\\animation\\NeuralNode.js:186",
+      "js\\chat\\commands\\CommandSuggestions.js:238",
+      "js\\chat\\controller\\ChatTurnStreamController.js:482",
+      "js\\chat\\controller\\ChatTurnStreamController.js:562",
+      "js\\chat\\controller\\ChatTurnStreamController.js:629",
+      "js\\chat\\messages\\ThinkingStepMessage.js:67",
+      "js\\chat\\messages\\ThinkingStepMessage.js:159",
+      "js\\chat\\messages\\ThinkingStepMessage.js:222",
+      "js\\chat\\messages\\ThinkingStepMessage.js:291",
+      "js\\chat\\messages\\ThinkingStepMessage.js:328",
+      "js\\chat\\messages\\ToolProgressBlock.js:72",
+      "js\\chat\\messages\\ToolProgressBlock.js:106",
+      "js\\chat\\messages\\ToolProgressBlock.js:144",
+      "js\\thinking-animation.js:57"
+    ],
+    "steps-list": [
+      "js\\chat\\animation\\NeuralNode.js:143",
+      "js\\chat\\animation\\NeuralNode.js:184",
+      "js\\chat\\animation\\ThinkingAnimation.js:125",
+      "js\\chat\\context\\RightClickMenu.js:284",
+      "js\\chat\\context\\RightClickMenu.js:446",
+      "js\\chat\\controller\\ChatTurnStreamController.js:488",
+      "js\\chat\\controller\\ChatTurnStreamController.js:568",
+      "js\\chat\\controller\\ChatTurnStreamController.js:647",
+      "js\\chat\\controller\\ChatTurnStreamController.js:691",
+      "js\\chat\\messages\\ThinkingStepMessage.js:73",
+      "js\\chat\\messages\\ThinkingStepMessage.js:158",
+      "js\\chat\\messages\\ThinkingStepMessage.js:221",
+      "js\\chat\\messages\\ThinkingStepMessage.js:290",
+      "js\\chat\\messages\\ThinkingStepMessage.js:334",
+      "js\\chat\\messages\\ThinkingStepMessage.js:380",
+      "js\\chat\\messages\\ToolProgressBlock.js:78",
+      "js\\thinking-animation.js:24",
+      "js\\thinking-animation.js:56",
+      "js\\thinking-animation.js:124",
+      "js\\thinking-animation.js:136",
+      "js\\thinking-animation.js:158"
+    ],
+    "steps-toggle": [
+      "js\\chat\\animation\\NeuralNode.js:139",
+      "js\\chat\\animation\\NeuralNode.js:183",
+      "js\\chat\\animation\\ThinkingAnimation.js:123",
+      "js\\chat\\controller\\ChatTurnStreamController.js:484",
+      "js\\chat\\controller\\ChatTurnStreamController.js:648",
+      "js\\chat\\messages\\ThinkingStepMessage.js:69",
+      "js\\chat\\messages\\ThinkingStepMessage.js:162",
+      "js\\chat\\messages\\ThinkingStepMessage.js:297",
+      "js\\chat\\messages\\ThinkingStepMessage.js:330",
+      "js\\chat\\messages\\ThinkingStepMessage.js:379",
+      "js\\chat\\messages\\ToolProgressBlock.js:74",
+      "js\\thinking-animation.js:19",
+      "js\\thinking-animation.js:55",
+      "js\\thinking-animation.js:123",
+      "js\\thinking-animation.js:135",
+      "js\\thinking-animation.js:157"
+    ],
+    "streaming-cursor": [
+      "js\\chat\\messages\\AssistantMessage.js:148"
+    ],
+    "streaming-trailing": [
+      "js\\chat\\messages\\AssistantMessage.js:200"
+    ],
+    "suggestion-btn": [
+      "js\\chat\\commands\\CommandSuggestions.js:41",
+      "js\\chat\\commands\\CommandSuggestions.js:50",
+      "js\\chat\\commands\\CommandSuggestions.js:101",
+      "js\\chat\\commands\\CommandSuggestions.js:126",
+      "js\\chat\\commands\\CommandSuggestions.js:131",
+      "js\\chat\\commands\\CommandSuggestions.js:196",
+      "js\\chat\\commands\\CommandSuggestions.js:207"
+    ],
+    "suggestion-hint": [
+      "js\\chat\\commands\\CommandSuggestions.js:47",
+      "js\\chat\\commands\\CommandSuggestions.js:204"
+    ],
+    "suggestion-name": [
+      "js\\chat\\commands\\CommandSuggestions.js:42",
+      "js\\chat\\commands\\CommandSuggestions.js:106",
+      "js\\chat\\commands\\CommandSuggestions.js:197"
+    ],
+    "suggestions-container": [
+      "js\\chat\\commands\\CommandSuggestions.js:29",
+      "js\\chat\\commands\\CommandSuggestions.js:76",
+      "js\\chat\\commands\\CommandSuggestions.js:184"
+    ],
+    "tab-close": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:175",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:295",
+      "index.html:339"
+    ],
+    "tab-close-confirm": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:216",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:220",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:268"
+    ],
+    "tab-confirm-btn": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:222",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:223"
+    ],
+    "tab-confirm-discard": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:223",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:253"
+    ],
+    "tab-confirm-merge": [
+      "js\\chat\\sidebar\\DesignOptionsBar.js:222",
+      "js\\chat\\sidebar\\DesignOptionsBar.js:249"
+    ],
+    "tab-label": [
+      "index.html:339"
+    ],
+    "table-scroll": [
+      "js\\chat\\messages\\MessageParser.js:161"
+    ],
+    "task-panel": [
+      "js\\chat\\app\\ChatApp.js:858"
+    ],
+    "thinking-container": [
+      "js\\chat\\animation\\NeuralNode.js:103",
+      "js\\chat\\animation\\ThinkingAnimation.js:27",
+      "js\\chat\\animation\\ThinkingAnimation.js:36",
+      "js\\chat\\app\\ChatApp.js:770",
+      "js\\chat\\commands\\CommandSuggestions.js:232",
+      "js\\chat\\context\\RightClickMenu.js:263",
+      "js\\chat\\context\\RightClickMenu.js:265",
+      "js\\chat\\controller\\ChatTurnStreamController.js:478",
+      "js\\chat\\controller\\ChatTurnStreamController.js:556",
+      "js\\chat\\controller\\ChatTurnStreamController.js:623",
+      "js\\chat\\controller\\ChatTurnStreamController.js:689",
+      "js\\chat\\messages\\ThinkingStepMessage.js:56",
+      "js\\chat\\messages\\ThinkingStepMessage.js:60",
+      "js\\chat\\messages\\ThinkingStepMessage.js:320",
+      "js\\chat\\messages\\ThinkingStepMessage.js:357",
+      "js\\chat\\messages\\ThinkingStepMessage.js:363",
+      "js\\chat\\messages\\ThinkingStepMessage.js:376",
+      "js\\chat\\messages\\ToolProgressBlock.js:68",
+      "js\\chat\\messages\\ToolProgressBlock.js:98",
+      "js\\chat\\messages\\ToolProgressBlock.js:135",
+      "js\\thinking-animation.js:16"
+    ],
+    "thinking-header": [
+      "js\\chat\\animation\\NeuralNode.js:134",
+      "js\\chat\\animation\\NeuralNode.js:182",
+      "js\\chat\\animation\\ThinkingAnimation.js:121",
+      "js\\chat\\commands\\CommandSuggestions.js:235",
+      "js\\chat\\controller\\ChatTurnStreamController.js:479",
+      "js\\chat\\controller\\ChatTurnStreamController.js:524",
+      "js\\chat\\controller\\ChatTurnStreamController.js:559",
+      "js\\chat\\controller\\ChatTurnStreamController.js:616",
+      "js\\chat\\controller\\ChatTurnStreamController.js:626",
+      "js\\chat\\messages\\ThinkingStepMessage.js:64",
+      "js\\chat\\messages\\ThinkingStepMessage.js:287",
+      "js\\chat\\messages\\ThinkingStepMessage.js:325",
+      "js\\chat\\messages\\ThinkingStepMessage.js:339",
+      "js\\chat\\messages\\ThinkingStepMessage.js:363",
+      "js\\chat\\messages\\ThinkingStepMessage.js:373",
+      "js\\chat\\messages\\ToolProgressBlock.js:69",
+      "js\\chat\\messages\\ToolProgressBlock.js:103",
+      "js\\chat\\messages\\ToolProgressBlock.js:141",
+      "js\\thinking-animation.js:17",
+      "js\\thinking-animation.js:54",
+      "js\\thinking-animation.js:156"
+    ],
+    "thinking-header-left": [
+      "js\\chat\\animation\\NeuralNode.js:135",
+      "js\\chat\\commands\\CommandSuggestions.js:236",
+      "js\\chat\\controller\\ChatTurnStreamController.js:480",
+      "js\\chat\\messages\\ThinkingStepMessage.js:65",
+      "js\\chat\\messages\\ThinkingStepMessage.js:326",
+      "js\\chat\\messages\\ToolProgressBlock.js:70"
+    ],
+    "thought-duration": [
+      "js\\chat\\animation\\NeuralNode.js:151",
+      "js\\chat\\animation\\NeuralNode.js:220",
+      "js\\chat\\messages\\ThinkingStepMessage.js:81",
+      "js\\chat\\messages\\ThinkingStepMessage.js:100",
+      "js\\chat\\messages\\ThinkingStepMessage.js:272"
+    ],
+    "thought-status": [
+      "js\\chat\\animation\\NeuralNode.js:146",
+      "js\\chat\\messages\\ThinkingStepMessage.js:76"
+    ],
+    "thought-status-text": [
+      "js\\chat\\animation\\NeuralNode.js:147",
+      "js\\chat\\animation\\NeuralNode.js:194",
+      "js\\chat\\messages\\ThinkingStepMessage.js:77",
+      "js\\chat\\messages\\ThinkingStepMessage.js:101",
+      "js\\chat\\messages\\ThinkingStepMessage.js:160",
+      "js\\chat\\messages\\ThinkingStepMessage.js:223",
+      "js\\chat\\messages\\ThinkingStepMessage.js:277"
+    ],
+    "thought-trail": [
+      "js\\chat\\animation\\NeuralNode.js:149",
+      "js\\chat\\controller\\ChatTurnStreamController.js:489",
+      "js\\chat\\messages\\ThinkingStepMessage.js:79",
+      "js\\chat\\messages\\ThinkingStepMessage.js:403"
+    ],
+    "thought-trail-content": [
+      "js\\chat\\animation\\NeuralNode.js:154",
+      "js\\chat\\controller\\ChatTurnStreamController.js:494",
+      "js\\chat\\controller\\ChatTurnStreamController.js:533",
+      "js\\chat\\controller\\ChatTurnStreamController.js:662",
+      "js\\chat\\messages\\ThinkingStepMessage.js:84",
+      "js\\chat\\messages\\ThinkingStepMessage.js:161",
+      "js\\chat\\messages\\ThinkingStepMessage.js:224"
+    ],
+    "thought-trail-expand": [
+      "js\\chat\\animation\\NeuralNode.js:152",
+      "js\\chat\\controller\\ChatTurnStreamController.js:492",
+      "js\\chat\\messages\\ThinkingStepMessage.js:82"
+    ],
+    "thought-trail-header": [
+      "js\\chat\\animation\\NeuralNode.js:150",
+      "js\\chat\\controller\\ChatTurnStreamController.js:490",
+      "js\\chat\\messages\\ThinkingStepMessage.js:80",
+      "js\\chat\\messages\\ThinkingStepMessage.js:400"
+    ],
+    "thought-trail-label": [
+      "js\\chat\\animation\\NeuralNode.js:151",
+      "js\\chat\\controller\\ChatTurnStreamController.js:491",
+      "js\\chat\\messages\\ThinkingStepMessage.js:81"
+    ],
+    "toggle-slider": [
+      "index.html:385",
+      "index.html:396",
+      "index.html:407",
+      "index.html:418",
+      "index.html:435"
+    ],
+    "tool-feedback-btn": [
+      "js\\chat\\app\\ChatApp.js:720",
+      "js\\chat\\app\\ChatApp.js:721",
+      "js\\chat\\app\\ChatApp.js:731"
+    ],
+    "tool-feedback-buttons": [
+      "js\\chat\\app\\ChatApp.js:719"
+    ],
+    "tool-feedback-panel": [
+      "js\\chat\\app\\ChatApp.js:717",
+      "js\\chat\\app\\ChatApp.js:736"
+    ],
+    "tool-progress-card": [
+      "js\\chat\\messages\\ToolProgressBlock.js:68"
+    ],
+    "tool-progress-eyebrow": [
+      "js\\chat\\messages\\ToolProgressBlock.js:67"
+    ],
+    "tool-progress-failed": [
+      "js\\chat\\controller\\ChatTurnStreamController.js:615",
+      "js\\chat\\messages\\ToolProgressBlock.js:140"
+    ],
+    "tool-progress-footer": [
+      "js\\chat\\messages\\ToolProgressBlock.js:80",
+      "js\\chat\\messages\\ToolProgressBlock.js:111",
+      "js\\chat\\messages\\ToolProgressBlock.js:149"
+    ],
+    "tool-progress-footer--error": [
+      "js\\chat\\messages\\ToolProgressBlock.js:116",
+      "js\\chat\\messages\\ToolProgressBlock.js:153"
+    ],
+    "tool-progress-stack": [
+      "js\\chat\\app\\ChatApp.js:396",
+      "js\\chat\\app\\ChatApp.js:407",
+      "js\\chat\\app\\ChatApp.js:744",
+      "js\\chat\\app\\ChatApp.js:749",
+      "js\\chat\\messages\\ToolProgressBlock.js:4",
+      "js\\chat\\messages\\ToolProgressBlock.js:48",
+      "js\\chat\\messages\\ToolProgressBlock.js:66",
+      "js\\chat\\messages\\ToolProgressBlock.js:131",
+      "js\\chat\\messages\\ToolProgressBlock.js:171"
+    ],
+    "tool-progress-undo-btn": [
+      "js\\chat\\app\\ChatApp.js:747",
+      "js\\chat\\messages\\ToolProgressBlock.js:183"
+    ],
+    "tool-progress-undo-row": [
+      "js\\chat\\app\\ChatApp.js:397",
+      "js\\chat\\app\\ChatApp.js:410",
+      "js\\chat\\messages\\ToolProgressBlock.js:180"
+    ],
+    "tree-file": [
+      "js\\chat\\sidebar\\FileTreePanel.js:8",
+      "js\\chat\\sidebar\\FileTreePanel.js:68",
+      "js\\chat\\sidebar\\FileTreePanel.js:113",
+      "index.html:234",
+      "index.html:235",
+      "index.html:241",
+      "index.html:242"
+    ],
+    "tree-folder": [
+      "js\\chat\\sidebar\\FileTreePanel.js:8",
+      "js\\chat\\sidebar\\FileTreePanel.js:50",
+      "js\\chat\\sidebar\\FileTreePanel.js:86",
+      "index.html:228",
+      "index.html:231",
+      "index.html:238"
+    ],
+    "tree-folder-content": [
+      "js\\chat\\sidebar\\FileTreePanel.js:58",
+      "index.html:230",
+      "index.html:233",
+      "index.html:240"
+    ],
+    "tree-folder-header": [
+      "js\\chat\\sidebar\\FileTreePanel.js:53",
+      "js\\chat\\sidebar\\FileTreePanel.js:89",
+      "js\\chat\\sidebar\\FileTreePanel.js:107",
+      "index.html:229",
+      "index.html:232",
+      "index.html:239"
+    ],
+    "undo": [
+      "js\\chat\\app\\ChatApp.js:744",
+      "js\\chat\\app\\ChatApp.js:778",
+      "js\\chat\\app\\ChatApp.js:1025",
+      "js\\chat\\messages\\MessageList.js:87",
+      "js\\chat\\messages\\ToolProgressBlock.js:184",
+      "js\\chat\\messages\\ToolProgressBlock.js:196",
+      "js\\chat\\session\\ChatSessionsStore.js:13",
+      "js\\chat\\ui\\ChatFeedbackBar.js:66"
+    ],
+    "user-markdown": [
+      "js\\chat\\messages\\UserMessage.js:34"
+    ],
+    "user-message": [
+      "js\\chat\\context\\RightClickMenu.js:16",
+      "js\\chat\\context\\RightClickMenu.js:84"
+    ],
+    "user-msg-edit-actions": [
+      "js\\chat\\app\\ChatApp.js:1202"
+    ],
+    "user-msg-edit-branch": [
+      "js\\chat\\app\\ChatApp.js:1204",
+      "js\\chat\\app\\ChatApp.js:1225",
+      "js\\chat\\app\\ChatApp.js:1249"
+    ],
+    "user-msg-edit-cancel": [
+      "js\\chat\\app\\ChatApp.js:1205",
+      "js\\chat\\app\\ChatApp.js:1216",
+      "js\\chat\\app\\ChatApp.js:1249"
+    ],
+    "user-msg-edit-send": [
+      "js\\chat\\app\\ChatApp.js:1203",
+      "js\\chat\\app\\ChatApp.js:1232",
+      "js\\chat\\app\\ChatApp.js:1249"
+    ],
+    "user-msg-edit-textarea": [
+      "js\\chat\\app\\ChatApp.js:1201",
+      "js\\chat\\app\\ChatApp.js:1208"
+    ],
+    "user-msg-edit-wrap": [
+      "js\\chat\\app\\ChatApp.js:1188",
+      "js\\chat\\app\\ChatApp.js:1200",
+      "js\\chat\\app\\ChatApp.js:1254"
+    ],
+    "user-msg-row": [
+      "js\\chat\\app\\ChatApp.js:1009",
+      "js\\chat\\app\\ChatApp.js:1180",
+      "js\\chat\\app\\ChatApp.js:1190",
+      "js\\chat\\messages\\MessageList.js:51"
+    ],
+    "visible": [
+      "js\\chat\\animation\\NeuralNode.js:161",
+      "js\\chat\\animation\\NeuralNode.js:178",
+      "js\\chat\\animation\\NeuralNode.js:201",
+      "js\\chat\\animation\\NeuralNode.js:249",
+      "js\\chat\\animation\\NeuralNode.js:256",
+      "js\\chat\\animation\\ThinkingAnimation.js:47",
+      "js\\chat\\animation\\ThinkingAnimation.js:65",
+      "js\\chat\\animation\\ThinkingAnimation.js:120",
+      "js\\chat\\animation\\ThinkingAnimation.js:127",
+      "js\\chat\\app\\ContinuationModeSelector.js:23",
+      "js\\chat\\commands\\CommandSuggestions.js:232",
+      "js\\chat\\commands\\CommandSuggestions.js:241",
+      "js\\chat\\context\\RightClickMenu.js:26",
+      "js\\chat\\context\\RightClickMenu.js:195",
+      "js\\chat\\context\\RightClickMenu.js:218",
+      "js\\chat\\context\\UiDebugContextMenu.js:59",
+      "js\\chat\\context\\UiDebugContextMenu.js:72",
+      "js\\chat\\controller\\ChatTurnStreamController.js:52",
+      "js\\chat\\controller\\ChatTurnStreamController.js:478",
+      "js\\chat\\controller\\ChatTurnStreamController.js:571",
+      "js\\chat\\controller\\ChatTurnStreamController.js:655",
+      "js\\chat\\controller\\ChatTurnStreamController.js:694",
+      "js\\chat\\debug\\BugReportOverlay.js:4",
+      "js\\chat\\messages\\ThinkingStepMessage.js:74",
+      "js\\chat\\messages\\ThinkingStepMessage.js:92",
+      "js\\chat\\messages\\ThinkingStepMessage.js:184",
+      "js\\chat\\messages\\ThinkingStepMessage.js:229",
+      "js\\chat\\messages\\ThinkingStepMessage.js:320",
+      "js\\chat\\messages\\ThinkingStepMessage.js:392",
+      "js\\chat\\messages\\ToolProgressBlock.js:68",
+      "js\\thinking-animation.js:65",
+      "js\\thinking-animation.js:83",
+      "js\\thinking-animation.js:106",
+      "js\\thinking-animation.js:121",
+      "js\\thinking-animation.js:146",
+      "js\\thinking-animation.js:162",
+      "js\\thinking-animation.js:168",
+      "js\\thinking-animation.js:202",
+      "index.html:35",
+      "index.html:56",
+      "index.html:178"
+    ],
+    "working": [
+      "js\\chat\\app\\ChatApp.js:720",
+      "js\\chat\\app\\ChatApp.js:738",
+      "js\\chat\\app\\ChatApp.js:739"
+    ],
+    "xlsx": [
+      "js\\chat\\animation\\NeuralNode.js:38",
+      "js\\chat\\input\\AttachmentDock.js:10",
+      "js\\chat\\input\\UploadButton.js:15",
+      "index.html:242"
+    ]
+  },
+  "not_found": [
+    "agent-item-indicator",
+    "agent-item-task",
+    "ai",
+    "animating",
+    "back-to-top",
+    "back-to-top-arrow",
+    "back-to-top-text",
+    "bright",
+    "btn-chat-blue",
+    "btn-chat-grey",
+    "btn-primary",
+    "btn-secondary",
+    "chat-build-dropdown",
+    "chat-build-label",
+    "chat-steps-list",
+    "chat-submenu",
+    "chat-text",
+    "chat-thinking",
+    "chat-thinking-content",
+    "chat-thinking-header",
+    "coming-soon-badge",
+    "dark-toggle",
+    "dark-toggle-label",
+    "demo-chat-container",
+    "demo-chat-footer",
+    "demo-chat-header",
+    "demo-chat-send",
+    "demo-chat-send-btn",
+    "demo-chat-titlebar",
+    "demo-chat-titlebar-btns",
+    "demo-chat-titlebar-text",
+    "demo-containers-panel",
+    "demo-containers-stack",
+    "demo-history-header",
+    "demo-history-preview",
+    "demo-image-container",
+    "demo-intro-image",
+    "demo-option-btn",
+    "demo-output-file",
+    "demo-output-icon",
+    "demo-outputs-header",
+    "demo-ready-prompt",
+    "demo-revit-wrapper",
+    "demo-split-view",
+    "demo-subtitle",
+    "demo-text-body",
+    "demo-text-heading",
+    "demo-text-inner",
+    "demo-text-panel",
+    "demo-title-text",
+    "dimming",
+    "dragging",
+    "fading",
+    "footer-bottom",
+    "footer-brand",
+    "footer-content",
+    "footer-content-compact",
+    "footer-copyright",
+    "footer-legal",
+    "footer-links",
+    "footer-links-column",
+    "footer-links-list",
+    "footer-links-title",
+    "footer-logo",
+    "footer-logo-adelphos",
+    "footer-logo-ai",
+    "footer-tagline",
+    "free-floating",
+    "has-view-system",
+    "inline-demo-btn",
+    "logo",
+    "menu-highlight",
+    "menu-icon",
+    "menu-item",
+    "menu-link",
+    "menu-submenu",
+    "menu-tail",
+    "menu-toggle",
+    "menubar",
+    "mode-shortcut",
+    "model-version-inline",
+    "moving",
+    "prompt-engineering-container",
+    "py",
+    "qa-chat-overlay",
+    "reversed",
+    "right-column",
+    "scroll-indicator",
+    "scroll-indicator-arrow",
+    "scroll-indicator-text",
+    "section-active-ball",
+    "section-dot",
+    "section-indicator",
+    "section-trail-ball",
+    "see-output-btn",
+    "self-debug-toggle",
+    "send-now",
+    "signup-field",
+    "signup-field-hint",
+    "signup-form",
+    "signup-message",
+    "signup-modal",
+    "signup-modal-close",
+    "signup-modal-content",
+    "signup-modal-overlay",
+    "signup-modal-subtitle",
+    "signup-modal-title",
+    "signup-submit-btn",
+    "site-footer",
+    "small",
+    "smart-feature",
+    "smart-menu",
+    "snap-target",
+    "snapping-back",
+    "submenu-arrow",
+    "success",
+    "theme-icon",
+    "theme-toggle",
+    "thinking-text",
+    "titlebar-brand",
+    "titlebar-left",
+    "titlebar-menu-btn",
+    "titlebar-menu-ellipsis",
+    "titlebar-right",
+    "titlebar-subtitle",
+    "toggle-switch"
+  ]
+}

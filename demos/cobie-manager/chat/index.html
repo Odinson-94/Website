@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BUILD X. Chat</title>
+  
+  <!-- Apply dark mode immediately to prevent flash -->
+  <script>
+    // Default to dark mode in Revit context
+    document.documentElement.classList.add('dark-mode');
+  </script>
+
+  <!--
+    BUILD X. Chat web-host bootstrap. Runs before any chat module. Inside
+    Revit / QAManager.Desktop / any WPF WebView2 it detects the native
+    chrome.webview bridge and exits with no side effects. Outside a
+    WebView2 (qa-manager.adelphos.ai/chat/, future Doc Controller web,
+    generic browser) it installs a shim at window.chrome.webview that
+    routes bridge actions to the Supabase claude-proxy and a local
+    mentionables cache. See js/chat/bridge/BuildXChatWebHostBootstrap.js.
+    Order matters — load before WebViewBridge.js so the shim is visible
+    when ChatApp initialises.
+  -->
+  <script src="js/chat/bridge/BuildXChatWebHostBootstrap.js"></script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=block">
+  
+  <!-- Stylesheets (same order as original) -->
+  <link rel="stylesheet" href="css/shared-styles.css">
+  <!-- index-styles.css excluded: website CSS, not chat. Uncomment to restore. -->
+  <!-- <link rel="stylesheet" href="css/index-styles.css"> -->
+  <link rel="stylesheet" href="css/thinking-animation.css">
+  <link rel="stylesheet" href="css/chat-panel.css">
+  <link rel="stylesheet" href="css/jupiter-blocks.css">
+  
+  <style>
+    /* Prevent flash of unstyled content */
+    html { visibility: hidden; }
+    html.fonts-loaded { visibility: visible; }
+    
+    /* Dark mode base - applied immediately */
+    html.dark-mode, html.dark-mode body { background: #1a1a1a !important; }
+    
+    /* === STANDALONE MODE OVERRIDES === */
+    /* Make the overlay fill the window instead of being positioned */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    /* Override demo-view-overlay to fill window */
+    .demo-view-overlay.standalone-mode {
+      position: relative !important;
+      width: 100% !important;
+      height: 100% !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      display: flex !important;
+    }
+    
+    /* Chat wrapper fills available space */
+    .standalone-mode .demo-chat-wrapper {
+      flex: 1;
+      height: 100%;
+    }
+    
+    .standalone-mode .demo-chat-box {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .standalone-mode .demo-chat-body {
+      flex: 1;
+      display: flex;
+      height: 100%;
+    }
+    
+    /* Ensure messages area scrolls */
+    .standalone-mode .demo-chat-messages {
+      flex: 1;
+      overflow-y: auto;
+    }
+    
+    /* === DROPDOWN FIXES === */
+    .chat-agent-dropdown,
+    .chat-model-dropdown {
+      position: relative;
+    }
+    
+    .chat-dropdown-menu {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      min-width: 220px;
+      background: #2d2d2d;
+      border: 1px solid #3c3c3c;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      margin-bottom: 4px;
+      padding: 4px 0;
+    }
+    
+    .chat-dropdown-menu.show {
+      display: block;
+    }
+    
+    /* Version alignment fix - align 0.1 with BUILD text */
+    .model-version-display {
+      margin-left: 2px;
+      font-variant-numeric: tabular-nums;
+      position: relative;
+      top: 0;
+      line-height: 1;
+    }
+    
+    .chat-model-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    
+    .model-display {
+      display: inline-flex;
+      align-items: center; /* Changed from baseline to center */
+      gap: 0;
+    }
+    
+    /* Ensure all brand elements align */
+    .model-display .brand-build,
+    .model-display .brand-variant,
+    .model-display .brand-dot,
+    .model-display .model-version-display {
+      line-height: 1;
+      vertical-align: middle;
+    }
+    
+    /* Input placeholder styling */
+    .chat-input-placeholder {
+      min-height: 20px;
+      outline: none;
+      cursor: text;
+    }
+    
+    .chat-input-placeholder:empty:before {
+      content: attr(data-placeholder);
+      color: #888;
+      pointer-events: none;
+    }
+    
+    .chat-input-placeholder:focus {
+      outline: none;
+    }
+  </style>
+  
+  <script>
+    // Font loading
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function() {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+    setTimeout(function() {
+      document.documentElement.classList.add('fonts-loaded');
+    }, 300);
+  </script>
+</head>
+<body>
+<!-- ============================================ -->
+<!-- Revit MCP UI - Standalone Chat              -->
+<!-- Uses original DOM structure for CSS compat  -->
+<!-- ============================================ -->
+
+<!-- Outer container - uses original class with standalone override -->
+<div class="demo-view-overlay standalone-mode visible" id="chatOverlay">
+  <!-- Chat Container (original structure from website) -->
+  <div class="demo-chat-wrapper">
+    <div class="demo-chat-box">
+      <!-- Titlebar removed - WPF custom chrome provides styled titlebar -->
+      <div class="demo-chat-body">
+        <!-- History Sidebar -->
+        <div class="demo-chat-history-sidebar">
+          <div class="sidebar-tab-bar">
+            <button class="sidebar-tab active" data-panel="agents" title="View all designer conversations">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Designers</span>
+            </button>
+            <button class="sidebar-tab" data-panel="files" title="View project files and outputs">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              <span>Files</span>
+            </button>
+            <button class="sidebar-tab" data-panel="qa" title="Open QA Manager (Ctrl+Q)" id="openQABtn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <span>QA</span>
+            </button>
+            <button class="share-chat-btn" title="Share chat">⤴</button>
+            <button class="sidebar-tab" data-panel="settings" title="Settings">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              <span>Settings</span>
+            </button>
+          </div>
+          
+          <!-- Agents Panel -->
+          <div class="sidebar-panel active" data-panel="agents">
+            <div class="demo-history-search">
+              <input type="text" class="history-search-input" id="agentHistorySearch6" name="agentHistorySearch6" placeholder="Search...">
+            </div>
+            <button class="new-agent-btn" title="Start a new designer conversation">+ New Designer</button>
+            <button class="create-tool-btn" title="Describe a custom tool and BUILD X will build it">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              Create Your Own
+            </button>
+            <div class="demo-history-list" id="chatHistoryIndex6">
+              <!-- Chat history populated dynamically by JavaScript -->
+            </div>
+            <div class="sidebar-footer">
+              <span class="footer-text" id="designerCount">0 chats</span>
+              <button class="workspace-connect-btn workspace-connect-btn-footer" id="connectWorkspaceBtnDesigners" title="Connect a workspace folder">
+                <span class="workspace-node" id="workspaceNodeDesigners"></span>
+                <span>Workspace</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Files Panel -->
+          <div class="sidebar-panel" data-panel="files">
+            <div class="workspace-connect-bar">
+              <button class="workspace-connect-btn" id="connectWorkspaceBtn" title="Connect a workspace folder">
+                <span class="workspace-node" id="workspaceNodeFiles"></span>
+                <span>Connect Workspace</span>
+              </button>
+              <span class="workspace-path-display" id="workspacePathDisplay"></span>
+            </div>
+            <div class="demo-outputs-section project-structure">
+              <div class="demo-outputs-tree">
+                <div class="tree-folder expanded">
+                  <div class="tree-folder-header"><span class="folder-icon">▼</span> Project</div>
+                  <div class="tree-folder-content">
+                    <div class="tree-folder expanded">
+                      <div class="tree-folder-header"><span class="folder-icon">▼</span> 3D Models</div>
+                      <div class="tree-folder-content">
+                        <div class="tree-file"><span class="file-icon rvt"></span>MEP_3D_Model.rvt</div>
+                        <div class="tree-file"><span class="file-icon dwg"></span>Riser_Sections.dwg</div>
+                      </div>
+                    </div>
+                    <div class="tree-folder expanded">
+                      <div class="tree-folder-header"><span class="folder-icon">▼</span> Reports</div>
+                      <div class="tree-folder-content">
+                        <div class="tree-file"><span class="file-icon pdf"></span>Clash_Report.pdf</div>
+                        <div class="tree-file"><span class="file-icon xlsx"></span>Void_Analysis.xlsx</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar-footer">
+              <span class="footer-text">4 files</span>
+            </div>
+          </div>
+
+          <!-- Settings Panel -->
+          <div class="sidebar-panel" data-panel="settings">
+            <div class="settings-panel">
+              <div class="settings-group">
+                <label class="settings-label">Units</label>
+                <select class="settings-select" data-pref="user_pref_measurement_units">
+                  <option value="metric">Metric</option>
+                  <option value="imperial">Imperial</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">MEP Standard</label>
+                <select class="settings-select" data-pref="user_pref_mep_design_standard">
+                  <option value="CIBSE">CIBSE</option>
+                  <option value="ASHRAE">ASHRAE</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">Default Scale</label>
+                <select class="settings-select" data-pref="user_pref_default_view_scale">
+                  <option value="1:50">1:50</option>
+                  <option value="1:100">1:100</option>
+                  <option value="1:200">1:200</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">Response Verbosity</label>
+                <select class="settings-select" data-pref="user_pref_ai_response_detail">
+                  <option value="concise">Concise</option>
+                  <option value="normal">Normal</option>
+                  <option value="detailed">Detailed</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">Thinking Steps</label>
+                <select class="settings-select" data-pref="user_pref_ai_thinking_steps_display">
+                  <option value="expanded">Always Expanded</option>
+                  <option value="collapsed">Collapsed (click to expand)</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">Temperature Unit</label>
+                <select class="settings-select" data-pref="user_pref_temperature_unit">
+                  <option value="celsius">Celsius</option>
+                  <option value="fahrenheit">Fahrenheit</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">Pipe Sizing Standard</label>
+                <select class="settings-select" data-pref="user_pref_pipe_sizing_standard">
+                  <option value="BS EN 806">BS EN 806</option>
+                  <option value="ASHRAE">ASHRAE</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">Duct Sizing Method</label>
+                <select class="settings-select" data-pref="user_pref_duct_sizing_method">
+                  <option value="equal_friction">Equal Friction</option>
+                  <option value="static_regain">Static Regain</option>
+                  <option value="velocity_reduction">Velocity Reduction</option>
+                </select>
+              </div>
+              <div class="settings-group">
+                <label class="settings-label">BUILD X chats &amp; project</label>
+                <p class="settings-chat-archive-hint">Sessions stay in this browser profile (<code>localStorage</code>). When the RVT is <strong>saved</strong>, the same data is mirrored next to the file as <code>{project}.mepbridge_buildx_chats.json</code>. Unsaved projects cannot write that file yet.</p>
+                <div class="settings-chat-archive-actions">
+                  <button type="button" class="settings-chat-archive-btn" id="importProjectChatsBtn" title="Pick a .mepbridge_buildx_chats.json from another project folder">Import chats from file…</button>
+                  <button type="button" class="settings-chat-archive-btn" id="reloadProjectChatsBtn" title="Merge sessions from this project’s sidecar if newer">Reload from this project file</button>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar-footer">
+              <span class="footer-text">Preferences</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Chat Sidebar Resize Handle -->
+        <div class="chat-sidebar-resize"></div>
+        
+        <!-- Chat Main Area -->
+        <div class="demo-chat-main">
+          <div class="design-options-bar">
+            <div class="design-tabs">
+              <button class="design-tab active" data-tab="main">Option 1 <span class="tab-label">(main)</span><span class="tab-close">×</span></button>
+              <button class="design-option-add" title="Add design option"><span class="plus-icon">+</span><span class="branch-icon">⑂</span></button>
+            </div>
+            <label class="self-debug-toggle" title="Self Debug — BUILD X tests tools, sends fixes to Cloud Agent, rebuilds and retests">
+              <input type="checkbox" id="selfDebugToggle">
+              <span class="self-debug-icon">🔧</span>
+              <span class="self-debug-label">Debug</span>
+            </label>
+          </div>
+          <div class="demo-chat-messages" id="chatMessagesIndex6">
+            <!-- Chat messages populated dynamically -->
+          </div>
+          <div id="buildxWarmupBanner" class="buildx-warmup-banner" style="display:none;" role="status" aria-live="polite"></div>
+          
+          <!-- Persistent Neural Node with Status -->
+          <div class="chat-persistent-node-wrapper">
+            <div class="chat-neural-node" id="chatPersistentNodeIndex6">
+              <div class="chat-node-core"></div>
+              <div class="chat-node-glow"></div>
+              <div class="chat-node-pulse-ring"></div>
+            </div>
+            <div class="chat-node-status" id="chatNodeStatus6">
+              <span class="status-text"></span>
+            </div>
+          </div>
+
+          <div class="chat-composer-stack">
+          <div class="demo-chat-input-row cursor-style">
+            <div class="chat-input-wrapper">
+              <span class="chat-input-placeholder" id="chatInputIndex6" contenteditable="true" data-placeholder="Message..."></span>
+              <div class="chat-input-controls">
+                <div class="chat-input-left">
+                  <button class="chat-upload-btn" id="chatUploadBtn" title="Upload file">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+                  </button>
+                  <div class="chat-agent-dropdown">
+                    <span class="chat-agent-badge active-mode">∞ <span class="agent-mode-display">Build</span> <span class="dropdown-arrow">▾</span></span>
+                    <div class="chat-dropdown-menu agent-menu">
+                      <div class="dropdown-section-header">Mode</div>
+                      <div class="dropdown-item mode-toggle-row" data-mode="Build">
+                        <div class="mode-info">
+                          <span class="mode-icon">∞</span>
+                          <span class="mode-name">Build</span>
+                          <span class="mode-tooltip">Full autonomous design mode - creates and places elements</span>
+                        </div>
+                        <label class="mode-toggle">
+                          <input type="checkbox" name="agentMode" value="Build" checked>
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                      <div class="dropdown-item mode-toggle-row" data-mode="Designer">
+                        <div class="mode-info">
+                          <span class="mode-icon">☰</span>
+                          <span class="mode-name">Designer</span>
+                          <span class="mode-tooltip">Designer mode - outlines steps before executing</span>
+                        </div>
+                        <label class="mode-toggle">
+                          <input type="checkbox" name="agentMode" value="Designer">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                      <div class="dropdown-item mode-toggle-row" data-mode="QA">
+                        <div class="mode-info">
+                          <span class="mode-icon">⚙</span>
+                          <span class="mode-name">QA</span>
+                          <span class="mode-tooltip">QA Mode - identifies and fixes issues in existing designs</span>
+                        </div>
+                        <label class="mode-toggle">
+                          <input type="checkbox" name="agentMode" value="QA">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                      <div class="dropdown-item mode-toggle-row" data-mode="Query">
+                        <div class="mode-info">
+                          <span class="mode-icon">?</span>
+                          <span class="mode-name">Query</span>
+                          <span class="mode-tooltip">Query the model for answers and golden thread decision making logic</span>
+                        </div>
+                        <label class="mode-toggle">
+                          <input type="checkbox" name="agentMode" value="Query">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chat-model-dropdown">
+                    <span class="chat-model-label"><span class="model-display"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span> <span class="model-version-display">0.1</span></span> <span class="dropdown-arrow">▾</span></span>
+                    <div class="chat-dropdown-menu model-menu">
+                      <div class="dropdown-section-header">Model</div>
+                      <div class="dropdown-item model-option active" data-model="Build X 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">X</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Advanced premium model incorporating every service</span></div>
+                      <div class="dropdown-item model-option" data-model="Build MEP 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">MEP</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Production-ready model optimized for mechanical, electrical and plumbing systems</span></div>
+                      <div class="dropdown-item model-option" data-model="Build A 0.1"><span class="model-name-brand"><span class="brand-build">BUILD</span> <span class="brand-variant">A</span><span class="brand-dot">.</span></span><span class="model-version">0.1</span><span class="model-tick">✓</span><span class="model-tooltip">Architectural coordination model for space planning and layout optimization</span></div>
+                      <div class="dropdown-divider"></div>
+                      <div class="dropdown-item llm-toggle-row" title="Enable Claude LLM for direct API access. When off, uses local BUILD X model only.">
+                        <span>Claude LLM</span>
+                        <label class="llm-toggle">
+                          <input type="checkbox" id="llmModeToggle6">
+                          <span class="toggle-slider"></span>
+                        </label>
+                      </div>
+                      <div class="dropdown-item model-option llm-option disabled" data-model="Auto"><span class="llm-model-name">Auto</span><span class="model-tick">✓</span><span class="model-tooltip">Uses the default Claude model (currently Opus 4.6)</span></div>
+                      <div class="dropdown-item model-option llm-option disabled" data-model="Opus 4.6"><span class="llm-model-name">Opus 4.6</span><span class="model-tick">✓</span><span class="model-tooltip">Most capable — best reasoning, highest quality</span></div>
+                      <div class="dropdown-item model-option llm-option disabled" data-model="Sonnet 4.5"><span class="llm-model-name">Sonnet 4.5</span><span class="model-tick">✓</span><span class="model-tooltip">Fast and capable — good balance of speed and quality</span></div>
+                      <div class="dropdown-item model-option llm-option disabled" data-model="Haiku 4.5"><span class="llm-model-name">Haiku 4.5</span><span class="model-tick">✓</span><span class="model-tooltip">Fastest — lightweight tasks and quick queries</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-input-right">
+                  <button class="chat-share-btn" title="Share chat with team members so you can both work in the same chat.">⤴</button>
+                  <button class="chat-meeting-btn" id="meetingModeBtn6" title="Activate meeting mode when in calls, so the agent can understand what the team discussion results in, allowing them to make changes instantly.">👥</button>
+                  <button class="chat-save-prompt-btn" title="Save this prompt for reuse">☆</button>
+                  <button class="chat-stop-btn" id="chatStopIndex6" title="Stop" style="display:none;">■</button>
+                  <button class="chat-send-btn" id="chatSendIndex6" title="Send">↑</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="chatFeedbackBar" class="chat-feedback-bar" aria-hidden="true">
+            <div class="chat-feedback-bar-inner"></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script src="js/thinking-animation.js"></script>
+<script type="module" src="js/chat/app/ChatApp.js"></script>
+
+<!-- #region agent log - Debug: check if ChatApp module loaded -->
+<script>
+console.log('[DEBUG-5a852a] index.html boot-check script running, location:', window.location.href);
+setTimeout(function() {
+  console.log('[DEBUG-5a852a] Boot check after 2s', JSON.stringify({chatAppExists:!!window.ChatApp,thinkingAnimExists:typeof window.ThinkingAnimation,documentReady:document.readyState,locationHref:window.location.href,constructorError:window.__chatAppError||'none'}));
+  if (window.chrome && window.chrome.webview) {
+    window.chrome.webview.postMessage(JSON.stringify({type:'__debug_console__',payload:'log: BOOT CHECK chatAppExists=' + !!window.ChatApp + ' error=' + (window.__chatAppError||'none') + ' href=' + window.location.href}));
+  }
+  fetch('http://127.0.0.1:7243/ingest/289e3919-88dc-4289-b64f-1fac50a5f23b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5a852a'},body:JSON.stringify({sessionId:'5a852a',location:'index.html:boot-check',message:'Boot check after 2s',data:{chatAppExists:!!window.ChatApp,thinkingAnimExists:typeof window.ThinkingAnimation,documentReady:document.readyState,locationHref:window.location.href},timestamp:Date.now(),hypothesisId:'H-LOAD'})}).catch(function(){});
+}, 2000);
+</script>
+<!-- #endregion -->
+
+</body>
+</html>

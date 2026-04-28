@@ -1,0 +1,1141 @@
+/* ============================================
+   chat-input.css
+   ============================================
+   PURPOSE: Chat input bar, controls, dropdowns, and attachments.
+   STYLES:  Input row container, cursor-style contenteditable input,
+            send/stop/upload/share/meeting buttons, agent & model
+            dropdowns, brand spans, LLM toggle, mode toggles,
+            attachment dock, composer stack, continuation selector,
+            container queries for responsive input sizing.
+   LOAD ORDER: 7 of 10 (after chat-messages.css)
+   CONSUMERS: index.html, ChatInput.js, SendButton.js, StopButton.js,
+              AgentDropdown.js, ModelDropdown.js, AttachmentDock.js
+   ============================================ */
+
+/* ── Warmup banner ───────────────────────────────────────────── */
+
+/* SOURCE: index.html:350 */
+.buildx-warmup-banner {
+  font-size: 0.62rem;
+  padding: 6px 12px;
+  margin: 0 12px 4px;
+  border-radius: 4px;
+  background: rgba(74, 155, 184, 0.15);
+  color: #156082;
+  border: 1px solid rgba(74, 155, 184, 0.35);
+  line-height: 1.35;
+}
+
+/* SOURCE: index.html:2,11,38,350 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .buildx-warmup-banner {
+  background: rgba(74, 155, 184, 0.12);
+  color: #8ecae6;
+  border-color: rgba(74, 155, 184, 0.3);
+}
+
+/* ── Input row container (canonical — do not duplicate in shared-styles.css) ── */
+
+/* SOURCE: index.html:365 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row {
+  box-sizing: border-box;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
+  container-name: chat-input;
+}
+
+/* SOURCE: index.html:178,336,365 | js/chat/app/ChatApp.js:214,975 — gutter from .demo-chat-main (tabs + messages + composer share one value) */
+.demo-view-overlay .demo-chat-main .demo-chat-input-row {
+  padding-inline: var(--chat-inline-gutter, 1rem);
+}
+
+/* SOURCE: index.html:2,11,38,365 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row {
+  background: var(--bg-tertiary);
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Input wrapper / placeholder ─────────────────────────────── */
+
+/* SOURCE: index.html:365,366 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:185,186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-input-wrapper {
+  box-sizing: border-box;
+  min-width: 0;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+/* SOURCE: index.html:2,11,38,365,366 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:185,186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-input-wrapper {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+/* SOURCE: index.html:142,148,154,365,367 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-input-placeholder {
+  display: block;
+  width: 100%;
+  min-height: 1.2em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #333;
+  outline: none;
+  margin-bottom: 10px;
+  cursor: text;
+}
+
+/* SOURCE: index.html:142,148,154,365,367 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-input-placeholder:empty::before {
+  content: attr(data-placeholder);
+  color: #999;
+}
+
+/* SOURCE: index.html:142,148,154,365,367 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-input-placeholder:empty:focus::before {
+  content: none;
+}
+
+/* SOURCE: index.html:2,11,38,142,148+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-input-placeholder {
+  color: var(--text-primary);
+  -webkit-text-fill-color: var(--text-primary);
+  caret-color: var(--text-primary);
+}
+
+/* SOURCE: index.html:2,11,38,142,148+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-input-placeholder:empty::before {
+  color: #666;
+}
+
+/* SOURCE: index.html:142,148,154,365,367 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-input-placeholder:empty:focus::after {
+  content: attr(data-ghost);
+  color: #bbb;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.6rem;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* SOURCE: index.html:2,11,38,142,148+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-input-placeholder:empty:focus::after {
+  color: #555;
+}
+
+/* ── Input controls (left / right) ───────────────────────────── */
+
+/* SOURCE: index.html:365,368 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-input-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow: visible;
+}
+
+/* SOURCE: index.html:365,369 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-input-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  overflow: visible;
+}
+
+/* SOURCE: index.html:365,445 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/StopButton.js:35 */
+.demo-chat-input-row.cursor-style .chat-input-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ── Dropdowns (agent, build, model) ─────────────────────────── */
+
+.demo-chat-input-row.cursor-style .chat-agent-dropdown,
+/* SOURCE: index.html:87,365,423 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:2,18 */
+.demo-chat-input-row.cursor-style .chat-build-dropdown,
+.demo-chat-input-row.cursor-style .chat-model-dropdown {
+  position: relative;
+}
+
+/* SOURCE: index.html:365,374 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:15 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-agent-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* SOURCE: index.html:365,374 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:15 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-agent-badge.active-mode {
+  background: rgba(21, 96, 130, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* SOURCE: index.html:2,11,38,365,374 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AgentDropdown.js:15 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-agent-badge {
+  color: #999;
+}
+
+/* SOURCE: index.html:2,11,38,365,374 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AgentDropdown.js:15 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-agent-badge.active-mode {
+  background: rgba(74, 155, 184, 0.15);
+}
+
+/* SOURCE: index.html:365,374,424 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-arrow {
+  font-size: 0.5rem;
+  opacity: 0.7;
+}
+
+/* SOURCE: index.html:91,106,365,375,425 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:16,54 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:20,51 */
+.demo-chat-input-row.cursor-style .chat-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 6px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 100;
+}
+
+.demo-chat-input-row.cursor-style .chat-agent-dropdown:hover .chat-dropdown-menu,
+/* SOURCE: index.html:87,91,106,365,375+2more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:16,54 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:2,18,20,51 */
+.demo-chat-input-row.cursor-style .chat-build-dropdown:hover .chat-dropdown-menu,
+.demo-chat-input-row.cursor-style .chat-model-dropdown:hover .chat-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* SOURCE: index.html:2,11,38,91,106+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AgentDropdown.js:16,54 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:20,51 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-dropdown-menu {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* SOURCE: index.html:365,376,426 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-section-header {
+  padding: 6px 10px 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* SOURCE: index.html:2,11,38,365,376+1more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .dropdown-section-header {
+  color: #666;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-item {
+  padding: 6px 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.1s ease;
+  position: relative;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-item:hover {
+  background: #f0f0f0;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-item:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-item:last-child {
+  border-radius: 0 0 5px 5px;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,975 | js/chat/context/RightClickMenu.js:159 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-item.has-submenu::after {
+  content: '\203A';
+  position: absolute;
+  right: 8px;
+  opacity: 0.5;
+}
+
+/* SOURCE: index.html:2,11,38,365,377+11more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .dropdown-item {
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,365,377+11more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .dropdown-item:hover {
+  background: #3a3a3a;
+}
+
+/* SOURCE: index.html:365 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 4px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-width: 100px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,975 | js/chat/context/RightClickMenu.js:159 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-item.has-submenu:hover .chat-submenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* SOURCE: index.html:2,11,38,365 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-submenu {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+/* SOURCE: index.html:365,430 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .dropdown-divider {
+  height: 1px;
+  background: #e8e8e8;
+  margin: 4px 0;
+}
+
+/* SOURCE: index.html:2,11,38,365,430 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .dropdown-divider {
+  background: #3a3a3a;
+}
+
+/* SOURCE: index.html:119,365,424 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:19 */
+.demo-chat-input-row.cursor-style .chat-build-label,
+.demo-chat-input-row.cursor-style .chat-model-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* SOURCE: index.html:2,11,38,119,365+1more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:19 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-build-label,
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label {
+  color: #777;
+}
+
+/* SOURCE: index.html:119,126,133,134,135+3more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:19 */
+.demo-chat-input-row.cursor-style .chat-model-label .model-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Gotham', 'Inter', sans-serif;
+}
+
+/* SOURCE: index.html:119,133,365,424,427+2more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:19 */
+.demo-chat-input-row.cursor-style .chat-model-label .brand-build {
+  font-weight: 500;
+  color: #333;
+}
+
+/* SOURCE: index.html:119,134,365,424,427+2more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:7,19,95,102 */
+.demo-chat-input-row.cursor-style .chat-model-label .brand-variant {
+  font-weight: 700;
+  color: #156082;
+}
+
+/* SOURCE: index.html:119,135,365,424,427+2more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:19 */
+.demo-chat-input-row.cursor-style .chat-model-label .brand-dot {
+  color: #333;
+}
+
+/* SOURCE: index.html:111,119,136,365,424 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:7,19,95,103 */
+.demo-chat-input-row.cursor-style .chat-model-label .model-version-display {
+  font-family: 'Gotham', 'Inter', sans-serif;
+  font-size: inherit;
+  font-weight: 400;
+  color: #666;
+  margin-left: 2px;
+}
+
+/* SOURCE: index.html:2,11,38,119,133+5more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:19 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .brand-build {
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,119,134+5more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:7,19,95,102 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .brand-variant {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:2,11,38,119,135+5more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:19 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .brand-dot {
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,111,119+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:7,19,95,103 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-model-label .model-version-display {
+  color: #999;
+}
+
+/* ── Brand spans ─────────────────────────────────────────────── */
+
+/* SOURCE: index.html:133,365,424,427,428+1more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .brand-build,
+.brand-build {
+  font-family: 'Gotham Medium'; /* NO FALLBACK - fails visibly if missing */
+  font-weight: 500;
+  color: #000;
+  letter-spacing: 1.1pt; /* Proportional: (11/20) * 2pt */
+}
+
+/* SOURCE: index.html:134,365,424,427,428+1more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:7,95,102 */
+.demo-chat-input-row.cursor-style .brand-variant,
+.brand-variant {
+  font-family: 'Gotham Medium'; /* NO FALLBACK */
+  font-weight: 700; /* BOLD for X */
+  color: #156082;
+  letter-spacing: 1.1pt;
+}
+
+/* SOURCE: index.html:135,365,424,427,428+1more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .brand-dot,
+.brand-dot {
+  font-family: 'Gotham Medium'; /* NO FALLBACK */
+  font-weight: 500;
+  color: #000;
+  letter-spacing: 1.1pt;
+}
+
+/* SOURCE: index.html:2,11,38,133,365+4more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .brand-build,
+html.dark-mode .brand-build {
+  color: #fff;
+}
+
+/* SOURCE: index.html:2,11,38,134,365+4more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:7,95,102 */
+html.dark-mode .demo-chat-input-row.cursor-style .brand-variant,
+html.dark-mode .brand-variant {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:2,11,38,135,365+4more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .brand-dot,
+html.dark-mode .brand-dot {
+  color: #fff;
+}
+
+/* ── Model options / ticks / version ─────────────────────────── */
+
+/* SOURCE: index.html:365,427,428,429 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .model-name-brand {
+  font-family: 'Gotham', 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 1.1pt;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* SOURCE: index.html:365,427,428,429,438+3more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:6,21 */
+.demo-chat-input-row.cursor-style .model-option {
+  display: grid;
+  grid-template-columns: auto 30px 20px;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+/* SOURCE: index.html:365,427,428,429 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .model-version {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  color: #888;
+  margin-left: 4px;
+  text-align: right;
+}
+
+/* NOT DECLARED: no reference found in index.html or js/ */
+.model-version-inline {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  color: #888;
+  margin-left: 4px;
+}
+
+/* SOURCE: index.html:2,11,38,365,427+2more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .model-version {
+  color: #666;
+}
+
+/* SOURCE: index.html:365,427,428,429,438+3more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .model-tick {
+  color: transparent;
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+/* SOURCE: index.html:187,207,339,365,427+6more | js/chat/app/ChatApp.js:214,975,1087,1114,1135 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:6,21,28,31,40+3more | js/chat/messages/AssistantMessage.js:99 | js/chat/messages/ThinkingStepMessage.js:252 | js/chat/session/SidebarChatHistoryTree.js:36,54,86,104 | js/chat/session/ChatSessionsStore.js:172,310,841 | (+4 files) */
+.demo-chat-input-row.cursor-style .model-option.active .model-tick {
+  color: #156082;
+}
+
+/* SOURCE: index.html:2,11,38,187,207+9more | js/chat/app/ChatApp.js:214,586,588,975,1087+2more | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:6,21,28,31,40+3more | js/chat/messages/AssistantMessage.js:99 | js/chat/messages/ThinkingStepMessage.js:252 | js/chat/session/SidebarChatHistoryTree.js:36,54,86,104 | js/chat/session/ChatSessionsStore.js:172,310,841 | (+4 files) */
+html.dark-mode .demo-chat-input-row.cursor-style .model-option.active .model-tick {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:365,427,428,429,438+3more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .model-tooltip {
+  display: none;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -60px;
+  padding: 8px 10px;
+  background: #333;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 400;
+  line-height: 1.4;
+  border-radius: 6px;
+  white-space: normal;
+  width: 180px;
+  z-index: 400;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+/* SOURCE: index.html:365,427,428,429,438+3more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:6,21 */
+.demo-chat-input-row.cursor-style .model-option:hover .model-tooltip {
+  display: block;
+}
+
+/* SOURCE: index.html:2,11,38,365,427+6more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .model-tooltip {
+  background: #1a1a1a;
+}
+
+/* ── LLM options & toggle switches ───────────────────────────── */
+
+/* SOURCE: index.html:365,431 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .llm-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,748,754,975 | js/chat/commands/CommandSuggestions.js:119,142,146,163 | js/chat/context/RightClickMenu.js:166 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:9,63,64,73 | js/chat/input/SendButton.js:31,39 | js/chat/session/NewChatButton.js:22,23,29,30 */
+.demo-chat-input-row.cursor-style .dropdown-item.llm-option.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* SOURCE: index.html:2,11,38,365,377+11more | js/chat/app/ChatApp.js:214,586,588,748,754+1more | js/chat/commands/CommandSuggestions.js:119,142,146,163 | js/chat/context/RightClickMenu.js:166 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:9,63,64,73 | js/chat/input/SendButton.js:31,39 | js/chat/session/NewChatButton.js:22,23,29,30 */
+html.dark-mode .demo-chat-input-row.cursor-style .dropdown-item.llm-option.disabled {
+  color: #555;
+}
+
+/* SOURCE: index.html:365,377,388,399,410+8more | js/chat/app/ChatApp.js:214,596,975 | js/chat/debug/BugReportOverlay.js:109,110,122 | js/chat/input/AgentDropdown.js:81,82,91,92 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:61,62,63,64 | js/chat/messages/AssistantMessage.js:9,59,60 */
+.demo-chat-input-row.cursor-style .dropdown-item.llm-option.enabled {
+  color: #333;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* SOURCE: index.html:2,11,38,365,377+11more | js/chat/app/ChatApp.js:214,586,588,596,975 | js/chat/debug/BugReportOverlay.js:109,110,122 | js/chat/input/AgentDropdown.js:81,82,91,92 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:61,62,63,64 | js/chat/messages/AssistantMessage.js:9,59,60 */
+html.dark-mode .demo-chat-input-row.cursor-style .dropdown-item.llm-option.enabled {
+  color: #ccc;
+}
+
+/* SOURCE: index.html:365,431 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .llm-toggle-row[title] {
+  position: relative;
+}
+
+/* SOURCE: index.html:365,431 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .llm-toggle-row[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  background: #333;
+  color: #fff;
+  font-size: 0.55rem;
+  line-height: 1.4;
+  border-radius: 6px;
+  white-space: normal;
+  z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* SOURCE: index.html:2,11,38,365,431 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .llm-toggle-row[title]:hover::after {
+  background: #1a1a1a;
+}
+
+/* SOURCE: index.html:365,383,394,405,416+1more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:73 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .llm-toggle,
+.demo-chat-input-row.cursor-style .mode-toggle {
+  position: relative;
+  width: 28px;
+  height: 16px;
+  display: inline-block;
+}
+
+/* SOURCE: index.html:365,383,394,405,416+1more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:73 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .llm-toggle input,
+.demo-chat-input-row.cursor-style .mode-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* SOURCE: index.html:365,385,396,407,418+1more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+  border-radius: 16px;
+  transition: background 0.2s ease;
+}
+
+/* SOURCE: index.html:365,385,396,407,418+1more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+/* SOURCE: index.html:365,383,385,394,396+6more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:73 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .llm-toggle input:checked + .toggle-slider,
+.demo-chat-input-row.cursor-style .mode-toggle input:checked + .toggle-slider {
+  background: #156082;
+}
+
+/* SOURCE: index.html:365,383,385,394,396+6more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:73 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .llm-toggle input:checked + .toggle-slider::before,
+.demo-chat-input-row.cursor-style .mode-toggle input:checked + .toggle-slider::before {
+  transform: translateX(12px);
+}
+
+/* SOURCE: index.html:2,11,38,365,385+4more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .toggle-slider {
+  background: #555;
+}
+
+/* SOURCE: index.html:2,11,38,365,383+9more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AgentDropdown.js:73 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .llm-toggle input:checked + .toggle-slider,
+html.dark-mode .demo-chat-input-row.cursor-style .mode-toggle input:checked + .toggle-slider {
+  background: #4a9bb8;
+}
+
+/* ── Send / Stop / Upload / Share / Meeting / Save buttons ──── */
+
+/* SOURCE: index.html:365,450 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/StopButton.js:16 */
+.demo-chat-input-row.cursor-style .chat-send-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: #333;
+  color: #fff;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+  line-height: 1;
+}
+
+/* SOURCE: index.html:365,450 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/StopButton.js:16 */
+.demo-chat-input-row.cursor-style .chat-send-btn:hover {
+  background: #555;
+}
+
+/* SOURCE: index.html:2,11,38,365,450 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/StopButton.js:16 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-send-btn {
+  background: #555;
+  color: #fff;
+}
+
+/* SOURCE: index.html:2,11,38,365,450 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/StopButton.js:16 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-send-btn:hover {
+  background: #666;
+}
+
+/* SOURCE: index.html:449 | js/chat/input/StopButton.js:15,39 */
+.chat-stop-btn {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: #EF4444;
+  color: white;
+  font-size: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* SOURCE: index.html:449 | js/chat/input/StopButton.js:15,39 */
+.chat-stop-btn:hover {
+  background: #DC2626;
+}
+
+/* SOURCE: index.html:365,370 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-upload-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: #9D9D9D;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+/* SOURCE: index.html:365,370 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-upload-btn:hover {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:2,11,38,365,370 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-upload-btn {
+  color: #666;
+}
+
+/* SOURCE: index.html:2,11,38,365,370 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-upload-btn:hover {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:365,446,447 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-share-btn,
+.demo-chat-input-row.cursor-style .chat-meeting-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: #999;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  position: relative;
+}
+
+/* SOURCE: index.html:365,446,447 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-share-btn:hover,
+.demo-chat-input-row.cursor-style .chat-meeting-btn:hover {
+  color: #666;
+}
+
+/* SOURCE: index.html:2,11,38,365,446+1more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-share-btn,
+html.dark-mode .demo-chat-input-row.cursor-style .chat-meeting-btn {
+  color: #666;
+}
+
+/* SOURCE: index.html:2,11,38,365,446+1more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-share-btn:hover,
+html.dark-mode .demo-chat-input-row.cursor-style .chat-meeting-btn:hover {
+  color: #999;
+}
+
+/* SOURCE: index.html:187,207,339,365,427+1more | js/chat/app/ChatApp.js:214,975,1087,1114,1135 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:28,31,40,77,78+1more | js/chat/messages/AssistantMessage.js:99 | js/chat/messages/ThinkingStepMessage.js:252 | js/chat/session/SidebarChatHistoryTree.js:36,54,86,104 | js/chat/session/ChatSessionsStore.js:172,310,841 | (+4 files) */
+.demo-chat-input-row.cursor-style .chat-meeting-btn.active {
+  color: #156082;
+}
+
+/* SOURCE: index.html:2,11,38,187,207+4more | js/chat/app/ChatApp.js:214,586,588,975,1087+2more | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/input/ModelDropdown.js:28,31,40,77,78+1more | js/chat/messages/AssistantMessage.js:99 | js/chat/messages/ThinkingStepMessage.js:252 | js/chat/session/SidebarChatHistoryTree.js:36,54,86,104 | js/chat/session/ChatSessionsStore.js:172,310,841 | (+4 files) */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-meeting-btn.active {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:365,448 | js/chat/app/ChatApp.js:214,975,1330 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-save-prompt-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: #9D9D9D;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  position: relative;
+  line-height: 1;
+  padding: 0;
+}
+
+/* SOURCE: index.html:365,448 | js/chat/app/ChatApp.js:214,975,1330 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-save-prompt-btn:hover {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:319,365,448 | js/chat/app/ChatApp.js:214,564,975,1330,1341+1more | js/chat/context/RightClickMenu.js:7,309,364,365 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/session/ChatSessionsStore.js:27,334,599 */
+.demo-chat-input-row.cursor-style .chat-save-prompt-btn.saved {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:2,11,38,365,448 | js/chat/app/ChatApp.js:214,586,588,975,1330 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-save-prompt-btn {
+  color: #666;
+}
+
+/* SOURCE: index.html:2,11,38,365,448 | js/chat/app/ChatApp.js:214,586,588,975,1330 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-save-prompt-btn:hover {
+  color: #4a9bb8;
+}
+
+/* SOURCE: index.html:2,11,38,319,365+1more | js/chat/app/ChatApp.js:214,564,586,588,975+3more | js/chat/context/RightClickMenu.js:7,309,364,365 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/session/ChatSessionsStore.js:27,334,599 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-save-prompt-btn.saved {
+  color: #4a9bb8;
+}
+
+/* ── Button tooltips ─────────────────────────────────────────── */
+
+/* SOURCE: index.html:365,446 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-share-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  background: #333;
+  color: #fff;
+  font-size: 0.55rem;
+  line-height: 1.4;
+  border-radius: 6px;
+  white-space: normal;
+  width: 160px;
+  z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* SOURCE: index.html:2,11,38,365,446 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-share-btn[title]:hover::after {
+  background: #1a1a1a;
+}
+
+/* SOURCE: index.html:365,447 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .chat-meeting-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  background: #333;
+  color: #fff;
+  font-size: 0.55rem;
+  line-height: 1.4;
+  border-radius: 6px;
+  white-space: normal;
+  width: 180px;
+  z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* SOURCE: index.html:2,11,38,365,447 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .chat-meeting-btn[title]:hover::after {
+  background: #1a1a1a;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-chat-send-btn {
+  background: #007AFF;
+  color: white;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 */
+html.dark-mode .demo-chat-send-btn:hover {
+  background: #0056D6;
+  color: white;
+  transform: scale(1.02);
+}
+
+/* ── Attachment dock / image preview ─────────────────────────── */
+
+/* SOURCE: js/chat/input/AttachmentDock.js:52 */
+.attachment-dock {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 14px;
+  min-height: 0;
+}
+
+/* SOURCE: js/chat/input/AttachmentDock.js:79 */
+.attachment-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: rgba(21, 96, 130, 0.12);
+  border: 1px solid rgba(21, 96, 130, 0.25);
+  border-radius: 6px;
+  font-family: var(--chat-font-ui, 'Inter', sans-serif);
+  font-size: 0.58rem;
+  color: #ccc;
+  max-width: 250px;
+}
+
+/* SOURCE: js/chat/input/AttachmentDock.js:80 */
+.attachment-chip-icon {
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+/* SOURCE: js/chat/input/AttachmentDock.js:81 */
+.attachment-chip-name {
+  font-weight: 500;
+  color: #e0e0e0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+/* SOURCE: js/chat/input/AttachmentDock.js:82 */
+.attachment-chip-meta {
+  color: #888;
+  white-space: nowrap;
+  font-size: 0.52rem;
+}
+
+/* SOURCE: js/chat/input/AttachmentDock.js:83,87 */
+.attachment-chip-remove {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 0.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* SOURCE: js/chat/input/AttachmentDock.js:83,87 */
+.attachment-chip-remove:hover {
+  color: #f44;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 | js/chat/input/AttachmentDock.js:79 */
+html:not(.dark-mode) .attachment-chip {
+  background: rgba(21, 96, 130, 0.08);
+  border-color: rgba(21, 96, 130, 0.2);
+  color: #555;
+}
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 | js/chat/input/AttachmentDock.js:81 */
+html:not(.dark-mode) .attachment-chip-name { color: #333; }
+
+/* SOURCE: index.html:2,11,38 | js/chat/app/ChatApp.js:586,588 | js/chat/input/AttachmentDock.js:82 */
+html:not(.dark-mode) .attachment-chip-meta { color: #888; }
+
+/* SOURCE: js/chat/input/ClipboardHandler.js:171,175 */
+.paste-image-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  margin: 4px 0;
+  background: rgba(74, 155, 184, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(74, 155, 184, 0.2);
+}
+
+/* ── Composer stack ──────────────────────────────────────────── */
+
+/* SOURCE: index.html:364 | js/chat/app/ChatApp.js:975 | js/chat/focus/FocusDropZone.js:8 | js/chat/input/AttachmentDock.js:56 | js/chat/ui/ChatFeedbackBar.js:5 */
+.chat-composer-stack {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* SOURCE: index.html:364,365 | js/chat/app/ChatApp.js:214,975 | js/chat/focus/FocusDropZone.js:8 | js/chat/input/AttachmentDock.js:55,56 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 | js/chat/ui/ChatFeedbackBar.js:5 */
+.chat-composer-stack .demo-chat-input-row {
+  z-index: 1;
+}
+
+/* ── Continuation mode ───────────────────────────────────────── */
+
+/* SOURCE: index.html:365,377,388,399,410 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:17 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .mode-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+}
+
+/* SOURCE: index.html:365,378,389,400,411 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .mode-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* SOURCE: index.html:365,381,392,403,414 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .mode-tooltip {
+  display: none;
+  position: fixed;
+  bottom: auto;
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -60px;
+  padding: 8px 10px;
+  background: #333;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 400;
+  line-height: 1.4;
+  border-radius: 6px;
+  white-space: normal;
+  width: 180px;
+  z-index: 400;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+/* SOURCE: index.html:365,377,381,388,392+4more | js/chat/app/ChatApp.js:214,975 | js/chat/input/AgentDropdown.js:17 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .mode-toggle-row:hover .mode-tooltip {
+  display: block;
+}
+
+/* SOURCE: index.html:2,11,38,365,381+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .mode-tooltip {
+  background: #1a1a1a;
+}
+
+/* SOURCE: index.html:365,379,390,401,412 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .mode-icon {
+  font-size: 0.75rem;
+  color: #666;
+  width: 16px;
+  text-align: center;
+}
+
+/* SOURCE: index.html:365,380,391,402,413 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .mode-name {
+  font-size: 0.65rem;
+  color: #333;
+}
+
+/* SOURCE: index.html:365 | js/chat/app/ChatApp.js:214,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+.demo-chat-input-row.cursor-style .mode-shortcut {
+  font-size: 0.55rem;
+  color: #999;
+  margin-left: 8px;
+}
+
+/* SOURCE: index.html:2,11,38,365,379+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .mode-icon {
+  color: #888;
+}
+
+/* SOURCE: index.html:2,11,38,365,380+3more | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .mode-name {
+  color: #ccc;
+}
+
+/* SOURCE: index.html:2,11,38,365 | js/chat/app/ChatApp.js:214,586,588,975 | js/chat/input/AttachmentDock.js:55 | js/chat/input/ClipboardHandler.js:186 | js/chat/input/InputToolbar.js:4,17 */
+html.dark-mode .demo-chat-input-row.cursor-style .mode-shortcut {
+  color: #666;
+}
+
+/* ── Container queries ───────────────────────────────────────── */
+
+/* SOURCE: index.html:446 */
+@container chat-input (max-width: 240px) {
+  .chat-share-btn {
+    display: none !important;
+  }
+}
+
+/* SOURCE: index.html:447 */
+@container chat-input (max-width: 200px) {
+  .chat-meeting-btn {
+    display: none !important;
+  }
+}
+
+/* SOURCE: index.html:369 */
+@container chat-input (max-width: 120px) {
+  .chat-input-left {
+    display: none !important;
+  }
+}
