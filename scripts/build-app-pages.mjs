@@ -192,22 +192,19 @@ export async function buildAppsInventory() {
   const data = await loadJson('sandbox/data/apps.json');
   const tmpl = await fs.readFile(T('apps-inventory.html'), 'utf8');
 
-  const flagship = data.apps.find(a => a.is_flagship);
-  const others   = data.apps.filter(a => !a.is_flagship);
-
   const TILE_ORDER = [
-    'qa-manager', 'cobie-manager', 'adelphos-chat', 'specbuilder',
-    'report-builder', 'schedule-builder', 'document-controller',
-    'autocad-copilot', 'excel-add-in', 'word-add-in'
+    'revit-copilot', 'adelphos-chat', 'specbuilder',
+    'report-builder', 'document-controller', 'qa-manager',
+    'schedule-builder', 'cobie-manager', 'autocad-copilot',
+    'word-add-in', 'excel-add-in'
   ];
-  others.sort((a, b) => {
+  const allApps = [...data.apps].sort((a, b) => {
     const ai = TILE_ORDER.indexOf(a.slug);
     const bi = TILE_ORDER.indexOf(b.slug);
     return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
   });
 
-  const flagshipHtml = flagship ? renderFlagship(flagship) : '';
-  const tilesHtml = others.map(a => renderTile(a)).join('');
+  const tilesHtml = allApps.map(a => renderTile(a)).join('');
 
   const seoHead = await renderSeoHead({
     title: 'Apps — Adelphos AI',
@@ -227,7 +224,6 @@ export async function buildAppsInventory() {
     .replaceAll('{{section_lead}}',  esc(data.section_lead || data.section_title || 'Apps'))
     .replaceAll('{{section_blurb}}', esc(data.section_blurb || ''))
     .replaceAll('{{count}}',         String(data.apps.length))
-    .replaceAll('{{flagship_html}}', flagshipHtml)
     .replaceAll('{{tiles_html}}',    tilesHtml)
     .replaceAll('{{seo_head}}',      seoHead)
     .replaceAll('{{json_ld}}',       jsonLd)
@@ -260,13 +256,16 @@ function renderFlagship(a) {
 // Tile = .app-tile (dark .rp-commands-card derivative, same vocab as
 // the home Section 3 .app-card carousel, just here in a grid).
 function renderTile(a) {
+  const surfLabel = a.surface
+    ? a.surface.split('·').slice(0, 2).map(s => s.trim()).join(' · ')
+    : 'App';
   return `
     <a class="app-tile" href="/apps/${esc(a.slug)}/index.html">
       <div class="visual">
         <img src="/${esc(a.icon || 'logos/Node Logo.png')}" alt="${esc(a.title)} logo" onerror="this.style.opacity=0">
       </div>
       <div class="body">
-        <span class="surf">${esc(a.surface ? a.surface.split('·')[0].trim() : 'App')}</span>
+        <span class="surf">${esc(surfLabel)}</span>
         <h3>${esc(a.title)}</h3>
         <p class="claim">${esc(a.headline_claim || a.tagline || '')}</p>
         <span class="more">Open ${esc(a.title)} →</span>

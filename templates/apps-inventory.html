@@ -21,25 +21,22 @@
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
 <link rel="stylesheet" href="/css/bundles/page.css">
 <style>
-  /* APPS INVENTORY — single-law derivative.
-     Hero intro paragraph + a flagship hero (Section 2 derivative) +
-     responsive grid of dark .rp-commands-card-style app tiles
-     (same .app-card vocabulary as Section 3 of the home).
-     NO uniform 3-col grid (banned). NO multi-tone gradients. */
-
-  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html, body {
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  body { background: var(--ad-bg); }
   html.dark-mode body { background: var(--ad-bg-dark); }
 
-  .docs-layout.ai-no-rails {
-    grid-template-columns: minmax(0, 1fr) !important;
-    width: 80% !important; max-width: none !important;
-    margin-left: auto !important; margin-right: auto !important;
-    padding-left: 0 !important; padding-right: 0 !important;
+  .apps-page {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 0 80px;
   }
-  .docs-layout.ai-no-rails > .docs-left,
-  .docs-layout.ai-no-rails > .docs-right { display: none !important; }
-  @media (max-width: 1100px) {
-    .docs-layout.ai-no-rails { width: 94% !important; }
+  @media (max-width: 768px) {
+    .apps-page { width: 94%; }
   }
 
   .ai-intro {
@@ -64,118 +61,10 @@
     color: var(--ad-text-1);
     margin: 0; max-width: 60ch;
   }
-  .ai-intro p:not(.lead) {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-    max-width: var(--ad-measure);
-  }
 
-  /* Flagship card — 2-col Section 2 derivative (copy left, painted
-     frame right with the flagship app's 240px logo). */
-  .ai-flagship {
-    margin: 0 0 var(--space-2xl);
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 0;
-    align-items: stretch;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 22px 50px rgba(30,52,72,0.16);
-    transition: transform 0.18s, box-shadow 0.18s;
-  }
-  @media (hover: hover) {
-    .ai-flagship:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 30px 70px rgba(30,52,72,0.22);
-    }
-  }
-  .ai-flagship .copy {
-    padding: clamp(40px, 5vw, 56px);
-    display: flex; flex-direction: column; gap: 14px;
-    justify-content: center;
-    background: var(--ad-panel);
-  }
-  html.dark-mode .ai-flagship .copy { background: var(--ad-panel-dark); }
-  .ai-flagship .badge {
-    align-self: flex-start;
-    background: rgba(21,96,130,0.10);
-    color: var(--ad-teal);
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    padding: 5px 12px;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-  }
-  .ai-flagship h2 {
-    margin: 0;
-    font-family: var(--ad-font-display);
-    font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
-    color: var(--ad-text-1);
-    max-width: var(--ad-measure);
-  }
-  .ai-flagship .claim {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: var(--ad-text-body);
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-body);
-    color: var(--ad-text-3);
-    max-width: var(--ad-measure);
-  }
-  .ai-flagship .arrow {
-    align-self: flex-start;
-    font-family: var(--ad-font-body);
-    font-size: 13px;
-    font-weight: var(--ad-w-medium);
-    color: var(--ad-teal);
-    margin-top: 6px;
-  }
-  .ai-flagship .visual {
-    position: relative;
-    min-height: 380px;
-    overflow: hidden;
-    background: #1a1a1a;
-  }
-  .ai-flagship .visual::before {
-    content: ''; position: absolute; inset: 0;
-    background: url('/images/revit-bg.png') center/cover no-repeat;
-    z-index: 0;
-  }
-  .ai-flagship .visual::after {
-    content: ''; position: absolute; inset: 0;
-    background: var(--ad-painted-overlay);
-    z-index: 0;
-  }
-  .ai-flagship .visual img {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 240px; height: 240px;
-    object-fit: contain;
-    border-radius: 36px;
-    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55));
-  }
-  @media (max-width: 1100px) {
-    .ai-flagship { grid-template-columns: 1fr; }
-    .ai-flagship .visual { aspect-ratio: 16/10; min-height: auto; }
-    .ai-flagship .visual img { width: 180px; height: 180px; }
-  }
-
-  /* Apps grid — same .app-card vocabulary as Section 3 of the home */
   .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
   }
   .app-tile {
@@ -195,119 +84,19 @@
     }
   }
   .app-tile .visual {
-    position: relative;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     background: var(--ad-card-dark);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
   }
   .app-tile .visual img {
-    position: relative; z-index: 1;
-    width: 180px; height: 180px;
+    width: 100px; height: 100px;
     object-fit: contain;
     filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
   }
-
-  /* Phase 8.4: feature-tile painted frame + per-slug CSS schematic
-     mockups. Same dark .rp-commands-card body underneath. */
-  .feat-tile .feat-tile-frame {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: #1a1a1a;
-  }
-  .feat-tile .feat-tile-frame::before {
-    content: ''; position: absolute; inset: 0;
-    background: url('/images/revit-bg.png') center/cover no-repeat;
-    z-index: 0;
-  }
-  .feat-tile .feat-tile-frame::after {
-    content: ''; position: absolute; inset: 0;
-    background: rgba(0,0,0,0.30);
-    z-index: 0;
-  }
-  .feat-tile .feat-mock {
-    position: absolute; inset: 12px;
-    z-index: 2;
-    border-radius: 10px;
-    background: rgba(20, 24, 32, 0.55);
-    overflow: hidden;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.30);
-  }
-
-  /* Clash Solver: horizontal duct + ramped pipe over it */
-  .feat-mock-clash .feat-mock-duct {
-    position: absolute; left: 0; right: 0; top: 50%;
-    height: 12px; background: #b6bdc6;
-    transform: translateY(-50%);
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.20);
-  }
-  .feat-mock-clash .feat-mock-pipe-ramp {
-    position: absolute; left: 8%; right: 8%; top: 50%;
-    height: 6px; background: #2eb8b8;
-    transform: translateY(-50%);
-    clip-path: polygon(0 60%, 28% 60%, 38% 0%, 62% 0%, 72% 60%, 100% 60%, 100% 100%, 72% 100%, 62% 40%, 38% 40%, 28% 100%, 0 100%);
-    height: 30px;
-  }
-  .feat-mock-clash .feat-mock-marker {
-    position: absolute; top: 50%;
-    width: 10px; height: 10px;
-    background: #ff4d4d;
-    border-radius: 50%;
-    transform: translateY(-50%);
-    box-shadow: 0 0 8px rgba(255,77,77,0.8);
-  }
-  .feat-mock-clash .feat-mock-marker-1 { left: 32%; }
-  .feat-mock-clash .feat-mock-marker-2 { right: 32%; }
-
-  /* AutoRoute: 2 horizontal pipes with elbow marks */
-  .feat-mock-autoroute .feat-mock-pipe {
-    position: absolute; left: 6%; right: 6%;
-    height: 6px;
-    background: #2eb8b8;
-    border-radius: 3px;
-  }
-  .feat-mock-autoroute .feat-mock-pipe-1 { top: 32%; background: #2eb8b8; }
-  .feat-mock-autoroute .feat-mock-pipe-2 { top: 60%; background: #c43a3a; height: 4px; }
-  .feat-mock-autoroute .feat-mock-elbow {
-    position: absolute;
-    width: 12px; height: 12px;
-    border: 2px solid #2eb8b8;
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-    border-radius: 50% 0 0 0;
-  }
-  .feat-mock-autoroute .feat-mock-elbow-1 { left: 26%; top: calc(32% - 6px); }
-  .feat-mock-autoroute .feat-mock-elbow-2 { left: 70%; top: calc(32% - 6px); }
-
-  /* Plantroom: 3 equipment rectangles + a header line connecting them */
-  .feat-mock-plantroom .feat-mock-eq {
-    position: absolute; bottom: 16%;
-    width: 18%; height: 38%;
-    background: #9aa5b1;
-    border-radius: 4px;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.20);
-  }
-  .feat-mock-plantroom .feat-mock-eq-1 { left: 12%; }
-  .feat-mock-plantroom .feat-mock-eq-2 { left: 41%; }
-  .feat-mock-plantroom .feat-mock-eq-3 { left: 70%; }
-  .feat-mock-plantroom .feat-mock-header {
-    position: absolute; left: 8%; right: 8%; top: 30%;
-    height: 5px;
-    background: #2eb8b8;
-    border-radius: 3px;
-  }
-
-  /* Generic — just a couple of teal lines for any other feature */
-  .feat-mock-generic .feat-mock-line {
-    position: absolute; left: 10%; right: 10%;
-    height: 4px; background: rgba(46,184,184,0.65); border-radius: 2px;
-  }
-  .feat-mock-generic .feat-mock-line-1 { top: 38%; }
-  .feat-mock-generic .feat-mock-line-2 { top: 58%; right: 30%; }
   .app-tile .body {
-    padding: 18px 20px 14px;
-    display: flex; flex-direction: column; gap: 8px;
+    padding: 16px 18px 14px;
+    display: flex; flex-direction: column; gap: 6px;
     flex: 1 1 auto;
   }
   .app-tile .surf {
@@ -321,7 +110,7 @@
   .app-tile h3 {
     margin: 0;
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-card);
+    font-size: 16px;
     font-weight: var(--ad-w-card);
     line-height: 1.25;
     color: #fff;
@@ -329,14 +118,14 @@
   .app-tile .claim {
     margin: 0;
     font-family: var(--ad-font-body);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: var(--ad-w-light);
     line-height: 1.45;
     color: rgba(255,255,255,0.65);
   }
   .app-tile .more {
     margin-top: auto;
-    padding-top: 10px;
+    padding-top: 8px;
     border-top: 1px solid var(--ad-border-card);
     font-family: var(--ad-font-body);
     font-size: var(--ad-text-mini);
@@ -346,14 +135,11 @@
     letter-spacing: var(--ad-ls-mini);
   }
 
-  /* ── INTERACTIVE STATES — Phase 8.7.4 / 8.7.5 ───────────────────── */
-  .ai-flagship:focus-visible,
   .app-tile:focus-visible {
     outline: 2px solid var(--ad-teal);
     outline-offset: 2px;
     border-radius: 14px;
   }
-  .ai-flagship:active,
   .app-tile:active { transform: scale(0.99); }
 </style>
 </head>
@@ -361,24 +147,15 @@
 
 <script src="/shell.js"></script>
 
-<div class="docs-layout wide ai-no-rails">
-<aside class="docs-left"></aside>
-<main class="docs-content">
+<div class="apps-page">
 
   <div class="ai-intro">
     <h1>{{section_lead}}</h1>
     <p class="lead">{{section_blurb}}</p>
   </div>
 
-  {{flagship_html}}
-
   <div class="apps-grid">{{tiles_html}}</div>
 
-
-</main>
-<aside class="docs-right"></aside>
 </div>
-
-<script src="/docs-shell.js"></script>
 </body>
 </html>
