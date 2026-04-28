@@ -288,4 +288,12 @@
   } else {
     appendFooter();
   }
+
+  // Load pulsing neural node favicon on every page
+  if (!document.querySelector('script[src*="favicon-pulse"]')) {
+    var s = document.createElement('script');
+    s.src = '/js/favicon-pulse.js';
+    s.defer = true;
+    document.head.appendChild(s);
+  }
 })();
