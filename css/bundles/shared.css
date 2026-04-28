@@ -1102,6 +1102,26 @@ html, body {
   flex: 0 0 280px;
 }
 
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 20px;
+  }
+  .footer-brand {
+    flex: 1 1 100%;
+  }
+  .footer-links {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 20px 0;
+  }
+}
+
 .footer-logo {
   align-items: baseline;
   display: flex;
