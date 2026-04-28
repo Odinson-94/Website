@@ -1,154 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apps — Adelphos AI — Adelphos AI</title>
-<meta name="description" content="Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who&#39;ve spent twenty years inside Revit. All apps are self-serve — download, install, run.">
+<title>Apps — Adelphos AI</title>
+<meta name="description" content="Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.">
 <meta name="keywords" content="Adelphos AI apps, MEP software, Revit add-in, Revit Copilot, Adelphos Chat, Specbuilder, Report Builder, Document Controller, QA Manager, Schedule Builder, CoBie Manager, AutoCAD Copilot, Adelphos for Word, Adelphos for Excel">
-<link rel="canonical" href="https://adelphos.ai/apps/index.html">
+<link rel="canonical" href="https://adelphos.ai/apps/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="theme-color" content="#156082">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Apps — Adelphos AI — Adelphos AI">
-<meta property="og:description" content="Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who&#39;ve spent twenty years inside Revit. All apps are self-serve — download, install, run.">
-<meta property="og:url" content="https://adelphos.ai/apps/index.html">
+<meta property="og:title" content="Apps — Adelphos AI">
+<meta property="og:description" content="Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit.">
+<meta property="og:url" content="https://adelphos.ai/apps/">
 <meta property="og:image" content="https://adelphos.ai/images/og/default.png">
 <meta property="og:site_name" content="Adelphos AI">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@adelphos_ai">
-<meta name="twitter:title" content="Apps — Adelphos AI — Adelphos AI">
-<meta name="twitter:description" content="Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who&#39;ve spent twenty years inside Revit. All apps are self-serve — download, install, run.">
+<meta name="twitter:title" content="Apps — Adelphos AI">
+<meta name="twitter:description" content="Each app replaces hours of manual work in a tool you already use.">
 <meta name="twitter:image" content="https://adelphos.ai/images/og/default.png">
 <link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Adelphos AI",
-  "url": "https://adelphos.ai",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Adelphos AI",
-    "url": "https://adelphos.ai",
-    "logo": "https://adelphos.ai/logos/Node%20Logo.png",
-    "sameAs": [
-      "https://www.linkedin.com/company/adelphos-ai",
-      "https://github.com/adelphos-ai"
-    ],
-    "parentOrganization": {
-      "@type": "Organization",
-      "name": "JPA Designs Ltd"
-    },
-    "founders": [
-      {
-        "@type": "Person",
-        "name": "Jordan Jones"
-      }
-    ]
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Adelphos AI Apps",
-  "description": "Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.",
-  "url": "https://adelphos.ai/apps/index.html",
+  "description": "Eleven flagship apps. One platform.",
+  "url": "https://adelphos.ai/apps/",
   "mainEntity": {
     "@type": "ItemList",
     "numberOfItems": 11,
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Revit Copilot",
-        "url": "https://adelphos.ai/apps/revit-copilot/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Adelphos Chat",
-        "url": "https://adelphos.ai/apps/adelphos-chat/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Specbuilder",
-        "url": "https://adelphos.ai/apps/specbuilder/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "Report Builder",
-        "url": "https://adelphos.ai/apps/report-builder/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 5,
-        "name": "Document Controller",
-        "url": "https://adelphos.ai/apps/document-controller/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 6,
-        "name": "QA Manager",
-        "url": "https://adelphos.ai/apps/qa-manager/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 7,
-        "name": "Schedule Builder",
-        "url": "https://adelphos.ai/apps/schedule-builder/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 8,
-        "name": "CoBie Manager",
-        "url": "https://adelphos.ai/apps/cobie-manager/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 9,
-        "name": "AutoCAD Copilot",
-        "url": "https://adelphos.ai/apps/autocad-copilot/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 10,
-        "name": "Adelphos for Word",
-        "url": "https://adelphos.ai/apps/word-add-in/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 11,
-        "name": "Adelphos for Excel",
-        "url": "https://adelphos.ai/apps/excel-add-in/index.html"
-      }
+      {"@type":"ListItem","position":1,"name":"Revit Copilot","url":"https://adelphos.ai/apps/revit-copilot/"},
+      {"@type":"ListItem","position":2,"name":"Adelphos Chat","url":"https://adelphos.ai/apps/adelphos-chat/"},
+      {"@type":"ListItem","position":3,"name":"Specbuilder","url":"https://adelphos.ai/apps/specbuilder/"},
+      {"@type":"ListItem","position":4,"name":"Report Builder","url":"https://adelphos.ai/apps/report-builder/"},
+      {"@type":"ListItem","position":5,"name":"Document Controller","url":"https://adelphos.ai/apps/document-controller/"},
+      {"@type":"ListItem","position":6,"name":"QA Manager","url":"https://adelphos.ai/apps/qa-manager/"},
+      {"@type":"ListItem","position":7,"name":"Schedule Builder","url":"https://adelphos.ai/apps/schedule-builder/"},
+      {"@type":"ListItem","position":8,"name":"CoBie Manager","url":"https://adelphos.ai/apps/cobie-manager/"},
+      {"@type":"ListItem","position":9,"name":"AutoCAD Copilot","url":"https://adelphos.ai/apps/autocad-copilot/"},
+      {"@type":"ListItem","position":10,"name":"Adelphos for Word","url":"https://adelphos.ai/apps/word-add-in/"},
+      {"@type":"ListItem","position":11,"name":"Adelphos for Excel","url":"https://adelphos.ai/apps/excel-add-in/"}
     ]
   }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://adelphos.ai/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Apps",
-      "item": "https://adelphos.ai/apps/index.html"
-    }
-  ]
 }
 </script>
 <script>
@@ -160,7 +74,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Display:wght@500;600&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
@@ -185,140 +99,123 @@
   }
 
   .ai-intro {
-    margin: 0 0 56px;
+    margin: 0 0 48px;
     display: flex; flex-direction: column; gap: 12px;
     max-width: 760px;
   }
   .ai-intro h1 {
     margin: 0;
-    font-family: var(--ad-font-display);
+    font-family: 'Inter Display', var(--ad-font-display, Inter), sans-serif;
     font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: var(--ad-w-medium);
-    line-height: var(--ad-lh-hero);
-    letter-spacing: var(--ad-ls-hero);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--ad-text-1);
   }
   .ai-intro .lead {
-    font-family: var(--ad-font-body);
+    font-family: Inter, var(--ad-font-body, sans-serif);
     font-size: 18px;
-    font-weight: var(--ad-w-light);
-    line-height: var(--ad-lh-row);
-    color: var(--ad-text-3);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ad-text-3, #5a6270);
     margin: 0; max-width: 60ch;
   }
 
   .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 40px 32px;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 40px 28px;
   }
   @media (max-width: 600px) {
-    .apps-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+    .apps-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
   }
 
   .app-tile {
     text-decoration: none;
     color: inherit;
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 8px;
+    padding: 12px 8px;
     border-radius: 16px;
     transition: transform 0.22s ease, background 0.22s ease;
   }
-  @media (hover: hover) {
-    .app-tile:hover {
-      transform: translateY(-4px);
-      background: rgba(21,96,130,0.04);
-    }
-    html.dark-mode .app-tile:hover {
-      background: rgba(255,255,255,0.05);
-    }
+  .app-tile:hover {
+    transform: translateY(-4px);
+    background: rgba(21,96,130,0.06);
   }
+  html.dark-mode .app-tile:hover {
+    background: rgba(255,255,255,0.05);
+  }
+  .app-tile:focus-visible {
+    outline: 2px solid var(--ad-teal, #156082);
+    outline-offset: 2px;
+    border-radius: 16px;
+  }
+  .app-tile:active { transform: scale(0.97); }
 
   .app-tile .icon-wrap {
-    width: 120px; height: 120px;
+    width: 88px; height: 88px;
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 16px;
-    position: relative;
-    border-radius: 28px;
-    overflow: hidden;
+    margin-bottom: 14px;
+    border-radius: 22px;
+    background: rgba(21,96,130,0.07);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+  }
+  html.dark-mode .app-tile .icon-wrap {
+    background: rgba(255,255,255,0.06);
+  }
+  .app-tile:hover .icon-wrap {
+    box-shadow: 0 0 24px rgba(21,96,130,0.25), 0 0 48px rgba(21,96,130,0.10);
+    background: rgba(21,96,130,0.12);
+  }
+  html.dark-mode .app-tile:hover .icon-wrap {
+    box-shadow: 0 0 24px rgba(46,184,184,0.3), 0 0 48px rgba(46,184,184,0.12);
+    background: rgba(255,255,255,0.10);
   }
   .app-tile .icon-wrap img {
-    width: 100%; height: 100%;
+    width: 56px; height: 56px;
     object-fit: contain;
-    border-radius: 28px;
-    transition: filter 0.35s ease, transform 0.35s ease;
-    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.18));
+    transition: filter 0.3s ease, transform 0.3s ease;
   }
-  .app-tile .icon-wrap::after {
-    content: '';
-    position: absolute; inset: 0;
-    border-radius: 28px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-  @media (hover: hover) {
-    .app-tile:hover .icon-wrap img {
-      filter: drop-shadow(0 8px 24px rgba(21,96,130,0.35)) brightness(1.12);
-      transform: scale(1.06);
-    }
-    .app-tile:hover .icon-wrap::after {
-      opacity: 1;
-    }
+  .app-tile:hover .icon-wrap img {
+    filter: drop-shadow(0 0 8px rgba(21,96,130,0.4));
+    transform: scale(1.08);
   }
 
   .app-tile h3 {
     margin: 0 0 4px;
-    font-family: var(--ad-font-body);
+    font-family: Inter, var(--ad-font-body, sans-serif);
     font-size: 15px;
-    font-weight: var(--ad-w-medium);
+    font-weight: 500;
     line-height: 1.3;
     color: var(--ad-text-1);
   }
   .app-tile .surf {
-    font-family: var(--ad-font-body);
-    font-size: 11px;
-    font-weight: var(--ad-w-light);
-    color: var(--ad-text-5);
-    margin-bottom: 6px;
+    font-family: Inter, var(--ad-font-body, sans-serif);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--ad-text-3, #5a6270);
+    line-height: 1.4;
   }
   .app-tile .claim {
-    margin: 0;
-    font-family: var(--ad-font-body);
+    margin: 6px 0 0;
     font-size: 13px;
-    font-weight: var(--ad-w-light);
-    line-height: 1.5;
-    color: var(--ad-text-3);
+    font-weight: 300;
+    color: var(--ad-text-3, #5a6270);
+    line-height: 1.45;
+    max-width: 22ch;
   }
   .app-tile .arrow {
-    margin-top: 10px;
-    font-family: var(--ad-font-body);
+    margin-top: 8px;
     font-size: 12px;
-    font-weight: var(--ad-w-medium);
-    color: var(--ad-teal);
+    font-weight: 500;
+    color: var(--ad-teal, #156082);
     opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.22s ease, transform 0.22s ease;
+    transition: opacity 0.2s ease;
   }
-  @media (hover: hover) {
-    .app-tile:hover .arrow {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @media (hover: none) {
-    .app-tile .arrow { opacity: 1; transform: none; }
-  }
-
-  .app-tile:focus-visible {
-    outline: 2px solid var(--ad-teal);
-    outline-offset: 4px;
-    border-radius: 16px;
-  }
-  .app-tile:active { transform: scale(0.97); }
+  .app-tile:hover .arrow { opacity: 1; }
 </style>
 </head>
 <body>
@@ -326,113 +223,125 @@
 <script src="/shell.js"></script>
 
 <div class="apps-page">
-
   <div class="ai-intro">
     <h1>Eleven flagship apps. One platform.</h1>
     <p class="lead">Each app replaces hours of manual work in a tool you already use. Built on the MEP Bridge platform, orchestrated by the Adelphos AI agent, and engineered by people who've spent twenty years inside Revit. All apps are self-serve — download, install, run.</p>
   </div>
 
   <div class="apps-grid">
+
     <a class="app-tile" href="/apps/revit-copilot/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/revit-copilot-sparkles.svg" alt="Revit Copilot">
       </div>
       <h3>Revit Copilot</h3>
-      <span class="surf">Revit add-in · Revit 2022 → 2026</span>
+      <span class="surf">Revit add-in</span>
       <p class="claim">An AI engineer that lives inside Revit and runs the model with you.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/adelphos-chat/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/adelphos-chat.svg" alt="Adelphos Chat">
       </div>
       <h3>Adelphos Chat</h3>
-      <span class="surf">Web app + native desktop (Windows / macOS)</span>
+      <span class="surf">Web app · Desktop</span>
       <p class="claim">Your project's brain — without Revit, without a desk.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/specbuilder/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/specbuilder.svg" alt="Specbuilder">
       </div>
       <h3>Specbuilder</h3>
-      <span class="surf">Web app + Word add-in</span>
+      <span class="surf">Web app · Word add-in</span>
       <p class="claim">The MEP specification, drafted from your live model in minutes.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/report-builder/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/report-builder.svg" alt="Report Builder">
       </div>
       <h3>Report Builder</h3>
       <span class="surf">Web app</span>
-      <p class="claim">Every recurring report — composed, formatted, and traceable to source.</p>
+      <p class="claim">Every recurring report — composed and traceable to source.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/document-controller/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/document-controller.svg" alt="Document Controller">
       </div>
       <h3>Document Controller</h3>
-      <span class="surf">Desktop service + web dashboard</span>
-      <p class="claim">Single source of truth for every drawing, every revision, every transmittal.</p>
+      <span class="surf">Desktop · Web dashboard</span>
+      <p class="claim">Single source of truth for every drawing, revision, transmittal.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/qa-manager/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/qa-manager.svg" alt="QA Manager">
       </div>
       <h3>QA Manager</h3>
-      <span class="surf">Desktop app + Revit add-in</span>
-      <p class="claim">Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.</p>
+      <span class="surf">Desktop · Revit add-in</span>
+      <p class="claim">Automated QA across drawings, schedules, specs, and the model.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/schedule-builder/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/schedule-builder.svg" alt="Schedule Builder">
       </div>
       <h3>Schedule Builder</h3>
-      <span class="surf">Revit add-in + web app</span>
-      <p class="claim">Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.</p>
+      <span class="surf">Revit add-in · Web app</span>
+      <p class="claim">Production-ready Revit schedules in minutes.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/cobie-manager/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/cobie-manager.svg" alt="CoBie Manager">
       </div>
       <h3>CoBie Manager</h3>
-      <span class="surf">Revit add-in + web dashboard</span>
-      <p class="claim">A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.</p>
+      <span class="surf">Revit add-in · Web dashboard</span>
+      <p class="claim">A live, audit-ready COBie deliverable from the model.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/autocad-copilot/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/autocad-copilot-sparkles.svg" alt="AutoCAD Copilot">
       </div>
       <h3>AutoCAD Copilot</h3>
-      <span class="surf">AutoCAD MEP add-in · AutoCAD MEP 2024+</span>
-      <p class="claim">An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.</p>
+      <span class="surf">AutoCAD MEP add-in</span>
+      <p class="claim">Same agent, same tools, same project memory — inside AutoCAD.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/word-add-in/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/word-add-in.png" alt="Adelphos for Word">
       </div>
       <h3>Adelphos for Word</h3>
-      <span class="surf">Word add-in · Word for Microsoft 365</span>
-      <p class="claim">The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.</p>
+      <span class="surf">Word add-in</span>
+      <p class="claim">Drafts, reviews, and finishes documents on your house template.</p>
       <span class="arrow">Open →</span>
     </a>
+
     <a class="app-tile" href="/apps/excel-add-in/index.html">
       <div class="icon-wrap">
         <img src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel">
       </div>
       <h3>Adelphos for Excel</h3>
-      <span class="surf">Excel add-in · Excel for Microsoft 365</span>
-      <p class="claim">The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.</p>
+      <span class="surf">Excel add-in</span>
+      <p class="claim">Connects calc workbooks to the live Revit model.</p>
       <span class="arrow">Open →</span>
-    </a></div>
+    </a>
 
+  </div>
 </div>
+
 </body>
 </html>

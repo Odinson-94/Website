@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZLH4EJC6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZLH4EJC6X');
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.signup-btn, .ap-cta-primary, .ap-cta-ghost, .fs-cta-primary, .fs-cta-ghost, .ap-end-cta a, .fs-end-cta a, .end-cta a, .install-cta-row a, .svc-btn-primary, .email-strip');
+  if (!btn) return;
+  var label = btn.textContent.trim().substring(0, 60);
+  var category = btn.className.indexOf('signup-btn') !== -1 ? 'signup_click' : 'cta_click';
+  gtag('event', category, { event_label: label, page_path: location.pathname });
+});
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Adelphos for Excel — Apps — Adelphos AI</title>
@@ -16,7 +33,7 @@
 <meta property="og:image" content="https://adelphos.ai/images/og/default.png">
 <meta property="og:site_name" content="Adelphos AI">
 <meta property="og:locale" content="en_GB">
-<meta property="article:modified_time" content="2026-04-28T19:03:02+08:00">
+<meta property="article:modified_time" content="2026-04-26T11:47:06+08:00">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@adelphos_ai">
 <meta name="twitter:title" content="Adelphos for Excel — Apps — Adelphos AI">
@@ -128,7 +145,7 @@
       "name": "How do I get Adelphos for Excel?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Self-serve: Get the Excel add-in at /dist/downloads/index.html. No sales call required."
+        "text": "Self-serve: Get the Excel add-in at /downloads/index.html. No sales call required."
       }
     }
   ]
@@ -181,10 +198,10 @@
      Sections 1+2 of templates/home.html. No new card style. Painted
      artsy frame for the hero showcase, dark .rp-commands-card for
      features/related/CTA, View 6 .demo-text-* for prose.
-     See: /opt/cursor/artifacts/PLAN.md Phase 7
      ════════════════════════════════════════════════════════════════════ */
 
-  body { background: var(--ad-bg); overflow-y: auto; overflow-x: hidden; height: auto; }
+  html, body { overflow-y: auto !important; overflow-x: hidden !important; height: auto !important; }
+  body { background: var(--ad-bg); }
   html.dark-mode body { background: var(--ad-bg-dark); }
 
   /* Wide layout, no rails (matches home) */
@@ -278,7 +295,6 @@
 
   .ap-tag {
     margin: 0;
-    font-family: var(--ad-font-body);
     font-size: var(--ad-text-body);
     font-weight: 300;
     line-height: 1.55;
@@ -337,7 +353,7 @@
   .ap-cta-primary:active,
   .ap-cta-ghost:active { transform: scale(0.98); }
 
-  /* RIGHT — hero frame: Revit bg only for revit-copilot, radial glow for others */
+  /* RIGHT — painted artsy frame (Section 2 .revit-panel-bottom pattern) */
   .ap-hero-frame {
     position: relative;
     min-height: 460px;
@@ -346,24 +362,10 @@
   }
   .ap-hero-frame::before {
     content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(30,130,80,0.40) 0%, rgba(20,100,60,0.12) 50%, #1a1a1a 100%);
     z-index: 0;
   }
-  .ap-hero-frame[data-tone="blue"]::before {
-    background: radial-gradient(ellipse at 50% 50%, rgba(21,96,130,0.45) 0%, rgba(21,96,130,0.15) 50%, #1a1a1a 100%);
-  }
-  .ap-hero-frame[data-tone="midnight"]::before {
-    background: radial-gradient(ellipse at 50% 50%, rgba(26,42,74,0.55) 0%, rgba(26,42,74,0.18) 50%, #1a1a1a 100%);
-  }
-  .ap-hero-frame[data-tone="red"]::before {
-    background: radial-gradient(ellipse at 50% 50%, rgba(130,34,28,0.45) 0%, rgba(130,34,28,0.15) 50%, #1a1a1a 100%);
-  }
-  .ap-hero-frame[data-tone="green"]::before {
-    background: radial-gradient(ellipse at 50% 50%, rgba(26,96,64,0.45) 0%, rgba(26,96,64,0.15) 50%, #1a1a1a 100%);
-  }
-  .ap-hero-frame.ap-hero-revit::before {
-    background: url('/images/revit-bg.png') center center / cover no-repeat;
-  }
-  .ap-hero-frame.ap-hero-revit::after {
+  .ap-hero-frame::after {
     content: ''; position: absolute; inset: 0;
     background: var(--ad-painted-overlay);
     z-index: 0;
@@ -476,6 +478,7 @@
     .ap-hero-frame .feat-hero-mock { width: 320px; }
   }
 
+  /* ── SECTION HEADINGS ───────────────────────────────────────────────── */
   .ap-section-head {
     display: flex; align-items: baseline; justify-content: space-between;
     gap: var(--space-md); flex-wrap: wrap;
@@ -500,6 +503,7 @@
     font-size: 14px; line-height: 1.55;
   }
 
+  /* ── DESCRIPTION — 40% detail / 20% whitespace / 40% pull-quote ──── */
   .ap-why {
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
@@ -543,6 +547,7 @@
     .ap-why-quote blockquote { font-size: 28px; }
   }
 
+  /* ── WHAT MAKES IT DIFFERENT ──────────────────────────────────────── */
   .ap-special {
     margin: var(--space-sm) 0 var(--space-xl);
     font-size: 18px;
@@ -552,6 +557,44 @@
     max-width: 60ch;
   }
 
+  /* ── THE SHIFT — two cards side by side ────────────────────────── */
+  .shift-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+  .shift {
+    padding: 24px 26px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--ad-border);
+    background: var(--ad-panel);
+  }
+  .shift .lab {
+    margin: 0 0 10px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-text-5);
+  }
+  .shift p:last-of-type {
+    margin: 0;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-body);
+    font-weight: var(--ad-w-light);
+    line-height: var(--ad-lh-body);
+    color: var(--ad-text-3);
+  }
+  .shift.before .lab { color: var(--ad-text-5); }
+  .shift.after .lab { color: var(--ad-teal); }
+  @media (max-width: 720px) { .shift-grid { grid-template-columns: 1fr; } }
+
+  /* ── FEATURES — dark .rp-commands-card with rp-feat-item rows.
+        Per Phase 7.4: NO rp-agent-spinner here (11 simultaneous
+        spinners on every app page is motion noise). Replace with
+        a static teal chevron. ─────────────────────────────────────── */
   .ap-features-card {
     position: static;
     width: 100%;
@@ -618,6 +661,16 @@
     .ap-features-card .rp-feat-title { font-size: 16px; }
     .ap-features-card .rp-feat-desc { font-size: 14px; }
   }
+  .ap-feat-group-label {
+    margin: var(--space-md) 0 8px;
+    font-family: var(--ad-font-body);
+    font-size: var(--ad-text-mini);
+    font-weight: var(--ad-w-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-teal-light);
+  }
+  .ap-feat-group-label:first-child { margin-top: 0; }
 
   /* ── INSTALL ─────────────────────────────────────────────────────── */
   .install-strip {
@@ -860,6 +913,7 @@
     color: var(--ad-text-1);
   }
 
+  /* ── END CTA — same dark .rp-commands-card as the home ─────────── */
   .ap-end-cta {
     position: static;
     width: 100%;
@@ -911,6 +965,7 @@
   }
   .ap-end-cta a:active { transform: scale(0.98); }
 
+  /* ── HERO VIDEO (only when app.hero_video exists) ────────────────── */
   .hero-video {
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -1039,11 +1094,11 @@
       <p class="ap-tag">Excel add-in that connects your heat-loss, sizing, and IESVE workbooks to the live Revit model. Push values to the model, pull values from the model, run gap analyses inline.</p>
       
       <div class="ap-actions">
-        <a class="ap-cta-primary" href="/dist/downloads/index.html">Get the Excel add-in &rarr;</a>
-        <a class="ap-cta-ghost" href="/dist/apps/schedule-builder/index.html">See Schedule Builder</a>
+        <a class="ap-cta-primary" href="/downloads/index.html">Get the Excel add-in &rarr;</a>
+        <a class="ap-cta-ghost" href="/apps/schedule-builder/index.html">See Schedule Builder</a>
       </div>
     </div>
-    <div class="ap-hero-frame " data-tone="green">
+    <div class="ap-hero-frame">
       <img class="ap-hero-logo" src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel logo" onerror="this.style.opacity=0">
     </div>
   </section>
@@ -1212,14 +1267,14 @@
     </details>
     <details class="faq-item">
       <summary>How do I get Adelphos for Excel?</summary>
-      <div class="faq-answer"><p>Self-serve: Get the Excel add-in at /dist/downloads/index.html. No sales call required.</p></div>
+      <div class="faq-answer"><p>Self-serve: Get the Excel add-in at /downloads/index.html. No sales call required.</p></div>
     </details></div>
     </section>
 
   <div class="ap-end-cta">
     <h3>Get the Excel add-in.</h3>
     <p>Open Adelphos for Excel in your browser — no install needed.</p>
-    <a href="/dist/downloads/index.html">Get the Excel add-in &rarr;</a>
+    <a href="/downloads/index.html">Get the Excel add-in &rarr;</a>
   </div>
 
 
@@ -1230,6 +1285,6 @@
 <script>
   document.querySelectorAll('video[data-src]').forEach(function(v){ if (!v.src) v.src = v.dataset.src; });
 </script>
-<script src="/docs-shell.js"></script>
+<script src="/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>
