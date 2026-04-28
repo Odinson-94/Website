@@ -1,7 +1,3 @@
-// #region agent log
-fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'specbuilder.js:top',message:'specbuilder.js LOADED',data:{windowWidth:window.innerWidth,windowHeight:window.innerHeight,bodyWidth:document.body.offsetWidth,bodyHeight:document.body.offsetHeight,iframeContext:window!==window.top,v8Exists:!!document.getElementById('specWritingOverlay'),v8CenterPanel:!!document.querySelector('.v8-center-panel'),v8ThreeCol:!!document.querySelector('.v8-three-column')},timestamp:Date.now(),hypothesisId:'H5'})}).catch(()=>{});
-// #endregion
-
 // Vertical resizers for left sidebar (View 8 / specWritingOverlay only)
 (function() {
   const view8 = document.getElementById('specWritingOverlay');
@@ -1446,13 +1442,7 @@ document.querySelectorAll('.heading-item').forEach(item => {
   const agentItems = document.querySelectorAll('.demo-history-item.agent-item');
   const editorArea = document.getElementById('editorArea');
   
-  // #region agent log
-  fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'specbuilder.js:ghost-text-init',message:'Ghost text IIFE init',data:{editorPaper:!!editorPaper,ghostTextInline:!!ghostTextInline,ghostTextWrapper:!!ghostTextWrapper,chatInput:!!chatInput,chatSendBtn:!!chatSendBtn,agentItemsCount:agentItems.length,ghostVisible:ghostTextInline?ghostTextInline.classList.contains('visible'):null},timestamp:Date.now(),hypothesisId:'H2'})}).catch(()=>{});
-  // #endregion
   if (!editorPaper || !ghostTextInline) {
-    // #region agent log
-    fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'specbuilder.js:ghost-text-abort',message:'Ghost text IIFE ABORTED - missing elements',data:{editorPaper:!!editorPaper,ghostTextInline:!!ghostTextInline},timestamp:Date.now(),hypothesisId:'H2'})}).catch(()=>{});
-    // #endregion
     return;
   }
   
@@ -1533,16 +1523,10 @@ document.querySelectorAll('.heading-item').forEach(item => {
   // Handle Tab key anywhere in editor - accept ghost text suggestion
   editorPaper.addEventListener('keydown', function(e) {
     // #region agent log
-    if(e.key==='Tab'){fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'specbuilder.js:tab-keydown',message:'Tab pressed in editor',data:{ghostVisible:ghostTextInline.classList.contains('visible'),ghostDisplay:window.getComputedStyle(ghostTextInline).display,wrapperDisplay:ghostTextWrapper?window.getComputedStyle(ghostTextWrapper).display:'null',chatInputExists:!!chatInput,chatSendExists:!!chatSendBtn},timestamp:Date.now(),hypothesisId:'H2'})}).catch(()=>{});}
-    // #endregion
     if (e.key === 'Tab' && ghostTextInline.classList.contains('visible')) {
       e.preventDefault();
       e.stopPropagation();
-      
-      // #region agent log
-      fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'fa2d2a'},body:JSON.stringify({sessionId:'fa2d2a',location:'specbuilder.js:tab-accepted',message:'Tab ACCEPTED - ghost was visible, triggering finish',data:{chatInputText:chatInput?chatInput.textContent:'null'},timestamp:Date.now(),hypothesisId:'H2'})}).catch(()=>{});
-      // #endregion
-      
+
       // Send "Finish Specification" command to chat and launch chat panel
       if (chatInput && chatSendBtn) {
         // First, expand the chat panel if collapsed
