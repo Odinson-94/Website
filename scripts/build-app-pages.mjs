@@ -255,21 +255,32 @@ function renderFlagship(a) {
 
 // Tile = .app-tile (dark .rp-commands-card derivative, same vocab as
 // the home Section 3 .app-card carousel, just here in a grid).
+const SVG_ICON_MAP = {
+  'revit-copilot':       'images/app-logos/revit-copilot-sparkles.svg',
+  'adelphos-chat':       'images/app-logos/adelphos-chat.svg',
+  'specbuilder':         'images/app-logos/specbuilder.svg',
+  'report-builder':      'images/app-logos/report-builder.svg',
+  'document-controller': 'images/app-logos/document-controller.svg',
+  'qa-manager':          'images/app-logos/qa-manager.svg',
+  'schedule-builder':    'images/app-logos/schedule-builder.svg',
+  'cobie-manager':       'images/app-logos/cobie-manager.svg',
+  'autocad-copilot':     'images/app-logos/autocad-copilot-sparkles.svg',
+};
+
 function renderTile(a) {
   const surfLabel = a.surface
     ? a.surface.split('·').slice(0, 2).map(s => s.trim()).join(' · ')
     : 'App';
+  const icon = SVG_ICON_MAP[a.slug] || a.icon || 'logos/Node Logo.png';
   return `
     <a class="app-tile" href="/apps/${esc(a.slug)}/index.html">
-      <div class="visual">
-        <img src="/${esc(a.icon || 'logos/Node Logo.png')}" alt="${esc(a.title)} logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/${esc(icon)}" alt="${esc(a.title)}">
       </div>
-      <div class="body">
-        <span class="surf">${esc(surfLabel)}</span>
-        <h3>${esc(a.title)}</h3>
-        <p class="claim">${esc(a.headline_claim || a.tagline || '')}</p>
-        <span class="more">Open ${esc(a.title)} →</span>
-      </div>
+      <h3>${esc(a.title)}</h3>
+      <span class="surf">${esc(surfLabel)}</span>
+      <p class="claim">${esc(a.headline_claim || a.tagline || '')}</p>
+      <span class="arrow">Open →</span>
     </a>`;
 }
 

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <radialGradient id="mirrorGloss" cx="20%" cy="12%" r="55%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="35%"  stop-color="#ffffff" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="sparkleShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dx="0" dy="10"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feColorMatrix values="0.02 0 0 0 0  0 0.06 0 0 0  0 0 0.10 0 0  0 0 0 1 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <filter id="sparkleGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <filter id="badgeShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+      <feOffset dx="3" dy="9"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <clipPath id="enclosure"><rect width="1024" height="1024" rx="230" ry="230"/></clipPath>
+
+
+  </defs>
+
+  <g clip-path="url(#enclosure)">
+    <!-- 5x5 brand teal grid -->
+    <rect x="0"   y="0"   width="205" height="205" fill="#4595b8"/>
+    <rect x="205" y="0"   width="205" height="205" fill="#6db1cd"/>
+    <rect x="410" y="0"   width="205" height="205" fill="#95c8de"/>
+    <rect x="615" y="0"   width="205" height="205" fill="#c3dfeb"/>
+    <rect x="820" y="0"   width="204" height="205" fill="#e6f1f6"/>
+    <rect x="0"   y="205" width="205" height="205" fill="#2a7a9c"/>
+    <rect x="205" y="205" width="205" height="205" fill="#4595b8"/>
+    <rect x="410" y="205" width="205" height="205" fill="#6db1cd"/>
+    <rect x="615" y="205" width="205" height="205" fill="#95c8de"/>
+    <rect x="820" y="205" width="204" height="205" fill="#c3dfeb"/>
+    <rect x="0"   y="410" width="205" height="205" fill="#156082"/>
+    <rect x="205" y="410" width="205" height="205" fill="#2a7a9c"/>
+    <rect x="410" y="410" width="205" height="205" fill="#4595b8"/>
+    <rect x="615" y="410" width="205" height="205" fill="#6db1cd"/>
+    <rect x="820" y="410" width="204" height="205" fill="#95c8de"/>
+    <rect x="0"   y="615" width="205" height="205" fill="#08405c"/>
+    <rect x="205" y="615" width="205" height="205" fill="#156082"/>
+    <rect x="410" y="615" width="205" height="205" fill="#2a7a9c"/>
+    <rect x="615" y="615" width="205" height="205" fill="#4595b8"/>
+    <rect x="820" y="615" width="204" height="205" fill="#6db1cd"/>
+    <rect x="0"   y="820" width="205" height="204" fill="#032c43"/>
+    <rect x="205" y="820" width="205" height="204" fill="#08405c"/>
+    <rect x="410" y="820" width="205" height="204" fill="#156082"/>
+    <rect x="615" y="820" width="205" height="204" fill="#2a7a9c"/>
+    <rect x="820" y="820" width="204" height="204" fill="#4595b8"/>
+
+    <rect width="1024" height="1024" fill="url(#mirrorGloss)"/>
+    <ellipse cx="200" cy="140" rx="520" ry="300" fill="#ffffff" opacity="0.28"/>
+
+    <!-- === AI SPARKLES === -->
+
+    <!-- Big sparkle (4-point star) centred at ~440,470 -->
+    <g transform="translate(430, 450)" filter="url(#sparkleShadow)">
+      <g fill="#ffffff">
+        <!-- Main 4-point star -->
+        <path d="M0 -180 C12 -60, 60 -12, 180 0 C60 12, 12 60, 0 180 C-12 60, -60 12, -180 0 C-60 -12, -12 -60, 0 -180Z"/>
+      </g>
+    </g>
+
+    <!-- Medium sparkle bottom-right -->
+    <g transform="translate(700, 700)" filter="url(#sparkleShadow)">
+      <g fill="#ffffff" opacity="0.82">
+        <path d="M0 -110 C8 -38, 38 -8, 110 0 C38 8, 8 38, 0 110 C-8 38, -38 8, -110 0 C-38 -8, -8 -38, 0 -110Z"/>
+      </g>
+    </g>
+
+    <!-- Small sparkle accent top-left of big one -->
+    <g transform="translate(240, 280)">
+      <g fill="#ffffff" opacity="0.60">
+        <path d="M0 -55 C4 -18, 18 -4, 55 0 C18 4, 4 18, 0 55 C-4 18, -18 4, -55 0 C-18 -4, -4 -18, 0 -55Z"/>
+      </g>
+    </g>
+
+    <!-- Tiny sparkle dot accent -->
+    <g transform="translate(600, 310)">
+      <g fill="#ffffff" opacity="0.45">
+        <path d="M0 -30 C2 -10, 10 -2, 30 0 C10 2, 2 10, 0 30 C-2 10, -10 2, -30 0 C-10 -2, -2 -10, 0 -30Z"/>
+      </g>
+    </g>
+
+    <!-- Revit RVT badge - top-right corner -->
+    <g transform="translate(680, 30) scale(0.62)">
+      <path d="M496 479.546H88.278c-13.853 0-25.081-11.23-25.081-25.083v-335.96H496v361.043z" fill="#0b3c8f" fill-rule="nonzero"/>
+      <path d="M94.276 32.454h345.501c13.853 0 25.083 11.23 25.083 25.083v335.96H94.276V32.454z" fill="#1a6afe" fill-rule="nonzero"/>
+      <path d="M16 444.29l78.277-50.794V32.456L16 83.252v361.04z" fill="#699bea" fill-rule="nonzero"/>
+      <path d="M240.203 211.807h30.11a42.521 42.521 0 0025.997-7.142 23.996 23.996 0 009.599-20.397v-14.341a23.829 23.829 0 00-9.599-20.34 42.506 42.506 0 00-25.998-7.2h-30.11v69.42zm113.357 80.675v23.484a38.448 38.448 0 01-15.54 2.914 37.888 37.888 0 01-20.34-5.314 42.454 42.454 0 01-14.914-17.655l-29.653-57.135h-32.91v77.19h-36.168V115.133h67.706a83.462 83.462 0 0151.08 14.456 46.163 46.163 0 0119.255 39.023v16.626a43.643 43.643 0 01-9.37 27.54 61.33 61.33 0 01-25.654 18.97l26.683 51.08a18.052 18.052 0 0017.14 9.769l2.685-.115z" fill="#fff" fill-rule="nonzero"/>
+    </g>
+  </g>
+</svg>

@@ -176,16 +176,16 @@
 
   .apps-page {
     width: 90%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 0 80px;
+    padding: var(--shell-padding-top, 120px) 0 100px;
   }
   @media (max-width: 768px) {
-    .apps-page { width: 94%; }
+    .apps-page { width: 94%; padding-top: 100px; }
   }
 
   .ai-intro {
-    margin: 56px 0 var(--space-2xl);
+    margin: 0 0 56px;
     display: flex; flex-direction: column; gap: 12px;
     max-width: 760px;
   }
@@ -203,89 +203,122 @@
     font-size: 18px;
     font-weight: var(--ad-w-light);
     line-height: var(--ad-lh-row);
-    color: var(--ad-text-1);
+    color: var(--ad-text-3);
     margin: 0; max-width: 60ch;
   }
 
   .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 40px 32px;
   }
+  @media (max-width: 600px) {
+    .apps-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+  }
+
   .app-tile {
-    background: var(--ad-card-dark);
-    color: #fff;
     text-decoration: none;
-    border-radius: 14px;
-    overflow: hidden;
+    color: inherit;
     display: flex; flex-direction: column;
-    box-shadow: 0 8px 22px rgba(30,52,72,0.16);
-    transition: transform 0.18s, box-shadow 0.18s;
+    align-items: center;
+    text-align: center;
+    padding: 8px;
+    border-radius: 16px;
+    transition: transform 0.22s ease, background 0.22s ease;
   }
   @media (hover: hover) {
     .app-tile:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 22px 50px rgba(30,52,72,0.22);
+      transform: translateY(-4px);
+      background: rgba(21,96,130,0.04);
+    }
+    html.dark-mode .app-tile:hover {
+      background: rgba(255,255,255,0.05);
     }
   }
-  .app-tile .visual {
-    aspect-ratio: 4 / 3;
-    background: var(--ad-card-dark);
+
+  .app-tile .icon-wrap {
+    width: 120px; height: 120px;
     display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    position: relative;
+    border-radius: 28px;
     overflow: hidden;
   }
-  .app-tile .visual img {
-    width: 100px; height: 100px;
+  .app-tile .icon-wrap img {
+    width: 100%; height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
+    border-radius: 28px;
+    transition: filter 0.35s ease, transform 0.35s ease;
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.18));
   }
-  .app-tile .body {
-    padding: 16px 18px 14px;
-    display: flex; flex-direction: column; gap: 6px;
-    flex: 1 1 auto;
+  .app-tile .icon-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .app-tile:hover .icon-wrap img {
+      filter: drop-shadow(0 8px 24px rgba(21,96,130,0.35)) brightness(1.12);
+      transform: scale(1.06);
+    }
+    .app-tile:hover .icon-wrap::after {
+      opacity: 1;
+    }
+  }
+
+  .app-tile h3 {
+    margin: 0 0 4px;
+    font-family: var(--ad-font-body);
+    font-size: 15px;
+    font-weight: var(--ad-w-medium);
+    line-height: 1.3;
+    color: var(--ad-text-1);
   }
   .app-tile .surf {
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
-    font-weight: var(--ad-w-medium);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
-    color: rgba(255,255,255,0.55);
-  }
-  .app-tile h3 {
-    margin: 0;
-    font-family: var(--ad-font-body);
-    font-size: 16px;
-    font-weight: var(--ad-w-card);
-    line-height: 1.25;
-    color: #fff;
+    font-size: 11px;
+    font-weight: var(--ad-w-light);
+    color: var(--ad-text-5);
+    margin-bottom: 6px;
   }
   .app-tile .claim {
     margin: 0;
     font-family: var(--ad-font-body);
     font-size: 13px;
     font-weight: var(--ad-w-light);
-    line-height: 1.45;
-    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    color: var(--ad-text-3);
   }
-  .app-tile .more {
-    margin-top: auto;
-    padding-top: 8px;
-    border-top: 1px solid var(--ad-border-card);
+  .app-tile .arrow {
+    margin-top: 10px;
     font-family: var(--ad-font-body);
-    font-size: var(--ad-text-mini);
+    font-size: 12px;
     font-weight: var(--ad-w-medium);
-    color: var(--ad-teal-light);
-    text-transform: uppercase;
-    letter-spacing: var(--ad-ls-mini);
+    color: var(--ad-teal);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  @media (hover: hover) {
+    .app-tile:hover .arrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (hover: none) {
+    .app-tile .arrow { opacity: 1; transform: none; }
   }
 
   .app-tile:focus-visible {
     outline: 2px solid var(--ad-teal);
-    outline-offset: 2px;
-    border-radius: 14px;
+    outline-offset: 4px;
+    border-radius: 16px;
   }
-  .app-tile:active { transform: scale(0.99); }
+  .app-tile:active { transform: scale(0.97); }
 </style>
 </head>
 <body>
@@ -301,125 +334,103 @@
 
   <div class="apps-grid">
     <a class="app-tile" href="/apps/revit-copilot/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/revit-copilot.png" alt="Revit Copilot logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/revit-copilot-sparkles.svg" alt="Revit Copilot">
       </div>
-      <div class="body">
-        <span class="surf">Revit add-in</span>
-        <h3>Revit Copilot</h3>
-        <p class="claim">An AI engineer that lives inside Revit and runs the model with you.</p>
-        <span class="more">Open Revit Copilot →</span>
-      </div>
+      <h3>Revit Copilot</h3>
+      <span class="surf">Revit add-in</span>
+      <p class="claim">An AI engineer that lives inside Revit and runs the model with you.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/adelphos-chat/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/adelphos-chat.png" alt="Adelphos Chat logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/adelphos-chat.svg" alt="Adelphos Chat">
       </div>
-      <div class="body">
-        <span class="surf">Web app + desktop</span>
-        <h3>Adelphos Chat</h3>
-        <p class="claim">Your project's brain — without Revit, without a desk.</p>
-        <span class="more">Open Adelphos Chat →</span>
-      </div>
+      <h3>Adelphos Chat</h3>
+      <span class="surf">Web app + desktop</span>
+      <p class="claim">Your project's brain — without Revit, without a desk.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/specbuilder/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/specbuilder.png" alt="Specbuilder logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/specbuilder.svg" alt="Specbuilder">
       </div>
-      <div class="body">
-        <span class="surf">Web app + Word add-in</span>
-        <h3>Specbuilder</h3>
-        <p class="claim">The MEP specification, drafted from your live model in minutes.</p>
-        <span class="more">Open Specbuilder →</span>
-      </div>
+      <h3>Specbuilder</h3>
+      <span class="surf">Web app + Word add-in</span>
+      <p class="claim">The MEP specification, drafted from your live model in minutes.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/report-builder/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/report-builder.png" alt="Report Builder logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/report-builder.svg" alt="Report Builder">
       </div>
-      <div class="body">
-        <span class="surf">Web app</span>
-        <h3>Report Builder</h3>
-        <p class="claim">Every recurring report — composed, formatted, and traceable to source.</p>
-        <span class="more">Open Report Builder →</span>
-      </div>
+      <h3>Report Builder</h3>
+      <span class="surf">Web app</span>
+      <p class="claim">Every recurring report — composed, formatted, and traceable to source.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/document-controller/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/document-controller.png" alt="Document Controller logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/document-controller.svg" alt="Document Controller">
       </div>
-      <div class="body">
-        <span class="surf">Desktop service + dashboard</span>
-        <h3>Document Controller</h3>
-        <p class="claim">Single source of truth for every drawing, every revision, every transmittal.</p>
-        <span class="more">Open Document Controller →</span>
-      </div>
+      <h3>Document Controller</h3>
+      <span class="surf">Desktop service + dashboard</span>
+      <p class="claim">Single source of truth for every drawing, every revision, every transmittal.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/qa-manager/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/qa-manager.png" alt="QA Manager logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/qa-manager.svg" alt="QA Manager">
       </div>
-      <div class="body">
-        <span class="surf">Desktop app + Revit add-in</span>
-        <h3>QA Manager</h3>
-        <p class="claim">Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.</p>
-        <span class="more">Open QA Manager →</span>
-      </div>
+      <h3>QA Manager</h3>
+      <span class="surf">Desktop app + Revit add-in</span>
+      <p class="claim">Automated QA across drawings, schedules, specs, the model — and ACC clash issues.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/schedule-builder/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/schedule-builder.png" alt="Schedule Builder logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/schedule-builder.svg" alt="Schedule Builder">
       </div>
-      <div class="body">
-        <span class="surf">Revit add-in + web app</span>
-        <h3>Schedule Builder</h3>
-        <p class="claim">Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.</p>
-        <span class="more">Open Schedule Builder →</span>
-      </div>
+      <h3>Schedule Builder</h3>
+      <span class="surf">Revit add-in + web app</span>
+      <p class="claim">Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/cobie-manager/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/cobie-manager.png" alt="CoBie Manager logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/cobie-manager.svg" alt="CoBie Manager">
       </div>
-      <div class="body">
-        <span class="surf">Revit add-in + web dashboard</span>
-        <h3>CoBie Manager</h3>
-        <p class="claim">A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.</p>
-        <span class="more">Open CoBie Manager →</span>
-      </div>
+      <h3>CoBie Manager</h3>
+      <span class="surf">Revit add-in + web dashboard</span>
+      <p class="claim">A live, audit-ready COBie deliverable, populated from the model.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/autocad-copilot/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/autocad-copilot.png" alt="AutoCAD Copilot logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/autocad-copilot-sparkles.svg" alt="AutoCAD Copilot">
       </div>
-      <div class="body">
-        <span class="surf">AutoCAD MEP add-in</span>
-        <h3>AutoCAD Copilot</h3>
-        <p class="claim">An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.</p>
-        <span class="more">Open AutoCAD Copilot →</span>
-      </div>
+      <h3>AutoCAD Copilot</h3>
+      <span class="surf">AutoCAD MEP add-in</span>
+      <p class="claim">An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/word-add-in/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/word-add-in.png" alt="Adelphos for Word logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/word-add-in.png" alt="Adelphos for Word">
       </div>
-      <div class="body">
-        <span class="surf">Word add-in</span>
-        <h3>Adelphos for Word</h3>
-        <p class="claim">The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.</p>
-        <span class="more">Open Adelphos for Word →</span>
-      </div>
+      <h3>Adelphos for Word</h3>
+      <span class="surf">Word add-in</span>
+      <p class="claim">The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.</p>
+      <span class="arrow">Open →</span>
     </a>
     <a class="app-tile" href="/apps/excel-add-in/index.html">
-      <div class="visual">
-        <img src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel logo" onerror="this.style.opacity=0">
+      <div class="icon-wrap">
+        <img src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel">
       </div>
-      <div class="body">
-        <span class="surf">Excel add-in</span>
-        <h3>Adelphos for Excel</h3>
-        <p class="claim">The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.</p>
-        <span class="more">Open Adelphos for Excel →</span>
-      </div>
+      <h3>Adelphos for Excel</h3>
+      <span class="surf">Excel add-in</span>
+      <p class="claim">The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.</p>
+      <span class="arrow">Open →</span>
     </a>
   </div>
 
