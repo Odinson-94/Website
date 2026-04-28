@@ -4,37 +4,37 @@
 
 ## Apps (self-serve)
 
-- [Revit Copilot](https://adelphos.ai/dist/apps/revit-copilot/index.html): An AI engineer that lives inside Revit and runs the model with you.
-- [Adelphos Chat](https://adelphos.ai/dist/apps/adelphos-chat/index.html): Your project's brain — without Revit, without a desk.
-- [Specbuilder](https://adelphos.ai/dist/apps/specbuilder/index.html): The MEP specification, drafted from your live model in minutes.
-- [Report Builder](https://adelphos.ai/dist/apps/report-builder/index.html): Every recurring report — composed, formatted, and traceable to source.
-- [Document Controller](https://adelphos.ai/dist/apps/document-controller/index.html): Single source of truth for every drawing, every revision, every transmittal.
-- [QA Manager](https://adelphos.ai/dist/apps/qa-manager/index.html): Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.
-- [Schedule Builder](https://adelphos.ai/dist/apps/schedule-builder/index.html): Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.
-- [CoBie Manager](https://adelphos.ai/dist/apps/cobie-manager/index.html): A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.
-- [AutoCAD Copilot](https://adelphos.ai/dist/apps/autocad-copilot/index.html): An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.
-- [Adelphos for Word](https://adelphos.ai/dist/apps/word-add-in/index.html): The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.
-- [Adelphos for Excel](https://adelphos.ai/dist/apps/excel-add-in/index.html): The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.
+- [Revit Copilot](https://adelphos.ai/apps/revit-copilot/index.html): An AI engineer that lives inside Revit and runs the model with you.
+- [Adelphos Chat](https://adelphos.ai/apps/adelphos-chat/index.html): Your project's brain — without Revit, without a desk.
+- [Specbuilder](https://adelphos.ai/apps/specbuilder/index.html): The MEP specification, drafted from your live model in minutes.
+- [Report Builder](https://adelphos.ai/apps/report-builder/index.html): Every recurring report — composed, formatted, and traceable to source.
+- [Document Controller](https://adelphos.ai/apps/document-controller/index.html): Single source of truth for every drawing, every revision, every transmittal.
+- [QA Manager](https://adelphos.ai/apps/qa-manager/index.html): Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.
+- [Schedule Builder](https://adelphos.ai/apps/schedule-builder/index.html): Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.
+- [CoBie Manager](https://adelphos.ai/apps/cobie-manager/index.html): A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.
+- [AutoCAD Copilot](https://adelphos.ai/apps/autocad-copilot/index.html): An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.
+- [Adelphos for Word](https://adelphos.ai/apps/word-add-in/index.html): The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.
+- [Adelphos for Excel](https://adelphos.ai/apps/excel-add-in/index.html): The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.
 
 ## Agentic Services (managed)
 
-- [AI Finances](https://adelphos.ai/dist/agentic-services/finances/index.html): Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.
-- [AI Project Management](https://adelphos.ai/dist/agentic-services/project-management/index.html): Programme tracking, risk registers and reporting — the agent keeps the project on rails.
-- [AI Document Controller](https://adelphos.ai/dist/agentic-services/document-controller/index.html): Transmittals, registers, revision tracking — the agent runs your document control.
-- [Specification Writer](https://adelphos.ai/dist/agentic-services/email-specifications/index.html): Forward a brief, receive a complete MEP specification section.
-- [Revit Modelling Agent](https://adelphos.ai/dist/agentic-services/email-revit-modelling/index.html): Email a markup, receive the Revit model update.
-- [COBie Generator](https://adelphos.ai/dist/agentic-services/email-cobie/index.html): Forward the model, receive a validated COBie deliverable.
-- [Schematic Designer](https://adelphos.ai/dist/agentic-services/email-schematics/index.html): Describe the system, receive a production-ready schematic.
+- [AI Finances](https://adelphos.ai/agentic-services/finances/index.html): Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.
+- [AI Project Management](https://adelphos.ai/agentic-services/project-management/index.html): Programme tracking, risk registers and reporting — the agent keeps the project on rails.
+- [AI Document Controller](https://adelphos.ai/agentic-services/document-controller/index.html): Transmittals, registers, revision tracking — the agent runs your document control.
+- [Specification Writer](https://adelphos.ai/agentic-services/email-specifications/index.html): Forward a brief, receive a complete MEP specification section.
+- [Revit Modelling Agent](https://adelphos.ai/agentic-services/email-revit-modelling/index.html): Email a markup, receive the Revit model update.
+- [COBie Generator](https://adelphos.ai/agentic-services/email-cobie/index.html): Forward the model, receive a validated COBie deliverable.
+- [Schematic Designer](https://adelphos.ai/agentic-services/email-schematics/index.html): Describe the system, receive a production-ready schematic.
 
 ## Documentation
 
-- [Tools (191 MCP tools)](https://adelphos.ai/dist/docs/tools/index.html): Every tool the agent can call.
-- [Commands (163 Revit commands)](https://adelphos.ai/dist/docs/commands/index.html): Every Revit command we ship.
-- [Demos](https://adelphos.ai/dist/demos/index.html): Every workflow on video.
-- [Workflows](https://adelphos.ai/dist/workflows/index.html): End-to-end recipes.
-- [Compare](https://adelphos.ai/dist/compare/index.html): Adelphos vs alternatives.
-- [Changelog](https://adelphos.ai/dist/changelog/index.html): Release history.
-- [Glossary](https://adelphos.ai/dist/glossary/index.html): MEP + AI terms used across the docs.
+- [Tools (191 MCP tools)](https://adelphos.ai/docs/tools/index.html): Every tool the agent can call.
+- [Commands (163 Revit commands)](https://adelphos.ai/docs/commands/index.html): Every Revit command we ship.
+- [Demos](https://adelphos.ai/demos/index.html): Every workflow on video.
+- [Workflows](https://adelphos.ai/workflows/index.html): End-to-end recipes.
+- [Compare](https://adelphos.ai/compare/index.html): Adelphos vs alternatives.
+- [Changelog](https://adelphos.ai/changelog/index.html): Release history.
+- [Glossary](https://adelphos.ai/glossary/index.html): MEP + AI terms used across the docs.
 
 ## About
 
