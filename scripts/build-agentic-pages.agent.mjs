@@ -50,7 +50,7 @@ function tileHtml(svc) {
     : '';
 
   return `
-    <a class="inv-tile" data-tone="${esc(svc.tone)}" href="/dist/agentic-services/${esc(svc.slug)}/index.html">
+    <a class="inv-tile" data-tone="${esc(svc.tone)}" href="/agentic-services/${esc(svc.slug)}/index.html">
       <div class="tile-logo-area">
         <img src="${esc(svc.logo)}" alt="${esc(svc.name)}" onerror="this.style.opacity=0">
       </div>

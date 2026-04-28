@@ -3,9 +3,9 @@
  *
  * Generates the three site-root files every search and AI crawler looks for:
  *
- *   /dist/sitemap.xml   — every URL the build emits, with lastmod
- *   /dist/robots.txt    — explicit allow-list for AI crawlers (often blocked elsewhere)
- *   /dist/llms.txt      — the emerging Anthropic-led standard for AI ingestion
+ *   /sitemap.xml   — every URL the build emits, with lastmod
+ *   /robots.txt    — explicit allow-list for AI crawlers (often blocked elsewhere)
+ *   /llms.txt      — the emerging Anthropic-led standard for AI ingestion
  *
  * Run as part of `adelphos_CLI auto-all`.
  */
@@ -44,26 +44,26 @@ export async function buildSitemap() {
     { loc: '/roadmap/',  changefreq: 'weekly',   priority: '0.7' },
     { loc: '/contact/',  changefreq: 'yearly',   priority: '0.5' },
     // Inventories
-    { loc: '/dist/apps/index.html',                changefreq: 'weekly', priority: '0.95' },
-    { loc: '/dist/agentic-services/index.html',    changefreq: 'weekly', priority: '0.95' },
-    { loc: '/dist/docs/index.html',                changefreq: 'weekly', priority: '0.9' },
-    { loc: '/dist/docs/tools/index.html',          changefreq: 'weekly', priority: '0.85' },
-    { loc: '/dist/docs/commands/index.html',       changefreq: 'weekly', priority: '0.85' },
-    { loc: '/dist/demos/index.html',               changefreq: 'weekly', priority: '0.85' },
-    { loc: '/dist/workflows/index.html',           changefreq: 'weekly', priority: '0.8'  },
-    { loc: '/dist/resources/index.html',           changefreq: 'monthly',priority: '0.6' },
-    { loc: '/dist/downloads/index.html',           changefreq: 'monthly',priority: '0.7' },
+    { loc: '/apps/index.html',                changefreq: 'weekly', priority: '0.95' },
+    { loc: '/agentic-services/index.html',    changefreq: 'weekly', priority: '0.95' },
+    { loc: '/docs/index.html',                changefreq: 'weekly', priority: '0.9' },
+    { loc: '/docs/tools/index.html',          changefreq: 'weekly', priority: '0.85' },
+    { loc: '/docs/commands/index.html',       changefreq: 'weekly', priority: '0.85' },
+    { loc: '/demos/index.html',               changefreq: 'weekly', priority: '0.85' },
+    { loc: '/workflows/index.html',           changefreq: 'weekly', priority: '0.8'  },
+    { loc: '/resources/index.html',           changefreq: 'monthly',priority: '0.6' },
+    { loc: '/downloads/index.html',           changefreq: 'monthly',priority: '0.7' },
     // Comparison + changelog (Tier 3/4)
-    { loc: '/dist/compare/index.html',             changefreq: 'monthly',priority: '0.8' },
-    { loc: '/dist/changelog/index.html',           changefreq: 'weekly', priority: '0.6' },
-    { loc: '/dist/glossary/index.html',            changefreq: 'monthly',priority: '0.5' },
+    { loc: '/compare/index.html',             changefreq: 'monthly',priority: '0.8' },
+    { loc: '/changelog/index.html',           changefreq: 'weekly', priority: '0.6' },
+    { loc: '/glossary/index.html',            changefreq: 'monthly',priority: '0.5' },
     // Detail pages
-    ...apps.map(a       => ({ loc: `/dist/apps/${a.slug}/index.html`,             changefreq: 'weekly', priority: a.is_flagship ? '0.95' : '0.85' })),
-    ...services.map(s   => ({ loc: `/dist/agentic-services/${s.slug}/index.html`, changefreq: 'weekly', priority: s.is_flagship ? '0.95' : '0.85' })),
-    ...tools.map(t      => ({ loc: `/dist/docs/tools/${t.name}/index.html`,       changefreq: 'monthly', priority: '0.6' })),
-    ...cmds.map(c       => ({ loc: `/dist/docs/commands/${cmdSlug(c)}/index.html`,changefreq: 'monthly', priority: '0.6' })),
-    ...demos.map(d      => ({ loc: `/dist/demos/${d.slug}/index.html`,            changefreq: 'monthly', priority: '0.7' })),
-    ...wfSlugs.map(slug => ({ loc: `/dist/workflows/${slug}/index.html`,          changefreq: 'monthly', priority: '0.75' })),
+    ...apps.map(a       => ({ loc: `/apps/${a.slug}/index.html`,             changefreq: 'weekly', priority: a.is_flagship ? '0.95' : '0.85' })),
+    ...services.map(s   => ({ loc: `/agentic-services/${s.slug}/index.html`, changefreq: 'weekly', priority: s.is_flagship ? '0.95' : '0.85' })),
+    ...tools.map(t      => ({ loc: `/docs/tools/${t.name}/index.html`,       changefreq: 'monthly', priority: '0.6' })),
+    ...cmds.map(c       => ({ loc: `/docs/commands/${cmdSlug(c)}/index.html`,changefreq: 'monthly', priority: '0.6' })),
+    ...demos.map(d      => ({ loc: `/demos/${d.slug}/index.html`,            changefreq: 'monthly', priority: '0.7' })),
+    ...wfSlugs.map(slug => ({ loc: `/workflows/${slug}/index.html`,          changefreq: 'monthly', priority: '0.75' })),
   ];
 
   const lastmod = await gitLastMod('sandbox/data');
@@ -120,21 +120,21 @@ export async function buildLlmsTxt() {
     '',
     '## Apps (self-serve)',
     '',
-    ...apps.map(a => `- [${a.title}](${baseUrl}/dist/apps/${a.slug}/index.html): ${a.headline_claim || a.tagline}`),
+    ...apps.map(a => `- [${a.title}](${baseUrl}/apps/${a.slug}/index.html): ${a.headline_claim || a.tagline}`),
     '',
     '## Agentic Services (managed)',
     '',
-    ...services.map(s => `- [${s.title}](${baseUrl}/dist/agentic-services/${s.slug}/index.html): ${s.headline_claim || s.tagline}`),
+    ...services.map(s => `- [${s.title}](${baseUrl}/agentic-services/${s.slug}/index.html): ${s.headline_claim || s.tagline}`),
     '',
     '## Documentation',
     '',
-    `- [Tools (191 MCP tools)](${baseUrl}/dist/docs/tools/index.html): Every tool the agent can call.`,
-    `- [Commands (163 Revit commands)](${baseUrl}/dist/docs/commands/index.html): Every Revit command we ship.`,
-    `- [Demos](${baseUrl}/dist/demos/index.html): Every workflow on video.`,
-    `- [Workflows](${baseUrl}/dist/workflows/index.html): End-to-end recipes.`,
-    `- [Compare](${baseUrl}/dist/compare/index.html): Adelphos vs alternatives.`,
-    `- [Changelog](${baseUrl}/dist/changelog/index.html): Release history.`,
-    `- [Glossary](${baseUrl}/dist/glossary/index.html): MEP + AI terms used across the docs.`,
+    `- [Tools (191 MCP tools)](${baseUrl}/docs/tools/index.html): Every tool the agent can call.`,
+    `- [Commands (163 Revit commands)](${baseUrl}/docs/commands/index.html): Every Revit command we ship.`,
+    `- [Demos](${baseUrl}/demos/index.html): Every workflow on video.`,
+    `- [Workflows](${baseUrl}/workflows/index.html): End-to-end recipes.`,
+    `- [Compare](${baseUrl}/compare/index.html): Adelphos vs alternatives.`,
+    `- [Changelog](${baseUrl}/changelog/index.html): Release history.`,
+    `- [Glossary](${baseUrl}/glossary/index.html): MEP + AI terms used across the docs.`,
     '',
     '## About',
     '',

@@ -1,7 +1,7 @@
 /**
  * scripts/build-home.mjs
  *
- * Builds the homepage at /dist/index.html.
+ * Builds the homepage at /index.html.
  * Hierarchy with two tile styles:
  *   • banner-card  — cinematic, full-width, per-tone gradient (Revit Copilot,
  *                    Clash Solver, Adelphos Chat, Document Controller)
@@ -110,12 +110,12 @@ export async function buildHome() {
   const seoHead = await renderSeoHead({
     title: 'Adelphos AI — apps, agentic services and bespoke automations for MEP',
     description: brandQuote,
-    path: '/dist/index.html',
+    path: '/index.html',
     type: 'website',
     keywords: ['Adelphos AI', 'MEP automation', 'Revit AI', 'AutoRoute', 'Clash Solver', '3D plantroom designer', 'AutoCAD Copilot']
   });
   const jsonLd = await renderJsonLd({
-    kind: 'website', path: '/dist/index.html',
+    kind: 'website', path: '/index.html',
     title: 'Adelphos AI', description: brandQuote
   });
 
@@ -187,9 +187,9 @@ export async function buildHome() {
 /* ─────────────────────────────────────────────────  BANNER CARD (cinematic)  */
 function bannerCard(entity, { kind, badge, hero = false } = {}) {
   if (!entity) return '';
-  const root = kind === 'feature' ? '/dist/features/'
-             : kind === 'service' ? '/dist/agentic-services/'
-             : '/dist/apps/';
+  const root = kind === 'feature' ? '/features/'
+             : kind === 'service' ? '/agentic-services/'
+             : '/apps/';
   const tone = entity.tone || 'blue';
   const heroCls = hero ? ' hero-banner' : '';
   const bullets = bulletList(entity, 4);
@@ -212,9 +212,9 @@ function bannerCard(entity, { kind, badge, hero = false } = {}) {
 /* ─────────────────────────────────────────────────  COMPACT LOGO TILE  */
 function smallTile(entity, { kind, surf } = {}) {
   if (!entity) return missingTile(surf);
-  const root = kind === 'feature' ? '/dist/features/'
-             : kind === 'service' ? '/dist/agentic-services/'
-             : '/dist/apps/';
+  const root = kind === 'feature' ? '/features/'
+             : kind === 'service' ? '/agentic-services/'
+             : '/apps/';
   const tone = entity.tone || 'blue';
   const features = entity.features || (entity.feature_groups?.[0]?.features || []);
   const bullets = features.slice(0, 3).map(f => `<li>${esc(f.name)}</li>`).join('');
@@ -249,10 +249,10 @@ function bulletList(entity, max = 4) {
 function combinedBanner(parent, children, { badge, divider } = {}) {
   if (!parent) return '';
   const tone = parent.tone || 'blue';
-  const parentHref = `/dist/apps/${esc(parent.slug)}/index.html`;
+  const parentHref = `/apps/${esc(parent.slug)}/index.html`;
 
   const inner = (children || []).filter(Boolean).map(c => {
-    const href = `/dist/features/${esc(c.slug)}/index.html`;
+    const href = `/features/${esc(c.slug)}/index.html`;
     return `
       <a class="inner-card" href="${href}">
         <div class="scene-3d" data-scene="${esc(c.slug)}" role="img" aria-label="${esc(c.title)} 3D preview"></div>
@@ -330,7 +330,7 @@ function appCard(a) {
   const surface = (a.surface || '').split('·')[0].trim();
   const tone = a.tone || 'blue';
   return `
-    <a class="app-card" data-tone="${esc(tone)}" href="/dist/apps/${esc(a.slug)}/index.html">
+    <a class="app-card" data-tone="${esc(tone)}" href="/apps/${esc(a.slug)}/index.html">
       <div class="app-logo-wrap">
         <img class="app-logo-img" src="/${esc(a.icon)}" alt="${esc(a.title)} logo" loading="lazy">
       </div>
@@ -393,7 +393,7 @@ function managedServiceCard(s) {
       <div class="rp-agent-spinner"></div>
     </div>`).join('');
   return `
-    <a class="agentic-card rp-commands-card" href="/dist/agentic-services/${esc(s.slug)}/index.html">
+    <a class="agentic-card rp-commands-card" href="/agentic-services/${esc(s.slug)}/index.html">
       <span class="agentic-card-kicker">Agentic module</span>
       <h3 class="agentic-card-title">${esc(s.title)}</h3>
       <p class="agentic-card-claim">${esc(claim)}</p>

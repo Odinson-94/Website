@@ -2,10 +2,10 @@
  * scripts/build-tier3-4.mjs
  *
  * Generates the Tier 3 + 4 SEO pages:
- *   /dist/compare/index.html              — comparison hub
- *   /dist/compare/<slug>/index.html       — one comparison page per competitor
- *   /dist/changelog/index.html            — release history with SoftwareApplication JSON-LD
- *   /dist/glossary/index.html             — glossary with anchor links per term
+ *   /compare/index.html              — comparison hub
+ *   /compare/<slug>/index.html       — one comparison page per competitor
+ *   /changelog/index.html            — release history with SoftwareApplication JSON-LD
+ *   /glossary/index.html             — glossary with anchor links per term
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -76,7 +76,7 @@ export async function buildComparisons() {
 
   // Hub page
   const hubCards = data.competitors.map(c => `
-    <a class="related-card" href="/dist/compare/${esc(c.slug)}/index.html">
+    <a class="related-card" href="/compare/${esc(c.slug)}/index.html">
       <span class="related-kind">Comparison</span>
       <strong>Adelphos vs ${esc(c.competitor_short)}</strong>
       <span class="related-desc">${esc(c.summary.slice(0, 140))}…</span>
@@ -91,7 +91,7 @@ export async function buildComparisons() {
   await fs.mkdir(path.dirname(hubFile), { recursive: true });
   await fs.writeFile(hubFile, await pageShell({
     title: 'How Adelphos compares', description: 'Adelphos vs Revit, Autodesk Build, Bluebeam, Procore — honest comparisons.',
-    pagePath: '/dist/compare/index.html', contentHtml: hubHtml
+    pagePath: '/compare/index.html', contentHtml: hubHtml
   }), 'utf8');
   out.push(hubFile);
 
@@ -104,7 +104,7 @@ export async function buildComparisons() {
         <td style="color:var(--text-muted);">${esc(r.them)}</td>
       </tr>`).join('');
     const html = `
-      <div class="crumbs"><a href="/dist/compare/index.html">Compare</a> &nbsp;›&nbsp; vs ${esc(c.competitor_short)}</div>
+      <div class="crumbs"><a href="/compare/index.html">Compare</a> &nbsp;›&nbsp; vs ${esc(c.competitor_short)}</div>
       <h1 style="font-size:40px;font-weight:500;letter-spacing:-0.02em;margin:0 0 12px;">Adelphos vs ${esc(c.competitor)}</h1>
       <p style="font-size:18px;line-height:1.55;color:var(--text);max-width:880px;margin-bottom:24px;">${esc(c.summary)}</p>
       <table class="ref-table" style="margin-top:16px;">
@@ -113,15 +113,15 @@ export async function buildComparisons() {
       </table>
       <p style="margin-top:32px;color:var(--text-muted);font-size:13px;">Comparison generated ${new Date().toISOString().slice(0,10)} from <code>sandbox/data/comparisons.json</code>.</p>`;
     const jsonLd = await renderJsonLd({
-      kind: 'inventory', path: `/dist/compare/${c.slug}/index.html`,
+      kind: 'inventory', path: `/compare/${c.slug}/index.html`,
       title: `Adelphos vs ${c.competitor}`, description: c.summary,
-      items: c.rows.map(r => ({ name: r.feature, url: `/dist/compare/${c.slug}/index.html` }))
+      items: c.rows.map(r => ({ name: r.feature, url: `/compare/${c.slug}/index.html` }))
     });
     const file = O('compare', c.slug, 'index.html');
     await fs.mkdir(path.dirname(file), { recursive: true });
     await fs.writeFile(file, await pageShell({
       title: `Adelphos vs ${c.competitor}`, description: c.summary,
-      pagePath: `/dist/compare/${c.slug}/index.html`, contentHtml: html, jsonLd
+      pagePath: `/compare/${c.slug}/index.html`, contentHtml: html, jsonLd
     }), 'utf8');
     out.push(file);
   }
@@ -159,7 +159,7 @@ export async function buildChangelog() {
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, await pageShell({
     title: 'Changelog', description: `Release history for the Adelphos AI suite — ${data.releases.length} releases.`,
-    pagePath: '/dist/changelog/index.html', contentHtml: html, jsonLd
+    pagePath: '/changelog/index.html', contentHtml: html, jsonLd
   }), 'utf8');
   return { out: file, count: data.releases.length };
 }
@@ -192,7 +192,7 @@ export async function buildGlossary() {
       '@type': 'DefinedTerm',
       name: t.term,
       description: t.definition,
-      url: `https://adelphos.ai/dist/glossary/index.html#${t.term.toLowerCase().replace(/\s+/g,'-')}`
+      url: `https://adelphos.ai/glossary/index.html#${t.term.toLowerCase().replace(/\s+/g,'-')}`
     }))
   }, null, 2)}</script>`;
 
@@ -200,7 +200,7 @@ export async function buildGlossary() {
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, await pageShell({
     title: 'Glossary', description: 'MEP, BIM and AI terms used across the Adelphos AI documentation.',
-    pagePath: '/dist/glossary/index.html', contentHtml: html, jsonLd
+    pagePath: '/glossary/index.html', contentHtml: html, jsonLd
   }), 'utf8');
   return { out: file, count: data.terms.length };
 }

@@ -23,7 +23,7 @@ export async function buildDemoPage(slug) {
   const related = (sameCat.length ? sameCat : fallback).slice(0, 3);
   const relatedHtml = related.length
     ? related.map(d => `
-      <a class="dm-related-card" href="/dist/demos/${esc(d.slug)}/index.html">
+      <a class="dm-related-card" href="/demos/${esc(d.slug)}/index.html">
         <div class="dm-related-poster" aria-hidden="true">
           <span class="dm-related-duration">${esc(d.duration || '')}</span>
         </div>

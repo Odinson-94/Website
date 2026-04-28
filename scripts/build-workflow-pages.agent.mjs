@@ -206,7 +206,7 @@ function buildDetailPage(wf, allWorkflows, template) {
   const relatedHtml = related.map(r => {
     const rPhases = Array.isArray(r.phases) ? r.phases.length : 0;
     return `
-      <a class="wf-related-card" href="/dist/workflows/${r._slug}/index.html">
+      <a class="wf-related-card" href="/workflows/${r._slug}/index.html">
         <span class="wf-rc-title">${escHtml(r.title || r._slug)}</span>
         <span class="wf-rc-desc">${escHtml(r.description || '')}</span>
         <span class="wf-rc-phases">${rPhases} phases</span>
@@ -244,7 +244,7 @@ function buildInventoryPage(allWorkflows, template) {
     const status = (wf.status || 'planned').toLowerCase();
     const statusLabels = { live: 'Live', beta: 'Beta', planned: 'Planned' };
     return `
-    <a class="wi-row" href="/dist/workflows/${wf._slug}/index.html" data-wf-status="${status}">
+    <a class="wi-row" href="/workflows/${wf._slug}/index.html" data-wf-status="${status}">
       <div class="wi-row-info">
         <span class="wi-row-title">${escHtml(wf.title || wf._slug)}</span>
         <span class="wi-row-desc">${escHtml(wf.description || '')}</span>
@@ -263,7 +263,7 @@ function buildInventoryPage(allWorkflows, template) {
     const status = (wf.status || 'planned').toLowerCase();
     const statusLabels = { live: 'Live', beta: 'Beta', planned: 'Planned' };
     return `
-    <a class="wi-card" href="/dist/workflows/${wf._slug}/index.html" data-wf-status="${status}">
+    <a class="wi-card" href="/workflows/${wf._slug}/index.html" data-wf-status="${status}">
       <div class="wi-card-visual">
         <div class="wi-card-icon">
           <svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4m-6-14l-3-3m18 0l-3 3m-6 8a4 4 0 100-8 4 4 0 000 8z"/></svg>

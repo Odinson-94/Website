@@ -1488,7 +1488,7 @@
         <img class="rp-logo" src="/images/app-logos/revit-copilot.png" alt="Revit Copilot" onerror="this.style.opacity=0">
         <h2>Revit Copilot</h2>
         <p class="rp-tagline">An AI engineer that lives inside Revit and runs the model with you. {{command_count}} commands. {{tool_count}} tools. One chat.</p>
-        <a class="rp-cta" href="/dist/apps/revit-copilot/index.html">Open Revit Copilot →</a>
+        <a class="rp-cta" href="/apps/revit-copilot/index.html">Open Revit Copilot →</a>
       </div>
       <div class="rp-video">
         <div class="rp-video-inner">
@@ -1582,7 +1582,7 @@
             <div class="rp-agent-spinner"></div>
           </div>
         </div>
-        <a class="rp-see-more" href="/dist/apps/revit-copilot/index.html">See More →</a>
+        <a class="rp-see-more" href="/apps/revit-copilot/index.html">See More →</a>
       </div>
     </div>
     <script>
@@ -1626,7 +1626,7 @@
       <h2>Popular apps</h2>
       <div class="head-aside">
         <p>Eleven apps shipping today, seven more on the roadmap. Each plugs into the same MEP Bridge backbone.</p>
-        <a class="see-all" href="/dist/apps/index.html">See all apps →</a>
+        <a class="see-all" href="/apps/index.html">See all apps →</a>
       </div>
     </div>
     {{apps_carousel}}
@@ -1664,7 +1664,7 @@
           <p>Connect Clash Solver to your ACC project. It pulls the latest clash report, deduplicates against the previous run, and triages: real clash vs ghost (model-link drift, family swap, view-filter mismatch). For each real clash it proposes a resolution — re-route the smaller service, raise the ceiling void in the affected zone, swap a fitting, etc. — and shows you what the model would look like after.</p>
           <p>You accept, refine, or reject each proposal. Accepted resolutions are applied to the live model as auditable Revit transactions (one-click undo). Rejected ones go into a 'why we kept this' log so the next sync doesn't propose the same thing.</p>
         </div>
-        <a class="clash-link" href="/dist/features/clash-solver/index.html">Open Clash Solver →</a>
+        <a class="clash-link" href="/features/clash-solver/index.html">Open Clash Solver →</a>
       </div>
     </div>
   </section>
@@ -1690,11 +1690,11 @@
           <p>CoBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.</p>
           <p>Every cell traces back to the source Revit element. No manual mapping, no copy-paste from schedules — the agent reads the model, fills the workbook, flags what's missing, and hands you a file ready for the client.</p>
         </div>
-        <a class="clash-link" href="/dist/apps/cobie-manager/index.html">Open CoBie Manager →</a>
+        <a class="clash-link" href="/apps/cobie-manager/index.html">Open CoBie Manager →</a>
       </div>
       <div class="clash-frame clash-frame-light">
         <iframe class="cobie-iframe"
-                src="/dist/demos/cobie-manager/index.html"
+                src="/demos/cobie-manager/index.html"
                 title="CoBie Manager preview"
                 loading="lazy"></iframe>
       </div>
@@ -1744,7 +1744,7 @@
           <p>Report Builder turns the most repetitive part of an engineer's week into a five-minute review. Every report stays versioned, every claim is traceable to the source data — model, calcs, photos, minutes — and the formatting matches your house style.</p>
           <p>Eight templates ship in the box: site report, MEP strategy, option appraisal, IESVE report, clash report, Stage 2 submission, Stage 3 submission, survey writeup. Point any template at a project and it pulls the model views, calc outputs, meeting minutes and site photos — and assembles the draft.</p>
         </div>
-        <a class="clash-link" href="/dist/apps/report-builder/index.html">Open Report Builder →</a>
+        <a class="clash-link" href="/apps/report-builder/index.html">Open Report Builder →</a>
       </div>
     </div>
 
@@ -1756,7 +1756,7 @@
           <p>Specbuilder is the tool every MEP practice has tried to build in-house and given up on. It cross-references your live Revit model against the brief, applies your house standards, layers in your preferred manufacturer data, and writes a stage-appropriate specification.</p>
           <p>Lock sections you've hand-edited, regenerate only what's changed downstream. NBS, CIBSE, ASHRAE or your own house template. Outputs to Word, PDF, or your DMS in one click.</p>
         </div>
-        <a class="clash-link" href="/dist/apps/specbuilder/index.html">Open Specbuilder →</a>
+        <a class="clash-link" href="/apps/specbuilder/index.html">Open Specbuilder →</a>
       </div>
       <div class="clash-frame">
         <div class="doc-mock doc-mock-spec" aria-hidden="true">
@@ -1819,7 +1819,7 @@
       <span class="calc-badge">Thermal Calculations</span>
       <span class="calc-badge">Pipe &amp; Duct Sizing</span>
     </div>
-    <a class="apps-roadmap-link" href="/dist/docs/calc-engines/index.html">Read about the calc layer →</a>
+    <a class="apps-roadmap-link" href="/docs/calc-engines/index.html">Read about the calc layer →</a>
   </section>
 
   <!-- ═══ SECTION 8b: INTEGRATIONS STRIP ═══
@@ -1876,7 +1876,7 @@
     <h3 class="end-cta-headline">Try the Revit Copilot.</h3>
     <p class="end-cta-body">Most of the platform is self-serve — the agentic services need a 30-minute walk-through.</p>
     <div class="end-cta-actions">
-      <a class="end-cta-primary" href="/dist/downloads/index.html">Download the Revit add-in</a>
+      <a class="end-cta-primary" href="/downloads/index.html">Download the Revit add-in</a>
       <a class="end-cta-secondary" href="/contact/">Talk to us</a>
     </div>
   </section>
@@ -2099,13 +2099,13 @@
   /* AutoRoute scene factory DELETED in Phase 2.
      Per /workspace/.cursor/plans/redesign_sandbox_home_page.plan.md
      Section 4 the home page only shows the Clash Solver scene.
-     AutoRoute remains as its own /dist/features/autoroute/index.html
+     AutoRoute remains as its own /features/autoroute/index.html
      page with its own scene (built by feature-page template). */
 
   /* Plantroom Designer scene factory DELETED in Phase 2.
      Per the original sandbox plan home Section 4 shows the Clash
      Solver scene only. Plantroom Designer remains as its own
-     /dist/features/plantroom-designer-3d/index.html page. */
+     /features/plantroom-designer-3d/index.html page. */
 
   /* ──────────────────────────────────────────────────────────────────── */
   /*  Scene 3 — Clash Solver                                              */

@@ -189,14 +189,14 @@ async function cmdAutoAll() {
 
   console.log('\n=== DONE ===');
   console.log('\nOpen these URLs to review:');
-  console.log('  http://localhost:8765/dist/apps/index.html');
-  console.log('  http://localhost:8765/dist/agentic-services/index.html');
-  console.log('  http://localhost:8765/dist/compare/index.html');
-  console.log('  http://localhost:8765/dist/changelog/index.html');
-  console.log('  http://localhost:8765/dist/glossary/index.html');
-  console.log('  http://localhost:8765/dist/sitemap.xml');
-  console.log('  http://localhost:8765/dist/robots.txt');
-  console.log('  http://localhost:8765/dist/llms.txt');
+  console.log('  http://localhost:8765/apps/index.html');
+  console.log('  http://localhost:8765/agentic-services/index.html');
+  console.log('  http://localhost:8765/compare/index.html');
+  console.log('  http://localhost:8765/changelog/index.html');
+  console.log('  http://localhost:8765/glossary/index.html');
+  console.log('  http://localhost:8765/sitemap.xml');
+  console.log('  http://localhost:8765/robots.txt');
+  console.log('  http://localhost:8765/llms.txt');
 }
 
 /* ------------------------------------------------------------------ auto */

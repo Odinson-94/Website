@@ -54,7 +54,7 @@
         ],
         "auth": "Sign in once via Adelphos Chat; the Revit add-in inherits the session.",
         "download_label": "Download Revit add-in (.msi)",
-        "download_href": "/dist/downloads/index.html"
+        "download_href": "/downloads/index.html"
       },
       "surface": "Revit add-in · Revit 2022 → 2026 · Windows",
       "status": "live",
@@ -62,8 +62,8 @@
       "tone": "blue",
       "best_for": ["MEP designers", "BIM coordinators", "Engineers who live in Revit"],
       "hero_video": "/Videos/Final Website Release.mp4",
-      "primary_cta": { "label": "Download the add-in", "href": "/dist/downloads/index.html" },
-      "secondary_cta": { "label": "Watch a demo", "href": "/dist/demos/index.html" },
+      "primary_cta": { "label": "Download the add-in", "href": "/downloads/index.html" },
+      "secondary_cta": { "label": "Watch a demo", "href": "/demos/index.html" },
       "seo": {
         "why_h3":     "AI Revit add-in for MEP engineers",
         "shift_h3":   "From manual Revit modelling to AI-assisted MEP design",
@@ -117,7 +117,7 @@
         ],
         "auth": "Sign in with Microsoft, Google or an email magic link.",
         "download_label": "Open in browser or download installer",
-        "download_href": "/dist/downloads/index.html"
+        "download_href": "/downloads/index.html"
       },
       "surface": "Web app + native desktop (Windows / macOS)",
       "status": "live",
@@ -125,7 +125,7 @@
       "tone": "midnight",
       "best_for": ["Project leads on site", "Off-Revit consultations", "Drafting reports + briefs"],
       "primary_cta": { "label": "Open Adelphos Chat", "href": "https://chat.adelphos.ai" },
-      "secondary_cta": { "label": "Download desktop app", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "Download desktop app", "href": "/downloads/index.html" },
       "seo": {
         "why_h3":     "AI chat assistant for MEP engineering projects",
         "shift_h3":   "From desk-bound Revit access to project-aware AI anywhere",
@@ -186,7 +186,7 @@
       "tone": "blue",
       "best_for": ["Stage 3 + specifications", "Practices with house standards", "Multi-discipline projects"],
       "primary_cta": { "label": "Run Specbuilder online", "href": "https://app.adelphos.ai/specbuilder" },
-      "secondary_cta": { "label": "Get the Word add-in", "href": "/dist/downloads/index.html" },
+      "secondary_cta": { "label": "Get the Word add-in", "href": "/downloads/index.html" },
       "seo": {
         "why_h3":     "Automated MEP specification writing from Revit models",
         "shift_h3":   "From three-day spec rewrites to minutes of model-driven drafting",
@@ -247,7 +247,7 @@
       "tone": "blue",
       "best_for": ["Recurring client reports", "Stage submissions", "Site survey writeups"],
       "primary_cta": { "label": "Run Report Builder online", "href": "https://app.adelphos.ai/report-builder" },
-      "secondary_cta": { "label": "See report templates", "href": "/dist/docs/index.html" },
+      "secondary_cta": { "label": "See report templates", "href": "/docs/index.html" },
       "seo": {
         "why_h3":     "Automated MEP report generation for stage submissions",
         "shift_h3":   "From manual report assembly to model-linked composition",
@@ -300,14 +300,14 @@
         ],
         "auth": "Microsoft 365 SSO recommended (gives ACC + email + drive in one).",
         "download_label": "Download Document Controller (.msi)",
-        "download_href": "/dist/downloads/index.html"
+        "download_href": "/downloads/index.html"
       },
       "surface": "Desktop service + web dashboard",
       "status": "live",
       "icon": "images/app-logos/document-controller.png",
       "tone": "red",
       "best_for": ["Project managers", "Document controllers", "Compliance + audit teams"],
-      "primary_cta": { "label": "Download Document Controller", "href": "/dist/downloads/index.html" },
+      "primary_cta": { "label": "Download Document Controller", "href": "/downloads/index.html" },
       "secondary_cta": { "label": "Open the dashboard", "href": "https://app.adelphos.ai/document-controller" },
       "seo": {
         "why_h3":     "Automated drawing revision tracking and golden-thread compliance",
@@ -417,14 +417,14 @@
         ],
         "auth": "Microsoft 365 SSO recommended — gives ACC + Revit + email integration in one.",
         "download_label": "Download QA Manager (.msi)",
-        "download_href": "/dist/downloads/index.html"
+        "download_href": "/downloads/index.html"
       },
       "surface": "Desktop app + Revit add-in",
       "status": "live",
       "icon": "images/app-logos/qa-manager.png",
       "tone": "blue",
       "best_for": ["Pre-issue QA gates", "Stage submissions", "Internal audits"],
-      "primary_cta": { "label": "Download QA Manager", "href": "/dist/downloads/index.html" },
+      "primary_cta": { "label": "Download QA Manager", "href": "/downloads/index.html" },
       "secondary_cta": { "label": "Open the dashboard", "href": "https://app.adelphos.ai/qa-manager" },
       "seo": {
         "why_h3":     "Automated MEP QA across drawings, schedules, specs and Revit models",
@@ -442,7 +442,7 @@
         "before": "Hand-build every schedule from a generic template. Hand-merge manufacturer data. Hand-cross-check against the model. Discover the mismatch the day before issue.",
         "after": "Ask for the schedules you need. Schedule Builder uses your data, your templates, your preferred manufacturers — then tells you exactly where the model and the calcs disagree."
       },
-      "blurb": "Schedule Builder is what every modeller wishes Revit shipped with. Point it at your project — connected workspace, calc spreadsheets, client brief — and it produces every schedule you need, formatted to your house standard, populated with your preferred manufacturers, and saved into the right folder. Then it runs a gap analysis: what's in the schedule but missing from the model, what's in the model but missing from the schedule, and which rows disagree with your calculations. Workflow lives at /dist/workflows/schedules/.",
+      "blurb": "Schedule Builder is what every modeller wishes Revit shipped with. Point it at your project — connected workspace, calc spreadsheets, client brief — and it produces every schedule you need, formatted to your house standard, populated with your preferred manufacturers, and saved into the right folder. Then it runs a gap analysis: what's in the schedule but missing from the model, what's in the model but missing from the schedule, and which rows disagree with your calculations. Workflow lives at /workflows/schedules/.",
       "detail_paragraphs": [
         "Schedule Builder reads the live Revit model, your house schedule template, your calc spreadsheets and your preferred-manufacturer library, then produces every schedule the project needs in one go: radiators, AHUs, fans, lights, fixtures, and any custom schedule type you've configured. It saves them into your project's `Schedules/` folder, formatted exactly to your house style.",
         "Then it runs a three-way gap analysis: what's in the schedule but missing from the model, what's in the model but missing from the schedule, and which rows disagree with your calculations (e.g. a radiator whose model output doesn't match the heat-loss spreadsheet). Each mismatch links straight to the offending element.",
@@ -479,7 +479,7 @@
         ],
         "auth": "Microsoft 365 SSO recommended.",
         "download_label": "Run online or get the Revit add-in",
-        "download_href": "/dist/downloads/index.html"
+        "download_href": "/downloads/index.html"
       },
       "surface": "Revit add-in + web app",
       "status": "live",
@@ -488,7 +488,7 @@
       "tone": "green",
       "best_for": ["MEP modellers", "Schedule QA before issue", "Practices with house schedule templates"],
       "primary_cta": { "label": "Run Schedule Builder online", "href": "https://app.adelphos.ai/schedule-builder" },
-      "secondary_cta": { "label": "Open the workflow", "href": "/dist/workflows/schedules/index.html" },
+      "secondary_cta": { "label": "Open the workflow", "href": "/workflows/schedules/index.html" },
       "seo": {
         "why_h3":     "Automated Revit schedule builder with model and calc cross-checking",
         "shift_h3":   "From hand-built schedules to AI-built schedules with gap analysis",
@@ -513,7 +513,7 @@
         { "name": "Source traceability", "desc": "Every cell traces back to its source Revit element." }
       ],
       "primary_cta": { "label": "Open CoBie Manager", "href": "https://app.adelphos.ai/cobie-manager" },
-      "secondary_cta": { "label": "See the email service", "href": "/dist/agentic-services/email-cobie/index.html" }
+      "secondary_cta": { "label": "See the email service", "href": "/agentic-services/email-cobie/index.html" }
     },
     {
       "slug": "autocad-copilot",
@@ -531,8 +531,8 @@
         { "name": "MCP tool surface",      "desc": "Every Adelphos tool callable from inside the drawing." },
         { "name": "Cross-tool memory",     "desc": "Picks up where the Revit Copilot left off on the same project." }
       ],
-      "primary_cta": { "label": "Download AutoCAD add-in", "href": "/dist/downloads/index.html" },
-      "secondary_cta": { "label": "See the Revit Copilot", "href": "/dist/apps/revit-copilot/index.html" }
+      "primary_cta": { "label": "Download AutoCAD add-in", "href": "/downloads/index.html" },
+      "secondary_cta": { "label": "See the Revit Copilot", "href": "/apps/revit-copilot/index.html" }
     },
     {
       "slug": "word-add-in",
@@ -550,8 +550,8 @@
         { "name": "Live model awareness",  "desc": "Cross-checks claims against the live Revit model." },
         { "name": "House style enforcement", "desc": "Applies your office Word styles automatically." }
       ],
-      "primary_cta": { "label": "Get the Word add-in", "href": "/dist/downloads/index.html" },
-      "secondary_cta": { "label": "See Specbuilder", "href": "/dist/apps/specbuilder/index.html" }
+      "primary_cta": { "label": "Get the Word add-in", "href": "/downloads/index.html" },
+      "secondary_cta": { "label": "See Specbuilder", "href": "/apps/specbuilder/index.html" }
     },
     {
       "slug": "excel-add-in",
@@ -569,8 +569,8 @@
         { "name": "Push-back to Revit",     "desc": "Push calc results back to the model elements." },
         { "name": "Inline gap analysis",    "desc": "Disagreements flagged in the cell, not weeks later." }
       ],
-      "primary_cta": { "label": "Get the Excel add-in", "href": "/dist/downloads/index.html" },
-      "secondary_cta": { "label": "See Schedule Builder", "href": "/dist/apps/schedule-builder/index.html" }
+      "primary_cta": { "label": "Get the Excel add-in", "href": "/downloads/index.html" },
+      "secondary_cta": { "label": "See Schedule Builder", "href": "/apps/schedule-builder/index.html" }
     }
   ]
 }

@@ -2,7 +2,7 @@
  * scripts/build-app-pages.mjs
  *
  * Generates one detail page per app from sandbox/data/apps.json.
- * Output: /dist/apps/<slug>/index.html
+ * Output: /apps/<slug>/index.html
  *
  * Also exports buildAppsInventory() for the apps landing page.
  */
@@ -45,7 +45,7 @@ async function renderApp(app) {
   const installBlock  = renderInstall(app);
 
   // ── SEO / AEO ──────────────────────────────────────────────────────────
-  const pagePath = `/dist/apps/${app.slug}/index.html`;
+  const pagePath = `/apps/${app.slug}/index.html`;
   const lastmod = await gitLastMod(`sandbox/data/apps.json`);
   const seoHead = await renderSeoHead({
     title: `${app.title} — Apps`,
@@ -58,7 +58,7 @@ async function renderApp(app) {
   const faqBlock = renderFaqBlock(faqs);
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: 'Apps', url: '/dist/apps/index.html' },
+    { name: 'Apps', url: '/apps/index.html' },
     { name: app.title, url: pagePath }
   ];
   const jsonLd = await renderJsonLd({
@@ -96,9 +96,9 @@ async function renderApp(app) {
   const audience = (app.best_for || []).map(b => `<span class="ap">${esc(b)}</span>`).join('');
 
   const ctaLabel  = (app.primary_cta   && app.primary_cta.label)   || 'Download';
-  const ctaHref   = (app.primary_cta   && app.primary_cta.href)    || '/dist/downloads/index.html';
+  const ctaHref   = (app.primary_cta   && app.primary_cta.href)    || '/downloads/index.html';
   const cta2Label = (app.secondary_cta && app.secondary_cta.label) || 'See it in action';
-  const cta2Href  = (app.secondary_cta && app.secondary_cta.href)  || '/dist/demos/index.html';
+  const cta2Href  = (app.secondary_cta && app.secondary_cta.href)  || '/demos/index.html';
   const endCtaBlurb = (app.primary_cta && /^download/i.test(app.primary_cta.label))
     ? 'Self-serve install. No sales call, no walkthrough required.'
     : `Open ${app.title} in your browser — no install needed.`;
@@ -161,15 +161,15 @@ export async function buildAppsInventory() {
   const seoHead = await renderSeoHead({
     title: 'Apps — Adelphos AI',
     description: data.section_blurb,
-    path: '/dist/apps/index.html',
+    path: '/apps/index.html',
     type: 'website',
     keywords: ['Adelphos AI apps', 'MEP software', 'Revit add-in', ...data.apps.map(a => a.title)]
   });
   const jsonLd = await renderJsonLd({
-    kind: 'inventory', path: '/dist/apps/index.html',
+    kind: 'inventory', path: '/apps/index.html',
     title: 'Adelphos AI Apps', description: data.section_blurb,
-    items: data.apps.map(a => ({ name: a.title, url: `/dist/apps/${a.slug}/index.html` })),
-    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Apps', url: '/dist/apps/index.html' }]
+    items: data.apps.map(a => ({ name: a.title, url: `/apps/${a.slug}/index.html` })),
+    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Apps', url: '/apps/index.html' }]
   });
 
   const html = tmpl
@@ -195,7 +195,7 @@ function renderFlagship(a) {
       <span class="lbl">${esc(o.label)}</span>
     </div>`).join('');
   return `
-    <a class="flagship" href="/dist/apps/${esc(a.slug)}/index.html">
+    <a class="flagship" href="/apps/${esc(a.slug)}/index.html">
       <div class="copy">
         <span class="badge">Flagship · ${esc(a.surface ? a.surface.split('·')[0].trim() : 'Live')}</span>
         <h2>${esc(a.title)}</h2>
@@ -211,7 +211,7 @@ function renderTile(a) {
   const outcomes = (a.key_outcomes || []).slice(0, 3).map(o => `
     <div class="stat"><span class="num">${esc(o.stat)}</span><span class="lbl">${esc(o.label)}</span></div>`).join('');
   return `
-    <a class="app-tile" href="/dist/apps/${esc(a.slug)}/index.html">
+    <a class="app-tile" href="/apps/${esc(a.slug)}/index.html">
       <div class="visual">
         <img src="/${esc(a.icon || 'logos/Node Logo.png')}" alt="" onerror="this.style.opacity=0">
       </div>
@@ -285,8 +285,8 @@ function renderInstall(entity) {
 
   const cta = i.download_label ? `
     <div class="install-cta-row">
-      <a class="cta-primary" href="${esc(i.download_href || '/dist/downloads/index.html')}">${esc(i.download_label)} →</a>
-      <a class="cta-secondary" href="/dist/docs/index.html">Read the docs first</a>
+      <a class="cta-primary" href="${esc(i.download_href || '/downloads/index.html')}">${esc(i.download_label)} →</a>
+      <a class="cta-secondary" href="/docs/index.html">Read the docs first</a>
     </div>` : '';
 
   return strip + meta + cta;
@@ -305,12 +305,12 @@ async function loadAppRelated(currentApp) {
     ...siblings.map(a => ({
       kind: 'App', title: a.title,
       desc: a.tagline || a.headline_claim,
-      url:  `/dist/apps/${a.slug}/index.html`
+      url:  `/apps/${a.slug}/index.html`
     })),
     matchedService && {
       kind: 'Agentic service', title: matchedService.title,
       desc: matchedService.tagline,
-      url:  `/dist/agentic-services/${matchedService.slug}/index.html`
+      url:  `/agentic-services/${matchedService.slug}/index.html`
     }
   ].filter(Boolean);
 }

@@ -1,5 +1,5 @@
 {
-  "_comment": "Release history. Each entry becomes a section on /dist/changelog/ with SoftwareApplication JSON-LD.",
+  "_comment": "Release history. Each entry becomes a section on /changelog/ with SoftwareApplication JSON-LD.",
   "releases": [
     {
       "version": "0.4.0",

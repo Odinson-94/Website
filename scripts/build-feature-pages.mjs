@@ -7,7 +7,7 @@
  *
  * Reuses the app-page template + renderApp pipeline because features share
  * the same crown-jewel layout. The only differences are the URL prefix
- * (/dist/features/...) and a section label of "Feature".
+ * (/features/...) and a section label of "Feature".
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -45,9 +45,9 @@ async function renderFeature(f) {
   const tmpl = await fs.readFile(T('feature-showcase.html'), 'utf8');
 
   const ctaLabel  = 'Open Revit Copilot';
-  const ctaHref   = '/dist/apps/revit-copilot/index.html';
+  const ctaHref   = '/apps/revit-copilot/index.html';
   const cta2Label = 'See all apps';
-  const cta2Href  = '/dist/apps/index.html';
+  const cta2Href  = '/apps/index.html';
   const endCtaBlurb = 'Built into the Adelphos platform. Available through the Revit Copilot.';
 
   const outcomesStrip = (f.key_outcomes || []).length
@@ -75,10 +75,10 @@ async function renderFeature(f) {
   </div>`;
   }).join('\n');
 
-  const breadcrumbHtml = `<a href="/">Home</a> &rsaquo; <a href="/dist/apps/revit-copilot/index.html">Revit Copilot</a> &rsaquo; ${esc(f.title)}`;
+  const breadcrumbHtml = `<a href="/">Home</a> &rsaquo; <a href="/apps/revit-copilot/index.html">Revit Copilot</a> &rsaquo; ${esc(f.title)}`;
 
   // SEO
-  const pagePath = `/dist/features/${f.slug}/index.html`;
+  const pagePath = `/features/${f.slug}/index.html`;
   const lastmod = await gitLastMod('sandbox/data/features.json');
   const seoHead = await renderSeoHead({
     title: `${f.title} \u2014 Features`,
@@ -91,7 +91,7 @@ async function renderFeature(f) {
   const faqBlock = renderShowcaseFaq(faqs);
   const breadcrumbs = [
     { name: 'Home',     url: '/' },
-    { name: 'Features', url: '/dist/features/index.html' },
+    { name: 'Features', url: '/features/index.html' },
     { name: f.title,    url: pagePath }
   ];
   const jsonLd = await renderJsonLd({
@@ -150,7 +150,7 @@ function renderShowcaseFaq(faqs) {
 function renderShowcaseRelated(apps) {
   if (!apps || !apps.length) return '';
   const cards = apps.map(a => `
-    <a class="fs-related-card" href="/dist/apps/${esc(a.slug)}/index.html">
+    <a class="fs-related-card" href="/apps/${esc(a.slug)}/index.html">
       <span class="kind">App</span>
       <strong>${esc(a.title)}</strong>
       <span class="desc">${esc(a.tagline || '')}</span>
@@ -266,7 +266,7 @@ function renderInstall(entity) {
   const cta = i.download_label ? `
     <div class="install-cta-row">
       <a class="cta-primary" href="${esc(i.download_href || '/contact/')}">${esc(i.download_label)} →</a>
-      <a class="cta-secondary" href="/dist/docs/index.html">Read the docs first</a>
+      <a class="cta-secondary" href="/docs/index.html">Read the docs first</a>
     </div>` : '';
   return strip + meta + cta;
 }
@@ -284,15 +284,15 @@ export async function buildFeaturesInventory() {
   const seoHead = await renderSeoHead({
     title: 'Features',
     description: data.section_blurb,
-    path: '/dist/features/index.html',
+    path: '/features/index.html',
     type: 'website',
     keywords: ['Adelphos AI features', 'MEP automation', 'plantroom design', 'auto-route', 'clash solver', 'PDF to Revit']
   });
   const jsonLd = await renderJsonLd({
-    kind: 'inventory', path: '/dist/features/index.html',
+    kind: 'inventory', path: '/features/index.html',
     title: 'Adelphos AI Features', description: data.section_blurb,
-    items: data.features.map(f => ({ name: f.title, url: `/dist/features/${f.slug}/index.html` })),
-    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Features', url: '/dist/features/index.html' }]
+    items: data.features.map(f => ({ name: f.title, url: `/features/${f.slug}/index.html` })),
+    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Features', url: '/features/index.html' }]
   });
 
   const html = tmpl
@@ -314,7 +314,7 @@ export async function buildFeaturesInventory() {
 // Same vocabulary as apps-inventory: .ai-flagship + .app-tile.
 function renderFlagship(f) {
   return `
-    <a class="ai-flagship fi-reveal d2" href="/dist/features/${esc(f.slug)}/index.html">
+    <a class="ai-flagship fi-reveal d2" href="/features/${esc(f.slug)}/index.html">
       <div class="copy">
         <span class="badge">Flagship feature</span>
         <h2>${esc(f.title)}</h2>
@@ -336,7 +336,7 @@ function renderFlagship(f) {
 // all tiles.
 function renderTile(f) {
   return `
-    <a class="app-tile feat-tile" href="/dist/features/${esc(f.slug)}/index.html">
+    <a class="app-tile feat-tile" href="/features/${esc(f.slug)}/index.html">
       <div class="feat-tile-frame">
         <div class="feat-video-placeholder">demo video \u2014 coming soon</div>
       </div>

@@ -35,7 +35,7 @@ async function loadSite() {
  * @param {object} m
  * @param {string} m.title          — page title (without site name suffix)
  * @param {string} m.description    — meta description (≤160 chars)
- * @param {string} m.path           — site-root-relative path (e.g. '/dist/apps/revit-copilot/index.html')
+ * @param {string} m.path           — site-root-relative path (e.g. '/apps/revit-copilot/index.html')
  * @param {string} [m.image]        — OG image URL (absolute or root-relative)
  * @param {string} [m.type]         — 'website' | 'article' | 'product'
  * @param {string[]} [m.keywords]
@@ -122,7 +122,7 @@ export async function renderJsonLd({ kind, ...d }) {
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP', availability: 'https://schema.org/InStock' },
       publisher: org,
       featureList: (d.features || []).map(f => f.name).join(', '),
-      softwareHelp: { '@type': 'CreativeWork', url: siteUrl + '/dist/docs/index.html' }
+      softwareHelp: { '@type': 'CreativeWork', url: siteUrl + '/docs/index.html' }
     });
   } else if (kind === 'agentic-service') {
     blocks.push({

@@ -2,7 +2,7 @@
  * scripts/build-agentic-pages.mjs
  *
  * Generates one detail page per agentic service from sandbox/data/agentic-services.json.
- * Output: /dist/agentic-services/<slug>/index.html
+ * Output: /agentic-services/<slug>/index.html
  *
  * Crown-jewel layout: cinematic hero, outcomes strip, before/after shift,
  * "what we offer" list, "how it becomes agentic" maturity ladder,
@@ -77,7 +77,7 @@ async function renderService(svc) {
   const featuresBlock = renderFeatures(svc);
 
   // ── SEO / AEO ──────────────────────────────────────────────────────────
-  const pagePath = `/dist/agentic-services/${svc.slug}/index.html`;
+  const pagePath = `/agentic-services/${svc.slug}/index.html`;
   const lastmod = await gitLastMod(`sandbox/data/agentic-services.json`);
   const seoHead = await renderSeoHead({
     title: `${svc.title} — Agentic Services`,
@@ -90,7 +90,7 @@ async function renderService(svc) {
   const faqBlock = renderFaqBlock(faqs);
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: 'Agentic Services', url: '/dist/agentic-services/index.html' },
+    { name: 'Agentic Services', url: '/agentic-services/index.html' },
     { name: svc.title, url: pagePath }
   ];
   const jsonLd = await renderJsonLd({
@@ -112,9 +112,9 @@ async function renderService(svc) {
   const relatedApps = matchedApps.length ? matchedApps : (flagshipApp ? [flagshipApp] : apps.slice(0, 2));
   const related = [
     sibling && { kind: 'Agentic service', title: sibling.title, desc: sibling.tagline,
-                 url: `/dist/agentic-services/${sibling.slug}/index.html` },
+                 url: `/agentic-services/${sibling.slug}/index.html` },
     ...relatedApps.map(a => ({ kind: 'App', title: a.title, desc: a.tagline,
-                               url: `/dist/apps/${a.slug}/index.html` }))
+                               url: `/apps/${a.slug}/index.html` }))
   ].filter(Boolean);
   const relatedBlock = renderRelatedBlock(related);
 
@@ -255,15 +255,15 @@ export async function buildAgenticServicesInventory() {
   const seoHead = await renderSeoHead({
     title: 'Agentic Services — Adelphos AI',
     description: data.section_blurb,
-    path: '/dist/agentic-services/index.html',
+    path: '/agentic-services/index.html',
     type: 'website',
     keywords: ['Adelphos AI agentic services', 'managed AI service', 'engineering practice services', ...data.services.map(s => s.title)]
   });
   const jsonLd = await renderJsonLd({
-    kind: 'inventory', path: '/dist/agentic-services/index.html',
+    kind: 'inventory', path: '/agentic-services/index.html',
     title: 'Adelphos Agentic Services', description: data.section_blurb,
-    items: data.services.map(s => ({ name: s.title, url: `/dist/agentic-services/${s.slug}/index.html` })),
-    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Agentic Services', url: '/dist/agentic-services/index.html' }]
+    items: data.services.map(s => ({ name: s.title, url: `/agentic-services/${s.slug}/index.html` })),
+    breadcrumbs: [{ name: 'Home', url: '/' }, { name: 'Agentic Services', url: '/agentic-services/index.html' }]
   });
 
   const html = tmpl
@@ -321,7 +321,7 @@ function renderFlagship(s) {
   ).join('\n          ');
 
   return `
-    <a class="ai-flagship" href="/dist/agentic-services/${esc(s.slug)}/index.html">
+    <a class="ai-flagship" href="/agentic-services/${esc(s.slug)}/index.html">
       <div class="copy">
         <span class="badge">Enterprise &middot; Managed by Adelphos</span>
         <h2>${esc(s.title)}</h2>
@@ -348,7 +348,7 @@ function renderFlagship(s) {
 
 function renderTile(s) {
   return `
-    <a class="svc-tile" href="/dist/agentic-services/${esc(s.slug)}/index.html">
+    <a class="svc-tile" href="/agentic-services/${esc(s.slug)}/index.html">
       <div class="visual">${tileGlyph(s.slug)}</div>
       <div class="body">
         <span class="surf">Managed service</span>
@@ -363,7 +363,7 @@ function renderTile(s) {
 function renderEmailTile(s) {
   const email = s.email_address || s.email || '';
   return `
-    <a class="svc-tile" href="/dist/agentic-services/${esc(s.slug)}/index.html">
+    <a class="svc-tile" href="/agentic-services/${esc(s.slug)}/index.html">
       <div class="visual">${tileGlyph(s.slug)}</div>
       <div class="body">
         <span class="surf">Email service</span>

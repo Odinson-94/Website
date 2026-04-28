@@ -2,9 +2,9 @@
  * scripts/build-section-inventories.mjs
  *
  * Builds the simple inventory pages for sections that are JSON-driven only:
- *   /dist/workflows/index.html
- *   /dist/resources/index.html
- *   /dist/downloads/index.html
+ *   /workflows/index.html
+ *   /resources/index.html
+ *   /downloads/index.html
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -30,7 +30,7 @@ export async function buildWorkflowsInventory() {
   }
 
   const cards = wfs.map(wf => `
-    <a class="wf-card" href="/dist/workflows/${esc(wf.slug)}/index.html">
+    <a class="wf-card" href="/workflows/${esc(wf.slug)}/index.html">
       <h3>${esc(wf.title || wf.slug)}</h3>
       <p class="lead">${esc((wf.lead || '').slice(0, 200))}${(wf.lead || '').length > 200 ? '…' : ''}</p>
       <div class="meta">

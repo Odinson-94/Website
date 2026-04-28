@@ -2,10 +2,10 @@
  * scripts/build-inventory-pages.mjs
  *
  * Generates the four hierarchical index pages from the live registries:
- *   /dist/docs/tools/index.html       — all MCP tools
- *   /dist/docs/commands/index.html    — all Revit commands
- *   /dist/demos/index.html             — categorised demo gallery
- *   /dist/docs/index.html              — top-level docs landing
+ *   /docs/tools/index.html       — all MCP tools
+ *   /docs/commands/index.html    — all Revit commands
+ *   /demos/index.html             — categorised demo gallery
+ *   /docs/index.html              — top-level docs landing
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -184,7 +184,7 @@ export async function buildDemosGallery() {
             <a class="demo-card${d.status === 'coming-soon' ? ' coming-soon' : ''}"
                id="demo-${esc(d.slug)}"
                data-toc data-toc-label="${esc(d.title)}" data-toc-level="h3"
-               href="/dist/demos/${esc(d.slug)}/index.html">
+               href="/demos/${esc(d.slug)}/index.html">
               <div class="video-wrap">
                 <div class="poster-fallback" style="background:url(/demo-assets/${esc(d.slug)}/thumbnail.svg) center/cover, linear-gradient(135deg,#1f3340,#0e1c25);"></div>
                 <span class="duration">${esc(d.duration)}</span>
