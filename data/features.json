@@ -1,0 +1,234 @@
+{
+  "_comment": "Headline 'Features' — bespoke MEP automation pages that get their own URL + homepage panel. Same crown-jewel layout as Apps. Edit here, run auto-all, every consumer (homepage, dropdown, sitemap, llms.txt, JSON-LD) updates.",
+  "section_title": "Features",
+  "section_lead": "The bespoke automation services people ask us for first.",
+  "section_blurb": "Four flagship engineering automations: 3D plantroom design from sketches, PDF drawings turned into a Revit model, pipework auto-routed to its destinations, and clashes solved (not just reported). Each is a dedicated page; each links straight back into the apps that drive it.",
+  "features": [
+    {
+      "slug": "plantroom-designer-3d",
+      "title": "3D Plantroom Designer",
+      "is_flagship": true,
+      "headline_claim": "From a brief and a few site photos to a fully-coordinated 3D plantroom in hours, not weeks.",
+      "tagline": "An agentic 3D modeller that designs the plantroom, sizes the equipment, routes the services, and hands you a Revit model ready for issue.",
+      "the_shift": {
+        "before": "Plantrooms are days of senior-engineer iteration: sketch, model, re-sketch, re-route, miss something, re-do. Most projects ship a generic plantroom because nobody had time to design the right one.",
+        "after": "Send the brief, the loads, and the available footprint. Adelphos designs three plantroom options, sizes every plant item, routes the services, checks the maintenance access, and hands you a Revit model with a coordinated layout."
+      },
+      "blurb": "3D Plantroom Designer is the highest-leverage feature on the platform. It collapses 1–2 weeks of senior MEP design into an afternoon — and it does so with engineering judgement, not just geometry placement.",
+      "detail_paragraphs": [
+        "Send the project brief, the available plantroom footprint, the structural envelope, and the load schedule (or the agent will derive loads from the brief). The designer produces three options for the plantroom layout — typically: maintenance-optimised, footprint-optimised, and energy-optimised — each with a 3D model, a fully-sized plant item schedule, a service-route audit, and a coordination report against the structural model.",
+        "Every plant item is selected from your house preferred-manufacturer library and sized to the loads. Pipework, ductwork, and electrical containment are routed with maintenance access preserved (NHS HTM-08 / CIBSE Guide M clearances by default; configurable per practice). The designer audits its own work and tells you which assumptions it made.",
+        "For a typical commercial plantroom this collapses what is normally 1–2 weeks of senior MEP design effort into 2–4 hours of agent runtime plus a 30-minute review. Across a year, a five-engineer practice running 6–8 plantroom designs typically reclaims 8–12 weeks of senior-engineer time."
+      ],
+      "pullquote": "3D Plantroom Designer will be the only plantroom design service that gives you three coordinated options, in 3D, on the day you brief it.",
+      "key_outcomes": [
+        { "stat": "3 options",  "label": "delivered per brief — pick or refine" },
+        { "stat": "Hours",      "label": "not weeks for a coordinated 3D layout" },
+        { "stat": "House library","label": "preferred manufacturers applied" },
+        { "stat": "Coordinated","label": "against structure + arch envelope" }
+      ],
+      "features": [
+        { "name": "Three-option output",          "desc": "Maintenance-optimised, footprint-optimised, energy-optimised — every brief, every time." },
+        { "name": "Plant item sizing",            "desc": "Pumps, AHUs, chillers, boilers, calorifiers — sized to the loads, no rule-of-thumb." },
+        { "name": "Service routing in 3D",        "desc": "Pipework, ductwork, electrical containment routed with maintenance access preserved." },
+        { "name": "Structure-coordinated",         "desc": "Audited against the structural model and the architectural envelope." },
+        { "name": "House preferred manufacturers", "desc": "Selects equipment from your office library, not a generic catalogue." },
+        { "name": "Maintenance clearances",        "desc": "HTM-08 / CIBSE Guide M defaults, configurable per practice." },
+        { "name": "Auto-derived loads",            "desc": "If you send only the brief, the designer derives loads first; you can supply your own." },
+        { "name": "Coordination report",           "desc": "Lists every assumption made, every clash resolved, every clearance applied." },
+        { "name": "Revit-ready output",            "desc": "Returns a Revit model coordinated to your project template." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Service",        "spec": "Run by Adelphos — no install. Brief → 3D model in 2–4 hours of runtime." },
+          { "name": "Web dashboard",  "spec": "Review / refine / approve the three options in the browser, then export." }
+        ],
+        "requirements": [
+          "An Adelphos account (free tier supports up to 2 plantroom briefs per month).",
+          "A project brief, structural envelope, and either a load schedule or enough info to derive one.",
+          "Optional: connect your house Revit template + preferred-manufacturer library."
+        ],
+        "auth": "Microsoft 365 SSO recommended.",
+        "download_label": "Brief a plantroom",
+        "download_href": "https://app.adelphos.ai/plantroom-designer"
+      },
+      "best_for": ["MEP design leads", "Plantroom-heavy schemes", "Practices issuing Stage 3 + plantroom layouts"],
+      "icon": "images/app-logos/cobie-manager.png",
+      "tone": "purple",
+      "seo": {
+        "why_h3":     "Automated 3D plantroom designer for MEP engineers",
+        "shift_h3":   "From two-week plantroom design to two hours plus review",
+        "special_h3": "Three coordinated options per brief, every brief",
+        "who_h3":     "For practices designing commercial, healthcare and industrial plantrooms"
+      }
+    },
+    {
+      "slug": "pdf-to-3d",
+      "title": "PDF to 3D Model Conversion",
+      "headline_claim": "Send a PDF drawing. Get back a Revit model. Coordinated, parameterised, and on your house template.",
+      "tagline": "Converts 2D PDF drawings (and DWGs) into a fully-modelled, parameterised Revit model — built on your office template, with your families, ready for issue.",
+      "the_shift": {
+        "before": "PDF-to-Revit is a junior modeller's week: trace, model, parameterise, swap to house families, fix the schedules. Most practices ship the PDF rather than re-model it because the cost is prohibitive.",
+        "after": "Drop a PDF (or DWG) into the conversion pipeline. The agent recognises systems, models them on your house template with house families, populates parameters, and hands you a Revit model. Review, accept, issue."
+      },
+      "blurb": "PDF to 3D Model Conversion is what every practice has tried to build with a junior modeller and a fortnight. We do it in hours, on your house standards.",
+      "detail_paragraphs": [
+        "Send a 2D PDF (or a DWG, RVT, or IFC) into the conversion pipeline. The agent identifies systems by line-style, layer, and symbol, models them in 3D using your house Revit template and your house families, populates the relevant parameters, and produces a coordinated Revit model.",
+        "Where the source drawing is ambiguous (annotation overlap, unclear connections, missing system labels) the agent flags the ambiguity, proposes a resolution, and asks you to confirm — with one-click accept-all for the routine cases.",
+        "For a typical commercial floor plate this collapses what is normally 3–5 days of senior modeller time into 2–3 hours of runtime plus a 30-minute review. Most practices use this on existing-building schemes, retrofit briefs, and on hand-over drawings from contractors."
+      ],
+      "pullquote": "PDF to 3D will be the only conversion service that respects your house template, your house families, and your house parameter conventions.",
+      "key_outcomes": [
+        { "stat": "Hours",      "label": "not days for a complete Revit model" },
+        { "stat": "House template","label": "honoured exactly" },
+        { "stat": "House families","label": "swapped in automatically" },
+        { "stat": "Ambiguity-aware","label": "asks before guessing" }
+      ],
+      "features": [
+        { "name": "PDF input",                   "desc": "Vector or scanned PDF; the agent handles both." },
+        { "name": "DWG / RVT / IFC input",       "desc": "Same pipeline accepts CAD and BIM formats." },
+        { "name": "House template enforcement",  "desc": "Output sits in your project template with your view templates." },
+        { "name": "House family substitution",   "desc": "Generic geometry swapped for your office family library." },
+        { "name": "Parameter population",        "desc": "Standard MEP parameters populated where the source supports it." },
+        { "name": "Ambiguity flagging",          "desc": "Unclear connections / overlaps / missing labels surfaced for review, not guessed." },
+        { "name": "Layer-by-layer review",       "desc": "Approve / refine each system layer (mech, elec, public health, fire) independently." },
+        { "name": "Coordination check",          "desc": "Output checked against any linked structural / arch model." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Service",       "spec": "Run by Adelphos — drop a PDF, get a Revit model back." },
+          { "name": "Web dashboard", "spec": "Review and refine the conversion before download." }
+        ],
+        "requirements": [
+          "An Adelphos account.",
+          "Source drawing (PDF, DWG, RVT, or IFC).",
+          "Optional: house Revit template + family library for best output."
+        ],
+        "auth": "Microsoft 365 SSO recommended.",
+        "download_label": "Convert a PDF",
+        "download_href": "https://app.adelphos.ai/pdf-to-3d"
+      },
+      "best_for": ["Existing-building schemes", "Retrofit projects", "Hand-over drawings from contractors"],
+      "icon": "images/app-logos/autocad-copilot.png",
+      "tone": "amber",
+      "seo": {
+        "why_h3":     "PDF to Revit model conversion for MEP engineers",
+        "shift_h3":   "From a junior modeller's week to two hours of agent runtime",
+        "special_h3": "House-template, house-family conversion that asks before guessing",
+        "who_h3":     "For retrofit, existing-building and hand-over schemes"
+      }
+    },
+    {
+      "slug": "autoroute",
+      "title": "AutoRoute",
+      "headline_claim": "Pipework auto-routed to its destinations — coordinated against structure, services and access.",
+      "tagline": "Tell AutoRoute the source and the destinations. It routes the run, picks the fittings, sizes the pipe, and hands you back an approved geometry.",
+      "the_shift": {
+        "before": "Pipework routing is iterative: route, clash, re-route, repeat. Most senior engineers spend more time fighting the route than designing the system.",
+        "after": "Define the source, the destinations, and the constraints. AutoRoute returns the optimal route — coordinated, clash-free, fittings selected, sized, ready for review."
+      },
+      "blurb": "AutoRoute is the time-back tool. It does the part of MEP design every engineer hates and most do badly: spatial coordination of services through a real building.",
+      "detail_paragraphs": [
+        "Provide a source (e.g. plant connection), a list of destinations (e.g. terminal units), and the live model. AutoRoute returns the optimal route considering the structural model, other services, maintenance access, fall (for drainage), and your office's routing preferences (e.g. avoid above electrical panels, prefer ceiling void over floor void).",
+        "Fittings are selected from your house family library and the pipe is sized per system rules (CIBSE / industry guides by default; your house rules if configured). The agent reports every clash it resolved and every assumption it made.",
+        "For a typical commercial floor with 30–60 routes, AutoRoute returns a coordinated geometry in 10–20 minutes against what is normally a half-day of senior engineer + modeller time. The biggest impact is on retrofit schemes where existing geometry constraints are dense — what would take a day of fighting takes 20 minutes of agent runtime."
+      ],
+      "pullquote": "AutoRoute will be the only routing service that designs against your real building — structure, services, access — and tells you what it changed and why.",
+      "key_outcomes": [
+        { "stat": "10–20 min", "label": "for 30–60 routes on a commercial floor" },
+        { "stat": "Clash-free","label": "against structure + other services" },
+        { "stat": "House rules","label": "applied automatically" },
+        { "stat": "Audited",   "label": "every clash resolved is logged" }
+      ],
+      "features": [
+        { "name": "Multi-destination routing",   "desc": "One source → many destinations, optimised as a network not a single run." },
+        { "name": "Live model awareness",         "desc": "Routes against the actual structural model and other live services." },
+        { "name": "House routing preferences",    "desc": "Ceiling-void preference, no-go zones (e.g. above electrical), fall + access rules." },
+        { "name": "Fittings + pipe sizing",       "desc": "Fittings from your house library; sizing per CIBSE / your house rules." },
+        { "name": "Drainage fall handling",       "desc": "Maintains gradient / fall for SVP, AAV, foul + surface water routes." },
+        { "name": "Maintenance access",           "desc": "HTM-08 / CIBSE Guide M clearances honoured along every route." },
+        { "name": "Clash resolution log",         "desc": "Reports every clash it solved and every constraint it relaxed." },
+        { "name": "Refine + re-route",            "desc": "One-click change a constraint and the agent re-routes only the affected runs." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Revit add-in", "spec": "Revit 2022 → 2026 · Windows · loaded with the Revit Copilot." },
+          { "name": "Service",      "spec": "Or run via Adelphos — send the model and constraints, get the routed geometry back." }
+        ],
+        "requirements": [
+          "Revit 2022+ if running in-Revit; otherwise Adelphos account only.",
+          "A live Revit model with structural + other-services link present.",
+          "Optional: house family library + routing-preferences config for best output."
+        ],
+        "auth": "Microsoft 365 SSO recommended.",
+        "download_label": "Run AutoRoute",
+        "download_href": "https://app.adelphos.ai/autoroute"
+      },
+      "best_for": ["Retrofit MEP schemes", "Coordination-heavy commercial floors", "Healthcare + lab plantrooms"],
+      "icon": "images/app-logos/cobie-manager.png",
+      "tone": "teal",
+      "seo": {
+        "why_h3":     "Automated MEP pipework + ductwork routing service",
+        "shift_h3":   "From a half-day of clash + re-route to twenty minutes of routed geometry",
+        "special_h3": "Routes against your real building with your house preferences",
+        "who_h3":     "For MEP design teams on retrofit and coordination-heavy schemes"
+      }
+    },
+    {
+      "slug": "clash-solver",
+      "title": "Clash Solver",
+      "headline_claim": "Stops reporting clashes. Starts solving them.",
+      "tagline": "Ingests your ACC clash report, proposes a resolution for every clash, and applies the resolutions you accept — straight into the live model.",
+      "the_shift": {
+        "before": "Clash reports are weekly noise: 800 clashes flagged, 200 actually need solving, half the team spends Friday afternoon working out which is which. The model never quite catches up.",
+        "after": "Clash Solver triages the report (real vs noise), proposes a resolution per real clash, and applies the ones you accept. The clash count drops weekly instead of climbing."
+      },
+      "blurb": "Clash Solver is the missing other half of the clash-detection workflow. Detection is solved; resolution is still manual. Adelphos closes the loop.",
+      "detail_paragraphs": [
+        "Connect Clash Solver to your ACC project. It pulls the latest clash report, deduplicates against the previous run, and triages: real clash vs ghost (model-link drift, family swap, view-filter mismatch). For each real clash it proposes a resolution — re-route the smaller service, raise the ceiling void in the affected zone, swap a fitting, etc. — and shows you what the model would look like after.",
+        "You accept, refine, or reject each proposal. Accepted resolutions are applied to the live model as auditable Revit transactions (one-click undo). Rejected ones go into a 'why we kept this' log so the next sync doesn't propose the same thing.",
+        "For a typical 800-clash weekly report on a coordination-heavy scheme, Clash Solver triages to 150–200 real clashes in minutes, proposes resolutions for ~80% of them, and lets you process the rest in roughly half the time of a manual triage. Most teams see their open clash count drop week-on-week for the first time."
+      ],
+      "pullquote": "Clash Solver will be the only tool that closes the clash loop — detection AND resolution, audited and reversible, on your live model.",
+      "key_outcomes": [
+        { "stat": "Triage",     "label": "real clashes vs ghost in minutes" },
+        { "stat": "~80%",       "label": "auto-proposed resolutions" },
+        { "stat": "One-click",  "label": "accept and apply to the live model" },
+        { "stat": "Auditable",  "label": "every resolution is a reversible transaction" }
+      ],
+      "features": [
+        { "name": "ACC live import",         "desc": "Pulls the latest clash report from Autodesk Construction Cloud automatically." },
+        { "name": "Ghost-clash filtering",    "desc": "Recognises link drift, family swap, view-filter mismatch as ghosts, not real clashes." },
+        { "name": "Resolution proposals",     "desc": "Re-route, fitting swap, zone raise, or coordinate-change, with a model preview." },
+        { "name": "One-click apply",          "desc": "Accepted resolutions executed as auditable Revit transactions." },
+        { "name": "Reject + reason",          "desc": "Rejected proposals logged so the next run doesn't re-propose the same thing." },
+        { "name": "Zone-level batch",         "desc": "Fix a whole zone in one pass instead of clash-by-clash." },
+        { "name": "Status dashboard",         "desc": "Open / triaged / resolved / rejected counts per project, per discipline." },
+        { "name": "Weekly digest",            "desc": "Summary of what got resolved, what's stuck, what needs a human call." }
+      ],
+      "install": {
+        "platforms": [
+          { "name": "Revit add-in",  "spec": "Revit 2022 → 2026 · Windows · loaded with the Revit Copilot or QA Manager." },
+          { "name": "Web dashboard", "spec": "Triage + accept proposals from the browser; applies happen in Revit when you're next in." }
+        ],
+        "requirements": [
+          "Revit 2022+ for the apply step.",
+          "An Adelphos account with project admin rights.",
+          "ACC connection for clash report import."
+        ],
+        "auth": "Microsoft 365 SSO recommended (Revit + ACC + email in one).",
+        "download_label": "Run Clash Solver",
+        "download_href": "https://app.adelphos.ai/clash-solver"
+      },
+      "best_for": ["Coordination-heavy commercial + healthcare schemes", "Pre-issue clash gate", "Weekly triage automation"],
+      "icon": "images/app-logos/qa-manager.png",
+      "tone": "red",
+      "seo": {
+        "why_h3":     "Automated clash resolution for Revit + ACC projects",
+        "shift_h3":   "From manual clash triage every Friday to continuous resolution",
+        "special_h3": "Closes the clash loop — detection plus resolution, audited and reversible",
+        "who_h3":     "For BIM coordinators and MEP leads tired of triaging clash reports"
+      }
+    }
+  ]
+}

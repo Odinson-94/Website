@@ -1,0 +1,19 @@
+{
+  "_comment": "Glossary terms surfaced on /dist/glossary/. Each term gets an anchor and is auto-linkable from any page.",
+  "terms": [
+    { "term": "MEP Bridge",          "definition": "The Adelphos platform layer that exposes Revit + AutoCAD + project data to AI agents as a typed, audited tool surface." },
+    { "term": "MCP",                 "definition": "Model Context Protocol — the open standard for connecting AI agents to tool surfaces. Adelphos exposes 191 MCP tools." },
+    { "term": "Revit Copilot",       "definition": "The Adelphos AI engineer that lives inside Revit and runs the 163 commands and 191 tools on your behalf." },
+    { "term": "Specbuilder",         "definition": "The Adelphos app that drafts MEP specifications from your live Revit model, brief and house manufacturer library." },
+    { "term": "QA Manager",          "definition": "The Adelphos app that runs continuous quality checks across drawings, schedules, specifications, the model and ACC clash issues." },
+    { "term": "Schedule Builder",    "definition": "The Adelphos app that builds, populates and gap-analyses Revit schedules against the live model and project calculations." },
+    { "term": "Document Controller", "definition": "The Adelphos app (and managed service) that runs document control end-to-end — revisions, transmittals, golden thread." },
+    { "term": "ACC",                 "definition": "Autodesk Construction Cloud — the Autodesk platform Adelphos integrates with for clash issues and shared model storage." },
+    { "term": "AEO",                 "definition": "Answer Engine Optimization — making content discoverable by AI search engines like Perplexity, ChatGPT and Claude." },
+    { "term": "Golden thread",       "definition": "The audit-grade record of every revision, decision and approval through a project's lifetime — required by UK Building Safety Act." },
+    { "term": "IESVE",               "definition": "Integrated Environmental Solutions Virtual Environment — the standard MEP energy modelling tool. Adelphos consumes IESVE outputs." },
+    { "term": "Stage 2 / 3 / 4",     "definition": "RIBA Plan of Work stages: Concept Design, Spatial Coordination, Technical Design. Adelphos templates target each stage." },
+    { "term": "COBie",               "definition": "Construction-Operations Building information exchange — a structured data deliverable for facilities management." },
+    { "term": "Pillar",              "definition": "An Adelphos categorisation of commands by mini-project (Drainage, Lighting, Ventilation, etc.). Drives the Commands index grouping." }
+  ]
+}

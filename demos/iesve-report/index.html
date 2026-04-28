@@ -308,7 +308,7 @@
 </head>
 <body>
 
-<script src="/sandbox/shell.js"></script>
+<script src="/shell.js"></script>
 
 <div class="docs-layout wide dm-no-rails">
 <aside class="docs-left"></aside>
@@ -328,8 +328,8 @@
     <div class="dm-hero-frame">
       <div class="dm-video-wrap">
         <video controls preload="metadata"
-               poster="/sandbox/demo-assets/iesve-report/thumbnail.svg"
-               data-src="/sandbox/demo-assets/iesve-report/video.mp4"
+               poster="/demo-assets/iesve-report/thumbnail.svg"
+               data-src="/demo-assets/iesve-report/video.mp4"
                onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'dm-poster-fallback',innerText:'demo video coming soon · drop sandbox/demo-assets/iesve-report/video.mp4 in to play'}));"></video>
       </div>
     </div>
@@ -397,6 +397,6 @@
   const v = document.querySelector('.dm-hero-frame video');
   if (v && v.dataset.src && !v.src) v.src = v.dataset.src;
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/docs-shell.js"></script>
 </body>
 </html>

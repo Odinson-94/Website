@@ -77,7 +77,7 @@ export async function buildToolPage(slug) {
   const relatedRows = [];
   if ((r.tools || []).length)   relatedRows.push(`<tr><th style="width:120px;">Tools</th><td>${(r.tools).map(t => `<code>${esc(t)}</code>`).join(' · ')}</td></tr>`);
   if ((r.skills || []).length)  relatedRows.push(`<tr><th>Skills</th><td>${(r.skills).map(esc).join(' · ')}</td></tr>`);
-  if ((r.demos || []).length)   relatedRows.push(`<tr><th>Demos</th><td>${(r.demos).map(d => `<a href="/sandbox/demos/#cat-${esc(d)}">${esc(d)}</a>`).join(' · ')}</td></tr>`);
+  if ((r.demos || []).length)   relatedRows.push(`<tr><th>Demos</th><td>${(r.demos).map(d => `<a href="/demos/#cat-${esc(d)}">${esc(d)}</a>`).join(' · ')}</td></tr>`);
   const relatedBlock = relatedRows.length
     ? `<h2 id="related">Related</h2>\n  <table class="ref-table"><tbody>${relatedRows.join('')}</tbody></table>`
     : '';

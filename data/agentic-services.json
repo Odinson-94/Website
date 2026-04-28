@@ -1,0 +1,247 @@
+{
+  "services": [
+    {
+      "slug": "finances",
+      "name": "AI Finances",
+      "kind": "Agentic Module",
+      "tone": "teal",
+      "tagline": "Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data.",
+      "description": "Adelphos monitors your project accounts in real time, reconciles incoming invoices against purchase orders, and generates monthly management accounts without manual data entry. The agent flags anomalies before they become problems and produces cash-flow forecasts based on your programme milestones.",
+      "features": [
+        {
+          "title": "Automated Reconciliation",
+          "desc": "Matches invoices to POs and flags discrepancies within minutes"
+        },
+        {
+          "title": "Cash-flow Forecasting",
+          "desc": "Rolling 12-month forecast tied to your programme milestones"
+        },
+        {
+          "title": "Management Accounts",
+          "desc": "Monthly packs generated from live data — no spreadsheet assembly"
+        },
+        {
+          "title": "Anomaly Detection",
+          "desc": "Agent surfaces duplicate invoices, unusual line items, and budget overruns"
+        },
+        {
+          "title": "Audit Trail",
+          "desc": "Every transaction logged with full provenance for compliance"
+        }
+      ],
+      "email": null,
+      "cta_label": "Request a walkthrough",
+      "cta_action": "contact",
+      "pricing_note": "Managed service — 30-minute onboarding call required.",
+      "logo": "/images/app-logos/finances.png",
+      "title": "AI Finances",
+      "headline_claim": "Automated bookkeeping, invoicing and cash-flow forecasting — driven by your live project data."
+    },
+    {
+      "slug": "project-management",
+      "name": "AI Project Management",
+      "kind": "Agentic Module",
+      "tone": "midnight",
+      "tagline": "Programme tracking, risk registers and reporting — the agent keeps the project on rails.",
+      "description": "The project-management agent reads your programme, tracks deliverables against milestones, maintains a live risk register and writes the weekly status report. It integrates with your existing PM tools and pushes updates to stakeholders automatically.",
+      "features": [
+        {
+          "title": "Programme Tracking",
+          "desc": "Live Gantt sync — flags slippage the day it happens, not at the next review"
+        },
+        {
+          "title": "Risk Register",
+          "desc": "Agent-maintained register with auto-scored likelihood and impact"
+        },
+        {
+          "title": "Status Reporting",
+          "desc": "Weekly and monthly reports drafted from live data — ready for sign-off"
+        },
+        {
+          "title": "Stakeholder Updates",
+          "desc": "Targeted email summaries pushed to each stakeholder group"
+        },
+        {
+          "title": "Deliverable Tracker",
+          "desc": "Maps every deliverable to its programme milestone and owner"
+        }
+      ],
+      "email": null,
+      "cta_label": "Request a walkthrough",
+      "cta_action": "contact",
+      "pricing_note": "Managed service — 30-minute onboarding call required.",
+      "logo": "/images/app-logos/project-management.png",
+      "title": "AI Project Management",
+      "headline_claim": "Programme tracking, risk registers and reporting — the agent keeps the project on rails."
+    },
+    {
+      "slug": "document-controller",
+      "name": "AI Document Controller",
+      "kind": "Agentic Module",
+      "tone": "purple",
+      "tagline": "Transmittals, registers, revision tracking — the agent runs your document control.",
+      "description": "The document-controller agent manages your transmittal register, tracks revisions, chases outstanding approvals and generates cover sheets. It reads incoming transmittals, logs them against the register and notifies the responsible engineer — all without manual filing.",
+      "features": [
+        {
+          "title": "Transmittal Processing",
+          "desc": "Reads incoming transmittals and logs them to the register automatically"
+        },
+        {
+          "title": "Revision Tracking",
+          "desc": "Tracks every revision with full history and approval status"
+        },
+        {
+          "title": "Approval Chasing",
+          "desc": "Agent sends reminders for outstanding approvals on a configurable schedule"
+        },
+        {
+          "title": "Cover Sheet Generation",
+          "desc": "Produces transmittal cover sheets from templates — no manual assembly"
+        },
+        {
+          "title": "Register Dashboard",
+          "desc": "Live view of all documents, statuses and overdue items"
+        }
+      ],
+      "email": null,
+      "cta_label": "Request a walkthrough",
+      "cta_action": "contact",
+      "pricing_note": "Managed service — 30-minute onboarding call required.",
+      "logo": "/images/app-logos/document-controller.png",
+      "title": "AI Document Controller",
+      "headline_claim": "Transmittals, registers, revision tracking — the agent runs your document control."
+    },
+    {
+      "slug": "email-specifications",
+      "name": "Specification Writer",
+      "kind": "Email Service",
+      "tone": "blue",
+      "tagline": "Forward a brief, receive a complete MEP specification section.",
+      "description": "Email your project brief and scope to the specification address. The agent reads it, selects the relevant NBS clauses, fills in the project-specific variables and returns a formatted specification section — ready for review and insertion into your master document.",
+      "features": [
+        {
+          "title": "NBS Clause Selection",
+          "desc": "Agent selects clauses from the NBS library based on your brief"
+        },
+        {
+          "title": "Project Variables",
+          "desc": "Fills in project-specific values — flow rates, pressures, equipment refs"
+        },
+        {
+          "title": "Formatted Output",
+          "desc": "Returns a Word document matching your house style"
+        },
+        {
+          "title": "Revision Handling",
+          "desc": "Reply to the email thread with amendments — agent updates the spec"
+        }
+      ],
+      "email": "specs@adelphos.ai",
+      "cta_label": "Send a brief",
+      "cta_action": "mailto:specs@adelphos.ai",
+      "pricing_note": "Included with Adelphos platform access.",
+      "logo": "/images/app-logos/spec-writer.png",
+      "title": "Specification Writer",
+      "headline_claim": "Forward a brief, receive a complete MEP specification section."
+    },
+    {
+      "slug": "email-revit-modelling",
+      "name": "Revit Modelling Agent",
+      "kind": "Email Service",
+      "tone": "red",
+      "tagline": "Email a markup, receive the Revit model update.",
+      "description": "Send a marked-up PDF or a written instruction to the modelling address. The agent interprets the request, executes the changes in Revit and returns the updated model file with a change summary. Works for routing, equipment placement, annotation and parameter edits.",
+      "features": [
+        {
+          "title": "Markup Interpretation",
+          "desc": "Reads annotated PDFs and translates them into Revit operations"
+        },
+        {
+          "title": "Model Execution",
+          "desc": "Runs the changes in a headless Revit session and returns the updated RVT"
+        },
+        {
+          "title": "Change Summary",
+          "desc": "Detailed log of what was changed, added or removed"
+        },
+        {
+          "title": "QA Check",
+          "desc": "Runs the QA manager against the updated model before returning it"
+        }
+      ],
+      "email": "model@adelphos.ai",
+      "cta_label": "Send a markup",
+      "cta_action": "mailto:model@adelphos.ai",
+      "pricing_note": "Included with Adelphos platform access.",
+      "logo": "/images/app-logos/revit-modelling.png",
+      "title": "Revit Modelling Agent",
+      "headline_claim": "Email a markup, receive the Revit model update."
+    },
+    {
+      "slug": "email-cobie",
+      "name": "COBie Generator",
+      "kind": "Email Service",
+      "tone": "green",
+      "tagline": "Forward the model, receive a validated COBie deliverable.",
+      "description": "Send your Revit model to the COBie address. The agent extracts asset data, validates it against the COBie schema, highlights any gaps and returns a completed COBie spreadsheet with a validation report. Handles COBie UK 2012, COBie 2.4 and IFC-COBie mapping.",
+      "features": [
+        {
+          "title": "Asset Extraction",
+          "desc": "Pulls asset data from the Revit model — types, instances, spaces, zones"
+        },
+        {
+          "title": "Schema Validation",
+          "desc": "Checks every field against the target COBie schema version"
+        },
+        {
+          "title": "Gap Analysis",
+          "desc": "Highlights missing or incomplete data with remediation suggestions"
+        },
+        {
+          "title": "Multi-format Export",
+          "desc": "Returns COBie as Excel, IFC or JSON — your choice"
+        }
+      ],
+      "email": "cobie@adelphos.ai",
+      "cta_label": "Send a model",
+      "cta_action": "mailto:cobie@adelphos.ai",
+      "pricing_note": "Included with Adelphos platform access.",
+      "logo": "/images/app-logos/cobie-generator.png",
+      "title": "COBie Generator",
+      "headline_claim": "Forward the model, receive a validated COBie deliverable."
+    },
+    {
+      "slug": "email-schematics",
+      "name": "Schematic Designer",
+      "kind": "Email Service",
+      "tone": "amber",
+      "tagline": "Describe the system, receive a production-ready schematic.",
+      "description": "Email a system description or a design brief to the schematics address. The agent produces a fully annotated MEP schematic diagram — piping schematics, duct layouts, electrical single-line diagrams or control wiring. Returns a DWG and PDF with a design narrative.",
+      "features": [
+        {
+          "title": "System Interpretation",
+          "desc": "Reads a brief and determines the appropriate schematic type"
+        },
+        {
+          "title": "Annotated Output",
+          "desc": "Full annotations — flow directions, sizes, equipment tags, valve schedules"
+        },
+        {
+          "title": "DWG + PDF",
+          "desc": "Returns both formats for CAD integration and review distribution"
+        },
+        {
+          "title": "Design Narrative",
+          "desc": "Accompanying text explaining design decisions and assumptions"
+        }
+      ],
+      "email": "schematics@adelphos.ai",
+      "cta_label": "Send a brief",
+      "cta_action": "mailto:schematics@adelphos.ai",
+      "pricing_note": "Included with Adelphos platform access.",
+      "logo": "/images/app-logos/schematics.png",
+      "title": "Schematic Designer",
+      "headline_claim": "Describe the system, receive a production-ready schematic."
+    }
+  ]
+}

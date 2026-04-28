@@ -1,0 +1,422 @@
+{
+  "section_title": "Agentic Services",
+  "section_lead": "We don't just sell you software. We run the agent for you.",
+  "section_blurb": "Three managed services where Adelphos deploys the agent into your business process, runs it against your live data, and bills on outcomes — not seats. A human service team sits behind every agent to handle escalations, judgement calls, and client conversations.",
+  "services": [
+    {
+      "slug": "finances",
+      "title": "Finances",
+      "is_flagship": true,
+      "headline_claim": "An agent that runs your quotations, invoicing, forecasting and reconciliation — connected to your live project data.",
+      "tagline": "Most practices lose hours every week to financial admin. We replace that loop with an agent connected to your accounting system, project tracker, and bank feed — with a human service team checking every issue.",
+      "the_shift": {
+        "before": "Quotes drafted from scratch. Invoices raised days after the milestone. Reconciliation done in monthly batches. Forecasts that age out by the time you read them.",
+        "after": "Quotes drafted automatically from the brief and your rate card. Invoices raised the day the milestone hits. Reconciliation runs continuously. Forecasts update with every change."
+      },
+      "blurb": "We deploy a financial agent into your stack and a human service team to run alongside it. The agent drafts quotes, raises invoices, chases payment, reconciles bank transactions, and produces a forecast you can trust. The service team reviews drafts before issue, handles client queries, and gives you a weekly digest. You stop doing finance admin.",
+      "detail_paragraphs": [
+        "We connect the Adelphos finance agent to your accounting system (Xero, QuickBooks, Sage), your project tracker and your bank feed, and pair it with a human service team based in our office.",
+        "Day-to-day, the agent drafts client quotes from project briefs and your rate card (typically within hours of a brief landing rather than days); raises invoices automatically the moment a project milestone is hit; reconciles every bank transaction against open invoices and flags mismatches; chases overdue payments with escalating reminders signed off by our service team; and produces a continuously-updated cash forecast from your live pipeline, work-in-progress and receivables.",
+        "Our team reviews every quote and invoice before it goes to a client, handles client payment queries, and sends you a weekly digest of everything that's moved. For a typical 20–30 person engineering practice this frees up 1 to 2 days a week of principal-level time previously spent on finance admin, and typically pulls debtor days down from 60+ to under 30 within the first quarter."
+      ],
+      "pullquote": "Adelphos Finances will be the only finance service for engineering practices where an active agent does the work and a human team handles every client conversation — billed on outcomes, not seats.",
+      "key_outcomes": [
+        { "stat": "Days",   "label": "DSO drops from weeks to days" },
+        { "stat": "Hours",  "label": "quote turnaround, not days" },
+        { "stat": "Real-time", "label": "cash forecast you actually trust" },
+        { "stat": "Weekly", "label": "digest covers everything you need to know" }
+      ],
+      "what_makes_it_special": "Off-the-shelf accounting tools are passive — they record what already happened. Adelphos Finances is active — it drafts, chases, reconciles, and forecasts. And because there's a service team behind it, the agent never sends anything to a client without a human signature.",
+      "features": [
+        { "name": "Quotation drafting", "desc": "Drafts client quotes from project briefs + your rate card + similar past jobs." },
+        { "name": "Auto-invoicing", "desc": "Raises invoices the moment a project milestone is hit." },
+        { "name": "Bank-feed reconciliation", "desc": "Matches every bank transaction to open invoices; flags mismatches." },
+        { "name": "Escalating debtor chasers", "desc": "Reminders sent on a schedule, signed off by our service team." },
+        { "name": "Live cash forecast", "desc": "Continuously updated from pipeline + WIP + receivables." },
+        { "name": "Weekly digest", "desc": "Principal-level summary of every meaningful financial movement." },
+        { "name": "Human service team review", "desc": "Every quote and invoice reviewed before it leaves to a client." },
+        { "name": "Xero / QuickBooks / Sage", "desc": "Connects to your existing accounting system; no migration." },
+        { "name": "Project tracker integration", "desc": "Hooks into your project management tool to know when milestones hit." },
+        { "name": "Audit-ready ledger", "desc": "Every action logged; full audit trail at year-end." }
+      ],
+      "what_we_offer": [
+        "Quotation agent — drafts client quotes from project briefs, your rate card, and similar past jobs",
+        "Invoicing agent — raises and chases invoices against live project milestones",
+        "Reconciliation agent — matches bank transactions to invoices, flags mismatches",
+        "Forecasting agent — projects monthly cash from current pipeline + WIP + receivables",
+        "Human service team — reviews every issued document, handles client conversations, gives you a weekly summary"
+      ],
+      "how_it_becomes_agentic": [
+        "1. Discovery — we map your existing process (who does what, in which tool, when).",
+        "2. Connect — we wire the agent into your accounting system, project tracker, and bank feed.",
+        "3. Shadow run — agent drafts everything for two weeks; you review every output before issue.",
+        "4. Co-pilot — agent issues low-risk items automatically (chasers, reminders); humans approve invoices.",
+        "5. Auto with audit — agent runs the loop; you review the weekly digest. Any decision is reversible in one click."
+      ],
+      "icon": "logos/Excel.jpg",
+      "engagement": "Monthly subscription + outcome-based bonus on collected receivables",
+      "seo": {
+        "why_h3":     "Managed AI service for engineering practice finances",
+        "shift_h3":   "From monthly bookkeeping cycles to continuous, agent-run finance ops",
+        "special_h3": "Active finance agent backed by a human service team",
+        "who_h3":     "For practice principals tired of doing finance admin in the evenings"
+      }
+    },
+    {
+      "slug": "project-management",
+      "title": "Project Management",
+      "headline_claim": "An agent that allocates tasks, tracks every deadline, ingests project data, and surfaces risk before it bites.",
+      "tagline": "Project management is mostly admin: who's doing what, what's overdue, where's the data, what changed. We deploy an agent that handles the admin and a managed PM service to handle the judgement calls.",
+      "the_shift": {
+        "before": "Tasks tracked in a spreadsheet that's always out of date. Deadlines slip silently until the client notices. New data lands in someone's inbox and disappears.",
+        "after": "The agent assigns tasks based on capacity, flags slippage before it matters, files every incoming file against the right job, and surfaces every EPC / SBEM / SAP submission status in one dashboard."
+      },
+      "blurb": "We connect the agent to your shared folders, your calendar, and (with consent) your email. It assigns tasks, watches deadlines, ingests new data, and tracks energy submissions. A managed PM service team chairs your weekly reviews and handles client escalations. You get back the half-day a week you currently spend on admin.",
+      "detail_paragraphs": [
+        "We deploy the project-management agent against your existing project tracker, shared drives, calendar and (with consent) email, and pair it with a managed PM service team.",
+        "The agent assigns and re-assigns tasks based on each engineer's capacity and skills; watches every active deadline and flags slippage 5–10 days before it hits, with a draft client update ready to send; auto-files every incoming file (drawings, surveys, specs, reports) against the right project and notifies the right person; and maintains a live status board for every EPC, SBEM and SAP submission across every project.",
+        "Our team chairs your weekly project reviews, handles client escalations, and gives you a daily exception report — only the things that need a human decision. For a 30-person practice running 40+ active jobs, this typically frees up half a day a week per project manager (for a 4-PM team, that's two FTE-days reclaimed weekly), eliminates silent slippage entirely, and onboards new staff to the system in days rather than weeks."
+      ],
+      "pullquote": "Adelphos PM will be the only PM service where the agent watches every project, makes the obvious calls, and a managed team handles the judgement calls — so principals get their week back.",
+      "key_outcomes": [
+        { "stat": "0",        "label": "projects slip silently" },
+        { "stat": "Days",     "label": "to onboard new staff to the system" },
+        { "stat": "1",        "label": "source of truth for every job" },
+        { "stat": "Weekly",   "label": "review with a human PM you trust" }
+      ],
+      "what_makes_it_special": "Most PM tools are dumb databases. Adelphos PM is an active operator: it watches the project for you, makes the obvious calls itself, and escalates the rest to a human team that knows your business.",
+      "features": [
+        { "name": "Task allocation", "desc": "Assigns and reassigns tasks based on team capacity + skills." },
+        { "name": "Deadline watching", "desc": "Watches every active deadline; flags slip 5 to 10 days before it bites." },
+        { "name": "Auto draft client updates", "desc": "Drafts the client status update the moment slip is detected." },
+        { "name": "Auto file ingestion", "desc": "Files incoming drawings, surveys, specs against the right project." },
+        { "name": "EPC / SBEM / SAP tracker", "desc": "Live status across every energy submission in one dashboard." },
+        { "name": "Daily exception report", "desc": "Only the things that need a human decision land in your inbox." },
+        { "name": "Weekly project review", "desc": "Chaired by our managed PM service team." },
+        { "name": "Client escalation handling", "desc": "Service team takes the call when something needs a human voice." },
+        { "name": "Capacity dashboard", "desc": "See every engineer's load across every project at a glance." },
+        { "name": "New-staff onboarding", "desc": "Agent walks new hires through every project they'll touch in days." }
+      ],
+      "what_we_offer": [
+        "Task allocation agent — assigns and reassigns tasks based on team capacity and skills",
+        "Deadline tracker — watches every project, flags slippage before it bites, drafts client updates",
+        "Data ingestor — accepts incoming files (drawings, surveys, specs), files them correctly, links them to the right job",
+        "EPC / SBEM / SAP tracker — keeps live status across all energy submissions in one dashboard",
+        "Human PM service — managed team to chair meetings, run weekly reviews, handle client escalations"
+      ],
+      "how_it_becomes_agentic": [
+        "1. Inventory — we audit every active project: status, owner, deadlines, dependencies.",
+        "2. Connect — agent reads your shared folders, calendar, and (with consent) email.",
+        "3. Suggest — for two weeks the agent drafts task assignments and sends you a daily proposal.",
+        "4. Co-pilot — agent assigns + chases routine work; humans approve major decisions.",
+        "5. Auto with weekly review — agent runs the operation; we sit in a weekly review with you."
+      ],
+      "icon": "logos/Node Logo.png",
+      "engagement": "Monthly subscription + optional managed PM hours",
+      "seo": {
+        "why_h3":     "Managed AI project management for engineering teams",
+        "shift_h3":   "From spreadsheet PMing to active deadline tracking and risk surfacing",
+        "special_h3": "Active PM agent with a human team for the judgement calls",
+        "who_h3":     "For directors who want every project status known at a glance"
+      }
+    },
+    {
+      "slug": "document-controller",
+      "title": "Document Controller (managed)",
+      "headline_claim": "We run your document control end-to-end. Revisions, transmittals, golden thread, audit — handled.",
+      "tagline": "The Document Controller app, deployed and operated by Adelphos. The agent runs the full document-control lifecycle and a human service team handles every flagged issue.",
+      "the_shift": {
+        "before": "Document control is a part-time job for someone who has another job. Things slip. Audits hurt. Latest-on-site is a guess.",
+        "after": "Adelphos runs document control. Latest revision: confirmed. Transmittals: out within minutes of issue. Audit: ready on demand. Your team stops thinking about it."
+      },
+      "blurb": "If you'd rather not run the Document Controller app yourself, we'll run it for you. The agent watches your shared drives and ACC, registers every revision, drafts transmittals, chases acknowledgement, and maintains a complete golden-thread record. Our service team handles every conflict, query, and escalation — you just get the weekly audit log.",
+      "detail_paragraphs": [
+        "We deploy and run the Document Controller agent against every active project in your practice, with our service team handling everything the agent flags.",
+        "The agent watches your shared drives and ACC, registers every new revision the moment it lands, supersedes the previous one, drafts the transmittal email with the correct distribution and links to the latest project programme, and chases acknowledgement until everyone has confirmed receipt. Our team reviews any flagged conflicts (mismatched revisions on site, missing acknowledgements, distribution-list errors), handles every contractor and client query about what's current, and keeps the golden-thread audit log up to date for compliance.",
+        "You receive a weekly audit log and a monthly compliance summary. For a practice over 25 people this typically removes the equivalent of one part-time document-controller role from your headcount, eliminates missed revisions entirely, and reduces transmittal turnaround from days to minutes."
+      ],
+      "pullquote": "The Adelphos managed Document Controller will be the only doc control service that handles the full lifecycle — agent + human team — so your practice never carries the role internally.",
+      "key_outcomes": [
+        { "stat": "0",        "label": "missed revisions" },
+        { "stat": "Minutes",  "label": "from issue to transmittal sent" },
+        { "stat": "On-demand","label": "audit-ready golden thread" },
+        { "stat": "0",        "label": "internal headcount required" }
+      ],
+      "what_makes_it_special": "You can buy the Document Controller app and run it yourself, or you can hand it to us. The managed service is what we recommend for practices over 25 people — the agent does the work, and our team handles every edge case so you don't have to.",
+      "features": [
+        { "name": "Project history backfill", "desc": "We walk every active project on day one and rebuild the revision history." },
+        { "name": "Live shared-drive watching", "desc": "Network drives, SharePoint, OneDrive, ACC — all monitored continuously." },
+        { "name": "Auto revision registration", "desc": "New issues registered, old ones superseded, all linked to programme." },
+        { "name": "Transmittal drafting + dispatch", "desc": "Drafted by the agent, signed off by our service team, dispatched within minutes." },
+        { "name": "Acknowledgement chasing", "desc": "Service team chases every outstanding acknowledgement on your behalf." },
+        { "name": "Latest-on-site auditing", "desc": "Continuous check that what's on site matches the latest issued." },
+        { "name": "Conflict resolution", "desc": "Service team handles every flagged conflict — you don't see them." },
+        { "name": "Contractor + client queries", "desc": "All document queries answered by our team using the live record." },
+        { "name": "Weekly audit log", "desc": "Delivered every Monday; full record of the week's document activity." },
+        { "name": "Monthly compliance summary", "desc": "Audit-ready compliance evidence delivered every month." },
+        { "name": "Golden-thread maintenance", "desc": "We maintain the full audit-grade golden thread across every project." }
+      ],
+      "what_we_offer": [
+        "Revision tracker — watches your folders, registers every new issue, supersedes the old one, notifies the team",
+        "Transmittal agent — drafts transmittals on issue, tracks receipt, chases acknowledgement",
+        "Latest-on-site checker — confirms what's currently on site is the latest issued, flags discrepancies",
+        "Golden thread agent — captures every change with rationale and approval trail, audit-ready on demand",
+        "Human service team — reviews flagged conflicts, handles client + contractor queries"
+      ],
+      "how_it_becomes_agentic": [
+        "1. Connect — agent watches your shared drives, ACC, and email.",
+        "2. Backfill — agent walks the existing project, builds the revision history.",
+        "3. Shadow — for two weeks the agent drafts every transmittal; you sign and issue.",
+        "4. Co-pilot — agent issues routine transmittals automatically; humans review escalations.",
+        "5. Auto with audit log — agent runs the operation; you get a weekly audit log."
+      ],
+      "icon": "images/app-logos/document-controller.png",
+      "engagement": "Monthly subscription + per-project setup fee",
+      "seo": {
+        "why_h3":     "Managed AI document control for construction projects",
+        "shift_h3":   "From DIY document control to a fully-run revision and audit operation",
+        "special_h3": "Run by Adelphos so your team never has to think about it",
+        "who_h3":     "For practices over 25 people who need audit-ready control"
+      }
+    },
+    {
+      "slug": "email-specifications",
+      "title": "Specifications by Email",
+      "kind": "email-service",
+      "email_address": "specifications@adelphos.ai",
+      "sla": "Same-day for Stage 2 / 3; 24 hours for Stage 4",
+      "headline_claim": "Email a project. Get back a complete MEP specification.",
+      "tagline": "A bespoke email address that drafts a stage-appropriate specification from your model, your brief, and your house manufacturer library — deterministically, every time.",
+      "the_shift": {
+        "before": "Specifications are a recurring pain — every Stage 3 means a senior engineer disappears for two days. Most practices ship a near-copy of the last one.",
+        "after": "Forward the brief and attach (or link to) the model. Get back a fully-drafted specification in your house Word template, with manufacturers from your preferred list, ready for issue."
+      },
+      "blurb": "An email-based agentic service. Send what you've got — brief, model link, scope notes — to specifications@adelphos.ai and the agent does the rest. A human reviewer signs off before the spec lands back in your inbox.",
+      "detail_paragraphs": [
+        "Forward your project brief (or paste it in the email body), attach your Revit model (or link to it on your shared drive / ACC), and tell the agent which stage you're at. Within hours for a Stage 2/3 specification (24 hours for Stage 4), the agent returns a Word document populated with clauses driven by your live model, performance criteria from your brief, and manufacturer references from your house preferred list.",
+        "Before the spec lands in your inbox, a human reviewer on our service team checks it for tone, scope coverage, and any judgement calls the agent flagged. You get the final document plus a short note covering what the reviewer changed and why.",
+        "For a Stage 3 MEP specification on a typical commercial scheme this replaces 2–3 days of senior engineer time with a one-line email and a 30-minute review. Across a year, a five-engineer practice typically saves 60–90 working days of specification effort."
+      ],
+      "pullquote": "Specifications by Email will be the only spec-drafting service that works through your inbox — same hour, same standards, same manufacturers, every time.",
+      "key_outcomes": [
+        { "stat": "Same-day", "label": "Stage 2 / 3 turnaround" },
+        { "stat": "Hours",    "label": "of agent runtime per spec" },
+        { "stat": "Reviewed", "label": "by a human before delivery" },
+        { "stat": "1 email",  "label": "is the entire interface" }
+      ],
+      "features": [
+        { "name": "Bespoke project email address",   "desc": "Each project gets its own thread — context carries between emails." },
+        { "name": "Brief ingestion",                  "desc": "Paste, forward, or attach the brief — the agent reads all three." },
+        { "name": "Model + DMS link support",         "desc": "Link to a Revit model on shared drive, ACC, or attach an .rvt." },
+        { "name": "Stage-aware authoring",            "desc": "Stage 2, 3, 4 templates with the right scope per stage." },
+        { "name": "House preferred manufacturers",    "desc": "Your office library applied automatically." },
+        { "name": "Word output, your house template", "desc": "Returned as a Word doc that matches your office styles." },
+        { "name": "Human service review",             "desc": "A reviewer signs off every spec before it leaves us." },
+        { "name": "Reviewer notes",                   "desc": "Short note covering what the reviewer changed and why." },
+        { "name": "Section-level regeneration",       "desc": "Reply with 'regenerate Section 4 with updated boilers' and you'll get just that section back." }
+      ],
+      "what_we_offer": [
+        "Per-project bespoke email address",
+        "Stage 2 / 3 / 4 specification templates",
+        "House preferred-manufacturer library applied",
+        "Human reviewer sign-off before delivery",
+        "Section-level regeneration via reply",
+        "Audit-ready provenance: every clause traces to a model element or brief line"
+      ],
+      "how_it_becomes_agentic": [
+        "1. Onboard — we set up your bespoke project email + add your house template + manufacturer library to your tenant.",
+        "2. First spec — you forward a brief, we run the spec, our reviewer signs off, you get it the same day.",
+        "3. Reply-driven refinement — reply with edits or 'regenerate section X' and the agent processes the change.",
+        "4. Self-service mode — once the agent has learned your house preferences, replies are auto-applied unless flagged.",
+        "5. Steady-state — every brief becomes a same-day spec; you only see the agent's work in your inbox."
+      ],
+      "engagement": "Per-project subscription with unlimited regenerations + monthly review with our service lead",
+      "icon": "images/app-logos/specbuilder.png",
+      "seo": {
+        "why_h3":     "Email-based MEP specification authoring service",
+        "shift_h3":   "From two-day specification grind to same-day spec by email",
+        "special_h3": "Email in, Word out — your house template, your manufacturers, every time",
+        "who_h3":     "For practices issuing specifications weekly without losing engineering time"
+      }
+    },
+    {
+      "slug": "email-cobie",
+      "title": "COBie Data by Email",
+      "kind": "email-service",
+      "email_address": "cobie@adelphos.ai",
+      "sla": "Same-day for Stage 4 issues; 24 hours for hand-over packages",
+      "headline_claim": "Email a model. Get back a fully-populated COBie deliverable.",
+      "tagline": "A bespoke email address that fills out the entire COBie deliverable from your model — Type, Component, Attribute, Job, all 20+ sheets — deterministically.",
+      "the_shift": {
+        "before": "COBie is the unloved deliverable: someone gets dropped on the team a week before hand-over to populate the spreadsheet manually. Half the cells get filled, the client moans, the next project does the same.",
+        "after": "Send the final model. Get back a COBie deliverable with every populated cell traceable to a source element. Issue with confidence."
+      },
+      "blurb": "An email-based agentic service for the deliverable nobody enjoys. Send the model, get back a complete COBie spreadsheet — populated, validated, and audit-traceable.",
+      "detail_paragraphs": [
+        "Email cobie@adelphos.ai with the final Revit model attached or linked. Within hours, the agent returns a COBie 2.4 spreadsheet (.xlsx) with every sheet populated — Facility, Floor, Space, Zone, Type, Component, System, Assembly, Connection, Spare, Resource, Job, Document, Attribute, Coordinate, Issue, Contact and the rest.",
+        "Every populated cell is traceable to the source Revit element (or to the source the agent inferred it from). Cells the model can't fill are explicitly marked 'awaiting' rather than left blank, with a note on what's needed to complete them.",
+        "A human reviewer on our service team validates the deliverable against the project's COBie expectations (BS 1192-4 compliance, EIR requirements, client-specific overlays) before it lands in your inbox. For a typical commercial scheme this replaces 3–5 days of manual COBie population with a 30-minute review."
+      ],
+      "pullquote": "COBie by Email will be the only COBie service that returns a complete, traceable, audit-ready spreadsheet — every time, from one email.",
+      "key_outcomes": [
+        { "stat": "Same-day",  "label": "Stage 4 issue turnaround" },
+        { "stat": "20+ sheets","label": "all populated, none left blank by default" },
+        { "stat": "Traceable", "label": "every cell to a source element" },
+        { "stat": "Validated", "label": "against BS 1192-4 + EIR" }
+      ],
+      "features": [
+        { "name": "Bespoke project email address",  "desc": "Each project gets its own thread — context carries between emails." },
+        { "name": "Revit + IFC input",               "desc": "Send a Revit model or an IFC; the agent handles both." },
+        { "name": "Full COBie 2.4 coverage",         "desc": "Every standard sheet populated, not just the easy ones." },
+        { "name": "Source traceability",             "desc": "Every populated cell traces to its source Revit element." },
+        { "name": "Awaiting flags",                  "desc": "Cells the model can't fill are marked 'awaiting' with what's needed." },
+        { "name": "BS 1192-4 + EIR validation",      "desc": "Validated against the standard and the project's EIR before delivery." },
+        { "name": "Client-specific overlays",        "desc": "Apply client-specific COBie expectations (NHS, MoJ, university trusts)." },
+        { "name": "Human service review",            "desc": "A reviewer signs off every deliverable before it leaves us." }
+      ],
+      "what_we_offer": [
+        "Per-project bespoke email address",
+        "Full COBie 2.4 (or COBie UK 2012) coverage",
+        "Source traceability per cell",
+        "BS 1192-4 + project EIR validation",
+        "Client-specific overlay support (NHS, MoJ, etc.)",
+        "Human reviewer sign-off before delivery"
+      ],
+      "how_it_becomes_agentic": [
+        "1. Onboard — we set up the project email + load any client-specific COBie expectations into your tenant.",
+        "2. First issue — send the model at any project gateway; we return the populated COBie deliverable the same day.",
+        "3. Iteration — reply with a new model version, get the deltas; the agent updates only changed rows.",
+        "4. Hand-over — final issue includes the audit log mapping every cell to its source.",
+        "5. Steady-state — COBie stops being a person on your team."
+      ],
+      "engagement": "Per-project subscription billed against deliverable issues + a monthly review of EIR alignment",
+      "icon": "images/app-logos/cobie-manager.png",
+      "seo": {
+        "why_h3":     "Email-based COBie data deliverable service for BIM teams",
+        "shift_h3":   "From a junior modeller's last week to a same-day COBie issue by email",
+        "special_h3": "Email in, full COBie spreadsheet out — traceable, validated, audit-ready",
+        "who_h3":     "For practices issuing COBie at every project gateway"
+      }
+    },
+    {
+      "slug": "email-revit-modelling",
+      "title": "Revit Model Generation by Email",
+      "kind": "email-service",
+      "email_address": "model@adelphos.ai",
+      "sla": "24 hours for typical drawings; quoted for full design packages",
+      "headline_claim": "Email a PDF. Wake up to a complete Revit model — designed, noted, and ready to issue.",
+      "tagline": "Send a PDF or a partial Revit model. Get back a complete, designed, fully-documented model — with fire alarm design, builder's-work, titleblocks, the lot.",
+      "the_shift": {
+        "before": "You receive a PDF from a contractor at 6pm. Modelling, designing, noting and issuing is two days of senior work. So you ship something rougher than you wanted.",
+        "after": "Forward the PDF to model@adelphos.ai with what you want done. Overnight, the agent downloads it into your project folder, opens it, designs the system (e.g. fire alarm), notes it up, applies your titleblocks, and saves it ready for your morning review."
+      },
+      "blurb": "The flagship 'work happens while you sleep' service. Forward a PDF / Revit model with what you want done; come back to a complete, issue-ready Revit model formatted exactly to your house standards.",
+      "detail_paragraphs": [
+        "Email model@adelphos.ai with the source attachment (PDF, DWG, RVT, or IFC) and a one-line brief — e.g. 'design fire alarm to BS 5839 Cat L2, my style, with our house titleblock'. The agent saves the source into your project's shared drive in the right folder, opens it in Revit, performs the design (fire alarm coverage, sounder placement, panel sizing, cable routing, zone definition), annotates the drawings, applies your titleblocks, and saves the model ready for review.",
+        "The agent is constrained by your office standards file — line weights, layer naming, family library, sheet templates, your preferred panel manufacturers — so what comes back looks like your team did it. Every design decision is logged with rationale; you can accept the model wholesale or refine specific drawings.",
+        "Typical use: a contractor sends a PDF on a Friday afternoon, you email the agent before you log off, on Monday morning the model is in your project folder ready to issue. Replaces 1–2 days of senior + modeller time per design package."
+      ],
+      "pullquote": "Revit Model Generation by Email will be the only modelling service that delivers fully-designed, fully-noted, fully-stamped Revit models overnight — your way.",
+      "key_outcomes": [
+        { "stat": "Overnight", "label": "from email to issue-ready model" },
+        { "stat": "Your way",  "label": "house standards, families, titleblocks" },
+        { "stat": "Designed",  "label": "not just modelled — performance complete" },
+        { "stat": "Noted up",  "label": "annotations, schedules, sheets included" }
+      ],
+      "features": [
+        { "name": "Multi-format input",         "desc": "PDF, DWG, RVT, IFC — drop the source and the agent handles it." },
+        { "name": "Auto-filed to your folders", "desc": "Source saved into the right project folder; output saved alongside." },
+        { "name": "House standards enforcement","desc": "Line weights, layer naming, families, sheet templates — all yours." },
+        { "name": "Fire alarm design",          "desc": "BS 5839 coverage, sounder placement, zone definition, cable routing." },
+        { "name": "Builder's-work generation",  "desc": "Penetrations, slabs, openings sized and located on the structure." },
+        { "name": "Titleblock application",     "desc": "Your house titleblock with project parameters populated." },
+        { "name": "Auto-noted drawings",        "desc": "Plans + sections annotated to your office's note style." },
+        { "name": "Decision log",               "desc": "Every design decision recorded with rationale; review or override." },
+        { "name": "Overnight turnaround",       "desc": "Email by end of day; ready in the morning." }
+      ],
+      "what_we_offer": [
+        "Per-project bespoke email address",
+        "Fire alarm + small power + lighting + drainage modelling on demand",
+        "Builder's-work generation",
+        "Titleblock + sheet generation to your house standards",
+        "Annotated drawings to your office note style",
+        "Auto-filing into your project folder structure",
+        "Decision log per delivery"
+      ],
+      "how_it_becomes_agentic": [
+        "1. Onboard — we set up your bespoke project email + load your office standards file (titleblock, families, naming, line weights) into your tenant.",
+        "2. First brief — forward a PDF with a one-line ask. Returned overnight.",
+        "3. Refinement — reply with edits ('change the sounder spacing to 8m'); the agent re-runs only the affected drawings.",
+        "4. Steady-state — most jobs are done before the team is in the next morning.",
+        "5. Audit — every delivery includes a decision log so you can defend every change to a client."
+      ],
+      "engagement": "Per-project subscription billed against design packages delivered (typically £X per discipline per drawing pack)",
+      "icon": "images/app-logos/revit-copilot.png",
+      "seo": {
+        "why_h3":     "Email-based Revit modelling and MEP design service",
+        "shift_h3":   "From two days of senior modelling to overnight delivery by email",
+        "special_h3": "Designed, noted, and stamped overnight — to your house standards",
+        "who_h3":     "For MEP practices that want their evenings back"
+      }
+    },
+    {
+      "slug": "email-schematics",
+      "title": "Schematic Generation by Email",
+      "kind": "email-service",
+      "email_address": "schematics@adelphos.ai",
+      "sla": "Same-day for typical M+E schematics",
+      "headline_claim": "Email a design intent. Get back a presentation-ready schematic.",
+      "tagline": "Bespoke email address for schematic generation — heating, cooling, ventilation, public health, electrical risers — drawn to your office standards in your titleblock.",
+      "the_shift": {
+        "before": "Schematics are an afternoon of fighting AutoCAD blocks and your titleblock. They look the way they look because nobody has time to make them better.",
+        "after": "Email the design intent (sketch, brief, or model). Get back a clean schematic in your office line-style, with your titleblock, your annotation style, ready to drop into the issue pack."
+      },
+      "blurb": "An email-based agentic service for the most repetitive design artifact in MEP: schematics. One email, one same-day return, infinitely better than the previous one.",
+      "detail_paragraphs": [
+        "Email schematics@adelphos.ai with the design intent — a sketch, a brief paragraph, a Revit model, or a previous schematic to update. The agent returns a presentation-ready schematic drawn to your office standards (line styles, layer naming, annotation style, titleblock) in the format you ask for (PDF, DWG, AutoCAD blocks, or a Revit-native sheet).",
+        "Schematic types covered out of the box: heating + chilled water risers, ventilation + extract systems, public health (drainage, foul, surface water, cold + hot water), small power risers, lighting circuits, fire alarm zone schematics, BMS architecture diagrams. Custom schematic types can be onboarded.",
+        "For a typical M+E project at Stage 3 with 8–12 schematics required, this replaces 2–3 days of senior + technician time with a one-line email per schematic and a 10-minute review per output."
+      ],
+      "pullquote": "Schematic Generation by Email will be the only schematic service that draws to your office standards, on your titleblock, in the format your team already uses.",
+      "key_outcomes": [
+        { "stat": "Same-day", "label": "turnaround per schematic" },
+        { "stat": "Your style","label": "line weights, layers, annotations, titleblock" },
+        { "stat": "Multi-format","label": "PDF, DWG, AutoCAD blocks, or Revit sheet" },
+        { "stat": "Custom types","label": "onboard your bespoke schematic styles" }
+      ],
+      "features": [
+        { "name": "Bespoke project email address",  "desc": "Each project gets its own thread; context carries between schematics." },
+        { "name": "Multi-source input",             "desc": "Sketch, brief, Revit model, prior DWG — the agent handles all four." },
+        { "name": "Heating + cooling schematics",   "desc": "Risers, secondary circuits, plant connections, valve schedules." },
+        { "name": "Ventilation schematics",         "desc": "Supply, extract, AHU connections, fire damper symbology." },
+        { "name": "Public health schematics",       "desc": "Foul, surface water, cold + hot water, gas — all to your line-style." },
+        { "name": "Electrical riser diagrams",       "desc": "Distribution boards, sub-mains, cable schedules tied in." },
+        { "name": "Fire alarm zone diagrams",        "desc": "Zones, panels, sounders, detection coverage notation." },
+        { "name": "Multi-format output",             "desc": "PDF, DWG with your office layers, AutoCAD blocks, or Revit-native sheet." },
+        { "name": "House titleblock",                "desc": "Output sits in your house titleblock with project parameters populated." }
+      ],
+      "what_we_offer": [
+        "Per-project bespoke email address",
+        "Heating, cooling, ventilation, public health, electrical, fire alarm schematics",
+        "Custom schematic types onboarded per practice",
+        "Multi-format output (PDF, DWG, AutoCAD blocks, Revit sheet)",
+        "House titleblock + annotation style applied",
+        "Reply-to-refine workflow"
+      ],
+      "how_it_becomes_agentic": [
+        "1. Onboard — we set up your project email + load your office line-styles, layers, annotation style and titleblock.",
+        "2. First schematic — send the design intent, get a same-day schematic back.",
+        "3. Refinement — reply with edits ('change the riser routing to go up the western shaft'); the agent re-renders that schematic.",
+        "4. Steady-state — schematics are produced as a side-effect of email instead of a chunk of design time."
+      ],
+      "engagement": "Per-schematic billing or a per-project subscription with unlimited schematics; both with monthly reviews",
+      "icon": "images/app-logos/autocad-copilot.png",
+      "seo": {
+        "why_h3":     "Email-based MEP schematic generation service",
+        "shift_h3":   "From an afternoon of AutoCAD blocks to a same-day schematic by email",
+        "special_h3": "Drawn to your office standards, in your titleblock, in the format your team uses",
+        "who_h3":     "For MEP practices issuing project schematic packs at every stage"
+      }
+    }
+  ]
+}

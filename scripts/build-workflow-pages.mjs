@@ -15,7 +15,7 @@ export async function buildWorkflowPage(slug) {
   const phasesHtml = phases.map((p, i) => {
     const phaseNum = i + 1;
     const stepsHtml = (p.steps || []).map((s) => {
-      const mediaPathBase = `/sandbox/workflow-assets/${esc(wf.slug)}/phase-${phaseNum}-step-${esc(s.num)}`;
+      const mediaPathBase = `/workflow-assets/${esc(wf.slug)}/phase-${phaseNum}-step-${esc(s.num)}`;
       return `
         <div class="step" id="phase-${phaseNum}-step-${esc(s.num)}">
           <h4><span class="step-num">${esc(s.num)}.</span> ${esc(s.title)}</h4>
@@ -38,8 +38,8 @@ export async function buildWorkflowPage(slug) {
 
       <div class="phase-video">
         <video controls preload="none"
-               poster="/sandbox/workflow-assets/${esc(wf.slug)}/phase-${phaseNum}.svg"
-               data-src="/sandbox/workflow-assets/${esc(wf.slug)}/phase-${phaseNum}.mp4"
+               poster="/workflow-assets/${esc(wf.slug)}/phase-${phaseNum}.svg"
+               data-src="/workflow-assets/${esc(wf.slug)}/phase-${phaseNum}.mp4"
                onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'phase overview · drop ${esc(wf.slug)}/phase-${phaseNum}.mp4 in to play'}));"></video>
       </div>
 
@@ -61,7 +61,7 @@ export async function buildWorkflowPage(slug) {
     <p>${esc(p)}</p>
     ${idx < flow.length - 1 && idx % 2 === 0 ? `
     <div class="step-media" style="margin: var(--space-md) 0 var(--space-xl);">
-      <img src="/sandbox/workflow-assets/${esc(wf.slug)}/flow-${idx + 1}.svg"
+      <img src="/workflow-assets/${esc(wf.slug)}/flow-${idx + 1}.svg"
            alt="flow screenshot ${idx + 1}"
            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerText:'screenshot · drop flow-${idx + 1}.jpg in'}));">
     </div>` : ''}

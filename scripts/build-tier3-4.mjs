@@ -52,11 +52,11 @@ ${seoHead}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block">
 <link rel="stylesheet" href="/css/shared-styles.css">
-<link rel="stylesheet" href="/sandbox/sandbox.css">
+<link rel="stylesheet" href="/sandbox.css">
 ${jsonLd}
 </head>
 <body>
-<script src="/sandbox/shell.js"></script>
+<script src="/shell.js"></script>
 <div class="docs-layout wide">
 <aside class="docs-left"></aside>
 <main class="docs-content">
@@ -64,7 +64,7 @@ ${contentHtml}
 </main>
 <aside class="docs-right"></aside>
 </div>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/docs-shell.js"></script>
 </body>
 </html>`;
 }

@@ -223,7 +223,7 @@
 </head>
 <body>
 
-<script src="/sandbox/shell.js"></script>
+<script src="/shell.js"></script>
 
 <div class="docs-layout">
 <aside class="docs-left"></aside>
@@ -244,8 +244,8 @@
   <!-- Hero workflow video (overview) -->
   <div class="hero-video" id="watch">
     <video controls preload="metadata"
-           poster="/sandbox/workflow-assets/drawing-export/hero.svg"
-           data-src="/sandbox/workflow-assets/drawing-export/hero.mp4"
+           poster="/workflow-assets/drawing-export/hero.svg"
+           data-src="/workflow-assets/drawing-export/hero.mp4"
            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerHTML:'<svg width=&quot;48&quot; height=&quot;48&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.25)&quot; stroke-width=&quot;1.5&quot;><polygon points=&quot;5 3 19 12 5 21 5 3&quot;/></svg>'}));"></video>
   </div>
 
@@ -257,7 +257,7 @@
     <p>You ask to export — &quot;export the drainage drawings to PDF&quot; or &quot;issue all sheets for Rev P03&quot;.</p>
     
     <div class="step-media" style="margin: var(--space-md) 0 var(--space-xl);">
-      <img src="/sandbox/workflow-assets/drawing-export/flow-1.svg"
+      <img src="/workflow-assets/drawing-export/flow-1.svg"
            alt="flow screenshot 1"
            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerText:'screenshot · drop flow-1.jpg in'}));">
     </div>
@@ -268,7 +268,7 @@
     <p>It reads all sheets and their parameters — number, name, revision, drawn by, checked by. You see the list and confirm which sheets to export, or filter by discipline or revision.</p>
     
     <div class="step-media" style="margin: var(--space-md) 0 var(--space-xl);">
-      <img src="/sandbox/workflow-assets/drawing-export/flow-3.svg"
+      <img src="/workflow-assets/drawing-export/flow-3.svg"
            alt="flow screenshot 3"
            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',innerText:'screenshot · drop flow-3.jpg in'}));">
     </div>
@@ -315,6 +315,6 @@
 <script>
   document.querySelectorAll('video[data-src]').forEach(v => { if (!v.src) v.src = v.dataset.src; });
 </script>
-<script src="/sandbox/docs-shell.js?v=1777206771288"></script>
+<script src="/docs-shell.js?v=1777206771288"></script>
 </body>
 </html>

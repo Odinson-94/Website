@@ -75,7 +75,7 @@ async function renderApp(app) {
   const heroVideo = app.hero_video ? `
     <div class="hero-video" id="watch">
       <video controls preload="metadata"
-             poster="/sandbox/app-assets/${esc(app.slug)}/hero.svg"
+             poster="/app-assets/${esc(app.slug)}/hero.svg"
              data-src="${esc(app.hero_video)}"
              onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'demo video — drop hero.mp4 in for play'}));"></video>
     </div>

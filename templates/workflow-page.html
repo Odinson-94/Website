@@ -188,7 +188,7 @@
 </head>
 <body>
 
-<script src="/sandbox/shell.js"></script>
+<script src="/shell.js"></script>
 
 <div class="docs-layout">
 <aside class="docs-left"></aside>
@@ -209,8 +209,8 @@
   <!-- Hero workflow video (overview) -->
   <div class="hero-video" id="watch">
     <video controls preload="metadata"
-           poster="/sandbox/workflow-assets/{{slug}}/hero.svg"
-           data-src="/sandbox/workflow-assets/{{slug}}/hero.mp4"
+           poster="/workflow-assets/{{slug}}/hero.svg"
+           data-src="/workflow-assets/{{slug}}/hero.mp4"
            onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',innerText:'overview video · drop {{slug}}/hero.mp4 in to play'}));"></video>
   </div>
 
@@ -239,6 +239,6 @@
 <script>
   document.querySelectorAll('video[data-src]').forEach(v => { if (!v.src) v.src = v.dataset.src; });
 </script>
-<script src="/sandbox/docs-shell.js"></script>
+<script src="/docs-shell.js"></script>
 </body>
 </html>

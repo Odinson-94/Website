@@ -186,7 +186,7 @@ export async function buildDemosGallery() {
                data-toc data-toc-label="${esc(d.title)}" data-toc-level="h3"
                href="/dist/demos/${esc(d.slug)}/index.html">
               <div class="video-wrap">
-                <div class="poster-fallback" style="background:url(/sandbox/demo-assets/${esc(d.slug)}/thumbnail.svg) center/cover, linear-gradient(135deg,#1f3340,#0e1c25);"></div>
+                <div class="poster-fallback" style="background:url(/demo-assets/${esc(d.slug)}/thumbnail.svg) center/cover, linear-gradient(135deg,#1f3340,#0e1c25);"></div>
                 <span class="duration">${esc(d.duration)}</span>
               </div>
               <div class="body">

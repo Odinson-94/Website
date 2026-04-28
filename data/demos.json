@@ -1,0 +1,149 @@
+{
+  "categories": [
+    {
+      "slug": "ai-chat",
+      "title": "AI Chat",
+      "blurb": "How to talk to BUILD MEP — modes, navigation, the chat panel itself."
+    },
+    {
+      "slug": "model-set-up",
+      "title": "Model Set Up",
+      "blurb": "Get a fresh project ready — views, templates, sheets, schedules."
+    },
+    {
+      "slug": "revit-utilities",
+      "title": "Revit Utilities",
+      "blurb": "Day-to-day modelling power tools."
+    },
+    {
+      "slug": "discipline-design",
+      "title": "Discipline Design",
+      "blurb": "End-to-end design jobs across MEP disciplines."
+    },
+    {
+      "slug": "qa",
+      "title": "QA",
+      "blurb": "Catch problems before they leave the office. Drawings, specifications, schedules, model warnings, clashes."
+    },
+    {
+      "slug": "calculations",
+      "title": "Calculations",
+      "blurb": "Pipe sizing, duct sizing, heat loss, cooling load, lighting calcs."
+    },
+    {
+      "slug": "epcs-sbem-sap",
+      "title": "EPCs / SBEM / SAP",
+      "blurb": "Compliance reporting and energy modelling."
+    },
+    {
+      "slug": "bim",
+      "title": "BIM",
+      "blurb": "COBie, BIM compliance, drawing numbering, family swaps."
+    },
+    {
+      "slug": "document-control",
+      "title": "Document Control",
+      "blurb": "Drawing revisions, drawing export, document control workflows."
+    },
+    {
+      "slug": "specifications",
+      "title": "Specifications",
+      "blurb": "Generate MEP specifications straight from the model."
+    },
+    {
+      "slug": "schedules",
+      "title": "Schedules",
+      "blurb": "Schedule creation and round-trip with Excel."
+    },
+    {
+      "slug": "reports",
+      "title": "Reports",
+      "blurb": "MEP strategy, site survey, option appraisal, IESVE, clash, stage 2/3 reports."
+    },
+    {
+      "slug": "two-d-to-three-d",
+      "title": "2D to 3D Conversion",
+      "blurb": "Take a flat drawing and produce a coordinated 3D model."
+    },
+    {
+      "slug": "build-your-own-tool",
+      "title": "Build Your Own Tool",
+      "blurb": "Describe a tool in plain English; BUILD X writes, compiles, tests it."
+    }
+  ],
+  "demos": [
+    { "slug": "how-to-navigate",         "category": "ai-chat",           "title": "How to navigate",                       "desc": "Get oriented in the chat panel — prompts, suggestions, history.",       "duration": "1:12", "status": "live" },
+    { "slug": "modes-overview",          "category": "ai-chat",           "title": "Designer / Build / QA / Ask modes",     "desc": "Switch between the four modes and what each one does.",                  "duration": "1:08", "status": "live" },
+
+    { "slug": "set-up-views",            "category": "model-set-up",      "title": "Set up Views",                           "desc": "Generate per-discipline floor plans, ceiling plans and 3D views in one prompt.", "duration": "1:34", "status": "live" },
+    { "slug": "set-up-templates",        "category": "model-set-up",      "title": "Set up Templates",                       "desc": "Apply standard view templates across every view by service.",            "duration": "1:21", "status": "live" },
+    { "slug": "set-up-sheets",           "category": "model-set-up",      "title": "Set up Sheets",                          "desc": "Generate the full sheet set for a stage with title block, numbering and views placed.", "duration": "1:29", "status": "live" },
+    { "slug": "set-up-schedules",        "category": "model-set-up",      "title": "Set up Schedules",                       "desc": "Stage-appropriate schedules per service, ready for round-trip with Excel.","duration": "1:11", "status": "live" },
+
+    { "slug": "place-svp",               "category": "revit-utilities",   "title": "Place SVP",                              "desc": "Drop a soil & vent pipe through every floor in three clicks.",            "duration": "0:47", "status": "live" },
+    { "slug": "extend-connectors",       "category": "revit-utilities",   "title": "Extend Connectors",                      "desc": "Stub pipes from every unconnected fitting connector at once.",            "duration": "0:38", "status": "live" },
+    { "slug": "snap-to-wall",            "category": "revit-utilities",   "title": "Snap to Wall",                           "desc": "Snap any element flush to the nearest wall with the right offset.",       "duration": "0:35", "status": "live" },
+    { "slug": "snap-objects-to-wall",    "category": "revit-utilities",   "title": "Snap Objects to Wall",                   "desc": "Batch-snap a set of objects to walls without picking each one.",           "duration": "0:52", "status": "live" },
+    { "slug": "smart-notes",             "category": "revit-utilities",   "title": "Smart Notes",                            "desc": "Auto-place spec notes referenced by element type and location.",           "duration": "1:03", "status": "live" },
+    { "slug": "auto-notes",              "category": "revit-utilities",   "title": "Auto Notes",                             "desc": "AI-generated drafting notes from the model state.",                        "duration": "0:51", "status": "live" },
+    { "slug": "smart-tagging",           "category": "revit-utilities",   "title": "Smart Tagging",                          "desc": "Tag every relevant element on the active view with the right tag type.",   "duration": "1:14", "status": "live" },
+    { "slug": "schedule-creator",        "category": "revit-utilities",   "title": "Schedule Creator",                       "desc": "Generate any schedule from a plain-English description — columns, sort, group.", "duration": "1:22", "status": "live" },
+    { "slug": "parameter-editor",        "category": "revit-utilities",   "title": "Parameter Editor",                       "desc": "Bulk-edit instance and type parameters across hundreds of elements.",     "duration": "1:09", "status": "live" },
+    { "slug": "family-swap",             "category": "revit-utilities",   "title": "Family Swap",                            "desc": "Replace one family/type with another, preserving connections and parameters.", "duration": "0:57", "status": "live" },
+    { "slug": "builderswork-tool",       "category": "revit-utilities",   "title": "Builderswork Tool",                      "desc": "Auto-detect penetrations through walls/floors and place builderswork openings.", "duration": "1:48", "status": "live" },
+    { "slug": "place-fan-coil-units",    "category": "revit-utilities",   "title": "Place Fan Coil Units in Room",           "desc": "Place FCUs in every room based on heat load and clearances.",              "duration": "0:44", "status": "live" },
+
+    { "slug": "fire-alarm-design",       "category": "discipline-design", "title": "Fire Alarm Design",                      "desc": "End-to-end fire alarm coverage with detector spacing rules.",             "duration": "2:03", "status": "live" },
+    { "slug": "lighting-design",         "category": "discipline-design", "title": "Lighting Design",                        "desc": "Lux-driven layout, then placement of every fitting on the ceiling grid.","duration": "1:18", "status": "live" },
+    { "slug": "ventilation-design",      "category": "discipline-design", "title": "Ventilation Design",                     "desc": "Supply and extract layout with sized ductwork and grilles.",              "duration": "1:04", "status": "live" },
+    { "slug": "sprinkler-design",        "category": "discipline-design", "title": "Sprinkler Design",                       "desc": "Hazard-class layout, head spacing, pipe sizing in one pass.",             "duration": "1:11", "status": "live" },
+    { "slug": "drainage-design",         "category": "discipline-design", "title": "Drainage Layout",                         "desc": "Above-ground drainage layout from fixture units; vents and stacks routed.","duration": "1:38", "status": "live" },
+    { "slug": "heating-cooling",         "category": "discipline-design", "title": "Heating & Cooling Layout",                "desc": "Plant, distribution and emitters laid out from the heat-load model.",     "duration": "1:55", "status": "live" },
+    { "slug": "pipe-up-bathroom",        "category": "discipline-design", "title": "Pipe up Bathroom",                       "desc": "Hot/cold/waste in a typical bathroom from a single prompt.",              "duration": "—",     "status": "coming-soon" },
+
+    { "slug": "qa-error-detection",      "category": "qa",                "title": "QA Manager — Error Detection",           "desc": "Find every error in the active view; classify and explain.",              "duration": "1:42", "status": "live" },
+    { "slug": "qa-clash-detection",      "category": "qa",                "title": "QA Manager — Clash Detection",           "desc": "Run clash detection between disciplines and against linked architecture.","duration": "1:58", "status": "live" },
+    { "slug": "warnings-manager",        "category": "qa",                "title": "Warnings Manager",                       "desc": "Triage Revit's built-in warnings, auto-resolve the safe ones.",            "duration": "1:27", "status": "live" },
+    { "slug": "check-drawings",          "category": "qa",                "title": "Check Drawings",                         "desc": "QA pack across every sheet — title blocks, revisions, view scope.",       "duration": "1:33", "status": "live" },
+    { "slug": "check-specification",     "category": "qa",                "title": "Check Specification",                    "desc": "Validate the spec against the model — every element accounted for.",      "duration": "1:19", "status": "live" },
+    { "slug": "check-schedules",         "category": "qa",                "title": "Check Schedules",                        "desc": "Schedules vs model gap analysis; flag missing values and rogue parameters.","duration": "1:08", "status": "live" },
+    { "slug": "check-revit-model",       "category": "qa",                "title": "Check Revit Model",                       "desc": "Model health pass — broken refs, orphaned elements, naming, links.",      "duration": "1:46", "status": "live" },
+    { "slug": "acc-clash-issues",        "category": "qa",                "title": "ACC Clash Issues",                        "desc": "Pull issues from Autodesk Construction Cloud and resolve them in Revit.","duration": "1:24", "status": "live" },
+    { "slug": "automated-qa-checks",     "category": "qa",                "title": "Automated QA Checks",                     "desc": "Configure stage-based QA gates that run on every save.",                  "duration": "1:30", "status": "live" },
+
+    { "slug": "calc-pipe-sizing",        "category": "calculations",      "title": "Pipe Sizing Calculator",                 "desc": "Size an entire pipe network from flow inputs.",                            "duration": "1:05", "status": "live" },
+    { "slug": "calc-duct-sizing",        "category": "calculations",      "title": "Duct Sizing Calculator",                 "desc": "Size a duct network with friction-loss and velocity targets.",            "duration": "1:12", "status": "live" },
+    { "slug": "calc-heat-loss",          "category": "calculations",      "title": "Heat Loss Calculator",                   "desc": "Per-room heat loss against design conditions.",                            "duration": "1:18", "status": "live" },
+    { "slug": "calc-cooling-load",       "category": "calculations",      "title": "Cooling Load Calculator",                "desc": "Per-room cooling load with solar gains and occupancy.",                    "duration": "1:21", "status": "live" },
+    { "slug": "calc-lighting",           "category": "calculations",      "title": "Lighting Calculator",                    "desc": "Lumen-method calculation for any room.",                                  "duration": "0:57", "status": "live" },
+
+    { "slug": "epc-sbem",                "category": "epcs-sbem-sap",     "title": "EPC / SBEM",                              "desc": "Generate SBEM-compliant inputs from the model.",                           "duration": "1:42", "status": "live" },
+    { "slug": "epc-sap",                 "category": "epcs-sbem-sap",     "title": "SAP",                                     "desc": "SAP inputs and report from the model and brief.",                          "duration": "1:24", "status": "live" },
+
+    { "slug": "cobie-manager",           "category": "bim",               "title": "COBie Manager",                           "desc": "Populate, validate and export COBie data.",                               "duration": "1:42", "status": "live" },
+    { "slug": "bim-compliance",          "category": "bim",               "title": "BIM Compliance",                          "desc": "Check the model against the BEP and report gaps.",                         "duration": "1:31", "status": "live" },
+    { "slug": "drawing-numbering",       "category": "bim",               "title": "Drawing Numbering",                        "desc": "Re-number every sheet against the project numbering convention.",         "duration": "1:08", "status": "live" },
+    { "slug": "family-swapper",          "category": "bim",               "title": "Family Swapper",                           "desc": "Bulk-swap families across the project to standards-compliant ones.",      "duration": "—",     "status": "coming-soon" },
+
+    { "slug": "drawing-revisions",       "category": "document-control",  "title": "Drawing Revisions",                       "desc": "Issue, edit, and lock drawing revisions across the sheet set.",           "duration": "1:14", "status": "live" },
+    { "slug": "drawing-export",          "category": "document-control",  "title": "Drawing Export",                          "desc": "Batch-export PDFs, BCF, IFC and DWG with one prompt.",                    "duration": "1:32", "status": "live" },
+    { "slug": "document-control",        "category": "document-control",  "title": "Document Control",                        "desc": "Manage the live transmittal record from inside Revit.",                    "duration": "1:46", "status": "live" },
+    { "slug": "check-latest-revisions",  "category": "document-control",  "title": "Check Latest Revisions on Site",          "desc": "Compare site-issued PDFs with current model revisions; flag stale.",      "duration": "1:09", "status": "live" },
+
+    { "slug": "mep-spec-from-revit",     "category": "specifications",    "title": "MEP Specification from Revit",            "desc": "Generate an NBS-style spec direct from the modelled elements.",            "duration": "1:38", "status": "live" },
+
+    { "slug": "schedule-creator-2",      "category": "schedules",         "title": "Schedule Creator (deep dive)",            "desc": "Round-trip a schedule with Excel, edit in Excel, push back.",              "duration": "1:48", "status": "live" },
+
+    { "slug": "iesve-report",            "category": "reports",           "title": "IESVE Report Creator",                    "desc": "Single SQL DB → IESVE outputs with cover sheet, charts and narrative.",   "duration": "2:14", "status": "live" },
+    { "slug": "site-survey-report",      "category": "reports",           "title": "Site Survey Report",                       "desc": "Turn site notes and photos into a structured report.",                     "duration": "1:36", "status": "live" },
+    { "slug": "mep-strategy-report",     "category": "reports",           "title": "MEP Strategy Report",                      "desc": "Generate a Stage 2 strategy report from brief + sketch.",                  "duration": "1:42", "status": "live" },
+    { "slug": "option-appraisal",        "category": "reports",           "title": "Option Appraisal",                         "desc": "Side-by-side comparison of design options with capital + operational cost.","duration": "1:54", "status": "live" },
+    { "slug": "stage-2-report",          "category": "reports",           "title": "Stage 2 Report",                           "desc": "RIBA Stage 2 deliverables compiled into a single report.",                 "duration": "1:39", "status": "live" },
+    { "slug": "stage-3-report",          "category": "reports",           "title": "Stage 3 Report",                           "desc": "RIBA Stage 3 deliverables, with coordination + spec extracts.",            "duration": "1:43", "status": "live" },
+    { "slug": "clash-report",            "category": "reports",           "title": "Clash Report",                             "desc": "Issue-quality PDF + BCF clash report from the latest run.",                "duration": "1:12", "status": "live" },
+
+    { "slug": "two-d-to-three-d-arch",   "category": "two-d-to-three-d",  "title": "2D PDF → 3D Architecture",                "desc": "Trace a PDF or DWG and produce a coordinated 3D model.",                  "duration": "2:08", "status": "live" },
+
+    { "slug": "build-your-own-tool",     "category": "build-your-own-tool","title": "Build Your Own Tool",                    "desc": "Describe a tool in English; BUILD X writes the C#, compiles, tests, ships.","duration": "2:21", "status": "live" }
+  ]
+}
