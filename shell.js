@@ -240,8 +240,8 @@
           <ul>
             <li><a href="/index.html">Home</a></li>
             <li><a href="/demos/index.html">Demos</a></li>
-            <li><a href="/docs/tools/index.html">Tools (395)</a></li>
-            <li><a href="/docs/commands/index.html">Commands (532)</a></li>
+            <li><a href="/docs/tools/index.html">Tools</a></li>
+            <li><a href="/docs/commands/index.html">Commands</a></li>
             <li><a href="/workflows/index.html">Workflows</a></li>
           </ul>
         </div>
