@@ -8,9 +8,9 @@
       "label": "Apps",
       "type": "dropdown",
       "href": "/apps/index.html",
-      "children_from": "sandbox/data/apps.json",
+      "children_from": "data/apps.json",
       "children_root": "/apps/",
-      "nested_from": "sandbox/data/features.json",
+      "nested_from": "data/features.json",
       "nested_root": "/features/",
       "nested_parent_slug": "revit-copilot",
       "nested_label": "Features"
@@ -19,7 +19,7 @@
       "label": "Agentic Services",
       "type": "dropdown",
       "href": "/agentic-services/index.html",
-      "children_from": "sandbox/data/agentic-services.json",
+      "children_from": "data/agentic-services.json",
       "children_root": "/agentic-services/"
     },
     {
