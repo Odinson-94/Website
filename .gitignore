@@ -365,3 +365,4 @@ FodyWeavers.xsd
 # Large video/media files
 Videos/
 .Capcut POC/
+.vercel

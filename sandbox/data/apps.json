@@ -7,26 +7,27 @@
       "slug": "revit-copilot",
       "title": "Revit Copilot",
       "is_flagship": true,
+      "seo_keywords": ["Revit AI plugin", "AI for Revit", "Revit automation", "Revit add-in AI", "MEP BIM software", "Revit copilot", "AI MEP design", "Revit plugin MEP", "BIM automation tool", "AI building services", "Revit 2025 add-in", "MEP coordination software"],
       "headline_claim": "An AI engineer that lives inside Revit and runs the model with you.",
-      "tagline": "Talk to Revit. The Copilot understands your model, applies your standards, and runs the 163 commands and 191 tools that ship with the platform.",
+      "tagline": "Talk to Revit. The Copilot understands your model, applies your standards, and runs every command and tool on the platform — and it's open, so you can add your own.",
       "the_shift": {
-        "before": "Click through ribbons. Memorise plug-ins. Copy parameters by hand. Hope the schedule matches the model.",
-        "after": "Ask. The Copilot picks the right tool, asks the questions a senior would, and writes the result back to the model — already coordinated, already scheduled, already QA'd."
+        "before": "You don't browse tools. You don't memorise commands. You just tell the Copilot what you need — in plain English — and it interprets what you're asking, works out where you are in the process, picks the right tools, and gets it done. Need schedules built? Ask. Need a clash check? Ask. Need the spec updated after a design change? Ask. The Copilot chains the right commands together and runs them as one audited, reversible operation.",
+        "after": "We're setting this up so you can call the Copilot from anywhere — browser, phone, desktop. You won't even need to be in the model to run checks, generate schedules, write specifications, or clash-coordinate. The agent reads the live model remotely, does the work, and shows you what it changed. Same standards, same project memory, whether you're at the desk or on site."
       },
       "blurb": "The Revit Copilot is the headline product. It's the difference between Revit-as-a-drafting-tool and Revit-as-an-engineering-environment. It reads your model like a senior engineer would, knows your office standards, runs the right command for the job, and shows its working. You stay in control of every change — but the donkey-work is done.",
       "detail_paragraphs": [
-        "The Revit Copilot installs as a Revit add-in that exposes 163 commands and 191 MCP tools to a chat-based agent running inside the model. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination of those — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a transactional Revit operation with one-click undo.",
+        "The Revit Copilot installs as a Revit add-in that gives a chat-based agent access to every command and tool on the platform — and it's open, so the library grows with every release and you can add your own. Ask it to extend connectors, place SVPs, snap families to walls, run a clash report, build schedules, or any combination — and it will pick the right tools, ask only the questions a senior engineer would, and execute the work as a reversible Revit operation with one-click undo.",
         "For an MEP designer, this typically removes 10 to 18 hours per project from manual ribbon-clicking, parameter copy-pasting and schedule cross-checks. For a coordinator, it cuts a typical clash-resolution loop from a half-day to under an hour, because the agent is reading the model continuously rather than waiting for a human to spot the issue.",
         "Across a Stage 3 MEP package on a typical mixed-use scheme, teams using the Copilot ship the same scope in 35–45% less Revit time than teams without it."
       ],
-      "pullquote": "Revit Copilot will be the only AI engineer that lives natively inside Revit, runs the platform's commands as a senior would, and shows its working on every change.",
+      "pullquote": "Every command and tool on the platform, callable from a single chat — and it's {{accent}}open{{/accent}}, so you can wire in your own.",
       "key_outcomes": [
-        { "stat": "163",   "label": "Revit commands one prompt away" },
-        { "stat": "191",   "label": "MCP tools the agent can chain" },
-        { "stat": "18×",   "label": "faster than manual on coordination tasks" },
-        { "stat": "0",     "label": "context switches — never leave Revit" }
+        { "stat": "Every",   "label": "MEP command, one prompt away" },
+        { "stat": "Open",    "label": "platform — add your own tools" },
+        { "stat": "Growing", "label": "library updated with every release" },
+        { "stat": "Zero",    "label": "context switches — never leave Revit" }
       ],
-      "what_makes_it_special": "It's not a chat window stitched onto Revit. It's a deeply embedded agent with read/write access to your model through a typed, audited tool surface. Every action is reversible. Every decision is explainable.",
+      "what_makes_it_special": "It's not a chat window bolted onto the side of Revit. The Copilot has full read/write access to your model through an audited tool surface — every action is reversible, every decision is explainable, and it never changes something without showing you what it did. You don't need to learn anything new. Just describe the outcome you want and the Copilot figures out how to get there.",
       "features": [
         { "name": "Talk-to-Revit",                  "desc": "A docked chat panel in Revit. Ask in plain English; the Copilot picks the right tool and does the work." },
         { "name": "Runs 163 Revit commands",        "desc": "Every shipped command — extend connectors, place SVPs, snap to walls, build schedules — callable from chat." },
@@ -69,11 +70,22 @@
         "shift_h3":   "From manual Revit modelling to AI-assisted MEP design",
         "special_h3": "Deep Revit integration with an audited, reversible tool surface",
         "who_h3":     "Built for MEP designers and BIM coordinators inside Revit"
-      }
+      },
+      "custom_faqs": [
+        { "q": "Is there an AI plugin for Revit?", "a": "Yes. Revit Copilot is an AI-powered Revit add-in that installs natively into Revit 2022–2026. It exposes every command and tool on the platform through a chat panel docked inside the model — ask in plain English and the agent picks the right tools and executes the work." },
+        { "q": "Can AI automate MEP design in Revit?", "a": "Revit Copilot automates routine MEP tasks — extending connectors, placing equipment, building schedules, running clash checks, coordinating across disciplines — all from a single chat prompt. It typically saves 10–18 hours per project on manual Revit work." },
+        { "q": "What is the best AI tool for MEP engineers?", "a": "Revit Copilot is built specifically for MEP engineers working in Revit. It understands drainage, ventilation, lighting, mechanical, electrical, public health and fire alarm disciplines, applies your office standards, and shows its working on every change." },
+        { "q": "Can I use AI in Revit without learning new tools?", "a": "You don't need to learn anything. Just describe what you need — 'build the radiator schedule', 'run a clash check on Level 02', 'extend all unconnected pipes' — and the Copilot figures out which commands to run and in what order." },
+        { "q": "Does Revit Copilot work with Revit 2025 and 2026?", "a": "Yes. Revit Copilot supports Revit 2022, 2023, 2024, 2025 and 2026 on Windows 10 and 11. The add-in auto-loads on startup." },
+        { "q": "Can I run Revit commands from outside the model?", "a": "We're building remote access so you can call the Copilot from a browser, phone or desktop app — run checks, generate schedules, write specifications and clash-coordinate without being in Revit. The agent reads the live model remotely." },
+        { "q": "How is this different from Autodesk's built-in AI?", "a": "Revit Copilot has read/write access to your model through a full command and tool library purpose-built for MEP. It applies your office standards, chains multi-step operations, and every action is reversible with one-click undo. It's an engineering agent, not a general assistant." },
+        { "q": "Is Revit Copilot free?", "a": "Self-serve download — install the .msi, sign in with your Adelphos account, and start working. No sales call required." }
+      ]
     },
     {
       "slug": "adelphos-chat",
       "title": "Adelphos Chat",
+      "seo_keywords": ["AI chat for engineers", "MEP project assistant", "construction AI chat", "BIM AI assistant", "project memory AI", "engineering AI chatbot", "AEC AI tool"],
       "headline_claim": "Your project's brain — without Revit, without a desk.",
       "tagline": "Same agent. Same project context. Browser, phone, or desktop. The Adelphos Chat is the agent untethered from any one tool.",
       "the_shift": {
@@ -86,7 +98,7 @@
         "From the chat you can query the live Revit model (read-only when off-Revit, read-write when connected), pull figures from your calc spreadsheets, draft client-ready text, search project minutes, and trigger any tool the platform exposes.",
         "For a project lead this typically reclaims 3 to 5 hours per week previously lost to context switching: walking back to the desk to look something up, opening Revit just to read a schedule, drafting the same status update three times across email, Teams and meetings. It also removes the daily \"can someone send me…\" pings to the modelling team because the agent can answer them instantly with the live data."
       ],
-      "pullquote": "Adelphos Chat will be the only project-aware AI surface for engineers — same agent, same project memory, same standards, anywhere you can open a browser.",
+      "pullquote": "Your project knowledge, {{accent}}available anywhere{{/accent}}. On site, in a meeting, on a train — the answer comes from the live model, not a phone call back to the office.",
       "key_outcomes": [
         { "stat": "Anywhere", "label": "browser · desktop · mobile" },
         { "stat": "1",        "label": "shared project memory across devices" },
@@ -136,6 +148,7 @@
     {
       "slug": "specbuilder",
       "title": "Specbuilder",
+      "seo_keywords": ["MEP specification software", "automated spec writing", "Revit specification tool", "NBS alternative", "MEP spec from model", "AI specification writer", "building services specification"],
       "headline_claim": "The MEP specification, drafted from your live model in minutes.",
       "tagline": "Specbuilder reads the model, applies your office standards, layers your preferred manufacturers, and produces a stage-appropriate specification — ready for issue.",
       "the_shift": {
@@ -148,7 +161,7 @@
         "You review section-by-section in the browser, lock anything you don't want regenerated, edit inline where you want to override, then export to Word, PDF or your DMS in one click. The model and the spec stay coupled: when something changes downstream — a new pump, a revised duct sizing, a swapped manufacturer — you regenerate only the affected sections, not the whole document, and your hand-edits stay intact.",
         "For a Stage 3 MEP specification on a typical commercial scheme, Specbuilder takes a job that's normally two to three full days of editing the previous spec and reduces it to about an hour of review. Across a year, a five-engineer practice typically saves 60–90 working days of specification effort."
       ],
-      "pullquote": "Specbuilder will be the only specification tool that reads your live model, applies your house standards, and writes a stage-appropriate document — preserving every hand-edit when something downstream changes.",
+      "pullquote": "The specification {{accent}}writes itself{{/accent}} from the model you've already built. No more copying the last spec, deleting what doesn't apply, and fighting Word formatting for three days.",
       "key_outcomes": [
         { "stat": "Minutes", "label": "to first complete draft" },
         { "stat": "Stage-aware", "label": "Stage 2 / 3 / 4 templates" },
@@ -197,6 +210,7 @@
     {
       "slug": "report-builder",
       "title": "Report Builder",
+      "seo_keywords": ["MEP report automation", "site report generator", "RIBA stage submission tool", "engineering report software", "AI report builder", "MEP strategy report", "automated construction reports"],
       "headline_claim": "Every recurring report — composed, formatted, and traceable to source.",
       "tagline": "Site reports, MEP strategies, option appraisals, IESVE reports, stage submissions. One tool, one workflow, every template you need.",
       "the_shift": {
@@ -209,7 +223,7 @@
         "You review in the browser, the agent shows you the source for every figure (one click jumps to the model element or the spreadsheet cell), then you export to Word, PDF, or your DMS. When something changes — a new survey photo, a re-run calc, a revised drawing — you regenerate only the affected sections.",
         "A typical recurring site report drops from 4–6 hours to about 30 minutes of review. A Stage 3 submission drops from a half-week of formatting work to a single afternoon. For an engineer issuing reports weekly, that's roughly half a day a week back."
       ],
-      "pullquote": "Report Builder will be the only report tool where every figure stays traceable to its source and every report regenerates in minutes when the project data moves on.",
+      "pullquote": "Reports that {{accent}}write themselves{{/accent}} from data you've already produced. Report Builder handles the assembly, formatting and traceability — that's half a day back every week.",
       "key_outcomes": [
         { "stat": "8+",   "label": "report templates ship in the box" },
         { "stat": "Live", "label": "links back to model + calcs" },
@@ -258,6 +272,7 @@
     {
       "slug": "document-controller",
       "title": "Document Controller",
+      "seo_keywords": ["document control software", "drawing revision tracker", "golden thread compliance", "Building Safety Act document control", "transmittal management", "construction document management", "automated document control"],
       "headline_claim": "Single source of truth for every drawing, every revision, every transmittal.",
       "tagline": "Watches your project folders, registers every issue, supersedes the old, surfaces conflicts, and produces audit-ready transmittal records — automatically.",
       "the_shift": {
@@ -270,7 +285,7 @@
         "The web dashboard gives you a live view of every project: latest revision per drawing, what's currently on site, who has acknowledged what, and a complete golden-thread audit log of every change with rationale and approval.",
         "For a 30-person practice running 40 active projects, this typically removes 8–12 hours per week of document-control admin, eliminates the \"who has the latest?\" emails entirely, and produces audit-ready compliance evidence in seconds rather than the days it currently takes to dig through email archives."
       ],
-      "pullquote": "The Adelphos Document Controller will be the only document control system that runs itself — watching, registering, transmitting and chasing without anyone touching a spreadsheet.",
+      "pullquote": "Document control that {{accent}}runs itself{{/accent}}. No spreadsheets to maintain, no one to chase — just complete, audit-ready records the moment you need them.",
       "key_outcomes": [
         { "stat": "0",       "label": "missed revisions" },
         { "stat": "Minutes", "label": "from issue to transmittal sent" },
@@ -319,6 +334,7 @@
     {
       "slug": "qa-manager",
       "title": "QA Manager",
+      "seo_keywords": ["Revit QA tool", "BIM quality assurance", "automated drawing checks", "MEP QA software", "Revit model checker", "pre-issue QA gate", "construction quality management", "ACC clash checker"],
       "headline_claim": "Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.",
       "tagline": "Replaces the manual QA checklist with continuous automated checks. Pass / fail / warn — with the exact element to fix.",
       "the_shift": {
@@ -331,7 +347,7 @@
         "Every failure links one click back to the exact element, drawing or clause that needs fixing.",
         "For a typical Stage 3 issue gate, this replaces a senior engineer's two-day pre-issue QA week with a 30-minute review — and crucially, it catches mismatches between the model and the schedule before they reach a client, which is where most expensive re-issues come from. Across a year, a five-engineer practice typically saves 40–60 working days of QA effort and avoids three to six re-issues."
       ],
-      "pullquote": "QA Manager will be the only quality gate that reconciles drawings, schedules, specifications and the model in one continuous, always-on dashboard.",
+      "pullquote": "Bespoke QA checks that catch what {{accent}}no other system would{{/accent}} — missing maintenance space, parameter mismatches, spec-to-model drift. Runs on every save, not the week before issue.",
       "key_outcomes": [
         { "stat": "Continuous", "label": "checks run on every save" },
         { "stat": "5",          "label": "QA surfaces in one dashboard" },
@@ -436,6 +452,7 @@
     {
       "slug": "schedule-builder",
       "title": "Schedule Builder",
+      "seo_keywords": ["Revit schedule automation", "MEP schedule builder", "Revit schedule tool", "equipment schedule generator", "radiator schedule Revit", "AHU schedule builder", "model vs calc gap analysis"],
       "headline_claim": "Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.",
       "tagline": "Schedule Builder asks for your data, applies your office templates and preferred manufacturers, builds the schedules into Revit, and runs a gap analysis against the live model.",
       "the_shift": {
@@ -448,7 +465,7 @@
         "Then it runs a three-way gap analysis: what's in the schedule but missing from the model, what's in the model but missing from the schedule, and which rows disagree with your calculations (e.g. a radiator whose model output doesn't match the heat-loss spreadsheet). Each mismatch links straight to the offending element.",
         "For a typical commercial scheme, this collapses what is normally 4–8 hours per schedule of hand-building plus another half-day of pre-issue cross-checking into about 20 minutes of review — and crucially, catches model/schedule disagreements before they reach issue, which is where most schedule re-issues come from."
       ],
-      "pullquote": "Schedule Builder will be the only schedule tool that builds, populates and reconciles in a single loop — the model, the schedule, and the calculations end the day in agreement.",
+      "pullquote": "Schedules that build themselves from the model and your calcs. {{accent}}No hand-merging, no pre-issue panic{{/accent}} — just schedules that agree with the model and each other.",
       "key_outcomes": [
         { "stat": "Minutes",       "label": "from prompt to populated schedule" },
         { "stat": "Auto",          "label": "cross-check against model + calcs" },
@@ -483,8 +500,7 @@
       },
       "surface": "Revit add-in + web app",
       "status": "live",
-      "icon": "logos/Excel.jpg",
-      "_icon_todo": "drop images/app-logos/schedule-builder.png and update this path",
+      "icon": "images/app-logos/schedule-builder.png",
       "tone": "green",
       "best_for": ["MEP modellers", "Schedule QA before issue", "Practices with house schedule templates"],
       "primary_cta": { "label": "Run Schedule Builder online", "href": "https://app.adelphos.ai/schedule-builder" },
@@ -499,6 +515,7 @@
     {
       "slug": "cobie-manager",
       "title": "CoBie Manager",
+      "seo_keywords": ["COBie tool Revit", "COBie spreadsheet generator", "BS 1192-4 compliance", "BIM handover tool", "COBie from Revit", "asset data handover", "facility management BIM"],
       "headline_claim": "A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.",
       "tagline": "Continuously populates and validates the COBie spreadsheet against the live Revit model. Every cell traceable to its source element.",
       "blurb": "CoBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.",
@@ -518,6 +535,7 @@
     {
       "slug": "autocad-copilot",
       "title": "AutoCAD Copilot",
+      "seo_keywords": ["AutoCAD AI plugin", "AI for AutoCAD MEP", "AutoCAD automation", "AutoCAD MEP add-in", "AI CAD design tool", "AutoCAD copilot"],
       "headline_claim": "An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.",
       "tagline": "The Adelphos Copilot for AutoCAD MEP teams. Talk to your drawing the same way you talk to Revit. Every Adelphos tool, callable from a chat panel inside AutoCAD.",
       "blurb": "AutoCAD Copilot is the AutoCAD-side counterpart to the Revit Copilot. Same agent, same project memory, same MCP tool surface — except it lives in AutoCAD MEP. Practices that run a mixed Revit + AutoCAD environment use both Copilots side by side.",
@@ -537,12 +555,13 @@
     {
       "slug": "word-add-in",
       "title": "Adelphos for Word",
+      "seo_keywords": ["Word AI add-in", "engineering document AI", "MEP report Word plugin", "AI technical writing", "Word automation engineering"],
       "headline_claim": "The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.",
       "tagline": "Word add-in that brings the Adelphos agent into your authoring environment. Draft a section, ask for a rewrite, fact-check against the project model, all without leaving Word.",
       "blurb": "Adelphos for Word turns your existing Word workflow into an agent-assisted one. Drafts MEP report and specification sections from prompts, fact-checks claims against the live project model, and applies your house style — all inside the document you're already writing.",
       "surface": "Word add-in · Word for Microsoft 365 · Windows + Mac",
       "status": "live",
-      "icon": "logos/Word.jpg",
+      "icon": "images/app-logos/word-add-in.png",
       "tone": "blue",
       "best_for": ["Engineers drafting reports + specs", "Multi-author documents", "Office-style enforcement"],
       "features": [
@@ -556,12 +575,13 @@
     {
       "slug": "excel-add-in",
       "title": "Adelphos for Excel",
+      "seo_keywords": ["Excel Revit integration", "model-linked spreadsheet", "heat loss Excel Revit", "calc to model sync", "engineering Excel add-in", "MEP sizing spreadsheet tool"],
       "headline_claim": "The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.",
       "tagline": "Excel add-in that connects your heat-loss, sizing, and IESVE workbooks to the live Revit model. Push values to the model, pull values from the model, run gap analyses inline.",
       "blurb": "Adelphos for Excel turns your calc spreadsheets into live, model-aware workbooks. The values in your sizing tabs stay in sync with the model elements they drive — and any disagreement is flagged inline before it becomes a re-issue.",
       "surface": "Excel add-in · Excel for Microsoft 365 · Windows + Mac",
       "status": "live",
-      "icon": "logos/Excel.jpg",
+      "icon": "images/app-logos/excel-add-in.png",
       "tone": "green",
       "best_for": ["Heat-loss / sizing engineers", "IESVE workflow integration", "Calc-to-model gap analysis"],
       "features": [

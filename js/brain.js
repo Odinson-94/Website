@@ -133,7 +133,6 @@ function updatePerformanceTier(dt) {
   }
   
   if (oldTier !== perfTier) {
-    console.log(`Performance tier: ${oldTier} → ${perfTier} (${perfCurrentFPS} FPS)`);
   }
 }
 
@@ -142,7 +141,6 @@ let perfDebugMode = false;
 
 function setPerfDebug(enabled) {
   perfDebugMode = enabled;
-  console.log('Performance debug mode:', enabled ? 'ON' : 'OFF');
 }
 
 // Draw debug overlay
@@ -1192,7 +1190,7 @@ window.startNeuralAnimations = startNeuralAnimations;
       grad.addColorStop(1, "#1a1a1a");
       ctx.fillStyle = grad;
     } else {
-      ctx.fillStyle = "#ffffff";
+      ctx.fillStyle = window.BRAIN_BG_LIGHT || "#ffffff";
     }
     ctx.fillRect(0, 0, width, height);
     ctx.restore();
@@ -2319,16 +2317,12 @@ window.startNeuralAnimations = startNeuralAnimations;
   function logNodeStats() {
     const regionCounts = [0, 0, 0, 0, 0];
     nodes.forEach(n => regionCounts[n.region]++);
-    console.log('Node distribution by region:');
     regionCounts.forEach((count, i) => {
-      console.log(`  ${getRegionName(i)}: ${count} nodes`);
     });
     
     // Log visible nodes per view (in brain area only, excludes right panel)
-    console.log('Visible nodes per view (left 55% for zoomed views):');
     for (let v = 2; v <= 7; v++) {
       const visible = getNodesInView(v);
-      console.log(`  View ${v}: ${visible.length} nodes`);
     }
   }
   window.logNodeStats = logNodeStats;
@@ -2350,7 +2344,6 @@ window.startNeuralAnimations = startNeuralAnimations;
     
     const visibleNodes = getNodesInView(viewNum);
     if (visibleNodes.length === 0) {
-      console.log('getCenterNodesForView: No visible nodes for view', viewNum);
       return [];
     }
     
@@ -2430,7 +2423,6 @@ window.startNeuralAnimations = startNeuralAnimations;
       }
     }
     
-    console.log(`getCenterNodesForView: View ${viewNum} - selected: ${selected.length}, onScreen: ${onScreenNodes.length}, visible: ${visibleNodes.length}, sweetSpot: ${sweetSpotNodes.length}`);
     
     return selected;
   }
@@ -2634,7 +2626,6 @@ window.startNeuralAnimations = startNeuralAnimations;
   function setTargetView(viewNum) {
     targetViewIndex = viewNum;
     currentBrainView = viewNum;
-    console.log('Target view set to:', viewNum);
   }
   window.setTargetView = setTargetView;
   
@@ -2686,7 +2677,6 @@ window.startNeuralAnimations = startNeuralAnimations;
       const now = performance.now();
       const state = VIEW_STATES[targetView];
       if (!state) {
-        console.log('animateToViewState: invalid view', targetView);
         resolve();
         return;
       }
@@ -2719,7 +2709,6 @@ window.startNeuralAnimations = startNeuralAnimations;
       const zoomChanging = Math.abs(targetZoom - startZoom) > 0.5;
       const duration = zoomChanging ? ANIMATION_DURATIONS.zoomWithPan : ANIMATION_DURATIONS.panOnly;
       
-      console.log(`animateToViewState(${targetView}): zoom ${startZoom.toFixed(1)}->${targetZoom.toFixed(1)}, cam (${startCamX.toFixed(0)},${startCamY.toFixed(0)})->(${targetCam.x.toFixed(0)},${targetCam.y.toFixed(0)}), brain ${startBrainOffset.toFixed(0)}->${targetBrainOffset.toFixed(0)}, duration=${duration}`);
       
       // ========== START ALL ANIMATIONS ==========
       
@@ -2762,7 +2751,6 @@ window.startNeuralAnimations = startNeuralAnimations;
         // DON'T use simple cam pan - let screen pos interpolation control camera
         camPanAnimating = false;
         
-        console.log(`  Screen pos: (${screenPosStartX.toFixed(0)},${screenPosStartY.toFixed(0)}) -> (${screenPosTargetX.toFixed(0)},${screenPosTargetY.toFixed(0)})`);
       } else {
         // No zoom change - use simple camera pan
         camPanAnimating = true;
@@ -2778,7 +2766,6 @@ window.startNeuralAnimations = startNeuralAnimations;
       // ========== RESOLVE AFTER DURATION ==========
       // Simple: just wait for animation to complete, then resolve
       setTimeout(() => {
-        console.log(`animateToViewState(${targetView}): complete`);
         if (callback) callback();
         resolve();
       }, duration + 100);
@@ -2792,7 +2779,6 @@ window.startNeuralAnimations = startNeuralAnimations;
   function setViewInstant(targetView, makeVisible = false) {
     const state = VIEW_STATES[targetView];
     if (!state) {
-      console.log('setViewInstant: invalid view', targetView);
       return;
     }
     
@@ -2828,7 +2814,6 @@ window.startNeuralAnimations = startNeuralAnimations;
     camPanTargetX = camera.x;
     camPanTargetY = camera.y;
     
-    console.log(`setViewInstant(${targetView}): zoom=${state.zoom}, brainOffset=${brainOffsetX.toFixed(0)}, brainScale=${state.brainScale}, cam=(${camera.x.toFixed(0)},${camera.y.toFixed(0)})`);
   }
   window.setViewInstant = setViewInstant;
   
@@ -2853,14 +2838,12 @@ window.startNeuralAnimations = startNeuralAnimations;
     brainMoveStartTime = now;
     brainMoveDuration = ANIMATION_DURATIONS.brainMove;
     
-    console.log('shrinkAndMoveBrain: scale', brainScaleAnim, '->', state.brainScale, ', offset', brainOffsetX, '->', state.brainOffset * width);
   }
   window.shrinkAndMoveBrain = shrinkAndMoveBrain;
   
   // DEPRECATED: Use animateToViewState(7) instead
   // Kept for backward compatibility
   function resetBrainForView7() {
-    console.log('resetBrainForView7 called - use animateToViewState(7) instead');
     animateToViewState(7);
   }
   window.resetBrainForView7 = resetBrainForView7;
@@ -2868,7 +2851,6 @@ window.startNeuralAnimations = startNeuralAnimations;
   // DEPRECATED: Use animateToViewState(1) instead
   // Kept for backward compatibility
   function resetBrainForView1() {
-    console.log('resetBrainForView1 called - use animateToViewState(1) instead');
     animateToViewState(1);
   }
   window.resetBrainForView1 = resetBrainForView1;
@@ -2876,7 +2858,6 @@ window.startNeuralAnimations = startNeuralAnimations;
   // DEPRECATED: Use animateToViewState(6) instead
   // Kept for backward compatibility
   function zoomBackToView6() {
-    console.log('zoomBackToView6 called - use animateToViewState(6) instead');
     animateToViewState(6);
   }
   window.zoomBackToView6 = zoomBackToView6;
@@ -2900,14 +2881,12 @@ window.startNeuralAnimations = startNeuralAnimations;
     camPanTargetX = target.x;
     camPanTargetY = target.y;
     
-    console.log('panToView', viewNum, ': (', camera.x.toFixed(1), ',', camera.y.toFixed(1), ') -> (', target.x.toFixed(1), ',', target.y.toFixed(1), ')');
   }
   window.panToView = panToView;
   
   // Pan back to current view's target position (rubber band effect)
   function panBackToOriginal(duration) {
     panToView(currentBrainView, duration);
-    console.log('Rubber band to view', currentBrainView);
   }
   window.panBackToOriginal = panBackToOriginal;
   
@@ -2924,7 +2903,6 @@ window.startNeuralAnimations = startNeuralAnimations;
     if (viewNum) {
       panToView(viewNum, duration);
     } else {
-      console.warn('Unknown region:', regionName);
     }
   }
   window.panToBrainRegion = panToBrainRegion;
