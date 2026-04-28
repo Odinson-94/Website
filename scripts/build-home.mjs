@@ -289,40 +289,39 @@ function combinedBanner(parent, children, { badge, divider } = {}) {
    #2f2f2f surface as Section 2, white type, agent spinner where
    meaningful). Each card carries the real PNG logo + the apps.json
    headline_claim verbatim. No "Available" stamps, no one-word names. */
+const HOME_SVG_ICON_MAP = {
+  'revit-copilot':       'images/app-logos/revit-copilot-sparkles.svg',
+  'adelphos-chat':       'images/app-logos/adelphos-chat.svg',
+  'specbuilder':         'images/app-logos/specbuilder.svg',
+  'report-builder':      'images/app-logos/report-builder.svg',
+  'document-controller': 'images/app-logos/document-controller.svg',
+  'qa-manager':          'images/app-logos/qa-manager.svg',
+  'schedule-builder':    'images/app-logos/schedule-builder.svg',
+  'cobie-manager':       'images/app-logos/cobie-manager.svg',
+  'autocad-copilot':     'images/app-logos/autocad-copilot-sparkles.svg',
+};
+
 function renderAppsCarousel(apps) {
   const order = [
-    'revit-copilot', 'specbuilder', 'cobie-manager', 'schedule-builder',
-    'qa-manager', 'adelphos-chat', 'document-controller', 'autocad-copilot',
-    'report-builder', 'word-add-in', 'excel-add-in'
+    'revit-copilot', 'adelphos-chat', 'specbuilder', 'report-builder',
+    'document-controller', 'qa-manager', 'schedule-builder',
+    'cobie-manager', 'autocad-copilot', 'word-add-in', 'excel-add-in'
   ];
   const findApp = (slug) => apps.find(a => a.slug === slug);
-  const liveCards = order.map(findApp).filter(Boolean).map(a => appCard(a)).join('');
+  const tiles = order.map(findApp).filter(Boolean).map(a => {
+    const icon = HOME_SVG_ICON_MAP[a.slug] || a.icon || 'logos/Node Logo.png';
+    const surfLabel = a.surface ? a.surface.split('·')[0].trim() : 'App';
+    return `
+      <a class="home-app-tile" href="/apps/${esc(a.slug)}/index.html">
+        <div class="icon-wrap">
+          <img src="/${esc(icon)}" alt="${esc(a.title)}">
+        </div>
+        <h3>${esc(a.title)}</h3>
+        <span class="surf">${esc(surfLabel)}</span>
+      </a>`;
+  }).join('');
 
-  // Roadmap entries — surfaced as .app-card.roadmap (light teal-bordered ghost
-  // versions of the dark card; same shape, single accent, NOT a different
-  // card style). Names from sandbox plan Section 3.
-  const roadmap = [
-    { title: '2D-to-3D Floorplan from PDF',  blurb: 'Architectural floorplans rebuilt as a Revit model from a PDF.' },
-    { title: 'Plantroom Generator',           blurb: 'Boilers, pumps and AHUs placed and connected from the brief.' },
-    { title: 'AutoRouting — Pipework',        blurb: 'Header drops and branch runs through corridors and risers.' },
-    { title: 'AutoCAD CoPilot',               blurb: 'Same agent, native to AutoCAD MEP.' },
-    { title: 'Report Builder — IESVE',        blurb: 'IESVE outputs assembled into client-ready energy reports.' },
-    { title: 'Arch Floorplan Editing',        blurb: 'Architectural floorplan generation and editing features.' },
-    { title: 'MEP Design Modules',            blurb: 'Editing surfaces for routing, sizing and coordination.' }
-  ];
-  const roadmapCards = roadmap.map(r => roadmapCard(r)).join('');
-
-  return `
-    <div class="apps-carousel-wrap">
-      <button class="carousel-arrow carousel-arrow-left" type="button" aria-label="Scroll left" tabindex="0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="apps-scroll">${liveCards}<div class="carousel-divider">Coming after</div>${roadmapCards}</div>
-      <button class="carousel-arrow carousel-arrow-right" type="button" aria-label="Scroll right" tabindex="0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-    <a class="apps-roadmap-link" href="/roadmap/">See the full roadmap →</a>`;
+  return `<div class="home-apps-grid">${tiles}</div>`;
 }
 
 function appCard(a) {

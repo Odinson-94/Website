@@ -183,7 +183,7 @@
   .ap-cta-primary:active,
   .ap-cta-ghost:active { transform: scale(0.98); }
 
-  /* RIGHT — painted artsy frame (Section 2 .revit-panel-bottom pattern) */
+  /* RIGHT — hero frame: Revit bg only for revit-copilot, radial glow for others */
   .ap-hero-frame {
     position: relative;
     min-height: 460px;
@@ -192,10 +192,24 @@
   }
   .ap-hero-frame::before {
     content: ''; position: absolute; inset: 0;
-    background: url('/images/revit-bg.png') center center / cover no-repeat;
     z-index: 0;
   }
-  .ap-hero-frame::after {
+  .ap-hero-frame[data-tone="blue"]::before {
+    background: radial-gradient(ellipse at 50% 50%, rgba(21,96,130,0.45) 0%, rgba(21,96,130,0.15) 50%, #1a1a1a 100%);
+  }
+  .ap-hero-frame[data-tone="midnight"]::before {
+    background: radial-gradient(ellipse at 50% 50%, rgba(26,42,74,0.55) 0%, rgba(26,42,74,0.18) 50%, #1a1a1a 100%);
+  }
+  .ap-hero-frame[data-tone="red"]::before {
+    background: radial-gradient(ellipse at 50% 50%, rgba(130,34,28,0.45) 0%, rgba(130,34,28,0.15) 50%, #1a1a1a 100%);
+  }
+  .ap-hero-frame[data-tone="green"]::before {
+    background: radial-gradient(ellipse at 50% 50%, rgba(26,96,64,0.45) 0%, rgba(26,96,64,0.15) 50%, #1a1a1a 100%);
+  }
+  .ap-hero-frame.ap-hero-revit::before {
+    background: url('/images/revit-bg.png') center center / cover no-repeat;
+  }
+  .ap-hero-frame.ap-hero-revit::after {
     content: ''; position: absolute; inset: 0;
     background: var(--ad-painted-overlay);
     z-index: 0;
@@ -875,7 +889,7 @@
         <a class="ap-cta-ghost" href="{{cta2_href}}">{{cta2_label}}</a>
       </div>
     </div>
-    <div class="ap-hero-frame">
+    <div class="ap-hero-frame {{hero_frame_class}}" data-tone="{{tone}}">
       <img class="ap-hero-logo" src="/{{icon}}" alt="{{title}} logo" onerror="this.style.opacity=0">
     </div>
   </section>
