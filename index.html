@@ -106,8 +106,12 @@
   .home-hero .build-cycler {
     grid-column: 2; grid-row: 1;
   }
-  .home-hero .hero-h2 {
+  .home-hero .hero-apps-wrap {
     grid-column: 1 / -1; grid-row: 2;
+    padding-top: var(--space-xl);
+  }
+  .home-hero .hero-h2 {
+    grid-column: 1 / -1; grid-row: 3;
     margin: 0;
     padding: 32px 0 40px;
     border-bottom: 1px solid var(--border);
@@ -121,7 +125,8 @@
   @media (max-width: 1100px) {
     .home-hero { grid-template-columns: 1fr; }
     .home-hero .build-cycler { grid-column: 1; grid-row: 2; }
-    .home-hero .hero-h2 { grid-row: 3; }
+    .home-hero .hero-apps-wrap { grid-row: 3; }
+    .home-hero .hero-h2 { grid-row: 4; }
   }
   .tri-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;
@@ -1663,6 +1668,63 @@
         <a href="#" class="signup-btn suggestion" onclick="window.adelphosSignup.openModal('suggestion'); return false;">Got a suggestion? We'd be happy to include it.</a>
       </div>
     </div>
+    <div class="hero-apps-wrap">
+      <div class="home-section-head">
+        <h2>Apps</h2>
+        <div class="head-aside">
+          <p>Eleven apps in development — beta release coming Q2 2026. Each plugs into the same Adelphos platform.</p>
+          <a class="see-all" href="/apps/index.html">See all apps →</a>
+        </div>
+      </div>
+      <div class="home-apps-grid">
+        <a class="home-app-tile" href="/apps/revit-copilot/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/revit-copilot-sparkles.svg" alt="Revit Copilot"></div>
+          <h4>Revit Copilot</h4><span class="surf">Revit add-in</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/adelphos-chat/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/adelphos-chat.svg" alt="Adelphos Chat"></div>
+          <h4>Adelphos Chat</h4><span class="surf">Web · Desktop</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/specbuilder/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/specbuilder.svg" alt="Specbuilder"></div>
+          <h4>Specbuilder</h4><span class="surf">Web · Word</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/report-builder/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/report-builder.svg" alt="Report Builder"></div>
+          <h4>Report Builder</h4><span class="surf">Web app</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/document-controller/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/document-controller.svg" alt="Document Controller"></div>
+          <h4>Document Controller</h4><span class="surf">Desktop · Web</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/qa-manager/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/qa-manager.svg" alt="QA Manager"></div>
+          <h4>QA Manager</h4><span class="surf">Desktop · Revit</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/schedule-builder/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/schedule-builder.svg" alt="Schedule Builder"></div>
+          <h4>Schedule Builder</h4><span class="surf">Revit · Web</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/cobie-manager/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/cobie-manager.svg" alt="CoBie Manager"></div>
+          <h4>CoBie Manager</h4><span class="surf">Revit · Web</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/autocad-copilot/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/autocad-copilot-sparkles.svg" alt="AutoCAD Copilot"></div>
+          <h4>AutoCAD Copilot</h4><span class="surf">AutoCAD MEP</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/word-add-in/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/word-add-in.png" alt="Adelphos for Word"></div>
+          <h4>Adelphos for Word</h4><span class="surf">Word add-in</span><span class="status-badge">In Development</span>
+        </a>
+        <a class="home-app-tile" href="/apps/excel-add-in/index.html">
+          <div class="icon-wrap"><img src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel"></div>
+          <h4>Adelphos for Excel</h4><span class="surf">Excel add-in</span><span class="status-badge">In Development</span>
+        </a>
+      </div>
+      <p style="margin-top:24px; font-size:14px; font-weight:400; color:var(--ad-text-3); line-height:1.6;">Beta release coming Q2 2026. <a href="#" onclick="window.adelphosSignup.openModal('early_access'); return false;" style="color:var(--ad-teal); text-decoration:none; font-weight:500;">Sign up for early access</a> — 30% off across the board.</p>
+      <a class="apps-roadmap-link" href="/roadmap/">See the full roadmap →</a>
+    </div>
     <h2 class="hero-h2">From client briefs, site survey reports, MEP specifications, Revit Copilot, QA Managers, to document control, CoBie data, an array of free tools and a framework so business owners can implement AI into their everyday workflow.</h2>
     <!-- Phase 8.7.5: aria-hidden on the cycler -- the cycling word IS
          meaningful product copy, but a screen reader reading it on
@@ -1705,87 +1767,6 @@
         rmq.addEventListener('change', function(e){ e.matches ? stop() : start(); });
       })();
     </script>
-  </section>
-
-  <!-- === APPS GRID (between hero and feature panels) === -->
-  <section class="home-section reveal d2" style="margin-top:var(--space-xl);">
-    <div class="home-section-head">
-      <h2>Apps</h2>
-      <div class="head-aside">
-        <p>Eleven apps in development — beta release coming Q2 2026. Each plugs into the same Adelphos platform.</p>
-        <a class="see-all" href="/apps/index.html">See all apps →</a>
-      </div>
-    </div>
-    <div class="home-apps-grid">
-      <a class="home-app-tile" href="/apps/revit-copilot/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/revit-copilot-sparkles.svg" alt="Revit Copilot"></div>
-        <h4>Revit Copilot</h4>
-        <span class="surf">Revit add-in</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/adelphos-chat/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/adelphos-chat.svg" alt="Adelphos Chat"></div>
-        <h4>Adelphos Chat</h4>
-        <span class="surf">Web · Desktop</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/specbuilder/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/specbuilder.svg" alt="Specbuilder"></div>
-        <h4>Specbuilder</h4>
-        <span class="surf">Web · Word</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/report-builder/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/report-builder.svg" alt="Report Builder"></div>
-        <h4>Report Builder</h4>
-        <span class="surf">Web app</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/document-controller/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/document-controller.svg" alt="Document Controller"></div>
-        <h4>Document Controller</h4>
-        <span class="surf">Desktop · Web</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/qa-manager/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/qa-manager.svg" alt="QA Manager"></div>
-        <h4>QA Manager</h4>
-        <span class="surf">Desktop · Revit</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/schedule-builder/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/schedule-builder.svg" alt="Schedule Builder"></div>
-        <h4>Schedule Builder</h4>
-        <span class="surf">Revit · Web</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/cobie-manager/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/cobie-manager.svg" alt="CoBie Manager"></div>
-        <h4>CoBie Manager</h4>
-        <span class="surf">Revit · Web</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/autocad-copilot/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/autocad-copilot-sparkles.svg" alt="AutoCAD Copilot"></div>
-        <h4>AutoCAD Copilot</h4>
-        <span class="surf">AutoCAD MEP</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/word-add-in/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/word-add-in.png" alt="Adelphos for Word"></div>
-        <h4>Adelphos for Word</h4>
-        <span class="surf">Word add-in</span>
-        <span class="status-badge">In Development</span>
-      </a>
-      <a class="home-app-tile" href="/apps/excel-add-in/index.html">
-        <div class="icon-wrap"><img src="/images/app-logos/excel-add-in.png" alt="Adelphos for Excel"></div>
-        <h4>Adelphos for Excel</h4>
-        <span class="surf">Excel add-in</span>
-        <span class="status-badge">In Development</span>
-      </a>
-    </div>
-    <p style="margin-top:24px; font-size:14px; font-weight:400; color:var(--ad-text-3); line-height:1.6;">Beta release coming Q2 2026. <a href="#" onclick="window.adelphosSignup.openModal('early_access'); return false;" style="color:var(--ad-teal); text-decoration:none; font-weight:500;">Sign up for early access</a> — 30% off across the board.</p>
-    <a class="apps-roadmap-link" href="/roadmap/">See the full roadmap →</a>
   </section>
 
   <!-- === SECTION 2: REVIT COPILOT FEATURE PANEL === -->
