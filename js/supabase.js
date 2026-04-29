@@ -34,8 +34,17 @@
   // SIGNUP FUNCTIONS
   // ============================================
   
-  async function submitSignup(email, name, company, signupType, countryCode, countryName) {
+  async function submitSignup(email, name, company, signupType, countryCode, countryName, suggestion) {
     try {
+      const payload = {
+        email: email,
+        name: name || null,
+        company: company || null,
+        country_code: countryCode,
+        country_name: countryName,
+        signup_type: signupType
+      };
+      if (suggestion) payload.message = suggestion;
       const response = await fetch(`${SUPABASE_URL}/rest/v1/signups`, {
         method: 'POST',
         headers: {
@@ -44,14 +53,7 @@
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
           'Prefer': 'return=minimal'
         },
-        body: JSON.stringify({
-          email: email,
-          name: name || null,
-          company: company || null,
-          country_code: countryCode,
-          country_name: countryName,
-          signup_type: signupType // 'early_access' or 'news'
-        })
+        body: JSON.stringify(payload)
       });
 
       if (response.ok) {
@@ -246,6 +248,11 @@
             <label for="signupCompany">Company</label>
             <input type="text" id="signupCompany" placeholder="Your company (optional)">
           </div>
+
+          <div class="signup-field" id="suggestionField" style="display:none;">
+            <label for="signupSuggestion">Your suggestion *</label>
+            <textarea id="signupSuggestion" rows="4" placeholder="Tell us what you'd like to see..." style="width:100%;resize:vertical;font-family:inherit;font-size:14px;padding:10px 12px;border:1px solid rgba(0,0,0,0.15);border-radius:6px;background:var(--ad-bg,#fff);color:var(--ad-text-1,#222);"></textarea>
+          </div>
           
           <div class="signup-field">
             <label for="signupCountry">Country *</label>
@@ -305,7 +312,8 @@
       message.textContent = '';
       message.className = 'signup-message';
 
-      const result = await submitSignup(email, name, company, signupType, countryCode, countryName);
+      const suggestionText = document.getElementById('signupSuggestion') ? document.getElementById('signupSuggestion').value : '';
+      const result = await submitSignup(email, name, company, signupType, countryCode, countryName, suggestionText);
 
       // Reset button
       btnText.style.display = 'inline';
@@ -315,6 +323,8 @@
       if (result.success) {
         message.textContent = signupType === 'early_access' 
           ? '🎉 Thank you! You\'ll receive 30% off when early access launches!'
+          : signupType === 'suggestion'
+          ? '✓ Thank you! Your suggestion has been submitted.'
           : '✓ You\'re signed up for news updates!';
         message.className = 'signup-message success';
         
@@ -345,11 +355,23 @@
     const submitBtn = modal.querySelector('.signup-btn-text');
     const countrySelect = document.getElementById('signupCountry');
 
+    const suggestionField = document.getElementById('suggestionField');
+    const suggestionInput = document.getElementById('signupSuggestion');
+    suggestionField.style.display = 'none';
+    if (suggestionInput) suggestionInput.removeAttribute('required');
+
     if (type === 'early_access') {
       title.textContent = 'Early Access - 30% Off';
       subtitle.textContent = 'Be first to access Adelphos AI when we launch. Early access members receive 30% off.';
       signupTypeInput.value = 'early_access';
       submitBtn.textContent = 'Get Early Access';
+    } else if (type === 'suggestion') {
+      title.textContent = 'Got a suggestion?';
+      subtitle.textContent = 'We\'d love to hear your ideas. Tell us what you\'d like to see in Adelphos.';
+      signupTypeInput.value = 'suggestion';
+      submitBtn.textContent = 'Submit Suggestion';
+      suggestionField.style.display = '';
+      if (suggestionInput) suggestionInput.setAttribute('required', '');
     } else {
       title.textContent = 'Stay Updated';
       subtitle.textContent = 'Get news and updates about Adelphos AI development.';
