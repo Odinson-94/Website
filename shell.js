@@ -31,17 +31,23 @@
     let nav;
     try { nav = await fetch('/data/nav.json').then(r => r.json()); }
     catch { return; }
-    const html = nav.items.map(it => {
+    const parts = [];
+    for (const it of nav.items) {
       if (it.type === 'coming-soon') {
-        return `<div class="mobile-menu-coming-soon">${esc(it.label)} <span class="coming-soon-tag">Soon</span></div>`;
-      }
-      if (it.type === 'dropdown-inline' && it.children) {
+        parts.push(`<div class="mobile-menu-coming-soon">${esc(it.label)} <span class="coming-soon-tag">Soon</span></div>`);
+      } else if (it.type === 'dropdown-inline' && it.children) {
         const kids = it.children.map(c => `<a href="${esc(c.href)}" class="mobile-menu-link mobile-menu-sublink">${esc(c.title)}</a>`).join('');
-        return `<a href="${esc(it.href)}" class="mobile-menu-link"><strong>${esc(it.label)}</strong></a>${kids}`;
+        parts.push(`<a href="${esc(it.href)}" class="mobile-menu-link"><strong>${esc(it.label)}</strong></a>${kids}`);
+      } else if (it.type === 'dropdown' && it.children_from) {
+        let children = [];
+        try { const d = await fetch('/' + it.children_from).then(r => r.json()); children = d.apps || d.services || d.features || []; } catch {}
+        const kids = children.map(c => `<a href="${esc(it.children_root + c.slug + '/')}" class="mobile-menu-link mobile-menu-sublink">${esc(c.title)}</a>`).join('');
+        parts.push(`<a href="${esc(it.href)}" class="mobile-menu-link"><strong>${esc(it.label)}</strong></a>${kids}`);
+      } else {
+        parts.push(`<a href="${esc(it.href)}" class="mobile-menu-link">${esc(it.label)}</a>`);
       }
-      return `<a href="${esc(it.href)}" class="mobile-menu-link">${esc(it.label)}</a>`;
-    }).join('<div class="mobile-menu-divider"></div>');
-    mobileMenu.innerHTML = html;
+    }
+    mobileMenu.innerHTML = parts.join('<div class="mobile-menu-divider"></div>');
   })();
 
   // === MENUBAR (top centre) ================================================

@@ -2872,26 +2872,30 @@ html.dark-mode .ribbon-btn.icon.highlight::after {
   transform: translateY(0);
 }
 
-/* ===== MOBILE FOOTER (must be last to win cascade) ===== */
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column !important;
-    gap: 24px !important;
-    padding: 0 20px !important;
+/* ===== MOBILE FOOTER — targets the shell.js .sandbox-footer ===== */
+@media (max-width: 600px) {
+  .sandbox-footer {
+    padding: 32px 20px 24px !important;
   }
-  .footer-brand {
-    flex: 1 1 100% !important;
+  .sandbox-footer .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
   }
-  .footer-links {
-    flex-direction: column !important;
-    gap: 20px !important;
+  .sandbox-footer .footer-tag {
+    max-width: 100% !important;
   }
-  .footer-links-column {
-    min-width: 0 !important;
-  }
-  .footer-bottom {
+  .sandbox-footer .footer-bottom {
     flex-direction: column !important;
     text-align: center !important;
-    padding: 15px 20px 0 !important;
+    gap: 8px !important;
+    padding-top: 16px !important;
+  }
+  .sandbox-footer .footer-bottom .legal {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  .sandbox-footer .footer-bottom .legal a {
+    margin-left: 0 !important;
   }
 }

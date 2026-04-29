@@ -6635,3 +6635,70 @@ html.dark-mode .demo-btn-dropdown .blurb {
 .site-footer {
   background: #f5f3ef;
 }
+
+/* ===== MOBILE OVERRIDES ===== */
+@media (max-width: 768px) {
+  .riba-left-panel {
+    width: 100% !important;
+    padding: 80px 16px 20px 16px !important;
+  }
+  .riba-grid-left {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+    gap: 12px !important;
+    padding: 0 !important;
+  }
+  .riba-card-left {
+    margin: 0 !important;
+  }
+  .riba-card-left.expanded,
+  .riba-clone-expanded.expanded {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    max-height: none !important;
+  }
+  .chat-right-panel {
+    display: none !important;
+  }
+  canvas#brainCanvas {
+    display: none !important;
+  }
+  .hero-panel {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+  .hero-left, .hero-right {
+    width: 100% !important;
+    flex: none !important;
+  }
+  .hero-left {
+    padding: 80px 24px 32px !important;
+    min-height: auto !important;
+  }
+  .hero-right {
+    height: 300px !important;
+    min-height: auto !important;
+  }
+  .hero-heading {
+    font-size: clamp(28px, 7vw, 44px) !important;
+  }
+  .hero-subheading {
+    font-size: clamp(14px, 3.5vw, 18px) !important;
+  }
+  .section-indicator {
+    display: none !important;
+  }
+  .menubar {
+    display: none !important;
+  }
+  .logo {
+    left: 16px !important;
+    top: 14px !important;
+  }
+}
