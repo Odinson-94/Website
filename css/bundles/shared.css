@@ -1102,26 +1102,6 @@ html, body {
   flex: 0 0 280px;
 }
 
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    gap: 24px;
-    padding: 0 20px;
-  }
-  .footer-brand {
-    flex: 1 1 100%;
-  }
-  .footer-links {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    padding: 15px 20px 0;
-  }
-}
-
 .footer-logo {
   align-items: baseline;
   display: flex;
@@ -2857,4 +2837,28 @@ html.dark-mode .ribbon-btn.icon.highlight::after {
 #buildXOverlay.visible .buildx-signup-buttons {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ===== MOBILE FOOTER (must be last to win cascade) ===== */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column !important;
+    gap: 24px !important;
+    padding: 0 20px !important;
+  }
+  .footer-brand {
+    flex: 1 1 100% !important;
+  }
+  .footer-links {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  .footer-links-column {
+    min-width: 0 !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 15px 20px 0 !important;
+  }
 }

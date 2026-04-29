@@ -140,6 +140,9 @@
     .button-row .button-row-inline { flex-direction: column; gap: 12px; }
     .button-row-inline .signup-btn { width: 100%; }
     .tri-grid { grid-template-columns: 1fr; gap: 24px; }
+    #specbuilderFrame { height: 500px; }
+    .clash-row.tpl-row { grid-template-columns: 1fr !important; }
+    .clash-row.tpl-row .clash-copy { padding: 16px 0 !important; }
   }
   .home-hero .hero-kicker {
     display: inline-block; font-size: 11px; font-weight: 700;
@@ -2370,16 +2373,14 @@
       <h2>CoBie Manager</h2>
     </div>
 
-    <div style="display:grid; grid-template-columns:380px 1fr; gap:32px; margin-top:var(--space-lg); align-items:start;">
-      <div style="display:flex; flex-direction:column; gap:24px;">
-        <div>
-          <h3 class="clash-heading">A live COBie deliverable, never a panic before hand-over.</h3>
-          <div class="clash-body">
-            <p>CoBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.</p>
-            <p>Every cell traces back to the source Revit element. No manual mapping, no copy-paste from schedules — the agent reads the model, fills the workbook, flags what's missing, and hands you a file ready for the client.</p>
-          </div>
-          <a class="home-btn" href="/apps/cobie-manager/index.html" style="margin-top:16px;">Open CoBie Manager →</a>
+    <div class="clash-row clash-row-reverse" style="gap:40px;">
+      <div class="clash-copy" style="background:transparent; padding:24px 0;">
+        <h3 class="clash-heading">A live COBie deliverable, never a panic before hand-over.</h3>
+        <div class="clash-body">
+          <p>CoBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.</p>
+          <p>Every cell traces back to the source Revit element. No manual mapping, no copy-paste from schedules — the agent reads the model, fills the workbook, flags what's missing, and hands you a file ready for the client.</p>
         </div>
+        <a class="home-btn" href="/apps/cobie-manager/index.html" style="margin-top:16px;">Open CoBie Manager →</a>
         <div class="rp-commands-card" style="position:static; width:100%; height:auto; padding:28px; display:flex; flex-direction:column; gap:12px; cursor:default; user-select:auto; background:var(--ad-card-dark); border-radius:14px; box-shadow:0 8px 22px rgba(30,52,72,0.16);">
           <h3 style="margin:0; font-size:22px; font-weight:600; color:#fff; line-height:1.2;">COBie at a glance</h3>
           <div class="rp-feat-list">
@@ -2390,7 +2391,7 @@
           </div>
         </div>
       </div>
-      <div id="cobiePanelCell" style="position:relative; aspect-ratio:1576/1082; overflow:hidden; background:#1a1a1a; border-radius:14px;">
+      <div class="clash-frame" id="cobiePanelCell" style="position:relative; aspect-ratio:1576/1082; overflow:hidden; background:#1a1a1a;">
         <div style="position:absolute; inset:0; background:url('/images/revit-bg.png') center/cover no-repeat; z-index:0;"></div>
         <div style="position:absolute; inset:0; background:rgba(0,0,0,0.30); z-index:0;"></div>
         <div id="draggableCobie" style="position:absolute; top:24px; left:24px; right:24px; bottom:24px; border-radius:14px; overflow:hidden; box-shadow:0 22px 50px rgba(30,52,72,0.22); z-index:2; background:#fff; cursor:grab; display:flex; flex-direction:column;">
@@ -2450,7 +2451,7 @@
     </div>
 
     <!-- Row A: Report Builder -- frame LEFT, text RIGHT -->
-    <div class="clash-row tpl-row" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; overflow:visible;">
+    <div class="clash-row tpl-row" style="gap:40px;">
       <div class="clash-frame" style="overflow:hidden;">
         <div class="doc-mock doc-mock-stack" aria-hidden="true">
           <div class="doc-page doc-page-3"></div>
@@ -2551,7 +2552,7 @@
       <h2>Schedules</h2>
     </div>
 
-    <div class="clash-row tpl-row" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; overflow:visible;">
+    <div class="clash-row tpl-row" style="gap:40px;">
       <div class="clash-frame" style="overflow:hidden;">
         <img src="/images/screenshots/schedule-builder.png"
              alt="Schedule Builder interface showing a fan schedule extracted from a live Revit model"
