@@ -1994,25 +1994,30 @@ window.addEventListener('load', function() {
 </script>
 <!-- #endregion -->
 
-<!-- Video Speed & Preload -->
+<!-- Video Speed & Autoplay on visibility -->
 <script>
 (function() {
-  // Speed up all demo videos by 20% and ensure they're cached
-  const videos = document.querySelectorAll('video.demo-intro-video');
-  videos.forEach(video => {
-    // Set playback rate to 1.2 (20% faster)
-    video.playbackRate = 1.2;
-    
-    // Ensure rate is maintained after load
-    video.addEventListener('loadeddata', function() {
-      this.playbackRate = 1.2;
+  var introVideo = document.getElementById('demoIntroVideo');
+  var introOverlay = document.getElementById('demoIntroOverlay');
+  if (!introVideo) return;
+
+  introVideo.playbackRate = 1.2;
+  introVideo.addEventListener('loadeddata', function() { this.playbackRate = 1.2; });
+  introVideo.load();
+
+  if (window.__ROADMAP_MOBILE) {
+    introVideo.setAttribute('autoplay', '');
+    introVideo.play().catch(function(){});
+  } else if (introOverlay) {
+    var obs = new MutationObserver(function() {
+      if (introOverlay.classList.contains('visible')) {
+        introVideo.play().catch(function(){});
+      } else {
+        introVideo.pause();
+      }
     });
-    
-    // Force preload by starting to load the video
-    video.load();
-  });
-  
-  // Video preloading removed — videos not yet uploaded
+    obs.observe(introOverlay, { attributes: true, attributeFilter: ['class'] });
+  }
 })();
 </script>
 
