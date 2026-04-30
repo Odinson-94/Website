@@ -2033,5 +2033,14 @@ window.addEventListener('load', function() {
   });
 })();
 </script>
+<script>
+(function() {
+  var logo = document.querySelector('.logo');
+  if (!logo) return;
+  window.addEventListener('scroll', function() {
+    logo.classList.toggle('logo-hidden', window.scrollY > 80);
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>

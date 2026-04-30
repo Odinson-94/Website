@@ -6636,6 +6636,14 @@ html.dark-mode .demo-btn-dropdown .blurb {
   background: #f5f3ef;
 }
 
+/* Logo hide on scroll (matches shared.css .logo-hidden) */
+.logo { transition: opacity 0.3s ease, transform 0.3s ease; }
+.logo-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-10px) !important;
+}
+
 /* Hamburger/mobile-menu base state — hidden on desktop */
 .hamburger-btn { display: none; }
 .mobile-menu-overlay { display: none; }
