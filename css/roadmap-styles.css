@@ -6634,6 +6634,7 @@ html.dark-mode .demo-btn-dropdown .blurb {
 
 .site-footer {
   background: #f5f3ef;
+  display: none;
 }
 
 /* Logo hide on scroll (matches shared.css .logo-hidden) */
@@ -6672,7 +6673,8 @@ html.dark-mode .demo-btn-dropdown .blurb {
   .overlay-nodes-container,
   .brain-overlay-container,
   .project-complete-overlay,
-  .menubar {
+  .menubar,
+  .dark-toggle {
     display: none !important;
   }
 
@@ -6680,6 +6682,11 @@ html.dark-mode .demo-btn-dropdown .blurb {
   .logo {
     left: 16px !important;
     top: 14px !important;
+  }
+
+  /* --- Hide all demo image containers on mobile --- */
+  .demo-image-container {
+    display: none !important;
   }
 
   /* --- Hero text → static banner --- */
@@ -6905,11 +6912,8 @@ html.dark-mode .demo-btn-dropdown .blurb {
     height: auto !important;
   }
 
-  /* Hide demo intro image/video on mobile (bad ratio) */
-  #demoIntroOverlay .demo-containers-panel {
-    display: none !important;
-  }
-  #demoIntroOverlay .demo-text-panel {
+  /* Text panels take full width when image containers are hidden */
+  .demo-view-overlay .demo-text-panel {
     flex: 1 1 100% !important;
   }
 
@@ -7049,5 +7053,60 @@ html.dark-mode .demo-btn-dropdown .blurb {
     background: rgba(255, 255, 255, 0.08) !important;
     height: 1px !important;
     margin: 6px 32px !important;
+  }
+
+  /* --- Standalone footer visible on mobile --- */
+  .site-footer {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #1a1a1a !important;
+    padding: 32px 20px 24px !important;
+    color: rgba(255,255,255,0.7) !important;
+  }
+  .site-footer .footer-content {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  .site-footer .footer-brand {
+    flex: none !important;
+  }
+  .site-footer .footer-links {
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+  }
+  .site-footer .footer-links-column {
+    flex: 0 0 auto !important;
+    min-width: 100px !important;
+  }
+  .site-footer .footer-logo-adelphos,
+  .site-footer .footer-logo-ai {
+    color: #e0e0e0 !important;
+  }
+  .site-footer .footer-logo-ai {
+    color: #156082 !important;
+  }
+  .site-footer .footer-tagline,
+  .site-footer .footer-copyright {
+    color: rgba(255,255,255,0.4) !important;
+    font-size: 11px !important;
+  }
+  .site-footer .footer-links-title {
+    color: rgba(255,255,255,0.6) !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    margin-bottom: 6px !important;
+  }
+  .site-footer .footer-links-list a {
+    color: rgba(255,255,255,0.45) !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
+  }
+
+  /* Hide the BUILD X embedded footer on mobile (standalone one is used) */
+  .buildx-site-footer {
+    display: none !important;
   }
 }

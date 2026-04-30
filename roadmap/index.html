@@ -1801,6 +1801,9 @@
   </div>
 </div>
 
+<!-- Standalone Site Footer (visible on mobile; BUILD X footer used on desktop) -->
+<footer class="site-footer" id="siteFooter"></footer>
+
 <!-- Scroll Indicator -->
 <a href="javascript:void(0)" class="scroll-indicator" id="scrollIndicator">
   <span class="scroll-indicator-text">Continue</span>
@@ -2041,6 +2044,14 @@ window.addEventListener('load', function() {
     logo.classList.toggle('logo-hidden', window.scrollY > 80);
   }, { passive: true });
 })();
+</script>
+<script>
+window.addEventListener('unhandledrejection', function(e) {
+  if (e.reason && typeof e.reason.message === 'string' &&
+      e.reason.message.indexOf('message channel closed') !== -1) {
+    e.preventDefault();
+  }
+});
 </script>
 </body>
 </html>
