@@ -6636,34 +6636,128 @@ html.dark-mode .demo-btn-dropdown .blurb {
   background: #f5f3ef;
 }
 
-/* ===== MOBILE OVERRIDES ===== */
+/* ===== MOBILE OVERRIDES =====
+   On mobile the view-controller is disabled so the page is one long scroll.
+   Every fixed overlay becomes static, visible and full-width.
+   ============================================================ */
 @media (max-width: 768px) {
 
-  /* --- Global page overflow --- */
+  /* --- Global: scrollable page --- */
   html, body {
     overflow-x: hidden !important;
+    overflow-y: auto !important;
     max-width: 100vw !important;
+    height: auto !important;
+    scroll-snap-type: none !important;
   }
 
-  /* --- RIBA panel (fixed 55% → static full width) --- */
-  .riba-left-panel {
+  /* --- Hide desktop-only chrome --- */
+  canvas#brainCanvas,
+  canvas#scene,
+  .section-indicator,
+  .scroll-indicator,
+  .back-to-top,
+  .overlay-nodes-container,
+  .brain-overlay-container,
+  .project-complete-overlay,
+  .menubar {
+    display: none !important;
+  }
+
+  /* --- Logo --- */
+  .logo {
+    left: 16px !important;
+    top: 14px !important;
+  }
+
+  /* --- Hero text → static banner --- */
+  .hero-text-container,
+  .hero-text-container.right-position,
+  .hero-text-container.left-position,
+  .hero-text-container.visible,
+  .hero-text-container.fade-out {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    padding: 100px 24px 32px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    pointer-events: auto !important;
+    z-index: 1 !important;
+  }
+  .hero-text-container .hero-text-inner {
+    max-width: 100% !important;
+  }
+  .hero-heading {
+    font-size: clamp(24px, 7vw, 36px) !important;
+  }
+  .hero-subheading {
+    font-size: clamp(14px, 3.5vw, 18px) !important;
+  }
+
+  /* --- Right panel → static full width --- */
+  .right-panel,
+  .right-panel.visible {
     position: static !important;
     width: 100% !important;
     height: auto !important;
     min-height: auto !important;
-    padding: 80px 16px 20px 16px !important;
     overflow: visible !important;
     opacity: 1 !important;
     visibility: visible !important;
+    pointer-events: auto !important;
+  }
+  .right-panel .panel-content {
+    pointer-events: auto !important;
+    height: auto !important;
+  }
+  .thinking-section,
+  .thinking-section.visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  .services-section,
+  .services-section.visible {
+    max-height: none !important;
+  }
+  .software-carousel,
+  .software-carousel.visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .chat-right-panel {
+    display: none !important;
+  }
+
+  /* --- RIBA panel → static full width --- */
+  .riba-left-panel,
+  .riba-left-panel.visible {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 40px 16px 20px 16px !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
   .riba-grid-left {
     grid-template-columns: 1fr !important;
     max-width: 100% !important;
     gap: 12px !important;
     padding: 0 !important;
+    pointer-events: auto !important;
   }
   .riba-card-left {
     margin: 0 !important;
+    pointer-events: auto !important;
   }
   .riba-card-left.expanded,
   .riba-clone-expanded.expanded {
@@ -6676,78 +6770,45 @@ html.dark-mode .demo-btn-dropdown .blurb {
     transform: none !important;
     max-height: none !important;
   }
-
-  /* Expanded RIBA card two-column details → single column */
   .riba-clone-expanded.expanded .riba-details-left {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
-
-  .chat-right-panel {
-    display: none !important;
-  }
-  canvas#brainCanvas {
+  .riba-backdrop {
     display: none !important;
   }
 
-  /* --- Hero text (fixed overlay → static, full width) --- */
-  .hero-text-container,
-  .hero-text-container.right-position,
-  .hero-text-container.left-position {
-    position: static !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    transform: none !important;
-    padding: 100px 24px 32px !important;
-    opacity: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    box-sizing: border-box !important;
-    z-index: 10 !important;
-  }
-  .hero-text-container .hero-text-inner {
-    max-width: 100% !important;
-  }
-  .hero-heading {
-    font-size: clamp(24px, 7vw, 36px) !important;
-  }
-  .hero-subheading {
-    font-size: clamp(14px, 3.5vw, 18px) !important;
-  }
-
-  /* --- Right panel (fixed 45% → static full width) --- */
-  .right-panel {
+  /* --- ALL demo view overlays → static, visible, stacked --- */
+  .demo-view-overlay,
+  .demo-view-overlay.visible {
     position: static !important;
     width: 100% !important;
     height: auto !important;
     min-height: auto !important;
-    overflow: visible !important;
     opacity: 1 !important;
     visibility: visible !important;
-  }
-  .right-panel .panel-content {
     pointer-events: auto !important;
+    z-index: auto !important;
+    transition: none !important;
+    border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+    padding: 32px 0 !important;
   }
 
-  /* --- Demo split views: side-by-side → stacked --- */
+  /* Demo split views: side-by-side → stacked */
   .demo-view-overlay .demo-split-view,
   .demo-view-overlay .demo-split-view.reversed {
     flex-direction: column !important;
     height: auto !important;
     min-height: auto !important;
-    overflow-y: auto !important;
+    overflow: visible !important;
   }
 
   .demo-view-overlay .demo-text-panel {
     flex: none !important;
     max-width: 100% !important;
     width: 100% !important;
-    padding: 32px 20px !important;
+    padding: 24px 20px !important;
+    background: transparent !important;
   }
 
   .demo-view-overlay .demo-text-inner {
@@ -6755,7 +6816,7 @@ html.dark-mode .demo-btn-dropdown .blurb {
   }
 
   .demo-view-overlay .demo-text-heading {
-    font-size: clamp(22px, 6vw, 30px) !important;
+    font-size: clamp(20px, 5.5vw, 28px) !important;
   }
 
   .demo-view-overlay .demo-containers-panel {
@@ -6763,18 +6824,17 @@ html.dark-mode .demo-btn-dropdown .blurb {
     max-width: 100% !important;
     width: 100% !important;
     height: auto !important;
-    min-height: 250px !important;
-    padding: 16px !important;
+    min-height: auto !important;
+    padding: 16px 20px !important;
     justify-content: center !important;
+    overflow: visible !important;
   }
 
-  /* Reversed layout padding reset on mobile */
   .demo-view-overlay .demo-split-view.reversed .demo-containers-panel {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 
-  /* Container stacks: row → column */
   .demo-view-overlay .demo-containers-stack {
     flex-direction: column !important;
     height: auto !important;
@@ -6791,24 +6851,24 @@ html.dark-mode .demo-btn-dropdown .blurb {
     height: auto !important;
   }
 
-  /* Demo overlay sizing */
-  .demo-view-overlay {
-    position: relative !important;
+  /* Demo chat boxes / revit boxes inside overlays */
+  .demo-view-overlay .demo-chat-box,
+  .demo-view-overlay .demo-revit-box {
+    max-width: 100% !important;
+    width: 100% !important;
     height: auto !important;
-    min-height: auto !important;
-    pointer-events: auto !important;
+    max-height: 400px !important;
+    overflow-y: auto !important;
   }
 
-  /* --- Navigation & chrome --- */
-  .section-indicator {
-    display: none !important;
-  }
-  .menubar {
-    display: none !important;
-  }
-  .logo {
-    left: 16px !important;
-    top: 14px !important;
+  /* --- BUILD X / Arch overlay panels --- */
+  .buildx-overlay,
+  .buildx-overlay.visible {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   /* --- Carousel on mobile --- */

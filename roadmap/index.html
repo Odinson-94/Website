@@ -254,7 +254,7 @@
             </div>
             <!-- Excel, Word -->
             <div class="carousel-item">
-              <img src="images/logos/Excel.png" alt="Excel" />
+              <img src="images/logos/Excel.jpg" alt="Excel" />
               <span>EXCEL</span>
             </div>
             <div class="carousel-item">
@@ -1877,23 +1877,20 @@
 <script>if (window.PERF) window.PERF.mark('Before menubar.js');</script>
 <script src="js/menubar.js"></script>
 <script>if (window.PERF) window.PERF.mark('After menubar.js');</script>
-<script src="js/thinking-animation.js"></script>
-<script src="js/view-controller.js?v=roadmap1"></script>
+<script>
+  window.__ROADMAP_MOBILE = window.matchMedia('(max-width:768px)').matches;
+</script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/thinking-animation.js"><\/script>');}</script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view-controller.js?v=roadmap1"><\/script>');}</script>
 <script>if (window.PERF) window.PERF.mark('After view-controller.js');</script>
 <script>
   window.BRAIN_BG_LIGHT = '#f5f3ef';
 </script>
-<script src="js/brain.js?v=roadmap1"></script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/brain.js?v=roadmap1"><\/script>');}</script>
 <script>if (window.PERF) window.PERF.mark('After brain.js - ALL SCRIPTS LOADED');</script>
 
-<!-- ============================================================
-     ROADMAP OVERRIDES
-     Views 7+8 (QA/Specbuilder) removed. Remaining views remapped:
-       old 9  (Arch)    → now view 7  (schedulesOverlay)
-       old 10 (S&C)     → now view 8  (specWritingOverlay)
-       old 11 (BUILD X) → now view 9  (archBuildOverlay)
-     ============================================================ -->
 <script>
+if (!window.__ROADMAP_MOBILE) {
 (function() {
   var MAX_VIEW = 9;
   var CO = window.CAMERA_OFFSETS;
@@ -1936,60 +1933,40 @@
     }
   }, { capture: true, passive: false });
 })();
+}
 </script>
 
-<!-- Shared BUILD X Panel Data -->
-<script src="js/buildx-panels.js"></script>
-<script src="js/index-main.js"></script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/buildx-panels.js"><\/script>');}</script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/index-main.js"><\/script>');}</script>
 
-<!-- Disable auto-scroll slingshot (snap back after 1 second) -->
 <script>
+if (!window.__ROADMAP_MOBILE) {
 window.addEventListener('load', function() {
-  // Remove scroll listeners added by index-main.js by cloning elements
-  // This must run after index-main.js has added its listeners
   document.querySelectorAll('.demo-chat-messages').forEach(function(el) {
-    // Get scroll position before clone
     const scrollPos = el.scrollTop;
-    // Clone to remove all event listeners
     const clone = el.cloneNode(true);
-    clone.id = el.id; // Preserve ID
+    clone.id = el.id;
     el.parentNode.replaceChild(clone, el);
-    // Restore scroll position
     clone.scrollTop = scrollPos;
-    
-    // Add wheel event isolation - prevent view scroll when inside chat
-    // MUST use passive:false to allow preventDefault() which stops the flash
     clone.addEventListener('wheel', function(e) {
       const atTop = clone.scrollTop === 0;
       const atBottom = clone.scrollHeight - clone.scrollTop <= clone.clientHeight + 1;
-      
-      // If scrolling up at top or down at bottom, prevent default AND stop propagation
-      // This prevents the view-controller from triggering a view transition flash
       if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) {
         e.preventDefault();
       }
-      
-      // Always stop propagation to prevent view navigation
       e.stopPropagation();
     }, { passive: false });
   });
-  
-  // Thinking container click handlers are now handled by event delegation in view4-chat.js
-  // Just set cursor style for visual feedback
   document.querySelectorAll('.thinking-container .thinking-header').forEach(function(header) {
     header.style.cursor = 'pointer';
   });
 });
+}
 </script>
 
-<!-- View 4 Chat Controller - handles conversation switching and neural node animation -->
-<script src="js/view4-chat.js"></script>
-
-<!-- View 5 Chat Controller - handles schematic conversation switching and neural node animation -->
-<script src="js/view5-chat.js"></script>
-
-<!-- View 6 Chat Controller - handles 3D model conversation switching and neural node animation -->
-<script src="js/view6-chat.js"></script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view4-chat.js"><\/script>');}</script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view5-chat.js"><\/script>');}</script>
+<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view6-chat.js"><\/script>');}</script>
 
 <!-- QA Manager and Specbuilder views removed for roadmap -->
 
@@ -2007,17 +1984,11 @@ window.addEventListener('load', function() {
 <script>
 (function(){
   var errs=[];
-  window.addEventListener('error',function(e){if(e.target&&e.target.tagName){errs.push(e.target.tagName+':'+((e.target.src||e.target.href)||'unknown'));}},true);
+  window.addEventListener('error',function(e){if(e.target&&e.target.tagName){errs.push(e.target.tagName+':'+(e.target.src||e.target.href||'unknown'));}},true);
   window.addEventListener('load',function(){
-    var mq=window.matchMedia('(max-width:768px)');
-    var heroTC=document.querySelector('.hero-text-container');
-    var rightP=document.querySelector('.right-panel');
-    var heroStyle=heroTC?getComputedStyle(heroTC):{};
-    var rightStyle=rightP?getComputedStyle(rightP):{};
-    var splitEls=document.querySelectorAll('.demo-split-view');
-    var stackInfo=[];
-    splitEls.forEach(function(el,i){var s=getComputedStyle(el);stackInfo.push({idx:i,flexDir:s.flexDirection,height:s.height});});
-    fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'f3a403'},body:JSON.stringify({sessionId:'f3a403',runId:'post-fix-2',location:'roadmap/index.html:postload',message:'Roadmap page load diagnostics',data:{mobileMatch:mq.matches,viewportWidth:window.innerWidth,resource404s:errs,heroPosition:heroStyle.position,heroWidth:heroStyle.width,heroLeft:heroStyle.left,rightPanelPosition:rightStyle.position,rightPanelWidth:rightStyle.width,splitViewStyles:stackInfo,title:document.title},timestamp:Date.now()})}).catch(function(){});
+    var m=window.__ROADMAP_MOBILE;
+    var vc=!!window.navigateToView;
+    fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'f3a403'},body:JSON.stringify({sessionId:'f3a403',runId:'post-fix-3',location:'roadmap:postload',message:'Mobile gate check',data:{isMobile:m,viewControllerLoaded:vc,resource404s:errs,bodyOverflow:getComputedStyle(document.body).overflowY,w:innerWidth},timestamp:Date.now()})}).catch(function(){});
   });
 })();
 </script>
