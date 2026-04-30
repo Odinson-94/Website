@@ -140,7 +140,8 @@
     .button-row .button-row-inline { flex-direction: column; gap: 12px; }
     .button-row-inline .signup-btn { width: 100%; }
     .tri-grid { grid-template-columns: 1fr; gap: 24px; }
-    #specbuilderFrame { height: 500px; }
+    #specbuilderFrame { display: none; }
+    .specbuilder-mobile-msg { display: block !important; }
     .clash-row.tpl-row { grid-template-columns: 1fr !important; }
     .clash-row.tpl-row .clash-copy { padding: 16px 0 !important; }
   }
@@ -2507,6 +2508,11 @@
             title="Specbuilder live interface"
             style="width:100%; height:1100px; border:0;"
             loading="lazy"></iframe>
+    <div class="specbuilder-mobile-msg" style="display:none; padding:40px 24px; text-align:center; background:var(--ad-card-dark); border-radius:14px; color:#fff;">
+      <p style="font-size:18px; font-weight:500; margin:0 0 8px;">Live Specbuilder demo</p>
+      <p style="font-size:14px; font-weight:300; color:rgba(255,255,255,0.65); margin:0 0 16px;">Best experienced on desktop. Open the full demo below.</p>
+      <a class="home-btn" href="/apps/specbuilder/index.html" style="display:inline-block;">Open Specbuilder →</a>
+    </div>
 
     <!-- Tab to complete + link -->
     <div style="margin-top:20px; display:flex; align-items:center; gap:16px;">
