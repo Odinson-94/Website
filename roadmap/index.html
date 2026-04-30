@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SANDBOX: this is a verbatim copy of the live /index.html, dropped under
-       /roadmap/ so we can play with it as the future Roadmap page.
-       The <base> tag makes every relative path (css/, js/, Videos/, logos/, ...)
-       resolve from the site root instead of from /roadmap/. -->
   <base href="/">
-  <title>Roadmap (sandbox) — Adelphos AI</title>
+  <title>Roadmap — Adelphos AI | AI-Powered Construction Design Delivery</title>
+  <meta name="description" content="Explore the Adelphos AI development roadmap. From Revit Copilot to automated MEP floorplans, schematic generation and document control — see what's live, in beta, and coming next for AEC professionals.">
+  <meta name="keywords" content="Adelphos AI roadmap, Revit plugin, MEP automation, construction technology, AEC software, BIM, building services, RIBA stages, AI construction, Revit Copilot">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Roadmap — Adelphos AI">
+  <meta property="og:description" content="Explore the Adelphos AI development roadmap. See what's live, in beta, and coming next for AEC professionals.">
+  <meta property="og:url" content="https://adelphos.ai/roadmap/">
+  <meta property="og:image" content="https://adelphos.ai/images/og/default.png">
+  <meta property="og:site_name" content="Adelphos AI">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roadmap — Adelphos AI">
+  <meta name="twitter:description" content="AI-powered construction design delivery. See what's live and what's next.">
+  <link rel="canonical" href="https://adelphos.ai/roadmap/">
   <link rel="icon" type="image/png" href="logos/Node%20Logo.png">
   <script src="js/favicon-pulse.js" defer></script>
   <!-- CRITICAL: Apply dark mode IMMEDIATELY before any CSS loads to prevent flash -->
@@ -249,7 +258,7 @@
               <span>EXCEL</span>
             </div>
             <div class="carousel-item">
-              <img src="images/logos/Word.png" alt="Microsoft Word" />
+              <img src="images/logos/Word.jpg" alt="Microsoft Word" />
               <span>WORD</span>
             </div>
             <!-- End: Civil 3D, Revit -->
@@ -753,7 +762,7 @@
     <div class="demo-containers-panel">
       <div class="demo-image-container">
         <video class="demo-intro-video" id="demoIntroVideo" loop muted playsinline preload="auto" controlsList="nodownload" oncontextmenu="return false;">
-          <source src="Videos/Final Website Release.mp4" type="video/mp4">
+          <source src="roadmap/Videos/Final Website Release.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -1171,7 +1180,7 @@
               </div>
               <div class="demo-revit-content" id="gifSectionIndex4">
                 <video id="mepVideo" muted playsinline preload="metadata" class="ready">
-                  <source src="Videos/Demo Drainage Floorplan.mp4" type="video/mp4">
+                  <source src="roadmap/Videos/Demo Drainage Floorplan.mp4" type="video/mp4">
                 </video>
                 <div class="coming-soon-overlay" id="comingSoonOverlayIndex4" style="display: none;">
                   <span class="coming-soon-badge">Coming February '26</span>
@@ -1905,9 +1914,6 @@
     var firedOnce = false;
     window.startNeuralAnimations = function() {
       if (!firedOnce) { firedOnce = true; origNeural(); return; }
-      // #region agent log
-      console.log('[DBG-c26d50] startNeuralAnimations called — neuralView:', neuralView, 'BLOCKED:', neuralView > 1 && neuralView < MAX_VIEW);
-      // #endregion
     };
   }
 
@@ -1918,9 +1924,6 @@
         if (d.classList.contains('active')) neuralView = i;
       });
       if (neuralView !== prev && origNeural && (neuralView <= 1 || neuralView >= MAX_VIEW)) {
-        // #region agent log
-        console.log('[DBG-c26d50] Neural FIRED from observer — view changed:', prev, '->', neuralView);
-        // #endregion
         origNeural();
       }
     }).observe(indicator, { subtree: true, attributes: true, attributeFilter: ['class'] });
@@ -2000,6 +2003,26 @@ window.addEventListener('load', function() {
 
 
 
+<!-- #region agent log -->
+<script>
+(function(){
+  var errs=[];
+  window.addEventListener('error',function(e){if(e.target&&e.target.tagName){errs.push(e.target.tagName+':'+((e.target.src||e.target.href)||'unknown'));}},true);
+  window.addEventListener('load',function(){
+    var mq=window.matchMedia('(max-width:768px)');
+    var heroTC=document.querySelector('.hero-text-container');
+    var rightP=document.querySelector('.right-panel');
+    var heroStyle=heroTC?getComputedStyle(heroTC):{};
+    var rightStyle=rightP?getComputedStyle(rightP):{};
+    var splitEls=document.querySelectorAll('.demo-split-view');
+    var stackInfo=[];
+    splitEls.forEach(function(el,i){var s=getComputedStyle(el);stackInfo.push({idx:i,flexDir:s.flexDirection,height:s.height});});
+    fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'f3a403'},body:JSON.stringify({sessionId:'f3a403',runId:'post-fix-2',location:'roadmap/index.html:postload',message:'Roadmap page load diagnostics',data:{mobileMatch:mq.matches,viewportWidth:window.innerWidth,resource404s:errs,heroPosition:heroStyle.position,heroWidth:heroStyle.width,heroLeft:heroStyle.left,rightPanelPosition:rightStyle.position,rightPanelWidth:rightStyle.width,splitViewStyles:stackInfo,title:document.title},timestamp:Date.now()})}).catch(function(){});
+  });
+})();
+</script>
+<!-- #endregion -->
+
 <!-- Video Speed & Preload -->
 <script>
 (function() {
@@ -2018,20 +2041,7 @@ window.addEventListener('load', function() {
     video.load();
   });
   
-  // Preload video sources into browser cache
-  const videoSources = [
-    'Videos/view3-intro.mp4',
-    'Videos/view6-3dmodel.mp4',
-    'Videos/view7-schedules.mp4'
-  ];
-  
-  videoSources.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'video';
-    link.href = src;
-    document.head.appendChild(link);
-  });
+  // Video preloading removed — videos not yet uploaded
 })();
 </script>
 

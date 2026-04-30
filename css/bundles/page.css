@@ -4460,3 +4460,9 @@ html.dark-mode #schedulesOverlay .inner-resizer.active,
 html.dark-mode #schedulesOverlay .inner-resizer:hover {
   background: var(--teal-light);
 }
+
+@media (max-width: 480px) {
+  .demo-cat-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

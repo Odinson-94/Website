@@ -362,8 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Large video/media files
-Videos/
+# Large video/media files (tracked via Git LFS)
+# Videos/
 .Capcut POC/
 .vercel
 
