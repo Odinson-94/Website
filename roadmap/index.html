@@ -1883,14 +1883,16 @@
 <script>
   window.__ROADMAP_MOBILE = window.matchMedia('(max-width:768px)').matches;
 </script>
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/thinking-animation.js"><\/script>');}</script>
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view-controller.js?v=roadmap1"><\/script>');}</script>
-<script>if (window.PERF) window.PERF.mark('After view-controller.js');</script>
 <script>
   window.BRAIN_BG_LIGHT = '#f5f3ef';
 </script>
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/brain.js?v=roadmap1"><\/script>');}</script>
-<script>if (window.PERF) window.PERF.mark('After brain.js - ALL SCRIPTS LOADED');</script>
+<script>
+if (!window.__ROADMAP_MOBILE) {
+  ['js/thinking-animation.js','js/view-controller.js?v=roadmap1','js/brain.js?v=roadmap1'].forEach(function(src) {
+    var s = document.createElement('script'); s.src = src; s.async = false; document.head.appendChild(s);
+  });
+}
+</script>
 
 <script>
 if (!window.__ROADMAP_MOBILE) {
@@ -1939,8 +1941,13 @@ if (!window.__ROADMAP_MOBILE) {
 }
 </script>
 
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/buildx-panels.js"><\/script>');}</script>
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/index-main.js"><\/script>');}</script>
+<script>
+if (!window.__ROADMAP_MOBILE) {
+  ['js/buildx-panels.js','js/index-main.js'].forEach(function(src) {
+    var s = document.createElement('script'); s.src = src; s.async = false; document.head.appendChild(s);
+  });
+}
+</script>
 
 <script>
 if (!window.__ROADMAP_MOBILE) {
@@ -1967,9 +1974,13 @@ window.addEventListener('load', function() {
 }
 </script>
 
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view4-chat.js"><\/script>');}</script>
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view5-chat.js"><\/script>');}</script>
-<script>if(!window.__ROADMAP_MOBILE){document.write('<script src="js/view6-chat.js"><\/script>');}</script>
+<script>
+if (!window.__ROADMAP_MOBILE) {
+  ['js/view4-chat.js','js/view5-chat.js','js/view6-chat.js'].forEach(function(src) {
+    var s = document.createElement('script'); s.src = src; s.async = false; document.head.appendChild(s);
+  });
+}
+</script>
 
 <!-- QA Manager and Specbuilder views removed for roadmap -->
 
@@ -2046,12 +2057,17 @@ window.addEventListener('load', function() {
 })();
 </script>
 <script>
-window.addEventListener('unhandledrejection', function(e) {
-  if (e.reason && typeof e.reason.message === 'string' &&
-      e.reason.message.indexOf('message channel closed') !== -1) {
-    e.preventDefault();
+(function() {
+  function isChannelError(msg) {
+    return typeof msg === 'string' && msg.indexOf('message channel closed') !== -1;
   }
-});
+  window.addEventListener('unhandledrejection', function(e) {
+    if (e.reason && isChannelError(e.reason.message || String(e.reason))) e.preventDefault();
+  });
+  window.addEventListener('error', function(e) {
+    if (isChannelError(e.message || '')) { e.preventDefault(); return true; }
+  });
+})();
 </script>
 </body>
 </html>
