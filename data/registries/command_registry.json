@@ -7506,8 +7506,8 @@
   },
   {
     "class": "CobieSheetWriteFieldToElementCommand",
-    "desc": "Write a single CoBie field value back to its source Revit element parameter.",
-    "summary": "Write a single CoBie field value back to its source Revit element parameter.",
+    "desc": "Write a single COBie field value back to its source Revit element parameter.",
+    "summary": "Write a single COBie field value back to its source Revit element parameter.",
     "usecase": "",
     "notfor": "",
     "precondition": "",

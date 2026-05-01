@@ -514,11 +514,11 @@
     },
     {
       "slug": "cobie-manager",
-      "title": "CoBie Manager",
+      "title": "COBie Manager",
       "seo_keywords": ["COBie tool Revit", "COBie spreadsheet generator", "BS 1192-4 compliance", "BIM handover tool", "COBie from Revit", "asset data handover", "facility management BIM"],
       "headline_claim": "A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.",
       "tagline": "Continuously populates and validates the COBie spreadsheet against the live Revit model. Every cell traceable to its source element.",
-      "blurb": "CoBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.",
+      "blurb": "COBie Manager is the COBie tool every BIM coordinator wishes Revit shipped with. Populates 20+ COBie sheets from the live model, validates against BS 1192-4 and your project EIR, and tracks every change with an audit log.",
       "surface": "Revit add-in + web dashboard",
       "status": "live",
       "icon": "images/app-logos/cobie-manager.png",
@@ -529,7 +529,7 @@
         { "name": "BS 1192-4 + EIR validation", "desc": "Validated against the standard and the project's EIR before delivery." },
         { "name": "Source traceability", "desc": "Every cell traces back to its source Revit element." }
       ],
-      "primary_cta": { "label": "Open CoBie Manager", "href": "https://app.adelphos.ai/cobie-manager" },
+      "primary_cta": { "label": "Open COBie Manager", "href": "https://app.adelphos.ai/cobie-manager" },
       "secondary_cta": { "label": "See the email service", "href": "/dist/agentic-services/email-cobie/index.html" }
     },
     {

@@ -46,7 +46,7 @@ New app logos copied to `images/app-logos/`:
 ## What still needs building (Sections 3-9)
 
 ### Section 3 — Popular Apps Carousel
-Horizontal scrolling card strip. Current apps: Specbuilder, CoBie Builder, Schedule Builder, QA Manager, Schematic Generator, 2D to 3D MEP, Adelphos Chat, Document Controller, Excel Plugin, Word Plugin, Report Builder, Clash Solver. Then "Coming After" divider, then future apps, then "See roadmap for more" link.
+Horizontal scrolling card strip. Current apps: Specbuilder, COBie Builder, Schedule Builder, QA Manager, Schematic Generator, 2D to 3D MEP, Adelphos Chat, Document Controller, Excel Plugin, Word Plugin, Report Builder, Clash Solver. Then "Coming After" divider, then future apps, then "See roadmap for more" link.
 
 ### Section 4 — Clash Solver / 3D Model Showcase
 Existing 3D model viewer (NOT static image) in an artsy frame container (same pastel painting background as the chat). Text on the side describing the Clash Solver / 3D model export.

@@ -11,7 +11,7 @@
 - [Document Controller](https://adelphos.ai/apps/document-controller/index.html): Single source of truth for every drawing, every revision, every transmittal.
 - [QA Manager](https://adelphos.ai/apps/qa-manager/index.html): Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.
 - [Schedule Builder](https://adelphos.ai/apps/schedule-builder/index.html): Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.
-- [CoBie Manager](https://adelphos.ai/apps/cobie-manager/index.html): A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.
+- [COBie Manager](https://adelphos.ai/apps/cobie-manager/index.html): A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.
 - [AutoCAD Copilot](https://adelphos.ai/apps/autocad-copilot/index.html): An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.
 - [Adelphos for Word](https://adelphos.ai/apps/word-add-in/index.html): The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.
 - [Adelphos for Excel](https://adelphos.ai/apps/excel-add-in/index.html): The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.

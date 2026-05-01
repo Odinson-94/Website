@@ -144,7 +144,7 @@ const oldCardHTML = `      <div class="rp-commands-card" id="rpCommandsCard">
         <ul>
           <li>Create your own commands and workflows</li>
           <li>Connect your own plugins with exposed tool calling</li>
-          <li>QA Manager, CoBie Manager and Document Controller built in</li>
+          <li>QA Manager, COBie Manager and Document Controller built in</li>
           <li>Every routine MEP task, ready to run from the chat</li>
         </ul>
       </div>`;
