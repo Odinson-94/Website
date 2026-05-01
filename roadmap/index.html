@@ -1994,19 +1994,6 @@ if (!window.__ROADMAP_MOBILE) {
 
 
 
-<!-- #region agent log -->
-<script>
-(function(){
-  var errs=[];
-  window.addEventListener('error',function(e){if(e.target&&e.target.tagName){errs.push(e.target.tagName+':'+(e.target.src||e.target.href||'unknown'));}},true);
-  window.addEventListener('load',function(){
-    var m=window.__ROADMAP_MOBILE;
-    var vc=!!window.navigateToView;
-    fetch('http://127.0.0.1:7388/ingest/cf3a05cf-db76-498f-a58e-dc403bc6a26c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'f3a403'},body:JSON.stringify({sessionId:'f3a403',runId:'post-fix-3',location:'roadmap:postload',message:'Mobile gate check',data:{isMobile:m,viewControllerLoaded:vc,resource404s:errs,bodyOverflow:getComputedStyle(document.body).overflowY,w:innerWidth},timestamp:Date.now()})}).catch(function(){});
-  });
-})();
-</script>
-<!-- #endregion -->
 
 <!-- Video Speed & Autoplay on visibility -->
 <script>

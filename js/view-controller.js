@@ -6,9 +6,11 @@
   // All animations delegate to brain.js animateToViewState() function.
   
   if (window.PERF) window.PERF.mark('view-controller.js START');
-  
-  document.addEventListener('DOMContentLoaded', function() {
+
+  function initViewController() {
+    try {
     if (window.PERF) window.PERF.mark('DOMContentLoaded fired');
+    console.log('[view-controller] init, readyState=' + document.readyState);
     const rightPanel = document.getElementById('rightPanel');
     const logo = document.getElementById('logo');
     const menubar = document.getElementById('menubar');
@@ -3505,4 +3507,14 @@
     
     // Start the main animation
     runMainAnimation();
-  });
+    } catch (e) {
+      console.error('[view-controller] init failed:', e);
+    }
+  }
+
+  // Handle both cases: script loaded before or after DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initViewController);
+  } else {
+    initViewController();
+  }
