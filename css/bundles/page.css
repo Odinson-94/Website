@@ -4466,3 +4466,49 @@ html.dark-mode #schedulesOverlay .inner-resizer:hover {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* SEO: ensure all real page text meets the 12px minimum (audit rule
+   mobile-font-size). Decorative iframe simulations (.ribbon-*,
+   .editor-paper, .titlebar-*, .palette-*, .file-tree, .thought-trail-*,
+   .view-btn, etc.) are intentionally excluded — those are visual
+   mockups of other apps' UI and should stay tiny by design. */
+.menu-dropdown-content,
+.dropdown-nested-panel .nested-label,
+.dark-toggle-label,
+.buildx-label,
+.buildx-package-btn,
+.footer-links-title,
+.buildx-site-footer .footer-links-title,
+.buildx-site-footer .footer-links-list a,
+.buildx-site-footer .footer-copyright,
+.buildx-site-footer .footer-legal a,
+.mobile-menu-overlay .coming-soon-tag,
+.ai-dialogue .lab,
+.team-member-role,
+.team-member-duties,
+.signup-field-hint,
+.coming-soon-badge,
+.coming-soon-dropdown .badge,
+.demo-btn-dropdown .badge,
+.demo-card .duration,
+.related-card .related-kind,
+.inv-count span.label,
+.ref-table th,
+.theme-switcher strong,
+.back-to-top-text,
+.scroll-indicator-text,
+.carousel-label,
+.riba-toggle-label,
+.riba-section-head,
+.riba-card-left .riba-stage-name,
+.riba-arrow-left {
+  font-size: 12px;
+}
+
+/* Menu items in real (non-simulated) dropdowns. The 10px applied to
+   `.menu-item` was for the ribbon simulation; the real .menu-link set
+   already sits at 16px. We only bump the keyboard-shortcut label which
+   was 9px to a still-compact-but-legible 12px. */
+.menu-item[data-shortcut]::after {
+  font-size: 12px;
+}
