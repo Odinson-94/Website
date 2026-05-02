@@ -501,10 +501,18 @@ html, body {
   #specWritingOverlay .v8-center-panel,
   #specWritingOverlay .v8-text-right,
   .brain-overlay-container,
-  .menubar,
   .overlay-nodes-container,
   .project-complete-overlay,
   .section-indicator {
+    display: none !important;
+  }
+}
+
+/* Menubar hides earlier than the rest of the mobile-mode rules so the
+   hamburger kicks in before the desktop menu items overlap each other,
+   the logo, or the dark-mode toggle. Pair: .hamburger-btn rule below. */
+@media (max-width: 1199px) {
+  .menubar {
     display: none !important;
   }
 }
@@ -994,7 +1002,9 @@ html, body {
   z-index: 10001;
 }
 
-@media (max-width: 767px) {
+/* Hamburger appears as soon as the desktop menubar would overlap, not just
+   on phones. Paired with the .menubar @media (max-width: 1199px) hide rule. */
+@media (max-width: 1199px) {
   .hamburger-btn {
     display: flex !important;
   }
