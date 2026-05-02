@@ -13,7 +13,7 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
         { "key": "Strict-Transport-Security", "value": "max-age=31536000" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.sh; script-src-elem 'self' 'unsafe-inline' https://esm.sh; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' blob:; connect-src 'self' https://esm.sh; frame-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'self'; upgrade-insecure-requests" }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://esm.sh https://www.googletagmanager.com; script-src-elem 'self' 'unsafe-inline' https://esm.sh https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https: https://www.googletagmanager.com https://www.google-analytics.com; media-src 'self' blob:; connect-src 'self' https://esm.sh https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://ipapi.co https://owebjrorrthysyeodkku.supabase.co; frame-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'self'; upgrade-insecure-requests" }
       ]
     },
     {
