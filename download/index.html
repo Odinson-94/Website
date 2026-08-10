@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Adelphos — desktop app and AutoCAD plugin</title>
+<meta name="description" content="Download and install Adelphos. One package: the desktop app and the AutoCAD plugin, installed together.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#156082">
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=block">
+<style>
+  :root{
+    --teal:#156082; --teal-dark:#0e1c25; --ink:#1a1a1a; --muted:#5b6b73;
+    --line:#e3e8ea; --bg:#ffffff; --soft:#f6f9fa; --warn-bg:#fff8ed; --warn-line:#e8c88a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-weight:300; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--teal)}
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px}
+
+  header.masthead{
+    background:linear-gradient(160deg,var(--teal) 0%,var(--teal-dark) 100%);
+    color:#fff; padding:56px 0 48px;
+  }
+  header.masthead .wrap{display:flex; gap:18px; align-items:center}
+  header.masthead img{width:46px; height:46px; flex:0 0 auto}
+  header.masthead h1{margin:0; font-size:1.7rem; font-weight:600; letter-spacing:-.01em}
+  header.masthead p{margin:6px 0 0; opacity:.85; font-size:1rem}
+
+  main{padding:44px 0 72px}
+  h2{font-size:1.15rem; font-weight:600; margin:40px 0 12px; letter-spacing:-.01em}
+  h2:first-of-type{margin-top:0}
+  p{margin:0 0 14px}
+  .lede{font-size:1.08rem; color:var(--muted)}
+
+  .cta{
+    display:inline-flex; align-items:center; gap:12px; margin:6px 0 10px;
+    background:var(--teal); color:#fff; text-decoration:none;
+    padding:17px 30px; border-radius:8px; font-weight:600; font-size:1.05rem;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .cta:hover{background:#0f4a66; transform:translateY(-1px)}
+  .cta-note{font-family:"JetBrains Mono",monospace; font-size:.8rem; color:var(--muted); margin:0 0 26px}
+
+  ol.steps{margin:0; padding:0; list-style:none; counter-reset:s}
+  ol.steps li{
+    counter-increment:s; position:relative; padding:0 0 20px 46px; margin:0;
+    border-left:1px solid var(--line); margin-left:14px;
+  }
+  ol.steps li:last-child{border-left-color:transparent; padding-bottom:4px}
+  ol.steps li::before{
+    content:counter(s); position:absolute; left:-14px; top:-2px;
+    width:28px; height:28px; border-radius:50%; background:var(--teal); color:#fff;
+    font-size:.82rem; font-weight:600; display:flex; align-items:center; justify-content:center;
+    font-family:"JetBrains Mono",monospace;
+  }
+  ol.steps strong{font-weight:600}
+
+  .callout{
+    background:var(--warn-bg); border:1px solid var(--warn-line); border-left-width:3px;
+    border-radius:6px; padding:16px 18px; margin:18px 0;
+  }
+  .callout p:last-child{margin-bottom:0}
+  .callout strong{font-weight:600}
+
+  .panel{background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:18px 20px; margin:18px 0}
+  .panel p:last-child{margin-bottom:0}
+
+  table.where{width:100%; border-collapse:collapse; margin:14px 0 4px; font-size:.92rem}
+  table.where th,table.where td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  table.where th{font-weight:600; color:var(--muted); font-size:.82rem; text-transform:uppercase; letter-spacing:.04em}
+  table.where code{font-family:"JetBrains Mono",monospace; font-size:.84rem; color:var(--teal); word-break:break-all}
+
+  ul.tries{margin:0; padding-left:20px}
+  ul.tries li{margin-bottom:9px}
+  ul.tries code{
+    font-family:"JetBrains Mono",monospace; font-size:.86rem; background:var(--soft);
+    border:1px solid var(--line); border-radius:4px; padding:2px 7px;
+  }
+
+  footer{border-top:1px solid var(--line); padding:28px 0 44px; color:var(--muted); font-size:.88rem}
+  footer a{text-decoration:none}
+
+  @media (max-width:560px){
+    header.masthead{padding:40px 0 34px}
+    header.masthead h1{font-size:1.4rem}
+    .cta{width:100%; justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <img src="/logos/Node%20Logo.png" alt="Adelphos">
+    <div>
+      <h1>Install Adelphos</h1>
+      <p>The desktop app and the AutoCAD plugin, in one package.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <p class="lede">Everything installs in one go. Unpack the download, run the installer, and you are working. There is nothing to configure and no licence key to enter.</p>
+
+  <a class="cta" href="https://buildmepvideost.blob.core.windows.net/adelphos-downloads/Adelphos-Setup.zip">
+    Download Adelphos
+  </a>
+  <p class="cta-note">Adelphos-Setup.zip &middot; ~195 MB &middot; Windows 10 / 11</p>
+
+  <h2>Installing</h2>
+  <ol class="steps">
+    <li><strong>Unzip the download.</strong> Right-click the file and choose <em>Extract All</em>. Do not run the installer from inside the zip, or Windows will copy nothing.</li>
+    <li><strong>Run <code>INSTALL.bat</code></strong> from the extracted <code>Adelphos-Setup</code> folder. It installs both parts and opens Adelphos when it finishes.</li>
+    <li><strong>Restart AutoCAD</strong> if it was open. The Adelphos panel loads on startup from then on.</li>
+  </ol>
+
+  <div class="callout">
+    <p><strong>Windows will warn you before it runs.</strong> This build is not code-signed yet, so SmartScreen shows &ldquo;Windows protected your PC&rdquo;. Click <strong>More info</strong>, then <strong>Run anyway</strong>. If your browser blocks the download instead, choose <strong>Keep</strong>.</p>
+  </div>
+
+  <h2>Where things go</h2>
+  <table class="where">
+    <tr><th>Component</th><th>Installed to</th></tr>
+    <tr>
+      <td>Adelphos desktop app</td>
+      <td><code>%LOCALAPPDATA%\AdelphosChat\current</code></td>
+    </tr>
+    <tr>
+      <td>AutoCAD plugin</td>
+      <td><code>%APPDATA%\Autodesk\ApplicationPlugins\MEPBridge.AutoCAD.bundle</code></td>
+    </tr>
+  </table>
+  <p class="cta-note">Both are per-user locations, so no administrator rights are needed.</p>
+
+  <h2>Signing in</h2>
+  <p>Use the email address your account was set up with. Your credits are already on the account, so you can start straight away.</p>
+
+  <h2>Worth trying first</h2>
+  <p>You do not need to learn any commands. Ask for what you want, attach a drawing when it asks, and it will guide you through the rest.</p>
+  <ul class="tries">
+    <li><code>Build me a SAP calculation</code> &mdash; then attach the drawing when prompted</li>
+    <li><code>Build me a cable calculation from these drawings</code> &mdash; attach a circuit schedule or drawing</li>
+    <li><code>Build me a stage 4 specification</code> &mdash; attach your drawings</li>
+    <li><code>Give me a BMS points list</code></li>
+    <li><code>Summarise my emails and let's go through them</code></li>
+  </ul>
+
+  <div class="panel">
+    <p><strong>Two things are on display but not live yet:</strong> the thermal modeller and the lighting calculations. They are visible so you can see where this is heading. Everything else is working.</p>
+  </div>
+
+  <h2>Updates</h2>
+  <p>The app loads its interface from our servers, so improvements appear the next time you open it. You only need to reinstall if we tell you a new version of the plugin is out.</p>
+
+  <h2>If something does not work</h2>
+  <p>Tell us what you were doing and what you saw, and we will fix it. Email <a href="mailto:jordan.jones@adelphos.ai">jordan.jones@adelphos.ai</a>.</p>
+
+</main>
+
+<footer class="wrap">
+  <p>Adelphos AI &middot; <a href="https://adelphos.ai/">adelphos.ai</a></p>
+</footer>
+
+</body>
+</html>
