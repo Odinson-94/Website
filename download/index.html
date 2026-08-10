@@ -58,12 +58,24 @@
             <div><span class="seo-kicker">Three steps</span><h2>Installing.</h2></div>
             <p class="section-heading__copy">Both parts install to per-user locations, so you do not need administrator rights.</p>
           </div>
-          <ol>
-            <li><strong>Unzip it first.</strong> Right-click the file and choose Extract All. Running the installer from inside the zip copies nothing, and Windows will not tell you why.</li>
-            <li><strong>Run INSTALL.bat</strong> from the extracted Adelphos-Setup folder. It installs both parts and opens Adelphos when it is done.</li>
-            <li><strong>Restart AutoCAD</strong> if it was already open. The Adelphos panel loads on startup from then on.</li>
+          <ol class="calculator-steps">
+            <li>
+              <h3>01 &middot; Unzip it first</h3>
+              <p>Right-click the file and choose <strong>Extract All</strong>. Running the installer from inside the zip copies nothing, and Windows will not tell you why.</p>
+            </li>
+            <li>
+              <h3>02 &middot; Run the installer</h3>
+              <p>Run <strong>INSTALL.bat</strong> from the extracted Adelphos-Setup folder. It installs both parts and opens Adelphos when it is done.</p>
+            </li>
+            <li>
+              <h3>03 &middot; Restart AutoCAD</h3>
+              <p>If AutoCAD was already open, restart it. The Adelphos panel will load automatically on startup from then on.</p>
+            </li>
           </ol>
-          <p><strong>Windows will warn you before it runs.</strong> This build is not code-signed yet, so you will see &ldquo;Windows protected your PC&rdquo;. Click More info, then Run anyway. If your browser blocks the download instead, choose Keep.</p>
+          <div class="calculator-search-intent">
+            <h3>Windows will warn you before it runs.</h3>
+            <p>This build is not code-signed yet, so you will see &ldquo;Windows protected your PC&rdquo;. Click <strong>More info</strong>, then <strong>Run anyway</strong>. If your browser blocks the download instead, choose <strong>Keep</strong>.</p>
+          </div>
         </div>
       </section>
 
@@ -73,13 +85,15 @@
             <div><span class="seo-kicker">Locations</span><h2>Where it installs.</h2></div>
             <p class="section-heading__copy">Nothing is written outside your user profile.</p>
           </div>
-          <table>
-            <thead><tr><th>Component</th><th>Location</th></tr></thead>
-            <tbody>
-              <tr><td>Adelphos desktop app</td><td>%LOCALAPPDATA%\AdelphosChat\current</td></tr>
-              <tr><td>AutoCAD plugin</td><td>%APPDATA%\Autodesk\ApplicationPlugins\MEPBridge.AutoCAD.bundle</td></tr>
-            </tbody>
-          </table>
+          <div class="source-table-wrap">
+            <table class="source-table">
+              <thead><tr><th>Component</th><th>Location</th></tr></thead>
+              <tbody>
+                <tr><td>Adelphos desktop app</td><td><code>%LOCALAPPDATA%\AdelphosChat\current</code></td></tr>
+                <tr><td>AutoCAD plugin</td><td><code>%APPDATA%\Autodesk\ApplicationPlugins\MEPBridge.AutoCAD.bundle</code></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -89,24 +103,23 @@
             <div><span class="seo-kicker">First run</span><h2>Signing in and what to try.</h2></div>
             <p class="section-heading__copy">Use the email address your account was set up with. Your credits are already on the account, so you can start straight away.</p>
           </div>
-          <p>There are no commands to learn. Ask for what you want, attach a drawing when it asks, and Adelphos takes you through the rest.</p>
-          <ul>
-            <li><strong>Build me a SAP calculation</strong> &mdash; then attach the drawing when prompted</li>
-            <li><strong>Build me a cable calculation from these drawings</strong> &mdash; attach a circuit schedule or drawing</li>
-            <li><strong>Build me a stage 4 specification</strong> &mdash; attach your drawings</li>
-            <li><strong>Give me a BMS points list</strong></li>
-            <li><strong>Summarise my emails and let's go through them</strong></li>
-          </ul>
-          <p><strong>Two things are on display but not live yet.</strong> The thermal modeller and the lighting calculations are visible so you can see where this is heading. Everything else is working.</p>
+          <ol class="calculator-steps">
+            <li><h3>&ldquo;Build me a SAP calculation&rdquo;</h3><p>Attach the drawing when Adelphos prompts you.</p></li>
+            <li><h3>&ldquo;Build me a cable calculation from these drawings&rdquo;</h3><p>Attach a circuit schedule or drawing to begin.</p></li>
+            <li><h3>&ldquo;Build me a Stage 4 specification&rdquo;</h3><p>Attach your drawings and Adelphos will take you through the workflow.</p></li>
+            <li><h3>&ldquo;Give me a BMS points list&rdquo;</h3><p>Ask directly in the chat to create the first draft.</p></li>
+            <li><h3>&ldquo;Summarise my emails and let&rsquo;s go through them&rdquo;</h3><p>Adelphos will organise the review with you in the chat.</p></li>
+          </ol>
+          <div class="calculator-search-intent">
+            <h3>Two tools are visible but not live yet.</h3>
+            <p>The thermal modeller and lighting calculations are on display so you can see what is coming next. Everything else is working.</p>
+          </div>
         </div>
       </section>
 
       <section class="seo-section">
-        <div class="seo-wrap">
-          <div class="section-heading">
-            <div><span class="seo-kicker">Support</span><h2>Updates and problems.</h2></div>
-            <p class="section-heading__copy">Adelphos loads its interface from our servers, so improvements appear the next time you open it.</p>
-          </div>
+        <div class="seo-wrap faq-layout">
+          <div><span class="seo-kicker">Support</span><h2>Updates and problems.</h2><p class="section-heading__copy">Adelphos loads its interface from our servers, so improvements appear the next time you open it.</p></div>
           <div class="faq-list">
             <details><summary>Do I need to reinstall when Adelphos is updated?</summary><p>No. The interface comes from our servers, so improvements appear the next time you open the app or the AutoCAD panel. You only need to reinstall when we tell you there is a new version of the plugin.</p></details>
             <details><summary>Why does Windows say it protected my PC?</summary><p>The build is not code-signed yet. Click More info, then Run anyway. If your browser blocks the download, choose Keep.</p></details>
