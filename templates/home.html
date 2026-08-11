@@ -107,13 +107,16 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      width: 100%;
       max-width: 400px;
       margin-top: 10px;
     }
     
     .button-row-inline {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
+      width: 100%;
     }
     
     .signup-btn {
@@ -121,8 +124,6 @@
       font-size: 13px;
       font-weight: 500;
       padding: 12px 28px;
-      /* Phase 8.7.4: touch-target ≥ 44px on every interactive surface. */
-      min-height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1237,10 +1238,12 @@
     display: flex; flex-wrap: wrap; gap: 12px; padding: 8px 0;
   }
   .calc-badge {
+    display: inline-flex; align-items: center;
     padding: 10px 20px; font-size: 13px; font-weight: 600;
     color: #156082; letter-spacing: 0.01em;
     border: 1px solid rgba(21,96,130,0.25);
     border-radius: 999px; background: rgba(21,96,130,0.05);
+    text-decoration: none;
     transition: transform 0.18s, background 0.18s;
   }
   .calc-badge:hover {
@@ -1425,8 +1428,9 @@
       <h1>{{brand_quote_html}}</h1>
       <div class="button-row">
         <div class="button-row-inline">
-          <a href="#" class="signup-btn primary" onclick="window.adelphosSignup.openModal('early_access'); return false;">Sign Up for Early Access</a>
+          <a href="#" class="signup-btn primary" onclick="window.adelphosSignup.openModal('release_notification'); return false;">Notify Me on Release</a>
           <a href="#" class="signup-btn secondary" onclick="window.adelphosSignup.openModal('news'); return false;">Sign Up for News</a>
+          <a class="signup-btn download-disabled" aria-disabled="true" tabindex="-1" style="border-color:#b9bec2!important;background:#d9dcde!important;color:#747b80!important;cursor:not-allowed!important;opacity:.82;pointer-events:none;">Download Adelphos — available on release</a>
         </div>
         <a href="#" class="signup-btn suggestion" onclick="window.adelphosSignup.openModal('suggestion'); return false;">Got a suggestion? We'd be happy to include it.</a>
       </div>
@@ -1736,9 +1740,10 @@
         <h3 class="clash-heading">Every recurring report — composed and traceable to source.</h3>
         <div class="clash-body">
           <p>Report Builder turns the most repetitive part of an engineer's week into a five-minute review. Every report stays versioned, every claim is traceable to the source data — model, calcs, photos, minutes — and the formatting matches your house style.</p>
-          <p>Eight templates ship in the box: site report, MEP strategy, option appraisal, IESVE report, clash report, Stage 2 submission, Stage 3 submission, survey writeup. Point any template at a project and it pulls the model views, calc outputs, meeting minutes and site photos — and assembles the draft.</p>
+          <p>Twenty-eight mapped Report Studio templates cover site surveys, MEP design reports, option appraisals, energy and overheating studies, BREEAM evidence, load assessments and coordination reports.</p>
         </div>
         <a class="clash-link" href="/apps/report-builder/index.html">Open Report Builder →</a>
+        <a class="clash-link" href="/report-templates/">Browse report templates →</a>
       </div>
     </div>
 
@@ -1793,27 +1798,24 @@
         and replaced above by the build token which surfaces only the
         7 real services from sandbox/data/agentic-services.json.) -->
 
-  <!-- ═══ SECTION 8: CALCULATOR ENGINES ═══
-       Compact pill row, single-accent (teal). The agent calls these
-       calc engines during design — they are infrastructure, not
-       headline products. Visual weight matches that role. -->
+  <!-- ═══ SECTION 8: ENGINEERING CALCULATORS ═══ -->
   <section class="home-section reveal d5">
     <div class="home-section-head">
-      <h2>Calculation engines</h2>
+      <h2>Engineering calculators</h2>
       <div class="head-aside">
-        <p>Verified calc modules the agent calls during design. Each engine runs server-side and returns auditable results.</p>
+        <p>Browse 18 free calculator pages and the 48 live calculator entries in the Adelphos app. Public and app entries overlap where the same calculation is offered in both places.</p>
       </div>
     </div>
     <div class="calc-row">
-      <span class="calc-badge">SAP</span>
-      <span class="calc-badge">EPC</span>
-      <span class="calc-badge">SBEM</span>
-      <span class="calc-badge">Cable Calculations</span>
-      <span class="calc-badge">Lighting Calculations</span>
-      <span class="calc-badge">Thermal Calculations</span>
-      <span class="calc-badge">Pipe &amp; Duct Sizing</span>
+      <a class="calc-badge" href="/calculators/">SAP</a>
+      <a class="calc-badge" href="/calculators/">EPC</a>
+      <a class="calc-badge" href="/calculators/">SBEM</a>
+      <a class="calc-badge" href="/calculators/">Cable Calculations</a>
+      <a class="calc-badge" href="/calculators/">Lighting Calculations</a>
+      <a class="calc-badge" href="/calculators/">Thermal Calculations</a>
+      <a class="calc-badge" href="/calculators/">Pipe &amp; Duct Sizing</a>
     </div>
-    <a class="apps-roadmap-link" href="/docs/calc-engines/index.html">Read about the calc layer →</a>
+    <a class="apps-roadmap-link" href="/calculators/">Explore all engineering calculators →</a>
   </section>
 
   <!-- ═══ SECTION 8b: INTEGRATIONS STRIP ═══
@@ -1880,7 +1882,7 @@
 </div>
 
 <script src="/docs-shell.js"></script>
-<script src="/js/supabase.js"></script>
+<script src="/js/supabase.js?v=20260806-release"></script>
 
 <!-- Modal mount for the expanded 3D view -->
 <div class="scene-modal" id="sceneModal" aria-hidden="true">

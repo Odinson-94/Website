@@ -1,0 +1,2784 @@
+{
+  "schema": "adelphos.public-calculator-config/1.0",
+  "apiContract": "same-origin-server-proxy-v1",
+  "calculateEndpointTemplate": "/api/public-calculators/{calculatorId}/calculate",
+  "reportEndpointTemplate": "/api/public-calculators/{calculatorId}/report.pdf",
+  "calculators": [
+    {
+      "id": "calc-cable",
+      "slug": "cable-sizing-calculator",
+      "title": "Cable Sizing Calculator",
+      "canonicalTool": "cable_size_circuit_typical",
+      "standard": "BS 7671:2018+A2:2022",
+      "summary": "Run the complete single-circuit Adelphos cable sizing workflow, including declared-current entry, correction factors, voltage drop, Ze and CPC checks.",
+      "fields": [
+        {
+          "path": "circuit_type",
+          "label": "Circuit type",
+          "type": "select",
+          "required": true,
+          "default": "kitchen_sockets",
+          "options": [
+            { "value": "ahu", "label": "AHU or three-phase motor" },
+            { "value": "submain", "label": "Submain" },
+            { "value": "kitchen_sockets", "label": "Kitchen socket circuit" },
+            { "value": "sockets", "label": "General socket circuit" },
+            { "value": "lighting", "label": "Lighting circuit" },
+            { "value": "shower", "label": "Electric shower" },
+            { "value": "fixed_appliance", "label": "Fixed appliance" }
+          ]
+        },
+        {
+          "path": "load_mode",
+          "label": "Load entry",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "kw",
+          "options": [
+            { "value": "kw", "label": "Connected load (kW)" },
+            { "value": "ib", "label": "Declared design current Ib (A)" }
+          ]
+        },
+        {
+          "path": "load_kw",
+          "label": "Connected load",
+          "type": "number",
+          "unit": "kW",
+          "required": true,
+          "default": 7,
+          "min": 0.1,
+          "step": 0.1,
+          "dependsOn": { "path": "load_mode", "values": ["kw"] }
+        },
+        {
+          "path": "fixed_Ib_amps",
+          "label": "Declared design current Ib",
+          "type": "number",
+          "unit": "A",
+          "required": true,
+          "default": 32,
+          "min": 0.1,
+          "step": 0.1,
+          "dependsOn": { "path": "load_mode", "values": ["ib"] }
+        },
+        {
+          "path": "voltage_v",
+          "label": "Supply voltage",
+          "type": "number",
+          "unit": "V",
+          "default": 230,
+          "min": 1,
+          "step": 1
+        },
+        {
+          "path": "phases",
+          "label": "Phases",
+          "type": "select",
+          "valueType": "number",
+          "default": 1,
+          "options": [
+            { "value": 1, "label": "Single-phase" },
+            { "value": 3, "label": "Three-phase" }
+          ]
+        },
+        {
+          "path": "power_factor",
+          "label": "Power factor",
+          "type": "number",
+          "default": 0.95,
+          "min": 0.1,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "path": "length_m",
+          "label": "Route length",
+          "type": "number",
+          "unit": "m",
+          "default": 10,
+          "min": 0.1,
+          "step": 0.1
+        },
+        {
+          "path": "ze_ohms",
+          "label": "External loop impedance Ze",
+          "type": "number",
+          "unit": "Ω",
+          "default": 0.35,
+          "min": 0,
+          "step": 0.01
+        },
+        {
+          "path": "overrides.ambient_c",
+          "label": "Ambient temperature",
+          "type": "number",
+          "unit": "°C",
+          "default": 30,
+          "step": 1
+        },
+        {
+          "path": "overrides.grouping_circuits",
+          "label": "Grouped circuits",
+          "type": "number",
+          "valueType": "integer",
+          "default": 1,
+          "min": 1,
+          "step": 1
+        },
+        {
+          "path": "overrides.surrounded_by_insulation",
+          "label": "Thermal insulation condition",
+          "type": "select",
+          "valueType": "boolean",
+          "default": false,
+          "options": [
+            { "value": false, "label": "Not surrounded" },
+            { "value": true, "label": "Surrounded by insulation" }
+          ]
+        },
+        {
+          "path": "overrides.vd_limit_percent",
+          "label": "Voltage-drop limit",
+          "type": "select",
+          "valueType": "number",
+          "default": 5,
+          "options": [
+            { "value": 3, "label": "3% · lighting basis" },
+            { "value": 5, "label": "5% · other circuits" }
+          ]
+        },
+        {
+          "path": "overrides.auto_size_cable",
+          "label": "Automatic cable sizing",
+          "type": "select",
+          "valueType": "boolean",
+          "hidden": true,
+          "default": true,
+          "options": [{ "value": true, "label": "Enabled" }]
+        },
+        {
+          "path": "cpc_mode",
+          "label": "CPC sizing",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "auto",
+          "options": [
+            { "value": "auto", "label": "Automatic · canonical CPC rules" },
+            { "value": "declared", "label": "Check a declared CPC size" }
+          ]
+        },
+        {
+          "path": "overrides.auto_size_cpc",
+          "label": "Automatic CPC sizing",
+          "type": "select",
+          "valueType": "boolean",
+          "hidden": true,
+          "default": true,
+          "dependsOn": { "path": "cpc_mode", "values": ["auto"] },
+          "options": [{ "value": true, "label": "Enabled" }]
+        },
+        {
+          "path": "overrides.auto_size_cpc",
+          "label": "Declared CPC check",
+          "type": "select",
+          "valueType": "boolean",
+          "hidden": true,
+          "default": false,
+          "dependsOn": { "path": "cpc_mode", "values": ["declared"] },
+          "options": [{ "value": false, "label": "Enabled" }]
+        },
+        {
+          "path": "overrides.cpc_size_mm2",
+          "label": "Declared CPC size",
+          "type": "number",
+          "unit": "mm²",
+          "required": true,
+          "default": 2.5,
+          "min": 0.5,
+          "step": 0.5,
+          "dependsOn": { "path": "cpc_mode", "values": ["declared"] }
+        }
+      ]
+    },
+    {
+      "id": "calc-pipe",
+      "slug": "pipe-sizing-calculator",
+      "title": "Pipe Sizing Calculator",
+      "canonicalTool": "calc_pipe_sizing_compute",
+      "standard": "Adelphos registered pipe calculation method",
+      "summary": "Calculate a complete manufacturer-neutral pipe run with repeatable sections and declared fitting losses, without selecting equipment.",
+      "fields": [
+        {
+          "path": "sections",
+          "label": "Pipe run sections",
+          "type": "repeater",
+          "itemLabel": "Pipe section",
+          "addLabel": "Add pipe section",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 30,
+          "default": [
+            {
+              "name": "LTHW index section",
+              "material": "Steel Medium Grade",
+              "nominal_size": 50,
+              "flow_kg_s": 1,
+              "temp_c": 70,
+              "length_m": 10,
+              "bends": 2,
+              "zeta_bend": 0.5,
+              "branch_tees": 0,
+              "zeta_branch": 1,
+              "thru_tees": 0,
+              "zeta_thru": 0.2,
+              "other_zeta": 0
+            }
+          ],
+          "itemFields": [
+            {
+              "path": "name",
+              "label": "Section name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "material",
+              "label": "Pipe material",
+              "type": "select",
+              "required": true,
+              "options": [
+                {
+                  "value": "Copper TableX R290",
+                  "label": "Copper Table X R290"
+                },
+                {
+                  "value": "Steel Medium Grade",
+                  "label": "Steel medium grade"
+                },
+                { "value": "Steel Heavy Grade", "label": "Steel heavy grade" },
+                { "value": "PE-X", "label": "PE-X" }
+              ]
+            },
+            {
+              "path": "nominal_size",
+              "label": "Nominal size",
+              "type": "number",
+              "unit": "mm",
+              "required": true,
+              "min": 1,
+              "step": 1
+            },
+            {
+              "path": "flow_kg_s",
+              "label": "Mass flow",
+              "type": "number",
+              "unit": "kg/s",
+              "required": true,
+              "min": 0.001,
+              "step": 0.001
+            },
+            {
+              "path": "temp_c",
+              "label": "Fluid temperature",
+              "type": "number",
+              "unit": "°C",
+              "step": 0.1
+            },
+            {
+              "path": "length_m",
+              "label": "Section length",
+              "type": "number",
+              "unit": "m",
+              "required": true,
+              "min": 0.1,
+              "step": 0.1
+            },
+            {
+              "path": "bends",
+              "label": "Bends",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "zeta_bend",
+              "label": "Bend loss coefficient",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "branch_tees",
+              "label": "Branch tees",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "zeta_branch",
+              "label": "Branch tee coefficient",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "thru_tees",
+              "label": "Through tees",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "zeta_thru",
+              "label": "Through tee coefficient",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "other_zeta",
+              "label": "Other loss coefficient total",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            }
+          ]
+        },
+        {
+          "path": "rho_override",
+          "label": "Fluid density override",
+          "type": "number",
+          "unit": "kg/m³",
+          "min": 1,
+          "step": 1,
+          "hint": "Leave blank to use the canonical temperature-based value."
+        }
+      ]
+    },
+    {
+      "id": "calc-duct",
+      "slug": "duct-sizing-calculator",
+      "title": "Duct Sizing Calculator",
+      "canonicalTool": "calc_duct_sizing_compute",
+      "standard": "Adelphos registered duct calculation method",
+      "summary": "Calculate velocity and pressure data for a complete repeatable duct run without product selection.",
+      "fields": [
+        {
+          "path": "sections",
+          "label": "Duct run sections",
+          "type": "repeater",
+          "itemLabel": "Duct section",
+          "addLabel": "Add duct section",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 30,
+          "default": [
+            {
+              "name": "Main duct",
+              "shape": "rectangular",
+              "width_mm": 400,
+              "height_mm": 300,
+              "diameter_mm": 315,
+              "flow_m3s": 0.5,
+              "length_m": 10,
+              "bends": 2,
+              "k_bend": 0.5,
+              "thru_tees": 0,
+              "k_tee": 0.2,
+              "branch_tees": 0,
+              "k_branch": 1,
+              "other_k": 0
+            }
+          ],
+          "itemFields": [
+            {
+              "path": "name",
+              "label": "Section name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "shape",
+              "label": "Duct shape",
+              "type": "select",
+              "required": true,
+              "options": [
+                { "value": "rectangular", "label": "Rectangular" },
+                { "value": "circular", "label": "Circular" }
+              ]
+            },
+            {
+              "path": "width_mm",
+              "label": "Rectangular width",
+              "type": "number",
+              "unit": "mm",
+              "required": true,
+              "dependsOn": { "path": "shape", "values": ["rectangular"] },
+              "min": 1,
+              "step": 1
+            },
+            {
+              "path": "height_mm",
+              "label": "Rectangular height",
+              "type": "number",
+              "unit": "mm",
+              "required": true,
+              "dependsOn": { "path": "shape", "values": ["rectangular"] },
+              "min": 1,
+              "step": 1
+            },
+            {
+              "path": "diameter_mm",
+              "label": "Circular diameter",
+              "type": "number",
+              "unit": "mm",
+              "required": true,
+              "dependsOn": { "path": "shape", "values": ["circular"] },
+              "min": 1,
+              "step": 1
+            },
+            {
+              "path": "flow_m3s",
+              "label": "Airflow",
+              "type": "number",
+              "unit": "m³/s",
+              "required": true,
+              "min": 0.001,
+              "step": 0.001
+            },
+            {
+              "path": "length_m",
+              "label": "Section length",
+              "type": "number",
+              "unit": "m",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "bends",
+              "label": "Bends",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "k_bend",
+              "label": "Bend coefficient",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "thru_tees",
+              "label": "Through tees",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "k_tee",
+              "label": "Through tee coefficient",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "branch_tees",
+              "label": "Branch tees",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "k_branch",
+              "label": "Branch tee coefficient",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "other_k",
+              "label": "Other loss coefficient total",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            }
+          ]
+        },
+        {
+          "path": "constants.circ_wall_mm",
+          "label": "Circular duct wall thickness",
+          "type": "number",
+          "unit": "mm",
+          "min": 0,
+          "step": 0.1
+        },
+        {
+          "path": "constants.rect_wall_mm",
+          "label": "Rectangular duct wall thickness",
+          "type": "number",
+          "unit": "mm",
+          "min": 0,
+          "step": 0.1
+        },
+        {
+          "path": "constants.air_rho_kg_m3",
+          "label": "Air density",
+          "type": "number",
+          "unit": "kg/m³",
+          "min": 0.1,
+          "step": 0.01
+        },
+        {
+          "path": "constants.air_mu_pa_s",
+          "label": "Dynamic viscosity",
+          "type": "number",
+          "unit": "Pa·s",
+          "min": 0.000001,
+          "step": 0.000001
+        },
+        {
+          "path": "constants.roughness_mm",
+          "label": "Duct roughness",
+          "type": "number",
+          "unit": "mm",
+          "min": 0,
+          "step": 0.01
+        },
+        {
+          "path": "constants.velocity_correction",
+          "label": "Velocity correction factor",
+          "type": "number",
+          "min": 0.01,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "calc-heat-loss",
+      "slug": "heat-loss-calculator",
+      "title": "Heat Loss Calculator",
+      "canonicalTool": "calc_heat_loss_compute",
+      "standard": "Adelphos registered heat-loss method",
+      "summary": "Run either the complete quick room register or the full CIBSE F.01 element-schedule heat-loss method.",
+      "modeField": "calculation_mode",
+      "fields": [
+        {
+          "path": "calculation_mode",
+          "label": "Calculation method",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "quick",
+          "options": [
+            { "value": "quick", "label": "Quick room register" },
+            { "value": "full", "label": "CIBSE environmental-temperature F.01" }
+          ]
+        },
+        {
+          "path": "rooms",
+          "label": "Rooms",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 50,
+          "modes": ["quick"],
+          "default": [
+            {
+              "ref": "L01",
+              "name": "Living room",
+              "area_m2": 24,
+              "ext_wall_length_m": 8,
+              "glazing_area_m2": 4,
+              "ach": 0.5,
+              "include_floor": true,
+              "include_roof": true
+            }
+          ],
+          "itemFields": [
+            { "path": "ref", "label": "Room reference", "type": "text" },
+            { "path": "name", "label": "Room name", "type": "text" },
+            {
+              "path": "area_m2",
+              "label": "Floor area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0.1,
+              "step": 0.1
+            },
+            {
+              "path": "ext_wall_length_m",
+              "label": "External wall length",
+              "type": "number",
+              "unit": "m",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "glazing_area_m2",
+              "label": "Glazing area",
+              "type": "number",
+              "unit": "m²",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "ach",
+              "label": "Air changes",
+              "type": "number",
+              "unit": "ACH",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "include_floor",
+              "label": "Include exposed floor",
+              "type": "select",
+              "valueType": "boolean",
+              "options": [
+                { "value": true, "label": "Yes" },
+                { "value": false, "label": "No" }
+              ]
+            },
+            {
+              "path": "include_roof",
+              "label": "Include exposed roof",
+              "type": "select",
+              "valueType": "boolean",
+              "options": [
+                { "value": true, "label": "Yes" },
+                { "value": false, "label": "No" }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "construction_year",
+          "label": "Construction year",
+          "type": "number",
+          "valueType": "integer",
+          "default": 1965,
+          "min": 1800,
+          "step": 1,
+          "modes": ["quick"]
+        },
+        {
+          "path": "external_temp_c",
+          "label": "External design temperature",
+          "type": "number",
+          "unit": "°C",
+          "default": -5,
+          "step": 0.1,
+          "modes": ["quick", "full"]
+        },
+        {
+          "path": "internal_temp_c",
+          "label": "Internal design temperature",
+          "type": "number",
+          "unit": "°C",
+          "default": 21,
+          "step": 0.1,
+          "modes": ["quick", "full"]
+        },
+        {
+          "path": "wall_height_m",
+          "label": "Wall height",
+          "type": "number",
+          "unit": "m",
+          "default": 3,
+          "min": 0.1,
+          "step": 0.1,
+          "modes": ["quick"]
+        },
+        {
+          "path": "warm_up_pct",
+          "label": "Warm-up allowance",
+          "type": "number",
+          "unit": "%",
+          "default": 20,
+          "min": 0,
+          "step": 1,
+          "modes": ["quick"]
+        },
+        {
+          "path": "u_overrides.wall",
+          "label": "Wall U-value override",
+          "type": "number",
+          "unit": "W/m²K",
+          "min": 0,
+          "step": 0.01,
+          "modes": ["quick"]
+        },
+        {
+          "path": "u_overrides.floor",
+          "label": "Floor U-value override",
+          "type": "number",
+          "unit": "W/m²K",
+          "min": 0,
+          "step": 0.01,
+          "modes": ["quick"]
+        },
+        {
+          "path": "u_overrides.roof",
+          "label": "Roof U-value override",
+          "type": "number",
+          "unit": "W/m²K",
+          "min": 0,
+          "step": 0.01,
+          "modes": ["quick"]
+        },
+        {
+          "path": "u_overrides.glazing",
+          "label": "Glazing U-value override",
+          "type": "number",
+          "unit": "W/m²K",
+          "min": 0,
+          "step": 0.01,
+          "modes": ["quick"]
+        },
+        {
+          "path": "method",
+          "label": "Canonical full method",
+          "type": "select",
+          "required": true,
+          "hidden": true,
+          "default": "cibse_full_f01",
+          "modes": ["full"],
+          "options": [{ "value": "cibse_full_f01", "label": "CIBSE F.01" }]
+        },
+        {
+          "path": "room_ref",
+          "label": "Room reference",
+          "type": "text",
+          "default": "L01",
+          "modes": ["full"]
+        },
+        {
+          "path": "room_area_m2",
+          "label": "Room floor area",
+          "type": "number",
+          "unit": "m²",
+          "required": true,
+          "default": 24,
+          "min": 0.1,
+          "step": 0.1,
+          "modes": ["full"]
+        },
+        {
+          "path": "room_height_m",
+          "label": "Room height",
+          "type": "number",
+          "unit": "m",
+          "required": true,
+          "default": 3,
+          "min": 0.1,
+          "step": 0.1,
+          "modes": ["full"]
+        },
+        {
+          "path": "air_changes_per_hour",
+          "label": "Air changes",
+          "type": "number",
+          "unit": "ACH",
+          "default": 1,
+          "min": 0,
+          "step": 0.1,
+          "modes": ["full"]
+        },
+        {
+          "path": "emitter_r",
+          "label": "Emitter radiant fraction",
+          "type": "number",
+          "default": 0.3,
+          "min": 0,
+          "step": 0.01,
+          "modes": ["full"]
+        },
+        {
+          "path": "design_factor",
+          "label": "Design factor",
+          "type": "number",
+          "default": 1.2,
+          "min": 1,
+          "step": 0.01,
+          "modes": ["full"]
+        },
+        {
+          "path": "elements",
+          "label": "Net element schedule",
+          "type": "repeater",
+          "itemLabel": "Element",
+          "addLabel": "Add element",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 50,
+          "modes": ["full"],
+          "default": [
+            {
+              "label": "External wall",
+              "area_m2": 20,
+              "u_value_w_m2k": 0.35,
+              "adjacent_temp_c": -5
+            }
+          ],
+          "itemFields": [
+            { "path": "label", "label": "Element label", "type": "text" },
+            {
+              "path": "area_m2",
+              "label": "Net area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "u_value_w_m2k",
+              "label": "U-value",
+              "type": "number",
+              "unit": "W/m²K",
+              "required": true,
+              "min": 0,
+              "step": 0.01
+            },
+            {
+              "path": "adjacent_temp_c",
+              "label": "Adjacent temperature",
+              "type": "number",
+              "unit": "°C",
+              "required": true,
+              "step": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calc-pump",
+      "slug": "pump-power-calculator",
+      "title": "Pump Power Calculator",
+      "canonicalTool": "calc_pump_power_compute",
+      "standard": "First-principles hydraulic duty",
+      "summary": "Calculate hydraulic, shaft and electrical input power without recommending a pump.",
+      "modeField": "head_input",
+      "fields": [
+        {
+          "path": "head_input",
+          "label": "Head input",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "metres",
+          "options": [
+            { "value": "metres", "label": "Head in metres" },
+            { "value": "kilopascals", "label": "Pressure in kPa" }
+          ]
+        },
+        {
+          "path": "flow_l_s",
+          "label": "Flow rate",
+          "type": "number",
+          "unit": "L/s",
+          "required": true,
+          "default": 2,
+          "min": 0.001,
+          "step": 0.001
+        },
+        {
+          "path": "head_m",
+          "label": "Design head",
+          "type": "number",
+          "unit": "m",
+          "required": true,
+          "default": 12,
+          "min": 0,
+          "step": 0.1,
+          "modes": ["metres"]
+        },
+        {
+          "path": "head_kpa",
+          "label": "Design pressure",
+          "type": "number",
+          "unit": "kPa",
+          "required": true,
+          "default": 117.68,
+          "min": 0,
+          "step": 0.01,
+          "modes": ["kilopascals"]
+        },
+        {
+          "path": "pump_efficiency_pct",
+          "label": "Pump efficiency",
+          "type": "number",
+          "unit": "%",
+          "required": true,
+          "default": 65,
+          "min": 0.1,
+          "max": 100,
+          "step": 0.1
+        },
+        {
+          "path": "motor_efficiency_pct",
+          "label": "Motor efficiency",
+          "type": "number",
+          "unit": "%",
+          "default": 90,
+          "min": 0.1,
+          "max": 100,
+          "step": 0.1
+        },
+        {
+          "path": "fluid_density_kg_m3",
+          "label": "Fluid density",
+          "type": "number",
+          "unit": "kg/m³",
+          "default": 1000,
+          "min": 0.1,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-dhw",
+      "slug": "hot-water-cylinder-sizing-calculator",
+      "title": "Hot Water Cylinder Sizing Calculator",
+      "canonicalTool": "calc_dhw_cylinder_compute",
+      "standard": "BS 8558 · peak draw-off mixing rule and first-principles reheat",
+      "summary": "Size hot-water storage from a complete peak draw-off schedule or run the clearly labelled occupancy estimate.",
+      "modeField": "mode",
+      "fields": [
+        {
+          "path": "mode",
+          "label": "Sizing mode",
+          "type": "select",
+          "required": true,
+          "default": "demand",
+          "options": [
+            { "value": "demand", "label": "Demand — design figure" },
+            { "value": "occupancy", "label": "Occupancy — indicative estimate" }
+          ]
+        },
+        {
+          "path": "draws",
+          "label": "Peak draw-offs at use temperature",
+          "type": "repeater",
+          "itemLabel": "Draw-off",
+          "addLabel": "Add appliance or outlet",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 20,
+          "modes": ["demand"],
+          "hint": "Add every bath, shower, basin, sink or other simultaneous peak-period draw-off.",
+          "default": [
+            { "name": "Bath", "volume_l": 100, "use_temp_c": 40, "qty": 1 },
+            { "name": "Shower", "volume_l": 45, "use_temp_c": 40, "qty": 2 }
+          ],
+          "itemFields": [
+            {
+              "path": "name",
+              "label": "Appliance or outlet",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "volume_l",
+              "label": "Volume each",
+              "type": "number",
+              "unit": "L",
+              "required": true,
+              "min": 0.1,
+              "step": 0.1
+            },
+            {
+              "path": "use_temp_c",
+              "label": "Use temperature",
+              "type": "number",
+              "unit": "°C",
+              "required": true,
+              "step": 0.1
+            },
+            {
+              "path": "qty",
+              "label": "Quantity",
+              "type": "number",
+              "valueType": "integer",
+              "required": true,
+              "min": 1,
+              "step": 1
+            }
+          ]
+        },
+        {
+          "path": "cold_feed_c",
+          "label": "Cold-feed temperature",
+          "type": "number",
+          "unit": "°C",
+          "required": true,
+          "default": 10,
+          "step": 0.1,
+          "modes": ["demand"]
+        },
+        {
+          "path": "storage_c",
+          "label": "Storage temperature",
+          "type": "number",
+          "unit": "°C",
+          "required": true,
+          "default": 60,
+          "step": 0.1,
+          "modes": ["demand"]
+        },
+        {
+          "path": "recovery_minutes",
+          "label": "Recovery time",
+          "type": "number",
+          "unit": "minutes",
+          "required": true,
+          "default": 60,
+          "min": 1,
+          "step": 1,
+          "modes": ["demand"]
+        },
+        {
+          "path": "design_margin",
+          "label": "Design margin",
+          "type": "number",
+          "required": true,
+          "default": 1.1,
+          "min": 1,
+          "step": 0.05,
+          "modes": ["demand"]
+        },
+        {
+          "path": "occupants",
+          "label": "Occupants",
+          "type": "number",
+          "valueType": "integer",
+          "required": true,
+          "default": 4,
+          "min": 1,
+          "step": 1,
+          "modes": ["occupancy"]
+        },
+        {
+          "path": "allowance_l_per_person",
+          "label": "Allowance per person",
+          "type": "number",
+          "unit": "L/person",
+          "required": true,
+          "default": 45,
+          "min": 1,
+          "step": 1,
+          "modes": ["occupancy"],
+          "hint": "Indicative BS 8558 estimate only; use Demand mode for the design figure."
+        }
+      ]
+    },
+    {
+      "id": "calc-vent",
+      "slug": "ventilation-calculator",
+      "title": "Ventilation Calculator",
+      "canonicalTool": "calc_ventilation_rates_compute",
+      "standard": "Approved Document F dwelling method",
+      "summary": "Calculate either a complete Approved Document F dwelling schedule or a repeatable user-declared ACH room schedule.",
+      "modeField": "mode",
+      "fields": [
+        {
+          "path": "mode",
+          "label": "Calculation mode",
+          "type": "select",
+          "required": true,
+          "default": "dwelling_part_f",
+          "options": [
+            {
+              "value": "dwelling_part_f",
+              "label": "Dwelling · Approved Document F"
+            },
+            { "value": "ach", "label": "Room schedule · declared ACH" }
+          ]
+        },
+        {
+          "path": "bedrooms",
+          "label": "Bedrooms",
+          "type": "number",
+          "valueType": "integer",
+          "required": true,
+          "default": 3,
+          "min": 1,
+          "step": 1,
+          "modes": ["dwelling_part_f"]
+        },
+        {
+          "path": "internal_floor_area_m2",
+          "label": "Internal floor area",
+          "type": "number",
+          "unit": "m²",
+          "required": true,
+          "default": 90,
+          "min": 1,
+          "step": 0.1,
+          "modes": ["dwelling_part_f"]
+        },
+        {
+          "path": "extract_strategy",
+          "label": "Extract strategy",
+          "type": "select",
+          "required": true,
+          "default": "intermittent",
+          "modes": ["dwelling_part_f"],
+          "options": [
+            { "value": "intermittent", "label": "Intermittent" },
+            { "value": "continuous", "label": "Continuous" }
+          ]
+        },
+        {
+          "path": "wet_rooms",
+          "label": "Intermittent wet-room schedule",
+          "type": "repeater",
+          "itemLabel": "Wet room",
+          "addLabel": "Add wet room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 20,
+          "modes": ["dwelling_part_f"],
+          "dependsOn": {
+            "path": "extract_strategy",
+            "values": ["intermittent"]
+          },
+          "default": [
+            { "room": "kitchen_adjacent_hob", "qty": 1 },
+            { "room": "bathroom", "qty": 1 }
+          ],
+          "itemFields": [
+            {
+              "path": "room",
+              "label": "Room type",
+              "type": "select",
+              "required": true,
+              "options": [
+                {
+                  "value": "kitchen_adjacent_hob",
+                  "label": "Kitchen adjacent to hob"
+                },
+                { "value": "kitchen_elsewhere", "label": "Kitchen elsewhere" },
+                { "value": "utility", "label": "Utility room" },
+                { "value": "bathroom", "label": "Bathroom" },
+                { "value": "sanitary", "label": "Sanitary accommodation" }
+              ]
+            },
+            {
+              "path": "qty",
+              "label": "Quantity",
+              "type": "number",
+              "valueType": "integer",
+              "required": true,
+              "min": 1,
+              "step": 1
+            }
+          ]
+        },
+        {
+          "path": "wet_rooms",
+          "label": "Continuous wet-room schedule",
+          "type": "repeater",
+          "itemLabel": "Wet room",
+          "addLabel": "Add wet room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 20,
+          "modes": ["dwelling_part_f"],
+          "dependsOn": { "path": "extract_strategy", "values": ["continuous"] },
+          "default": [
+            { "room": "kitchen", "qty": 1 },
+            { "room": "bathroom", "qty": 1 }
+          ],
+          "itemFields": [
+            {
+              "path": "room",
+              "label": "Room type",
+              "type": "select",
+              "required": true,
+              "options": [
+                { "value": "kitchen", "label": "Kitchen" },
+                { "value": "utility", "label": "Utility room" },
+                { "value": "bathroom", "label": "Bathroom" },
+                { "value": "sanitary", "label": "Sanitary accommodation" }
+              ]
+            },
+            {
+              "path": "qty",
+              "label": "Quantity",
+              "type": "number",
+              "valueType": "integer",
+              "required": true,
+              "min": 1,
+              "step": 1
+            }
+          ]
+        },
+        {
+          "path": "rooms",
+          "label": "ACH room schedule",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 50,
+          "modes": ["ach"],
+          "default": [
+            { "name": "Office", "ach": 6, "area_m2": 30, "height_m": 3 }
+          ],
+          "itemFields": [
+            { "path": "name", "label": "Room name", "type": "text" },
+            {
+              "path": "ach",
+              "label": "Declared air changes",
+              "type": "number",
+              "unit": "ACH",
+              "required": true,
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "volume_m3",
+              "label": "Room volume",
+              "type": "number",
+              "unit": "m³",
+              "min": 0.1,
+              "step": 0.1
+            },
+            {
+              "path": "area_m2",
+              "label": "Room area",
+              "type": "number",
+              "unit": "m²",
+              "min": 0.1,
+              "step": 0.1
+            },
+            {
+              "path": "height_m",
+              "label": "Room height",
+              "type": "number",
+              "unit": "m",
+              "min": 0.1,
+              "step": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calc-lux",
+      "slug": "lighting-lux-calculator",
+      "title": "Lighting Lux Calculator",
+      "canonicalTool": "calc_lighting_lux_compute",
+      "standard": "Lumen method",
+      "summary": "Estimate luminaire quantity and achieved illuminance from declared room and luminaire inputs.",
+      "fields": [
+        {
+          "path": "target_lux",
+          "label": "Target illuminance",
+          "type": "number",
+          "unit": "lux",
+          "required": true,
+          "default": 500,
+          "min": 1,
+          "step": 1
+        },
+        {
+          "path": "room_area_m2",
+          "label": "Room area",
+          "type": "number",
+          "unit": "m²",
+          "required": true,
+          "default": 120,
+          "min": 0.1,
+          "step": 0.1
+        },
+        {
+          "path": "luminaire_output_lm",
+          "label": "Luminaire output",
+          "type": "number",
+          "unit": "lm",
+          "required": true,
+          "default": 3600,
+          "min": 1,
+          "step": 1
+        },
+        {
+          "path": "utilisation_factor",
+          "label": "Utilisation factor",
+          "type": "number",
+          "required": true,
+          "default": 0.6,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "path": "maintenance_factor",
+          "label": "Maintenance factor",
+          "type": "number",
+          "required": true,
+          "default": 0.8,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        }
+      ]
+    },
+    {
+      "id": "calc-drainage",
+      "slug": "drainage-fall-calculator",
+      "title": "Condensate Drainage Fall Calculator",
+      "canonicalTool": "calc_condensate_pipe_sizing_compute",
+      "standard": "Registered condensate capacity method",
+      "summary": "Calculate condensate pipe capacity from either a declared condensate rate or complete on-coil and off-coil psychrometric inputs.",
+      "modeField": "condensate_input_mode",
+      "fields": [
+        {
+          "path": "condensate_input_mode",
+          "label": "Condensate input",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "psychrometric",
+          "options": [
+            { "value": "psychrometric", "label": "Calculate from air states" },
+            { "value": "declared", "label": "Use declared condensate rate" }
+          ]
+        },
+        {
+          "path": "condensate_kg_h",
+          "label": "Declared condensate rate",
+          "type": "number",
+          "unit": "kg/h",
+          "required": true,
+          "default": 5,
+          "min": 0,
+          "step": 0.1,
+          "modes": ["declared"]
+        },
+        {
+          "path": "volume_flow_m3_s",
+          "label": "Air volume flow",
+          "type": "number",
+          "unit": "m³/s",
+          "required": true,
+          "default": 0.4,
+          "min": 0.001,
+          "step": 0.001,
+          "modes": ["psychrometric"]
+        },
+        {
+          "path": "on_coil.dry_bulb_c",
+          "label": "On-coil dry-bulb",
+          "type": "number",
+          "unit": "°C",
+          "required": true,
+          "default": 24,
+          "step": 0.1,
+          "modes": ["psychrometric"]
+        },
+        {
+          "path": "on_coil.rh",
+          "label": "On-coil relative humidity",
+          "type": "number",
+          "required": true,
+          "default": 0.55,
+          "min": 0,
+          "max": 1,
+          "step": 0.01,
+          "modes": ["psychrometric"]
+        },
+        {
+          "path": "off_coil.dry_bulb_c",
+          "label": "Off-coil dry-bulb",
+          "type": "number",
+          "unit": "°C",
+          "required": true,
+          "default": 12,
+          "step": 0.1,
+          "modes": ["psychrometric"]
+        },
+        {
+          "path": "off_coil.rh",
+          "label": "Off-coil relative humidity",
+          "type": "number",
+          "required": true,
+          "default": 0.95,
+          "min": 0,
+          "max": 1,
+          "step": 0.01,
+          "modes": ["psychrometric"]
+        },
+        {
+          "path": "units_served",
+          "label": "Units served",
+          "type": "number",
+          "valueType": "integer",
+          "default": 2,
+          "min": 1,
+          "step": 1,
+          "modes": ["psychrometric"]
+        },
+        {
+          "path": "fall",
+          "label": "Pipe fall",
+          "type": "number",
+          "required": true,
+          "default": 0.01,
+          "min": 0.0001,
+          "step": 0.0001
+        },
+        {
+          "path": "filling_degree",
+          "label": "Filling degree",
+          "type": "number",
+          "required": true,
+          "default": 0.5,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "path": "ks_mm",
+          "label": "Pipe roughness",
+          "type": "number",
+          "unit": "mm",
+          "default": 0.0015,
+          "min": 0,
+          "step": 0.0001
+        },
+        {
+          "path": "safety_factor",
+          "label": "Safety factor",
+          "type": "number",
+          "required": true,
+          "default": 1.5,
+          "min": 1,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-phpp",
+      "slug": "passivhaus-heat-demand-estimate",
+      "title": "Passivhaus Heat Demand Estimate",
+      "canonicalTool": "calc_phpp_estimate",
+      "standard": "Screening estimate — not a PHPP model",
+      "summary": "Screen annual heat demand intensity; this result is not a certified PHPP model.",
+      "fields": [
+        {
+          "path": "annual_heating_kwh",
+          "label": "Annual space-heating demand",
+          "type": "number",
+          "unit": "kWh/year",
+          "required": true,
+          "default": 2000,
+          "min": 0,
+          "step": 1
+        },
+        {
+          "path": "treated_floor_area_m2",
+          "label": "Treated floor area",
+          "type": "number",
+          "unit": "m²",
+          "required": true,
+          "default": 120,
+          "min": 0.1,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-pv",
+      "slug": "solar-pv-calculator",
+      "title": "Solar PV Calculator",
+      "canonicalTool": "calc_solar_pv_compute",
+      "standard": "Adelphos registered solar feasibility method",
+      "summary": "Estimate solar array capacity, annual generation, simple energy value and CO₂ saving from direct kWp or roof-area inputs.",
+      "modeField": "array_input_mode",
+      "fields": [
+        {
+          "path": "array_input_mode",
+          "label": "Array input",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "direct",
+          "options": [
+            { "value": "direct", "label": "Declared array capacity" },
+            { "value": "roof", "label": "Derive from usable roof area" }
+          ]
+        },
+        {
+          "path": "kwp",
+          "label": "Array capacity",
+          "type": "number",
+          "unit": "kWp",
+          "required": true,
+          "default": 4,
+          "min": 0.1,
+          "step": 0.1,
+          "modes": ["direct"]
+        },
+        {
+          "path": "roof_area_m2",
+          "label": "Usable roof area",
+          "type": "number",
+          "unit": "m²",
+          "required": true,
+          "default": 30,
+          "min": 0.1,
+          "step": 0.1,
+          "modes": ["roof"]
+        },
+        {
+          "path": "panel_tier",
+          "label": "Panel efficiency tier",
+          "type": "select",
+          "default": "premium",
+          "modes": ["roof"],
+          "options": [
+            { "value": "standard", "label": "Standard · 19%" },
+            { "value": "premium", "label": "Premium · 21.5%" },
+            { "value": "high", "label": "High · 23%" }
+          ]
+        },
+        {
+          "path": "panel_efficiency",
+          "label": "Explicit panel efficiency override",
+          "type": "number",
+          "unit": "fraction",
+          "min": 0.01,
+          "max": 1,
+          "step": 0.001,
+          "modes": ["roof"]
+        },
+        {
+          "path": "roof_coverage_factor",
+          "label": "Roof coverage factor",
+          "type": "number",
+          "default": 0.85,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01,
+          "modes": ["roof"]
+        },
+        {
+          "path": "region",
+          "label": "Solar region",
+          "type": "select",
+          "required": true,
+          "default": "london",
+          "options": [
+            { "value": "south-coast", "label": "South coast" },
+            { "value": "south-west", "label": "South West England" },
+            { "value": "south-east", "label": "South East England" },
+            { "value": "london", "label": "London" },
+            { "value": "midlands", "label": "Midlands" },
+            { "value": "wales", "label": "Wales" },
+            { "value": "north-england", "label": "North England" },
+            { "value": "northern-ireland", "label": "Northern Ireland" },
+            { "value": "scotland-south", "label": "South Scotland" },
+            { "value": "scotland-north", "label": "North Scotland" }
+          ]
+        },
+        {
+          "path": "orientation",
+          "label": "Orientation",
+          "type": "select",
+          "required": true,
+          "default": "S",
+          "options": [
+            { "value": "S", "label": "South" },
+            { "value": "SSE", "label": "South-south-east" },
+            { "value": "SSW", "label": "South-south-west" },
+            { "value": "SE", "label": "South-east" },
+            { "value": "SW", "label": "South-west" },
+            { "value": "ESE", "label": "East-south-east" },
+            { "value": "WSW", "label": "West-south-west" },
+            { "value": "E", "label": "East" },
+            { "value": "W", "label": "West" },
+            { "value": "ENE", "label": "East-north-east" },
+            { "value": "WNW", "label": "West-north-west" },
+            { "value": "NE", "label": "North-east" },
+            { "value": "NW", "label": "North-west" },
+            { "value": "N", "label": "North" },
+            { "value": "flat", "label": "Flat" }
+          ]
+        },
+        {
+          "path": "tilt_deg",
+          "label": "Array tilt",
+          "type": "number",
+          "unit": "degrees",
+          "required": true,
+          "default": 35,
+          "min": 0,
+          "max": 90,
+          "step": 1
+        },
+        {
+          "path": "overshading",
+          "label": "Overshading",
+          "type": "select",
+          "required": true,
+          "default": "none_or_very_little",
+          "options": [
+            { "value": "none_or_very_little", "label": "None or very little" },
+            { "value": "modest", "label": "Modest" },
+            { "value": "significant", "label": "Significant" },
+            { "value": "heavy", "label": "Heavy" }
+          ]
+        },
+        {
+          "path": "specific_yield_kwh_per_kwp",
+          "label": "Specific yield override",
+          "type": "number",
+          "unit": "kWh/kWp",
+          "min": 1,
+          "step": 1,
+          "hint": "Use the project or MCS postcode-zone figure when available."
+        },
+        {
+          "path": "annual_demand_kwh",
+          "label": "Annual electricity demand",
+          "type": "number",
+          "unit": "kWh",
+          "default": 4500,
+          "min": 0,
+          "step": 1
+        },
+        {
+          "path": "self_consumption_fraction",
+          "label": "Self-consumption fraction",
+          "type": "number",
+          "default": 0.4,
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "path": "import_tariff_gbp_per_kwh",
+          "label": "Import tariff",
+          "type": "number",
+          "unit": "£/kWh",
+          "default": 0.28,
+          "min": 0,
+          "step": 0.01
+        },
+        {
+          "path": "export_tariff_gbp_per_kwh",
+          "label": "Export tariff",
+          "type": "number",
+          "unit": "£/kWh",
+          "default": 0.05,
+          "min": 0,
+          "step": 0.01
+        },
+        {
+          "path": "grid_co2_kg_per_kwh",
+          "label": "Grid carbon factor",
+          "type": "number",
+          "unit": "kg CO₂/kWh",
+          "default": 0.136,
+          "min": 0,
+          "step": 0.001
+        }
+      ]
+    },
+    {
+      "id": "calc-heatpump",
+      "slug": "heat-pump-calculator",
+      "title": "Heat Pump Calculator",
+      "canonicalTool": "calc_heat_pump_size",
+      "standard": "Manufacturer-neutral duty estimate",
+      "summary": "Estimate design duty without recommending a manufacturer or product.",
+      "fields": [
+        {
+          "path": "design_heat_loss_kw",
+          "label": "Design heat loss",
+          "type": "number",
+          "unit": "kW",
+          "required": true,
+          "default": 50,
+          "min": 0.1,
+          "step": 0.1
+        },
+        {
+          "path": "dhw_allowance_kw",
+          "label": "Hot-water allowance",
+          "type": "number",
+          "unit": "kW",
+          "default": 10,
+          "min": 0,
+          "step": 0.1
+        },
+        {
+          "path": "design_margin",
+          "label": "Design margin",
+          "type": "number",
+          "required": true,
+          "default": 1.1,
+          "min": 1,
+          "step": 0.01
+        },
+        {
+          "path": "flow_temp_c",
+          "label": "Design flow temperature",
+          "type": "number",
+          "unit": "°C",
+          "required": true,
+          "default": 45,
+          "step": 0.1
+        },
+        {
+          "path": "design_external_temp_c",
+          "label": "External design temperature",
+          "type": "number",
+          "unit": "°C",
+          "required": true,
+          "default": -5,
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-vrv",
+      "slug": "room-cooling-heating-load-calculator",
+      "title": "Room Cooling and Heating Load Calculator",
+      "canonicalTool": "calc_cooling_heating_load_compute",
+      "standard": "P20222 RDS internally dominated room-load method",
+      "summary": "Calculate a complete repeatable room cooling and heating load register from stored RDS types and declared project overrides, without selecting equipment.",
+      "fields": [
+        {
+          "path": "rooms",
+          "label": "Room load register",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 250,
+          "default": [
+            {
+              "name": "Mechanical plantroom",
+              "room_type": "Mechanical Plantroom",
+              "level": "L01",
+              "system": "AHU-01",
+              "area_m2": 168,
+              "height_m": 6.28,
+              "supply_air_lps": 147,
+              "infiltration_ach": 0.25,
+              "small_power_cooling_kw": 0.108,
+              "small_power_heating_kw": 0.84,
+              "criticality": "Non-critical"
+            }
+          ],
+          "itemFields": [
+            { "path": "name", "label": "Room name", "type": "text" },
+            {
+              "path": "room_type",
+              "label": "Stored RDS room type",
+              "type": "select",
+              "required": true,
+              "options": [
+                { "value": "Data Hall", "label": "Data Hall" },
+                { "value": "Fan Wall Gallery", "label": "Fan Wall Gallery" },
+                { "value": "IDF Room", "label": "IDF Room" },
+                { "value": "MMR", "label": "MMR" },
+                { "value": "Pod Switchroom", "label": "Pod Switchroom" },
+                { "value": "MV Switchroom", "label": "MV Switchroom" },
+                { "value": "Utility MV Room", "label": "Utility MV Room" },
+                { "value": "Level 00 STS", "label": "Level 00 STS" },
+                { "value": "Level 01 STS", "label": "Level 01 STS" },
+                {
+                  "value": "Mechanical Plantroom",
+                  "label": "Mechanical Plantroom"
+                },
+                {
+                  "value": "Electrical Plantroom",
+                  "label": "Electrical Plantroom"
+                },
+                { "value": "Roof Plantroom", "label": "Roof Plantroom" },
+                { "value": "DCIM", "label": "DCIM" },
+                { "value": "POE", "label": "POE" },
+                { "value": "UPS Room", "label": "UPS Room" },
+                { "value": "Battery Room", "label": "Battery Room" },
+                { "value": "Transformer Room", "label": "Transformer Room" },
+                {
+                  "value": "Transformer Switchboard Room",
+                  "label": "Transformer Switchboard Room"
+                },
+                { "value": "Generator Room", "label": "Generator Room" },
+                {
+                  "value": "Measure Equipment Room",
+                  "label": "Measure Equipment Room"
+                },
+                { "value": "Storage", "label": "Storage" },
+                {
+                  "value": "Janitor Closet/Cleaner's Room",
+                  "label": "Janitor / cleaner's room"
+                },
+                { "value": "Corridor", "label": "Corridor" },
+                {
+                  "value": "Technical Corridor",
+                  "label": "Technical Corridor"
+                },
+                { "value": "Loading Bay/Area", "label": "Loading bay / area" },
+                { "value": "Staircase", "label": "Staircase" },
+                { "value": "Fire Lobby", "label": "Fire Lobby" },
+                { "value": "WC", "label": "WC" },
+                { "value": "BMS", "label": "BMS" },
+                { "value": "SOC", "label": "SOC" },
+                { "value": "Office", "label": "Office" },
+                { "value": "Level 01 Office", "label": "Level 01 Office" },
+                { "value": "Meeting Room", "label": "Meeting Room" },
+                {
+                  "value": "Level 01 Meeting Room",
+                  "label": "Level 01 Meeting Room"
+                },
+                { "value": "Breakout/Canteen", "label": "Breakout / canteen" },
+                { "value": "Lobby", "label": "Lobby" },
+                { "value": "Office Corridor", "label": "Office Corridor" },
+                { "value": "Office WC", "label": "Office WC" },
+                {
+                  "value": "Unconditioned Spaces",
+                  "label": "Unconditioned Spaces"
+                }
+              ]
+            },
+            { "path": "level", "label": "Level", "type": "text" },
+            { "path": "system", "label": "System reference", "type": "text" },
+            {
+              "path": "area_m2",
+              "label": "Room area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0.1,
+              "step": 0.1
+            },
+            {
+              "path": "height_m",
+              "label": "Room height",
+              "type": "number",
+              "unit": "m",
+              "min": 0.1,
+              "step": 0.01
+            },
+            {
+              "path": "supply_air_lps",
+              "label": "Supply air",
+              "type": "number",
+              "unit": "L/s",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "infiltration_ach",
+              "label": "Infiltration",
+              "type": "number",
+              "unit": "ACH",
+              "min": 0,
+              "step": 0.01
+            },
+            {
+              "path": "small_power_cooling_kw",
+              "label": "Small-power cooling gain",
+              "type": "number",
+              "unit": "kW",
+              "min": 0,
+              "step": 0.001
+            },
+            {
+              "path": "small_power_heating_kw",
+              "label": "Small-power heating gain",
+              "type": "number",
+              "unit": "kW",
+              "min": 0,
+              "step": 0.001
+            },
+            {
+              "path": "cooling_setpoint_c",
+              "label": "Cooling setpoint override",
+              "type": "number",
+              "unit": "°C",
+              "step": 0.1
+            },
+            {
+              "path": "cooling_rh",
+              "label": "Cooling RH override",
+              "type": "number",
+              "min": 0,
+              "max": 1,
+              "step": 0.01
+            },
+            {
+              "path": "heating_setpoint_c",
+              "label": "Heating setpoint override",
+              "type": "number",
+              "unit": "°C",
+              "step": 0.1
+            },
+            {
+              "path": "occupants",
+              "label": "Occupants override",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "occupant_sensible_w",
+              "label": "Sensible gain per person",
+              "type": "number",
+              "unit": "W/person",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "occupant_latent_w",
+              "label": "Latent gain per person",
+              "type": "number",
+              "unit": "W/person",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "lighting_w_m2",
+              "label": "Lighting gain override",
+              "type": "number",
+              "unit": "W/m²",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "lighting_diversity",
+              "label": "Lighting diversity",
+              "type": "number",
+              "min": 0,
+              "max": 1,
+              "step": 0.01
+            },
+            {
+              "path": "equipment_value",
+              "label": "Equipment gain override",
+              "type": "number",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "equipment_unit",
+              "label": "Equipment unit",
+              "type": "select",
+              "options": [
+                { "value": "kW", "label": "kW" },
+                { "value": "W/m2", "label": "W/m²" }
+              ]
+            },
+            {
+              "path": "criticality",
+              "label": "Criticality",
+              "type": "select",
+              "options": [
+                { "value": "Critical", "label": "Critical" },
+                { "value": "Non-critical", "label": "Non-critical" }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "external_design.critical.summer_db_c",
+          "label": "Critical summer dry-bulb override",
+          "type": "number",
+          "unit": "°C",
+          "step": 0.1
+        },
+        {
+          "path": "external_design.critical.summer_enthalpy_kj_kg",
+          "label": "Critical summer enthalpy override",
+          "type": "number",
+          "unit": "kJ/kg",
+          "step": 0.1
+        },
+        {
+          "path": "external_design.critical.winter_db_c",
+          "label": "Critical winter dry-bulb override",
+          "type": "number",
+          "unit": "°C",
+          "step": 0.1
+        },
+        {
+          "path": "external_design.non_critical.summer_db_c",
+          "label": "Non-critical summer dry-bulb override",
+          "type": "number",
+          "unit": "°C",
+          "step": 0.1
+        },
+        {
+          "path": "external_design.non_critical.summer_enthalpy_kj_kg",
+          "label": "Non-critical summer enthalpy override",
+          "type": "number",
+          "unit": "kJ/kg",
+          "step": 0.1
+        },
+        {
+          "path": "external_design.non_critical.winter_db_c",
+          "label": "Non-critical winter dry-bulb override",
+          "type": "number",
+          "unit": "°C",
+          "step": 0.1
+        },
+        {
+          "path": "ahu_supply.summer_db_c",
+          "label": "AHU summer supply dry-bulb override",
+          "type": "number",
+          "unit": "°C",
+          "step": 0.1
+        },
+        {
+          "path": "ahu_supply.summer_rh",
+          "label": "AHU summer supply RH override",
+          "type": "number",
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "path": "ahu_supply.winter_db_c",
+          "label": "AHU winter supply dry-bulb override",
+          "type": "number",
+          "unit": "°C",
+          "step": 0.1
+        }
+      ]
+    },
+    {
+      "id": "calc-load",
+      "slug": "electrical-load-assessment-calculator",
+      "title": "Electrical Load Assessment Calculator",
+      "canonicalTool": "jason_calculate_electrical_load",
+      "standard": "BS 7671 / IET Guidance Note 1 (simplified)",
+      "summary": "Calculate connected load, explicitly diversified demand and supply current without selecting equipment.",
+      "fixtureInputs": {
+        "categories": [
+          { "name": "Lighting", "connected_load_kw": 12, "diversity": 0.9 },
+          { "name": "Small power", "connected_load_kw": 25, "diversity": 0.7 },
+          {
+            "name": "Kitchen / catering",
+            "connected_load_kw": 30,
+            "diversity": 0.6
+          },
+          {
+            "name": "HVAC (mechanical plant)",
+            "connected_load_kw": 40,
+            "diversity": 0.8
+          },
+          { "name": "Lifts", "connected_load_kw": 15, "diversity": 0.5 },
+          { "name": "EV charging", "connected_load_kw": 22, "diversity": 1.0 }
+        ],
+        "power_factor": 0.95,
+        "voltage_v": 400,
+        "three_phase": true
+      },
+      "fields": [
+        {
+          "path": "categories",
+          "label": "Load categories",
+          "type": "repeater",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 20,
+          "itemLabel": "Load category",
+          "addLabel": "Add load category",
+          "hint": "Enter the connected load and your assessed diversity for every category. No diversity value is inferred.",
+          "itemFields": [
+            {
+              "path": "name",
+              "label": "Category name",
+              "type": "text",
+              "required": true,
+              "maxLength": 100
+            },
+            {
+              "path": "connected_load_kw",
+              "label": "Connected load",
+              "type": "number",
+              "unit": "kW",
+              "required": true,
+              "min": 0,
+              "step": 0.01
+            },
+            {
+              "path": "diversity",
+              "label": "Diversity factor",
+              "type": "number",
+              "required": true,
+              "min": 0,
+              "max": 1,
+              "step": 0.01
+            }
+          ]
+        },
+        {
+          "path": "power_factor",
+          "label": "Power factor",
+          "type": "number",
+          "required": true,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "path": "voltage_v",
+          "label": "Supply voltage",
+          "type": "number",
+          "unit": "V",
+          "required": true,
+          "min": 1,
+          "step": 1
+        },
+        {
+          "path": "three_phase",
+          "label": "Supply arrangement",
+          "type": "select",
+          "valueType": "boolean",
+          "required": true,
+          "placeholder": "Choose the supply arrangement",
+          "options": [
+            { "value": false, "label": "Single-phase" },
+            { "value": true, "label": "Three-phase" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calc-sap",
+      "slug": "sap-calculator",
+      "title": "SAP Calculator",
+      "canonicalTool": "calc_sap",
+      "standard": "SAP 10.3 / Approved Document L",
+      "summary": "Run one stateless SAP dwelling calculation from complete, explicitly entered controlled sections.",
+      "fieldsSource": "/data/sap-public-form-schema.json"
+    },
+    {
+      "id": "calc-scientific",
+      "slug": "scientific-calculator",
+      "title": "Scientific Calculator",
+      "canonicalTool": "calc_scientific_evaluate",
+      "standard": "Adelphos safe deterministic expression evaluator",
+      "summary": "Evaluate one arithmetic or scientific expression through the canonical whitelist-only Adelphos engine.",
+      "fields": [
+        {
+          "path": "expression",
+          "label": "Expression",
+          "type": "text",
+          "required": true,
+          "default": "sin(pi / 2) + log10(100)",
+          "hint": "Use the functions and constants accepted by the canonical evaluator."
+        },
+        {
+          "path": "mode",
+          "label": "Angle mode",
+          "type": "select",
+          "required": true,
+          "default": "rad",
+          "options": [
+            { "value": "rad", "label": "Radians" },
+            { "value": "deg", "label": "Degrees" }
+          ]
+        },
+        {
+          "path": "ndigits",
+          "label": "Decimal places",
+          "type": "number",
+          "valueType": "integer",
+          "default": 6,
+          "min": -15,
+          "max": 15,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "calc-zone",
+      "slug": "heating-zone-calculator",
+      "title": "Heating Zone Calculator",
+      "standard": "Canonical Adelphos room-level zone calculation methods",
+      "summary": "Run an explicit room heat-loss, ventilation or small-power calculation without selecting plant or equipment.",
+      "modeField": "calculation_mode",
+      "inputTransform": "zone-room-register",
+      "fields": [
+        {
+          "path": "calculation_mode",
+          "label": "Calculation mode",
+          "type": "select",
+          "required": true,
+          "placeholder": "Choose a calculation mode",
+          "options": [
+            { "value": "heat_loss", "label": "Heat loss per room" },
+            { "value": "ventilation", "label": "Ventilation per room" },
+            { "value": "small_power", "label": "Small power per room" }
+          ]
+        },
+        {
+          "path": "heat_loss_method",
+          "label": "Heat-loss method",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "area_allowance",
+          "modes": ["heat_loss"],
+          "options": [
+            { "value": "area_allowance", "label": "Area allowance" },
+            { "value": "fabric", "label": "Detailed fabric and ventilation" }
+          ]
+        },
+        {
+          "path": "method",
+          "label": "Area-allowance method",
+          "type": "select",
+          "hidden": true,
+          "required": true,
+          "default": "area_allowance",
+          "modes": ["heat_loss"],
+          "dependsOn": {
+            "path": "heat_loss_method",
+            "values": ["area_allowance"]
+          },
+          "options": [{ "value": "area_allowance", "label": "Area allowance" }]
+        },
+        {
+          "path": "method",
+          "label": "Fabric method",
+          "type": "select",
+          "hidden": true,
+          "required": true,
+          "default": "fabric",
+          "modes": ["heat_loss"],
+          "dependsOn": { "path": "heat_loss_method", "values": ["fabric"] },
+          "options": [{ "value": "fabric", "label": "Fabric" }]
+        },
+        {
+          "path": "rooms",
+          "label": "Heat-loss room register",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 250,
+          "modes": ["heat_loss"],
+          "dependsOn": {
+            "path": "heat_loss_method",
+            "values": ["area_allowance"]
+          },
+          "default": [
+            {
+              "room_ref": "Z01",
+              "name": "Open office",
+              "area_m2": 50,
+              "volume_m3": 135,
+              "category": "commercial",
+              "room_type": "office",
+              "occupancy": 10
+            }
+          ],
+          "itemFields": [
+            {
+              "path": "room_ref",
+              "label": "Room reference",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "name",
+              "label": "Room name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "area_m2",
+              "label": "Room area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0.01,
+              "step": 0.01
+            },
+            {
+              "path": "volume_m3",
+              "label": "Room volume",
+              "type": "number",
+              "unit": "m³",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "category",
+              "label": "Room category",
+              "type": "select",
+              "options": [
+                { "value": "commercial", "label": "Commercial" },
+                { "value": "dwelling", "label": "Dwelling" },
+                { "value": "healthcare", "label": "Healthcare" },
+                { "value": "school", "label": "School" }
+              ]
+            },
+            { "path": "room_type", "label": "Room type", "type": "text" },
+            {
+              "path": "occupancy",
+              "label": "Occupancy",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            }
+          ]
+        },
+        {
+          "path": "rooms",
+          "label": "Detailed fabric room register",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 250,
+          "modes": ["heat_loss"],
+          "dependsOn": { "path": "heat_loss_method", "values": ["fabric"] },
+          "default": [
+            {
+              "room_ref": "Z01",
+              "name": "Open office",
+              "area_m2": 50,
+              "volume_m3": 135,
+              "category": "commercial",
+              "room_type": "office",
+              "occupancy": 10,
+              "fabric": [
+                { "name": "External wall", "u_value": 0.35, "area_m2": 30 }
+              ]
+            }
+          ],
+          "itemFields": [
+            {
+              "path": "room_ref",
+              "label": "Room reference",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "name",
+              "label": "Room name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "area_m2",
+              "label": "Room area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0.01,
+              "step": 0.01
+            },
+            {
+              "path": "volume_m3",
+              "label": "Room volume",
+              "type": "number",
+              "unit": "m³",
+              "required": true,
+              "min": 0.1,
+              "step": 0.1
+            },
+            {
+              "path": "category",
+              "label": "Room category",
+              "type": "select",
+              "options": [
+                { "value": "commercial", "label": "Commercial" },
+                { "value": "dwelling", "label": "Dwelling" },
+                { "value": "healthcare", "label": "Healthcare" },
+                { "value": "school", "label": "School" }
+              ]
+            },
+            { "path": "room_type", "label": "Room type", "type": "text" },
+            {
+              "path": "occupancy",
+              "label": "Occupancy",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            },
+            {
+              "path": "fabric",
+              "label": "Fabric elements",
+              "type": "repeater",
+              "itemLabel": "Fabric element",
+              "addLabel": "Add fabric element",
+              "required": true,
+              "minItems": 1,
+              "maxItems": 50,
+              "itemFields": [
+                {
+                  "path": "name",
+                  "label": "Element name",
+                  "type": "text",
+                  "required": true
+                },
+                {
+                  "path": "u_value",
+                  "label": "U-value",
+                  "type": "number",
+                  "unit": "W/m²K",
+                  "required": true,
+                  "min": 0,
+                  "step": 0.01
+                },
+                {
+                  "path": "area_m2",
+                  "label": "Element area",
+                  "type": "number",
+                  "unit": "m²",
+                  "required": true,
+                  "min": 0,
+                  "step": 0.1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "external_conditions.region",
+          "label": "UK design-temperature region",
+          "type": "text",
+          "modes": ["heat_loss"],
+          "dependsOn": { "path": "heat_loss_method", "values": ["fabric"] }
+        },
+        {
+          "path": "external_conditions.winter_external_c",
+          "label": "Winter external temperature override",
+          "type": "number",
+          "unit": "°C",
+          "modes": ["heat_loss"],
+          "dependsOn": { "path": "heat_loss_method", "values": ["fabric"] }
+        },
+        {
+          "path": "safety_factor",
+          "label": "Heat-loss safety factor",
+          "type": "number",
+          "default": 0.1,
+          "min": 0,
+          "max": 1,
+          "step": 0.01,
+          "modes": ["heat_loss"]
+        },
+        {
+          "path": "rooms",
+          "label": "Ventilation room register",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 250,
+          "modes": ["ventilation"],
+          "default": [
+            {
+              "room_ref": "Z01",
+              "name": "Open office",
+              "area_m2": 50,
+              "volume_m3": 135,
+              "category": "commercial",
+              "room_type": "office",
+              "occupancy": 10
+            }
+          ],
+          "itemFields": [
+            {
+              "path": "room_ref",
+              "label": "Room reference",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "name",
+              "label": "Room name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "area_m2",
+              "label": "Room area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0.01,
+              "step": 0.01
+            },
+            {
+              "path": "volume_m3",
+              "label": "Room volume",
+              "type": "number",
+              "unit": "m³",
+              "min": 0,
+              "step": 0.1
+            },
+            {
+              "path": "category",
+              "label": "Room category",
+              "type": "select",
+              "options": [
+                { "value": "commercial", "label": "Commercial" },
+                { "value": "dwelling", "label": "Dwelling" },
+                { "value": "healthcare", "label": "Healthcare" },
+                { "value": "school", "label": "School" }
+              ]
+            },
+            { "path": "room_type", "label": "Room type", "type": "text" },
+            {
+              "path": "occupancy",
+              "label": "Occupancy",
+              "type": "number",
+              "valueType": "integer",
+              "min": 0,
+              "step": 1
+            }
+          ]
+        },
+        {
+          "path": "ventilation_overrides",
+          "label": "ACH overrides",
+          "type": "repeater",
+          "itemLabel": "Override",
+          "addLabel": "Add ACH override",
+          "minItems": 0,
+          "maxItems": 100,
+          "modes": ["ventilation"],
+          "itemFields": [
+            {
+              "path": "category",
+              "label": "Category key",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "room_type",
+              "label": "Room-type key",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "ach",
+              "label": "Override",
+              "type": "number",
+              "unit": "ACH",
+              "required": true,
+              "min": 0.000001,
+              "max": 50,
+              "step": 0.1
+            }
+          ]
+        },
+        {
+          "path": "small_power_method",
+          "label": "Small-power method",
+          "type": "select",
+          "required": true,
+          "submit": false,
+          "default": "area_allowance",
+          "modes": ["small_power"],
+          "options": [
+            { "value": "area_allowance", "label": "Area allowance" },
+            { "value": "equipment_schedule", "label": "Equipment schedule" }
+          ]
+        },
+        {
+          "path": "method",
+          "label": "Area-allowance method",
+          "type": "select",
+          "hidden": true,
+          "required": true,
+          "default": "area_allowance",
+          "modes": ["small_power"],
+          "dependsOn": {
+            "path": "small_power_method",
+            "values": ["area_allowance"]
+          },
+          "options": [{ "value": "area_allowance", "label": "Area allowance" }]
+        },
+        {
+          "path": "method",
+          "label": "Equipment-schedule method",
+          "type": "select",
+          "hidden": true,
+          "required": true,
+          "default": "equipment_schedule",
+          "modes": ["small_power"],
+          "dependsOn": {
+            "path": "small_power_method",
+            "values": ["equipment_schedule"]
+          },
+          "options": [
+            { "value": "equipment_schedule", "label": "Equipment schedule" }
+          ]
+        },
+        {
+          "path": "rooms",
+          "label": "Small-power room register",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 250,
+          "modes": ["small_power"],
+          "dependsOn": {
+            "path": "small_power_method",
+            "values": ["area_allowance"]
+          },
+          "default": [
+            { "room_ref": "Z01", "name": "Open office", "area_m2": 50 }
+          ],
+          "itemFields": [
+            {
+              "path": "room_ref",
+              "label": "Room reference",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "name",
+              "label": "Room name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "area_m2",
+              "label": "Room area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0.01,
+              "step": 0.01
+            }
+          ]
+        },
+        {
+          "path": "rooms",
+          "label": "Small-power equipment room register",
+          "type": "repeater",
+          "itemLabel": "Room",
+          "addLabel": "Add room",
+          "required": true,
+          "minItems": 1,
+          "maxItems": 250,
+          "modes": ["small_power"],
+          "dependsOn": {
+            "path": "small_power_method",
+            "values": ["equipment_schedule"]
+          },
+          "default": [
+            {
+              "room_ref": "Z01",
+              "name": "Open office",
+              "area_m2": 50,
+              "equipment": [
+                {
+                  "type": "workstation",
+                  "quantity": 10,
+                  "watts_each": 150,
+                  "diversity": 0.65
+                }
+              ]
+            }
+          ],
+          "itemFields": [
+            {
+              "path": "room_ref",
+              "label": "Room reference",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "name",
+              "label": "Room name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "path": "area_m2",
+              "label": "Room area",
+              "type": "number",
+              "unit": "m²",
+              "required": true,
+              "min": 0.01,
+              "step": 0.01
+            },
+            {
+              "path": "equipment",
+              "label": "Equipment schedule",
+              "type": "repeater",
+              "itemLabel": "Equipment item",
+              "addLabel": "Add equipment",
+              "required": true,
+              "minItems": 1,
+              "maxItems": 100,
+              "itemFields": [
+                {
+                  "path": "type",
+                  "label": "Equipment type",
+                  "type": "text",
+                  "required": true
+                },
+                {
+                  "path": "quantity",
+                  "label": "Quantity",
+                  "type": "number",
+                  "valueType": "integer",
+                  "required": true,
+                  "min": 1,
+                  "max": 10000,
+                  "step": 1
+                },
+                {
+                  "path": "watts_each",
+                  "label": "Watts each override",
+                  "type": "number",
+                  "unit": "W",
+                  "min": 0,
+                  "step": 1
+                },
+                {
+                  "path": "diversity",
+                  "label": "Diversity",
+                  "type": "number",
+                  "min": 0,
+                  "max": 1,
+                  "step": 0.01
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

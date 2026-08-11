@@ -110,7 +110,7 @@
       { href: '/docs/index.html',            label: 'Docs home' },
       { href: '/docs/tools/index.html',      label: 'All MCP tools' },
       { href: '/docs/commands/index.html',    label: 'All Revit commands' },
-      { href: '/docs/calc-engines/index.html',label: 'Calculation engines' },
+      { href: '/calculators/',                 label: 'Engineering calculators' },
       { href: '/demos/index.html',            label: 'Demos' },
       { href: '/workflows/index.html',        label: 'Workflows' },
     ]

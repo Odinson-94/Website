@@ -1,0 +1,2446 @@
+{
+  "schema": "adelphos.sap-public-form-schema/1.0",
+  "canonicalTool": "calc_sap",
+  "source": {
+    "toolSpec": "20_sap_skill/sap_epc_agent_tools.py::SAP_CALCULATOR_TOOL",
+    "editableSchema": "20_sap_skill/sap_domain/editable_schema.py::SAP_EDITABLE_SCHEMA",
+    "validators": "20_sap_skill/sap_domain/validators.py::VALIDATOR_BY_SECTION"
+  },
+  "sectioned": true,
+  "sections": [
+    {
+      "key": "details",
+      "label": "Details"
+    },
+    {
+      "key": "propertyType",
+      "label": "Property Type"
+    },
+    {
+      "key": "dimensions",
+      "label": "Dimensions"
+    },
+    {
+      "key": "walls",
+      "label": "Walls"
+    },
+    {
+      "key": "roofs",
+      "label": "Roofs"
+    },
+    {
+      "key": "floors",
+      "label": "Floors"
+    },
+    {
+      "key": "openings",
+      "label": "Openings"
+    },
+    {
+      "key": "thermalBridging",
+      "label": "Thermal Bridging"
+    },
+    {
+      "key": "ventilation",
+      "label": "Ventilation"
+    },
+    {
+      "key": "lighting",
+      "label": "Lighting"
+    },
+    {
+      "key": "mainHeating1",
+      "label": "Main Heating 1"
+    },
+    {
+      "key": "mainHeating2",
+      "label": "Main Heating 2"
+    },
+    {
+      "key": "heatNetworks",
+      "label": "Heat Networks"
+    },
+    {
+      "key": "secondaryHeating",
+      "label": "Secondary Heating"
+    },
+    {
+      "key": "waterHeating",
+      "label": "Water Heating"
+    },
+    {
+      "key": "renewables",
+      "label": "Renewables"
+    },
+    {
+      "key": "climate",
+      "label": "Climate"
+    },
+    {
+      "key": "gains",
+      "label": "Gains"
+    },
+    {
+      "key": "spaceCooling",
+      "label": "Space Cooling"
+    },
+    {
+      "key": "rdSap",
+      "label": "RdSAP"
+    },
+    {
+      "key": "improvementScenarios",
+      "label": "Improvement Scenarios"
+    }
+  ],
+  "controlledSectionCount": 24,
+  "editableFieldCount": 160,
+  "fields": [
+    {
+      "path": "sections.details.assessmentRef",
+      "label": "Assessment Ref",
+      "type": "text",
+      "required": true,
+      "group": "details"
+    },
+    {
+      "path": "sections.details.dwellingOrientation",
+      "label": "Dwelling Orientation",
+      "type": "select",
+      "unit": "degrees",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": 0,
+          "label": "0"
+        },
+        {
+          "value": 45,
+          "label": "45"
+        },
+        {
+          "value": 90,
+          "label": "90"
+        },
+        {
+          "value": 135,
+          "label": "135"
+        },
+        {
+          "value": 180,
+          "label": "180"
+        },
+        {
+          "value": 225,
+          "label": "225"
+        },
+        {
+          "value": 270,
+          "label": "270"
+        },
+        {
+          "value": 315,
+          "label": "315"
+        }
+      ],
+      "valueType": "number",
+      "group": "details"
+    },
+    {
+      "path": "sections.details.sapVersion",
+      "label": "SAP Version",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "10.2",
+          "label": "10.2"
+        },
+        {
+          "value": "10.3",
+          "label": "10.3"
+        }
+      ],
+      "group": "details"
+    },
+    {
+      "path": "sections.details.calculationType",
+      "label": "Calculation Type",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "New",
+          "label": "New"
+        },
+        {
+          "value": "Existing",
+          "label": "Existing"
+        },
+        {
+          "value": "EPC",
+          "label": "EPC"
+        }
+      ],
+      "group": "details"
+    },
+    {
+      "path": "sections.details.tenure",
+      "label": "Tenure",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Owner-Occupied",
+          "label": "Owner-Occupied"
+        },
+        {
+          "value": "Rental (Private)",
+          "label": "Rental (Private)"
+        },
+        {
+          "value": "Rental (Social)",
+          "label": "Rental (Social)"
+        },
+        {
+          "value": "Unknown",
+          "label": "Unknown"
+        }
+      ],
+      "group": "details"
+    },
+    {
+      "path": "sections.details.transactionType",
+      "label": "Transaction Type",
+      "type": "text",
+      "group": "details"
+    },
+    {
+      "path": "sections.details.terrainType",
+      "label": "Terrain Type",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Urban",
+          "label": "Urban"
+        },
+        {
+          "value": "Suburban",
+          "label": "Suburban"
+        },
+        {
+          "value": "Rural",
+          "label": "Rural"
+        },
+        {
+          "value": "Exposed",
+          "label": "Exposed"
+        }
+      ],
+      "group": "details"
+    },
+    {
+      "path": "sections.details.simpleComplianceScotland",
+      "label": "Simple Compliance (Scotland)",
+      "type": "select",
+      "required": true,
+      "valueType": "boolean",
+      "placeholder": "Choose yes or no",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "details"
+    },
+    {
+      "path": "sections.details.assessor.id",
+      "label": "Assessor ID",
+      "type": "text",
+      "required": true,
+      "group": "details"
+    },
+    {
+      "path": "sections.details.assessor.name",
+      "label": "Assessor Name",
+      "type": "text",
+      "group": "details"
+    },
+    {
+      "path": "sections.details.dates.surveyed",
+      "label": "Surveyed Date",
+      "type": "date",
+      "required": true,
+      "group": "details"
+    },
+    {
+      "path": "sections.details.dates.calculated",
+      "label": "Calculated Date",
+      "type": "date",
+      "group": "details"
+    },
+    {
+      "path": "sections.details.notes",
+      "label": "Notes",
+      "type": "text",
+      "group": "details"
+    },
+    {
+      "path": "sections.propertyType.propertyType1",
+      "label": "Property Type 1",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "House",
+          "label": "House"
+        },
+        {
+          "value": "Bungalow",
+          "label": "Bungalow"
+        },
+        {
+          "value": "Flat",
+          "label": "Flat"
+        },
+        {
+          "value": "Maisonette",
+          "label": "Maisonette"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.propertyType2",
+      "label": "Property Type 2",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Detached",
+          "label": "Detached"
+        },
+        {
+          "value": "Semi-Detached",
+          "label": "Semi-Detached"
+        },
+        {
+          "value": "End-Terrace",
+          "label": "End-Terrace"
+        },
+        {
+          "value": "Mid-Terrace",
+          "label": "Mid-Terrace"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.flatPosition",
+      "label": "Flat Position",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Ground",
+          "label": "Ground"
+        },
+        {
+          "value": "Mid",
+          "label": "Mid"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "N/A",
+          "label": "N/A"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.storeyCounts.above",
+      "label": "Storeys Above",
+      "type": "number",
+      "unit": "count",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "valueType": "integer",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.storeyCounts.below",
+      "label": "Storeys Below",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "valueType": "integer",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.dateBuilt",
+      "label": "Date Built",
+      "type": "number",
+      "unit": "year",
+      "min": 1700,
+      "max": 2100,
+      "step": 1,
+      "valueType": "integer",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.shelteredSides",
+      "label": "Sheltered Sides",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "valueType": "integer",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.thermalMass.parameter",
+      "label": "Thermal Mass Parameter",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Low",
+          "label": "Low"
+        },
+        {
+          "value": "Medium",
+          "label": "Medium"
+        },
+        {
+          "value": "High",
+          "label": "High"
+        },
+        {
+          "value": "Custom",
+          "label": "Custom"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.thermalMass.value",
+      "label": "Thermal Mass Value",
+      "type": "number",
+      "unit": "kJ/m2K",
+      "min": 50,
+      "max": 1000,
+      "step": "any",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.electricityTariff",
+      "label": "Electricity Tariff",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Standard",
+          "label": "Standard"
+        },
+        {
+          "value": "Economy7",
+          "label": "Economy7"
+        },
+        {
+          "value": "Heat Pump TOU",
+          "label": "Heat Pump TOU"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.smartMeter",
+      "label": "Smart Meter",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.smartGasMeter",
+      "label": "Smart Gas Meter",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.storeysInBlock",
+      "label": "Storeys In Block",
+      "type": "number",
+      "unit": "count",
+      "min": 1,
+      "max": 60,
+      "step": 1,
+      "valueType": "integer",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.flatWhichFloor",
+      "label": "Flat — Which Floor",
+      "type": "text",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.propertyAgeBand",
+      "label": "Property Age Band",
+      "type": "text",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.sunlightShade",
+      "label": "Sunlight / Overshading",
+      "type": "text",
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.propertyType.lowestFloorHasUnheatedSpace",
+      "label": "Lowest Floor Has Unheated Space Below",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "propertyType"
+    },
+    {
+      "path": "sections.dimensions.storeys",
+      "label": "Storeys",
+      "type": "repeater",
+      "required": false,
+      "minItems": 0,
+      "maxItems": 30,
+      "itemLabel": "Storey",
+      "addLabel": "Add storey",
+      "hint": "Controlled SAP entries; public request limit 30.",
+      "itemFields": [
+        {
+          "path": "heatLossPerimeter",
+          "label": "Heat-Loss Perimeter",
+          "type": "number",
+          "unit": "m",
+          "min": 0,
+          "max": 200,
+          "step": "any"
+        },
+        {
+          "path": "heatedFloorArea",
+          "label": "Heated Floor Area",
+          "type": "number",
+          "unit": "m2",
+          "min": 1,
+          "max": 1000,
+          "step": "any"
+        },
+        {
+          "path": "averageStoreyHeight",
+          "label": "Avg Storey Height",
+          "type": "number",
+          "unit": "m",
+          "min": 1.5,
+          "max": 5.0,
+          "step": "any"
+        }
+      ],
+      "group": "dimensions"
+    },
+    {
+      "path": "sections.dimensions.heatedBasement",
+      "label": "Heated Basement",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "dimensions"
+    },
+    {
+      "path": "sections.dimensions.livingArea",
+      "label": "Living Area",
+      "type": "number",
+      "unit": "m2",
+      "min": 0,
+      "max": 500,
+      "step": "any",
+      "group": "dimensions"
+    },
+    {
+      "path": "sections.walls.external",
+      "label": "External",
+      "type": "repeater",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 50,
+      "itemLabel": "External",
+      "addLabel": "Add external",
+      "hint": "Controlled SAP entries; public request limit 50.",
+      "itemFields": [
+        {
+          "path": "type",
+          "label": "Type",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "construction",
+          "label": "Construction",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "uValue",
+          "label": "U-Value",
+          "type": "number",
+          "unit": "W/m2K",
+          "min": 0.05,
+          "max": 5.0,
+          "step": "any"
+        },
+        {
+          "path": "shelter",
+          "label": "Shelter",
+          "type": "select",
+          "placeholder": "Not provided",
+          "options": [
+            {
+              "value": "Exposed",
+              "label": "Exposed"
+            },
+            {
+              "value": "Average",
+              "label": "Average"
+            },
+            {
+              "value": "Sheltered",
+              "label": "Sheltered"
+            }
+          ]
+        },
+        {
+          "path": "kappa",
+          "label": "Kappa",
+          "type": "number",
+          "unit": "kJ/m2K",
+          "step": "any"
+        },
+        {
+          "path": "grossArea",
+          "label": "Gross Area",
+          "type": "number",
+          "unit": "m2",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "openingArea",
+          "label": "Opening Area",
+          "type": "number",
+          "unit": "m2",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "netArea",
+          "label": "Net Area",
+          "type": "number",
+          "unit": "m2",
+          "min": 0,
+          "step": "any"
+        }
+      ],
+      "group": "walls"
+    },
+    {
+      "path": "sections.roofs.external",
+      "label": "External",
+      "type": "repeater",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 50,
+      "itemLabel": "External",
+      "addLabel": "Add external",
+      "hint": "Controlled SAP entries; public request limit 50.",
+      "itemFields": [
+        {
+          "path": "type",
+          "label": "Type",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "construction",
+          "label": "Construction",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "uValue",
+          "label": "U-Value",
+          "type": "number",
+          "unit": "W/m2K",
+          "min": 0.05,
+          "max": 5.0,
+          "step": "any"
+        },
+        {
+          "path": "area",
+          "label": "Area",
+          "type": "number",
+          "unit": "m2",
+          "min": 0,
+          "step": "any"
+        }
+      ],
+      "group": "roofs"
+    },
+    {
+      "path": "sections.floors.heatloss",
+      "label": "Heatloss",
+      "type": "repeater",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 50,
+      "itemLabel": "Heatlo",
+      "addLabel": "Add heatlo",
+      "hint": "Controlled SAP entries; public request limit 50.",
+      "itemFields": [
+        {
+          "path": "type",
+          "label": "Type",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "construction",
+          "label": "Construction",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "uValue",
+          "label": "U-Value",
+          "type": "number",
+          "unit": "W/m2K",
+          "min": 0.05,
+          "max": 5.0,
+          "step": "any"
+        },
+        {
+          "path": "area",
+          "label": "Area",
+          "type": "number",
+          "unit": "m2",
+          "min": 0,
+          "step": "any"
+        }
+      ],
+      "group": "floors"
+    },
+    {
+      "path": "sections.openings.openingTypes",
+      "label": "Opening Types",
+      "type": "repeater",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 50,
+      "itemLabel": "Opening Type",
+      "addLabel": "Add opening type",
+      "hint": "Controlled SAP entries; public request limit 50.",
+      "itemFields": [
+        {
+          "path": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "glazing",
+          "label": "Glazing",
+          "type": "text"
+        },
+        {
+          "path": "frame",
+          "label": "Frame",
+          "type": "text"
+        },
+        {
+          "path": "uValue",
+          "label": "U-Value",
+          "type": "number",
+          "unit": "W/m2K",
+          "min": 0.5,
+          "max": 6.0,
+          "step": "any"
+        },
+        {
+          "path": "gValue",
+          "label": "g-Value",
+          "type": "number",
+          "min": 0.0,
+          "max": 1.0,
+          "step": "any"
+        },
+        {
+          "path": "frameFactor",
+          "label": "Frame Factor",
+          "type": "number",
+          "min": 0.0,
+          "max": 1.0,
+          "step": "any"
+        }
+      ],
+      "group": "openings"
+    },
+    {
+      "path": "sections.openings.openings",
+      "label": "Openings",
+      "type": "repeater",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 200,
+      "itemLabel": "Opening",
+      "addLabel": "Add opening",
+      "hint": "Controlled SAP entries; public request limit 200.",
+      "itemFields": [
+        {
+          "path": "typeRef",
+          "label": "Type Ref",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "location",
+          "label": "Location",
+          "type": "text"
+        },
+        {
+          "path": "orientation",
+          "label": "Orientation",
+          "type": "select",
+          "required": true,
+          "unit": "degrees",
+          "placeholder": "Choose an option",
+          "options": [
+            {
+              "value": "N",
+              "label": "N"
+            },
+            {
+              "value": "NE",
+              "label": "NE"
+            },
+            {
+              "value": "E",
+              "label": "E"
+            },
+            {
+              "value": "SE",
+              "label": "SE"
+            },
+            {
+              "value": "S",
+              "label": "S"
+            },
+            {
+              "value": "SW",
+              "label": "SW"
+            },
+            {
+              "value": "W",
+              "label": "W"
+            },
+            {
+              "value": "NW",
+              "label": "NW"
+            }
+          ]
+        },
+        {
+          "path": "area",
+          "label": "Area",
+          "type": "number",
+          "unit": "m2",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "solarAccess",
+          "label": "Solar Access",
+          "type": "select",
+          "required": true,
+          "placeholder": "Choose an option",
+          "options": [
+            {
+              "value": "heavy",
+              "label": "heavy"
+            },
+            {
+              "value": "more_than_average",
+              "label": "more_than_average"
+            },
+            {
+              "value": "average",
+              "label": "average"
+            },
+            {
+              "value": "very_little",
+              "label": "very_little"
+            }
+          ]
+        }
+      ],
+      "group": "openings"
+    },
+    {
+      "path": "sections.thermalBridging.mode",
+      "label": "Mode",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "yvalue",
+          "label": "yvalue"
+        },
+        {
+          "value": "junctions",
+          "label": "junctions"
+        }
+      ],
+      "group": "thermalBridging"
+    },
+    {
+      "path": "sections.thermalBridging.yValue",
+      "label": "Y-Value",
+      "type": "number",
+      "unit": "W/m2K",
+      "min": 0.0,
+      "max": 0.5,
+      "step": "any",
+      "group": "thermalBridging"
+    },
+    {
+      "path": "sections.thermalBridging.totalWmK",
+      "label": "Total W/mK",
+      "type": "number",
+      "unit": "W/mK",
+      "min": 0,
+      "step": "any",
+      "group": "thermalBridging"
+    },
+    {
+      "path": "sections.thermalBridging.junctions",
+      "label": "Junctions",
+      "type": "repeater",
+      "required": false,
+      "minItems": 0,
+      "maxItems": 200,
+      "itemLabel": "Junction",
+      "addLabel": "Add junction",
+      "hint": "Controlled SAP entries; public request limit 200.",
+      "itemFields": [
+        {
+          "path": "type",
+          "label": "Junction Type",
+          "type": "text"
+        },
+        {
+          "path": "length",
+          "label": "Length",
+          "type": "number",
+          "unit": "m",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "psi",
+          "label": "Psi",
+          "type": "number",
+          "unit": "W/mK",
+          "step": "any"
+        },
+        {
+          "path": "typeSource",
+          "label": "Type Source",
+          "type": "text"
+        },
+        {
+          "path": "imported",
+          "label": "Imported",
+          "type": "select",
+          "valueType": "boolean",
+          "placeholder": "Not provided",
+          "options": [
+            {
+              "value": false,
+              "label": "No"
+            },
+            {
+              "value": true,
+              "label": "Yes"
+            }
+          ]
+        }
+      ],
+      "group": "thermalBridging"
+    },
+    {
+      "path": "sections.ventilation.strategy",
+      "label": "Strategy",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "Natural",
+          "label": "Natural"
+        },
+        {
+          "value": "MEV",
+          "label": "MEV"
+        },
+        {
+          "value": "MVHR",
+          "label": "MVHR"
+        },
+        {
+          "value": "PSV",
+          "label": "PSV"
+        }
+      ],
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.airPermeability",
+      "label": "Air Permeability",
+      "type": "number",
+      "unit": "m3/h.m2",
+      "min": 0.0,
+      "max": 20.0,
+      "step": "any",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.pressureTest",
+      "label": "Pressure Test",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.draughtProofingPercent",
+      "label": "Window Draught Proofing",
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": "any",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.mvhrEfficiency",
+      "label": "MVHR Efficiency",
+      "type": "number",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": "any",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.sfp",
+      "label": "Specific Fan Power",
+      "type": "number",
+      "unit": "W/(l/s)",
+      "min": 0,
+      "max": 5,
+      "step": "any",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.chimneys",
+      "label": "Chimneys",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "step": 1,
+      "valueType": "integer",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.flues",
+      "label": "Flues",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "step": 1,
+      "valueType": "integer",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.fans",
+      "label": "Fans",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "step": 1,
+      "valueType": "integer",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.vents",
+      "label": "Vents",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "step": 1,
+      "valueType": "integer",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.shelteredSides",
+      "label": "Sheltered Sides",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "valueType": "integer",
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.ventilation.ductType",
+      "label": "Duct Type",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Rigid",
+          "label": "Rigid"
+        },
+        {
+          "value": "Flexible",
+          "label": "Flexible"
+        },
+        {
+          "value": "N/A",
+          "label": "N/A"
+        }
+      ],
+      "group": "ventilation"
+    },
+    {
+      "path": "sections.lighting.noFixedLighting",
+      "label": "No Fixed Lighting",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "lighting"
+    },
+    {
+      "path": "sections.lighting.fittings",
+      "label": "Fittings",
+      "type": "repeater",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 200,
+      "itemLabel": "Fitting",
+      "addLabel": "Add fitting",
+      "hint": "Controlled SAP entries; public request limit 200.",
+      "itemFields": [
+        {
+          "path": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "path": "power",
+          "label": "Power",
+          "type": "number",
+          "unit": "W",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "efficacy",
+          "label": "Efficacy",
+          "type": "number",
+          "unit": "lm/W",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "capacity",
+          "label": "Capacity",
+          "type": "number",
+          "unit": "lm",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "count",
+          "label": "Count",
+          "type": "number",
+          "unit": "count",
+          "min": 0,
+          "step": 1,
+          "valueType": "integer"
+        }
+      ],
+      "group": "lighting"
+    },
+    {
+      "path": "sections.mainHeating1.source",
+      "label": "Source",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "Boiler",
+          "label": "Boiler"
+        },
+        {
+          "value": "HeatPump",
+          "label": "HeatPump"
+        },
+        {
+          "value": "CommunityHeat",
+          "label": "CommunityHeat"
+        },
+        {
+          "value": "Storage",
+          "label": "Storage"
+        }
+      ],
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.fraction",
+      "label": "Fraction",
+      "type": "number",
+      "min": 0.0,
+      "max": 1.0,
+      "step": "any",
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.fuelType",
+      "label": "Fuel Type",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "Mains Gas",
+          "label": "Mains Gas"
+        },
+        {
+          "value": "Electricity",
+          "label": "Electricity"
+        },
+        {
+          "value": "LPG",
+          "label": "LPG"
+        },
+        {
+          "value": "Oil",
+          "label": "Oil"
+        },
+        {
+          "value": "Biomass",
+          "label": "Biomass"
+        }
+      ],
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.flueType",
+      "label": "Flue Type",
+      "type": "text",
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.pumpPower",
+      "label": "Pump Power",
+      "type": "number",
+      "unit": "W",
+      "min": 0,
+      "step": "any",
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.boilerInterlock",
+      "label": "Boiler Interlock",
+      "type": "select",
+      "required": true,
+      "valueType": "boolean",
+      "placeholder": "Choose yes or no",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.emitter",
+      "label": "Emitter",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Radiators",
+          "label": "Radiators"
+        },
+        {
+          "value": "Underfloor",
+          "label": "Underfloor"
+        },
+        {
+          "value": "Mixed",
+          "label": "Mixed"
+        }
+      ],
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.flowTemp",
+      "label": "Flow Temp",
+      "type": "number",
+      "unit": "degC",
+      "min": 20,
+      "max": 90,
+      "step": "any",
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.efficiency.winter",
+      "label": "Winter Efficiency",
+      "type": "number",
+      "min": 0,
+      "max": 6,
+      "step": "any",
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.efficiency.summer",
+      "label": "Summer Efficiency",
+      "type": "number",
+      "min": 0,
+      "max": 6,
+      "step": "any",
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating1.pcdfIndex",
+      "label": "PCDF Index",
+      "type": "text",
+      "group": "mainHeating1"
+    },
+    {
+      "path": "sections.mainHeating2.source",
+      "label": "Source",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Boiler",
+          "label": "Boiler"
+        },
+        {
+          "value": "HeatPump",
+          "label": "HeatPump"
+        },
+        {
+          "value": "CommunityHeat",
+          "label": "CommunityHeat"
+        },
+        {
+          "value": "Storage",
+          "label": "Storage"
+        }
+      ],
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.fraction",
+      "label": "Fraction",
+      "type": "number",
+      "min": 0.0,
+      "max": 1.0,
+      "step": "any",
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.fuelType",
+      "label": "Fuel Type",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Mains Gas",
+          "label": "Mains Gas"
+        },
+        {
+          "value": "Electricity",
+          "label": "Electricity"
+        },
+        {
+          "value": "LPG",
+          "label": "LPG"
+        },
+        {
+          "value": "Oil",
+          "label": "Oil"
+        },
+        {
+          "value": "Biomass",
+          "label": "Biomass"
+        },
+        {
+          "value": "N/A",
+          "label": "N/A"
+        }
+      ],
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.efficiency.winter",
+      "label": "Winter Efficiency",
+      "type": "number",
+      "min": 0,
+      "max": 6,
+      "step": "any",
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.pcdfIndex",
+      "label": "PCDF Index",
+      "type": "text",
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.efficiency.summer",
+      "label": "Summer",
+      "type": "number",
+      "unit": "fraction",
+      "min": 0,
+      "max": 6,
+      "step": "any",
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.flueType",
+      "label": "Flue Type",
+      "type": "text",
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.pumpPower",
+      "label": "Pump Power",
+      "type": "number",
+      "min": 0,
+      "step": "any",
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.emitter",
+      "label": "Emitter",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Radiators",
+          "label": "Radiators"
+        },
+        {
+          "value": "Underfloor",
+          "label": "Underfloor"
+        },
+        {
+          "value": "Mixed",
+          "label": "Mixed"
+        },
+        {
+          "value": "None",
+          "label": "None"
+        }
+      ],
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.mainHeating2.flowTemp",
+      "label": "Flow Temp",
+      "type": "number",
+      "min": 20,
+      "max": 90,
+      "step": "any",
+      "group": "mainHeating2"
+    },
+    {
+      "path": "sections.heatNetworks.networkType",
+      "label": "Network Type",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "DistrictHeating",
+          "label": "DistrictHeating"
+        },
+        {
+          "value": "BlockHeating",
+          "label": "BlockHeating"
+        }
+      ],
+      "group": "heatNetworks"
+    },
+    {
+      "path": "sections.heatNetworks.spacePcdfIndex",
+      "label": "Space PCDF Index",
+      "type": "text",
+      "group": "heatNetworks"
+    },
+    {
+      "path": "sections.heatNetworks.distributionType",
+      "label": "Distribution Type",
+      "type": "text",
+      "group": "heatNetworks"
+    },
+    {
+      "path": "sections.heatNetworks.existingNetwork",
+      "label": "Existing Network",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "heatNetworks"
+    },
+    {
+      "path": "sections.secondaryHeating.source",
+      "label": "Source",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Gas Fire",
+          "label": "Gas Fire"
+        },
+        {
+          "value": "Electric",
+          "label": "Electric"
+        },
+        {
+          "value": "Wood",
+          "label": "Wood"
+        }
+      ],
+      "group": "secondaryHeating"
+    },
+    {
+      "path": "sections.secondaryHeating.sapCode",
+      "label": "SAP Code",
+      "type": "text",
+      "group": "secondaryHeating"
+    },
+    {
+      "path": "sections.secondaryHeating.fuelType",
+      "label": "Fuel Type",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Mains Gas",
+          "label": "Mains Gas"
+        },
+        {
+          "value": "Electricity",
+          "label": "Electricity"
+        },
+        {
+          "value": "Wood",
+          "label": "Wood"
+        },
+        {
+          "value": "N/A",
+          "label": "N/A"
+        }
+      ],
+      "group": "secondaryHeating"
+    },
+    {
+      "path": "sections.secondaryHeating.efficiency",
+      "label": "Efficiency",
+      "type": "number",
+      "min": 0,
+      "max": 1.5,
+      "step": "any",
+      "group": "secondaryHeating"
+    },
+    {
+      "path": "sections.waterHeating.source",
+      "label": "Source",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "FromMainHeating",
+          "label": "FromMainHeating"
+        },
+        {
+          "value": "FromMainHeating2",
+          "label": "FromMainHeating2"
+        },
+        {
+          "value": "FromCommunityHeating",
+          "label": "FromCommunityHeating"
+        },
+        {
+          "value": "Combi",
+          "label": "Combi"
+        },
+        {
+          "value": "Cylinder",
+          "label": "Cylinder"
+        },
+        {
+          "value": "Instantaneous",
+          "label": "Instantaneous"
+        }
+      ],
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.recovery",
+      "label": "WWHRS Present",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.solar",
+      "label": "Solar Thermal",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.lowWaterUse",
+      "label": "Low Water Use",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.cylinder.volume",
+      "label": "Cylinder Volume",
+      "type": "number",
+      "unit": "L",
+      "min": 0,
+      "step": "any",
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.cylinder.insulation",
+      "label": "Cylinder Insulation",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Jacket",
+          "label": "Jacket"
+        },
+        {
+          "value": "Factory",
+          "label": "Factory"
+        },
+        {
+          "value": "HighPerf",
+          "label": "HighPerf"
+        },
+        {
+          "value": "MeasuredLoss",
+          "label": "MeasuredLoss"
+        }
+      ],
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.cylinder.loss",
+      "label": "Cylinder Loss",
+      "type": "number",
+      "unit": "kWh/day",
+      "min": 0,
+      "step": "any",
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.temperatureFactorSystemType",
+      "label": "Cylinder Temperature Factor System",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "cylinder_with_thermostat_separate_dhw",
+          "label": "cylinder_with_thermostat_separate_dhw"
+        },
+        {
+          "value": "cylinder_with_thermostat_combi",
+          "label": "cylinder_with_thermostat_combi"
+        },
+        {
+          "value": "cylinder_no_thermostat",
+          "label": "cylinder_no_thermostat"
+        },
+        {
+          "value": "thermal_store",
+          "label": "thermal_store"
+        },
+        {
+          "value": "cpsu_combined_primary_storage_unit",
+          "label": "cpsu_combined_primary_storage_unit"
+        }
+      ],
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.baths",
+      "label": "Baths Count",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "step": 1,
+      "valueType": "integer",
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.waterHeatingType",
+      "label": "Water Heating Type",
+      "type": "text",
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.waterHeating.cylinder.lossSource",
+      "label": "Loss Source",
+      "type": "text",
+      "group": "waterHeating"
+    },
+    {
+      "path": "sections.renewables.pv.units",
+      "label": "Units",
+      "type": "repeater",
+      "required": false,
+      "minItems": 0,
+      "maxItems": 50,
+      "itemLabel": "Unit",
+      "addLabel": "Add unit",
+      "hint": "Controlled SAP entries; public request limit 50.",
+      "itemFields": [
+        {
+          "path": "capacity",
+          "label": "PV Capacity",
+          "type": "number",
+          "unit": "kWp",
+          "min": 0,
+          "max": 50,
+          "step": "any"
+        },
+        {
+          "path": "tilt",
+          "label": "PV Tilt",
+          "type": "number",
+          "unit": "degrees",
+          "min": 0,
+          "max": 90,
+          "step": "any"
+        },
+        {
+          "path": "orientation",
+          "label": "PV Orientation",
+          "type": "select",
+          "placeholder": "Not provided",
+          "options": [
+            {
+              "value": "South",
+              "label": "South"
+            },
+            {
+              "value": "SouthEast",
+              "label": "SouthEast"
+            },
+            {
+              "value": "SouthWest",
+              "label": "SouthWest"
+            },
+            {
+              "value": "East",
+              "label": "East"
+            },
+            {
+              "value": "West",
+              "label": "West"
+            },
+            {
+              "value": "NorthEast",
+              "label": "NorthEast"
+            },
+            {
+              "value": "NorthWest",
+              "label": "NorthWest"
+            },
+            {
+              "value": "North",
+              "label": "North"
+            }
+          ]
+        },
+        {
+          "path": "overshadingFactor",
+          "label": "PV Overshading Factor",
+          "type": "number",
+          "min": 0,
+          "max": 1,
+          "step": "any"
+        },
+        {
+          "path": "sharedFraction",
+          "label": "PV Shared Fraction",
+          "type": "number",
+          "min": 0,
+          "max": 1,
+          "step": "any"
+        },
+        {
+          "path": "azimuth",
+          "label": "PV Azimuth",
+          "type": "number",
+          "unit": "degrees",
+          "min": 0,
+          "max": 360,
+          "step": "any"
+        },
+        {
+          "path": "shading",
+          "label": "PV Shading",
+          "type": "select",
+          "placeholder": "Not provided",
+          "options": [
+            {
+              "value": "None",
+              "label": "None"
+            },
+            {
+              "value": "Modest",
+              "label": "Modest"
+            },
+            {
+              "value": "Significant",
+              "label": "Significant"
+            },
+            {
+              "value": "Heavy",
+              "label": "Heavy"
+            }
+          ]
+        }
+      ],
+      "group": "renewables"
+    },
+    {
+      "path": "sections.renewables.pv.battery",
+      "label": "Battery Capacity",
+      "type": "number",
+      "unit": "kWh",
+      "min": 0,
+      "step": "any",
+      "group": "renewables"
+    },
+    {
+      "path": "sections.renewables.pv.exportCapableMeter",
+      "label": "Export-Capable Meter",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "renewables"
+    },
+    {
+      "path": "sections.renewables.pv.meterConnection",
+      "label": "Meter Connection",
+      "type": "text",
+      "group": "renewables"
+    },
+    {
+      "path": "sections.renewables.pv.diverter",
+      "label": "Diverter",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "renewables"
+    },
+    {
+      "path": "sections.renewables.pvUnits",
+      "label": "Pv Units",
+      "type": "repeater",
+      "required": false,
+      "minItems": 0,
+      "maxItems": 50,
+      "itemLabel": "Pv Unit",
+      "addLabel": "Add pv unit",
+      "hint": "Controlled SAP entries; public request limit 50.",
+      "itemFields": [
+        {
+          "path": "kWp",
+          "label": "K Wp",
+          "type": "number",
+          "min": 0,
+          "step": "any"
+        },
+        {
+          "path": "overshadeFactor",
+          "label": "Overshade Factor",
+          "type": "number",
+          "min": 0,
+          "max": 1,
+          "step": "any"
+        },
+        {
+          "path": "orientation",
+          "label": "Orientation",
+          "type": "select",
+          "placeholder": "Not provided",
+          "options": [
+            {
+              "value": "North",
+              "label": "North"
+            },
+            {
+              "value": "NorthEast",
+              "label": "NorthEast"
+            },
+            {
+              "value": "East",
+              "label": "East"
+            },
+            {
+              "value": "SouthEast",
+              "label": "SouthEast"
+            },
+            {
+              "value": "South",
+              "label": "South"
+            },
+            {
+              "value": "SouthWest",
+              "label": "SouthWest"
+            },
+            {
+              "value": "West",
+              "label": "West"
+            },
+            {
+              "value": "NorthWest",
+              "label": "NorthWest"
+            }
+          ]
+        },
+        {
+          "path": "tilt",
+          "label": "Tilt",
+          "type": "number",
+          "min": 0,
+          "max": 90,
+          "step": "any"
+        },
+        {
+          "path": "sharedFraction",
+          "label": "Shared Fraction",
+          "type": "number",
+          "min": 0,
+          "max": 1,
+          "step": "any"
+        }
+      ],
+      "group": "renewables"
+    },
+    {
+      "path": "sections.climate.region",
+      "label": "Region",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "Thames",
+          "label": "Thames"
+        },
+        {
+          "value": "South East England",
+          "label": "South East England"
+        },
+        {
+          "value": "Southern England",
+          "label": "Southern England"
+        },
+        {
+          "value": "South West England",
+          "label": "South West England"
+        },
+        {
+          "value": "Severn Wales",
+          "label": "Severn Wales"
+        },
+        {
+          "value": "Midlands",
+          "label": "Midlands"
+        },
+        {
+          "value": "West Pennines",
+          "label": "West Pennines"
+        },
+        {
+          "value": "North West England",
+          "label": "North West England"
+        },
+        {
+          "value": "Borders",
+          "label": "Borders"
+        },
+        {
+          "value": "North East England",
+          "label": "North East England"
+        },
+        {
+          "value": "East Pennines",
+          "label": "East Pennines"
+        },
+        {
+          "value": "East Anglia",
+          "label": "East Anglia"
+        },
+        {
+          "value": "Wales",
+          "label": "Wales"
+        },
+        {
+          "value": "West Scotland",
+          "label": "West Scotland"
+        },
+        {
+          "value": "East Scotland",
+          "label": "East Scotland"
+        },
+        {
+          "value": "North East Scotland",
+          "label": "North East Scotland"
+        },
+        {
+          "value": "Highland",
+          "label": "Highland"
+        },
+        {
+          "value": "Western Isles",
+          "label": "Western Isles"
+        },
+        {
+          "value": "Orkney",
+          "label": "Orkney"
+        },
+        {
+          "value": "Shetland",
+          "label": "Shetland"
+        },
+        {
+          "value": "Northern Ireland",
+          "label": "Northern Ireland"
+        }
+      ],
+      "group": "climate"
+    },
+    {
+      "path": "sections.climate.weatherDataSet",
+      "label": "Weather Data Set",
+      "type": "select",
+      "required": true,
+      "placeholder": "Choose an option",
+      "options": [
+        {
+          "value": "SAP 10.3 Appendix U",
+          "label": "SAP 10.3 Appendix U"
+        }
+      ],
+      "group": "climate"
+    },
+    {
+      "path": "sections.climate.altitude",
+      "label": "Altitude",
+      "type": "number",
+      "unit": "m",
+      "min": 0,
+      "max": 4000,
+      "step": "any",
+      "group": "climate"
+    },
+    {
+      "path": "sections.climate.exposure",
+      "label": "Exposure",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Sheltered",
+          "label": "Sheltered"
+        },
+        {
+          "value": "Normal",
+          "label": "Normal"
+        },
+        {
+          "value": "Exposed",
+          "label": "Exposed"
+        }
+      ],
+      "group": "climate"
+    },
+    {
+      "path": "sections.gains.occupancy",
+      "label": "Occupancy",
+      "type": "number",
+      "unit": "people",
+      "min": 0,
+      "max": 20,
+      "step": "any",
+      "group": "gains"
+    },
+    {
+      "path": "sections.gains.metabolic",
+      "label": "Metabolic",
+      "type": "number",
+      "unit": "W/person",
+      "min": 0,
+      "step": "any",
+      "group": "gains"
+    },
+    {
+      "path": "sections.gains.appliances",
+      "label": "Appliances Assumption",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "SAP default",
+          "label": "SAP default"
+        },
+        {
+          "value": "Custom",
+          "label": "Custom"
+        }
+      ],
+      "group": "gains"
+    },
+    {
+      "path": "sections.gains.cookingFuel",
+      "label": "Cooking Fuel",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "Electricity",
+          "label": "Electricity"
+        },
+        {
+          "value": "Mains Gas",
+          "label": "Mains Gas"
+        },
+        {
+          "value": "LPG",
+          "label": "LPG"
+        }
+      ],
+      "group": "gains"
+    },
+    {
+      "path": "sections.gains.internalGainsOverride",
+      "label": "Internal Gains Override",
+      "type": "number",
+      "unit": "W",
+      "min": 0,
+      "step": "any",
+      "group": "gains"
+    },
+    {
+      "path": "sections.spaceCooling.present",
+      "label": "Cooling Present",
+      "type": "select",
+      "valueType": "boolean",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": false,
+          "label": "No"
+        },
+        {
+          "value": true,
+          "label": "Yes"
+        }
+      ],
+      "group": "spaceCooling"
+    },
+    {
+      "path": "sections.spaceCooling.cooledFloorArea",
+      "label": "Cooled Floor Area",
+      "type": "number",
+      "unit": "m2",
+      "min": 0,
+      "step": "any",
+      "group": "spaceCooling"
+    },
+    {
+      "path": "sections.spaceCooling.systemType",
+      "label": "System Type",
+      "type": "select",
+      "placeholder": "Not provided",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Split AC",
+          "label": "Split AC"
+        },
+        {
+          "value": "VRF",
+          "label": "VRF"
+        },
+        {
+          "value": "Chilled Water",
+          "label": "Chilled Water"
+        }
+      ],
+      "group": "spaceCooling"
+    },
+    {
+      "path": "sections.spaceCooling.eer",
+      "label": "EER / SEER",
+      "type": "number",
+      "min": 0,
+      "max": 15,
+      "step": "any",
+      "group": "spaceCooling"
+    },
+    {
+      "path": "sections.rdSap.ageBand",
+      "label": "Age Band",
+      "type": "text",
+      "group": "rdSap"
+    },
+    {
+      "path": "sections.rdSap.builtForm",
+      "label": "Built Form",
+      "type": "text",
+      "group": "rdSap"
+    },
+    {
+      "path": "sections.rdSap.extensions",
+      "label": "Extensions",
+      "type": "number",
+      "unit": "count",
+      "min": 0,
+      "step": 1,
+      "valueType": "integer",
+      "group": "rdSap"
+    },
+    {
+      "path": "sections.improvementScenarios",
+      "label": "Improvement scenarios",
+      "type": "empty-array",
+      "required": true,
+      "placeholder": "Confirm the scenario scope",
+      "options": [
+        {
+          "value": "confirmed_empty",
+          "label": "No improvement scenarios included"
+        }
+      ],
+      "hint": "The canonical worksheet requires this section. This focused public calculation accepts an explicit empty scenario list only.",
+      "group": "improvementScenarios"
+    }
+  ],
+  "browserDefaults": false,
+  "fixtureEmbedded": false,
+  "arrayLimits": {
+    "dimensions.storeys": 30,
+    "walls.external": 50,
+    "roofs.external": 50,
+    "floors.heatloss": 50,
+    "openings.openingTypes": 50,
+    "openings.openings": 200,
+    "thermalBridging.junctions": 200,
+    "lighting.fittings": 200,
+    "renewables.pv.units": 50,
+    "renewables.pvUnits": 50
+  }
+}

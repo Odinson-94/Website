@@ -69,4 +69,3 @@ User-agent: Meta-ExternalAgent
 Allow: /
 
 Sitemap: https://adelphos.ai/sitemap.xml
-Sitemap: https://adelphos.ai/llms.txt

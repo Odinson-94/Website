@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title">
+  <title id="title">Adelphos Calculators</title>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a7a9c"/><stop offset="1" stop-color="#08405c"/></linearGradient></defs>
+  <rect width="1024" height="1024" rx="220" fill="url(#bg)"/>
+  <rect x="226" y="150" width="572" height="724" rx="70" fill="#f7fafb"/>
+  <rect x="292" y="220" width="440" height="132" rx="28" fill="#dceaf0"/>
+  <path d="M342 286h340" stroke="#156082" stroke-width="34" stroke-linecap="round"/>
+  <g fill="#156082"><rect x="292" y="420" width="116" height="116" rx="24"/><rect x="454" y="420" width="116" height="116" rx="24"/><rect x="616" y="420" width="116" height="116" rx="24"/><rect x="292" y="582" width="116" height="116" rx="24"/><rect x="454" y="582" width="116" height="116" rx="24"/><rect x="616" y="582" width="116" height="278" rx="24"/><rect x="292" y="744" width="116" height="116" rx="24"/><rect x="454" y="744" width="116" height="116" rx="24"/></g>
+  <g stroke="#f7fafb" stroke-width="22" stroke-linecap="round"><path d="M326 478h48M350 454v48"/><path d="M488 478h48"/><path d="M650 454l48 48M698 454l-48 48"/><path d="M326 640h48"/><path d="M488 616l48 48M536 616l-48 48"/><path d="M326 802h48"/><path d="M650 664h48M650 732h48"/></g>
+</svg>
