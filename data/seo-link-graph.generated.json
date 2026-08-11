@@ -1,0 +1,117 @@
+{
+  "captured_at": "2026-08-09T09:13:50.495Z",
+  "source": "Live adelphos.ai sitemap crawl",
+  "source_scope": "All URLs listed in sitemap.xml; HTML anchor hrefs only. Client-rendered links and URLs absent from the sitemap are not included.",
+  "sitemap_url": "https://adelphos.ai/sitemap.xml",
+  "sitemap_urls": 1137,
+  "crawled_pages": 1137,
+  "failed_pages": 0,
+  "non_html_responses": 0,
+  "internal_link_occurrences": 2161,
+  "unique_internal_edges": 2067,
+  "unique_internal_targets": 226,
+  "orphaned_sitemap_pages": 923,
+  "top_internal_targets": [
+    {
+      "url": "https://adelphos.ai/docs/commands/index.html",
+      "links": 525,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/docs/tools/index.html",
+      "links": 395,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/",
+      "links": 161,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/demos/index.html",
+      "links": 76,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/contact",
+      "links": 40,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/resources/epc",
+      "links": 32,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/calculators",
+      "links": 23,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "links": 20,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/documents",
+      "links": 19,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/calculators/sap-calculator",
+      "links": 18,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/agentic-services/finances/index.html",
+      "links": 17,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/apps/epc",
+      "links": 16,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/calculators/epc-improvement-calculator",
+      "links": 16,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/resources/epc/how-to-improve-epc",
+      "links": 16,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/apps/index.html",
+      "links": 15,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/resources",
+      "links": 15,
+      "listed_in_sitemap": false
+    },
+    {
+      "url": "https://adelphos.ai/resources/epc/find-energy-performance-certificate",
+      "links": 15,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/ai-developers/united-kingdom",
+      "links": 14,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/glossary/index.html",
+      "links": 14,
+      "listed_in_sitemap": true
+    },
+    {
+      "url": "https://adelphos.ai/roadmap",
+      "links": 13,
+      "listed_in_sitemap": true
+    }
+  ],
+  "failures": []
+}

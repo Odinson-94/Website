@@ -1,0 +1,4562 @@
+{
+  "generated_at": "2026-08-08T11:15:47.793Z",
+  "source": "Repository HTML audit. Search performance is joined at request time from Google Search Console.",
+  "counts": {
+    "pages": 121,
+    "critical": 0,
+    "healthy": 115,
+    "average_score": 94.3
+  },
+  "pages": [
+    {
+      "source_path": "tools/project-programme/index.html",
+      "target_url": "https://adelphos.ai/tools/project-programme",
+      "page_title": "Project Programme",
+      "tag": "tools",
+      "keywords": [
+        "construction phase plan template word",
+        "construction programme template",
+        "construction project programme",
+        "how to write a project programme",
+        "Project Programme"
+      ],
+      "primary_keyword": "construction phase plan template word",
+      "title": "Project Programme | Adelphos",
+      "title_length": 28,
+      "description": "Build a clear project programme from scope, activities, dependencies, milestones, resources and project constraints, then review the construction.",
+      "description_length": 146,
+      "canonical": "https://adelphos.ai/tools/project-programme",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Project Programme.",
+      "h1_count": 1,
+      "word_count": 687,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 72,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 28 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "title-intent",
+          "message": "The primary tracked intent is not clear in the title.",
+          "action": "Work “construction phase plan template word” naturally into the title."
+        },
+        {
+          "severity": "warning",
+          "code": "h1-intent",
+          "message": "The H1 does not clearly match the primary tracked intent.",
+          "action": "Align the H1 with “construction phase plan template word”."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/construction-contracts/index.html",
+      "target_url": "https://adelphos.ai/documents/construction-contracts",
+      "page_title": "Construction Contracts",
+      "tag": "documents",
+      "keywords": [
+        "construction contract review",
+        "Construction Contracts",
+        "review construction contracts",
+        "write a construction contract"
+      ],
+      "primary_keyword": "construction contract review",
+      "title": "Construction Contracts | Adelphos",
+      "title_length": 33,
+      "description": "Understand, write and review construction contracts with Adelphos using the project scope, chosen form, commercial particulars, risk allocation and.",
+      "description_length": 148,
+      "canonical": "https://adelphos.ai/documents/construction-contracts",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Construction Contracts.",
+      "h1_count": 1,
+      "word_count": 634,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 79,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-intent",
+          "message": "The primary tracked intent is not clear in the title.",
+          "action": "Work “construction contract review” naturally into the title."
+        },
+        {
+          "severity": "warning",
+          "code": "h1-intent",
+          "message": "The H1 does not clearly match the primary tracked intent.",
+          "action": "Align the H1 with “construction contract review”."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/employment-references-letter/index.html",
+      "target_url": "https://adelphos.ai/documents/employment-references-letter",
+      "page_title": "Employment Reference Letters",
+      "tag": "documents",
+      "keywords": [
+        "employment reference letter template",
+        "Employment Reference Letters",
+        "employment references example",
+        "employment references letter",
+        "employment references template",
+        "how to write an employment reference"
+      ],
+      "primary_keyword": "employment reference letter template",
+      "title": "Employment Reference Letters | Adelphos",
+      "title_length": 39,
+      "description": "Use Employment Reference Letters to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 152,
+      "canonical": "https://adelphos.ai/documents/employment-references-letter",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Employment Reference Letters.",
+      "h1_count": 1,
+      "word_count": 430,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 79,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-intent",
+          "message": "The primary tracked intent is not clear in the title.",
+          "action": "Work “employment reference letter template” naturally into the title."
+        },
+        {
+          "severity": "warning",
+          "code": "h1-intent",
+          "message": "The H1 does not clearly match the primary tracked intent.",
+          "action": "Align the H1 with “employment reference letter template”."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/scientific-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/scientific-calculator",
+      "page_title": "Scientific Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "calculator that shows working",
+        "does this calculator do order of operations",
+        "engineering calculator",
+        "online scientific calculator",
+        "Scientific Calculator",
+        "what is 20 factorial"
+      ],
+      "primary_keyword": "calculator that shows working",
+      "title": "Scientific Calculator | Adelphos",
+      "title_length": 32,
+      "description": "The Scientific Calculator uses declared design information to calculate the value of a scientific or engineering expression.",
+      "description_length": 124,
+      "canonical": "https://adelphos.ai/calculators/scientific-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Scientific Calculator",
+      "h1_count": 1,
+      "word_count": 850,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 79,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-intent",
+          "message": "The primary tracked intent is not clear in the title.",
+          "action": "Work “calculator that shows working” naturally into the title."
+        },
+        {
+          "severity": "warning",
+          "code": "h1-intent",
+          "message": "The H1 does not clearly match the primary tracked intent.",
+          "action": "Align the H1 with “calculator that shows working”."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/solar-pv-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "page_title": "Solar PV Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "how many solar panels do i need",
+        "pv calculator",
+        "pv panel calculator",
+        "Solar PV Calculator",
+        "solar pv sizing calculator",
+        "what size pv system for my roof"
+      ],
+      "primary_keyword": "how many solar panels do i need",
+      "title": "Solar PV Calculator | Adelphos",
+      "title_length": 30,
+      "description": "The Solar PV Calculator uses declared design information to calculate solar-panel count, array size and indicative generation.",
+      "description_length": 126,
+      "canonical": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Solar PV Calculator",
+      "h1_count": 1,
+      "word_count": 838,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 79,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-intent",
+          "message": "The primary tracked intent is not clear in the title.",
+          "action": "Work “how many solar panels do i need” naturally into the title."
+        },
+        {
+          "severity": "warning",
+          "code": "h1-intent",
+          "message": "The H1 does not clearly match the primary tracked intent.",
+          "action": "Align the H1 with “how many solar panels do i need”."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/types-of-construction-contracts/index.html",
+      "target_url": "https://adelphos.ai/documents/types-of-construction-contracts",
+      "page_title": "Types of Construction Contracts",
+      "tag": "documents",
+      "keywords": [
+        "construction contract types",
+        "design and build contract",
+        "JCT construction contract",
+        "NEC construction contract",
+        "Types of Construction Contracts"
+      ],
+      "primary_keyword": "construction contract types",
+      "title": "Types of Construction Contracts | Adelphos",
+      "title_length": 42,
+      "description": "Compare the main types of construction contracts, including traditional, design and build, management, cost-reimbursable, JCT, NEC and bespoke.",
+      "description_length": 143,
+      "canonical": "https://adelphos.ai/documents/types-of-construction-contracts",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Types of Construction Contracts.",
+      "h1_count": 1,
+      "word_count": 721,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 79,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-intent",
+          "message": "The primary tracked intent is not clear in the title.",
+          "action": "Work “construction contract types” naturally into the title."
+        },
+        {
+          "severity": "warning",
+          "code": "h1-intent",
+          "message": "The H1 does not clearly match the primary tracked intent.",
+          "action": "Align the H1 with “construction contract types”."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/email-read/index.html",
+      "target_url": "https://adelphos.ai/tools/email-read",
+      "page_title": "Email Reading",
+      "tag": "tools",
+      "keywords": [
+        "Email Reading",
+        "email-read"
+      ],
+      "primary_keyword": "Email Reading",
+      "title": "Email Reading | Adelphos",
+      "title_length": 24,
+      "description": "Use Email Reading to process declared inputs and return a traceable result for review before any consequential or external action.",
+      "description_length": 130,
+      "canonical": "https://adelphos.ai/tools/email-read",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Email Reading.",
+      "h1_count": 1,
+      "word_count": 421,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 24 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/epc/index.html",
+      "target_url": "https://adelphos.ai/apps/epc",
+      "page_title": "EPC Workflow",
+      "tag": "apps",
+      "keywords": [
+        "EPC Workflow"
+      ],
+      "primary_keyword": "EPC Workflow",
+      "title": "EPC Workflow | Adelphos",
+      "title_length": 23,
+      "description": "Use EPC Workflow to organise authorised project information, run guided tasks and review outputs in one controlled Adelphos workspace.",
+      "description_length": 134,
+      "canonical": "https://adelphos.ai/apps/epc",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC Workflow.",
+      "h1_count": 1,
+      "word_count": 409,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 23 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/file-intake/index.html",
+      "target_url": "https://adelphos.ai/tools/file-intake",
+      "page_title": "File Intake",
+      "tag": "tools",
+      "keywords": [
+        "File Intake"
+      ],
+      "primary_keyword": "File Intake",
+      "title": "File Intake | Adelphos",
+      "title_length": 22,
+      "description": "Use File Intake to process declared inputs and return a traceable result for review before any consequential or external action.",
+      "description_length": 128,
+      "canonical": "https://adelphos.ai/tools/file-intake",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "File Intake.",
+      "h1_count": 1,
+      "word_count": 421,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 22 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "products/heat-pump-quotes/index.html",
+      "target_url": "https://adelphos.ai/products/heat-pump-quotes",
+      "page_title": "Heat Pump Quotes",
+      "tag": "products",
+      "keywords": [
+        "Heat Pump Quotes"
+      ],
+      "primary_keyword": "Heat Pump Quotes",
+      "title": "Heat Pump Quotes | Adelphos",
+      "title_length": 27,
+      "description": "Turn declared property and system inputs into a reviewable heat-pump sizing and quotation brief; final design and product choice remain with the user.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/products/heat-pump-quotes",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Heat Pump Quotes.",
+      "h1_count": 1,
+      "word_count": 432,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 27 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/memory/index.html",
+      "target_url": "https://adelphos.ai/tools/memory",
+      "page_title": "Memory and Recall",
+      "tag": "tools",
+      "keywords": [
+        "memory",
+        "Memory and Recall"
+      ],
+      "primary_keyword": "memory",
+      "title": "Memory and Recall | Adelphos",
+      "title_length": 28,
+      "description": "Use Memory and Recall to process declared inputs and return a traceable result for review before any consequential or external action.",
+      "description_length": 134,
+      "canonical": "https://adelphos.ai/tools/memory",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Memory and Recall.",
+      "h1_count": 1,
+      "word_count": 432,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 28 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/mep-reports/index.html",
+      "target_url": "https://adelphos.ai/documents/mep-reports",
+      "page_title": "MEP Reports",
+      "tag": "documents",
+      "keywords": [
+        "MEP Reports"
+      ],
+      "primary_keyword": "MEP Reports",
+      "title": "MEP Reports | Adelphos",
+      "title_length": 22,
+      "description": "Use MEP Reports to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 135,
+      "canonical": "https://adelphos.ai/documents/mep-reports",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "MEP Reports.",
+      "h1_count": 1,
+      "word_count": 419,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 22 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/mep-specification/index.html",
+      "target_url": "https://adelphos.ai/documents/mep-specification",
+      "page_title": "MEP Specifications",
+      "tag": "documents",
+      "keywords": [
+        "MEP Specifications"
+      ],
+      "primary_keyword": "MEP Specifications",
+      "title": "MEP Specifications | Adelphos",
+      "title_length": 29,
+      "description": "Use MEP Specifications to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 142,
+      "canonical": "https://adelphos.ai/documents/mep-specification",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "MEP Specifications.",
+      "h1_count": 1,
+      "word_count": 419,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 29 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/schedules/index.html",
+      "target_url": "https://adelphos.ai/documents/schedules",
+      "page_title": "Project Schedules",
+      "tag": "documents",
+      "keywords": [
+        "Project Schedules",
+        "schedules"
+      ],
+      "primary_keyword": "Project Schedules",
+      "title": "Project Schedules | Adelphos",
+      "title_length": 28,
+      "description": "Use Project Schedules to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 141,
+      "canonical": "https://adelphos.ai/documents/schedules",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Project Schedules.",
+      "h1_count": 1,
+      "word_count": 419,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 28 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/quality-assurance-policy/index.html",
+      "target_url": "https://adelphos.ai/documents/quality-assurance-policy",
+      "page_title": "Quality Assurance Policy",
+      "tag": "documents",
+      "keywords": [
+        "how to write a quality assurance policy",
+        "qa policies",
+        "Quality Assurance Policy",
+        "quality assurance policy sample",
+        "quality assurance policy template"
+      ],
+      "primary_keyword": "how to write a quality assurance policy",
+      "title": "Quality Assurance Policy | Adelphos",
+      "title_length": 35,
+      "description": "Use Quality Assurance Policy to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 148,
+      "canonical": "https://adelphos.ai/documents/quality-assurance-policy",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Quality Assurance Policy.",
+      "h1_count": 1,
+      "word_count": 430,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 86,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-intent",
+          "message": "The primary tracked intent is not clear in the title.",
+          "action": "Work “how to write a quality assurance policy” naturally into the title."
+        },
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/adelphos-chat/index.html",
+      "target_url": "https://adelphos.ai/apps/adelphos-chat/index.html",
+      "page_title": "Adelphos Chat",
+      "tag": "apps",
+      "keywords": [
+        "Adelphos Chat"
+      ],
+      "primary_keyword": "Adelphos Chat",
+      "title": "Adelphos Chat — Apps — Adelphos AI",
+      "title_length": 34,
+      "description": "Your project's brain — without Revit, without a desk.",
+      "description_length": 53,
+      "canonical": "https://adelphos.ai/apps/adelphos-chat/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Adelphos Chat",
+      "h1_count": 1,
+      "word_count": 987,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 8,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "description-length",
+          "message": "Meta description length is 53 characters.",
+          "action": "Aim for a useful description of roughly 70–170 characters."
+        }
+      ]
+    },
+    {
+      "source_path": "products/agentic-mcp-calculations/index.html",
+      "target_url": "https://adelphos.ai/products/agentic-mcp-calculations",
+      "page_title": "Agentic MCP Calculations",
+      "tag": "products",
+      "keywords": [
+        "Agentic MCP Calculations"
+      ],
+      "primary_keyword": "Agentic MCP Calculations",
+      "title": "Agentic MCP Calculations | Adelphos",
+      "title_length": 35,
+      "description": "Use Adelphos agentic MCP calculations to call named engineering tools with structured inputs, traceable outputs and metered usage based on real tool calls.",
+      "description_length": 155,
+      "canonical": "https://adelphos.ai/products/agentic-mcp-calculations",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Agentic MCP Calculations.",
+      "h1_count": 1,
+      "word_count": 432,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/south-australia/adelaide/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/south-australia/adelaide",
+      "page_title": "AI Developer in Adelaide",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Adelaide"
+      ],
+      "primary_keyword": "AI Developer in Adelaide",
+      "title": "AI Developer in Adelaide | Adelphos",
+      "title_length": 35,
+      "description": "AI developer in Adelaide for Climate tech, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 125,
+      "canonical": "https://adelphos.ai/ai-developers/australia/south-australia/adelaide",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Adelaide for climate tech.",
+      "h1_count": 1,
+      "word_count": 607,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/northern-ireland/belfast/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/northern-ireland/belfast",
+      "page_title": "AI Developer in Belfast",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Belfast"
+      ],
+      "primary_keyword": "AI Developer in Belfast",
+      "title": "AI Developer in Belfast | Adelphos",
+      "title_length": 34,
+      "description": "AI developer in Belfast for Climate, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 119,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/northern-ireland/belfast",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Belfast for climate.",
+      "h1_count": 1,
+      "word_count": 619,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/west-midlands/birmingham/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/west-midlands/birmingham",
+      "page_title": "AI Developer in Birmingham",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Birmingham"
+      ],
+      "primary_keyword": "AI Developer in Birmingham",
+      "title": "AI Developer in Birmingham | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in Birmingham for Knowledge Quarter/MedTech, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 140,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/west-midlands/birmingham",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Birmingham for knowledge quarter/medtech.",
+      "h1_count": 1,
+      "word_count": 607,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/south-east/brighton/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-east/brighton",
+      "page_title": "AI Developer in Brighton",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Brighton"
+      ],
+      "primary_keyword": "AI Developer in Brighton",
+      "title": "AI Developer in Brighton | Adelphos",
+      "title_length": 35,
+      "description": "AI developer in Brighton for Gaming, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 119,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/south-east/brighton",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Brighton for gaming.",
+      "h1_count": 1,
+      "word_count": 603,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/queensland/brisbane/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/queensland/brisbane",
+      "page_title": "AI Developer in Brisbane",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Brisbane"
+      ],
+      "primary_keyword": "AI Developer in Brisbane",
+      "title": "AI Developer in Brisbane | Adelphos",
+      "title_length": 35,
+      "description": "AI developer in Brisbane for Innovation, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 123,
+      "canonical": "https://adelphos.ai/ai-developers/australia/queensland/brisbane",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Brisbane for innovation.",
+      "h1_count": 1,
+      "word_count": 591,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/south-west/bristol/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-west/bristol",
+      "page_title": "AI Developer in Bristol",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Bristol"
+      ],
+      "primary_keyword": "AI Developer in Bristol",
+      "title": "AI Developer in Bristol | Adelphos",
+      "title_length": 34,
+      "description": "AI developer in Bristol for Aerospace/advanced engineering, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 142,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/south-west/bristol",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Bristol for aerospace/advanced engineering.",
+      "h1_count": 1,
+      "word_count": 610,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/east-of-england/cambridge/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-of-england/cambridge",
+      "page_title": "AI Developer in Cambridge",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Cambridge"
+      ],
+      "primary_keyword": "AI Developer in Cambridge",
+      "title": "AI Developer in Cambridge | Adelphos",
+      "title_length": 36,
+      "description": "AI developer in Cambridge for AI/digital and life-science research, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/east-of-england/cambridge",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Cambridge for AI/digital and life-science research.",
+      "h1_count": 1,
+      "word_count": 615,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/australian-capital-territory/canberra/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/australian-capital-territory/canberra",
+      "page_title": "AI Developer in Canberra",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Canberra"
+      ],
+      "primary_keyword": "AI Developer in Canberra",
+      "title": "AI Developer in Canberra | Adelphos",
+      "title_length": 35,
+      "description": "AI developer in Canberra for Government service delivery, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 140,
+      "canonical": "https://adelphos.ai/ai-developers/australia/australian-capital-territory/canberra",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Canberra for government service delivery.",
+      "h1_count": 1,
+      "word_count": 609,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/wales/cardiff/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/wales/cardiff",
+      "page_title": "AI Developer in Cardiff",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Cardiff"
+      ],
+      "primary_keyword": "AI Developer in Cardiff",
+      "title": "AI Developer in Cardiff | Adelphos",
+      "title_length": 34,
+      "description": "AI developer in Cardiff for Citizen-centred services, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 136,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/wales/cardiff",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Cardiff for citizen-centred services.",
+      "h1_count": 1,
+      "word_count": 606,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/london/city-of-london/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/london/city-of-london",
+      "page_title": "AI Developer in City of London",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in City of London"
+      ],
+      "primary_keyword": "AI Developer in City of London",
+      "title": "AI Developer in City of London | Adelphos",
+      "title_length": 41,
+      "description": "AI developer in City of London for Financial/professional services, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/london/city-of-london",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in City of London for financial/professional services.",
+      "h1_count": 1,
+      "word_count": 643,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/northern-territory/darwin/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/northern-territory/darwin",
+      "page_title": "AI Developer in Darwin",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Darwin"
+      ],
+      "primary_keyword": "AI Developer in Darwin",
+      "title": "AI Developer in Darwin | Adelphos",
+      "title_length": 33,
+      "description": "AI developer in Darwin for Smart infrastructure, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 131,
+      "canonical": "https://adelphos.ai/ai-developers/australia/northern-territory/darwin",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Darwin for smart infrastructure.",
+      "h1_count": 1,
+      "word_count": 587,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/scotland/edinburgh/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/scotland/edinburgh",
+      "page_title": "AI Developer in Edinburgh",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Edinburgh"
+      ],
+      "primary_keyword": "AI Developer in Edinburgh",
+      "title": "AI Developer in Edinburgh | Adelphos",
+      "title_length": 36,
+      "description": "AI developer in Edinburgh for Stronger/greener/fairer economy, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 145,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/scotland/edinburgh",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Edinburgh for stronger/greener/fairer economy.",
+      "h1_count": 1,
+      "word_count": 602,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/tasmania/hobart/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/tasmania/hobart",
+      "page_title": "AI Developer in Hobart",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Hobart"
+      ],
+      "primary_keyword": "AI Developer in Hobart",
+      "title": "AI Developer in Hobart | Adelphos",
+      "title_length": 33,
+      "description": "AI developer in Hobart for Antarctic/science, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 128,
+      "canonical": "https://adelphos.ai/ai-developers/australia/tasmania/hobart",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Hobart for antarctic/science.",
+      "h1_count": 1,
+      "word_count": 593,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/yorkshire-and-the-humber/leeds/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/yorkshire-and-the-humber/leeds",
+      "page_title": "AI Developer in Leeds",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Leeds"
+      ],
+      "primary_keyword": "AI Developer in Leeds",
+      "title": "AI Developer in Leeds | Adelphos",
+      "title_length": 32,
+      "description": "AI developer in Leeds for Financial/professional services, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 141,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/yorkshire-and-the-humber/leeds",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Leeds for financial/professional services.",
+      "h1_count": 1,
+      "word_count": 615,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/north-west/manchester/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-west/manchester",
+      "page_title": "AI Developer in Manchester",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Manchester"
+      ],
+      "primary_keyword": "AI Developer in Manchester",
+      "title": "AI Developer in Manchester | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in Manchester for Responsible place-based AI, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 141,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/north-west/manchester",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Manchester for responsible place-based AI.",
+      "h1_count": 1,
+      "word_count": 609,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/victoria/melbourne/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/victoria/melbourne",
+      "page_title": "AI Developer in Melbourne",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Melbourne"
+      ],
+      "primary_keyword": "AI Developer in Melbourne",
+      "title": "AI Developer in Melbourne | Adelphos",
+      "title_length": 36,
+      "description": "AI developer in Melbourne for Health tech, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 125,
+      "canonical": "https://adelphos.ai/ai-developers/australia/victoria/melbourne",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Melbourne for health tech.",
+      "h1_count": 1,
+      "word_count": 603,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/north-east/newcastle-upon-tyne/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-east/newcastle-upon-tyne",
+      "page_title": "AI Developer in Newcastle upon Tyne",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Newcastle upon Tyne"
+      ],
+      "primary_keyword": "AI Developer in Newcastle upon Tyne",
+      "title": "AI Developer in Newcastle upon Tyne | Adelphos",
+      "title_length": 46,
+      "description": "AI developer in Newcastle upon Tyne for Subsea engineering, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 142,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/north-east/newcastle-upon-tyne",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Newcastle upon Tyne for subsea engineering.",
+      "h1_count": 1,
+      "word_count": 632,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/northern-ireland/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/northern-ireland",
+      "page_title": "AI Developer in Northern Ireland",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Northern Ireland"
+      ],
+      "primary_keyword": "AI Developer in Northern Ireland",
+      "title": "AI Developer in Northern Ireland | Adelphos",
+      "title_length": 43,
+      "description": "AI developer in Northern Ireland for Innovation-led growth, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 142,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/northern-ireland",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Northern Ireland for innovation-led growth.",
+      "h1_count": 1,
+      "word_count": 616,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/east-midlands/nottingham/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-midlands/nottingham",
+      "page_title": "AI Developer in Nottingham",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Nottingham"
+      ],
+      "primary_keyword": "AI Developer in Nottingham",
+      "title": "AI Developer in Nottingham | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in Nottingham for Creative/digital, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 131,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/east-midlands/nottingham",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Nottingham for creative/digital.",
+      "h1_count": 1,
+      "word_count": 602,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/western-australia/perth/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/western-australia/perth",
+      "page_title": "AI Developer in Perth",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Perth"
+      ],
+      "primary_keyword": "AI Developer in Perth",
+      "title": "AI Developer in Perth | Adelphos",
+      "title_length": 32,
+      "description": "AI developer in Perth for Knowledge and innovation, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 134,
+      "canonical": "https://adelphos.ai/ai-developers/australia/western-australia/perth",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Perth for knowledge and innovation.",
+      "h1_count": 1,
+      "word_count": 618,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/new-south-wales/sydney/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/new-south-wales/sydney",
+      "page_title": "AI Developer in Sydney",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Sydney"
+      ],
+      "primary_keyword": "AI Developer in Sydney",
+      "title": "AI Developer in Sydney | Adelphos",
+      "title_length": 33,
+      "description": "AI developer in Sydney for Knowledge and innovation jobs, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 140,
+      "canonical": "https://adelphos.ai/ai-developers/australia/new-south-wales/sydney",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Sydney for knowledge and innovation jobs.",
+      "h1_count": 1,
+      "word_count": 629,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 1,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 1 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "ai-developers/australia/tasmania/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/tasmania",
+      "page_title": "AI Developer in Tasmania",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Tasmania"
+      ],
+      "primary_keyword": "AI Developer in Tasmania",
+      "title": "AI Developer in Tasmania | Adelphos",
+      "title_length": 35,
+      "description": "AI developer in Tasmania for Digital inclusion/connectivity, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 143,
+      "canonical": "https://adelphos.ai/ai-developers/australia/tasmania",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Tasmania for digital inclusion/connectivity.",
+      "h1_count": 1,
+      "word_count": 601,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/ai-floorplan-plantroom/index.html",
+      "target_url": "https://adelphos.ai/apps/ai-floorplan-plantroom",
+      "page_title": "AI Floorplan and Plantroom Planning",
+      "tag": "apps",
+      "keywords": [
+        "AI Floorplan and Plantroom Planning"
+      ],
+      "primary_keyword": "AI Floorplan and Plantroom Planning",
+      "title": "AI Floorplan and Plantroom Planning | Adelphos",
+      "title_length": 46,
+      "description": "Use AI Floorplan and Plantroom Planning to organise authorised project information, run guided tasks and review outputs in one controlled Adelphos.",
+      "description_length": 147,
+      "canonical": "https://adelphos.ai/apps/ai-floorplan-plantroom",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI Floorplan and Plantroom Planning.",
+      "h1_count": 1,
+      "word_count": 442,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/ai-personal-admin-assistant/index.html",
+      "target_url": "https://adelphos.ai/tools/ai-personal-admin-assistant",
+      "page_title": "AI Personal Admin Assistant",
+      "tag": "tools",
+      "keywords": [
+        "AI Personal Admin Assistant"
+      ],
+      "primary_keyword": "AI Personal Admin Assistant",
+      "title": "AI Personal Admin Assistant | Adelphos",
+      "title_length": 38,
+      "description": "Use AI Personal Admin Assistant to process declared inputs and return a traceable result for review before any consequential or external action.",
+      "description_length": 144,
+      "canonical": "https://adelphos.ai/tools/ai-personal-admin-assistant",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI Personal Admin Assistant.",
+      "h1_count": 1,
+      "word_count": 443,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/autocad-mcp/index.html",
+      "target_url": "https://adelphos.ai/apps/autocad-mcp",
+      "page_title": "AutoCAD MCP Integration",
+      "tag": "apps",
+      "keywords": [
+        "autocad mcp",
+        "AutoCAD MCP Integration"
+      ],
+      "primary_keyword": "autocad mcp",
+      "title": "AutoCAD MCP Integration | Adelphos",
+      "title_length": 34,
+      "description": "Use AutoCAD MCP Integration to organise authorised project information, run guided tasks and review outputs in one controlled Adelphos workspace.",
+      "description_length": 145,
+      "canonical": "https://adelphos.ai/apps/autocad-mcp",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AutoCAD MCP Integration.",
+      "h1_count": 1,
+      "word_count": 420,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/cable-sizing-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/cable-sizing-calculator",
+      "page_title": "Cable Sizing Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Cable Sizing Calculator"
+      ],
+      "primary_keyword": "Cable Sizing Calculator",
+      "title": "Cable Sizing Calculator | Adelphos",
+      "title_length": 34,
+      "description": "The Cable Sizing Calculator uses declared design information to calculate a reviewable cable size and circuit checks.",
+      "description_length": 117,
+      "canonical": "https://adelphos.ai/calculators/cable-sizing-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Cable Sizing Calculator",
+      "h1_count": 1,
+      "word_count": 1029,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/cobie/index.html",
+      "target_url": "https://adelphos.ai/apps/cobie",
+      "page_title": "COBie Data Management",
+      "tag": "apps",
+      "keywords": [
+        "cobie",
+        "COBie Data Management"
+      ],
+      "primary_keyword": "cobie",
+      "title": "COBie Data Management | Adelphos",
+      "title_length": 32,
+      "description": "Use COBie Data Management to organise authorised project information, run guided tasks and review outputs in one controlled Adelphos workspace.",
+      "description_length": 143,
+      "canonical": "https://adelphos.ai/apps/cobie",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "COBie Data Management.",
+      "h1_count": 1,
+      "word_count": 420,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/comms-send-draft/index.html",
+      "target_url": "https://adelphos.ai/tools/comms-send-draft",
+      "page_title": "Communications Drafting and Sending",
+      "tag": "tools",
+      "keywords": [
+        "Communications Drafting and Sending"
+      ],
+      "primary_keyword": "Communications Drafting and Sending",
+      "title": "Communications Drafting and Sending | Adelphos",
+      "title_length": 46,
+      "description": "Use Communications Drafting and Sending to process declared inputs and return a traceable result for review before any consequential or external action.",
+      "description_length": 152,
+      "canonical": "https://adelphos.ai/tools/comms-send-draft",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Communications Drafting and Sending.",
+      "h1_count": 1,
+      "word_count": 443,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/undervalued-stocks/index.html",
+      "target_url": "https://adelphos.ai/tools/undervalued-stocks",
+      "page_title": "Company Fundamentals Screening",
+      "tag": "tools",
+      "keywords": [
+        "Company Fundamentals Screening"
+      ],
+      "primary_keyword": "Company Fundamentals Screening",
+      "title": "Company Fundamentals Screening | Adelphos",
+      "title_length": 41,
+      "description": "Organise declared company fundamentals into a reviewable screening view. The result is research support, not investment advice or a recommendation.",
+      "description_length": 147,
+      "canonical": "https://adelphos.ai/tools/undervalued-stocks",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Company Fundamentals Screening.",
+      "h1_count": 1,
+      "word_count": 428,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/drainage-fall-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/drainage-fall-calculator",
+      "page_title": "Condensate Drainage Fall Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Condensate Drainage Fall Calculator"
+      ],
+      "primary_keyword": "Condensate Drainage Fall Calculator",
+      "title": "Condensate Drainage Fall Calculator | Adelphos",
+      "title_length": 46,
+      "description": "The Condensate Drainage Fall Calculator uses declared design information to calculate the condensate drainage fall and capacity check.",
+      "description_length": 134,
+      "canonical": "https://adelphos.ai/calculators/drainage-fall-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Condensate Drainage Fall Calculator",
+      "h1_count": 1,
+      "word_count": 767,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/construction-job-descriptions/index.html",
+      "target_url": "https://adelphos.ai/documents/construction-job-descriptions",
+      "page_title": "Construction Job Descriptions",
+      "tag": "documents",
+      "keywords": [
+        "Construction Job Descriptions",
+        "construction site manager job description",
+        "job description for a civil supervisor"
+      ],
+      "primary_keyword": "Construction Job Descriptions",
+      "title": "Construction Job Descriptions | Adelphos",
+      "title_length": 40,
+      "description": "Use Construction Job Descriptions to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 153,
+      "canonical": "https://adelphos.ai/documents/construction-job-descriptions",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Construction Job Descriptions.",
+      "h1_count": 1,
+      "word_count": 430,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/construction-management-plan-templates/index.html",
+      "target_url": "https://adelphos.ai/documents/construction-management-plan-templates",
+      "page_title": "Construction Management Plan Templates",
+      "tag": "documents",
+      "keywords": [
+        "Construction Management Plan Templates"
+      ],
+      "primary_keyword": "Construction Management Plan Templates",
+      "title": "Construction Management Plan Templates | Adelphos",
+      "title_length": 49,
+      "description": "Use Construction Management Plan Templates to turn a project brief, verified source records and issue requirements into a structured draft for.",
+      "description_length": 143,
+      "canonical": "https://adelphos.ai/documents/construction-management-plan-templates",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Construction Management Plan Templates.",
+      "h1_count": 1,
+      "word_count": 441,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/drawing-issue-skill/index.html",
+      "target_url": "https://adelphos.ai/documents/drawing-issue-skill",
+      "page_title": "Drawing Issue Management",
+      "tag": "documents",
+      "keywords": [
+        "Drawing Issue Management"
+      ],
+      "primary_keyword": "Drawing Issue Management",
+      "title": "Drawing Issue Management | Adelphos",
+      "title_length": 35,
+      "description": "Use Drawing Issue Management to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 148,
+      "canonical": "https://adelphos.ai/documents/drawing-issue-skill",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Drawing Issue Management.",
+      "h1_count": 1,
+      "word_count": 430,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/duct-sizing-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/duct-sizing-calculator",
+      "page_title": "Duct Sizing Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Duct Sizing Calculator"
+      ],
+      "primary_keyword": "Duct Sizing Calculator",
+      "title": "Duct Sizing Calculator | Adelphos",
+      "title_length": 33,
+      "description": "The Duct Sizing Calculator uses declared design information to calculate duct dimensions, velocity and friction loss.",
+      "description_length": 117,
+      "canonical": "https://adelphos.ai/calculators/duct-sizing-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Duct Sizing Calculator",
+      "h1_count": 1,
+      "word_count": 751,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/electrical-load-assessment-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/electrical-load-assessment-calculator",
+      "page_title": "Electrical Load Assessment Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Electrical Load Assessment Calculator"
+      ],
+      "primary_keyword": "Electrical Load Assessment Calculator",
+      "title": "Electrical Load Assessment Calculator | Adelphos",
+      "title_length": 48,
+      "description": "The Electrical Load Assessment Calculator uses declared design information to calculate the diversified electrical load and design current.",
+      "description_length": 139,
+      "canonical": "https://adelphos.ai/calculators/electrical-load-assessment-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Electrical Load Assessment Calculator",
+      "h1_count": 1,
+      "word_count": 781,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/schematics/index.html",
+      "target_url": "https://adelphos.ai/documents/schematics",
+      "page_title": "Engineering Schematics",
+      "tag": "documents",
+      "keywords": [
+        "Engineering Schematics",
+        "schematics"
+      ],
+      "primary_keyword": "Engineering Schematics",
+      "title": "Engineering Schematics | Adelphos",
+      "title_length": 33,
+      "description": "Use Engineering Schematics to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 146,
+      "canonical": "https://adelphos.ai/documents/schematics",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Engineering Schematics.",
+      "h1_count": 1,
+      "word_count": 419,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/file-tools-backup-restore/index.html",
+      "target_url": "https://adelphos.ai/tools/file-tools-backup-restore",
+      "page_title": "File Backup and Restore",
+      "tag": "tools",
+      "keywords": [
+        "File Backup and Restore"
+      ],
+      "primary_keyword": "File Backup and Restore",
+      "title": "File Backup and Restore | Adelphos",
+      "title_length": 34,
+      "description": "Use File Backup and Restore to process declared inputs and return a traceable result for review before any consequential or external action.",
+      "description_length": 140,
+      "canonical": "https://adelphos.ai/tools/file-tools-backup-restore",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "File Backup and Restore.",
+      "h1_count": 1,
+      "word_count": 443,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/fire-risk-assessment-template/index.html",
+      "target_url": "https://adelphos.ai/documents/fire-risk-assessment-template",
+      "page_title": "Fire Strategy and Risk Assessment",
+      "tag": "documents",
+      "keywords": [
+        "Fire Strategy and Risk Assessment"
+      ],
+      "primary_keyword": "Fire Strategy and Risk Assessment",
+      "title": "Fire Strategy and Risk Assessment | Adelphos",
+      "title_length": 44,
+      "description": "Use Fire Strategy and Risk Assessment to turn a project brief, verified source records and issue requirements into a structured draft for responsible.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/documents/fire-risk-assessment-template",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Fire Strategy and Risk Assessment.",
+      "h1_count": 1,
+      "word_count": 452,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/heat-loss-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/heat-loss-calculator",
+      "page_title": "Heat Loss Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Heat Loss Calculator"
+      ],
+      "primary_keyword": "Heat Loss Calculator",
+      "title": "Heat Loss Calculator | Adelphos",
+      "title_length": 31,
+      "description": "The Heat Loss Calculator uses declared design information to calculate the design heat loss for the room or building.",
+      "description_length": 117,
+      "canonical": "https://adelphos.ai/calculators/heat-loss-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Heat Loss Calculator",
+      "h1_count": 1,
+      "word_count": 777,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/heat-pump-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "page_title": "Heat Pump Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Heat Pump Calculator",
+        "heat pump cost calculator",
+        "heat pump running cost calculator uk",
+        "heat pump sizing calculator",
+        "how much does a heat pump cost to run",
+        "what size heat pump do i need"
+      ],
+      "primary_keyword": "Heat Pump Calculator",
+      "title": "Heat Pump Calculator | Adelphos",
+      "title_length": 31,
+      "description": "The Heat Pump Calculator uses declared design information to calculate heat pump size and design duty.",
+      "description_length": 102,
+      "canonical": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Heat Pump Calculator",
+      "h1_count": 1,
+      "word_count": 918,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/heating-zone-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/heating-zone-calculator",
+      "page_title": "Heating Zone Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Heating Zone Calculator"
+      ],
+      "primary_keyword": "Heating Zone Calculator",
+      "title": "Heating Zone Calculator | Adelphos",
+      "title_length": 34,
+      "description": "The Heating Zone Calculator uses declared design information to calculate the heating duty and water flow for a zone.",
+      "description_length": 117,
+      "canonical": "https://adelphos.ai/calculators/heating-zone-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Heating Zone Calculator",
+      "h1_count": 1,
+      "word_count": 758,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/hot-water-cylinder-sizing-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/hot-water-cylinder-sizing-calculator",
+      "page_title": "Hot Water Cylinder Sizing Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Hot Water Cylinder Sizing Calculator"
+      ],
+      "primary_keyword": "Hot Water Cylinder Sizing Calculator",
+      "title": "Hot Water Cylinder Sizing Calculator | Adelphos",
+      "title_length": 47,
+      "description": "The Hot Water Cylinder Sizing Calculator uses declared design information to calculate hot-water storage volume and recovery duty.",
+      "description_length": 130,
+      "canonical": "https://adelphos.ai/calculators/hot-water-cylinder-sizing-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Hot Water Cylinder Sizing Calculator",
+      "h1_count": 1,
+      "word_count": 910,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "resources/epc/how-to-get-an-epc/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/how-to-get-an-epc",
+      "page_title": "How to Get an EPC",
+      "tag": "epc",
+      "keywords": [
+        "how to get an EPC"
+      ],
+      "primary_keyword": "how to get an EPC",
+      "title": "How to Get an EPC | Adelphos",
+      "title_length": 28,
+      "description": "Check for an existing certificate, find an accredited assessor and follow the correct official route to obtain a new EPC.",
+      "description_length": 121,
+      "canonical": "https://adelphos.ai/resources/epc/how-to-get-an-epc",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "How to get an EPC.",
+      "h1_count": 1,
+      "word_count": 605,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 11,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "title-length",
+          "message": "Title length is 28 characters.",
+          "action": "Keep the title between roughly 30 and 65 characters without truncating the intent."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/lighting/index.html",
+      "target_url": "https://adelphos.ai/apps/lighting",
+      "page_title": "Lighting Design Workflow",
+      "tag": "apps",
+      "keywords": [
+        "lighting",
+        "Lighting Design Workflow"
+      ],
+      "primary_keyword": "lighting",
+      "title": "Lighting Design Workflow | Adelphos",
+      "title_length": 35,
+      "description": "Use Lighting Design Workflow to organise authorised project information, run guided tasks and review outputs in one controlled Adelphos workspace.",
+      "description_length": 146,
+      "canonical": "https://adelphos.ai/apps/lighting",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Lighting Design Workflow.",
+      "h1_count": 1,
+      "word_count": 420,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/lighting-lux-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/lighting-lux-calculator",
+      "page_title": "Lighting Lux Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "lighting / lux calculator",
+        "Lighting Lux Calculator"
+      ],
+      "primary_keyword": "lighting / lux calculator",
+      "title": "Lighting Lux Calculator | Adelphos",
+      "title_length": 34,
+      "description": "The Lighting Lux Calculator uses declared design information to calculate luminaire quantity and maintained illuminance.",
+      "description_length": 120,
+      "canonical": "https://adelphos.ai/calculators/lighting-lux-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Lighting Lux Calculator",
+      "h1_count": 1,
+      "word_count": 753,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/mep-tenders/index.html",
+      "target_url": "https://adelphos.ai/documents/mep-tenders",
+      "page_title": "MEP Tender Opportunities",
+      "tag": "documents",
+      "keywords": [
+        "MEP Tender Opportunities"
+      ],
+      "primary_keyword": "MEP Tender Opportunities",
+      "title": "MEP Tender Opportunities | Adelphos",
+      "title_length": 35,
+      "description": "Use MEP Tender Opportunities to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 148,
+      "canonical": "https://adelphos.ai/documents/mep-tenders",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "MEP Tender Opportunities.",
+      "h1_count": 1,
+      "word_count": 430,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "products/prepare-mep-tender/index.html",
+      "target_url": "https://adelphos.ai/products/prepare-mep-tender",
+      "page_title": "MEP Tender Preparation and Returns Analysis",
+      "tag": "products",
+      "keywords": [
+        "MEP Tender Preparation and Returns Analysis"
+      ],
+      "primary_keyword": "MEP Tender Preparation and Returns Analysis",
+      "title": "MEP Tender Preparation and Returns Analysis | Adelphos",
+      "title_length": 54,
+      "description": "Prepare structured MEP tender packages, collect comparable returns and support a documented review without replacing procurement judgement.",
+      "description_length": 139,
+      "canonical": "https://adelphos.ai/products/prepare-mep-tender",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "MEP Tender Preparation and Returns Analysis.",
+      "h1_count": 1,
+      "word_count": 429,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "products/one-click-tenant-bot/index.html",
+      "target_url": "https://adelphos.ai/products/one-click-tenant-bot",
+      "page_title": "Microsoft 365 Tenant Assistant",
+      "tag": "products",
+      "keywords": [
+        "Microsoft 365 Tenant Assistant"
+      ],
+      "primary_keyword": "Microsoft 365 Tenant Assistant",
+      "title": "Microsoft 365 Tenant Assistant | Adelphos",
+      "title_length": 41,
+      "description": "Connect an authorised Microsoft 365 tenant to a guided assistant for permitted mailbox and workflow tasks, with human approval for consequential actions.",
+      "description_length": 153,
+      "canonical": "https://adelphos.ai/products/one-click-tenant-bot",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Microsoft 365 Tenant Assistant.",
+      "h1_count": 1,
+      "word_count": 435,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/passivhaus-heat-demand-estimate/index.html",
+      "target_url": "https://adelphos.ai/calculators/passivhaus-heat-demand-estimate",
+      "page_title": "Passivhaus Heat Demand Estimate",
+      "tag": "calculators",
+      "keywords": [
+        "Passivhaus Heat Demand Estimate"
+      ],
+      "primary_keyword": "Passivhaus Heat Demand Estimate",
+      "title": "Passivhaus Heat Demand Estimate | Adelphos",
+      "title_length": 42,
+      "description": "The Passivhaus Heat Demand Estimate uses declared design information to calculate an indicative Passivhaus heat-demand estimate.",
+      "description_length": 128,
+      "canonical": "https://adelphos.ai/calculators/passivhaus-heat-demand-estimate",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Passivhaus Heat Demand Estimate",
+      "h1_count": 1,
+      "word_count": 752,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/pipe-sizing-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/pipe-sizing-calculator",
+      "page_title": "Pipe Sizing Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Pipe Sizing Calculator"
+      ],
+      "primary_keyword": "Pipe Sizing Calculator",
+      "title": "Pipe Sizing Calculator | Adelphos",
+      "title_length": 33,
+      "description": "The Pipe Sizing Calculator uses declared design information to calculate pipe diameter, velocity and pressure loss.",
+      "description_length": 115,
+      "canonical": "https://adelphos.ai/calculators/pipe-sizing-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Pipe Sizing Calculator",
+      "h1_count": 1,
+      "word_count": 751,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/plugin-marketplace-app-platform/index.html",
+      "target_url": "https://adelphos.ai/apps/plugin-marketplace-app-platform",
+      "page_title": "Plugin Marketplace and App Platform",
+      "tag": "apps",
+      "keywords": [
+        "Plugin Marketplace and App Platform"
+      ],
+      "primary_keyword": "Plugin Marketplace and App Platform",
+      "title": "Plugin Marketplace and App Platform | Adelphos",
+      "title_length": 46,
+      "description": "Use Plugin Marketplace and App Platform to organise authorised project information, run guided tasks and review outputs in one controlled Adelphos.",
+      "description_length": 147,
+      "canonical": "https://adelphos.ai/apps/plugin-marketplace-app-platform",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Plugin Marketplace and App Platform.",
+      "h1_count": 1,
+      "word_count": 442,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/quotations-professions/index.html",
+      "target_url": "https://adelphos.ai/documents/quotations-professions",
+      "page_title": "Professional Quotations",
+      "tag": "documents",
+      "keywords": [
+        "Professional Quotations"
+      ],
+      "primary_keyword": "Professional Quotations",
+      "title": "Professional Quotations | Adelphos",
+      "title_length": 34,
+      "description": "Use Professional Quotations to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 147,
+      "canonical": "https://adelphos.ai/documents/quotations-professions",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Professional Quotations.",
+      "h1_count": 1,
+      "word_count": 419,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/pump-power-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/pump-power-calculator",
+      "page_title": "Pump Power Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Pump Power Calculator"
+      ],
+      "primary_keyword": "Pump Power Calculator",
+      "title": "Pump Power Calculator | Adelphos",
+      "title_length": 32,
+      "description": "The Pump Power Calculator uses declared design information to calculate hydraulic and pump power.",
+      "description_length": 97,
+      "canonical": "https://adelphos.ai/calculators/pump-power-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Pump Power Calculator",
+      "h1_count": 1,
+      "word_count": 756,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/recruitment-cv-onboarder/index.html",
+      "target_url": "https://adelphos.ai/documents/recruitment-cv-onboarder",
+      "page_title": "Recruitment CV Intake",
+      "tag": "documents",
+      "keywords": [
+        "Recruitment CV Intake"
+      ],
+      "primary_keyword": "Recruitment CV Intake",
+      "title": "Recruitment CV Intake | Adelphos",
+      "title_length": 32,
+      "description": "Use Recruitment CV Intake to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 145,
+      "canonical": "https://adelphos.ai/documents/recruitment-cv-onboarder",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Recruitment CV Intake.",
+      "h1_count": 1,
+      "word_count": 430,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/revit-copilot/index.html",
+      "target_url": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "page_title": "Revit Copilot",
+      "tag": "apps",
+      "keywords": [
+        "Revit Copilot"
+      ],
+      "primary_keyword": "Revit Copilot",
+      "title": "Revit Copilot — Apps — Adelphos AI",
+      "title_length": 34,
+      "description": "An AI engineer that lives inside Revit and runs the model with you.",
+      "description_length": 67,
+      "canonical": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Revit Copilot",
+      "h1_count": 1,
+      "word_count": 1301,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 10,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "description-length",
+          "message": "Meta description length is 67 characters.",
+          "action": "Aim for a useful description of roughly 70–170 characters."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/room-cooling-heating-load-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/room-cooling-heating-load-calculator",
+      "page_title": "Room Cooling and Heating Load Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Room Cooling and Heating Load Calculator"
+      ],
+      "primary_keyword": "Room Cooling and Heating Load Calculator",
+      "title": "Room Cooling and Heating Load Calculator | Adelphos",
+      "title_length": 51,
+      "description": "The Room Cooling and Heating Load Calculator uses declared design information to calculate room cooling and heating loads.",
+      "description_length": 122,
+      "canonical": "https://adelphos.ai/calculators/room-cooling-heating-load-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Room Cooling and Heating Load Calculator",
+      "h1_count": 1,
+      "word_count": 786,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/specbuilder/index.html",
+      "target_url": "https://adelphos.ai/apps/specbuilder/index.html",
+      "page_title": "Specbuilder",
+      "tag": "apps",
+      "keywords": [
+        "Specbuilder"
+      ],
+      "primary_keyword": "Specbuilder",
+      "title": "Specbuilder — Apps — Adelphos AI",
+      "title_length": 32,
+      "description": "The MEP specification, drafted from your live model in minutes.",
+      "description_length": 63,
+      "canonical": "https://adelphos.ai/apps/specbuilder/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Specbuilder",
+      "h1_count": 1,
+      "word_count": 904,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 7,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "description-length",
+          "message": "Meta description length is 63 characters.",
+          "action": "Aim for a useful description of roughly 70–170 characters."
+        }
+      ]
+    },
+    {
+      "source_path": "documents/artifact-mode-universal/index.html",
+      "target_url": "https://adelphos.ai/documents/artifact-mode-universal",
+      "page_title": "Structured Document Creation",
+      "tag": "documents",
+      "keywords": [
+        "Structured Document Creation"
+      ],
+      "primary_keyword": "Structured Document Creation",
+      "title": "Structured Document Creation | Adelphos",
+      "title_length": 39,
+      "description": "Use Structured Document Creation to turn a project brief, verified source records and issue requirements into a structured draft for responsible review.",
+      "description_length": 152,
+      "canonical": "https://adelphos.ai/documents/artifact-mode-universal",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Structured Document Creation.",
+      "h1_count": 1,
+      "word_count": 430,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "calculators/ventilation-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/ventilation-calculator",
+      "page_title": "Ventilation Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "Ventilation Calculator"
+      ],
+      "primary_keyword": "Ventilation Calculator",
+      "title": "Ventilation Calculator | Adelphos",
+      "title_length": 33,
+      "description": "The Ventilation Calculator uses declared design information to calculate the required ventilation airflow.",
+      "description_length": 106,
+      "canonical": "https://adelphos.ai/calculators/ventilation-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Ventilation Calculator",
+      "h1_count": 1,
+      "word_count": 734,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "tools/xero-accounts/index.html",
+      "target_url": "https://adelphos.ai/tools/xero-accounts",
+      "page_title": "Xero Accounts Workflow",
+      "tag": "tools",
+      "keywords": [
+        "Xero Accounts Workflow"
+      ],
+      "primary_keyword": "Xero Accounts Workflow",
+      "title": "Xero Accounts Workflow | Adelphos",
+      "title_length": 33,
+      "description": "Use Xero Accounts Workflow to process declared inputs and return a traceable result for review before any consequential or external action.",
+      "description_length": 139,
+      "canonical": "https://adelphos.ai/tools/xero-accounts",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Xero Accounts Workflow.",
+      "h1_count": 1,
+      "word_count": 432,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 2,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 93,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "few-internal-links",
+          "message": "Only 2 internal links were found.",
+          "action": "Add contextual links from and to related Adelphos pages."
+        }
+      ]
+    },
+    {
+      "source_path": "apps/excel-add-in/index.html",
+      "target_url": "https://adelphos.ai/apps/excel-add-in/index.html",
+      "page_title": "Adelphos for Excel",
+      "tag": "apps",
+      "keywords": [
+        "Adelphos for Excel"
+      ],
+      "primary_keyword": "Adelphos for Excel",
+      "title": "Adelphos for Excel — Apps — Adelphos AI",
+      "title_length": 39,
+      "description": "The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.",
+      "description_length": 82,
+      "canonical": "https://adelphos.ai/apps/excel-add-in/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Adelphos for Excel",
+      "h1_count": 1,
+      "word_count": 429,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 8,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/word-add-in/index.html",
+      "target_url": "https://adelphos.ai/apps/word-add-in/index.html",
+      "page_title": "Adelphos for Word",
+      "tag": "apps",
+      "keywords": [
+        "Adelphos for Word"
+      ],
+      "primary_keyword": "Adelphos for Word",
+      "title": "Adelphos for Word — Apps — Adelphos AI",
+      "title_length": 38,
+      "description": "The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.",
+      "description_length": 96,
+      "canonical": "https://adelphos.ai/apps/word-add-in/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Adelphos for Word",
+      "h1_count": 1,
+      "word_count": 420,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 8,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia",
+      "page_title": "AI Developer in Australia",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Australia"
+      ],
+      "primary_keyword": "AI Developer in Australia",
+      "title": "AI Developer in Australia | Adelphos",
+      "title_length": 36,
+      "description": "AI developer in Australia for National AI adoption, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 134,
+      "canonical": "https://adelphos.ai/ai-developers/australia",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Australia for National AI adoption.",
+      "h1_count": 1,
+      "word_count": 621,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 9,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/australian-capital-territory/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/australian-capital-territory",
+      "page_title": "AI Developer in Australian Capital Territory",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Australian Capital Territory"
+      ],
+      "primary_keyword": "AI Developer in Australian Capital Territory",
+      "title": "AI Developer in Australian Capital Territory | Adelphos",
+      "title_length": 55,
+      "description": "AI developer in Australian Capital Territory for Community-centred digital government, with local evidence, governed agentic workflows and metered MCP.",
+      "description_length": 151,
+      "canonical": "https://adelphos.ai/ai-developers/australia/australian-capital-territory",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Australian Capital Territory for community-centred digital government.",
+      "h1_count": 1,
+      "word_count": 636,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 3,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/east-midlands/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-midlands",
+      "page_title": "AI Developer in East Midlands",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in East Midlands"
+      ],
+      "primary_keyword": "AI Developer in East Midlands",
+      "title": "AI Developer in East Midlands | Adelphos",
+      "title_length": 40,
+      "description": "AI developer in East Midlands for Clean energy, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 130,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/east-midlands",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in East Midlands for clean energy.",
+      "h1_count": 1,
+      "word_count": 633,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 6,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/east-of-england/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-of-england",
+      "page_title": "AI Developer in East of England",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in East of England"
+      ],
+      "primary_keyword": "AI Developer in East of England",
+      "title": "AI Developer in East of England | Adelphos",
+      "title_length": 42,
+      "description": "AI developer in East of England for Life sciences, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 133,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/east-of-england",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in East of England for life sciences.",
+      "h1_count": 1,
+      "word_count": 636,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/london/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/london",
+      "page_title": "AI Developer in London",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in London"
+      ],
+      "primary_keyword": "AI Developer in London",
+      "title": "AI Developer in London | Adelphos",
+      "title_length": 33,
+      "description": "AI developer in London for AI, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 113,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/london",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in London for AI.",
+      "h1_count": 1,
+      "word_count": 606,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 4,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/new-south-wales/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/new-south-wales",
+      "page_title": "AI Developer in New South Wales",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in New South Wales"
+      ],
+      "primary_keyword": "AI Developer in New South Wales",
+      "title": "AI Developer in New South Wales | Adelphos",
+      "title_length": 42,
+      "description": "AI developer in New South Wales for Inclusive digital services, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 146,
+      "canonical": "https://adelphos.ai/ai-developers/australia/new-south-wales",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in New South Wales for inclusive digital services.",
+      "h1_count": 1,
+      "word_count": 649,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 6,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/north-east/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-east",
+      "page_title": "AI Developer in North East",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in North East"
+      ],
+      "primary_keyword": "AI Developer in North East",
+      "title": "AI Developer in North East | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in North East for Green energy, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 127,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/north-east",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in North East for green energy.",
+      "h1_count": 1,
+      "word_count": 631,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/north-west/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-west",
+      "page_title": "AI Developer in North West",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in North West"
+      ],
+      "primary_keyword": "AI Developer in North West",
+      "title": "AI Developer in North West | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in North West for Advanced manufacturing, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 137,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/north-west",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in North West for advanced manufacturing.",
+      "h1_count": 1,
+      "word_count": 652,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 8,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/northern-territory/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/northern-territory",
+      "page_title": "AI Developer in Northern Territory",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Northern Territory"
+      ],
+      "primary_keyword": "AI Developer in Northern Territory",
+      "title": "AI Developer in Northern Territory | Adelphos",
+      "title_length": 45,
+      "description": "AI developer in Northern Territory for Dispersed communities, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 144,
+      "canonical": "https://adelphos.ai/ai-developers/australia/northern-territory",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Northern Territory for dispersed communities.",
+      "h1_count": 1,
+      "word_count": 620,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/queensland/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/queensland",
+      "page_title": "AI Developer in Queensland",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Queensland"
+      ],
+      "primary_keyword": "AI Developer in Queensland",
+      "title": "AI Developer in Queensland | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in Queensland for Regional connectivity, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 136,
+      "canonical": "https://adelphos.ai/ai-developers/australia/queensland",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Queensland for regional connectivity.",
+      "h1_count": 1,
+      "word_count": 616,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/scotland/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/scotland",
+      "page_title": "AI Developer in Scotland",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Scotland"
+      ],
+      "primary_keyword": "AI Developer in Scotland",
+      "title": "AI Developer in Scotland | Adelphos",
+      "title_length": 35,
+      "description": "AI developer in Scotland for Responsible/inclusive AI, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 137,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/scotland",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Scotland for responsible/inclusive AI.",
+      "h1_count": 1,
+      "word_count": 607,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 4,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/south-australia/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/south-australia",
+      "page_title": "AI Developer in South Australia",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in South Australia"
+      ],
+      "primary_keyword": "AI Developer in South Australia",
+      "title": "AI Developer in South Australia | Adelphos",
+      "title_length": 42,
+      "description": "AI developer in South Australia for Decarbonisation, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 135,
+      "canonical": "https://adelphos.ai/ai-developers/australia/south-australia",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in South Australia for decarbonisation.",
+      "h1_count": 1,
+      "word_count": 629,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 7,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/south-east/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-east",
+      "page_title": "AI Developer in South East",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in South East"
+      ],
+      "primary_keyword": "AI Developer in South East",
+      "title": "AI Developer in South East | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in South East for Space, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 120,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/south-east",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in South East for space.",
+      "h1_count": 1,
+      "word_count": 615,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/south-west/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-west",
+      "page_title": "AI Developer in South West",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in South West"
+      ],
+      "primary_keyword": "AI Developer in South West",
+      "title": "AI Developer in South West | Adelphos",
+      "title_length": 37,
+      "description": "AI developer in South West for Cyber security, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 129,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/south-west",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in South West for cyber security.",
+      "h1_count": 1,
+      "word_count": 622,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom",
+      "page_title": "AI Developer in the United Kingdom",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in the United Kingdom"
+      ],
+      "primary_keyword": "AI Developer in the United Kingdom",
+      "title": "AI Developer in the United Kingdom | Adelphos",
+      "title_length": 45,
+      "description": "AI developer in the United Kingdom for National AI adoption, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 143,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in the United Kingdom for National AI adoption.",
+      "h1_count": 1,
+      "word_count": 684,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 13,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/victoria/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/victoria",
+      "page_title": "AI Developer in Victoria",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Victoria"
+      ],
+      "primary_keyword": "AI Developer in Victoria",
+      "title": "AI Developer in Victoria | Adelphos",
+      "title_length": 35,
+      "description": "AI developer in Victoria for Advanced manufacturing, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 135,
+      "canonical": "https://adelphos.ai/ai-developers/australia/victoria",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Victoria for advanced manufacturing.",
+      "h1_count": 1,
+      "word_count": 593,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 4,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/wales/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/wales",
+      "page_title": "AI Developer in Wales",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Wales"
+      ],
+      "primary_keyword": "AI Developer in Wales",
+      "title": "AI Developer in Wales | Adelphos",
+      "title_length": 32,
+      "description": "AI developer in Wales for Economic growth, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 125,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/wales",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Wales for economic growth.",
+      "h1_count": 1,
+      "word_count": 610,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/west-midlands/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/west-midlands",
+      "page_title": "AI Developer in West Midlands",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in West Midlands"
+      ],
+      "primary_keyword": "AI Developer in West Midlands",
+      "title": "AI Developer in West Midlands | Adelphos",
+      "title_length": 40,
+      "description": "AI developer in West Midlands for Industrial digitisation, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 141,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/west-midlands",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in West Midlands for industrial digitisation.",
+      "h1_count": 1,
+      "word_count": 623,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 6,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/australia/western-australia/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/australia/western-australia",
+      "page_title": "AI Developer in Western Australia",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Western Australia"
+      ],
+      "primary_keyword": "AI Developer in Western Australia",
+      "title": "AI Developer in Western Australia | Adelphos",
+      "title_length": 44,
+      "description": "AI developer in Western Australia for Remote operations, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 139,
+      "canonical": "https://adelphos.ai/ai-developers/australia/western-australia",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Western Australia for remote operations.",
+      "h1_count": 1,
+      "word_count": 614,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 4,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "ai-developers/united-kingdom/yorkshire-and-the-humber/index.html",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/yorkshire-and-the-humber",
+      "page_title": "AI Developer in Yorkshire and The Humber",
+      "tag": "ai-developers",
+      "keywords": [
+        "AI Developer in Yorkshire and The Humber"
+      ],
+      "primary_keyword": "AI Developer in Yorkshire and The Humber",
+      "title": "AI Developer in Yorkshire and The Humber | Adelphos",
+      "title_length": 51,
+      "description": "AI developer in Yorkshire and The Humber for Advanced manufacturing, with local evidence, governed agentic workflows and metered MCP calculation tools.",
+      "description_length": 151,
+      "canonical": "https://adelphos.ai/ai-developers/united-kingdom/yorkshire-and-the-humber",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AI developer in Yorkshire and The Humber for advanced manufacturing.",
+      "h1_count": 1,
+      "word_count": 642,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 5,
+      "schema_types": [
+        "WebPage",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/autocad-copilot/index.html",
+      "target_url": "https://adelphos.ai/apps/autocad-copilot/index.html",
+      "page_title": "AutoCAD Copilot",
+      "tag": "apps",
+      "keywords": [
+        "AutoCAD Copilot"
+      ],
+      "primary_keyword": "AutoCAD Copilot",
+      "title": "AutoCAD Copilot — Apps — Adelphos AI",
+      "title_length": 36,
+      "description": "An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.",
+      "description_length": 91,
+      "canonical": "https://adelphos.ai/apps/autocad-copilot/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "AutoCAD Copilot",
+      "h1_count": 1,
+      "word_count": 434,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 8,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/cable-calcs-ui/index.html",
+      "target_url": "https://adelphos.ai/apps/cable-calcs-ui",
+      "page_title": "Cable Calcs and Cable Calculations",
+      "tag": "apps",
+      "keywords": [
+        "cable calcs",
+        "Cable Calcs and Cable Calculations",
+        "cable calculations",
+        "cable-calcs ui"
+      ],
+      "primary_keyword": "cable calcs",
+      "title": "Cable Calcs and Cable Calculations | Adelphos",
+      "title_length": 45,
+      "description": "Use Adelphos Cable Calcs to prepare and review cable calculations, understand the required circuit inputs and move between the free cable sizing.",
+      "description_length": 145,
+      "canonical": "https://adelphos.ai/apps/cable-calcs-ui",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Cable Calcs and Cable Calculations.",
+      "h1_count": 1,
+      "word_count": 680,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 3,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/cobie-manager/index.html",
+      "target_url": "https://adelphos.ai/apps/cobie-manager/index.html",
+      "page_title": "COBie Manager",
+      "tag": "apps",
+      "keywords": [
+        "COBie Manager"
+      ],
+      "primary_keyword": "COBie Manager",
+      "title": "COBie Manager — Apps — Adelphos AI",
+      "title_length": 34,
+      "description": "A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.",
+      "description_length": 103,
+      "canonical": "https://adelphos.ai/apps/cobie-manager/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "COBie Manager",
+      "h1_count": 1,
+      "word_count": 383,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 6,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/commercial-epc/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/commercial-epc",
+      "page_title": "Commercial EPC for Business Premises",
+      "tag": "epc",
+      "keywords": [
+        "commercial EPC",
+        "Commercial EPC for Business Premises"
+      ],
+      "primary_keyword": "commercial EPC",
+      "title": "Commercial EPC for Business Premises | Adelphos",
+      "title_length": 47,
+      "description": "Understand when business premises may need an EPC, why non-domestic assessment differs from domestic SAP and how to find the right assessor.",
+      "description_length": 140,
+      "canonical": "https://adelphos.ai/resources/epc/commercial-epc",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Commercial EPC for business premises.",
+      "h1_count": 1,
+      "word_count": 597,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/document-controller/index.html",
+      "target_url": "https://adelphos.ai/apps/document-controller/index.html",
+      "page_title": "Document Controller",
+      "tag": "apps",
+      "keywords": [
+        "Document Controller"
+      ],
+      "primary_keyword": "Document Controller",
+      "title": "Document Controller — Apps — Adelphos AI",
+      "title_length": 40,
+      "description": "Single source of truth for every drawing, every revision, every transmittal.",
+      "description_length": 76,
+      "canonical": "https://adelphos.ai/apps/document-controller/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Document Controller",
+      "h1_count": 1,
+      "word_count": 886,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 9,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/cost/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/cost",
+      "page_title": "Energy Performance Certificate Cost",
+      "tag": "epc",
+      "keywords": [
+        "energy performance certificate cost"
+      ],
+      "primary_keyword": "energy performance certificate cost",
+      "title": "Energy Performance Certificate Cost | Adelphos",
+      "title_length": 46,
+      "description": "Understand what affects EPC assessment cost, why there is no single official price and what to confirm before appointing an assessor.",
+      "description_length": 133,
+      "canonical": "https://adelphos.ai/resources/epc/cost",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Energy performance certificate cost.",
+      "h1_count": 1,
+      "word_count": 616,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 11,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/find-energy-performance-certificate/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/find-energy-performance-certificate",
+      "page_title": "Energy Performance Certificate Finder",
+      "tag": "epc",
+      "keywords": [
+        "energy performance certificate finder"
+      ],
+      "primary_keyword": "energy performance certificate finder",
+      "title": "Energy Performance Certificate Finder | Adelphos",
+      "title_length": 48,
+      "description": "Find an existing EPC by postcode, address or certificate number using the correct official register for the property jurisdiction.",
+      "description_length": 130,
+      "canonical": "https://adelphos.ai/resources/epc/find-energy-performance-certificate",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Energy performance certificate finder.",
+      "h1_count": 1,
+      "word_count": 624,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 11,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/scotland/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/scotland",
+      "page_title": "Energy Performance Certificate in Scotland",
+      "tag": "epc",
+      "keywords": [
+        "energy performance certificate in Scotland"
+      ],
+      "primary_keyword": "energy performance certificate in Scotland",
+      "title": "Energy Performance Certificate in Scotland | Adelphos",
+      "title_length": 53,
+      "description": "Use the Scottish EPC Register, find an assessor and understand why Scotland needs its own EPC guidance and workflow.",
+      "description_length": 116,
+      "canonical": "https://adelphos.ai/resources/epc/scotland",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Energy performance certificate in Scotland.",
+      "h1_count": 1,
+      "word_count": 607,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 11,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/index.html",
+      "target_url": "https://adelphos.ai/resources/epc",
+      "page_title": "Energy Performance Certificate Meaning and EPC Guide",
+      "tag": "epc",
+      "keywords": [
+        "energy performance certificate meaning",
+        "Energy Performance Certificate Meaning and EPC Guide"
+      ],
+      "primary_keyword": "energy performance certificate meaning",
+      "title": "Energy Performance Certificate Meaning and EPC Guide | Adelphos",
+      "title_length": 63,
+      "description": "Understand what an EPC means, where to find the official certificate, how ratings work and where to plan evidence-based improvements.",
+      "description_length": 133,
+      "canonical": "https://adelphos.ai/resources/epc",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Energy performance certificate meaning and EPC guide.",
+      "h1_count": 1,
+      "word_count": 695,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 20,
+      "schema_types": [
+        "CollectionPage",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/ratings/a/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/a",
+      "page_title": "EPC A Rating Explained",
+      "tag": "epc",
+      "keywords": [
+        "EPC A rating",
+        "EPC A Rating Explained"
+      ],
+      "primary_keyword": "EPC A rating",
+      "title": "EPC A Rating Explained | Adelphos",
+      "title_length": 33,
+      "description": "Understand the EPC A rating range for domestic properties in England and Wales, what to check on the certificate and how to plan a supported scenario.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/resources/epc/ratings/a",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC A rating explained.",
+      "h1_count": 1,
+      "word_count": 663,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/ratings/b/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/b",
+      "page_title": "EPC B Rating Explained",
+      "tag": "epc",
+      "keywords": [
+        "EPC B rating",
+        "EPC B Rating Explained"
+      ],
+      "primary_keyword": "EPC B rating",
+      "title": "EPC B Rating Explained | Adelphos",
+      "title_length": 33,
+      "description": "Understand the EPC B rating range for domestic properties in England and Wales, what to check on the certificate and how to plan a supported scenario.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/resources/epc/ratings/b",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC B rating explained.",
+      "h1_count": 1,
+      "word_count": 661,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/ratings/c/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/c",
+      "page_title": "EPC C Rating Explained",
+      "tag": "epc",
+      "keywords": [
+        "EPC C rating",
+        "EPC C Rating Explained"
+      ],
+      "primary_keyword": "EPC C rating",
+      "title": "EPC C Rating Explained | Adelphos",
+      "title_length": 33,
+      "description": "Understand the EPC C rating range for domestic properties in England and Wales, what to check on the certificate and how to plan a supported scenario.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/resources/epc/ratings/c",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC C rating explained.",
+      "h1_count": 1,
+      "word_count": 667,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/ratings/d/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/d",
+      "page_title": "EPC D Rating Explained",
+      "tag": "epc",
+      "keywords": [
+        "EPC D rating",
+        "EPC D Rating Explained"
+      ],
+      "primary_keyword": "EPC D rating",
+      "title": "EPC D Rating Explained | Adelphos",
+      "title_length": 33,
+      "description": "Understand the EPC D rating range for domestic properties in England and Wales, what to check on the certificate and how to plan a supported scenario.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/resources/epc/ratings/d",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC D rating explained.",
+      "h1_count": 1,
+      "word_count": 662,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/ratings/e/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/e",
+      "page_title": "EPC E Rating Explained",
+      "tag": "epc",
+      "keywords": [
+        "EPC E rating",
+        "EPC E Rating Explained"
+      ],
+      "primary_keyword": "EPC E rating",
+      "title": "EPC E Rating Explained | Adelphos",
+      "title_length": 33,
+      "description": "Understand the EPC E rating range for domestic properties in England and Wales, what to check on the certificate and how to plan a supported scenario.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/resources/epc/ratings/e",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC E rating explained.",
+      "h1_count": 1,
+      "word_count": 673,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/ratings/f/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/f",
+      "page_title": "EPC F Rating Explained",
+      "tag": "epc",
+      "keywords": [
+        "EPC F rating",
+        "EPC F Rating Explained"
+      ],
+      "primary_keyword": "EPC F rating",
+      "title": "EPC F Rating Explained | Adelphos",
+      "title_length": 33,
+      "description": "Understand the EPC F rating range for domestic properties in England and Wales, what to check on the certificate and how to plan a supported scenario.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/resources/epc/ratings/f",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC F rating explained.",
+      "h1_count": 1,
+      "word_count": 671,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/ratings/g/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/g",
+      "page_title": "EPC G Rating Explained",
+      "tag": "epc",
+      "keywords": [
+        "EPC G rating",
+        "EPC G Rating Explained"
+      ],
+      "primary_keyword": "EPC G rating",
+      "title": "EPC G Rating Explained | Adelphos",
+      "title_length": 33,
+      "description": "Understand the EPC G rating range for domestic properties in England and Wales, what to check on the certificate and how to plan a supported scenario.",
+      "description_length": 150,
+      "canonical": "https://adelphos.ai/resources/epc/ratings/g",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "EPC G rating explained.",
+      "h1_count": 1,
+      "word_count": 672,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 12,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/how-to-improve-epc/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/how-to-improve-epc",
+      "page_title": "How to Improve EPC Rating",
+      "tag": "epc",
+      "keywords": [
+        "how to improve EPC",
+        "How to Improve EPC Rating"
+      ],
+      "primary_keyword": "how to improve EPC",
+      "title": "How to Improve EPC Rating | Adelphos",
+      "title_length": 36,
+      "description": "Use the lodged certificate, verify its inputs and compare defined fabric or services scenarios without promising a generic band uplift.",
+      "description_length": 135,
+      "canonical": "https://adelphos.ai/resources/epc/how-to-improve-epc",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "How to improve EPC rating.",
+      "h1_count": 1,
+      "word_count": 716,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 14,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "resources/epc/new-build-epc/index.html",
+      "target_url": "https://adelphos.ai/resources/epc/new-build-epc",
+      "page_title": "New Build EPC and SAP Calculation",
+      "tag": "epc",
+      "keywords": [
+        "new build EPC",
+        "New Build EPC and SAP Calculation"
+      ],
+      "primary_keyword": "new build EPC",
+      "title": "New Build EPC and SAP Calculation | Adelphos",
+      "title_length": 44,
+      "description": "Understand the difference between new-dwelling SAP calculation work and the accredited process that produces and lodges a new build EPC.",
+      "description_length": 136,
+      "canonical": "https://adelphos.ai/resources/epc/new-build-epc",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "New build EPC and SAP calculation.",
+      "h1_count": 1,
+      "word_count": 618,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 13,
+      "schema_types": [
+        "Article",
+        "WebSite",
+        "Organization",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "HowTo",
+        "HowToStep"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/qa-manager/index.html",
+      "target_url": "https://adelphos.ai/apps/qa-manager/index.html",
+      "page_title": "QA Manager",
+      "tag": "apps",
+      "keywords": [
+        "QA Manager"
+      ],
+      "primary_keyword": "QA Manager",
+      "title": "QA Manager — Apps — Adelphos AI",
+      "title_length": 31,
+      "description": "Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.",
+      "description_length": 99,
+      "canonical": "https://adelphos.ai/apps/qa-manager/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "QA Manager",
+      "h1_count": 1,
+      "word_count": 1246,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 9,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/report-builder/index.html",
+      "target_url": "https://adelphos.ai/apps/report-builder/index.html",
+      "page_title": "Report Builder",
+      "tag": "apps",
+      "keywords": [
+        "Report Builder"
+      ],
+      "primary_keyword": "Report Builder",
+      "title": "Report Builder — Apps — Adelphos AI",
+      "title_length": 35,
+      "description": "Every recurring report — composed, formatted, and traceable to source.",
+      "description_length": 70,
+      "canonical": "https://adelphos.ai/apps/report-builder/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Report Builder",
+      "h1_count": 1,
+      "word_count": 901,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 7,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "calculators/epc-improvement-calculator/index.html",
+      "target_url": "https://adelphos.ai/calculators/epc-improvement-calculator",
+      "page_title": "SAP and EPC Calculator",
+      "tag": "calculators",
+      "keywords": [
+        "SAP and EPC Calculator"
+      ],
+      "primary_keyword": "SAP and EPC Calculator",
+      "title": "SAP and EPC Calculator | Adelphos",
+      "title_length": 33,
+      "description": "The SAP and EPC Calculator uses the same full protected assessment engine on both calculator routes.",
+      "description_length": 100,
+      "canonical": "https://adelphos.ai/calculators/epc-improvement-calculator",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "SAP and EPC Calculator",
+      "h1_count": 1,
+      "word_count": 1282,
+      "images": 0,
+      "images_missing_alt": 0,
+      "internal_links": 4,
+      "schema_types": [
+        "WebPage",
+        "WebSite",
+        "FAQPage",
+        "Question",
+        "Answer"
+      ],
+      "score": 100,
+      "issues": []
+    },
+    {
+      "source_path": "apps/schedule-builder/index.html",
+      "target_url": "https://adelphos.ai/apps/schedule-builder/index.html",
+      "page_title": "Schedule Builder",
+      "tag": "apps",
+      "keywords": [
+        "Schedule Builder"
+      ],
+      "primary_keyword": "Schedule Builder",
+      "title": "Schedule Builder — Apps — Adelphos AI",
+      "title_length": 37,
+      "description": "Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.",
+      "description_length": 93,
+      "canonical": "https://adelphos.ai/apps/schedule-builder/index.html",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "h1": "Schedule Builder",
+      "h1_count": 1,
+      "word_count": 976,
+      "images": 5,
+      "images_missing_alt": 0,
+      "internal_links": 8,
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "Person",
+        "SoftwareApplication",
+        "Offer",
+        "CreativeWork",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "score": 100,
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23d9f99d'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='700' fill='%2311160d'%3EA%3C/text%3E%3C/svg%3E">
+  <title>SEO Visibility — Adelphos</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f4f5ed;
+      --muted: #989c92;
+      --faint: #62675f;
+      --line: rgba(255,255,255,.10);
+      --line-strong: rgba(255,255,255,.17);
+      --panel: #151713;
+      --panel-soft: #1a1d18;
+      --canvas: #0c0e0b;
+      --green: #d9f99d;
+      --green-strong: #a3e635;
+      --green-soft: rgba(163,230,53,.11);
+      --amber: #facc15;
+      --red: #fb7185;
+      --radius: 18px;
+      --shadow: 0 24px 70px rgba(0,0,0,.28);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--canvas); color: var(--ink); }
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 236px minmax(0, 1fr); }
+    .sidebar { border-right: 1px solid var(--line); padding: 28px 18px; display: flex; flex-direction: column; background: #10120f; position: sticky; top: 0; height: 100vh; }
+    .brand { display: flex; align-items: center; gap: 12px; padding: 0 10px 26px; }
+    .brand-mark { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: var(--green); color: #11160d; font-weight: 800; box-shadow: 0 0 34px rgba(163,230,53,.15); }
+    .brand strong { display: block; letter-spacing: -.02em; }
+    .brand span { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
+    .nav-label { padding: 0 10px; margin: 12px 0 8px; color: var(--faint); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .nav { display: grid; gap: 5px; }
+    .nav button { appearance: none; border: 0; background: transparent; border-radius: 11px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; text-align: left; color: var(--muted); cursor: pointer; }
+    .nav button:hover { color: var(--ink); background: rgba(255,255,255,.04); }
+    .nav button[aria-selected="true"] { color: var(--ink); background: var(--green-soft); }
+    .nav-icon { width: 18px; text-align: center; font-size: 13px; }
+    .side-foot { margin-top: auto; padding: 18px 10px 0; border-top: 1px solid var(--line); }
+    .side-foot small { display: block; color: var(--muted); line-height: 1.5; }
+    .side-foot button { margin-top: 12px; padding: 0; border: 0; background: none; color: var(--green); cursor: pointer; font-size: 12px; }
+    main { min-width: 0; padding: 36px clamp(22px, 4vw, 58px) 64px; }
+    .topbar { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; margin-bottom: 34px; }
+    .eyebrow { color: var(--green-strong); text-transform: uppercase; letter-spacing: .16em; font-size: 10px; font-weight: 800; }
+    h1 { margin: 8px 0 5px; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.05; letter-spacing: -.045em; font-weight: 620; }
+    .lede { color: var(--muted); margin: 0; font-size: 14px; }
+    .actions { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; justify-content: flex-end; }
+    .button { border: 1px solid var(--line-strong); background: var(--panel); color: var(--ink); border-radius: 10px; min-height: 38px; padding: 0 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 650; font-size: 12px; }
+    .button:hover { border-color: rgba(217,249,157,.42); }
+    .button.primary { background: var(--green); color: #11160d; border-color: var(--green); }
+    .button:disabled { cursor: wait; opacity: .6; }
+    .status { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 11px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--faint); box-shadow: 0 0 0 4px rgba(255,255,255,.035); }
+    .status-dot.live { background: var(--green-strong); box-shadow: 0 0 0 4px var(--green-soft); }
+    .status-dot.warn { background: var(--amber); }
+    .view { display: none; }
+    .view.active { display: block; }
+    .notice { border: 1px solid rgba(250,204,21,.25); background: rgba(250,204,21,.06); border-radius: 13px; padding: 14px 16px; margin-bottom: 22px; color: #e8dfac; font-size: 12px; line-height: 1.55; }
+    .notice[hidden] { display: none; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--panel); box-shadow: var(--shadow); }
+    .metric { padding: 22px 22px 20px; min-width: 0; }
+    .metric + .metric { border-left: 1px solid var(--line); }
+    .metric-label { color: var(--muted); font-size: 11px; margin-bottom: 10px; }
+    .metric-value { font-size: clamp(24px, 3vw, 38px); font-weight: 620; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+    .metric-context { margin-top: 8px; color: var(--faint); font-size: 11px; min-height: 16px; }
+    .metric-context.good { color: var(--green-strong); }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(280px, .85fr); gap: 18px; margin-top: 18px; }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); overflow: hidden; }
+    .panel-head { padding: 19px 21px 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .panel h2 { font-size: 14px; margin: 0 0 5px; letter-spacing: -.01em; }
+    .panel-sub { color: var(--muted); font-size: 11px; margin: 0; }
+    .chart { height: 250px; padding: 8px 18px 18px; }
+    .chart svg { width: 100%; height: 100%; overflow: visible; }
+    .chart-grid { stroke: var(--line); stroke-width: 1; }
+    .chart-line { fill: none; stroke: var(--green-strong); stroke-width: 2.2; vector-effect: non-scaling-stroke; }
+    .chart-area { fill: url(#visibility-fill); }
+    .chart-dot { fill: var(--panel); stroke: var(--green); stroke-width: 2; vector-effect: non-scaling-stroke; }
+    .chart-label { fill: var(--muted); font-size: 10px; }
+    .chart-empty { height: 100%; display: grid; place-items: center; color: var(--muted); font-size: 12px; text-align: center; line-height: 1.6; }
+    .opportunity-list { padding: 2px 20px 18px; }
+    .opportunity { padding: 15px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+    .opportunity:first-child { border-top: 0; }
+    .opportunity strong { display: block; font-size: 12px; line-height: 1.35; }
+    .opportunity span { color: var(--muted); font-size: 10px; }
+    .rank { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: var(--green-soft); color: var(--green); font-size: 13px; font-weight: 750; font-variant-numeric: tabular-nums; }
+    .section { margin-top: 18px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th { color: var(--faint); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; text-align: left; font-weight: 800; padding: 11px 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); white-space: nowrap; }
+    td { padding: 15px 18px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: rgba(255,255,255,.018); }
+    .keyword-cell { min-width: 250px; }
+    .keyword-cell strong { display: block; font-size: 12px; }
+    .keyword-cell a { display: inline-block; margin-top: 4px; color: var(--muted); font-size: 10px; text-decoration: none; max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .keyword-cell a:hover { color: var(--green); }
+    .page-warning { display: block; width: fit-content; margin-top: 6px; color: var(--amber); font-size: 9px; }
+    .issue-list { margin: 7px 0 0; padding-left: 16px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .score { display: inline-grid; place-items: center; min-width: 34px; height: 26px; border-radius: 8px; background: var(--green-soft); color: var(--green); font-weight: 800; }
+    .score.warn { background: var(--amber-soft); color: var(--amber); }
+    .number { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .movement { font-weight: 750; }
+    .movement.up { color: var(--green-strong); }
+    .movement.down { color: var(--red); }
+    .pill { display: inline-flex; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 4px 8px; font-size: 9px; white-space: nowrap; }
+    .toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 0 20px 18px; }
+    .search { flex: 1 1 240px; position: relative; }
+    .search input, select { width: 100%; min-height: 38px; border: 1px solid var(--line-strong); border-radius: 10px; background: #11130f; color: var(--ink); padding: 0 12px; outline: none; }
+    .search input:focus, select:focus { border-color: rgba(217,249,157,.55); box-shadow: 0 0 0 3px var(--green-soft); }
+    .select-wrap { width: 150px; }
+    .market-picker { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px 18px; }
+    .market-choice { display: inline-flex; align-items: center; gap: 7px; min-height: 34px; padding: 0 11px; border: 1px solid var(--line-strong); border-radius: 999px; background: #11130f; color: var(--muted); font-size: 10px; cursor: pointer; }
+    .market-choice:has(input:checked) { border-color: rgba(217,249,157,.55); background: var(--green-soft); color: var(--green); }
+    .market-choice input { accent-color: var(--green-strong); }
+    .split-metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; padding: 0 20px 20px; }
+    .mini { background: var(--panel-soft); border-radius: 13px; padding: 16px; }
+    .mini span { display: block; color: var(--muted); font-size: 10px; margin-bottom: 7px; }
+    .mini strong { font-size: 21px; font-weight: 620; font-variant-numeric: tabular-nums; }
+    .settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .settings-body { padding: 4px 20px 20px; }
+    .check-row { padding: 13px 0; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .check-row:first-child { border-top: 0; }
+    .check-row strong { display: block; font-size: 12px; }
+    .check-row small { color: var(--muted); }
+    .check { color: var(--green-strong); font-weight: 750; font-size: 11px; }
+    .check.missing { color: var(--amber); }
+    .empty-row { text-align: center; color: var(--muted); padding: 36px; }
+    .toast { position: fixed; right: 22px; bottom: 22px; max-width: 380px; background: #20241c; border: 1px solid var(--line-strong); border-radius: 12px; padding: 13px 15px; box-shadow: var(--shadow); font-size: 12px; line-height: 1.45; z-index: 20; }
+    .toast.error { border-color: rgba(251,113,133,.35); }
+    .toast[hidden] { display: none; }
+    dialog { width: min(440px, calc(100% - 32px)); border: 1px solid var(--line-strong); border-radius: 18px; background: #151713; color: var(--ink); box-shadow: 0 40px 120px rgba(0,0,0,.65); padding: 0; }
+    dialog::backdrop { background: rgba(4,5,4,.78); backdrop-filter: blur(8px); }
+    .dialog-body { padding: 26px; }
+    .dialog-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 11px; background: var(--green); color: #11160d; font-weight: 800; margin-bottom: 22px; }
+    dialog h2 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
+    dialog p { color: var(--muted); line-height: 1.55; font-size: 12px; margin: 8px 0 20px; }
+    dialog label { display: block; color: var(--muted); font-size: 10px; margin-bottom: 7px; }
+    dialog input { width: 100%; min-height: 42px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 0 12px; background: #0e100d; color: var(--ink); outline: none; }
+    .dialog-actions { margin-top: 13px; display: flex; justify-content: flex-end; }
+    @media (max-width: 1000px) {
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .metric:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+      .metric:nth-child(4) { border-top: 1px solid var(--line); }
+      .grid, .settings-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .shell { display: block; }
+      .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 16px; }
+      .brand { padding: 0 4px 14px; }
+      .nav-label, .side-foot { display: none; }
+      .nav { display: flex; overflow-x: auto; padding-bottom: 2px; }
+      .nav button { white-space: nowrap; padding: 9px 10px; }
+      main { padding: 26px 16px 50px; }
+      .topbar { display: block; margin-bottom: 24px; }
+      .actions { margin-top: 18px; justify-content: flex-start; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metric { padding: 17px; }
+      .metric-value { font-size: 27px; }
+      .split-metrics { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">A</div><div><strong>Adelphos</strong><span>Search visibility</span></div></div>
+      <div class="nav-label">Workspace</div>
+      <nav class="nav" aria-label="Portal sections">
+        <button type="button" data-view="overview" aria-selected="true"><span class="nav-icon">◫</span>Overview</button>
+        <button type="button" data-view="keywords" aria-selected="false"><span class="nav-icon">⌕</span>Keywords</button>
+        <button type="button" data-view="searches" aria-selected="false"><span class="nav-icon">↗</span>Searches</button>
+        <button type="button" data-view="pages" aria-selected="false"><span class="nav-icon">▤</span>Pages</button>
+        <button type="button" data-view="backlinks" aria-selected="false"><span class="nav-icon">⇄</span>Backlinks</button>
+        <button type="button" data-view="research" aria-selected="false"><span class="nav-icon">◎</span>Research</button>
+        <button type="button" data-view="settings" aria-selected="false"><span class="nav-icon">⚙</span>Setup</button>
+      </nav>
+      <div class="side-foot"><small>Private workspace<br><span id="sideSync">Waiting for connection</span></small><button type="button" id="lockPortal">Lock portal</button></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><div class="eyebrow" id="viewEyebrow">Organic search</div><h1 id="viewTitle">Visibility overview</h1><p class="lede" id="viewLede">See whether the new search-intent pages are becoming visible.</p></div>
+        <div class="actions"><span class="status"><i class="status-dot" id="statusDot"></i><span id="statusText">Locked</span></span><button class="button" type="button" id="refreshData">Refresh</button><button class="button primary" type="button" id="runCollection">Run collection</button></div>
+      </header>
+
+      <div class="notice" id="onboarding" hidden></div>
+
+      <section class="view active" id="view-overview">
+        <div class="metrics">
+          <div class="metric"><div class="metric-label">Tracked searches</div><div class="metric-value" id="metricTracked">—</div><div class="metric-context" id="metricTrackedContext">Published pages and toolbox terms</div></div>
+          <div class="metric"><div class="metric-label">Visible in top <span id="metricDepth">20</span></div><div class="metric-value" id="metricVisible">—</div><div class="metric-context" id="metricVisibleContext">Awaiting first snapshot</div></div>
+          <div class="metric"><div class="metric-label">Visibility score</div><div class="metric-value" id="metricVisibility">—</div><div class="metric-context">Rank-weighted, 0–100</div></div>
+          <div class="metric"><div class="metric-label">Google impressions</div><div class="metric-value" id="metricImpressions">—</div><div class="metric-context" id="metricClicks">Search Console not connected</div></div>
+        </div>
+
+        <div class="grid">
+          <section class="panel"><div class="panel-head"><div><h2>Visibility trend</h2><p class="panel-sub" id="visibilitySource">Google Search Console exact-query positions</p></div><span class="pill" id="trendRange">No history</span></div><div class="chart" id="visibilityChart"></div></section>
+          <section class="panel"><div class="panel-head"><div><h2>Striking distance</h2><p class="panel-sub">Queries sitting just outside page one</p></div><span class="pill">Positions 11–20</span></div><div class="opportunity-list" id="opportunityList"></div></section>
+        </div>
+
+        <section class="panel section"><div class="panel-head"><div><h2>Movement</h2><p class="panel-sub" id="movementSource">Latest final GSC day against the previous observed day</p></div><button class="button" type="button" data-go="keywords">View all keywords</button></div><div class="table-wrap"><table><thead><tr><th>Search</th><th>Location</th><th class="number">Position</th><th class="number">Change</th><th class="number">Impressions</th></tr></thead><tbody id="moversBody"></tbody></table></div></section>
+        <section class="panel section"><div class="panel-head"><div><h2>Top ranked words</h2><p class="panel-sub">The strongest queries Google has actually shown, connected to the full Searches view</p></div><button class="button" type="button" data-go="searches">Open every search</button></div><div class="table-wrap"><table><thead><tr><th>Query</th><th>Country</th><th>Landing page</th><th class="number">Position</th><th class="number">Clicks</th><th class="number">Impressions</th></tr></thead><tbody id="topRankedBody"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-keywords">
+        <div class="notice">“Not visible” means Google Search Console has not reported an impression for that exact tracked phrase in the current 90-day window. It does not prove the page is unindexed. Daily collection will turn these rows into movement data as impressions begin.</div>
+        <section class="panel"><div class="panel-head"><div><h2>Tracked keyword set</h2><p class="panel-sub">Generated from published pages, explicit intents and matched toolbox terms</p></div><button class="button" type="button" id="exportCsv">Export CSV</button></div><div class="toolbar"><div class="search"><label for="keywordSearch" hidden>Filter keywords</label><input id="keywordSearch" type="search" placeholder="Filter keyword or page…"></div><div class="select-wrap"><label for="keywordCountry" hidden>Country</label><select id="keywordCountry"><option value="all">All countries</option></select></div><div class="select-wrap"><label for="rankFilter" hidden>Rank filter</label><select id="rankFilter"><option value="all">All positions</option><option value="top10">Top 10</option><option value="striking">11–20</option><option value="unranked">Not visible</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Search intent</th><th>Tag</th><th>Country</th><th>Device</th><th class="number">Position</th><th class="number">Change</th><th class="number">GSC pos.</th><th class="number">Clicks</th><th class="number">Impressions</th><th>Last checked</th></tr></thead><tbody id="keywordsBody"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-searches">
+        <div class="grid">
+          <section class="panel"><div class="panel-head"><div><h2>Organic demand</h2><p class="panel-sub">Clicks and impressions reported by Google Search Console</p></div><span class="pill">Fresh + final data</span></div><div class="split-metrics"><div class="mini"><span>Clicks</span><strong id="searchClicks">—</strong></div><div class="mini"><span>Impressions</span><strong id="searchImpressions">—</strong></div><div class="mini"><span>Average CTR</span><strong id="searchCtr">—</strong></div></div><div class="chart" id="searchChart"></div></section>
+          <section class="panel"><div class="panel-head"><div><h2>Countries</h2><p class="panel-sub">Where Google showed and clicked Adelphos</p></div></div><div class="opportunity-list" id="coverageList"></div></section>
+        </div>
+        <section class="panel section"><div class="panel-head"><div><h2>What earned clicks</h2><p class="panel-sub">Queries people actually clicked in Google</p></div></div><div class="table-wrap"><table><thead><tr><th>Query</th><th>Country</th><th>Landing page</th><th class="number">Clicks</th><th class="number">Impressions</th><th class="number">Position</th></tr></thead><tbody id="clickedBody"></tbody></table></div></section>
+        <section class="panel section"><div class="panel-head"><div><h2>Every search found by Google</h2><p class="panel-sub">Includes tracked keywords and additional queries discovered in Search Console</p></div></div><div class="toolbar"><div class="select-wrap"><label for="searchCountry" hidden>Search country</label><select id="searchCountry"><option value="all">All countries</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Query</th><th>Country</th><th>Landing page</th><th class="number">Clicks</th><th class="number">Impressions</th><th class="number">Position</th><th class="number">Change</th></tr></thead><tbody id="searchesBody"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-pages">
+        <div class="metrics">
+          <div class="metric"><div class="metric-label">Audited pages</div><div class="metric-value" id="pagesTotal">—</div><div class="metric-context">Published keyword-owner pages</div></div>
+          <div class="metric"><div class="metric-label">Visible pages</div><div class="metric-value" id="pagesVisible">—</div><div class="metric-context">At least one GSC impression</div></div>
+          <div class="metric"><div class="metric-label">Average SEO score</div><div class="metric-value" id="pagesScore">—</div><div class="metric-context">Repository HTML checks, 0–100</div></div>
+          <div class="metric"><div class="metric-label">Campaign priorities</div><div class="metric-value" id="pagesPriority">—</div><div class="metric-context">Technical or striking-distance work</div></div>
+        </div>
+        <section class="panel section"><div class="panel-head"><div><h2>Organic campaign by page</h2><p class="panel-sub">Real Search Console performance joined to title, description, canonical, H1, copy, image-alt, internal-link and schema checks</p></div></div><div class="toolbar"><div class="search"><label for="pageSearch" hidden>Filter pages</label><input id="pageSearch" type="search" placeholder="Filter page, keyword or action…"></div><div class="select-wrap"><label for="pageStatus" hidden>Page status</label><select id="pageStatus"><option value="all">All pages</option><option value="visible">Visible in Google</option><option value="awaiting">Awaiting impression</option><option value="priority">High priority</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Page and tracked intent</th><th class="number">SEO score</th><th>Status</th><th class="number">Clicks</th><th class="number">Impressions</th><th class="number">GSC position</th><th>Campaign action</th></tr></thead><tbody id="pagesBody"></tbody></table></div></section>
+      </section>
+
+      <section class="view" id="view-backlinks">
+        <div class="metrics">
+          <div class="metric"><div class="metric-label">GSC sampled external links</div><div class="metric-value" id="backlinkTotal">—</div><div class="metric-context">Captured sample, not a total</div></div>
+          <div class="metric"><div class="metric-label">GSC sampled domains</div><div class="metric-value" id="referringDomains">—</div><div class="metric-context">Captured sample, not a total</div></div>
+          <div class="metric"><div class="metric-label">Unique internal link edges</div><div class="metric-value" id="internalLinks">—</div><div class="metric-context" id="internalLinksContext">Waiting for a scoped live crawl</div></div>
+          <div class="metric"><div class="metric-label">Indicative evidence score</div><div class="metric-value" id="authorityScore">—</div><div class="metric-context">Sample-based Adelphos score</div></div>
+        </div>
+        <div class="grid">
+          <section class="panel"><div class="panel-head"><div><h2>Top linking domains</h2><p class="panel-sub">External sites Google currently reports</p></div></div><div class="opportunity-list" id="linkingDomains"></div></section>
+          <section class="panel"><div class="panel-head"><div><h2>Top linked pages</h2><p class="panel-sub">Adelphos pages receiving external links</p></div></div><div class="opportunity-list" id="linkedPages"></div></section>
+        </div>
+        <section class="panel section"><div class="panel-head"><div><h2>How the indicative score is calculated</h2><p class="panel-sub" id="authorityCaptured">Snapshot date</p></div></div><div class="settings-body"><p id="authorityMethod"></p><p class="panel-sub" id="backlinkScope">External-link evidence scope is loading.</p><p class="panel-sub" id="internalLinksScope">Internal-link crawl scope is loading.</p><p class="panel-sub">Google states that its Links report is a sample and may omit links. Incomplete backlink inputs mean this score is useful only as an indicative trend. Moz Domain Authority, Ahrefs Domain Rating and Semrush Authority Score are separate proprietary metrics and must not be relabelled as Google data.</p></div></section>
+      </section>
+
+      <section class="view" id="view-research">
+        <div class="metrics">
+          <div class="metric"><div class="metric-label">Research phrases</div><div class="metric-value" id="researchTotal">—</div><div class="metric-context">Toolbox, published pages and related terms</div></div>
+          <div class="metric"><div class="metric-label">With monthly volume</div><div class="metric-value" id="researchVolumeKnown">—</div><div class="metric-context">Historical toolbox snapshot</div></div>
+          <div class="metric"><div class="metric-label">Currently ranking</div><div class="metric-value" id="researchRanked">—</div><div class="metric-context">Exact Search Console matches</div></div>
+          <div class="metric"><div class="metric-label">Markets</div><div class="metric-value" id="researchCountries">—</div><div class="metric-context">Country-specific research</div></div>
+        </div>
+        <section class="panel section"><div class="panel-head"><div><h2>Keyword opportunity finder</h2><p class="panel-sub">Choose your markets, then compare demand, current position and opportunity</p></div><div class="actions"><button class="button" type="button" id="refreshResearch">Refresh selected markets</button><button class="button" type="button" id="exportResearchCsv">Export CSV</button></div></div><div class="market-picker" id="marketChoices" aria-label="Research markets"></div><div class="toolbar"><div class="search"><label for="researchSearch" hidden>Research keywords</label><input id="researchSearch" type="search" placeholder="Research a word, topic or page…"></div><div class="select-wrap"><label for="researchCountry" hidden>Country</label><select id="researchCountry"><option value="all">All countries</option></select></div><div class="select-wrap"><label for="researchVolume" hidden>Volume data</label><select id="researchVolume"><option value="all">All volume states</option><option value="known">Volume known</option><option value="ranking">Currently ranking</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Keyword</th><th>Country</th><th class="number">Searches/mo</th><th class="number">Ads comp.</th><th class="number">Position</th><th class="number">Change</th><th class="number">Opportunity</th><th>Target / status</th></tr></thead><tbody id="researchBody"></tbody></table></div><div class="settings-body"><p class="panel-sub" id="researchMethod">Monthly searches are country-specific estimates. Google Ads competition measures advertiser competition, not organic ranking difficulty.</p></div></section>
+      </section>
+
+      <section class="view" id="view-settings">
+        <div class="settings-grid">
+          <section class="panel"><div class="panel-head"><div><h2>Connections</h2><p class="panel-sub">Secrets remain in Vercel server-side environment variables</p></div></div><div class="settings-body" id="connectionList"></div></section>
+          <section class="panel"><div class="panel-head"><div><h2>Collection policy</h2><p class="panel-sub">Hard limits applied before provider requests</p></div></div><div class="settings-body" id="policyList"></div></section>
+        </div>
+        <section class="panel section"><div class="panel-head"><div><h2>Recent collection runs</h2><p class="panel-sub">Collector status, saved observations and any optional provider cost</p></div></div><div class="table-wrap"><table><thead><tr><th>Started</th><th>Status</th><th class="number">Requested</th><th class="number">Saved</th><th class="number">Provider cost</th><th>Error</th></tr></thead><tbody id="runsBody"></tbody></table></div></section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="tokenDialog">
+    <form class="dialog-body" id="tokenForm" method="dialog"><div class="dialog-mark">A</div><h2>Open SEO visibility</h2><p>Enter the private portal token configured in Vercel. It stays in this browser tab and is never written into the page.</p><input type="text" name="username" value="seo-portal" autocomplete="username" hidden><label for="portalToken">Portal access token</label><input id="portalToken" name="token" type="password" autocomplete="current-password" required><div class="dialog-actions"><button class="button primary" type="submit">Open portal</button></div></form>
+  </dialog>
+  <div class="toast" id="toast" hidden></div>
+
+  <script>
+    (() => {
+      'use strict';
+      const savedMarkets = (()=>{ try { return JSON.parse(localStorage.getItem('adelphosSeoMarkets') || '["GB","AU"]'); } catch { return ['GB','AU']; } })();
+      const state = { data: null, filter: '', rankFilter: 'all', keywordCountry: 'all', searchCountry: 'all', pageFilter: '', pageStatus: 'all', researchFilter: '', researchCountry: 'all', researchVolume: 'all', markets: Array.isArray(savedMarkets) ? savedMarkets : ['GB','AU'], token: sessionStorage.getItem('adelphosSeoToken') || '' };
+      const $ = (selector) => document.querySelector(selector);
+      const $$ = (selector) => [...document.querySelectorAll(selector)];
+      const preview = ['localhost', '127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).has('preview');
+      const embedded = new URLSearchParams(location.search).has('embedded');
+      const headings = {
+        overview: ['Organic search', 'Visibility overview', 'See whether the new search-intent pages are becoming visible.'],
+        keywords: ['Rank tracking', 'Tracked keywords', 'Every published search intent, its owner page, position and movement.'],
+        searches: ['Search Console', 'Search demand', 'What people searched, what Google showed, and which pages earned traffic.'],
+        pages: ['SEO campaign', 'Page-by-page SEO', 'What each published page ranks for, what is missing and what to improve next.'],
+        backlinks: ['Link authority', 'Backlinks', 'External links, referring domains and a transparent authority calculation.'],
+        research: ['Keyword research', 'Opportunity finder', 'Find related searches, monthly demand and the strongest ranking opportunities.'],
+        settings: ['Data collection', 'Portal setup', 'Connection health, spend guards and recent collection runs.'],
+      };
+
+      function escapeHtml(value) { return String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]); }
+      function number(value, digits = 0) { return value == null || Number.isNaN(Number(value)) ? '—' : Number(value).toLocaleString('en-GB', { maximumFractionDigits: digits }); }
+      function percent(value) { return value == null ? '—' : `${(Number(value) * 100).toFixed(1)}%`; }
+      function shortDate(value) { return value ? new Date(value).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : 'Never'; }
+      function safeHref(value) { try { const url = new URL(value); return url.protocol === 'https:' ? url.href : '#'; } catch { return '#'; } }
+      function movement(value) {
+        if (value == null || value === 0) return '<span class="movement">—</span>';
+        const up = value > 0;
+        return `<span class="movement ${up ? 'up' : 'down'}">${up ? '↑' : '↓'} ${number(Math.abs(value), 1)}</span>`;
+      }
+      function showToast(message, error = false) {
+        const toast = $('#toast'); toast.textContent = message; toast.className = `toast${error ? ' error' : ''}`; toast.hidden = false;
+        clearTimeout(showToast.timer); showToast.timer = setTimeout(() => { toast.hidden = true; }, 5000);
+      }
+      function setStatus(text, mode = '') { $('#statusText').textContent = text; $('#statusDot').className = `status-dot ${mode}`; }
+
+      function mockData() {
+        const words = ['commercial EPC','energy performance certificate cost','energy performance certificate finder','energy performance certificate in Scotland','energy performance certificate meaning','EPC A rating','EPC B rating','EPC C rating','EPC D rating','EPC E rating','EPC F rating','EPC G rating','how to get an EPC','how to improve EPC','new build EPC'];
+        const positions = [12,18,9,null,14,7,11,16,23,null,null,null,8,19,13];
+        const keywords = words.map((keyword, index) => ({ id:index+1, keyword, location_name: keyword.includes('Scotland') ? 'Scotland,United Kingdom' : 'United Kingdom', device:'desktop', tag:'epc', target_url:`https://adelphos.ai/resources/epc/${keyword.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`, page_title: keyword, position:positions[index], previous_position: positions[index] == null ? null : positions[index] + [2,-1,1,0,3][index%5], movement: positions[index] == null ? null : [2,-1,1,0,3][index%5], impressions:[88,57,164,22,103,41,72,119,65,19,12,9,94,78,51][index], clicks:[2,1,7,0,3,2,3,4,1,0,0,0,5,2,1][index], gsc_position: positions[index] == null ? null : positions[index]+1.7, checked_at:new Date().toISOString() }));
+        return { ok:true, configured:{database:true,google_search_console:true,google_ads_keyword_planner:false,dataforseo:false,portal_access:true,schedule:'Daily at 03:15 UTC',serp_depth:20,run_limit:25,research_markets:[{country:'Australia',code:'AU'},{country:'Canada',code:'CA'},{country:'United Kingdom',code:'GB'},{country:'Ireland',code:'IE'},{country:'India',code:'IN'},{country:'New Zealand',code:'NZ'},{country:'Singapore',code:'SG'},{country:'United Arab Emirates',code:'AE'},{country:'United States',code:'US'}]}, generated_at:new Date().toISOString(), summary:{tracked:15,visible:11,top_10:3,average_position:13.6,visibility:37.8,clicks:31,impressions:994,ctr:.0312,gsc_position:14.8,rank_source:'gsc'}, keywords, trend:Array.from({length:14},(_,i)=>({date:new Date(Date.now()-(13-i)*86400000).toISOString().slice(0,10),visibility:22+i*1.25+Math.sin(i)*3,average_position:18-i*.35})),gsc_daily:Array.from({length:14},(_,i)=>({date:new Date(Date.now()-(13-i)*86400000).toISOString().slice(0,10),clicks:1+(i%4),impressions:48+i*4+(i%3)*9,position:18-i*.22})),runs:[{started_at:new Date().toISOString(),status:'complete',items_requested:622,items_succeeded:622,cost_usd:0,error:null}] };
+      }
+
+      async function api(path, options = {}) {
+        const response = await fetch(path, { ...options, headers: { ...(state.token ? { Authorization: `Bearer ${state.token}` } : {}), ...(options.headers || {}) } });
+        const payload = await response.json().catch(() => ({ detail: 'The server returned an unreadable response.' }));
+        if (!response.ok) { const error = new Error(payload.detail || payload.errors?.join(' | ') || 'Request failed.'); error.status = response.status; throw error; }
+        return payload;
+      }
+
+      async function loadData() {
+        if (preview) { state.data = mockData(); render(); setStatus('Preview data', 'live'); return; }
+        if (!state.token && !embedded) { setStatus('Locked'); $('#tokenDialog').showModal(); return; }
+        setStatus('Loading…');
+        try {
+          state.data = await api('/api/seo/data'); render(); setStatus('Connected', 'live');
+        } catch (error) {
+          setStatus(error.status === 401 ? 'Locked' : 'Connection issue', 'warn');
+          if (error.status === 401) { state.token = ''; sessionStorage.removeItem('adelphosSeoToken'); $('#tokenDialog').showModal(); }
+          showToast(error.message, true);
+        }
+      }
+
+      function render() {
+        const data = state.data; if (!data) return;
+        const summary = data.summary;
+        $('#metricTracked').textContent = number(summary.tracked);
+        $('#metricTrackedContext').textContent = summary.discovered ? `${number(summary.discovered)} additional Google-discovered searches` : 'Published pages and toolbox terms';
+        $('#metricDepth').textContent = number(data.configured.serp_depth);
+        $('#metricVisible').textContent = number(summary.visible);
+        $('#metricVisibleContext').textContent = summary.tracked ? `${number(summary.top_10)} currently in the top 10` : 'No tracked searches';
+        $('#metricVisibleContext').className = `metric-context${summary.top_10 ? ' good' : ''}`;
+        $('#metricVisibility').textContent = number(summary.visibility, 1);
+        $('#metricImpressions').textContent = number(summary.impressions);
+        $('#metricClicks').textContent = data.configured.google_search_console ? `${number(summary.clicks)} clicks · ${percent(summary.ctr)} CTR` : 'Search Console not connected';
+        const usingGscRanks = summary.rank_source !== 'dataforseo';
+        $('#visibilitySource').textContent = usingGscRanks ? 'Google Search Console exact-query positions' : 'Independent daily SERP snapshots';
+        $('#movementSource').textContent = usingGscRanks ? 'Latest reported GSC day against the previous observed day' : 'Latest position against the previous daily snapshot';
+        $('#searchClicks').textContent = number(summary.clicks);
+        $('#searchImpressions').textContent = number(summary.impressions);
+        $('#searchCtr').textContent = percent(summary.ctr);
+        $('#sideSync').textContent = `Updated ${new Date(data.generated_at).toLocaleString('en-GB')}`;
+        const missing = Object.entries(data.configured).filter(([key, value]) => ['database','google_search_console'].includes(key) && !value).map(([key]) => key.replaceAll('_',' '));
+        $('#onboarding').hidden = missing.length === 0;
+        $('#onboarding').textContent = missing.length ? `Live collection is waiting for: ${missing.join(', ')}. The generated ${summary.tracked}-keyword watchlist is ready; add the missing server environment variables and apply the SEO migration.` : '';
+        renderTrend($('#visibilityChart'), data.trend, 'visibility', 'Visibility score');
+        renderTrend($('#searchChart'), data.gsc_daily, 'impressions', 'Google impressions');
+        const rankingRows = data.searches?.length ? data.searches : data.keywords;
+        renderOpportunities(rankingRows);
+        renderMovers(rankingRows);
+        renderTopRanked(rankingRows);
+        renderKeywords();
+        renderSearches(data.searches || data.keywords, data.countries || []);
+        renderPages();
+        renderBacklinks(data.backlinks || {});
+        renderResearch();
+        renderSettings(data);
+      }
+
+      function renderTrend(container, points, key, label) {
+        if (!points?.length) { container.innerHTML = '<div class="chart-empty">No history yet.<br>Run the first collection to establish a baseline.</div>'; if (container.id === 'visibilityChart') $('#trendRange').textContent = 'No history'; return; }
+        const width = 760, height = 210, left = 38, right = 14, top = 12, bottom = 30;
+        const values = points.map((point) => Number(point[key]) || 0), max = Math.max(1, ...values), min = Math.min(0, ...values);
+        const x = (index) => left + (index / Math.max(1, points.length - 1)) * (width - left - right);
+        const y = (value) => top + (1 - ((value - min) / Math.max(1, max - min))) * (height - top - bottom);
+        const path = points.map((point, index) => `${index ? 'L' : 'M'}${x(index).toFixed(1)},${y(Number(point[key]) || 0).toFixed(1)}`).join(' ');
+        const area = `${path} L${x(points.length-1)},${height-bottom} L${x(0)},${height-bottom} Z`;
+        const grid = [0,.5,1].map((fraction) => { const value = min + (max-min)*(1-fraction); const yy = top + fraction*(height-top-bottom); return `<line class="chart-grid" x1="${left}" x2="${width-right}" y1="${yy}" y2="${yy}"/><text class="chart-label" x="0" y="${yy+3}">${number(value)}</text>`; }).join('');
+        const first = shortDate(points[0].date), last = shortDate(points.at(-1).date);
+        container.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(label)} trend from ${escapeHtml(first)} to ${escapeHtml(last)}"><title>${escapeHtml(label)} trend</title><desc>${points.length} daily observations, latest value ${number(values.at(-1),1)}.</desc><defs><linearGradient id="visibility-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a3e635" stop-opacity=".18"/><stop offset="1" stop-color="#a3e635" stop-opacity="0"/></linearGradient></defs>${grid}<path class="chart-area" d="${area}"/><path class="chart-line" d="${path}"/>${points.map((point,index)=>`<circle class="chart-dot" cx="${x(index)}" cy="${y(Number(point[key])||0)}" r="3"><title>${escapeHtml(shortDate(point.date))}: ${number(point[key],1)}</title></circle>`).join('')}<text class="chart-label" x="${left}" y="${height-5}">${escapeHtml(first)}</text><text class="chart-label" text-anchor="end" x="${width-right}" y="${height-5}">${escapeHtml(last)}</text></svg>`;
+        if (container.id === 'visibilityChart') $('#trendRange').textContent = `${points.length} day${points.length === 1 ? '' : 's'}`;
+      }
+
+      function renderOpportunities(keywords) {
+        const rows = keywords.filter((item) => item.position >= 11 && item.position <= 20).sort((a,b)=>a.position-b.position).slice(0,5);
+        $('#opportunityList').innerHTML = rows.length ? rows.map((row)=>`<div class="opportunity"><div><strong>${escapeHtml(row.keyword)}</strong><span>${number(row.impressions)} impressions · ${escapeHtml(row.page_title || row.tag)}</span></div><div class="rank">${number(row.position)}</div></div>`).join('') : '<div class="chart-empty" style="height:190px">No tracked queries in positions 11–20 yet.</div>';
+      }
+
+      function keywordRow(row, full = false) {
+        const link = safeHref(row.target_url);
+        const mismatch = row.owner_match === false ? `<span class="page-warning">Different page is ranking</span>` : '';
+        return `<tr><td class="keyword-cell"><strong>${escapeHtml(row.keyword)}</strong><a href="${escapeHtml(link)}" target="_blank" rel="noreferrer">${escapeHtml(row.target_url || row.page_title || '')}</a>${mismatch}</td>${full ? `<td><span class="pill">${escapeHtml(row.tag || 'site')}</span></td><td>${escapeHtml(row.country || '—')}</td><td>${escapeHtml(row.device || 'desktop')}</td>` : `<td>${escapeHtml(row.country || row.location_name || '—')}</td>`}<td class="number">${number(row.position,1)}</td><td class="number">${movement(row.movement)}</td>${full ? `<td class="number">${number(row.gsc_position,1)}</td><td class="number">${number(row.clicks)}</td>` : ''}<td class="number">${number(row.impressions)}</td>${full ? `<td>${shortDate(row.checked_at)}</td>` : ''}</tr>`;
+      }
+
+      function renderMovers(keywords) {
+        const rows = [...keywords].filter((row)=>row.position!=null).sort((a,b)=>Math.abs(b.movement||0)-Math.abs(a.movement||0) || b.impressions-a.impressions).slice(0,6);
+        $('#moversBody').innerHTML = rows.length ? rows.map((row)=>keywordRow(row)).join('') : '<tr><td colspan="5" class="empty-row">Google has not reported a ranking observation yet.</td></tr>';
+      }
+
+      function renderTopRanked(keywords) {
+        const rows = [...keywords].filter((row)=>row.position!=null && row.impressions>0).sort((a,b)=>a.position-b.position || b.impressions-a.impressions).slice(0,10);
+        $('#topRankedBody').innerHTML = rows.length ? rows.map((row)=>`<tr><td class="keyword-cell"><strong>${escapeHtml(row.keyword)}</strong></td><td>${escapeHtml(row.country || row.location_name || '—')}</td><td><a href="${escapeHtml(safeHref(row.target_url))}" target="_blank" rel="noreferrer">${escapeHtml(row.page_title || row.target_url)}</a></td><td class="number">${number(row.position,1)}</td><td class="number">${number(row.clicks)}</td><td class="number">${number(row.impressions)}</td></tr>`).join('') : '<tr><td colspan="6" class="empty-row">Google has not reported a ranked query yet.</td></tr>';
+      }
+
+      function renderKeywords() {
+        if (!state.data) return;
+        const query = state.filter.toLowerCase(); const depth = state.data.configured.serp_depth;
+        const countryNames = [...new Set(state.data.keywords.flatMap((row)=>[
+          row.country, ...(row.country_breakdown || []).map((item)=>item.country),
+          String(row.location_name || '').split(',').at(-1)?.trim(),
+        ]).filter(Boolean))].sort();
+        $('#keywordCountry').innerHTML = '<option value="all">All countries</option>' + countryNames.map((country)=>`<option value="${escapeHtml(country)}">${escapeHtml(country)}</option>`).join('');
+        if (!countryNames.includes(state.keywordCountry)) state.keywordCountry = 'all';
+        $('#keywordCountry').value = state.keywordCountry;
+        const rows = state.data.keywords.filter((row) => {
+          const matchesText = !query || `${row.keyword} ${row.target_url} ${row.page_title}`.toLowerCase().includes(query);
+          const matchesRank = state.rankFilter === 'all' || (state.rankFilter === 'top10' && row.position && row.position <= 10) || (state.rankFilter === 'striking' && row.position >= 11 && row.position <= 20) || (state.rankFilter === 'unranked' && (row.position == null || row.position > depth));
+          const matchesCountry = state.keywordCountry === 'all' || row.country === state.keywordCountry || (row.country_breakdown || []).some((item)=>item.country===state.keywordCountry) || String(row.location_name || '').includes(state.keywordCountry);
+          return matchesText && matchesRank && matchesCountry;
+        });
+        $('#keywordsBody').innerHTML = rows.length ? rows.map((row)=>keywordRow(row,true)).join('') : '<tr><td colspan="10" class="empty-row">No keywords match this filter.</td></tr>';
+      }
+
+      function renderSearches(keywords, countries) {
+        const countryNames = [...new Set(countries.map((row)=>row.country).filter(Boolean))].sort();
+        $('#searchCountry').innerHTML = '<option value="all">All countries</option>' + countryNames.map((country)=>`<option value="${escapeHtml(country)}">${escapeHtml(country)}</option>`).join('');
+        if (!countryNames.includes(state.searchCountry)) state.searchCountry = 'all';
+        $('#searchCountry').value = state.searchCountry;
+        const rows = [...keywords].map((row)=>{
+          if (state.searchCountry === 'all') return row;
+          const market = (row.country_breakdown || []).find((item)=>item.country===state.searchCountry);
+          return market ? { ...row, country: market.country, clicks: market.clicks, impressions: market.impressions, gsc_position: market.position, position: market.position, movement: null } : null;
+        }).filter((row)=>row?.impressions>0).sort((a,b)=>b.impressions-a.impressions);
+        $('#searchesBody').innerHTML = rows.length ? rows.map((row)=>`<tr><td class="keyword-cell"><strong>${escapeHtml(row.keyword)}</strong></td><td>${escapeHtml(row.country || '—')}</td><td><a href="${escapeHtml(safeHref(row.target_url))}" target="_blank" rel="noreferrer">${escapeHtml(row.page_title || row.target_url)}</a></td><td class="number">${number(row.clicks)}</td><td class="number">${number(row.impressions)}</td><td class="number">${number(row.gsc_position,1)}</td><td class="number">${movement(row.movement)}</td></tr>`).join('') : '<tr><td colspan="7" class="empty-row">Google has not reported any search impressions yet.</td></tr>';
+        const clicked = rows.filter((row)=>row.clicks>0);
+        $('#clickedBody').innerHTML = clicked.length ? clicked.map((row)=>`<tr><td class="keyword-cell"><strong>${escapeHtml(row.keyword)}</strong></td><td>${escapeHtml(row.country || '—')}</td><td><a href="${escapeHtml(safeHref(row.target_url))}" target="_blank" rel="noreferrer">${escapeHtml(row.page_title || row.target_url)}</a></td><td class="number">${number(row.clicks)}</td><td class="number">${number(row.impressions)}</td><td class="number">${number(row.gsc_position,1)}</td></tr>`).join('') : '<tr><td colspan="6" class="empty-row">No organic clicks have been recorded in the current window yet.</td></tr>';
+        $('#coverageList').innerHTML = countries.length ? countries.slice(0,8).map((row)=>`<div class="opportunity"><div><strong>${escapeHtml(row.country)}</strong><span>${number(row.clicks)} clicks · average position ${number(row.position,1)}</span></div><div class="rank">${number(row.impressions)}</div></div>`).join('') : '<div class="chart-empty" style="height:190px">No country observations yet.</div>';
+      }
+
+      function renderBacklinks(backlinks) {
+        $('#backlinkTotal').textContent = number(backlinks.external_links);
+        $('#referringDomains').textContent = number(backlinks.referring_domains);
+        $('#internalLinks').textContent = number(backlinks.internal_links);
+        $('#internalLinksContext').textContent = `${number(backlinks.internal_link_pages_crawled)} of ${number(backlinks.internal_link_pages_listed)} sitemap pages crawled`;
+        $('#authorityScore').textContent = backlinks.authority_score == null ? '—' : `${number(backlinks.authority_score,1)}/100`;
+        $('#authorityCaptured').textContent = backlinks.captured_at ? `Captured ${new Date(backlinks.captured_at).toLocaleDateString('en-GB')} from ${backlinks.source}` : 'No backlink snapshot';
+        $('#authorityMethod').textContent = backlinks.authority_method || 'Authority calculation is waiting for backlink data.';
+        $('#backlinkScope').textContent = backlinks.captured_at
+          ? `External backlinks: Google reported a sample of ${number(backlinks.external_links)} links across ${number(backlinks.referring_domains)} domains. ${backlinks.source_scope || 'This is not a comprehensive backlink index.'}`
+          : 'No external-link sample is available.';
+        $('#internalLinksScope').textContent = backlinks.internal_link_captured_at
+          ? `Internal links: ${number(backlinks.internal_links)} unique source-to-target edges (${number(backlinks.internal_link_occurrences)} HTML link occurrences, ${number(backlinks.internal_link_targets)} linked targets), captured ${new Date(backlinks.internal_link_captured_at).toLocaleString('en-GB')} from ${backlinks.internal_link_source}. ${backlinks.internal_link_scope}${backlinks.internal_link_failed_pages ? ` ${number(backlinks.internal_link_failed_pages)} pages failed and are excluded.` : ''} The previous Google sample reported ${number(backlinks.gsc_reported_internal_links)}; it is retained only as source evidence and is not used as the sitewide crawl count.`
+          : 'No scoped internal-link crawl is available.';
+        $('#linkingDomains').innerHTML = backlinks.top_linking_domains?.length ? backlinks.top_linking_domains.map((row)=>`<div class="opportunity"><div><strong>${escapeHtml(row.domain)}</strong><span>Referring domain</span></div><div class="rank">${number(row.links)}</div></div>`).join('') : '<div class="chart-empty" style="height:190px">No referring domains reported.</div>';
+        $('#linkedPages').innerHTML = backlinks.top_linked_pages?.length ? backlinks.top_linked_pages.map((row)=>`<div class="opportunity"><div><strong>${escapeHtml(new URL(safeHref(row.url)).pathname)}</strong><span>${escapeHtml(row.url)}</span></div><div class="rank">${number(row.links)}</div></div>`).join('') : '<div class="chart-empty" style="height:190px">No linked pages reported.</div>';
+      }
+
+      function renderPages() {
+        const audit = state.data?.pages; if (!audit) return;
+        $('#pagesTotal').textContent = number(audit.counts?.pages);
+        $('#pagesVisible').textContent = number(audit.counts?.visible);
+        $('#pagesScore').textContent = number(audit.counts?.average_score,1);
+        $('#pagesPriority').textContent = number(audit.counts?.high_priority);
+        const query = state.pageFilter.toLowerCase();
+        const rows = audit.pages.filter((page)=>{
+          const textMatch = !query || `${page.page_title} ${page.primary_keyword} ${page.target_url} ${page.opportunity} ${(page.issues||[]).map((issue)=>issue.action).join(' ')}`.toLowerCase().includes(query);
+          const statusMatch = state.pageStatus === 'all' || (state.pageStatus === 'visible' && page.impressions>0) || (state.pageStatus === 'awaiting' && page.impressions===0) || (state.pageStatus === 'priority' && page.campaign_priority==='High');
+          return textMatch && statusMatch;
+        });
+        $('#pagesBody').innerHTML = rows.length ? rows.map((page)=>{
+          const issues = (page.issues||[]).slice(0,4);
+          const issueList = issues.length ? `<details><summary>${number(page.issues.length)} check${page.issues.length===1?'':'s'} to review</summary><ul class="issue-list">${issues.map((issue)=>`<li><strong>${escapeHtml(issue.message)}</strong> ${escapeHtml(issue.action)}</li>`).join('')}</ul></details>` : '<span class="panel-sub">Core HTML checks passed</span>';
+          const queries = page.ranking_queries?.length ? page.ranking_queries.map((row)=>`${row.query} (#${number(row.position,1)})`).join(', ') : 'No query impressions yet';
+          return `<tr><td class="keyword-cell"><strong><a href="${escapeHtml(safeHref(page.target_url))}" target="_blank" rel="noreferrer">${escapeHtml(page.page_title)}</a></strong><span class="panel-sub">${escapeHtml(page.primary_keyword)} · ${escapeHtml(queries)}</span>${issueList}</td><td class="number"><span class="score ${page.score<85?'warn':''}">${number(page.score)}</span></td><td><span class="pill">${escapeHtml(page.status)}</span></td><td class="number">${number(page.clicks)}</td><td class="number">${number(page.impressions)}</td><td class="number">${number(page.gsc_position,1)}</td><td><strong>${escapeHtml(page.campaign_priority)}: ${escapeHtml(page.opportunity)}</strong></td></tr>`;
+        }).join('') : '<tr><td colspan="7" class="empty-row">No pages match this filter.</td></tr>';
+      }
+
+      function renderResearch() {
+        const research = state.data?.research; if (!research) return;
+        $('#researchTotal').textContent = number(research.counts?.keywords);
+        $('#researchVolumeKnown').textContent = number(research.counts?.with_monthly_volume);
+        $('#researchRanked').textContent = number(research.counts?.ranked);
+        $('#researchCountries').textContent = number(research.counts?.countries);
+        const markets = state.data.configured.research_markets || [];
+        const marketCodes = new Set(markets.map((market)=>market.code));
+        state.markets = state.markets.filter((code)=>marketCodes.has(code));
+        if (!state.markets.length && markets.length) state.markets = markets.slice(0,2).map((market)=>market.code);
+        $('#marketChoices').innerHTML = markets.map((market)=>`<label class="market-choice"><input type="checkbox" value="${escapeHtml(market.code)}" ${state.markets.includes(market.code) ? 'checked' : ''}>${escapeHtml(market.country)}</label>`).join('');
+        const researchCountries = [...new Set(research.keywords.map((row)=>row.country).filter(Boolean))].sort();
+        $('#researchCountry').innerHTML = '<option value="all">All countries</option>' + researchCountries.map((country)=>`<option value="${escapeHtml(country)}">${escapeHtml(country)}</option>`).join('');
+        if (!researchCountries.includes(state.researchCountry)) state.researchCountry = 'all';
+        $('#researchCountry').value = state.researchCountry;
+        const googleRows = research.keywords.filter((row)=>row.volume_source==='Google Ads Keyword Planner');
+        $('#researchMethod').textContent = googleRows.length ? `${number(googleRows.length)} rows use fresh Google Keyword Planner metrics. Google Ads competition measures advertiser competition, not organic ranking difficulty.` : 'Monthly searches currently use the historical toolbox snapshot where available. Connect Google Keyword Planner for fresh country-specific demand and related ideas. Competition is not the same as organic ranking difficulty.';
+        const query = state.researchFilter.toLowerCase();
+        const rows = research.keywords.filter((row)=>{
+          const textMatch = !query || `${row.keyword} ${row.cluster} ${row.target_page_label}`.toLowerCase().includes(query);
+          const countryMatch = state.researchCountry === 'all' || row.country === state.researchCountry;
+          const volumeMatch = state.researchVolume === 'all' || (state.researchVolume === 'known' && row.monthly_searches != null) || (state.researchVolume === 'ranking' && row.current_position != null);
+          return textMatch && countryMatch && volumeMatch;
+        });
+        $('#researchBody').innerHTML = rows.length ? rows.map((row)=>`<tr><td class="keyword-cell"><strong>${escapeHtml(row.keyword)}</strong><span class="panel-sub">${escapeHtml(row.cluster || row.sources?.join(', ') || '')}</span></td><td>${escapeHtml(row.country || '—')}</td><td class="number">${number(row.monthly_searches)}</td><td class="number" title="${escapeHtml(row.competition || 'Historical difficulty snapshot')}">${number(row.competition_index ?? row.difficulty)}</td><td class="number">${number(row.current_position,1)}</td><td class="number">${movement(row.movement)}</td><td class="number">${number(row.opportunity_score,1)}</td><td>${row.target_url ? `<a href="${escapeHtml(safeHref(row.target_url))}" target="_blank" rel="noreferrer">${escapeHtml(row.target_page_label || row.target_url)}</a>` : escapeHtml(row.target_page_label || row.status || 'Research only')}</td></tr>`).join('') : '<tr><td colspan="8" class="empty-row">No research phrases match these filters.</td></tr>';
+      }
+
+      function renderSettings(data) {
+        const labels = { database:'Supabase history', google_search_console:'Google Search Console', google_ads_keyword_planner:'Google Ads Keyword Planner', dataforseo:'Independent SERP cross-check' };
+        $('#connectionList').innerHTML = Object.entries(labels).map(([key,label])=>{ const optional=['dataforseo','google_ads_keyword_planner'].includes(key); const detail=key==='database'?'Private Postgres tables':key==='google_ads_keyword_planner'?'Fresh monthly search volume and related ideas':key==='dataforseo'?'Optional live rank comparison':'Primary queries, countries, positions and clicks'; return `<div class="check-row"><div><strong>${label}</strong><small>${detail}</small></div><span class="check ${!optional && !data.configured[key] ? 'missing' : ''}">${data.configured[key] ? 'Connected' : optional ? 'Optional' : 'Needs setup'}</span></div>`; }).join('');
+        $('#policyList').innerHTML = `<div class="check-row"><div><strong>Schedule</strong><small>Rolling 90-day Search Console window, including fresh data</small></div><span class="pill">${escapeHtml(data.configured.schedule)}</span></div><div class="check-row"><div><strong>SERP depth</strong><small>A rank beyond this depth is recorded as not visible</small></div><span class="pill">Top ${number(data.configured.serp_depth)}</span></div><div class="check-row"><div><strong>Run limit</strong><small>Maximum optional paid live-rank tasks per collection</small></div><span class="pill">${number(data.configured.run_limit)} keywords</span></div>`;
+        $('#runsBody').innerHTML = data.runs?.length ? data.runs.map((run)=>`<tr><td>${escapeHtml(new Date(run.started_at).toLocaleString('en-GB'))}</td><td><span class="pill">${escapeHtml(run.status)}</span></td><td class="number">${number(run.items_requested)}</td><td class="number">${number(run.items_succeeded)}</td><td class="number">$${number(run.cost_usd,4)}</td><td>${escapeHtml(run.error || '—')}</td></tr>`).join('') : '<tr><td colspan="6" class="empty-row">No collection runs yet.</td></tr>';
+      }
+
+      function switchView(name) {
+        $$('.nav button').forEach((button)=>button.setAttribute('aria-selected', String(button.dataset.view===name)));
+        $$('.view').forEach((view)=>view.classList.toggle('active', view.id===`view-${name}`));
+        const [eyebrow,title,lede]=headings[name]; $('#viewEyebrow').textContent=eyebrow; $('#viewTitle').textContent=title; $('#viewLede').textContent=lede;
+        history.replaceState(null,'',`#${name}`);
+      }
+
+      $$('.nav button').forEach((button)=>button.addEventListener('click',()=>switchView(button.dataset.view)));
+      $$('[data-go]').forEach((button)=>button.addEventListener('click',()=>switchView(button.dataset.go)));
+      $('#keywordSearch').addEventListener('input',(event)=>{state.filter=event.target.value;renderKeywords();});
+      $('#keywordCountry').addEventListener('change',(event)=>{state.keywordCountry=event.target.value;renderKeywords();});
+      $('#rankFilter').addEventListener('change',(event)=>{state.rankFilter=event.target.value;renderKeywords();});
+      $('#searchCountry').addEventListener('change',(event)=>{state.searchCountry=event.target.value;renderSearches(state.data.searches || state.data.keywords, state.data.countries || []);});
+      $('#pageSearch').addEventListener('input',(event)=>{state.pageFilter=event.target.value;renderPages();});
+      $('#pageStatus').addEventListener('change',(event)=>{state.pageStatus=event.target.value;renderPages();});
+      $('#researchSearch').addEventListener('input',(event)=>{state.researchFilter=event.target.value;renderResearch();});
+      $('#researchCountry').addEventListener('change',(event)=>{state.researchCountry=event.target.value;renderResearch();});
+      $('#researchVolume').addEventListener('change',(event)=>{state.researchVolume=event.target.value;renderResearch();});
+      $('#marketChoices').addEventListener('change',()=>{
+        const selected = [...$('#marketChoices').querySelectorAll('input:checked')].map((input)=>input.value);
+        if (!selected.length) { renderResearch(); showToast('Keep at least one research market selected.', true); return; }
+        state.markets = selected; localStorage.setItem('adelphosSeoMarkets', JSON.stringify(selected));
+      });
+      $('#refreshData').addEventListener('click',loadData);
+      $('#runCollection').addEventListener('click', async (event) => {
+        if (!state.token && !preview && !embedded) { $('#tokenDialog').showModal(); return; }
+        const button=event.currentTarget; button.disabled=true; button.textContent='Collecting…'; setStatus('Collecting…');
+        try { if (!preview) await api('/api/seo/collect',{method:'POST'}); await loadData(); showToast('Collection complete. The dashboard has been refreshed.'); }
+        catch(error){setStatus('Collection issue','warn');showToast(error.message,true);} finally {button.disabled=false;button.textContent='Run collection';}
+      });
+      $('#refreshResearch').addEventListener('click', async (event) => {
+        if (!state.token && !preview && !embedded) { $('#tokenDialog').showModal(); return; }
+        if (preview) { showToast('Google Keyword Planner is not connected in preview mode.'); return; }
+        const button=event.currentTarget; button.disabled=true; button.textContent='Researching…'; setStatus('Researching…');
+        try { const payload=await api('/api/seo/research',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({markets:state.markets})}); await loadData(); showToast(`${number(payload.result.succeeded)} country-specific keyword metrics and ideas saved.`); }
+        catch(error){setStatus('Research setup needed','warn');showToast(error.message,true);} finally {button.disabled=false;button.textContent='Refresh selected markets';}
+      });
+      $('#tokenForm').addEventListener('submit',()=>{state.token=$('#portalToken').value.trim();sessionStorage.setItem('adelphosSeoToken',state.token);setTimeout(async()=>{try{await api('/api/seo/session',{method:'POST'});}catch{}await loadData();},0);});
+      $('#lockPortal').addEventListener('click',async()=>{try{await api('/api/seo/session',{method:'DELETE'});}catch{}state.token='';state.data=null;sessionStorage.removeItem('adelphosSeoToken');setStatus('Locked');$('#tokenDialog').showModal();});
+      $('#exportCsv').addEventListener('click',()=>{
+        if(!state.data)return; const fields=['keyword','country','location_name','device','position','movement','gsc_position','clicks','impressions','target_url','checked_at'];
+        const csv=[fields.join(','),...state.data.keywords.map((row)=>fields.map((field)=>`"${String(row[field]??'').replaceAll('"','""')}"`).join(','))].join('\n');
+        const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));link.download=`adelphos-seo-${new Date().toISOString().slice(0,10)}.csv`;link.click();URL.revokeObjectURL(link.href);
+      });
+      $('#exportResearchCsv').addEventListener('click',()=>{
+        if(!state.data?.research)return; const fields=['keyword','country','monthly_searches','competition','competition_index','difficulty','current_position','movement','opportunity_score','target_page_label','target_url','status','volume_source','volume_captured_at'];
+        const csv=[fields.join(','),...state.data.research.keywords.map((row)=>fields.map((field)=>`"${String(row[field]??'').replaceAll('"','""')}"`).join(','))].join('\n');
+        const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));link.download=`adelphos-keyword-research-${new Date().toISOString().slice(0,10)}.csv`;link.click();URL.revokeObjectURL(link.href);
+      });
+      const initial=location.hash.slice(1); if(headings[initial])switchView(initial);
+      if (state.token && !preview) api('/api/seo/session',{method:'POST'}).catch(()=>{}).finally(loadData); else loadData();
+    })();
+  </script>
+</body>
+</html>

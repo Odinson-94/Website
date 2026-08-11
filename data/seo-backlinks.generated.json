@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-08-08T06:05:00.000Z",
+  "source": "Google Search Console Links report",
+  "source_scope": "Sample reported by Google; not a comprehensive crawl of every link.",
+  "target_domain": "adelphos.ai",
+  "external_links": 5,
+  "referring_domains": 1,
+  "internal_links": 40,
+  "top_linked_pages": [
+    {
+      "url": "https://www.adelphos.ai/",
+      "links": 5
+    }
+  ],
+  "top_linking_domains": [
+    {
+      "domain": "linkedin.com",
+      "links": 5
+    }
+  ],
+  "top_anchor_text": [
+    {
+      "text": "https www adelphos ai",
+      "links": null
+    }
+  ]
+}

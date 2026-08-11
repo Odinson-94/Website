@@ -1,0 +1,5384 @@
+{
+  "generated_at": "2026-08-08T08:08:42.005Z",
+  "tracker_source": "C:\\Users\\RPC\\source\\repos\\Adelphos Chat\\How-To-Edit\\adelphos-website-toolbox\\docs\\SEO_KEYWORD_TRACKER.md",
+  "methodology": "Monthly searches and difficulty are historical toolbox values unless a future Google Ads refresh replaces them. Blank values are never invented.",
+  "counts": {
+    "keywords": 441,
+    "with_monthly_volume": 62,
+    "published": 111,
+    "countries": 2
+  },
+  "keywords": [
+    {
+      "keyword": "energy performance certificate check",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "monthly_searches": 74000,
+      "difficulty": 65,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 75.6
+    },
+    {
+      "keyword": "epc a rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC A page",
+      "monthly_searches": 40500,
+      "difficulty": 34,
+      "status": "HIGH",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/a",
+      "opportunity_score": 83
+    },
+    {
+      "keyword": "epc c rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC C + improve",
+      "monthly_searches": 40500,
+      "difficulty": 29,
+      "status": "HIGH",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/c",
+      "opportunity_score": 84.7
+    },
+    {
+      "keyword": "energy performance certificate rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "monthly_searches": 33100,
+      "difficulty": 65,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 71
+    },
+    {
+      "keyword": "epc e rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC E + improve",
+      "monthly_searches": 33100,
+      "difficulty": 34,
+      "status": "HIGH",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/e",
+      "opportunity_score": 81.9
+    },
+    {
+      "keyword": "energy performance certificate find",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "(higher diff — defer)",
+      "monthly_searches": 14800,
+      "difficulty": 62,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 67.5
+    },
+    {
+      "keyword": "energy performance certificate finder",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "EPC explainer / finder hub",
+      "monthly_searches": 9900,
+      "difficulty": 8,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/find-energy-performance-certificate",
+      "opportunity_score": 84.1
+    },
+    {
+      "keyword": "energy performance certificate register uk",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "EPC explainer (link gov.uk register)",
+      "monthly_searches": 6600,
+      "difficulty": 7,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 82.2
+    },
+    {
+      "keyword": "energy performance certificate gov",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "(higher diff — defer)",
+      "monthly_searches": 4400,
+      "difficulty": 46,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 66.3
+    },
+    {
+      "keyword": "energy performance certificate meaning",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "\"what your EPC rating means\"",
+      "monthly_searches": 4400,
+      "difficulty": 7,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc",
+      "opportunity_score": 79.9
+    },
+    {
+      "keyword": "energy performance certificate register scotland",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "Scotland EPC explainer",
+      "monthly_searches": 4400,
+      "difficulty": 7,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 79.9
+    },
+    {
+      "keyword": "energy performance certificate search",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "(higher diff — defer)",
+      "monthly_searches": 4400,
+      "difficulty": 44,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 67
+    },
+    {
+      "keyword": "energy performance certificate in scotland",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "Scotland explainer",
+      "monthly_searches": 2900,
+      "difficulty": 10,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/scotland",
+      "opportunity_score": 76.5
+    },
+    {
+      "keyword": "energy performance certificate by postcode",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "postcode lookup explainer",
+      "monthly_searches": 2400,
+      "difficulty": 6,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 76.8
+    },
+    {
+      "keyword": "energy performance certificate rating d",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "\"EPC rating D explained\"",
+      "monthly_searches": 2400,
+      "difficulty": 29,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 68.8
+    },
+    {
+      "keyword": "epc d rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC D + improve",
+      "monthly_searches": 2400,
+      "difficulty": 16,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/d",
+      "opportunity_score": 73.3
+    },
+    {
+      "keyword": "energy performance certificate how much",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "EPC cost page",
+      "monthly_searches": 1900,
+      "difficulty": 44,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 62.2
+    },
+    {
+      "keyword": "energy performance certificate united kingdom",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "UK explainer",
+      "monthly_searches": 1900,
+      "difficulty": 11,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 73.8
+    },
+    {
+      "keyword": "energy performance certificate how much does it cost",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "EPC cost page",
+      "monthly_searches": 1600,
+      "difficulty": 21,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 69.3
+    },
+    {
+      "keyword": "energy performance certificate near me",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "local area pages (Bristol etc) → app → assessor referral",
+      "monthly_searches": 1600,
+      "difficulty": 21,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 69.3
+    },
+    {
+      "keyword": "pv panel calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 11 — Solar PV calculator (engine: sizing-dashboard)",
+      "target_page_label": "Solar PV calculator",
+      "monthly_searches": 1300,
+      "difficulty": 35,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "opportunity_score": 63.2
+    },
+    {
+      "keyword": "asset register",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 18 — Survey & asset docs",
+      "target_page_label": "Asset register",
+      "monthly_searches": 720,
+      "difficulty": 27,
+      "status": "planned (CPC £14.34)",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 62.7
+    },
+    {
+      "keyword": "employment references letter",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 20 — Employment / HR docs (consumer/HR funnel)",
+      "target_page_label": "Reference letter",
+      "monthly_searches": 720,
+      "difficulty": 35,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/documents/employment-references-letter",
+      "opportunity_score": 59.9
+    },
+    {
+      "keyword": "employment references example",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 20 — Employment / HR docs (consumer/HR funnel)",
+      "target_page_label": "Reference examples",
+      "monthly_searches": 590,
+      "difficulty": 44,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/documents/employment-references-letter",
+      "opportunity_score": 55.6
+    },
+    {
+      "keyword": "energy performance certificates",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "monthly_searches": 590,
+      "difficulty": 66,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 47.9
+    },
+    {
+      "keyword": "epc b rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC B page",
+      "monthly_searches": 480,
+      "difficulty": 25,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/b",
+      "opportunity_score": 61.1
+    },
+    {
+      "keyword": "professional cv create",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 15 — Professional CV / resume (engine: CV formatter)",
+      "target_page_label": "CV builder",
+      "monthly_searches": 480,
+      "difficulty": 35,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 57.6
+    },
+    {
+      "keyword": "drainage fall calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 14 — Drainage (engine: sizing-dashboard)",
+      "target_page_label": "Drainage fall calculator",
+      "monthly_searches": 390,
+      "difficulty": 10,
+      "status": "planned (very low diff)",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 65.2
+    },
+    {
+      "keyword": "professional cv summary examples",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 15 — Professional CV / resume (engine: CV formatter)",
+      "target_page_label": "CV summary page",
+      "monthly_searches": 390,
+      "difficulty": 40,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 54.7
+    },
+    {
+      "keyword": "sap calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "SAP calculator (producer)",
+      "monthly_searches": 390,
+      "difficulty": 40,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 54.7
+    },
+    {
+      "keyword": "utility applications",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 2 — Utility applications (engine: utility-search) — LANDING PAGE",
+      "target_page_label": "Utility applications page",
+      "monthly_searches": 390,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 51.2
+    },
+    {
+      "keyword": "employment references template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 20 — Employment / HR docs (consumer/HR funnel)",
+      "target_page_label": "Reference template",
+      "monthly_searches": 320,
+      "difficulty": 30,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/documents/employment-references-letter",
+      "opportunity_score": 57.1
+    },
+    {
+      "keyword": "epc calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC calculator",
+      "monthly_searches": 320,
+      "difficulty": 11,
+      "status": "planned (low diff)",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 63.7
+    },
+    {
+      "keyword": "professional cv format uk",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 15 — Professional CV / resume (engine: CV formatter)",
+      "target_page_label": "UK CV format page",
+      "monthly_searches": 320,
+      "difficulty": 31,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 56.7
+    },
+    {
+      "keyword": "utility searches",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 2 — Utility applications (engine: utility-search) — LANDING PAGE",
+      "target_page_label": "Utility search page",
+      "monthly_searches": 320,
+      "difficulty": 31,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 56.7
+    },
+    {
+      "keyword": "asset register template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 18 — Survey & asset docs",
+      "target_page_label": "Asset register template",
+      "monthly_searches": 260,
+      "difficulty": 19,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 59.8
+    },
+    {
+      "keyword": "pv calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 11 — Solar PV calculator (engine: sizing-dashboard)",
+      "target_page_label": "Solar PV calculator",
+      "monthly_searches": 260,
+      "difficulty": 57,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "opportunity_score": 46.5
+    },
+    {
+      "keyword": "heat pump running cost calculator uk",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 12 — Heat pump calculator (sizing + running cost; organic wedge for C8)",
+      "target_page_label": "Heat pump calculator",
+      "monthly_searches": 210,
+      "difficulty": 18,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "opportunity_score": 58.9
+    },
+    {
+      "keyword": "ppm schedule",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 16 — Construction management docs",
+      "target_page_label": "PPM schedule generator",
+      "monthly_searches": 210,
+      "difficulty": 28,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 55.4
+    },
+    {
+      "keyword": "condition report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 18 — Survey & asset docs",
+      "target_page_label": "Condition report",
+      "monthly_searches": 170,
+      "difficulty": 26,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 54.9
+    },
+    {
+      "keyword": "fire risk assessment template free",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 19 — Fire safety docs",
+      "target_page_label": "Fire risk assessment",
+      "monthly_searches": 170,
+      "difficulty": 29,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 53.9
+    },
+    {
+      "keyword": "how to improve epc",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "Improvement hub",
+      "monthly_searches": 170,
+      "difficulty": 22,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/how-to-improve-epc",
+      "opportunity_score": 56.3
+    },
+    {
+      "keyword": "heat pump calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 12 — Heat pump calculator (sizing + running cost; organic wedge for C8)",
+      "target_page_label": "Heat pump calculator",
+      "monthly_searches": 140,
+      "difficulty": 27,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "opportunity_score": 53.5
+    },
+    {
+      "keyword": "heat pump cost calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 12 — Heat pump calculator (sizing + running cost; organic wedge for C8)",
+      "target_page_label": "Heat pump calculator",
+      "monthly_searches": 140,
+      "difficulty": 33,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "opportunity_score": 51.4
+    },
+    {
+      "keyword": "drainage calculations",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 14 — Drainage (engine: sizing-dashboard)",
+      "target_page_label": "Drainage calculator",
+      "monthly_searches": 110,
+      "difficulty": 19,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 54.9
+    },
+    {
+      "keyword": "construction phase plan template word",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 16 — Construction management docs",
+      "target_page_label": "CPP template",
+      "monthly_searches": 90,
+      "difficulty": 16,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/tools/project-programme",
+      "opportunity_score": 54.9
+    },
+    {
+      "keyword": "construction programme template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 16 — Construction management docs",
+      "target_page_label": "Programme template",
+      "monthly_searches": 90,
+      "difficulty": 53,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/tools/project-programme",
+      "opportunity_score": 41.9
+    },
+    {
+      "keyword": "construction project manager sample resume",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 15 — Professional CV / resume (engine: CV formatter)",
+      "target_page_label": "Construction CV page",
+      "monthly_searches": 90,
+      "difficulty": 8,
+      "status": "planned (low diff)",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 57.7
+    },
+    {
+      "keyword": "energy statement",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 10 — Planning & sustainability docs",
+      "target_page_label": "Energy statement (LZC) page",
+      "monthly_searches": 90,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 43
+    },
+    {
+      "keyword": "quality assurance policy",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 9 — QA / quality & company-setup docs",
+      "target_page_label": "QA policy generator",
+      "monthly_searches": 90,
+      "difficulty": 28,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/documents/quality-assurance-policy",
+      "opportunity_score": 50.7
+    },
+    {
+      "keyword": "construction management plan templates",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 16 — Construction management docs",
+      "target_page_label": "CMP template",
+      "monthly_searches": 70,
+      "difficulty": 17,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/documents/construction-management-plan-templates",
+      "opportunity_score": 53.1
+    },
+    {
+      "keyword": "qa policies",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 9 — QA / quality & company-setup docs",
+      "target_page_label": "QA policy generator",
+      "monthly_searches": 70,
+      "difficulty": 23,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/documents/quality-assurance-policy",
+      "opportunity_score": 51
+    },
+    {
+      "keyword": "breeam reports",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 10 — Planning & sustainability docs",
+      "target_page_label": "BREEAM reports page",
+      "monthly_searches": 30,
+      "difficulty": 30,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 43.9
+    },
+    {
+      "keyword": "condition report template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 18 — Survey & asset docs",
+      "target_page_label": "Condition report template",
+      "monthly_searches": 30,
+      "difficulty": 25,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 45.6
+    },
+    {
+      "keyword": "construction project management template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 16 — Construction management docs",
+      "target_page_label": "PM template",
+      "monthly_searches": 30,
+      "difficulty": 36,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 41.8
+    },
+    {
+      "keyword": "fire risk assessment report template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 19 — Fire safety docs",
+      "target_page_label": "FRA report template",
+      "monthly_searches": 30,
+      "difficulty": 33,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 42.8
+    },
+    {
+      "keyword": "part g water calculation",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 10 — Planning & sustainability docs",
+      "target_page_label": "Part G compliance",
+      "monthly_searches": 30,
+      "difficulty": 11,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 50.5
+    },
+    {
+      "keyword": "construction project management plan example",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 16 — Construction management docs",
+      "target_page_label": "PM plan example",
+      "monthly_searches": 20,
+      "difficulty": 27,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 42.7
+    },
+    {
+      "keyword": "energy bill audit",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 10 — Planning & sustainability docs",
+      "target_page_label": "Energy bill audit",
+      "monthly_searches": 20,
+      "difficulty": 13,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 47.6
+    },
+    {
+      "keyword": "quality assurance policy sample",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 9 — QA / quality & company-setup docs",
+      "target_page_label": "QA policy generator",
+      "monthly_searches": 20,
+      "difficulty": 26,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/documents/quality-assurance-policy",
+      "opportunity_score": 43.1
+    },
+    {
+      "keyword": "job description for civil supervisor",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "monthly_searches": 10,
+      "difficulty": 14,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 43.6
+    },
+    {
+      "keyword": "site survey report template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 18 — Survey & asset docs",
+      "target_page_label": "Site survey report",
+      "monthly_searches": 10,
+      "difficulty": 17,
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": 42.6
+    },
+    {
+      "keyword": "63 amp cable size",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "hub",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Adelphos Chat",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/adelphos-chat/index.html",
+      "target_page_label": "Adelphos Chat",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Adelphos for Excel",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/excel-add-in/index.html",
+      "target_page_label": "Adelphos for Excel",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Adelphos for Word",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/word-add-in/index.html",
+      "target_page_label": "Adelphos for Word",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "admin dashboard",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Admin dashboard (W-010)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Agentic MCP Calculations",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "products",
+      "target_url": "https://adelphos.ai/products/agentic-mcp-calculations",
+      "target_page_label": "Agentic MCP Calculations",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Adelaide",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/south-australia/adelaide",
+      "target_page_label": "AI Developer in Adelaide",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Australia",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia",
+      "target_page_label": "AI Developer in Australia",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Australian Capital Territory",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/australian-capital-territory",
+      "target_page_label": "AI Developer in Australian Capital Territory",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Belfast",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/northern-ireland/belfast",
+      "target_page_label": "AI Developer in Belfast",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Birmingham",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/west-midlands/birmingham",
+      "target_page_label": "AI Developer in Birmingham",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Brighton",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-east/brighton",
+      "target_page_label": "AI Developer in Brighton",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Brisbane",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/queensland/brisbane",
+      "target_page_label": "AI Developer in Brisbane",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Bristol",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-west/bristol",
+      "target_page_label": "AI Developer in Bristol",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Cambridge",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-of-england/cambridge",
+      "target_page_label": "AI Developer in Cambridge",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Canberra",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/australian-capital-territory/canberra",
+      "target_page_label": "AI Developer in Canberra",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Cardiff",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/wales/cardiff",
+      "target_page_label": "AI Developer in Cardiff",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in City of London",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/london/city-of-london",
+      "target_page_label": "AI Developer in City of London",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Darwin",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/northern-territory/darwin",
+      "target_page_label": "AI Developer in Darwin",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in East Midlands",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-midlands",
+      "target_page_label": "AI Developer in East Midlands",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in East of England",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-of-england",
+      "target_page_label": "AI Developer in East of England",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Edinburgh",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/scotland/edinburgh",
+      "target_page_label": "AI Developer in Edinburgh",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Hobart",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/tasmania/hobart",
+      "target_page_label": "AI Developer in Hobart",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Leeds",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/yorkshire-and-the-humber/leeds",
+      "target_page_label": "AI Developer in Leeds",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in London",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/london",
+      "target_page_label": "AI Developer in London",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Manchester",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-west/manchester",
+      "target_page_label": "AI Developer in Manchester",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Melbourne",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/victoria/melbourne",
+      "target_page_label": "AI Developer in Melbourne",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in New South Wales",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/new-south-wales",
+      "target_page_label": "AI Developer in New South Wales",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Newcastle upon Tyne",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-east/newcastle-upon-tyne",
+      "target_page_label": "AI Developer in Newcastle upon Tyne",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in North East",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-east",
+      "target_page_label": "AI Developer in North East",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in North West",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/north-west",
+      "target_page_label": "AI Developer in North West",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Northern Ireland",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/northern-ireland",
+      "target_page_label": "AI Developer in Northern Ireland",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Northern Territory",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/northern-territory",
+      "target_page_label": "AI Developer in Northern Territory",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Nottingham",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/east-midlands/nottingham",
+      "target_page_label": "AI Developer in Nottingham",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Perth",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/western-australia/perth",
+      "target_page_label": "AI Developer in Perth",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Queensland",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/queensland",
+      "target_page_label": "AI Developer in Queensland",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Scotland",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/scotland",
+      "target_page_label": "AI Developer in Scotland",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in South Australia",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/south-australia",
+      "target_page_label": "AI Developer in South Australia",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in South East",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-east",
+      "target_page_label": "AI Developer in South East",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in South West",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/south-west",
+      "target_page_label": "AI Developer in South West",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Sydney",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/new-south-wales/sydney",
+      "target_page_label": "AI Developer in Sydney",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Tasmania",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/tasmania",
+      "target_page_label": "AI Developer in Tasmania",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in the United Kingdom",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom",
+      "target_page_label": "AI Developer in the United Kingdom",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Victoria",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/victoria",
+      "target_page_label": "AI Developer in Victoria",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Wales",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/wales",
+      "target_page_label": "AI Developer in Wales",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in West Midlands",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/west-midlands",
+      "target_page_label": "AI Developer in West Midlands",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Western Australia",
+      "country": "Australia",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/australia/western-australia",
+      "target_page_label": "AI Developer in Western Australia",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Developer in Yorkshire and The Humber",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "ai-developers",
+      "target_url": "https://adelphos.ai/ai-developers/united-kingdom/yorkshire-and-the-humber",
+      "target_page_label": "AI Developer in Yorkshire and The Humber",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "ai floorplan / plantroom",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "AI Floorplan / Plantroom (W-119)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AI Floorplan and Plantroom Planning",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/ai-floorplan-plantroom",
+      "target_page_label": "AI Floorplan and Plantroom Planning",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "ai personal admin assistant",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Life Admin Dashboard",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/tools/ai-personal-admin-assistant",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "aionui viewers",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "AIONUI viewers (W-032)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "app to help with life admin",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Life Admin Dashboard",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "artifact-mode universal",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Artifact-mode universal",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "auto-backup",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Auto-backup (W-045)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AutoCAD Copilot",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/autocad-copilot/index.html",
+      "target_page_label": "AutoCAD Copilot",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "autocad mcp",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "AutoCAD MCP (#32)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/apps/autocad-mcp",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "AutoCAD MCP Integration",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/autocad-mcp",
+      "target_page_label": "AutoCAD MCP Integration",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "azure → numbered skill",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Azure → numbered skill",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "back-office agents",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Back-office agents",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "breeam ene 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM ENE 01 (Energy/Carbon)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "breeam hea 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM HEA 01 (Visual Comfort)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "breeam hea 04",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM HEA 04 (Thermal Comfort)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "breeam pol 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM POL 01 (Refrigerant Impact)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "breeam wat 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM WAT 01 (Water Consumption)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable calcs",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/cable-calcs-ui",
+      "target_page_label": "Cable Calcs and Cable Calculations",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Cable Calcs and Cable Calculations",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/cable-calcs-ui",
+      "target_page_label": "Cable Calcs and Cable Calculations",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable calculations",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/cable-calcs-ui",
+      "target_page_label": "Cable Calcs and Cable Calculations",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable capacity tables",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Cable capacity tables (reference)",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable loop",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Cable loop (W-016)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size 3 phase calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "3-phase cable size calculator",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size 8.5kw shower",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Electric shower cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size 9.5kw shower",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Electric shower cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size 9kw shower",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Electric shower cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size by amps",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "hub",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size electric shower",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Electric shower cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size for 63 amp 3 phase",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "3-phase cable size calculator",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size for 7.4kw car charger",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "EV charger cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size for 7kw ev charger",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "EV charger cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size gauge",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "hub",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size gland",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Cable gland size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size guide uk",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "hub",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size lighting",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Lighting circuit cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size lighting circuit",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Lighting circuit cable size",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size selection formula",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "hub",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable size to amps chart",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "hub / chart reference",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable sizing",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Cable sizing calculator (hub)",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable sizing calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 1 — Cable sizing (engine: cable-calcs ✅)",
+      "target_page_label": "Cable sizing calculator (hub)",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/calculators/cable-sizing-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cable-calcs ui",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Cable-Calcs UI (W-117)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/apps/cable-calcs-ui",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cache layer + policy",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Cache layer + policy",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "calculation report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Calculation Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "calculator that shows working",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Scientific Calculator",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/scientific-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "can ai manage my calendar and emails",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Life Admin Dashboard",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "catalogue gate",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Catalogue gate (W-007)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "claude code api endpoint",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Claude Code API endpoint (W-120)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "cobie",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "COBie (W-113)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/apps/cobie",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "COBie Data Management",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/cobie",
+      "target_page_label": "COBie Data Management",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "COBie Manager",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/cobie-manager/index.html",
+      "target_page_label": "COBie Manager",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "coding-loop cli→api rewire",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Coding-loop CLI→API rewire",
+      "status": "built",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "coding-loop skill",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Coding-loop skill (Starlink)",
+      "status": "built",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "commercial EPC",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "Commercial EPC page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/commercial-epc",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Commercial EPC for Business Premises",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/commercial-epc",
+      "target_page_label": "Commercial EPC for Business Premises",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "commissioning report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Commissioning Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "comms — send / draft",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Comms — send / draft",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Communications Drafting and Sending",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "tools",
+      "target_url": "https://adelphos.ai/tools/comms-send-draft",
+      "target_page_label": "Communications Drafting and Sending",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Company Fundamentals Screening",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "tools",
+      "target_url": "https://adelphos.ai/tools/undervalued-stocks",
+      "target_page_label": "Company Fundamentals Screening",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Condensate Drainage Fall Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/drainage-fall-calculator",
+      "target_page_label": "Condensate Drainage Fall Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "construction contract review",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/construction-contracts",
+      "target_page_label": "Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "construction contract types",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/types-of-construction-contracts",
+      "target_page_label": "Types of Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Construction Contracts",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/construction-contracts",
+      "target_page_label": "Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "construction job descriptions",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Construction Job Descriptions (programmatic, per role)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/construction-job-descriptions",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "construction management plan template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Construction Management Docs (CPP, management plan, PM templates)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "construction phase plan example",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Construction Management Docs (CPP, management plan, PM templates)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "construction project programme",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "tools",
+      "target_url": "https://adelphos.ai/tools/project-programme",
+      "target_page_label": "Project Programme",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "construction site manager job description",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Construction Job Descriptions (programmatic, per role)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/construction-job-descriptions",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "context compression / write-memory / adhd hook",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Context compression / write-memory / ADHD hook (W-101–103)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "contract review",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Contract Review",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "data scraper",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Data scraper (W-023)",
+      "status": "stub",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "design and build contract",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/types-of-construction-contracts",
+      "target_page_label": "Types of Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "doc-type hierarchy",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Doc-type hierarchy",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "document controller",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Document Controller (W-114)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/apps/document-controller/index.html",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "does this calculator do order of operations",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Scientific Calculator",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/scientific-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "drainage gradient calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Drainage Calculator (C09)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "drainage report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Drainage Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "drawdown evidence pack",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Drawdown Evidence Pack",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Drawing Issue Management",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/drawing-issue-skill",
+      "target_page_label": "Drawing Issue Management",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "drawing issue skill",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Drawing issue skill",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "duct sizing calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Duct Sizing Calculator (C03)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/duct-sizing-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "dwg→db",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "DWG→DB (W-024)",
+      "status": "deferred",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Electrical Load Assessment Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/electrical-load-assessment-calculator",
+      "target_page_label": "Electrical Load Assessment Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "email notify",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Email notify (W-014)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Email Reading",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "tools",
+      "target_url": "https://adelphos.ai/tools/email-read",
+      "target_page_label": "Email Reading",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "email-read",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Email-read (W-063)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/tools/email-read",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "employment reference letter template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Employment Reference Letters (HR docs)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/employment-references-letter",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Employment Reference Letters",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/employment-references-letter",
+      "target_page_label": "Employment Reference Letters",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "energy performance certificate cost",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/cost",
+      "target_page_label": "Energy Performance Certificate Cost",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Energy Performance Certificate Meaning and EPC Guide",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc",
+      "target_page_label": "Energy Performance Certificate Meaning and EPC Guide",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "engineering calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Scientific Calculator",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/scientific-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Engineering Schematics",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/schematics",
+      "target_page_label": "Engineering Schematics",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "epc",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "EPC (W-116)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC A Rating Explained",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/a",
+      "target_page_label": "EPC A Rating Explained",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC B Rating Explained",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/b",
+      "target_page_label": "EPC B Rating Explained",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC C Rating Explained",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/c",
+      "target_page_label": "EPC C Rating Explained",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC D Rating Explained",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/d",
+      "target_page_label": "EPC D Rating Explained",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC E Rating Explained",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/e",
+      "target_page_label": "EPC E Rating Explained",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "epc f rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC F + improve",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/f",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC F Rating Explained",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/f",
+      "target_page_label": "EPC F Rating Explained",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "epc g rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 13 — EPC improvement (per-label, programmatic) + SAP calculator",
+      "target_page_label": "EPC G + improve",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/g",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC G Rating Explained",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/ratings/g",
+      "target_page_label": "EPC G Rating Explained",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "EPC Workflow",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/epc",
+      "target_page_label": "EPC Workflow",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "excel→db",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Excel→DB (W-021)",
+      "status": "stub",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "fan-curve depth",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Fan-curve depth (W-006)",
+      "status": "stub",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "File Backup and Restore",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "tools",
+      "target_url": "https://adelphos.ai/tools/file-tools-backup-restore",
+      "target_page_label": "File Backup and Restore",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "file intake",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "File intake",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/tools/file-intake",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "file tools + backup/restore",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "File tools + backup/restore",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "fire risk assessment template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Fire Strategy / Fire Risk Assessment",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Fire Strategy and Risk Assessment",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/fire-risk-assessment-template",
+      "target_page_label": "Fire Strategy and Risk Assessment",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "fire strategy report template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Fire Strategy / Fire Risk Assessment",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "full playwright launch plan",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Full Playwright launch plan (#14)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "funding application",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Funding Application",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "graph + whatsapp endpoints",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Graph + WhatsApp endpoints",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "heat loss calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Heat Loss Calculator (C04)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/heat-loss-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "heat pump quotes",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Heat Pump Sizing → Quote (consumer lead-gen)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/products/heat-pump-quotes",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "heat pump sizing calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Heat Pump Calculator (sizing + running cost)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Heating Zone Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/heating-zone-calculator",
+      "target_page_label": "Heating Zone Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "hot water cylinder size calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "DHW Storage Estimator (C06)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "hot water cylinder sizing",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "DHW Storage Estimator (C06)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Hot Water Cylinder Sizing Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/hot-water-cylinder-sizing-calculator",
+      "target_page_label": "Hot Water Cylinder Sizing Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "hot water cylinder sizing chart",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "DHW Storage Estimator (C06)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "hot water tank what size",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "DHW Storage Estimator (C06)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how do i improve my epc rating",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "EPC Rating + Improvement (per-label pages)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how do i prepare a tender for an mep consultant",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Tender Packaging & Returns Analysis (two-sided)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how do i size a cable by amps",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Cable Calculator (C01)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how many solar panels do i need",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Solar PV Calculator (C15)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how much does a heat pump cost to run",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Heat Pump Calculator (sizing + running cost)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how much is a heat pump",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Heat Pump Sizing → Quote (consumer lead-gen)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to compare mep tender returns",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Tender Packaging & Returns Analysis (two-sided)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to get an EPC",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "Producer how-to",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/how-to-get-an-epc",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to get my epc from e to c",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "EPC Rating + Improvement (per-label pages)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "How to Improve EPC Rating",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/how-to-improve-epc",
+      "target_page_label": "How to Improve EPC Rating",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to produce a contract review",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Contract Review",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to produce a m&e asset register",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "M&E Asset Register",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to produce a passivhaus planning report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Passivhaus Planning Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to produce a planned maintenance schedule (ppm)",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Planned Maintenance Schedule (PPM)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to produce a professional cv",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Professional CV",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to produce a tender bid / submission",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Tender Bid / Submission",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to produce a tender letter",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Tender Letter",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a breeam ene 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM ENE 01 (Energy/Carbon)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a breeam hea 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM HEA 01 (Visual Comfort)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a breeam hea 04",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM HEA 04 (Thermal Comfort)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a breeam pol 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM POL 01 (Refrigerant Impact)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a breeam wat 01",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "BREEAM WAT 01 (Water Consumption)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a calculation report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Calculation Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a commissioning report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Commissioning Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a drainage report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Drainage Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a drawdown evidence pack",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Drawdown Evidence Pack",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a fire strategy report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Fire Strategy / Fire Risk Assessment",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a funding application",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Funding Application",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a load assessment",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Load Assessment",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a lzc energy statement",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "LZC Energy Statement",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a m&e condition survey report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "M&E Condition Survey Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a mep design report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "MEP Design Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a option appraisal",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Option Appraisal",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a part g compliance report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Part G Compliance Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a project programme",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Project Programme",
+      "status": "seed",
+      "target_url": "https://adelphos.ai/tools/project-programme",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a quality assurance policy",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Quality Assurance Policy (+ company setup docs)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/quality-assurance-policy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a site survey report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Site Survey Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 0–2 client brief",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 0–2 Client Brief",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 2 passivhaus report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 Passivhaus Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 2 qa design report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 QA Design Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 2 report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 Report (Concept Design)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 2 utility report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 Utility Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 2–4 embodied carbon report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2–4 Embodied Carbon Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 2–4 thermal calculations report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2–4 Thermal Calculations Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 3 passivhaus report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 3 Passivhaus Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 3 qa design report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 3 QA Design Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 3 report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 3 Report (Developed Design)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 4 bim execution plan",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 BIM Execution Plan (BEP)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 4 daylighting report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 Daylighting Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 4 energy assessment",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 Energy Assessment",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write a stage 4 passivhaus report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 Passivhaus Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "how to write an employment reference",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Employment Reference Letters (HR docs)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/employment-references-letter",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "identity admin",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Identity admin",
+      "status": "parked",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "image-gen api",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Image-gen API (W-111)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "infinite-stones harvester",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Infinite-stones harvester",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "inline render",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Inline render (#15)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "j3 local file bridge",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "J3 local file bridge",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "JCT construction contract",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/types-of-construction-contracts",
+      "target_page_label": "Types of Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for a civil supervisor",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Construction Job Descriptions (programmatic, per role)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/construction-job-descriptions",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for building services engineer",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for cad technician",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for civil engineer",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for commissioning engineer",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for contracts manager",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for document controller",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for estimator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for foreman",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for health and safety manager",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for m&e engineer",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for project manager",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for quantity surveyor",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for site engineer",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for site manager",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "job description for site supervisor",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 17 — Construction job descriptions (programmatic, per role)",
+      "target_page_label": "per-role page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "lighting",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Lighting (W-118)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/apps/lighting",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "lighting / lux calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Lighting / Lux Calculator (C08)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/lighting-lux-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Lighting Design Workflow",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/lighting",
+      "target_page_label": "Lighting Design Workflow",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Lighting Lux Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/lighting-lux-calculator",
+      "target_page_label": "Lighting Lux Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "live mep tender opportunities uk",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "MEP Tender Pull (public tenders by region)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "load assessment",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Load Assessment",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "load assessment calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Load Assessment Calculator (C12)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "mcp bridge",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "MCP bridge (W-092)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "memory",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Memory (recall + fallbacks)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/tools/memory",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Memory and Recall",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "tools",
+      "target_url": "https://adelphos.ai/tools/memory",
+      "target_page_label": "Memory and Recall",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "mep design report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "MEP Design Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "mep reports",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "MEP reports (suite)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/mep-reports",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "mep specification",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Specifications",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "MEP Specifications",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/mep-specification",
+      "target_page_label": "MEP Specifications",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "MEP Tender Opportunities",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/mep-tenders",
+      "target_page_label": "MEP Tender Opportunities",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "MEP Tender Preparation and Returns Analysis",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "products",
+      "target_url": "https://adelphos.ai/products/prepare-mep-tender",
+      "target_page_label": "MEP Tender Preparation and Returns Analysis",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "mep tenders",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "MEP Tender Pull (public tenders by region)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "mepbridge error-wiring",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "MEPBridge error-wiring (W-095/096)",
+      "status": "stub",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Microsoft 365 Tenant Assistant",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "products",
+      "target_url": "https://adelphos.ai/products/one-click-tenant-bot",
+      "target_page_label": "Microsoft 365 Tenant Assistant",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "mode hooks",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Mode hooks",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "monaco diff",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Monaco diff (W-033/048)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "NEC construction contract",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/types-of-construction-contracts",
+      "target_page_label": "Types of Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "new build EPC",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker",
+        "published-watchlist"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "New build EPC page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "target_url": "https://adelphos.ai/resources/epc/new-build-epc",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "New Build EPC and SAP Calculation",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "epc",
+      "target_url": "https://adelphos.ai/resources/epc/new-build-epc",
+      "target_page_label": "New Build EPC and SAP Calculation",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "new loops w-077–090",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "New loops W-077–090 (export/DB/scraper/passivhaus/all-calcs/app-builder)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "nightly playwright",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Nightly Playwright (W-110)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "one-click tenant bot",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "One-click tenant bot (admin-consent + shared mailbox + billing)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "online scientific calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Scientific Calculator",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/scientific-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "option appraisal",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Option Appraisal",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "pack expiry",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Pack expiry (W-012)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Passivhaus Heat Demand Estimate",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/passivhaus-heat-demand-estimate",
+      "target_page_label": "Passivhaus Heat Demand Estimate",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "passivhaus planning report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Passivhaus Planning Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "per-skill it / bugs docs",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Per-skill IT / bugs docs",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "phpp calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "PHPP Calculator (C10)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "pipe sizing calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Pipe Sizing Calculator (C02)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/pipe-sizing-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "playwright + debug discipline",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Playwright + debug discipline (W-091/093/094)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "plugin marketplace / app platform",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Plugin marketplace / app platform (W-070–076)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Plugin Marketplace and App Platform",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/plugin-marketplace-app-platform",
+      "target_page_label": "Plugin Marketplace and App Platform",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "prepare mep tender",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Tender Packaging & Returns Analysis (two-sided)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "product demo-video skill",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Product demo-video skill (W-121)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Professional Quotations",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/quotations-professions",
+      "target_page_label": "Professional Quotations",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "project programme",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Project programme",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/tools/project-programme",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Project Schedules",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/schedules",
+      "target_page_label": "Project Schedules",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "public tunnel",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Public tunnel (W-009)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "pump curve fixes",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Pump curve fixes (W-001–003)",
+      "status": "built",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Pump Power Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/pump-power-calculator",
+      "target_page_label": "Pump Power Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "pump selector",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Pump Selector (C05)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "qa loop",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "QA loop (W-019)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "qa manager",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "QA Manager (W-115)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/apps/qa-manager/index.html",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "quality assurance policy template",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Quality Assurance Policy (+ company setup docs)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/quality-assurance-policy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "quotation tenant onboarder",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Quotation tenant onboarder",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "quotations + professions",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Quotations + professions",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Recruitment CV Intake",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/recruitment-cv-onboarder",
+      "target_page_label": "Recruitment CV Intake",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "recruitment cv onboarder",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Recruitment CV onboarder",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "remaining todo-activation",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Remaining TODO-activation (W-031–044)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Report Builder",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/report-builder/index.html",
+      "target_page_label": "Report Builder",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "report loop",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Report loop (W-018)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "report onboarding frontend panel",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Report onboarding frontend panel",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "report template onboarding",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Report template onboarding (backend)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "review construction contracts",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/construction-contracts",
+      "target_page_label": "Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Revit Copilot",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "target_page_label": "Revit Copilot",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "revit→db",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Revit→DB (W-025)",
+      "status": "deferred",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Room Cooling and Heating Load Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/room-cooling-heating-load-calculator",
+      "target_page_label": "Room Cooling and Heating Load Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "rpc",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "RPC (W-013)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "SAP and EPC Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/epc-improvement-calculator",
+      "target_page_label": "SAP and EPC Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "sap calculation",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "SAP calculation landing page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "sap calculations",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-tracker"
+      ],
+      "cluster": "CLUSTER 3 — SAP / EPC (engine: SAP ✅)",
+      "target_page_label": "SAP calculation landing page",
+      "status": "planned",
+      "volume_source": "Adelphos toolbox tracker snapshot",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "schedule batches",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Schedule batches (W-004/005)",
+      "status": "built",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Schedule Builder",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/schedule-builder/index.html",
+      "target_page_label": "Schedule Builder",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "schedule loop",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Schedule loop (W-015)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "schedule template onboarder",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Schedule template onboarder",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "schedules",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Schedules",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/schedules",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "schematics",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Schematics",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/documents/schematics",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "scientific calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Scientific Calculator",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/scientific-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "severity fault-wiring",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Severity fault-wiring",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "skill api auth",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Skill API auth (W-109)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "skills > trees",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Skills > trees (invocation)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "skills infrastructure",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Skills infrastructure",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Solar PV Calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "calculators",
+      "target_url": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "target_page_label": "Solar PV Calculator",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "solar pv sizing calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Solar PV Calculator (C15)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "spec loop",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Spec loop (W-017)",
+      "status": "partial",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "spec onboarder",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Spec onboarder",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Specbuilder",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "apps",
+      "target_url": "https://adelphos.ai/apps/specbuilder/index.html",
+      "target_page_label": "Specbuilder",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 0–2 client brief",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 0–2 Client Brief",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 2 passivhaus report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 Passivhaus Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 2 qa design report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 QA Design Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 2 report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 Report (Concept Design)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 2 utility report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2 Utility Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 2–4 embodied carbon report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2–4 Embodied Carbon Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 2–4 thermal calculations report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 2–4 Thermal Calculations Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 3 passivhaus report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 3 Passivhaus Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 3 qa design report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 3 QA Design Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 3 report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 3 Report (Developed Design)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 4 bim execution plan",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 BIM Execution Plan (BEP)",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 4 daylighting report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 Daylighting Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 4 energy assessment",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 Energy Assessment",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stage 4 passivhaus report",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Stage 4 Passivhaus Report",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "starlink debug pipeline",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Starlink debug pipeline (W-104–107)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "starlink routing",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Starlink routing (W-008)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stripe billing",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Stripe billing (W-011)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Structured Document Creation",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/artifact-mode-universal",
+      "target_page_label": "Structured Document Creation",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "stt external",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "STT external (W-029)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "task scheduler",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Task scheduler (W-112)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "tenant onboarding pipeline",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Tenant onboarding pipeline (W-020)",
+      "status": "stub",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "tenant-onboarder manager",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Tenant-onboarder manager",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "tender bid / submission",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Tender Bid / Submission",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "tender letter",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox documents",
+      "target_page_label": "Tender Letter",
+      "status": "seed",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "tool-exposure gaps",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Tool-exposure gaps (W-050–069)",
+      "status": "not-started",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "tools",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Tools (ordered + each proven)",
+      "status": "built",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "top 10 undervalued stocks",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Undervalued Stock Screener (financial dashboard)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "tts / marketplace / qr",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "TTS / marketplace / QR (W-028/030/042)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Types of Construction Contracts",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/types-of-construction-contracts",
+      "target_page_label": "Types of Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "undervalued stocks",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Undervalued Stock Screener (financial dashboard)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "unify-tools",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Unify-tools (W-047)",
+      "status": "done",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "ventilation calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Ventilation Calculator (C07)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/ventilation-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "vm loop controllers + plan-mode",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "VM loop controllers + Plan-mode",
+      "status": "stub",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "vrv/vrf calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "VRV/VRF Calculator (C13)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "website feature registry + generator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Website feature registry + generator",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what cable size for a 7kw ev charger",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Cable Calculator (C01)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what cable size for a 9.5kw shower",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Cable Calculator (C01)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what does an epc e rating mean",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "EPC Rating + Improvement (per-label pages)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what is 20 factorial",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Scientific Calculator",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/scientific-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what is the cable size to amps chart",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Cable Calculator (C01)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what size heat pump do i need",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Heat Pump Calculator (sizing + running cost)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/heat-pump-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what size hot water cylinder do i need",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "DHW Storage Estimator (C06)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what size hot water tank for my home",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "DHW Storage Estimator (C06)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what size pv system for my roof",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record",
+        "published-watchlist"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Solar PV Calculator (C15)",
+      "status": "page-worthy",
+      "target_url": "https://adelphos.ai/calculators/solar-pv-calculator",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "what stocks are undervalued",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Undervalued Stock Screener (financial dashboard)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "where to find mep tenders",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "MEP Tender Pull (public tenders by region)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "word/excel lookup-ladder",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Word/Excel lookup-ladder",
+      "status": "built",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "word→text",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Word→Text (W-022)",
+      "status": "stub",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "write a construction contract",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "documents",
+      "target_url": "https://adelphos.ai/documents/construction-contracts",
+      "target_page_label": "Construction Contracts",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "xero / accounts",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Xero / accounts",
+      "status": "page-worthy",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "Xero Accounts Workflow",
+      "country": "United Kingdom",
+      "sources": [
+        "published-watchlist"
+      ],
+      "cluster": "tools",
+      "target_url": "https://adelphos.ai/tools/xero-accounts",
+      "target_page_label": "Xero Accounts Workflow",
+      "status": "published",
+      "opportunity_score": null
+    },
+    {
+      "keyword": "zone calculator",
+      "country": "United Kingdom",
+      "sources": [
+        "toolbox-record"
+      ],
+      "cluster": "Toolbox features",
+      "target_page_label": "Zone Calculator (C14)",
+      "status": "page-worthy",
+      "opportunity_score": null
+    }
+  ]
+}

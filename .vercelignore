@@ -1,0 +1,8 @@
+.git
+.playwright-cli
+node_modules
+output
+tmp
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
