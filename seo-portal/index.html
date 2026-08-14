@@ -210,8 +210,9 @@
       </section>
 
       <section class="view" id="view-keywords">
-        <div class="notice">“Not visible” means Google Search Console has not reported an impression for that exact tracked phrase in the current 90-day window. It does not prove the page is unindexed. Daily collection will turn these rows into movement data as impressions begin.</div>
+        <div class="notice" id="keywordCoverageNotice">“Not visible” means Google Search Console has not reported an impression for that exact tracked phrase in the current 90-day window. It does not prove the page is unindexed. Google-discovered searches are shown separately below so real rankings are never hidden or assigned to the wrong planned phrase.</div>
         <section class="panel"><div class="panel-head"><div><h2>Tracked keyword set</h2><p class="panel-sub">Generated from published pages, explicit intents and matched toolbox terms</p></div><button class="button" type="button" id="exportCsv">Export CSV</button></div><div class="toolbar"><div class="search"><label for="keywordSearch" hidden>Filter keywords</label><input id="keywordSearch" type="search" placeholder="Filter keyword or page…"></div><div class="select-wrap"><label for="keywordCountry" hidden>Country</label><select id="keywordCountry"><option value="all">All countries</option></select></div><div class="select-wrap"><label for="rankFilter" hidden>Rank filter</label><select id="rankFilter"><option value="all">All positions</option><option value="top10">Top 10</option><option value="striking">11–20</option><option value="unranked">Not visible</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Search intent</th><th>Tag</th><th>Country</th><th>Device</th><th class="number">Position</th><th class="number">Change</th><th class="number">GSC pos.</th><th class="number">Clicks</th><th class="number">Impressions</th><th>Last checked</th></tr></thead><tbody id="keywordsBody"></tbody></table></div></section>
+        <section class="panel section"><div class="panel-head"><div><h2>Keywords Google already shows</h2><p class="panel-sub">Actual Search Console queries, including phrases that are not exact matches for the planned watchlist</p></div><span class="pill" id="observedKeywordCount">0 observed</span></div><div class="table-wrap"><table><thead><tr><th>Google search</th><th>Country</th><th>Ranking page</th><th class="number">Position</th><th class="number">Change</th><th class="number">Clicks</th><th class="number">Impressions</th><th>Last observed</th></tr></thead><tbody id="observedKeywordsBody"></tbody></table></div></section>
       </section>
 
       <section class="view" id="view-searches">
@@ -408,7 +409,8 @@
       function renderKeywords() {
         if (!state.data) return;
         const query = state.filter.toLowerCase(); const depth = state.data.configured.serp_depth;
-        const countryNames = [...new Set(state.data.keywords.flatMap((row)=>[
+        const observed = (state.data.searches || []).filter((row)=>row.impressions>0);
+        const countryNames = [...new Set([...state.data.keywords, ...observed].flatMap((row)=>[
           row.country, ...(row.country_breakdown || []).map((item)=>item.country),
           String(row.location_name || '').split(',').at(-1)?.trim(),
         ]).filter(Boolean))].sort();
@@ -422,6 +424,14 @@
           return matchesText && matchesRank && matchesCountry;
         });
         $('#keywordsBody').innerHTML = rows.length ? rows.map((row)=>keywordRow(row,true)).join('') : '<tr><td colspan="10" class="empty-row">No keywords match this filter.</td></tr>';
+        const observedRows = observed.map((row)=>{
+          if (state.keywordCountry === 'all') return row;
+          const market = (row.country_breakdown || []).find((item)=>item.country===state.keywordCountry);
+          return market ? { ...row, country: market.country, clicks: market.clicks, impressions: market.impressions, gsc_position: market.position, position: market.position, movement: null } : null;
+        }).filter((row)=>row && (!query || `${row.keyword} ${row.target_url} ${row.page_title}`.toLowerCase().includes(query))).sort((a,b)=>b.impressions-a.impressions || a.position-b.position);
+        $('#observedKeywordCount').textContent = `${number(observedRows.length)} observed`;
+        $('#keywordCoverageNotice').textContent = `${number(observed.length)} real Google search phrase${observed.length===1?' is':'s are'} visible below. The planned table only fills a position when Google reports an impression for that exact phrase, so a dash is not the same as “not indexed”.`;
+        $('#observedKeywordsBody').innerHTML = observedRows.length ? observedRows.map((row)=>`<tr><td class="keyword-cell"><strong>${escapeHtml(row.keyword)}</strong><span class="panel-sub">${escapeHtml(row.tag==='gsc-discovered'?'Google-discovered query':'Exact tracked phrase')}</span></td><td>${escapeHtml(row.country || '—')}</td><td><a href="${escapeHtml(safeHref(row.target_url))}" target="_blank" rel="noreferrer">${escapeHtml(row.page_title || row.target_url)}</a></td><td class="number">${number(row.position,1)}</td><td class="number">${movement(row.movement)}</td><td class="number">${number(row.clicks)}</td><td class="number">${number(row.impressions)}</td><td>${shortDate(row.checked_at)}</td></tr>`).join('') : '<tr><td colspan="8" class="empty-row">No observed Google searches match this filter yet.</td></tr>';
       }
 
       function renderSearches(keywords, countries) {

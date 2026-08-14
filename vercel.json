@@ -18,6 +18,16 @@
       "schedule": "15 3 * * *"
     }
   ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        { "type": "host", "value": "www.adelphos.ai" }
+      ],
+      "destination": "https://adelphos.ai/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
