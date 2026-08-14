@@ -976,7 +976,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/adelphos-chat/index.html",
+      "target_url": "https://adelphos.ai/apps/adelphos-chat",
       "target_page_label": "Adelphos Chat",
       "status": "published",
       "opportunity_score": null
@@ -988,7 +988,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/excel-add-in/index.html",
+      "target_url": "https://adelphos.ai/apps/excel-add-in",
       "target_page_label": "Adelphos for Excel",
       "status": "published",
       "opportunity_score": null
@@ -1000,7 +1000,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/word-add-in/index.html",
+      "target_url": "https://adelphos.ai/apps/word-add-in",
       "target_page_label": "Adelphos for Word",
       "status": "published",
       "opportunity_score": null
@@ -1619,7 +1619,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/autocad-copilot/index.html",
+      "target_url": "https://adelphos.ai/apps/autocad-copilot",
       "target_page_label": "AutoCAD Copilot",
       "status": "published",
       "opportunity_score": null
@@ -2123,7 +2123,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/cobie-manager/index.html",
+      "target_url": "https://adelphos.ai/apps/cobie-manager",
       "target_page_label": "COBie Manager",
       "status": "published",
       "opportunity_score": null
@@ -2396,7 +2396,7 @@
       "cluster": "Toolbox features",
       "target_page_label": "Document Controller (W-114)",
       "status": "page-worthy",
-      "target_url": "https://adelphos.ai/apps/document-controller/index.html",
+      "target_url": "https://adelphos.ai/apps/document-controller",
       "opportunity_score": null
     },
     {
@@ -4398,7 +4398,7 @@
       "cluster": "Toolbox features",
       "target_page_label": "QA Manager (W-115)",
       "status": "page-worthy",
-      "target_url": "https://adelphos.ai/apps/qa-manager/index.html",
+      "target_url": "https://adelphos.ai/apps/qa-manager",
       "opportunity_score": null
     },
     {
@@ -4477,7 +4477,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/report-builder/index.html",
+      "target_url": "https://adelphos.ai/apps/report-builder",
       "target_page_label": "Report Builder",
       "status": "published",
       "opportunity_score": null
@@ -4534,7 +4534,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "target_url": "https://adelphos.ai/apps/revit-copilot",
       "target_page_label": "Revit Copilot",
       "status": "published",
       "opportunity_score": null
@@ -4627,7 +4627,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/schedule-builder/index.html",
+      "target_url": "https://adelphos.ai/apps/schedule-builder",
       "target_page_label": "Schedule Builder",
       "status": "published",
       "opportunity_score": null
@@ -4791,7 +4791,7 @@
         "published-watchlist"
       ],
       "cluster": "apps",
-      "target_url": "https://adelphos.ai/apps/specbuilder/index.html",
+      "target_url": "https://adelphos.ai/apps/specbuilder",
       "target_page_label": "Specbuilder",
       "status": "published",
       "opportunity_score": null

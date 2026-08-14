@@ -13,12 +13,12 @@
   "orphaned_sitemap_pages": 923,
   "top_internal_targets": [
     {
-      "url": "https://adelphos.ai/docs/commands/index.html",
+      "url": "https://adelphos.ai/docs/commands",
       "links": 525,
       "listed_in_sitemap": true
     },
     {
-      "url": "https://adelphos.ai/docs/tools/index.html",
+      "url": "https://adelphos.ai/docs/tools",
       "links": 395,
       "listed_in_sitemap": true
     },
@@ -28,7 +28,7 @@
       "listed_in_sitemap": true
     },
     {
-      "url": "https://adelphos.ai/demos/index.html",
+      "url": "https://adelphos.ai/demos",
       "links": 76,
       "listed_in_sitemap": true
     },
@@ -48,7 +48,7 @@
       "listed_in_sitemap": true
     },
     {
-      "url": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "url": "https://adelphos.ai/apps/revit-copilot",
       "links": 20,
       "listed_in_sitemap": true
     },
@@ -63,7 +63,7 @@
       "listed_in_sitemap": true
     },
     {
-      "url": "https://adelphos.ai/agentic-services/finances/index.html",
+      "url": "https://adelphos.ai/agentic-services/finances",
       "links": 17,
       "listed_in_sitemap": true
     },
@@ -83,7 +83,7 @@
       "listed_in_sitemap": true
     },
     {
-      "url": "https://adelphos.ai/apps/index.html",
+      "url": "https://adelphos.ai/apps",
       "links": 15,
       "listed_in_sitemap": true
     },
@@ -103,7 +103,7 @@
       "listed_in_sitemap": true
     },
     {
-      "url": "https://adelphos.ai/glossary/index.html",
+      "url": "https://adelphos.ai/glossary",
       "links": 14,
       "listed_in_sitemap": true
     },

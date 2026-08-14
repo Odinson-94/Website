@@ -53,7 +53,7 @@
 
 6. **Smoke-test on the live domain**.
    - Visit `https://adelphos.ai/` — should land on the new home page.
-   - Visit `https://adelphos.ai/dist/apps/index.html` — apps inventory.
+   - Visit `https://adelphos.ai/dist/apps` — apps inventory.
    - Visit `https://adelphos.ai/sitemap.xml` — should serve from `/dist/sitemap.xml`.
    - Visit `https://adelphos.ai/llms.txt` and `/robots.txt`.
    - Verify `https://document-controller.adelphos.ai/` still hits Azure.

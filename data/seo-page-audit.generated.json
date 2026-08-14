@@ -745,7 +745,7 @@
     },
     {
       "source_path": "apps/adelphos-chat/index.html",
-      "target_url": "https://adelphos.ai/apps/adelphos-chat/index.html",
+      "target_url": "https://adelphos.ai/apps/adelphos-chat",
       "page_title": "Adelphos Chat",
       "tag": "apps",
       "keywords": [
@@ -756,7 +756,7 @@
       "title_length": 34,
       "description": "Your project's brain — without Revit, without a desk.",
       "description_length": 53,
-      "canonical": "https://adelphos.ai/apps/adelphos-chat/index.html",
+      "canonical": "https://adelphos.ai/apps/adelphos-chat",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Adelphos Chat",
       "h1_count": 1,
@@ -2872,7 +2872,7 @@
     },
     {
       "source_path": "apps/revit-copilot/index.html",
-      "target_url": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "target_url": "https://adelphos.ai/apps/revit-copilot",
       "page_title": "Revit Copilot",
       "tag": "apps",
       "keywords": [
@@ -2883,7 +2883,7 @@
       "title_length": 34,
       "description": "An AI engineer that lives inside Revit and runs the model with you.",
       "description_length": 67,
-      "canonical": "https://adelphos.ai/apps/revit-copilot/index.html",
+      "canonical": "https://adelphos.ai/apps/revit-copilot",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Revit Copilot",
       "h1_count": 1,
@@ -2954,7 +2954,7 @@
     },
     {
       "source_path": "apps/specbuilder/index.html",
-      "target_url": "https://adelphos.ai/apps/specbuilder/index.html",
+      "target_url": "https://adelphos.ai/apps/specbuilder",
       "page_title": "Specbuilder",
       "tag": "apps",
       "keywords": [
@@ -2965,7 +2965,7 @@
       "title_length": 32,
       "description": "The MEP specification, drafted from your live model in minutes.",
       "description_length": 63,
-      "canonical": "https://adelphos.ai/apps/specbuilder/index.html",
+      "canonical": "https://adelphos.ai/apps/specbuilder",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Specbuilder",
       "h1_count": 1,
@@ -3112,7 +3112,7 @@
     },
     {
       "source_path": "apps/excel-add-in/index.html",
-      "target_url": "https://adelphos.ai/apps/excel-add-in/index.html",
+      "target_url": "https://adelphos.ai/apps/excel-add-in",
       "page_title": "Adelphos for Excel",
       "tag": "apps",
       "keywords": [
@@ -3123,7 +3123,7 @@
       "title_length": 39,
       "description": "The Adelphos agent inside Excel — connects calc workbooks to the live Revit model.",
       "description_length": 82,
-      "canonical": "https://adelphos.ai/apps/excel-add-in/index.html",
+      "canonical": "https://adelphos.ai/apps/excel-add-in",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Adelphos for Excel",
       "h1_count": 1,
@@ -3149,7 +3149,7 @@
     },
     {
       "source_path": "apps/word-add-in/index.html",
-      "target_url": "https://adelphos.ai/apps/word-add-in/index.html",
+      "target_url": "https://adelphos.ai/apps/word-add-in",
       "page_title": "Adelphos for Word",
       "tag": "apps",
       "keywords": [
@@ -3160,7 +3160,7 @@
       "title_length": 38,
       "description": "The Adelphos agent inside Word — drafts, reviews, and finishes documents on your house template.",
       "description_length": 96,
-      "canonical": "https://adelphos.ai/apps/word-add-in/index.html",
+      "canonical": "https://adelphos.ai/apps/word-add-in",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Adelphos for Word",
       "h1_count": 1,
@@ -3786,7 +3786,7 @@
     },
     {
       "source_path": "apps/autocad-copilot/index.html",
-      "target_url": "https://adelphos.ai/apps/autocad-copilot/index.html",
+      "target_url": "https://adelphos.ai/apps/autocad-copilot",
       "page_title": "AutoCAD Copilot",
       "tag": "apps",
       "keywords": [
@@ -3797,7 +3797,7 @@
       "title_length": 36,
       "description": "An AI engineer that lives inside AutoCAD MEP — same agent, same tools, same project memory.",
       "description_length": 91,
-      "canonical": "https://adelphos.ai/apps/autocad-copilot/index.html",
+      "canonical": "https://adelphos.ai/apps/autocad-copilot",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "AutoCAD Copilot",
       "h1_count": 1,
@@ -3857,7 +3857,7 @@
     },
     {
       "source_path": "apps/cobie-manager/index.html",
-      "target_url": "https://adelphos.ai/apps/cobie-manager/index.html",
+      "target_url": "https://adelphos.ai/apps/cobie-manager",
       "page_title": "COBie Manager",
       "tag": "apps",
       "keywords": [
@@ -3868,7 +3868,7 @@
       "title_length": 34,
       "description": "A live, audit-ready COBie deliverable, populated from the model — never a panic before hand-over again.",
       "description_length": 103,
-      "canonical": "https://adelphos.ai/apps/cobie-manager/index.html",
+      "canonical": "https://adelphos.ai/apps/cobie-manager",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "COBie Manager",
       "h1_count": 1,
@@ -3929,7 +3929,7 @@
     },
     {
       "source_path": "apps/document-controller/index.html",
-      "target_url": "https://adelphos.ai/apps/document-controller/index.html",
+      "target_url": "https://adelphos.ai/apps/document-controller",
       "page_title": "Document Controller",
       "tag": "apps",
       "keywords": [
@@ -3940,7 +3940,7 @@
       "title_length": 40,
       "description": "Single source of truth for every drawing, every revision, every transmittal.",
       "description_length": 76,
-      "canonical": "https://adelphos.ai/apps/document-controller/index.html",
+      "canonical": "https://adelphos.ai/apps/document-controller",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Document Controller",
       "h1_count": 1,
@@ -4418,7 +4418,7 @@
     },
     {
       "source_path": "apps/qa-manager/index.html",
-      "target_url": "https://adelphos.ai/apps/qa-manager/index.html",
+      "target_url": "https://adelphos.ai/apps/qa-manager",
       "page_title": "QA Manager",
       "tag": "apps",
       "keywords": [
@@ -4429,7 +4429,7 @@
       "title_length": 31,
       "description": "Automated QA across drawings, schedules, specs, the model — and ACC clash issues, in one dashboard.",
       "description_length": 99,
-      "canonical": "https://adelphos.ai/apps/qa-manager/index.html",
+      "canonical": "https://adelphos.ai/apps/qa-manager",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "QA Manager",
       "h1_count": 1,
@@ -4455,7 +4455,7 @@
     },
     {
       "source_path": "apps/report-builder/index.html",
-      "target_url": "https://adelphos.ai/apps/report-builder/index.html",
+      "target_url": "https://adelphos.ai/apps/report-builder",
       "page_title": "Report Builder",
       "tag": "apps",
       "keywords": [
@@ -4466,7 +4466,7 @@
       "title_length": 35,
       "description": "Every recurring report — composed, formatted, and traceable to source.",
       "description_length": 70,
-      "canonical": "https://adelphos.ai/apps/report-builder/index.html",
+      "canonical": "https://adelphos.ai/apps/report-builder",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Report Builder",
       "h1_count": 1,
@@ -4523,7 +4523,7 @@
     },
     {
       "source_path": "apps/schedule-builder/index.html",
-      "target_url": "https://adelphos.ai/apps/schedule-builder/index.html",
+      "target_url": "https://adelphos.ai/apps/schedule-builder",
       "page_title": "Schedule Builder",
       "tag": "apps",
       "keywords": [
@@ -4534,7 +4534,7 @@
       "title_length": 37,
       "description": "Production-ready Revit schedules in minutes — cross-checked against the model and your calcs.",
       "description_length": 93,
-      "canonical": "https://adelphos.ai/apps/schedule-builder/index.html",
+      "canonical": "https://adelphos.ai/apps/schedule-builder",
       "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       "h1": "Schedule Builder",
       "h1_count": 1,
