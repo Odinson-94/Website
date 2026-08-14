@@ -394,11 +394,11 @@ function samePage(left, right) {
 }
 
 const COUNTRY_NAMES = {
-  are: 'United Arab Emirates', aus: 'Australia', aut: 'Austria', bel: 'Belgium', bra: 'Brazil',
+  are: 'United Arab Emirates', arg: 'Argentina', aus: 'Australia', aut: 'Austria', bel: 'Belgium', bra: 'Brazil',
   can: 'Canada', che: 'Switzerland', chn: 'China', deu: 'Germany', dnk: 'Denmark', esp: 'Spain',
-  fin: 'Finland', fra: 'France', gbr: 'United Kingdom', hkg: 'Hong Kong', idn: 'Indonesia',
+  fin: 'Finland', fra: 'France', gbr: 'United Kingdom', grc: 'Greece', hkg: 'Hong Kong', idn: 'Indonesia',
   ind: 'India', irl: 'Ireland', ita: 'Italy', jpn: 'Japan', mys: 'Malaysia', nld: 'Netherlands',
-  nor: 'Norway', nzl: 'New Zealand', phl: 'Philippines', pol: 'Poland', prt: 'Portugal',
+  moz: 'Mozambique', nor: 'Norway', nzl: 'New Zealand', phl: 'Philippines', pol: 'Poland', prt: 'Portugal',
   sgp: 'Singapore', swe: 'Sweden', tha: 'Thailand', usa: 'United States', vnm: 'Vietnam',
   zaf: 'South Africa',
 };

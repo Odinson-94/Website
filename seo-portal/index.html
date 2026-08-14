@@ -410,10 +410,10 @@
         if (!state.data) return;
         const query = state.filter.toLowerCase(); const depth = state.data.configured.serp_depth;
         const observed = (state.data.searches || []).filter((row)=>row.impressions>0);
-        const countryNames = [...new Set([...state.data.keywords, ...observed].flatMap((row)=>[
-          row.country, ...(row.country_breakdown || []).map((item)=>item.country),
-          String(row.location_name || '').split(',').at(-1)?.trim(),
-        ]).filter(Boolean))].sort();
+        const countryNames = [...new Set([
+          ...state.data.keywords.flatMap((row)=>[row.country, ...(row.country_breakdown || []).map((item)=>item.country), String(row.location_name || '').split(',').at(-1)?.trim()]),
+          ...observed.flatMap((row)=>[row.country, ...(row.country_breakdown || []).map((item)=>item.country)]),
+        ].filter(Boolean))].sort();
         $('#keywordCountry').innerHTML = '<option value="all">All countries</option>' + countryNames.map((country)=>`<option value="${escapeHtml(country)}">${escapeHtml(country)}</option>`).join('');
         if (!countryNames.includes(state.keywordCountry)) state.keywordCountry = 'all';
         $('#keywordCountry').value = state.keywordCountry;
