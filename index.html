@@ -62,7 +62,7 @@
 <!-- Inter narrowed to 300;500 (Adelphos override). Montserrat link removed
      (was not used in any rendered CSS -- only in font-family fallback chain
      which doesn't trigger network fetch). -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/css/bundles/generic.css">
 <link rel="stylesheet" href="/css/bundles/shared.css">
 <link rel="stylesheet" href="/css/bundles/sandbox.css">
@@ -1790,7 +1790,7 @@
     <div class="revit-panel-top">
       <div class="rp-copy">
         <span class="rp-badge">Flagship · Revit add-in</span>
-        <img class="rp-logo" src="/images/app-logos/revit-copilot.png" alt="Revit Copilot" onerror="this.style.opacity=0">
+        <img loading="lazy" decoding="async" class="rp-logo" src="/images/app-logos/revit-copilot.png" alt="Revit Copilot" onerror="this.style.opacity=0">
         <h2 style="color:var(--ad-text-1, #2f2f2f);">Revit Copilot</h2>
         <p class="rp-tagline" style="font-family:'Inter Display','Inter',sans-serif;font-size:16px;font-weight:500;line-height:1.4;color:var(--ad-text-3);">An AI engineer that lives inside Revit and runs the model with you. 532 commands. 395 tools. One chat.</p>
         <a class="rp-cta" href="/apps/revit-copilot/index.html">Open Revit Copilot →</a>
@@ -2573,7 +2573,7 @@
 
     <div class="clash-row tpl-row" style="gap:40px;">
       <div class="clash-frame" style="overflow:hidden;">
-        <img src="/images/screenshots/schedule-builder.png"
+        <img loading="lazy" decoding="async" src="/images/screenshots/schedule-builder.png"
              alt="Schedule Builder interface showing a fan schedule extracted from a live Revit model"
              style="width:100%; height:auto; border-radius:10px; box-shadow:0 12px 36px rgba(30,52,72,0.14);">
       </div>
@@ -2616,10 +2616,10 @@
         <div style="margin-top:12px;">
           <span style="font-size:13px; font-weight:300; color:var(--ad-text-3); letter-spacing:0.02em; text-transform:uppercase; display:block; margin-bottom:12px;">Integrated with</span>
           <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
-            <img src="/images/doc-controller-platforms/viewpoint.png" alt="Viewpoint For Projects" style="height:28px; width:auto;">
-            <img src="/images/doc-controller-platforms/asite.webp" alt="Asite" style="height:22px; width:auto;">
-            <img src="/images/doc-controller-platforms/forma.png" alt="Autodesk Forma" style="height:24px; width:auto;">
-            <img src="/images/doc-controller-platforms/sharepoint.png" alt="SharePoint" style="height:24px; width:auto;">
+            <img loading="lazy" decoding="async" src="/images/doc-controller-platforms/viewpoint.png" alt="Viewpoint For Projects" style="height:28px; width:auto;">
+            <img loading="lazy" decoding="async" src="/images/doc-controller-platforms/asite.webp" alt="Asite" style="height:22px; width:auto;">
+            <img loading="lazy" decoding="async" src="/images/doc-controller-platforms/forma.png" alt="Autodesk Forma" style="height:24px; width:auto;">
+            <img loading="lazy" decoding="async" src="/images/doc-controller-platforms/sharepoint.png" alt="SharePoint" style="height:24px; width:auto;">
             <img src="/images/app-logos/word-add-in.png" alt="Microsoft Word" style="height:26px; width:auto;">
             <img src="/images/app-logos/excel-add-in.png" alt="Microsoft Excel" style="height:26px; width:auto;">
           </div>
@@ -2873,374 +2873,7 @@
   }
 }
 </script>
-<script type="module" src="/js/clash-scene.js">
-  import * as THREE from 'three';
-  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-  /* === Three scene factories ------------------------------------------- */
-
-  // Shared materials -- tuned for "MEP fittings" not "primitive shapes"
-  const matSlab        = new THREE.MeshStandardMaterial({ color: 0xe8edf2, roughness: 0.85, metalness: 0.05 });
-  const matStructure   = new THREE.MeshStandardMaterial({ color: 0xc8ccd3, roughness: 0.95, metalness: 0.0 });
-  const matWall        = new THREE.MeshStandardMaterial({ color: 0xd8dde4, roughness: 0.85, metalness: 0.05,
-                                                         transparent: true, opacity: 0.55, depthWrite: false });
-  const matRoom        = new THREE.MeshStandardMaterial({ color: 0xb8c5d3, roughness: 0.7,  metalness: 0.05 });
-
-  // Steel painted services (pipe shells)
-  const matPipeA       = new THREE.MeshStandardMaterial({ color: 0x2eb8b8, roughness: 0.30, metalness: 0.78 }); // teal -> primary flow
-  const matPipeB       = new THREE.MeshStandardMaterial({ color: 0xc43a3a, roughness: 0.30, metalness: 0.78 }); // red  -> return / fire
-  const matPipeC       = new THREE.MeshStandardMaterial({ color: 0xc4923a, roughness: 0.32, metalness: 0.75 }); // amber -> gas / secondary
-  // Steel flange (carbon steel painted dark -- the disk you see at every pipe joint)
-  const matFlange      = new THREE.MeshStandardMaterial({ color: 0x3d434b, roughness: 0.45, metalness: 0.85 });
-  const matBolt        = new THREE.MeshStandardMaterial({ color: 0x1d2025, roughness: 0.5,  metalness: 0.9 });
-
-  // Ductwork -- galvanised sheet steel
-  const matDuct        = new THREE.MeshStandardMaterial({ color: 0xb6bdc6, roughness: 0.55, metalness: 0.65 });
-  const matDuctFlange  = new THREE.MeshStandardMaterial({ color: 0x7c8088, roughness: 0.55, metalness: 0.7  });
-
-  // Equipment
-  const matBoilerCase  = new THREE.MeshStandardMaterial({ color: 0xe6e7ea, roughness: 0.55, metalness: 0.35 }); // boiler casing pale
-  const matBoilerTrim  = new THREE.MeshStandardMaterial({ color: 0x6a3ac4, roughness: 0.45, metalness: 0.55 }); // brand purple stripe
-  const matBoilerPanel = new THREE.MeshStandardMaterial({ color: 0x1b1f24, roughness: 0.4,  metalness: 0.5,
-                                                         emissive: 0x0a3d4a, emissiveIntensity: 0.35 });        // control panel
-  const matPumpCase    = new THREE.MeshStandardMaterial({ color: 0x1f5572, roughness: 0.35, metalness: 0.7 }); // dark teal pump body
-  const matMotorCase   = new THREE.MeshStandardMaterial({ color: 0x33383f, roughness: 0.45, metalness: 0.7 }); // dark grey motor
-  const matAHU         = new THREE.MeshStandardMaterial({ color: 0x9aa5b1, roughness: 0.55, metalness: 0.5 });
-  const matAHUTrim     = new THREE.MeshStandardMaterial({ color: 0x6b737d, roughness: 0.5,  metalness: 0.6 });
-  const matPlinth      = new THREE.MeshStandardMaterial({ color: 0x787f88, roughness: 0.95, metalness: 0.0 });
-  const matRubber      = new THREE.MeshStandardMaterial({ color: 0x16181c, roughness: 0.95, metalness: 0.0 }); // anti-vibe / flex
-  const matFlue        = new THREE.MeshStandardMaterial({ color: 0x4d525b, roughness: 0.55, metalness: 0.65 });
-  const matValve       = new THREE.MeshStandardMaterial({ color: 0xb88a2a, roughness: 0.4,  metalness: 0.85 }); // brass body
-  const matTray        = new THREE.MeshStandardMaterial({ color: 0x4a5562, roughness: 0.55, metalness: 0.75 });
-
-  // Clash-solver overlays
-  const matGhost       = new THREE.MeshStandardMaterial({ color: 0xe83535, roughness: 0.35, metalness: 0.5,
-                                                         transparent: true, opacity: 0.20, depthWrite: false });
-  const matMarker      = new THREE.MeshStandardMaterial({ color: 0xff4d4d, roughness: 0.3,  metalness: 0.4,
-                                                         emissive: 0x661111, emissiveIntensity: 0.6 });
-
-  /* == Custom 3D arc curve (proper torus elbow geometry) ----------------
-     Sweeps a circle of `radius` about `axis` through `angle`, starting at
-     point (center + startVec*radius). Used by drawPipe to build elbows
-     that are tangent-continuous with the adjacent straight runs. */
-  class ArcCurve3 extends THREE.Curve {
-    constructor(center, axis, radius, startVec, totalAngle) {
-      super();
-      this.center      = center.clone();
-      this.axis        = axis.clone().normalize();
-      this.radius      = radius;
-      this.startVec    = startVec.clone().normalize();
-      this.totalAngle  = totalAngle;
-    }
-    getPoint(t, target) {
-      const out = target || new THREE.Vector3();
-      const dir = this.startVec.clone().applyAxisAngle(this.axis, this.totalAngle * t);
-      return out.copy(this.center).addScaledVector(dir, this.radius);
-    }
-  }
-
-  /* == Real MEP pipe-run helper -----------------------------------------
-     pts:     [[x,y,z], ...] polyline waypoints (corners of the route)
-     pipeR:   pipe outer radius
-     mat:     pipe material
-     opts.elbowR: bend centre-line radius (default 1.6x pipe diameter -- ie
-                  long-radius elbow per typical MEP convention)
-     opts.flanges: { start: bool, end: bool } -> flanged ends?
-     opts.flangeAt: [indices] -> extra flanged joints mid-run (corner ids)
-
-     Builds ONE TubeGeometry along a CurvePath made of straight segments +
-     proper torus arcs at every corner. No spheres, no ball-joints. */
-  function drawPipe(scene, pts, pipeR, mat, opts) {
-    opts = opts || {};
-    const elbowR = (opts.elbowR != null) ? opts.elbowR : Math.max(pipeR * 3.2, 0.10);
-    const showStartFlange = !opts.flanges || opts.flanges.start !== false;
-    const showEndFlange   = !opts.flanges || opts.flanges.end   !== false;
-
-    const v = pts.map(p => new THREE.Vector3(p[0], p[1], p[2]));
-    const path = new THREE.CurvePath();
-    let cursor = v[0].clone();
-    let firstTangent = null, lastTangent = null;
-
-    for (let i = 1; i < v.length - 1; i++) {
-      const A = v[i - 1], B = v[i], C = v[i + 1];
-      const u = B.clone().sub(A).normalize();
-      const w = C.clone().sub(B).normalize();
-      const dot = THREE.MathUtils.clamp(u.dot(w), -0.999, 0.999);
-      if (dot > 0.998) continue;                                // nearly straight
-      const deflection = Math.acos(dot);
-      // tangent length: distance from corner back to where the arc starts
-      const trim = elbowR * Math.tan(deflection / 2);
-      const elbowStart = B.clone().sub(u.clone().multiplyScalar(trim));
-      const elbowEnd   = B.clone().add(w.clone().multiplyScalar(trim));
-      // straight up to the elbow
-      path.add(new THREE.LineCurve3(cursor.clone(), elbowStart.clone()));
-      // arc geometry
-      const axis = new THREE.Vector3().crossVectors(u, w).normalize();
-      const bisect = w.clone().sub(u).normalize();              // points toward arc centre
-      const distToCenter = elbowR / Math.sin((Math.PI - deflection) / 2);
-      const center = B.clone().add(bisect.multiplyScalar(distToCenter));
-      const startVec = elbowStart.clone().sub(center).normalize();
-      path.add(new ArcCurve3(center, axis, elbowR, startVec, deflection));
-      cursor = elbowEnd.clone();
-      if (firstTangent === null) firstTangent = u.clone();
-    }
-    // final straight
-    path.add(new THREE.LineCurve3(cursor.clone(), v[v.length - 1].clone()));
-    if (firstTangent === null) firstTangent = v[1].clone().sub(v[0]).normalize();
-    lastTangent = v[v.length - 1].clone().sub(v[v.length - 2]).normalize();
-
-    // Tube geometry -- generous segments for smooth elbow visuals
-    const totalLen = path.getLength();
-    const tubularSegments = Math.max(48, Math.round(totalLen * 16));
-    const geom = new THREE.TubeGeometry(path, tubularSegments, pipeR, 14, false);
-    scene.add(new THREE.Mesh(geom, mat));
-
-    // End flanges (steel disks + four bolts) -- only if requested
-    function addFlange(point, tangent) {
-      const fr = pipeR * 1.7, ft = pipeR * 0.45;
-      const disk = new THREE.Mesh(new THREE.CylinderGeometry(fr, fr, ft, 24), matFlange);
-      disk.position.copy(point);
-      disk.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), tangent);
-      // sit the disk flush against the pipe end
-      disk.position.add(tangent.clone().multiplyScalar(-ft / 2));
-      scene.add(disk);
-      // four bolt heads on the flange face
-      const boltR = pipeR * 0.18, boltL = ft * 0.6, br = fr * 0.72;
-      const ortho = Math.abs(tangent.y) < 0.9
-        ? new THREE.Vector3(0,1,0).cross(tangent).normalize()
-        : new THREE.Vector3(1,0,0).cross(tangent).normalize();
-      const ortho2 = tangent.clone().cross(ortho).normalize();
-      for (let k = 0; k < 4; k++) {
-        const a = (k / 4) * Math.PI * 2 + Math.PI / 4;
-        const off = ortho.clone().multiplyScalar(Math.cos(a) * br)
-                    .addScaledVector(ortho2, Math.sin(a) * br);
-        const bolt = new THREE.Mesh(new THREE.CylinderGeometry(boltR, boltR, boltL, 10), matBolt);
-        bolt.position.copy(point).add(off);
-        bolt.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), tangent);
-        bolt.position.add(tangent.clone().multiplyScalar(-boltL / 2));
-        scene.add(bolt);
-      }
-    }
-    if (showStartFlange) addFlange(v[0], firstTangent);
-    if (showEndFlange)   addFlange(v[v.length - 1], lastTangent.clone().multiplyScalar(-1));
-  }
-
-  /* == Pipe hanger from a slab above (clevis-style strap on a drop rod) */
-  function addHanger(scene, x, y, z, slabY, pipeR) {
-    const rodLen = Math.max(0.05, slabY - y - pipeR);
-    const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, rodLen, 8), matFlue);
-    rod.position.set(x, y + pipeR + rodLen / 2, z);
-    scene.add(rod);
-    const strap = new THREE.Mesh(
-      new THREE.TorusGeometry(pipeR * 1.18, 0.022, 8, 20, Math.PI),
-      matFlue
-    );
-    strap.position.set(x, y, z);
-    strap.rotation.z = Math.PI;                                  // U opens downward
-    scene.add(strap);
-  }
-
-  /* == Galvanised duct run -- straight rectangular box with flange joints */
-  function addDuctRun(scene, x1, x2, y, z, w, h) {
-    const len = Math.abs(x2 - x1);
-    const xc = (x1 + x2) / 2;
-    const body = new THREE.Mesh(new THREE.BoxGeometry(len, h, w), matDuct);
-    body.position.set(xc, y, z); scene.add(body);
-    // flanged joints every ~1.5m
-    const joints = Math.max(2, Math.floor(len / 1.5));
-    for (let k = 1; k < joints; k++) {
-      const fx = x1 + (len * k / joints);
-      const fl = new THREE.Mesh(new THREE.BoxGeometry(0.04, h + 0.06, w + 0.06), matDuctFlange);
-      fl.position.set(fx, y, z); scene.add(fl);
-    }
-    // end flanges
-    [x1, x2].forEach(fx => {
-      const fl = new THREE.Mesh(new THREE.BoxGeometry(0.05, h + 0.08, w + 0.08), matDuctFlange);
-      fl.position.set(fx, y, z); scene.add(fl);
-    });
-  }
-
-
-  /* ---------------------------------------------------------------------- */
-  /*  Scene 3 -- Clash Solver                                              */
-  /*  The canonical MEP coordination move: a pipe needs to cross          */
-  /*  perpendicular to a horizontal duct in the ceiling void at the same  */
-  /*  elevation. A straight run would slam into the duct (shown as the    */
-  /*  red ghost pipe). The resolved pipe takes two clean 45-deg ramps        */
-  /*  lifting it up and over the duct in a tidy inverted-V profile.       */
-  /* ---------------------------------------------------------------------- */
-  function buildClashSolver(scene) {
-    // Floor reference + structural slab overhead
-    const floor = new THREE.Mesh(new THREE.BoxGeometry(8, 0.05, 5), matSlab);
-    floor.position.y = -0.025; scene.add(floor);
-    const slabY = 3.20;
-    const slab = new THREE.Mesh(new THREE.BoxGeometry(8, 0.18, 5), matStructure);
-    slab.position.y = slabY; scene.add(slab);
-    // downstand beams running along X (perpendicular to the camera-facing depth)
-    [-1.8, 1.8].forEach(z => {
-      const beam = new THREE.Mesh(new THREE.BoxGeometry(8, 0.22, 0.20), matStructure);
-      beam.position.set(0, slabY - 0.20, z); scene.add(beam);
-    });
-
-    // MAIN HORIZONTAL DUCT -- runs in Z direction (perpendicular to the pipe).
-    // Galvanised box duct with flange joints every ~1.5m and end flanges.
-    const dY = 1.60, dW = 0.70, dH = 0.55;
-    const duct = new THREE.Mesh(new THREE.BoxGeometry(dW, dH, 5), matDuct);
-    duct.position.set(0, dY, 0); scene.add(duct);
-    [-1.5, 0, 1.5].forEach(z => {
-      const fl = new THREE.Mesh(new THREE.BoxGeometry(dW + 0.06, dH + 0.06, 0.04), matDuctFlange);
-      fl.position.set(0, dY, z); scene.add(fl);
-    });
-    [-2.5, 2.5].forEach(z => {
-      const fl = new THREE.Mesh(new THREE.BoxGeometry(dW + 0.08, dH + 0.08, 0.04), matDuctFlange);
-      fl.position.set(0, dY, z); scene.add(fl);
-    });
-
-    return { camera: { pos: [6.0, 3.4, 6.0], lookAt: [0, 1.50, 0] } };
-  }
-  /*   //                  == flat top over the duct
-      [ (flatHalf + ramp),  pY,    0],   // foot of ramp down
-      [ 3.5,                pY,    0],
-    ], pipeR, matPipeA, { elbowR: 0.22 });
-
-    // FIX-POINT MARKERS -- at the two ramp-feet (where the agent inserted the
-    // bends that lifted the pipe off its original straight line).
-    [[-(flatHalf + ramp), pY, 0], [(flatHalf + ramp), pY, 0]].forEach(p => {
-      const ball = new THREE.Mesh(new THREE.SphereGeometry(0.14, 18, 14), matMarker);
-      ball.position.set(p[0], p[1], p[2]); scene.add(ball);
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.022, 10, 28), matMarker);
-    */
-
-  // Only the Clash Solver scene is mounted on the sandboxed home.
-  const SCENES = {
-    'clash-solver': buildClashSolver
-  };
-  const TITLES = {
-    'clash-solver': 'Clash Solver -- pipe ramped over a perpendicular duct'
-  };
-
-  /* === Renderer factory ------------------------------------------------- */
-  function makeViewer(host, sceneKey, opts = {}) {
-    const factory = SCENES[sceneKey];
-    if (!factory) return null;
-
-    const scene = new THREE.Scene();
-    scene.background = null;
-    // lights
-    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-    const dir = new THREE.DirectionalLight(0xffffff, 0.95);
-    dir.position.set(6, 10, 6); scene.add(dir);
-    const dir2 = new THREE.DirectionalLight(0xaaccff, 0.35);
-    dir2.position.set(-6, 4, -3); scene.add(dir2);
-
-    const meta = factory(scene);
-
-    const w = host.clientWidth || 320;
-    const h = host.clientHeight || 180;
-    const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 200);
-    const [cx, cy, cz] = meta.camera.pos;
-    camera.position.set(cx, cy, cz);
-    const [lx, ly, lz] = meta.camera.lookAt;
-    camera.lookAt(lx, ly, lz);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(w, h, false);
-    host.appendChild(renderer.domElement);
-
-    let controls = null;
-    if (opts.controls) {
-      controls = new OrbitControls(camera, renderer.domElement);
-      controls.target.set(lx, ly, lz);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.08;
-      controls.minDistance = 3; controls.maxDistance = 25;
-    }
-
-    let stop = false;
-    let t0 = performance.now();
-    // Phase 8.7.5: respect prefers-reduced-motion. The user's reduced-
-    // motion preference pauses the gentle auto-rotation; the scene
-    // still renders one frame at the initial camera position so the
-    // viewer sees the geometry, just static. OrbitControls (modal)
-    // remain interactive because the user invoked them deliberately.
-    const reduceMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let reduceMotion = reduceMotionMq.matches;
-    reduceMotionMq.addEventListener('change', e => { reduceMotion = e.matches; });
-    function tick(now) {
-      if (stop) return;
-      const dt = (now - t0) * 0.001; t0 = now;
-      if (!opts.controls && !reduceMotion) {
-        // gentle auto-rotate around the lookAt
-        const ang = now * 0.00018;
-        const rad = Math.hypot(cx, cz);
-        camera.position.x = Math.cos(ang) * rad;
-        camera.position.z = Math.sin(ang) * rad;
-        camera.lookAt(lx, ly, lz);
-      }
-      if (controls) controls.update();
-      renderer.render(scene, camera);
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-
-    function resize() {
-      const w = host.clientWidth || 320;
-      const h = host.clientHeight || 180;
-      camera.aspect = w / h; camera.updateProjectionMatrix();
-      renderer.setSize(w, h, false);
-    }
-    const ro = new ResizeObserver(resize); ro.observe(host);
-
-    return {
-      destroy() {
-        stop = true; ro.disconnect();
-        try { renderer.dispose(); } catch {}
-        try { renderer.domElement.remove(); } catch {}
-      }
-    };
-  }
-
-  /* === Mount inline previews -------------------------------------------- */
-  document.querySelectorAll('.scene-3d').forEach(host => {
-    const key = host.dataset.scene;
-    if (!key || !SCENES[key]) return;
-    makeViewer(host, key, { controls: false });
-  });
-
-  /* === Modal expansion on click ----------------------------------------- */
-  const modal      = document.getElementById('sceneModal');
-  const modalStage = document.getElementById('sceneModalStage');
-  const modalTitle = document.getElementById('sceneModalTitle');
-  const modalClose = document.getElementById('sceneModalClose');
-  let modalViewer = null;
-
-  function openModal(key) {
-    if (!SCENES[key]) return;
-    modalTitle.textContent = TITLES[key] || '3D preview';
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => {
-      modalViewer = makeViewer(modalStage, key, { controls: true });
-    });
-  }
-  function closeModal() {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (modalViewer) { modalViewer.destroy(); modalViewer = null; }
-  }
-  document.querySelectorAll('.scene-3d').forEach(host => {
-    host.addEventListener('click', (e) => {
-      e.preventDefault(); e.stopPropagation();
-      openModal(host.dataset.scene);
-    });
-  });
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-</script>
+<script type="module" src="/js/load-clash-scene.js"></script>
 <script>
 (function(){
   var tick='<svg viewBox="0 0 12 12"><path d="M2 6.5L5 9.5L10 3"/></svg>';

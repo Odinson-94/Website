@@ -402,12 +402,15 @@ function makeViewer(host, sceneKey, opts = {}) {
     controls.enableDamping = true; controls.dampingFactor = 0.08;
     controls.minDistance = 3; controls.maxDistance = 25;
   }
-  let stop = false; let t0 = performance.now();
+  let stop = false; let visible = false; let frame = null;
   const rmMq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let rm = rmMq.matches; rmMq.addEventListener('change', e => { rm = e.matches; });
+  let rm = rmMq.matches;
+  const onMotionChange = e => { rm = e.matches; };
+  rmMq.addEventListener('change', onMotionChange);
   function tick(now) {
     if (stop) return;
-    t0 = now;
+    frame = null;
+    if (!visible || document.visibilityState === 'hidden') return;
     if (!opts.controls && !rm) {
       const ang = now * 0.00018;
       const rad = Math.hypot(cx, cz);
@@ -417,9 +420,22 @@ function makeViewer(host, sceneKey, opts = {}) {
     }
     if (controls) controls.update();
     renderer.render(scene, camera);
-    requestAnimationFrame(tick);
+    frame = requestAnimationFrame(tick);
   }
-  requestAnimationFrame(tick);
+  function syncAnimation() {
+    if (stop || !visible || document.visibilityState === 'hidden') {
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+    } else if (frame === null) {
+      frame = requestAnimationFrame(tick);
+    }
+  }
+  const visibilityObserver = new IntersectionObserver(entries => {
+    visible = entries.some(entry => entry.isIntersecting);
+    syncAnimation();
+  });
+  visibilityObserver.observe(host);
+  document.addEventListener('visibilitychange', syncAnimation);
   function resize() {
     const w = host.clientWidth || 320;
     const h = host.clientHeight || 180;
@@ -427,7 +443,7 @@ function makeViewer(host, sceneKey, opts = {}) {
     renderer.setSize(w, h, false);
   }
   const ro = new ResizeObserver(resize); ro.observe(host);
-  return { destroy() { stop = true; ro.disconnect(); try { renderer.dispose(); } catch {} try { renderer.domElement.remove(); } catch {} } };
+  return { destroy() { stop = true; syncAnimation(); rmMq.removeEventListener('change', onMotionChange); visibilityObserver.disconnect(); document.removeEventListener('visibilitychange', syncAnimation); ro.disconnect(); try { renderer.dispose(); } catch {} try { renderer.domElement.remove(); } catch {} } };
 }
 
 document.querySelectorAll('.scene-3d').forEach(host => {
