@@ -1,0 +1,17 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const ts = require(process.env.ADELPHOS_TYPESCRIPT_PATH);
+const source = ts.transpileModule(fs.readFileSync(require('node:path').join(__dirname, '010-resolve-invoice-price.ts'), 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+const owner = { exports: {} }; new Function('exports', 'module', source)(owner.exports, owner);
+const resolve = owner.exports.resolveInvoicePrice;
+const modern = (price,amount=2000)=>({amount,pricing:{price_details:{price}}});
+test('legacy Stripe invoice resolves its price',()=>assert.equal(resolve({lines:{data:[{amount:2000,price:{id:'price_old'}}]}}),'price_old'));
+test('Dahlia Stripe invoice resolves nested pricing',()=>assert.equal(resolve({lines:{data:[modern('price_new')]}}),'price_new'));
+test('upgrade selects the charged new plan rather than credited old plan',()=>assert.equal(resolve({lines:{data:[modern('price_old',-2000),modern('price_new',5000)]}}),'price_new'));
+test('zero amount after discount still identifies the plan',()=>assert.equal(resolve({lines:{data:[modern('price_new',0)]}}),'price_new'));
+test('expanded modern price is supported',()=>assert.equal(resolve({lines:{data:[modern({id:'price_new'})]}}),'price_new'));
+test('duplicate lines for one plan resolve once',()=>assert.equal(resolve({lines:{data:[modern('price_new'),modern('price_new')]}}),'price_new'));
+test('different positive plan prices fail closed',()=>assert.throws(()=>resolve({lines:{data:[modern('price_one'),modern('price_two')]}})));
+test('missing price fails closed',()=>assert.throws(()=>resolve({lines:{data:[{amount:2000}]}})));
+test('incomplete line pagination fails closed',()=>assert.throws(()=>resolve({lines:{has_more:true,data:[modern('price_new')]}})));
