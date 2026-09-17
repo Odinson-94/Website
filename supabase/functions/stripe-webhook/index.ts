@@ -4,6 +4,8 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient, SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2";
 import Stripe from "https://esm.sh/stripe@14.25.0?target=deno";
+import { assertBillingVerificationIdentity } from "../_shared/010-guard-billing-verification.ts";
+import { resolveInvoicePrice } from "./010-resolve-invoice-price.ts";
 
 serve(async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
@@ -137,6 +139,7 @@ async function applyCompletedCheckout(
   const priceId = lineItems.data[0]?.price?.id || "";
   if (lineItems.data.length !== 1 || !priceId) throw new Error(`Checkout session ${session.id} has no single configured Price.`);
   const plan = await billingPlanByPrice(supabase, priceId);
+  assertBillingVerificationIdentity(plan, { email, userId, tenantId });
   const planCode = String(plan.code || "").trim().toLowerCase();
   if (!planCode) throw new Error(`Checkout session ${session.id} resolved to a plan without a code.`);
   const configuredMode = String(plan.metadata?.stripe_mode || "");
@@ -209,6 +212,13 @@ async function applySubscriptionChange(
   const plan = await billingPlanByPrice(supabase, priceId);
   const planCode = String(plan.code || "").trim().toLowerCase();
   if (plan.plan_kind !== "subscription") throw new Error(`Subscription ${subscription.id} names non-subscription plan ${planCode}.`);
+  if (!email && plan.metadata?.billing_verification === true) {
+    const row = await supabase.from("adelphos_user_licenses").select("email")
+      .eq("stripe_subscription_id", subscription.id).maybeSingle();
+    if (row.error) throw row.error;
+    email = String(row.data?.email || "").trim().toLowerCase();
+  }
+  assertBillingVerificationIdentity(plan, { email });
   assertPlanMode(plan, livemode);
   const period = subscriptionPeriod(subscription);
   const status = eventType === "customer.subscription.deleted" ? "canceled" : mapSubscriptionStatus(subscription.status);
@@ -250,11 +260,11 @@ async function applySubscriptionChange(
 async function applyInvoice(supabase: SupabaseClient, invoice: Stripe.Invoice, eventType: string, livemode: boolean) {
   const email = String(invoice.customer_email || invoice.metadata?.email || "").trim().toLowerCase();
   if (!email) throw new Error(`Invoice ${invoice.id} has no entitlement email.`);
-  const priceId = invoice.lines?.data?.map((line) => line.price?.id).find(Boolean) || "";
-  if (!priceId) throw new Error(`Invoice ${invoice.id} has no Stripe Price.`);
+  const priceId = resolveInvoicePrice(invoice);
   const plan = await billingPlanByPrice(supabase, priceId);
   const planCode = String(plan.code || "").trim().toLowerCase();
   assertPlanMode(plan, livemode);
+  assertBillingVerificationIdentity(plan, { email });
   const { error } = await supabase.from("adelphos_invoices").upsert({
     email,
     stripe_invoice_id: invoice.id,
