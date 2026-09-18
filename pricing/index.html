@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adelphos Pricing | AI Engineering Workspace for MEP</title>
+<meta name="description" content="Adelphos pricing for engineers and MEP teams. Plans use transparent Usage Credits, active project slots and secure authenticated billing.">
+<link rel="canonical" href="https://adelphos.ai/pricing/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="theme-color" content="#156082">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Adelphos pricing | AI engineering workspace for MEP">
+<meta property="og:description" content="Usage Credit plans for individual engineers, teams and engineering practices.">
+<meta property="og:url" content="https://adelphos.ai/pricing/">
+<meta property="og:image" content="https://adelphos.ai/images/og/default.png">
+<meta property="og:site_name" content="Adelphos AI">
+<meta property="og:locale" content="en_GB">
+<link rel="icon" type="image/png" href="/logos/Node%20Logo.png">
+<script>
+  (function(){
+    var c = document.cookie.match(/(?:^|; )darkMode=([^;]*)/);
+    var dark = (c && c[1] === 'true') || localStorage.getItem('darkMode') === 'true';
+    if (dark) document.documentElement.classList.add('dark-mode');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap">
+<link rel="stylesheet" href="/css/bundles/generic.css">
+<link rel="stylesheet" href="/css/bundles/shared.css">
+<link rel="stylesheet" href="/css/bundles/sandbox.css">
+<link rel="stylesheet" href="/css/bundles/page.css">
+<style>
+  html, body { height:auto !important; overflow:visible !important; }
+  body { background:var(--ad-bg, #f5f3ef); color:var(--ad-text-1, #222); }
+  .pricing-page { width:min(1180px, calc(100% - 40px)); margin:0 auto; padding:126px 0 0; }
+  .pricing-page * { box-sizing:border-box; }
+  .pricing-kicker { display:block; margin:0 0 14px; color:var(--ad-teal, #156082); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; }
+  .pricing-hero { display:grid; grid-template-columns:minmax(0, 1.25fr) minmax(280px, .75fr); gap:36px; align-items:end; padding:46px 0 54px; border-bottom:1px solid var(--ad-border, #d9dde0); }
+  .pricing-hero h1 { max-width:820px; margin:0; font-family:var(--ad-font-body, Inter, sans-serif); font-size:clamp(36px, 5.6vw, 72px); font-weight:500; letter-spacing:-.04em; line-height:1.02; }
+  .pricing-hero h1 span { color:var(--ad-teal, #156082); }
+  .pricing-hero__copy { margin:0; color:var(--ad-text-3, #596168); font-size:17px; font-weight:300; line-height:1.65; }
+  .pricing-proof { display:flex; flex-wrap:wrap; gap:12px 24px; margin-top:22px; color:var(--ad-text-3, #596168); font-size:13px; }
+  .pricing-proof span { display:flex; align-items:center; gap:8px; }
+  .pricing-proof span::before { width:7px; height:7px; border-radius:50%; background:var(--ad-teal, #156082); content:""; }
+  .pricing-section { padding:60px 0; border-bottom:1px solid var(--ad-border, #d9dde0); }
+  .pricing-heading { display:grid; grid-template-columns:minmax(0, .9fr) minmax(300px, 1.1fr); gap:30px; align-items:end; margin-bottom:28px; }
+  .pricing-heading h2 { margin:0; font-family:var(--ad-font-body, Inter, sans-serif); font-size:clamp(28px, 3.6vw, 46px); font-weight:500; letter-spacing:-.025em; line-height:1.1; }
+  .pricing-heading p { max-width:680px; margin:0; color:var(--ad-text-3, #596168); font-size:15px; font-weight:300; line-height:1.65; }
+  .plan-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; }
+  .plan-card { position:relative; display:flex; min-height:510px; flex-direction:column; padding:26px 22px 22px; border:1px solid var(--ad-border, #d9dde0); border-radius:8px; background:var(--ad-panel, #fff); }
+  .plan-card--featured { border-color:var(--ad-teal, #156082); background:var(--ad-card-dark, #2f2f2f); color:#fff; }
+  .plan-badge { align-self:flex-start; margin:0 0 18px; padding:5px 8px; border:1px solid rgba(255,255,255,.3); border-radius:4px; color:#d7edf6; font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+  .plan-card h3 { margin:0 0 7px; color:inherit; font-size:21px; font-weight:500; }
+  .plan-audience { min-height:44px; margin:0 0 22px; color:var(--ad-text-3, #596168); font-size:13px; font-weight:300; line-height:1.5; }
+  .plan-card--featured .plan-audience { color:#c5cbd0; }
+  .plan-price { display:flex; align-items:baseline; gap:7px; margin-bottom:8px; }
+  .plan-price strong { color:inherit; font-size:44px; font-weight:500; letter-spacing:-.035em; }
+  .plan-price span { color:var(--ad-text-3, #596168); font-size:13px; font-weight:300; }
+  .plan-card--featured .plan-price span { color:#c5cbd0; }
+  .plan-allowance { margin:0 0 3px; color:var(--ad-teal, #156082); font-size:14px; font-weight:500; }
+  .plan-card--featured .plan-allowance { color:#7dc4df; }
+  .plan-split { margin:0 0 20px; color:var(--ad-text-3, #596168); font-size:11px; }
+  .plan-card--featured .plan-split { color:#9ea7ad; }
+  .plan-features { display:grid; gap:0; margin:0 0 24px; padding:0; list-style:none; }
+  .plan-features li { padding:10px 0; border-top:1px solid var(--ad-border, #e1e4e6); color:var(--ad-text-2, #353b40); font-size:13px; font-weight:300; line-height:1.45; }
+  .plan-card--featured .plan-features li { border-color:rgba(255,255,255,.13); color:#edf0f2; }
+  .plan-actions { display:grid; gap:9px; margin-top:auto; }
+  .pricing-button { display:inline-flex; min-height:46px; align-items:center; justify-content:center; padding:11px 16px; border:1px solid var(--ad-teal, #156082); border-radius:6px; background:transparent; color:var(--ad-teal, #156082); font:500 13px/1.2 var(--ad-font-body, Inter, sans-serif); text-align:center; text-decoration:none; cursor:pointer; transition:background .18s ease, color .18s ease, border-color .18s ease; }
+  .pricing-button:hover { background:rgba(21,96,130,.08); }
+  .pricing-button--primary { background:var(--ad-teal, #156082); color:#fff; }
+  .pricing-button--primary:hover { background:#0f516f; }
+  .plan-card--featured .pricing-button { border-color:#fff; color:#fff; }
+  .plan-card--featured .pricing-button--primary { border-color:var(--ad-teal, #156082); background:var(--ad-teal, #156082); }
+  .pricing-button:disabled { cursor:wait; opacity:.65; }
+  .entry-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+  .entry-card { display:flex; min-height:150px; align-items:center; justify-content:space-between; gap:24px; padding:25px 26px; border:1px solid var(--ad-border, #d9dde0); border-radius:8px; background:var(--ad-panel, #fff); }
+  .entry-card h3 { margin:0 0 7px; font-size:20px; font-weight:500; }
+  .entry-card p { max-width:440px; margin:0; color:var(--ad-text-3, #596168); font-size:14px; font-weight:300; line-height:1.55; }
+  .compare-scroll { overflow-x:auto; border:1px solid var(--ad-border, #d9dde0); border-radius:8px; background:var(--ad-panel, #fff); }
+  .compare-table { width:100%; min-width:900px; border-collapse:collapse; }
+  .compare-table th, .compare-table td { padding:15px 16px; border-bottom:1px solid var(--ad-border, #e0e3e5); font-size:12px; text-align:center; }
+  .compare-table th { color:var(--ad-text-1, #222); font-weight:500; }
+  .compare-table th:first-child, .compare-table td:first-child { position:sticky; left:0; z-index:1; min-width:210px; background:var(--ad-panel, #fff); text-align:left; }
+  .compare-table tbody tr:last-child td { border-bottom:0; }
+  .compare-table .yes { color:var(--ad-teal, #156082); font-weight:500; }
+  .compare-table .muted { color:var(--ad-text-4, #7a838a); font-weight:300; }
+  .usage-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .usage-card { padding:24px; border-top:2px solid var(--ad-teal, #156082); background:var(--ad-panel, #fff); }
+  .usage-card h3 { margin:0 0 9px; font-size:17px; font-weight:500; }
+  .usage-card p { margin:0; color:var(--ad-text-3, #596168); font-size:13px; font-weight:300; line-height:1.6; }
+  .toolkit-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:1px; overflow:hidden; border:1px solid var(--ad-border, #d9dde0); border-radius:8px; background:var(--ad-border, #d9dde0); }
+  .toolkit-item { min-height:132px; padding:19px; background:var(--ad-panel, #fff); }
+  .toolkit-item small { color:var(--ad-teal, #156082); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+  .toolkit-item h3 { margin:10px 0 6px; font-size:15px; font-weight:500; }
+  .toolkit-item p { margin:0; color:var(--ad-text-3, #596168); font-size:12px; font-weight:300; line-height:1.5; }
+  .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 28px; }
+  .faq-grid details { border-top:1px solid var(--ad-border, #d9dde0); }
+  .faq-grid summary { padding:18px 0; color:var(--ad-text-1, #222); font-size:14px; font-weight:500; cursor:pointer; }
+  .faq-grid p { margin:-5px 0 20px; color:var(--ad-text-3, #596168); font-size:13px; font-weight:300; line-height:1.65; }
+  .pricing-final { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center; margin:60px 0 40px; padding:34px; border-radius:8px; background:var(--ad-card-dark, #2f2f2f); color:#fff; }
+  .pricing-final h2 { margin:0 0 8px; color:#fff; font-size:30px; font-weight:500; }
+  .pricing-final p { max-width:700px; margin:0; color:#c6ccd0; font-size:14px; font-weight:300; line-height:1.6; }
+  .pricing-final .pricing-button { min-width:180px; }
+  .checkout-dialog { width:min(520px, calc(100% - 30px)); padding:0; border:1px solid var(--ad-border, #d9dde0); border-radius:8px; background:var(--ad-panel, #fff); color:var(--ad-text-1, #222); }
+  .checkout-dialog::backdrop { background:rgba(15,22,27,.66); }
+  .checkout-dialog__body { padding:27px; }
+  .checkout-dialog h2 { margin:0 0 8px; font-size:25px; font-weight:500; }
+  .checkout-dialog p { margin:0 0 20px; color:var(--ad-text-3, #596168); font-size:13px; font-weight:300; line-height:1.6; }
+  .checkout-dialog label { display:grid; gap:7px; color:var(--ad-text-2, #353b40); font-size:12px; font-weight:500; }
+  .checkout-dialog input { width:100%; min-height:46px; padding:10px 12px; border:1px solid var(--ad-border, #cfd5d9); border-radius:6px; background:var(--ad-bg, #fff); color:inherit; font:300 15px var(--ad-font-body, Inter, sans-serif); }
+  .checkout-dialog__actions { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:20px; }
+  .checkout-status { min-height:21px; margin:12px 0 0 !important; color:var(--ad-teal, #156082) !important; }
+  .checkout-banner { display:none; margin:20px 0 0; padding:14px 16px; border-left:3px solid var(--ad-teal, #156082); background:var(--ad-panel, #fff); color:var(--ad-text-2, #353b40); font-size:13px; line-height:1.55; }
+  .checkout-banner[data-visible="true"] { display:block; }
+  html.dark-mode body { background:var(--ad-bg-dark, #171a1c); color:#eef1f3; }
+  html.dark-mode .pricing-hero h1, html.dark-mode .pricing-heading h2, html.dark-mode .entry-card h3, html.dark-mode .usage-card h3, html.dark-mode .toolkit-item h3, html.dark-mode .faq-grid summary { color:#eef1f3; }
+  html.dark-mode .plan-card, html.dark-mode .entry-card, html.dark-mode .compare-scroll, html.dark-mode .compare-table th:first-child, html.dark-mode .compare-table td:first-child, html.dark-mode .usage-card, html.dark-mode .toolkit-item, html.dark-mode .checkout-dialog, html.dark-mode .checkout-banner { background:#202427; border-color:#353b40; color:#eef1f3; }
+  html.dark-mode .plan-card--featured { background:#2f2f2f; }
+  html.dark-mode .plan-features li { color:#d9dee1; border-color:#353b40; }
+  html.dark-mode .compare-table th { color:#eef1f3; }
+  html.dark-mode .checkout-dialog label { color:#d9dee1; }
+  html.dark-mode .checkout-dialog input { background:#181b1d; border-color:#40474c; }
+  @media (max-width:1050px) { .plan-grid, .toolkit-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+  @media (max-width:760px) {
+    .pricing-page { width:min(100% - 28px, 1180px); padding-top:100px; }
+    .pricing-hero, .pricing-heading { grid-template-columns:1fr; }
+    .pricing-hero { align-items:start; padding-top:32px; }
+    .plan-grid, .entry-grid, .usage-grid, .toolkit-grid, .faq-grid, .pricing-final { grid-template-columns:1fr; }
+    .plan-card { min-height:0; }
+    .entry-card { align-items:flex-start; flex-direction:column; }
+    .pricing-final { align-items:start; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Product",
+  "name":"Adelphos AI engineering workspace",
+  "description":"Usage Credit-metered AI engineering workspace for MEP design, calculations, reports, schedules and drawings.",
+  "brand":{"@type":"Brand","name":"Adelphos"},
+  "offers":[
+    {"@type":"Offer","name":"Everyday","price":"20","priceCurrency":"GBP","url":"https://adelphos.ai/pricing/","availability":"https://schema.org/OnlineOnly"},
+    {"@type":"Offer","name":"Standard","price":"50","priceCurrency":"GBP","url":"https://adelphos.ai/pricing/","availability":"https://schema.org/OnlineOnly"},
+    {"@type":"Offer","name":"Business","price":"200","priceCurrency":"GBP","url":"https://adelphos.ai/pricing/","availability":"https://schema.org/OnlineOnly"}
+  ]
+}
+</script>
+</head>
+<body>
+<script src="/shell.js"></script>
+<main class="pricing-page">
+  <div class="checkout-banner" id="checkout-banner" role="status"></div>
+  <header class="pricing-hero">
+    <div>
+      <span class="pricing-kicker">Adelphos pricing</span>
+      <h1>Build more engineering work with <span>one workspace.</span></h1>
+    </div>
+    <div>
+      <p class="pricing-hero__copy">Calculations, specifications, reports, schedules and drawings drafted by Adelphos and checked by you. Choose the monthly allowance that matches how much you build.</p>
+      <div class="pricing-proof"><span>Free public calculators</span><span>Secure Stripe checkout</span><span>Cancel through the billing portal</span></div>
+    </div>
+  </header>
+
+  <section class="pricing-section" id="plans">
+    <div class="pricing-heading"><div><span class="pricing-kicker">Monthly plans</span><h2>Start small. Scale when the work does.</h2></div><p>Every paid plan unlocks the Adelphos app suite and commands. Plans differ by included usage and the workspace, team and agentic capabilities available to you.</p></div>
+    <div class="plan-grid">
+      <article class="plan-card">
+        <h3>Everyday</h3><p class="plan-audience">For solo engineers getting started.</p>
+        <div class="plan-price"><strong>£20</strong><span>/ month</span></div>
+        <p class="plan-allowance">15 Usage Credits / month</p><p class="plan-split">20-credit rolling five-hour safety cap · 5 active projects</p>
+        <ul class="plan-features"><li>Full app suite and commands</li><li>Chat with Adelphos using Claude Opus 4.6</li><li>5 active project slots</li><li>Pay-as-you-go top-ups available</li></ul>
+        <div class="plan-actions"><button class="pricing-button" type="button" data-checkout-plan="everyday" data-plan-label="Everyday — £20/month">Choose Everyday</button></div>
+      </article>
+      <article class="plan-card">
+        <h3>Standard</h3><p class="plan-audience">For working professionals using Adelphos regularly.</p>
+        <div class="plan-price"><strong>£50</strong><span>/ month</span></div>
+        <p class="plan-allowance">40 Usage Credits / month</p><p class="plan-split">40-credit rolling five-hour safety cap · 20 active projects</p>
+        <ul class="plan-features"><li>Everything in Everyday</li><li>20 active project slots</li><li>Higher rolling Usage Credit capacity</li><li>Pay-as-you-go top-ups available</li></ul>
+        <div class="plan-actions"><button class="pricing-button" type="button" data-checkout-plan="standard" data-plan-label="Standard — £50/month">Choose Standard</button></div>
+      </article>
+      <article class="plan-card plan-card--featured">
+        <span class="plan-badge">Most popular</span>
+        <h3>Business</h3><p class="plan-audience">For teams and small engineering practices.</p>
+        <div class="plan-price"><strong>£200</strong><span>/ month</span></div>
+        <p class="plan-allowance">160 Usage Credits / month</p><p class="plan-split">100-credit rolling five-hour safety cap · 100 active projects</p>
+        <ul class="plan-features"><li>Everything in Standard</li><li>Team-ready project workspaces</li><li>Adelphos-branded calculation reports</li><li>Priority support</li></ul>
+        <div class="plan-actions"><button class="pricing-button pricing-button--primary" type="button" data-checkout-plan="business" data-plan-label="Business — £200/month">Choose Business</button></div>
+      </article>
+      <article class="plan-card">
+        <h3>Enterprise</h3><p class="plan-audience">For established practices and firms.</p>
+        <div class="plan-price"><strong>£450</strong><span>/ seat / month</span></div>
+        <p class="plan-allowance">Contracted Usage Credits</p><p class="plan-split">Contracted rolling cap and active-project capacity</p>
+        <ul class="plan-features"><li>Everything in Business</li><li>Adelphos agentic modules</li><li>SSO, multi-seat controls and API access</li><li>Dedicated support and SLA</li></ul>
+        <div class="plan-actions"><a class="pricing-button" href="mailto:sales@adelphos.ai?subject=Adelphos%20Enterprise">Talk to sales</a></div>
+      </article>
+    </div>
+    <div class="entry-grid">
+      <article class="entry-card"><div><h3>Free public calculators</h3><p>Use the focused calculators on this website without an account, project or Usage Credits. Results and branded PDF reports remain subject to user verification and competent review. Usage Credits apply only when you move into signed-in Chat, API and wider tool workflows.</p></div><a class="pricing-button" href="/calculators/">Open free calculators</a></article>
+      <article class="entry-card"><div><h3>Pay as you go</h3><p>Add 15 Usage Credits for £20. Purchased top-ups persist until used and are consumed after the current monthly allowance. They do not replace competent review.</p></div><button class="pricing-button" type="button" data-checkout-plan="payg-20" data-plan-label="15 Usage Credits — £20">Add 15 credits</button></article>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="compare">
+    <div class="pricing-heading"><div><span class="pricing-kicker">Compare plans</span><h2>What changes as you scale?</h2></div><p>One Usage Credit equals US$1 of provider-equivalent cost. Verified model and tool execution use the same clear account balance.</p></div>
+    <div class="compare-scroll"><table class="compare-table"><thead><tr><th>Feature</th><th>Free</th><th>Everyday</th><th>Standard</th><th>Business</th><th>Enterprise</th></tr></thead><tbody>
+      <tr><td>Included Usage Credits</td><td>2 once</td><td>15 / month</td><td>40 / month</td><td>160 / month</td><td>Contracted</td></tr>
+      <tr><td>Active projects</td><td>2</td><td>5</td><td>20</td><td>100</td><td>Contracted</td></tr>
+      <tr><td>Rolling five-hour cap</td><td>10</td><td>20</td><td>40</td><td>100</td><td>Contracted</td></tr>
+      <tr><td>Public website calculators</td><td class="yes">Free</td><td class="yes">Free</td><td class="yes">Free</td><td class="yes">Free</td><td class="yes">Free</td></tr>
+      <tr><td>Full app suite and commands</td><td class="muted">—</td><td class="yes">Included</td><td class="yes">Included</td><td class="yes">Included</td><td class="yes">Included</td></tr>
+      <tr><td>Adelphos-branded calculation reports</td><td class="muted">—</td><td class="yes">Included</td><td class="yes">Included</td><td class="yes">Included</td><td class="yes">Included</td></tr>
+      <tr><td>Agentic modules, SSO and API</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="muted">—</td><td class="yes">Included</td></tr>
+      <tr><td>Support</td><td class="muted">Community</td><td>Standard</td><td>Standard</td><td>Priority</td><td>Dedicated + SLA</td></tr>
+      <tr><td>Pay-as-you-go top-ups</td><td class="muted">—</td><td class="yes">Available</td><td class="yes">Available</td><td class="yes">Available</td><td class="yes">Available</td></tr>
+      <tr><td>Credit expiry</td><td>Intro credits persist</td><td colspan="3">Monthly credits do not roll over; purchased top-ups persist</td><td>Contracted</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="pricing-section" id="metering">
+    <div class="pricing-heading"><div><span class="pricing-kicker">Transparent metering</span><h2>You pay for real Adelphos use.</h2></div><p>Your allowance covers the context the system reads, the output it produces and the engineering tools it calls. Top-ups and plan changes happen only through an explicit Stripe Checkout.</p></div>
+    <div class="usage-grid"><article class="usage-card"><h3>Measured at execution</h3><p>Usage is recorded against the authenticated account when models and Adelphos tools run, not estimated from the length of a button click.</p></article><article class="usage-card"><h3>No automatic overage</h3><p>Included allowances do not create unapproved overage charges. Additional paid usage requires an explicit top-up or plan change.</p></article><article class="usage-card"><h3>Managed in Stripe</h3><p>Stripe Checkout collects payment details. The signed Stripe webhook, not the browser redirect, activates or updates the Adelphos entitlement.</p></article></div>
+  </section>
+
+  <section class="pricing-section" id="apps">
+    <div class="pricing-heading"><div><span class="pricing-kicker">The Adelphos workspace</span><h2>One plan across the toolkit.</h2></div><p>Availability continues to follow the product release state shown inside Adelphos. Paid access does not remove the engineer’s responsibility to review consequential work.</p></div>
+    <div class="toolkit-grid">
+      <article class="toolkit-item"><small>Web</small><h3>Adelphos Chat</h3><p>Reasoning, drafting and tool control in one engineering workspace.</p></article>
+      <article class="toolkit-item"><small>Documents</small><h3>Report Studio</h3><p>Structured reports and branded deliverables from reviewed evidence.</p></article>
+      <article class="toolkit-item"><small>Calculations</small><h3>Cable Calcs Studio</h3><p>BS 7671 calculation workflows with reviewable results and reports.</p></article>
+      <article class="toolkit-item"><small>Documents</small><h3>SpecBuilder</h3><p>Technical specifications developed from the project brief and references.</p></article>
+      <article class="toolkit-item"><small>Schedules</small><h3>Schedule Builder</h3><p>Engineering schedules coordinated with calculation and project data.</p></article>
+      <article class="toolkit-item"><small>Design</small><h3>Lighting Suite</h3><p>Lighting calculations and design workflows from intent to output.</p></article>
+      <article class="toolkit-item"><small>BIM</small><h3>MEPBridge</h3><p>Adelphos commands and workflows inside Revit and AutoCAD.</p></article>
+      <article class="toolkit-item"><small>Practices</small><h3>Agentic operations</h3><p>Metered API and MCP tool calling for approved enterprise workflows.</p></article>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="faq">
+    <div class="pricing-heading"><div><span class="pricing-kicker">Pricing questions</span><h2>Before you choose a plan.</h2></div><p>Prices are shown in GBP excluding VAT. Stripe calculates and collects applicable tax only where the Adelphos Stripe account has been configured to do so.</p></div>
+    <div class="faq-grid">
+      <details><summary>What is a Usage Credit?</summary><p>One Usage Credit represents US$1 of provider-equivalent cost. Your account displays one clear credit balance. The account-level rolling cap limits short-window use, while the active-project slot limit controls how many projects can run at once.</p></details>
+      <details><summary>What happens when I reach my allowance?</summary><p>Additional paid usage requires an explicit top-up or upgrade through Stripe. Adelphos does not create an unapproved overage charge.</p></details>
+      <details><summary>How is my subscription activated?</summary><p>Stripe sends a signed webhook after successful Checkout. Adelphos verifies the purchased Stripe Price and binds the entitlement to the signed-in user and tenant. The return page alone cannot activate access.</p></details>
+      <details><summary>Can I cancel or update payment details?</summary><p>Yes. Sign in to <a href="https://chat.adelphos.ai/">Adelphos Chat</a> and open Account Settings, then Billing. Adelphos creates a customer-specific Stripe portal session after checking account ownership. Cancellation normally takes effect at the end of the paid billing period. See the <a href="/refunds/">Cancellation and Refund Policy</a>.</p></details>
+      <details><summary>Do free calculators recommend products?</summary><p>No. Public calculator pages perform focused calculations only. They do not reproduce restricted selectors or recommend manufacturer products.</p></details>
+      <details><summary>Is engineering output automatically suitable for issue?</summary><p>No. The user remains responsible for checking inputs, assumptions, standards, results and suitability, and for obtaining competent-person review where required.</p></details>
+    </div>
+  </section>
+
+  <section class="pricing-final"><div><h2>Start with the engineering work in front of you.</h2><p>Use the public website calculators free without signing in. Create an Adelphos account and upgrade through secure Stripe Checkout when you need Chat, API access, wider workflows and metered tool calling.</p></div><a class="pricing-button pricing-button--primary" href="/calculators/">Open free calculators</a></section>
+</main>
+
+<script src="/js/pricing-checkout.js" defer></script>
+</body>
+</html>
