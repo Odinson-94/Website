@@ -60,7 +60,7 @@ test('real reserve handler looks up Haiku rates and stores Haiku on the reservat
 
 for (const scenario of [
   { name: 'missing helper price never falls back to standard4x', model: HAIKU_MODEL, factor: 'helper', status: 400, queries: 1 },
-  { name: 'helper model aliases cannot silently change the billed model', model: 'claude-opus-4-6', factor: 'helper', status: 403, queries: 0 },
+  { name: 'unknown helper model is refused before a rate lookup', model: 'unknown-model', factor: 'helper', status: 403, queries: 0 },
   { name: 'unknown factors cannot silently change pricing', model: CANONICAL_MODEL, factor: 'unconfigured', status: 400, queries: 0 },
 ]) {
   test(scenario.name, async () => {
@@ -82,5 +82,12 @@ for (const scenario of [
       body:JSON.stringify({action:'reserve',request_kind:'chat',model:scenario.model,factor_code:scenario.factor,email:'test@example.invalid',project_id:'p',request_id:'r',maximum_usage:{uncached_input:100,billable_output:10}})}));
     assert.equal(result.status,scenario.status); assert.equal(queries.length,scenario.queries); assert.equal(rpcCalls,0);
     assert.ok(queries.every((q)=>q.factor_code==='helper'));
+  });
+}
+
+for (const model of ['claude-opus-4-6','claude-opus-4-7','claude-opus-4-8','claude-sonnet-4-6','claude-sonnet-5']) {
+  test(`helper ${model} keeps its own identity`, () => {
+    assert.equal(resolveBillingModel(model, 'helper'), model);
+    if (model !== 'claude-opus-4-6') assert.equal(resolveBillingModel(model), null);
   });
 }

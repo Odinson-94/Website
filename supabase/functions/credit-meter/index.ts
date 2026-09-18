@@ -22,6 +22,15 @@ serve(async (req) => {
   try {
     const body = await req.json();
     const action = text(body.action);
+    if (action === "usage_history") {
+      const days = Number(body.days);
+      if (![7, 30, 180].includes(days)) throw new Error("Unsupported reporting period.");
+      const { data, error } = await supabase.rpc("adelphos_read_usage_credit_history", {
+        p_email: required(body.email, "email"), p_days: days,
+      });
+      if (error) throw error;
+      return json(data, 200);
+    }
     if (action === "issue_handoff") {
       const { data, error } = await supabase.rpc("adelphos_issue_billing_handoff", {
         p_code: required(body.code, "code"),
@@ -67,12 +76,12 @@ serve(async (req) => {
       const requestKind = text(body.request_kind);
       if (requestKind !== "chat" && requestKind !== "tool") throw new Error("request_kind must be chat or tool.");
       const requestedModel = text(body.model || CANONICAL_MODEL);
-      const billingModel = resolveBillingModel(requestedModel);
+      const factorCode = text(body.factor_code) || "standard";
+      const billingModel = resolveBillingModel(requestedModel, factorCode);
       if (!billingModel) return json({ allowed: false, reason: "canonical_model_required" }, 403);
       const toolCode = text(body.tool_code);
       // Which usage factor prices this request. Absent = 'standard', so a caller
       // that has not been taught about factors keeps its existing behaviour.
-      const factorCode = text(body.factor_code) || "standard";
       if (!["standard", "schematic", "helper"].includes(factorCode)) {
         return json({ allowed: false, reason: "usage_factor_not_configured" }, 400);
       }
