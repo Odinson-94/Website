@@ -36,7 +36,7 @@ serve(async req => {
    const stripe=new Stripe(stripeKey,{apiVersion:"2024-06-20",httpClient:Stripe.createFetchHttpClient()});
    const original=await stripe.prices.retrieve(plan.stripe_price_id);
    const product=typeof original.product==="string"?original.product:original.product.id;
-   const price=await stripe.prices.create({currency:"gbp",unit_amount:c.economics_draft.retail.packPriceMinor,product,lookup_key:`adelphos-payg-pricing-${p_revision}`,metadata:{pricing_revision:String(p_revision)}},{idempotencyKey:`adelphos-pricing-${p_request_id}`});
+   const price=await stripe.prices.create({currency:"gbp",unit_amount:c.economics_draft.retail.packPriceMinor,product,lookup_key:`adelphos-payg-${p_revision}-${p_request_id}`,metadata:{pricing_revision:String(p_revision)}},{idempotencyKey:`adelphos-pricing-${p_request_id}`});
    if(price.unit_amount!==c.economics_draft.retail.packPriceMinor||price.currency!=="gbp"||price.livemode!==(mode==="live")||price.type!=="one_time") throw new Error("Prepared credit price mismatch.");
    prepared={id:price.id,currency:price.currency,unit_amount:price.unit_amount,livemode:price.livemode,lookup_key:price.lookup_key};
   }
