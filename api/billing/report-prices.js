@@ -21,7 +21,7 @@ module.exports = async function reportPrices(req, res) {
     });
     if (!response.ok) throw new Error('Published report prices could not be read.');
     const published = await response.json();
-    if (!published) return send(res, 200, { contractVersion: 2, available: false, message: 'Report prices will appear here when published.' });
+    if (!published) return send(res, 200, { contractVersion: 3, available: false, message: 'Report prices will appear here when published.' });
     // Project only the public contract, even if a future RPC adds private fields.
     const products = {};
     if (!published.products || typeof published.products !== 'object' || Array.isArray(published.products)) throw new Error('Invalid published catalogue.');
@@ -37,7 +37,13 @@ module.exports = async function reportPrices(req, res) {
           return { quantity: t.quantity, usageCredits: t.usageCredits };
         }) };
     }
-    return send(res, 200, { contractVersion: 2, available: true, version: published.version, publishedAt: published.publishedAt, products, identicalDownloadsFree: true });
+    const retail = published.retail;
+    if (!retail || retail.currency !== 'GBP' || !Number.isSafeInteger(retail.packPriceMinor) || retail.packPriceMinor < 50 || retail.packCredits !== 15 || !Array.isArray(published.tokenRates)) throw new Error('Invalid published economics.');
+    const tokenRates = published.tokenRates.map(p => {
+      if (![p.code,p.model,p.tier,p.component,p.context].every(v=>typeof v==='string') || !Number.isFinite(p.usageCreditsPerMillion) || p.usageCreditsPerMillion < 0) throw new Error('Invalid token price.');
+      return {code:p.code,model:p.model,tier:p.tier,component:p.component,context:p.context,usageCreditsPerMillion:p.usageCreditsPerMillion};
+    });
+    return send(res, 200, { contractVersion: 3, available: true, version: published.version, publishedAt: published.publishedAt, products, retail:{currency:retail.currency,packCredits:retail.packCredits,packPriceMinor:retail.packPriceMinor}, tokenRates, identicalDownloadsFree: true });
   } catch (error) {
     console.error('[report_prices.read_failed]', error.name || 'Error');
     return send(res, 503, { message: 'Report prices are temporarily unavailable. Please retry shortly.' });

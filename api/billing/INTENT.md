@@ -11,3 +11,6 @@ Signup links target https://chat.adelphos.ai/register. Deployment must serve the
 <!-- #endregion -->
 
 2026-09-19: report-prices.js contract version 2 returns every public app in the central catalogue, with explicit pricing mode/name/unit and a strict field projection. Internal apps and private metadata are excluded; non-report entries have no invented numeric fee. API tests cover an additional report app, included model and internal omission.
+
+
+2026-09-19 · Session 01a0b8b9: Sales publishes one revision of app prices, the GBP credit-pack price and model/tier token rates. The public API projects only published customer prices (contract 3). Credit-meter quotes use the same configured rate reader as reservations and preserve the quote timestamp through settlement. New top-up checkouts resolve the published versioned plan; historical plan/Price rows remain intact for pending webhooks.

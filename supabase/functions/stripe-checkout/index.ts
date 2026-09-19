@@ -2,7 +2,7 @@
 // The request email, amount, Price id and return URLs are never browser-owned.
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2";
 import Stripe from "https://esm.sh/stripe@14.25.0?target=deno";
 import { assertBillingVerificationIdentity } from "../_shared/010-guard-billing-verification.ts";
 
@@ -15,7 +15,7 @@ const allowedOrigins = new Set([
 
 serve(async (req) => {
   const origin = req.headers.get("origin") || "";
-  const corsHeaders = origin && allowedOrigins.has(origin)
+  const corsHeaders: Record<string,string> = origin && allowedOrigins.has(origin)
     ? {
         "Access-Control-Allow-Origin": origin,
         "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -41,7 +41,14 @@ serve(async (req) => {
     const identity = await resolveIdentity(req, body, supabase);
     if (!identity) return json({ error: "Your Adelphos session is not valid." }, 401, corsHeaders);
     const { email, userId, tenantId } = identity;
-    const planCode = String(body.plan_code || "").trim().toLowerCase();
+    let planCode = String(body.plan_code || "").trim().toLowerCase();
+    // Versioned Price rows remain available to old webhook receipts, but new
+    // purchases always resolve the published pack through the stable alias.
+    if (planCode === "payg-20" || planCode.startsWith("payg-price-")) {
+      const current = await supabase.from("adelphos_report_price_catalogue").select("published_credit_plan").eq("id", true).single();
+      if (current.error || !current.data?.published_credit_plan) throw new Error("Published credit price unavailable.");
+      planCode = current.data.published_credit_plan;
+    }
     const { data: plan, error: planError } = await supabase
       .from("adelphos_billing_plans")
       .select("code, name, plan_kind, stripe_price_id, stripe_lookup_key, active, is_active, metadata")
@@ -170,7 +177,7 @@ type BillingIdentity = { email: string; userId: string; tenantId: string };
 async function resolveIdentity(
   req: Request,
   body: Record<string, unknown>,
-  supabase: ReturnType<typeof createClient>,
+  supabase: SupabaseClient,
 ): Promise<BillingIdentity | null> {
   const token = (req.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
   if (!token) return null;
