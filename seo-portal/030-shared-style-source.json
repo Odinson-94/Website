@@ -1,0 +1,13 @@
+{
+  "authority": "Adelphos shared compact application UI, 220 CSS",
+  "sourceRepo": "Odinson-94/adelphos-chat",
+  "sourceCommit": "6e3b7a321bf25a83fc85e854425e1833198e0a6d",
+  "sources": {
+    "adelphos-chat/npm-packages-shared/frontend-ts-helpers/454-design-tokens-and-theming/220-define-compact-application-ui.css": "2219a270925e655d3d8e58a0d48fb549ed984af6fa1c8d2cff882e05b1b5fcb0",
+    "adelphos-chat/chat-frontend/public/fonts/inter-text/Inter-Regular.woff2": "338239f6b590b8ced3bf857654d32da3fd3663294cd3003651ed57aa3abd7aa1",
+    "adelphos-chat/chat-frontend/public/fonts/inter-text/Inter-Medium.woff2": "7e80d9f65861ee6836a0081d4e75d88fb8789e5651d05edbc49640442a9610ee",
+    "adelphos-chat/chat-frontend/public/fonts/inter-text/Inter-SemiBold.woff2": "5013f48d77ab627b1db7c2415914284ef09abc3f60a8e0d0d8f3cd1bfebefb5e"
+  },
+  "packagingOnlyTransformation": "url('/fonts/inter-text/ \u2192 url('./fonts/",
+  "syncRule": "Regenerate packaged CSS and fonts from these sources; do not hand-edit the token copy."
+}
