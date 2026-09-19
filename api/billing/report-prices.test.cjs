@@ -25,9 +25,9 @@ function setup(payload) {
 }
 test('unpublished catalogue has no fabricated price',async()=>{setup(null);const r=await run();assert.equal(r.status,200);assert.equal(r.body.available,false);assert.equal(r.body.products,undefined);});
 test('only published fields escape and response bypasses caches',async()=>{
- const price={usageCredits:20,batches:[{quantity:5,usageCredits:15,private:'secret'}]};
- setup({version:3,publishedAt:'2026-09-19T00:00:00Z',products:{cable:price,sap:price,lighting:price},draft:{secret:true},actor:'private@test'});
- const r=await run();assert.equal(r.body.version,3);assert.equal(r.body.products.sap.usageCredits,20);assert.equal(r.body.identicalDownloadsFree,true);
+ const price={name:'New app',appKey:'newapp',unit:'project',mode:'report',usageCredits:20,batches:[{quantity:5,usageCredits:15,private:'secret'}]};
+ setup({version:3,publishedAt:'2026-09-19T00:00:00Z',products:{cable:price,sap:price,lighting:price,roomplanner:price,internal:{...price,mode:'internal'},browser:{...price,mode:'included',usageCredits:null,batches:[]}},draft:{secret:true},actor:'private@test'});
+ const r=await run();assert.equal(r.body.version,3);assert.equal(r.body.products.sap.usageCredits,20);assert.equal(r.body.identicalDownloadsFree,true);assert.equal(r.body.contractVersion,2);assert.equal(r.body.products.roomplanner.usageCredits,20);assert.equal(r.body.products.internal,undefined);assert.equal(r.body.products.browser.usageCredits,null);
  assert.equal(r.headers['Cache-Control'],'no-store');assert.equal(r.headers['Vercel-CDN-Cache-Control'],'no-store');
  assert.equal(JSON.stringify(r.body).includes('secret'),false);assert.equal(r.body.actor,undefined);assert.equal(r.body.draft,undefined);
 });

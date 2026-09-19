@@ -9,3 +9,5 @@ Signup links target https://chat.adelphos.ai/register. Deployment must serve the
 <!-- #region ADELPHOS-SESSION 01a0b8b9 -->
 2026-09-19: `report-prices.js` serves only the central published report catalogue through `adelphos_published_report_prices`. Uses the existing server-only SUPABASE_URL/SUPABASE_SERVICE_ROLE_KEY (Adelphos aliases accepted). No client token or account is required for published prices; drafts, actor identities and audit reasons never reach this endpoint. Responses prohibit browser/CDN caching and expose contractVersion 1 for the dashboard publication readiness check. Failure never substitutes hard-coded prices. `report-prices.test.cjs` tests the public projection and failure boundaries. Stripe checkout remains separate.
 <!-- #endregion -->
+
+2026-09-19: report-prices.js contract version 2 returns every public app in the central catalogue, with explicit pricing mode/name/unit and a strict field projection. Internal apps and private metadata are excluded; non-report entries have no invented numeric fee. API tests cover an additional report app, included model and internal omission.

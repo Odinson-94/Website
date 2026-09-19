@@ -5,7 +5,6 @@
   var status = document.getElementById('report-price-status');
   if (!root || !status) return;
   var busy = false;
-  var names = { cable: ['Cable calculations', 'calculation'], sap: ['SAP', 'project, including all houses'], lighting: ['Lighting', 'project'] };
   var format = new Intl.NumberFormat('en-GB', { maximumFractionDigits: 2 });
   function element(tag, text, className) {
     var node = document.createElement(tag); node.textContent = text;
@@ -19,11 +18,11 @@
       var response = await fetch('/api/billing/report-prices', { cache: 'no-store', headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(15000) });
       if (!response.ok) throw new Error('Prices unavailable');
       var data = await response.json();
-      if (!data.available) { root.replaceChildren(); status.textContent = 'Report prices will appear here when published.'; return; }
-      var cards = Object.keys(names).map(function (code) {
+      if (!data.available) { root.replaceChildren(); delete root.dataset.priceVersion; status.textContent = 'App prices will appear here when published.'; return; }
+      var cards = Object.keys(data.products).sort(function(a, b) { return data.products[a].name.localeCompare(data.products[b].name); }).map(function (code) {
         var price = data.products[code];
         var card = element('article', '', 'usage-card');
-        card.append(element('h3', names[code][0]), element('strong', format.format(price.usageCredits) + ' UC'), element('p', 'Per ' + names[code][1]));
+        card.append(element('h3', price.name), element('strong', price.mode === 'report' ? format.format(price.usageCredits) + ' UC' : price.mode === 'usage' ? 'AI usage' : 'Included'), element('p', price.mode === 'report' ? 'Per ' + price.unit : price.mode === 'usage' ? 'Charged for measured AI usage under your plan.' : 'No separate app fee. AI usage is metered.'));
         if (price.batches.length) {
           var list = document.createElement('ul');
           price.batches.forEach(function (tier) {
@@ -38,7 +37,7 @@
       root.dataset.priceVersion = String(data.version);
     } catch (error) {
       root.replaceChildren(); delete root.dataset.priceVersion;
-      status.textContent = 'Report prices are temporarily unavailable. Please retry shortly.';
+      status.textContent = 'App prices are temporarily unavailable. Please retry shortly.';
       console.error('[report_prices.display_failed]', error.name || 'Error');
     } finally { busy = false; }
   }

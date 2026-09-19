@@ -4,7 +4,13 @@ const fs=require('node:fs');const vm=require('node:vm');
 // Uses the existing integration workspace's jsdom dependency via NODE_PATH.
 const {JSDOM}=require('jsdom');
 const source=fs.readFileSync(require.resolve('./report-prices.js'),'utf8');
-const data=value=>({available:true,version:value,products:{cable:{usageCredits:value,batches:[{quantity:5,usageCredits:15}]},sap:{usageCredits:20,batches:[]},lighting:{usageCredits:20,batches:[]}}});
+const data=value=>({available:true,version:value,products:{
+ cable:{name:'Cable',unit:'calculation',mode:'report',usageCredits:value,batches:[{quantity:5,usageCredits:15}]},
+ sap:{name:'SAP',unit:'project, including all houses',mode:'report',usageCredits:20,batches:[]},
+ roomplanner:{name:'Building Generator',unit:'project',mode:'report',usageCredits:24,batches:[]},
+ browser:{name:'Browser',mode:'included',usageCredits:null,batches:[]},
+ adelphos:{name:'Adelphos',mode:'usage',usageCredits:null,batches:[]}
+}});
 async function fixture(initial){
  const dom=new JSDOM('<div id="report-price-cards"></div><p id="report-price-status"></p><button id="refresh-report-prices"></button>',{url:'https://adelphos.ai/pricing/',runScripts:'outside-only'});
  const win=dom.window;let payload=initial;
@@ -14,7 +20,7 @@ async function fixture(initial){
 }
 test('published standard and batch prices render and update after refresh',async()=>{
  const f=await fixture(data(20));const cards=f.win.document.getElementById('report-price-cards');
- assert.ok(cards.textContent.includes('20 UC'));assert.ok(cards.textContent.includes('Batch of 5: 15 UC each (75 UC total)'));assert.ok(cards.textContent.includes('including all houses'));
+ assert.equal(cards.children.length,5);assert.ok(cards.textContent.includes('Building Generator'));assert.ok(cards.textContent.includes('24 UC'));assert.ok(cards.textContent.includes('AI usage'));assert.ok(cards.textContent.includes('Included'));assert.ok(!cards.textContent.includes('null'));assert.ok(cards.textContent.includes('20 UC'));assert.ok(cards.textContent.includes('Batch of 5: 15 UC each (75 UC total)'));assert.ok(cards.textContent.includes('including all houses'));
  f.set(data(25));await f.refresh();assert.ok(cards.textContent.includes('25 UC'));assert.equal(cards.dataset.priceVersion,'25');f.dom.window.close();
 });
 test('unpublished catalogue never displays the suggested draft price',async()=>{

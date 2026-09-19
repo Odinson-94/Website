@@ -21,15 +21,23 @@ module.exports = async function reportPrices(req, res) {
     });
     if (!response.ok) throw new Error('Published report prices could not be read.');
     const published = await response.json();
-    if (!published) return send(res, 200, { contractVersion: 1, available: false, message: 'Report prices will appear here when published.' });
+    if (!published) return send(res, 200, { contractVersion: 2, available: false, message: 'Report prices will appear here when published.' });
     // Project only the public contract, even if a future RPC adds private fields.
     const products = {};
-    for (const code of ['cable', 'sap', 'lighting']) {
-      const price = published.products?.[code];
-      if (!price || !Number.isFinite(price.usageCredits) || !Array.isArray(price.batches)) throw new Error('Invalid published catalogue.');
-      products[code] = { usageCredits: price.usageCredits, batches: price.batches.map(t => ({ quantity: t.quantity, usageCredits: t.usageCredits })) };
+    if (!published.products || typeof published.products !== 'object' || Array.isArray(published.products)) throw new Error('Invalid published catalogue.');
+    for (const [code, price] of Object.entries(published.products)) {
+      if (price?.mode === 'internal') continue;
+      if (!/^[a-z][a-z0-9]*$/.test(code) || !['report', 'usage', 'included'].includes(price?.mode) ||
+          typeof price.name !== 'string' || typeof price.appKey !== 'string' || typeof price.unit !== 'string' ||
+          (price.mode === 'report' ? !Number.isFinite(price.usageCredits) || price.usageCredits < 0 : price.usageCredits !== null) ||
+          !Array.isArray(price.batches)) throw new Error('Invalid published catalogue.');
+      products[code] = { name: price.name, appKey: price.appKey, unit: price.unit, mode: price.mode, usageCredits: price.usageCredits,
+        batches: price.batches.map(t => {
+          if (!Number.isInteger(t.quantity) || t.quantity < 2 || !Number.isFinite(t.usageCredits) || t.usageCredits < 0) throw new Error('Invalid batch price.');
+          return { quantity: t.quantity, usageCredits: t.usageCredits };
+        }) };
     }
-    return send(res, 200, { contractVersion: 1, available: true, version: published.version, publishedAt: published.publishedAt, products, identicalDownloadsFree: true });
+    return send(res, 200, { contractVersion: 2, available: true, version: published.version, publishedAt: published.publishedAt, products, identicalDownloadsFree: true });
   } catch (error) {
     console.error('[report_prices.read_failed]', error.name || 'Error');
     return send(res, 503, { message: 'Report prices are temporarily unavailable. Please retry shortly.' });
