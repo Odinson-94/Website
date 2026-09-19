@@ -5,3 +5,5 @@
 <!-- #endregion -->
 
 2026-09-19: 20260919040000 adds the complete 34-app metadata registry and expands the private draft through the audited RPC, preserving current prices and seeding new report prices at the approved 20 UC. Validation rejects missing/unknown apps and fees on included/metered/internal entries. Versioned public output includes every public app. Existing published snapshots and receipts are preserved; nothing is published by migration.
+
+2026-09-20: 20260919070000 adds service-only manual-report quote/purchase RPCs and durable per-tenant/user/app/project entitlements. Existing published catalogue determines the amount; wallet reservation and settlement commit atomically. Repeat downloads and later edits use the same receipt. Historical receipts are immutable; no existing balances or identities are migrated. The purchase receipt is attributed to manual-report, not an AI provider.
