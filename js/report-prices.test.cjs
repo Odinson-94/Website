@@ -30,3 +30,8 @@ test('unpublished catalogue never displays the suggested draft price',async()=>{
 test('a failed refresh clears stale displayed prices',async()=>{
  const f=await fixture(data(20));f.win.fetch=async()=>({ok:false});await f.refresh();assert.equal(f.win.document.getElementById('report-price-cards').children.length,0);assert.ok(f.win.document.getElementById('report-price-status').textContent.includes('temporarily unavailable'));f.dom.window.close();
 });
+
+test('published token rates retain the precision accepted by Sales',async()=>{
+ const payload=data(20);payload.tokenRates[0].usageCreditsPerMillion=20.000000001;
+ const f=await fixture(payload);assert.ok(f.win.document.getElementById('published-token-prices').textContent.includes('20.000000001 UC / 1M tokens'));f.dom.window.close();
+});
