@@ -236,6 +236,15 @@
     </div>
   </section>
 
+  <!-- ADELPHOS-SESSION 01a0b8b9: only published central report prices appear here. -->
+  <section class="pricing-section" id="report-prices" aria-labelledby="report-prices-heading">
+    <div class="pricing-heading"><div><span class="pricing-kicker">Calculation reports</span><h2 id="report-prices-heading">Reports priced for your project.</h2></div><p>Manual report prices are shown in Usage Credits. SAP covers the whole project, including all houses. Downloading the same unchanged report again is free.</p></div>
+    <p id="report-price-status" role="status" aria-live="polite">Loading published report prices…</p>
+    <div id="report-price-cards" class="usage-grid"></div>
+    <button id="refresh-report-prices" class="pricing-button" type="button">Refresh report prices</button>
+    <noscript><p>Enable JavaScript to see current published report prices.</p></noscript>
+  </section>
+
   <section class="pricing-section" id="faq">
     <div class="pricing-heading"><div><span class="pricing-kicker">Pricing questions</span><h2>Before you choose a plan.</h2></div><p>Prices are shown in GBP excluding VAT. Stripe calculates and collects applicable tax only where the Adelphos Stripe account has been configured to do so.</p></div>
     <div class="faq-grid">
@@ -252,5 +261,6 @@
 </main>
 
 <script src="/js/pricing-checkout.js" defer></script>
+<script src="/js/report-prices.js" defer></script>
 </body>
 </html>
