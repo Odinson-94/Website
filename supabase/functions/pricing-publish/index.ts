@@ -9,7 +9,15 @@ serve(async req => {
  if(req.method!=="POST") return json({error:"Method not allowed."},405);
  const key=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")||"";
  const supplied=(req.headers.get("authorization")||"").replace(/^Bearer\s+/i,"");
- if(!key||supplied!==key) return json({error:"Service authentication required."},401);
+ if(!key||!supplied) return json({error:"Service authentication required."},401);
+ // Supabase may have multiple valid service keys during rotation. Prove the
+ // supplied credential against this project's private service-only table;
+ // browser roles have neither table SELECT nor an RLS policy here.
+ if(supplied!==key){
+  const authority=createClient(Deno.env.get("SUPABASE_URL")!,supplied,{auth:{persistSession:false}});
+  const probe=await authority.from("adelphos_report_price_catalogue").select("id").eq("id",true).maybeSingle();
+  if(probe.error||!probe.data?.id) return json({error:"Service authentication required."},401);
+ }
  const db=createClient(Deno.env.get("SUPABASE_URL")!,key,{auth:{persistSession:false}});
  try {
   const body=await req.json();
