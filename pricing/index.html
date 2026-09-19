@@ -197,7 +197,7 @@
     </div>
     <div class="entry-grid">
       <article class="entry-card"><div><h3>Free public calculators</h3><p>Use the focused calculators on this website without an account, project or Usage Credits. Results and branded PDF reports remain subject to user verification and competent review. Usage Credits apply only when you move into signed-in Chat, API and wider tool workflows.</p></div><a class="pricing-button" href="/calculators/">Open free calculators</a></article>
-      <article class="entry-card"><div><h3>Pay as you go</h3><p>Add 15 Usage Credits for £20. Purchased top-ups persist until used and are consumed after the current monthly allowance. They do not replace competent review.</p></div><button class="pricing-button" type="button" data-checkout-plan="payg-20" data-plan-label="15 Usage Credits — £20">Add 15 credits</button></article>
+      <article class="entry-card"><div><h3>Pay as you go</h3><p id="credit-pack-description">Add 15 Usage Credits for £20. Purchased top-ups persist until used and are consumed after the current monthly allowance. They do not replace competent review.</p></div><button class="pricing-button" type="button" data-checkout-plan="payg-20" data-plan-label="15 Usage Credits — £20">Add 15 credits</button></article>
     </div>
   </section>
 
@@ -236,6 +236,17 @@
     </div>
   </section>
 
+  <!-- ADELPHOS-SESSION 01a0b8b9: only published central report prices appear here. -->
+  <section class="pricing-section" id="report-prices" aria-labelledby="report-prices-heading">
+    <div class="pricing-heading"><div><span class="pricing-kicker">App catalogue</span><h2 id="report-prices-heading">Prices for every app.</h2></div><p>App prices are shown in Usage Credits. SAP covers the whole project, including all houses. Downloading the same unchanged report again is free.</p></div>
+    <p id="report-price-status" role="status" aria-live="polite">Loading published report prices…</p>
+    <div id="published-credit-prices"></div>
+    <div id="published-token-prices" class="usage-grid"></div>
+    <div id="report-price-cards" class="usage-grid"></div>
+    <button id="refresh-report-prices" class="pricing-button" type="button">Refresh app prices</button>
+    <noscript><p>Enable JavaScript to see current published report prices.</p></noscript>
+  </section>
+
   <section class="pricing-section" id="faq">
     <div class="pricing-heading"><div><span class="pricing-kicker">Pricing questions</span><h2>Before you choose a plan.</h2></div><p>Prices are shown in GBP excluding VAT. Stripe calculates and collects applicable tax only where the Adelphos Stripe account has been configured to do so.</p></div>
     <div class="faq-grid">
@@ -252,5 +263,6 @@
 </main>
 
 <script src="/js/pricing-checkout.js" defer></script>
+<script src="/js/report-prices.js" defer></script>
 </body>
 </html>

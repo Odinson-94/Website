@@ -2,7 +2,7 @@
 // Deploy with verify_jwt=false; ADELPHOS_METERING_SERVICE_TOKEN is the authority.
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 import { CANONICAL_MODEL, resolveBillingModel } from "./010-resolve-provider-model.ts";
 
@@ -22,6 +22,15 @@ serve(async (req) => {
   try {
     const body = await req.json();
     const action = text(body.action);
+    if (action === "pricing_quote") {
+      const model = required(body.model, "model");
+      const factor = required(body.factor_code, "factor_code");
+      if (!["standard", "schematic", "helper"].includes(factor)) throw new Error("Invalid pricing tier.");
+      const quoteAt = new Date();
+      const input = await configuredProviderRate(supabase, "uncached_input", "standard", factor, model, quoteAt);
+      const output = await configuredProviderRate(supabase, "billable_output", "standard", factor, model, quoteAt);
+      return json({model, factor, inputUsageCreditsPerMillion: input, outputUsageCreditsPerMillion: output, quotedAt: quoteAt.toISOString()}, 200);
+    }
     if (action === "usage_history") {
       const days = Number(body.days);
       if (![7, 30, 180].includes(days)) throw new Error("Unsupported reporting period.");
@@ -88,6 +97,7 @@ serve(async (req) => {
       if (factorCode === "helper" && requestedModel !== billingModel) {
         return json({ allowed: false, reason: "exact_helper_model_required" }, 403);
       }
+      const quoteAt = new Date();
       let reservation = 0;
       let reservationMetadata: Record<string, unknown> = {};
       if (requestKind === "tool") {
@@ -109,7 +119,7 @@ serve(async (req) => {
         if (maxOutputUnits <= 0) throw new Error("maximum_usage must include a positive bounded output budget.");
         for (const [component, units] of components) {
           if (!units) continue;
-          reservation += (units * await configuredProviderRate(supabase, component, "standard", factorCode, billingModel)) / 1_000_000;
+          reservation += (units * await configuredProviderRate(supabase, component, "standard", factorCode, billingModel, quoteAt)) / 1_000_000;
         }
         const maximumToolCalls = Array.isArray(body.maximum_tool_calls) ? body.maximum_tool_calls : [];
         for (const item of maximumToolCalls) {
@@ -135,7 +145,7 @@ serve(async (req) => {
         p_reserve_usage_credits: reservation,
         // factor_code rides the reservation metadata: adelphos_settle_credits
         // reads it back so the charge uses the same multiplier as the hold.
-        p_metadata: { ...object(body.metadata), ...reservationMetadata, factor_code: factorCode },
+        p_metadata: { ...object(body.metadata), ...reservationMetadata, factor_code: factorCode, billing_quote_at: quoteAt.toISOString() },
       });
       if (error) throw error;
       return json(data, data?.allowed === true ? 200 : 402);
@@ -238,7 +248,7 @@ function object(value: unknown): Record<string, unknown> {
   return value as Record<string, unknown>;
 }
 
-async function configuredToolRate(supabase: ReturnType<typeof createClient>, toolCode: string): Promise<number> {
+async function configuredToolRate(supabase: SupabaseClient, toolCode: string): Promise<number> {
   const now = new Date();
   const { data, error } = await supabase.from("adelphos_tool_rate_card")
     .select("usage_credit_per_call,effective_until")
@@ -269,13 +279,13 @@ async function configuredToolRate(supabase: ReturnType<typeof createClient>, too
  * rate card: missing helper prices fail closed, never fall back to 4x rates.
  */
 async function configuredProviderRate(
-  supabase: ReturnType<typeof createClient>,
+  supabase: SupabaseClient,
   component: string,
   contextClass: "standard",
   factorCode = "standard",
   model = CANONICAL_MODEL,
+  now = new Date(),
 ): Promise<number> {
-  const now = new Date();
   const usable = (rows: { usd_per_million_units: unknown; effective_until: string | null }[] | null) =>
     rows?.find((candidate) => !candidate.effective_until || new Date(candidate.effective_until) > now);
 
@@ -293,7 +303,9 @@ async function configuredProviderRate(
     row = fallback.error ? undefined : usable(fallback.data);
   }
   if (!row) throw new Error(`No active provider rate is configured for ${component}.`);
-  return positiveDecimal(row.usd_per_million_units, "configured provider rate");
+  const rate = Number(row.usd_per_million_units);
+  if (!Number.isFinite(rate) || rate < 0) throw new Error("Invalid configured provider rate.");
+  return rate;
 }
 
 function constantTimeEqual(expected: string, supplied: string): boolean {
