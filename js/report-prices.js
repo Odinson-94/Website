@@ -6,6 +6,7 @@
   if (!root || !status) return;
   var busy = false;
   var format = new Intl.NumberFormat('en-GB', { maximumFractionDigits: 2 });
+  var tokenFormat = new Intl.NumberFormat('en-GB', { maximumFractionDigits: 9 });
   function element(tag, text, className) {
     var node = document.createElement(tag); node.textContent = text;
     if (className) node.className = className;
@@ -29,7 +30,7 @@
       var tokens = document.getElementById('published-token-prices');
       var groups = {};
       data.tokenRates.filter(function(p){return p.component==='uncached_input'||p.component==='billable_output';}).forEach(function(p){var key=p.model+' · '+p.tier+' · '+p.context; if(!groups[key])groups[key]=[]; groups[key].push(p);});
-      tokens.replaceChildren.apply(tokens,Object.keys(groups).map(function(key){var card=element('article','','usage-card');card.append(element('h3',key));groups[key].forEach(function(p){card.append(element('p',(p.component==='uncached_input'?'Input':'Output')+': '+format.format(p.usageCreditsPerMillion)+' UC / 1M tokens ('+cash.format(p.usageCreditsPerMillion*pounds)+')'));});return card;}));
+      tokens.replaceChildren.apply(tokens,Object.keys(groups).map(function(key){var card=element('article','','usage-card');card.append(element('h3',key));groups[key].forEach(function(p){card.append(element('p',(p.component==='uncached_input'?'Input':'Output')+': '+tokenFormat.format(p.usageCreditsPerMillion)+' UC / 1M tokens ('+cash.format(p.usageCreditsPerMillion*pounds)+')'));});return card;}));
       var cards = Object.keys(data.products).sort(function(a, b) { return data.products[a].name.localeCompare(data.products[b].name); }).map(function (code) {
         var price = data.products[code];
         var card = element('article', '', 'usage-card');
