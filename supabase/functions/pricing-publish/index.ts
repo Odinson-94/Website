@@ -21,6 +21,20 @@ serve(async req => {
  const db=createClient(Deno.env.get("SUPABASE_URL")!,key,{auth:{persistSession:false}});
  try {
   const body=await req.json();
+  if(body.action==="verify"){
+   const {data:c,error}=await db.from("adelphos_report_price_catalogue").select("published_revision,economics_published,published_credit_plan").eq("id",true).single();
+   if(error||!c.economics_published) return json({confirmed:false});
+   const {data:plan,error:planError}=await db.from("adelphos_billing_plans").select("price_cents,currency,top_up_usage_credits,stripe_price_id,metadata,active,is_active").eq("code",c.published_credit_plan).single();
+   if(planError) throw planError;
+   const mode=plan.metadata?.stripe_mode;
+   if(!["live","test"].includes(mode)) throw new Error("Credit sale mode missing.");
+   const secret=mode==="live"?Deno.env.get("STRIPE_LIVE_SECRET_KEY"):Deno.env.get("STRIPE_TEST_SECRET_KEY")||Deno.env.get("STRIPE_SECRET_KEY");
+   if(!secret||!new RegExp(`^(sk|rk)_${mode}_`).test(secret)) throw new Error("Credit sale provider unavailable.");
+   const stripe=new Stripe(secret,{apiVersion:"2024-06-20",httpClient:Stripe.createFetchHttpClient()});
+   const price=await stripe.prices.retrieve(plan.stripe_price_id);
+   const retail=c.economics_published.retail;
+   return json({confirmed:plan.active&&plan.is_active&&price.active&&price.type==="one_time"&&price.livemode===(mode==="live")&&price.currency===retail.currency.toLowerCase()&&price.unit_amount===retail.packPriceMinor&&plan.price_cents===price.unit_amount&&Number(plan.top_up_usage_credits)===retail.packCredits,version:c.published_revision,packPriceMinor:price.unit_amount,packCredits:Number(plan.top_up_usage_credits),currency:price.currency});
+  }
   const {p_request_id,p_actor,p_reason,p_revision}=body;
   if(!/^[0-9a-f-]{36}$/i.test(p_request_id)||typeof p_actor!=="string"||!/^[^@\s]+@adelphos\.ai$/.test(p_actor)||typeof p_reason!=="string"||p_reason.trim().length<5||p_reason.trim().length>500||!Number.isSafeInteger(p_revision)) return json({error:"Invalid pricing action."},400);
   const command={actor:p_actor,action:"publish",reason:p_reason.trim(),revision:p_revision,prices:null,economics:null};
