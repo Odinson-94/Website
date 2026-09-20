@@ -39,11 +39,18 @@ historical grants and lifetime usage totals are preserved.
 - The isolated endpoint was restricted to one disposable billing fixture and
   test-mode refund events. The production webhook was not replaced. No real
   money or Starlink account records were changed by these refund tests.
+- A second real sandbox Checkout was submitted through the Stripe browser UI:
+  £20 GBP, zero tax, one 15 UC purchased-credit lot. Two subsequent £10 test
+  refunds changed its remaining balance from 15 to 7.5 to 0 UC, with one -7.5 UC
+  adjustment for each increment and no negative balance. This Checkout was
+  initiated by the central API, not a signed-in app account. Its return page used
+  an existing production login, so the account-specific return/reload acceptance
+  case remains open.
 
 This is refund-handler evidence, not completion of the entire Payments
-acceptance point. Actual app-to-Checkout journeys, unused-purchase refunds
-through Checkout, Sales presentation, and remaining lifecycle cases still need
-their acceptance evidence.
+acceptance point. Actual app-to-Checkout journeys and account-specific return,
+Sales presentation, and remaining lifecycle cases still need their acceptance
+evidence.
 
 ## Release order
 
