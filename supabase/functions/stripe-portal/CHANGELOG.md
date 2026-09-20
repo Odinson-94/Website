@@ -1,2 +1,3 @@
 
 - 2026-09-17 / Settings billing verification: Open the billing portal for the bound authenticated identity. Resolve test/live customer environment independently of internal plan metadata; reject mismatched identity and preserve authentication failures. Live entry point verified without making payment.
+- 2026-09-20 / Portal policy: Return the resolved Stripe customer mode with its client and use that mode's configured portal policy. Validate explicit configuration settings; disallow silent fallback and account-email changes. Candidate entry-point/browser checks passed; completed plan changes remain separate acceptance.

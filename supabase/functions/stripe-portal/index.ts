@@ -4,6 +4,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import Stripe from "https://esm.sh/stripe@14.25.0?target=deno";
 import { resolveBillingCustomer } from "./010-resolve-billing-customer.ts";
+import { billingPortalUrl } from "../_shared/030-billing-portal-session.ts";
 
 const allowedOrigins = new Set([
   "https://adelphos.ai",
@@ -56,7 +57,7 @@ serve(async (req) => {
       .eq("code", licence?.plan_code || "")
       .maybeSingle();
     const stripeMode = String(plan?.metadata?.stripe_mode || "test");
-    const stripe = await resolveBillingCustomer({
+    const { stripe, mode } = await resolveBillingCustomer({
       preferredMode: stripeMode === "live" ? "live" : "test",
       customerId,
       email,
@@ -69,11 +70,9 @@ serve(async (req) => {
         httpClient: Stripe.createFetchHttpClient(),
       }),
     });
-    const session = await stripe.billingPortal.sessions.create({
-      customer: customerId,
-      return_url: "https://chat.adelphos.ai/account/billing",
-    });
-    return json({ url: session.url }, 200, corsHeaders);
+    const configurationId = Deno.env.get(mode === "live" ? "STRIPE_LIVE_BILLING_PORTAL_CONFIGURATION_ID" : "STRIPE_TEST_BILLING_PORTAL_CONFIGURATION_ID") || "";
+    const url = await billingPortalUrl(stripe, customerId, mode === "live", configurationId);
+    return json({ url }, 200, corsHeaders);
   } catch (error) {
     console.error("stripe-portal error", (error as Error).message);
     return json({ error: "Billing Portal could not be opened." }, 502, corsHeaders);

@@ -109,7 +109,8 @@ serve(async (req) => {
 
     const mode = plan.plan_kind === "payment" ? "payment" : "subscription";
     if (mode === "subscription") {
-      const portalUrl = await existingSubscriptionPortal(stripe, { customerId, email, live: stripeMode === "live" });
+      const configurationId = Deno.env.get(stripeMode === "live" ? "STRIPE_LIVE_BILLING_PORTAL_CONFIGURATION_ID" : "STRIPE_TEST_BILLING_PORTAL_CONFIGURATION_ID") || "";
+      const portalUrl = await existingSubscriptionPortal(stripe, { customerId, email, live: stripeMode === "live" }, configurationId);
       if (portalUrl) return json({ url: portalUrl, action: "manage_existing_subscription" }, 200, corsHeaders);
     }
     const params: Stripe.Checkout.SessionCreateParams = {
