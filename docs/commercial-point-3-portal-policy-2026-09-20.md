@@ -4,6 +4,10 @@
 <!-- CHANGELOG 2026-09-20: Record the completed browser upgrade and signed invoice credit replay.
 what: Replace the upgrade preview with observed payment and accounting results.
 why: Distinguish completed sandbox acceptance from pending downgrade and production rollout. -->
+<!-- CHANGELOG 2026-09-20: Complete browser downgrade and renewal acceptance.
+what: Record the confirmed schedule, preserved entitlement and paid Everyday renewal.
+why: Replace the pending-preview boundary with observed Stripe and candidate accounting evidence. -->
+<!-- CHANGELOG 2026-09-20: Complete browser cancellation and remove owned temporary verification services. -->
 
 The shared Stripe default has subscription updates disabled. Opening management
 therefore did not let a customer choose another plan. Both billing entry points
@@ -59,25 +63,43 @@ candidate accounting path, not deployment of that code to production.
 | Subscription continuity | Same subscription and renewal date | Both unchanged | PASS |
 | Prorated credit allocation | 27.5 included UC | 27.5 included UC | PASS |
 | Duplicate paid-event delivery | No additional grant | Still 27.5 included UC | PASS |
+| Confirmed browser downgrade | Standard retained until renewal; no immediate invoice or credit change | Future Everyday schedule; same invoice and 27.5 UC | PASS |
+| Scheduled downgrade at renewal | Everyday; GBP20 paid; 15 included UC | All three observed in Stripe and candidate accounting | PASS |
+| Browser cancellation before period end | Everyday remains active with 15 UC | Active until 17 February 2027; 15 UC retained | PASS |
+| Cancellation at period end | Canceled; Free entitlement; zero included UC; no renewal charge | All observed; latest invoice unchanged | PASS |
+
+The user-confirmed Standard → Everyday change created a real Stripe schedule
+starting at the unchanged renewal timestamp on 17 January 2027. Standard stayed
+active, the latest invoice remained the already paid GBP15 upgrade, and the
+included balance remained 27.5 UC. After advancing the owned sandbox clock to
+renewal, Stripe charged GBP20, the portal displayed Everyday, and the candidate
+accounting reset the included balance to 15 UC. The real signed renewal event
+was also resent without increasing that balance.
+
+The customer then canceled through the real portal. Its confirmation displayed
+continued access until 17 February 2027; Stripe and candidate accounting retained
+active Everyday with 15 UC. Advancing the owned clock past that date canceled
+the subscription, reverted entitlement to Free and cleared available credits.
+No new invoice was created. The reloaded portal showed no current subscription.
 
 ## Rollout and remaining acceptance
 
-Do not treat the configuration flags alone as proof of downgrade behavior.
-Stripe's [portal configuration documentation](https://docs.stripe.com/customer-management/configure-portal)
-states that scheduled downgrades require prices on the same Product. Existing
-Everyday, Standard and Business prices use different Products. The isolated
-configuration was accepted by Stripe, and the actual downgrade preview says
-Everyday begins on 17 January 2027 at GBP20/month, with Standard access retained
-until then. That preview has not been submitted: its Confirm button accepts
-Terms of Service and awaits separate user confirmation. A resulting Stripe
-schedule, no immediate charge, and renewal accounting still require verification
-before enabling a production policy. No catalogue migration or production
-subscription change is included here.
+The existing test Everyday, Standard and Business prices use different Products.
+The actual Standard → Everyday schedule and renewal passed with those prices;
+this is direct evidence for this tested configuration. Configuration flags or a
+preview alone are insufficient evidence for untested price pairs. No catalogue
+migration or production subscription change is included here.
 
-The owned sandbox subscription/configuration are retained for the pending
-confirmation and subsequent downgrade test; the frozen test clock prevents
-time-based renewal until explicitly advanced. They must be canceled/deactivated
-after acceptance. No real-money purchase or Starlink licence change occurred.
+Cleanup is complete: the owned sandbox subscription is canceled, its non-default
+portal configuration is inactive, the candidate webhook is disabled, and its
+temporary function and secret were removed. Candidate and public test-fixture
+accounts both returned to Free with zero available credits. Restricted financial
+audit records were retained. No real-money purchase or Starlink licence change
+occurred.
+
+Payments point 3 remains open for ordinary-account application Checkout,
+return/reload, failure/pending and cross-account UI acceptance. Those require a
+normal signed-in test account; Starlink's internal entitlement is not a substitute.
 
 After the policy passes full acceptance, configure the appropriate environment
 and deploy both central functions using the normal release process. Merely
@@ -85,6 +107,9 @@ merging this source does not enable plan changes in production.
 
 Private receipts: point-3-policy-candidate.json,
 point3-plan-portal-20260920.json, point-3-portal-upgrade-proof.json and
-point-3-portal-credit-upgrade-proof.json under the session TaskRecovery directory.
+point-3-portal-credit-upgrade-proof.json, point-3-portal-downgrade-stripe.json,
+point-3-portal-downgrade-accounting.json and
+point-3-portal-credit-renewal-proof.json and point-3-portal-cancel-proof.json under
+the session TaskRecovery directory.
 No credentials or private portal URLs are committed.
 <!-- #endregion ADELPHOS-SESSION 01a0b8b9 -->
