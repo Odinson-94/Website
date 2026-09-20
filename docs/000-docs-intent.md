@@ -19,5 +19,6 @@ Private credentials and portal session URLs must remain outside this repository.
 | 2026-09-20 | 01a0b8b9 | commercial-point-3-portal-policy-2026-09-20.md; 000-docs-intent.md | Record the completed GBP15 browser upgrade, 27.5 UC allocation and duplicate-event result; preserve the pending downgrade boundary. |
 | 2026-09-20 | 01a0b8b9 | commercial-point-3-portal-policy-2026-09-20.md; 000-docs-intent.md | Record confirmed browser downgrade timing and the GBP20/15 UC renewal; replace preview-only status with observed results. |
 | 2026-09-20 | 01a0b8b9 | commercial-point-3-portal-policy-2026-09-20.md; 000-docs-intent.md | Record browser cancellation, retained paid-period access, Free/zero-credit transition without another invoice, and completed cleanup. |
+| 2026-09-20 | 01a0b8b9 | commercial-point-3-return-boundaries-2026-09-20.md; 000-docs-intent.md | Record actual authenticated return/reload and external redirect checks, without claiming an ordinary customer purchase or pending decline test passed. |
 
 <!-- #endregion ADELPHOS-SESSION 01a0b8b9 -->
