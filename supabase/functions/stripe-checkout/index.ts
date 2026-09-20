@@ -5,6 +5,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2";
 import Stripe from "https://esm.sh/stripe@14.25.0?target=deno";
 import { assertBillingVerificationIdentity } from "../_shared/010-guard-billing-verification.ts";
+import { existingSubscriptionPortal } from "./010-existing-subscription.ts";
 
 const allowedOrigins = new Set([
   "https://adelphos.ai",
@@ -107,6 +108,10 @@ serve(async (req) => {
     }
 
     const mode = plan.plan_kind === "payment" ? "payment" : "subscription";
+    if (mode === "subscription") {
+      const portalUrl = await existingSubscriptionPortal(stripe, { customerId, email, live: stripeMode === "live" });
+      if (portalUrl) return json({ url: portalUrl, action: "manage_existing_subscription" }, 200, corsHeaders);
+    }
     const params: Stripe.Checkout.SessionCreateParams = {
       mode,
       customer: customerId,

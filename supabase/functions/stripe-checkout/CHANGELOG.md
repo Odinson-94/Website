@@ -1,2 +1,2 @@
-
+- 2026-09-20 / Payment acceptance: Existing subscribers now receive their Billing Portal URL from the subscription Checkout route. Verify customer email, Stripe mode and subscription ownership; scan paginated history and fail closed on errors. Preserve one-time top-ups and initial subscriptions after terminal history. This does not alter portal plan-change configuration or serialize simultaneous first purchases.
 - 2026-09-17 / Settings billing verification: Create hosted checkout for a server-verified identity and server-owned plan/price. Collect billing address and tax ID with explicit customer update permission. Live entry point verified without making payment.
