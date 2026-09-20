@@ -6,7 +6,7 @@ summary: Display current published report prices alongside the existing subscrip
 features:
   - Report prices and batch discounts published from the sales dashboard.
 public: true
-last-edited: 2026-09-19
+last-edited: 2026-09-20
 ---
 
 <!-- #region ADELPHOS-SESSION 01a0b8b9 -->
@@ -14,3 +14,7 @@ last-edited: 2026-09-19
 <!-- #endregion -->
 
 2026-09-19: The app-prices section covers all public apps and report units, with existing subscription checkout unchanged.
+
+<!-- #region ADELPHOS-SESSION 2026-09-20/public-pricing/01a0b8b9 -->
+CHANGELOG 2026-09-20: `index.html` removes provider model names and the internal token-rate breakdown from the public page, as requested. App/report prices, credit-pack pricing and Sales publishing remain wired. The authenticated Sales model pricing controls are unchanged.
+<!-- #endregion ADELPHOS-SESSION 01a0b8b9 -->

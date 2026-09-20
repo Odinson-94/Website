@@ -1,4 +1,8 @@
 /* Session 01a0b8b9: published prices refresh without a site rebuild; never show draft defaults. */
+// #region ADELPHOS-SESSION 2026-09-20/public-pricing/01a0b8b9
+// CHANGELOG: 2026-09-20 — Remove provider-model cards from public pricing.
+// what: Render app and credit prices without the internal token-rate breakdown.
+// why: User requires provider model names to remain off the public pricing page.
 (function () {
   'use strict';
   var root = document.getElementById('report-price-cards');
@@ -6,7 +10,6 @@
   if (!root || !status) return;
   var busy = false;
   var format = new Intl.NumberFormat('en-GB', { maximumFractionDigits: 2 });
-  var tokenFormat = new Intl.NumberFormat('en-GB', { maximumFractionDigits: 9 });
   function element(tag, text, className) {
     var node = document.createElement(tag); node.textContent = text;
     if (className) node.className = className;
@@ -27,10 +30,8 @@
       var description = document.getElementById('credit-pack-description');
       if (description) description.textContent = 'Add ' + data.retail.packCredits + ' Usage Credits for ' + cash.format(data.retail.packPriceMinor/100) + '. Purchased top-ups persist until used and are consumed after the current monthly allowance.';
       document.querySelectorAll('[data-checkout-plan="payg-20"]').forEach(function(button){button.dataset.planLabel=data.retail.packCredits+' Usage Credits — '+cash.format(data.retail.packPriceMinor/100);button.disabled=false;});
-      var tokens = document.getElementById('published-token-prices');
-      var groups = {};
-      data.tokenRates.filter(function(p){return p.component==='uncached_input'||p.component==='billable_output';}).forEach(function(p){var key=p.model+' · '+p.tier+' · '+p.context; if(!groups[key])groups[key]=[]; groups[key].push(p);});
-      tokens.replaceChildren.apply(tokens,Object.keys(groups).map(function(key){var card=element('article','','usage-card');card.append(element('h3',key));groups[key].forEach(function(p){card.append(element('p',(p.component==='uncached_input'?'Input':'Output')+': '+tokenFormat.format(p.usageCreditsPerMillion)+' UC / 1M tokens ('+cash.format(p.usageCreditsPerMillion*pounds)+')'));});return card;}));
+      // Clear the legacy container if this script runs against cached HTML.
+      document.getElementById('published-token-prices')?.replaceChildren();
       var cards = Object.keys(data.products).sort(function(a, b) { return data.products[a].name.localeCompare(data.products[b].name); }).map(function (code) {
         var price = data.products[code];
         var card = element('article', '', 'usage-card');
@@ -60,3 +61,4 @@
   setInterval(function () { if (!document.hidden) load(); }, 60000);
   load();
 })();
+// #endregion ADELPHOS-SESSION 01a0b8b9
