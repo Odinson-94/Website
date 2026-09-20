@@ -20,12 +20,11 @@ licence change too. Current cancellation preserves purchased credits, and
 reactivation does not create another invoice allowance.
 
 Only the latest paid invoice of the current active subscription can grant an
-allowance through this handler. Earlier invoices stay in history, using their
-current provider status, without refilling the current wallet. This change does
-not resolve the separate policy/implementation work for repeated paid prorations:
-distinct current proration invoices still use the existing period-grant routine.
-Payments acceptance remains open until that and the actual app Checkout cases
-pass. Do not treat this PR as completion of the entire Payments checklist.
+allowance reconciliation through this handler. Earlier invoices stay in history,
+using their current provider status, without refilling the current wallet. The
+subsequent [credit-cycle allocator](prorated-credit-cycles.md) reconciles paid
+prorations within that cycle. Actual app Checkout and remaining Payments
+acceptance are still open; this is not completion of the entire checklist.
 
 ## Verification — 20 September 2026
 

@@ -23,12 +23,12 @@ function fixture() {
   const licence = { email: 'fixture@example.invalid', stripe_subscription_id: 'sub_current', stripe_customer_id: 'cus_owner', stripe_state_version: 4 };
   const plan = { code: 'standard', plan_kind: 'subscription', stripe_price_id: 'price_standard', price_cents:5000, currency:'gbp', active: true, is_active: true, metadata: { stripe_mode: 'test' } };
   const subscription = { id: 'sub_current', customer: 'cus_owner', livemode: false, created: 20, status: 'active', current_period_start: 100, current_period_end: 200, latest_invoice: 'in_current', metadata: { email: licence.email }, items: { data: [{ price: { id: 'price_standard' } }] } };
-  const invoice = { id: 'in_current', customer: 'cus_owner', customer_email: licence.email, livemode: false, subscription: 'sub_current', status: 'paid', amount_paid: 5000, currency: 'gbp', lines: { data: [{ amount: 5000, price: { id: 'price_standard' } }] } };
+  const invoice = { id: 'in_current', billing_reason:'subscription_cycle', created:100, customer: 'cus_owner', customer_email: licence.email, livemode: false, subscription: 'sub_current', status: 'paid', amount_paid: 5000, currency: 'gbp', lines: { data: [{ amount: 5000, price: { id: 'price_standard' }, period:{start:100,end:200} }] } };
   const calls = [], snapshots = [], reads = [];
   const f = { licence, plan, subscription, invoice, calls, snapshots, reads };
   f.stripe = {
     subscriptions: { retrieve: async id => { reads.push(id); return { ...subscription, id }; } },
-    invoices: { retrieve: async () => structuredClone(invoice) },
+    invoices: { retrieve: async () => structuredClone(invoice), list: async function*() { yield structuredClone(invoice); } },
     checkout: { sessions: { listLineItems: async () => ({ data: [{ price: { id: plan.stripe_price_id } }] }) } },
   };
   f.db = {
