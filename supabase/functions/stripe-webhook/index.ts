@@ -9,6 +9,7 @@ import { resolveInvoicePrice } from "./010-resolve-invoice-price.ts";
 import { applyPaymentRefund } from "./030-apply-payment-refund.ts";
 import { readSubscriptionState, writeSubscriptionState, stripeId } from "./050-subscription-state.ts";
 import { paidCycleInvoices } from "./070-paid-cycle-invoices.ts";
+import { verifyCheckoutAmounts } from "./090-verify-checkout-amounts.ts";
 
 serve(async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
@@ -123,6 +124,12 @@ async function applyCompletedCheckout(
   livemode: boolean,
   hasApiKey: boolean,
 ) {
+  if (!hasApiKey) throw new Error(`Checkout session ${session.id} needs Stripe API verification but no API key is configured.`);
+  const eventSessionId = session.id;
+  session = await stripe.checkout.sessions.retrieve(eventSessionId);
+  if (session.id !== eventSessionId || session.livemode !== livemode || session.status !== "complete") {
+    throw new Error('Checkout identity, Stripe mode or completion status is invalid.');
+  }
   if (session.payment_status !== "paid" && session.payment_status !== "no_payment_required") {
     throw new Error(`Checkout session ${session.id} is not paid.`);
   }
@@ -144,7 +151,6 @@ async function applyCompletedCheckout(
   if (!boundIdentity && (userId || tenantId)) {
     throw new Error(`Checkout session ${session.id} has a partial Adelphos identity.`);
   }
-  if (!hasApiKey) throw new Error(`Checkout session ${session.id} needs Stripe API verification but no API key is configured.`);
   const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 2 });
   const priceId = lineItems.data[0]?.price?.id || "";
   if (lineItems.data.length !== 1 || !priceId) throw new Error(`Checkout session ${session.id} has no single configured Price.`);
@@ -165,11 +171,9 @@ async function applyCompletedCheckout(
       throw new Error(`Checkout session ${session.id} metadata does not match its Stripe Price.`);
     }
   }
-  if (String(session.currency || "").toLowerCase() !== String(plan.currency || "").toLowerCase()) {
-    throw new Error(`Checkout session ${session.id} has the wrong currency for ${planCode}.`);
-  }
-  if (Number(session.amount_total) !== Number(plan.price_cents)) {
-    throw new Error(`Checkout session ${session.id} has the wrong amount for ${planCode}.`);
+  verifyCheckoutAmounts(session, lineItems, plan, livemode);
+  if (session.payment_status === "no_payment_required" && session.amount_total !== 0) {
+    throw new Error('A nonzero Checkout requires a successful payment.');
   }
   const ensured = boundIdentity
     ? await supabase.rpc("adelphos_bind_billing_identity", { p_email: email, p_auth_user_id: userId, p_tenant_id: tenantId })

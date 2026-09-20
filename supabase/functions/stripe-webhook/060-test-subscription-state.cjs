@@ -109,6 +109,9 @@ test('invoice mode and customer mismatch fail closed',async()=>{
 });
 test('delayed subscription Checkout cannot reactivate a canceled subscription',async()=>{
   const f=fixture();f.subscription.status='canceled';
+  const checkout={id:'cs_old',status:'complete',livemode:false,payment_status:'paid',customer_email:f.licence.email,currency:'gbp',amount_subtotal:5000,amount_total:5000,total_details:{amount_discount:0,amount_shipping:0,amount_tax:0},customer:'cus_owner',subscription:'sub_current',mode:'subscription'};
+  f.stripe.checkout.sessions.retrieve=async()=>checkout;
+  f.stripe.checkout.sessions.listLineItems=async()=>({has_more:false,data:[{quantity:1,price:{id:'price_standard',unit_amount:5000,currency:'gbp',livemode:false},currency:'gbp',amount_subtotal:5000,amount_total:5000,amount_discount:0,amount_tax:0}]});
   await webhook.applyCompletedCheckout(f.db,f.stripe,{id:'cs_old',payment_status:'paid',customer_email:f.licence.email,currency:'gbp',amount_total:5000,customer:'cus_owner',subscription:'sub_current',mode:'subscription'},false,true);
   assert.equal(f.calls.at(-1).args.p_status,'canceled');
 });
