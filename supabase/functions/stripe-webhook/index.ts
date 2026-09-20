@@ -6,6 +6,7 @@ import { createClient, SupabaseClient } from "https://esm.sh/@supabase/supabase-
 import Stripe from "https://esm.sh/stripe@14.25.0?target=deno";
 import { assertBillingVerificationIdentity } from "../_shared/010-guard-billing-verification.ts";
 import { resolveInvoicePrice } from "./010-resolve-invoice-price.ts";
+import { applyPaymentRefund } from "./030-apply-payment-refund.ts";
 
 serve(async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
@@ -52,6 +53,11 @@ serve(async (req) => {
 
   try {
     switch (event.type) {
+      case "charge.refunded":
+      case "refund.updated":
+        if (!hasApiKey) throw new Error("Refund needs Stripe API verification.");
+        await applyPaymentRefund(supabase, stripe, event.data.object, event.livemode);
+        break;
       case "checkout.session.completed":
       case "checkout.session.async_payment_succeeded":
         await applyCompletedCheckout(supabase, stripe, event.data.object as Stripe.Checkout.Session, event.livemode, hasApiKey);
