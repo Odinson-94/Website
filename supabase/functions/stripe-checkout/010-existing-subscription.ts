@@ -1,15 +1,16 @@
 /** Existing subscribers manage their current billing account instead of buying a second subscription. */
+import { billingPortalUrl, type PortalClient } from '../_shared/030-billing-portal-session.ts';
 type Subscription = { id: string; customer: string | { id: string }; livemode: boolean; status: string };
 type Customer = { deleted?: boolean; email?: string | null; livemode?: boolean };
-type StripeClient = {
+type StripeClient = PortalClient & {
   customers: { retrieve(id: string): Promise<Customer> };
   subscriptions: { list(params: { customer: string; status: 'all'; limit: number }): AsyncIterable<Subscription> };
-  billingPortal: { sessions: { create(params: { customer: string; return_url: string }): Promise<{ url: string }> } };
 };
 
 export async function existingSubscriptionPortal(
   stripe: StripeClient,
   identity: { customerId: string; email: string; live: boolean },
+  configurationId = '',
 ): Promise<string | null> {
   const customer = await stripe.customers.retrieve(identity.customerId);
   if (customer.deleted || customer.livemode !== identity.live ||
@@ -29,12 +30,5 @@ export async function existingSubscriptionPortal(
     if (!['canceled', 'incomplete_expired'].includes(subscription.status)) existing = true;
   }
   if (!existing) return null;
-  const portal = await stripe.billingPortal.sessions.create({
-    customer: identity.customerId,
-    return_url: 'https://chat.adelphos.ai/account/billing',
-  });
-  if (!portal.url || !portal.url.startsWith('https://billing.stripe.com/')) {
-    throw new Error('Stripe did not return a Billing Portal URL.');
-  }
-  return portal.url;
+  return billingPortalUrl(stripe, identity.customerId, identity.live, configurationId);
 }

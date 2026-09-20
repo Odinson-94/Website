@@ -26,17 +26,17 @@ function fixture(testCustomer, liveCustomer) {
 const valid = (livemode) => ({ email: 'person@example.invalid', livemode });
 test('uses a matching customer in the preferred environment', async () => {
   const f = fixture(valid(false), missing);
-  assert.equal((await resolveBillingCustomer(f.options)).key, 'test-fixture');
+  const result=await resolveBillingCustomer(f.options);assert.equal(result.stripe.key, 'test-fixture');assert.equal(result.mode,'test');
   assert.equal(f.calls.length, 1);
 });
 test('internal/test plan can manage its verified live customer', async () => {
   const f = fixture(missing, valid(true));
-  assert.equal((await resolveBillingCustomer(f.options)).key, 'live-fixture');
+  const result=await resolveBillingCustomer(f.options);assert.equal(result.stripe.key, 'live-fixture');assert.equal(result.mode,'live');
   assert.equal(f.calls.length, 2);
 });
 test('absent preferred key permits the other configured environment', async () => {
   const f = fixture(missing, valid(true)); f.options.keys.test = '';
-  assert.equal((await resolveBillingCustomer(f.options)).key, 'live-fixture');
+  const result=await resolveBillingCustomer(f.options);assert.equal(result.stripe.key, 'live-fixture');assert.equal(result.mode,'live');
 });
 test('does not cross environments after permission or transport failures', async () => {
   const f = fixture(() => { throw Object.assign(new Error('permission denied'), { code: 'more_permissions_required' }); }, valid(true));

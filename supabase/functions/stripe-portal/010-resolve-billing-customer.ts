@@ -12,7 +12,7 @@ export async function resolveBillingCustomer<T extends CustomerClient>(options: 
   email: string;
   keys: Record<Mode, string>;
   createClient: (key: string) => T;
-}): Promise<T> {
+}): Promise<{ stripe: T; mode: Mode }> {
   const modes: Mode[] = [options.preferredMode, options.preferredMode === "live" ? "test" : "live"];
   for (const mode of modes) {
     const key = options.keys[mode];
@@ -31,7 +31,7 @@ export async function resolveBillingCustomer<T extends CustomerClient>(options: 
       String(customer.email || "").trim().toLowerCase() !== options.email.trim().toLowerCase()) {
       throw new Error("Stripe billing customer does not match the authenticated account.");
     }
-    return client;
+    return { stripe: client, mode };
   }
   throw new Error("The attached Stripe billing customer was not found in a configured environment.");
 }
