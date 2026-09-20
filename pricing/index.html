@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- #region ADELPHOS-SESSION 2026-09-20/public-pricing/01a0b8b9 -->
+<!-- CHANGELOG 2026-09-20: Remove Claude plan copy and the public provider-model rate breakdown.
+what: Present Adelphos plans, app prices and Usage Credits.
+why: User requires provider model names removed from this public page. -->
+<!-- #endregion ADELPHOS-SESSION 01a0b8b9 -->
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
@@ -169,7 +174,7 @@
         <h3>Everyday</h3><p class="plan-audience">For solo engineers getting started.</p>
         <div class="plan-price"><strong>£20</strong><span>/ month</span></div>
         <p class="plan-allowance">15 Usage Credits / month</p><p class="plan-split">20-credit rolling five-hour safety cap · 5 active projects</p>
-        <ul class="plan-features"><li>Full app suite and commands</li><li>Chat with Adelphos using Claude Opus 4.6</li><li>5 active project slots</li><li>Pay-as-you-go top-ups available</li></ul>
+        <ul class="plan-features"><li>Full app suite and commands</li><li>Chat with Adelphos</li><li>5 active project slots</li><li>Pay-as-you-go top-ups available</li></ul>
         <div class="plan-actions"><button class="pricing-button" type="button" data-checkout-plan="everyday" data-plan-label="Everyday — £20/month">Choose Everyday</button></div>
       </article>
       <article class="plan-card">
@@ -202,7 +207,7 @@
   </section>
 
   <section class="pricing-section" id="compare">
-    <div class="pricing-heading"><div><span class="pricing-kicker">Compare plans</span><h2>What changes as you scale?</h2></div><p>Usage Credits are your Adelphos account balance. Published app and token rates below show how credits are used, alongside the current GBP top-up equivalent.</p></div>
+    <div class="pricing-heading"><div><span class="pricing-kicker">Compare plans</span><h2>What changes as you scale?</h2></div><p>Usage Credits are your Adelphos account balance. Published app prices below show how credits are used, alongside the current GBP top-up equivalent.</p></div>
     <div class="compare-scroll"><table class="compare-table"><thead><tr><th>Feature</th><th>Free</th><th>Everyday</th><th>Standard</th><th>Business</th><th>Enterprise</th></tr></thead><tbody>
       <tr><td>Included Usage Credits</td><td>2 once</td><td>15 / month</td><td>40 / month</td><td>160 / month</td><td>Contracted</td></tr>
       <tr><td>Active projects</td><td>2</td><td>5</td><td>20</td><td>100</td><td>Contracted</td></tr>
@@ -241,7 +246,6 @@
     <div class="pricing-heading"><div><span class="pricing-kicker">App catalogue</span><h2 id="report-prices-heading">Prices for every app.</h2></div><p>App prices are shown in Usage Credits. SAP covers the whole project, including all houses. Downloading the same unchanged report again is free.</p></div>
     <p id="report-price-status" role="status" aria-live="polite">Loading published report prices…</p>
     <div id="published-credit-prices"></div>
-    <div id="published-token-prices" class="usage-grid"></div>
     <div id="report-price-cards" class="usage-grid"></div>
     <button id="refresh-report-prices" class="pricing-button" type="button">Refresh app prices</button>
     <noscript><p>Enable JavaScript to see current published report prices.</p></noscript>
@@ -250,7 +254,7 @@
   <section class="pricing-section" id="faq">
     <div class="pricing-heading"><div><span class="pricing-kicker">Pricing questions</span><h2>Before you choose a plan.</h2></div><p>Prices are shown in GBP excluding VAT. Stripe calculates and collects applicable tax only where the Adelphos Stripe account has been configured to do so.</p></div>
     <div class="faq-grid">
-      <details><summary>What is a Usage Credit?</summary><p>A Usage Credit is a unit in your Adelphos balance. The published rates show credits per app report and per million AI input and output tokens. GBP equivalents use the current top-up pack price; subscription allowances can have a different effective price. These selling prices are not raw supplier costs.</p></details>
+      <details><summary>What is a Usage Credit?</summary><p>A Usage Credit is a unit in your Adelphos balance, used for app reports and measured AI usage. Published report prices show credits per calculation or project. GBP equivalents use the current top-up pack price; subscription allowances can have a different effective price.</p></details>
       <details><summary>What happens when I reach my allowance?</summary><p>Additional paid usage requires an explicit top-up or upgrade through Stripe. Adelphos does not create an unapproved overage charge.</p></details>
       <details><summary>How is my subscription activated?</summary><p>Stripe sends a signed webhook after successful Checkout. Adelphos verifies the purchased Stripe Price and binds the entitlement to the signed-in user and tenant. The return page alone cannot activate access.</p></details>
       <details><summary>Can I cancel or update payment details?</summary><p>Yes. Sign in to <a href="https://chat.adelphos.ai/">Adelphos Chat</a> and open Account Settings, then Billing. Adelphos creates a customer-specific Stripe portal session after checking account ownership. Cancellation normally takes effect at the end of the paid billing period. See the <a href="/refunds/">Cancellation and Refund Policy</a>.</p></details>
