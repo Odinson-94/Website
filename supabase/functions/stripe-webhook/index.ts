@@ -7,6 +7,7 @@ import Stripe from "https://esm.sh/stripe@14.25.0?target=deno";
 import { assertBillingVerificationIdentity } from "../_shared/010-guard-billing-verification.ts";
 import { resolveInvoicePrice } from "./010-resolve-invoice-price.ts";
 import { applyPaymentRefund } from "./030-apply-payment-refund.ts";
+import { readSubscriptionState, writeSubscriptionState, stripeId } from "./050-subscription-state.ts";
 
 serve(async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
@@ -64,11 +65,13 @@ serve(async (req) => {
         break;
       case "customer.subscription.updated":
       case "customer.subscription.deleted":
-        await applySubscriptionChange(supabase, event.data.object as Stripe.Subscription, event.type, event.livemode);
+        if (!hasApiKey) throw new Error("Subscription event needs Stripe API verification.");
+        await applySubscriptionChange(supabase, stripe, event.data.object as Stripe.Subscription, event.livemode);
         break;
       case "invoice.paid":
       case "invoice.payment_failed":
-        await applyInvoice(supabase, event.data.object as Stripe.Invoice, event.type, event.livemode);
+        if (!hasApiKey) throw new Error("Invoice event needs Stripe API verification.");
+        await applyInvoice(supabase, stripe, event.data.object as Stripe.Invoice, event.livemode);
         break;
     }
     await supabase.from("adelphos_stripe_events").update({
@@ -171,16 +174,6 @@ async function applyCompletedCheckout(
     ? await supabase.rpc("adelphos_bind_billing_identity", { p_email: email, p_auth_user_id: userId, p_tenant_id: tenantId })
     : await supabase.rpc("adelphos_ensure_billing_license", { p_email: email });
   if (ensured.error) throw ensured.error;
-  /* A subscription bought from a payment link must still land on its plan — the
-     subscription.updated event that follows keys on email or subscription id,
-     and neither is set on an unbound licence yet. */
-  if (!boundIdentity && plan.plan_kind === "subscription") {
-    const seated = await supabase.from("adelphos_user_licenses")
-      .update({ plan_code: planCode, status: "active", updated_at: new Date().toISOString() })
-      .eq("email", email);
-    if (seated.error) throw seated.error;
-  }
-
   if (plan.plan_kind === "payment") {
     const grant = await supabase.rpc("adelphos_grant_usage_credit_top_up", {
       p_email: email,
@@ -195,75 +188,27 @@ async function applyCompletedCheckout(
   if (plan.plan_kind !== "subscription" || session.mode !== "subscription") {
     throw new Error(`Checkout session ${session.id} does not match subscription plan ${planCode}.`);
   }
-  const { data: updatedLicence, error } = await supabase.from("adelphos_user_licenses").update({
-    plan_code: planCode,
-    status: "active",
-    stripe_customer_id: typeof session.customer === "string" ? session.customer : session.customer?.id ?? null,
-    stripe_subscription_id: typeof session.subscription === "string" ? session.subscription : session.subscription?.id ?? null,
-    updated_at: new Date().toISOString(),
-  }).eq("email", email).select("email").single();
-  if (error) throw error;
-  if (!updatedLicence?.email) throw new Error(`Checkout session ${session.id} did not update a licence row.`);
+  const state = await readSubscriptionState(supabase, stripe, stripeId(session.subscription), email, livemode, true);
+  if (state && state.customerId !== stripeId(session.customer)) throw new Error('Checkout subscription customer mismatch.');
+  await writeSubscriptionState(supabase, state);
 }
 
 async function applySubscriptionChange(
   supabase: SupabaseClient,
+  stripe: Stripe,
   subscription: Stripe.Subscription,
-  eventType: string,
   livemode: boolean,
 ) {
-  let email = String(subscription.metadata?.email || "").trim().toLowerCase();
-  const priceId = subscription.items?.data?.[0]?.price?.id || "";
-  if (!priceId) throw new Error(`Subscription ${subscription.id} has no Stripe Price.`);
-  const plan = await billingPlanByPrice(supabase, priceId);
-  const planCode = String(plan.code || "").trim().toLowerCase();
-  if (plan.plan_kind !== "subscription") throw new Error(`Subscription ${subscription.id} names non-subscription plan ${planCode}.`);
-  if (!email && plan.metadata?.billing_verification === true) {
-    const row = await supabase.from("adelphos_user_licenses").select("email")
-      .eq("stripe_subscription_id", subscription.id).maybeSingle();
-    if (row.error) throw row.error;
-    email = String(row.data?.email || "").trim().toLowerCase();
-  }
-  assertBillingVerificationIdentity(plan, { email });
-  assertPlanMode(plan, livemode);
-  const period = subscriptionPeriod(subscription);
-  const status = eventType === "customer.subscription.deleted" ? "canceled" : mapSubscriptionStatus(subscription.status);
-  const patch: Record<string, unknown> = {
-    status,
-    cancel_at_period_end: subscription.cancel_at_period_end ?? false,
-    current_period_start: period.start ? new Date(period.start * 1000).toISOString() : null,
-    current_period_end: period.end ? new Date(period.end * 1000).toISOString() : null,
-    updated_at: new Date().toISOString(),
-  };
-  if (status === "canceled") {
-    if (!email) {
-      const licence = await supabase.from("adelphos_user_licenses")
-        .select("email").eq("stripe_subscription_id", subscription.id).maybeSingle();
-      if (licence.error) throw licence.error;
-      email = String(licence.data?.email || "").trim().toLowerCase();
-    }
-    if (!email) throw new Error(`Canceled subscription ${subscription.id} has no entitlement email.`);
-    const reverted = await supabase.rpc("adelphos_revert_to_free_entitlement", {
-      p_email: email,
-      p_metadata: { stripe_subscription_id: subscription.id, stripe_event_type: eventType },
-    });
-    if (reverted.error) throw reverted.error;
-    const cancelled = await supabase.from("adelphos_user_licenses").update({
-      ...patch,
-      plan_code: "free",
-      status: "free",
-    }).eq("email", email);
-    if (cancelled.error) throw cancelled.error;
-    return;
-  }
-  patch.plan_code = planCode;
-  let query = supabase.from("adelphos_user_licenses").update(patch);
-  query = email ? query.eq("email", email) : query.eq("stripe_subscription_id", subscription.id);
-  const { error } = await query;
-  if (error) throw error;
+  const email = String(subscription.metadata?.email || '').trim().toLowerCase();
+  const state = await readSubscriptionState(supabase, stripe, subscription.id, email, livemode);
+  await writeSubscriptionState(supabase, state);
 }
 
-async function applyInvoice(supabase: SupabaseClient, invoice: Stripe.Invoice, eventType: string, livemode: boolean) {
+async function applyInvoice(supabase: SupabaseClient, stripe: Stripe, eventInvoice: Stripe.Invoice, livemode: boolean) {
+  // An old payment_failed event may now refer to a paid invoice. Never regress
+  // invoice history or account status from the event's earlier snapshot.
+  const invoice = await stripe.invoices.retrieve(eventInvoice.id);
+  if (invoice.livemode !== livemode) throw new Error('Invoice Stripe mode is invalid.');
   const email = String(invoice.customer_email || invoice.metadata?.email || "").trim().toLowerCase();
   if (!email) throw new Error(`Invoice ${invoice.id} has no entitlement email.`);
   const priceId = resolveInvoicePrice(invoice);
@@ -284,28 +229,18 @@ async function applyInvoice(supabase: SupabaseClient, invoice: Stripe.Invoice, e
     updated_at: new Date().toISOString(),
   }, { onConflict: "stripe_invoice_id" });
   if (error) throw error;
-  if (eventType === "invoice.payment_failed") {
-    const failed = await supabase.from("adelphos_user_licenses").update({
-      status: "past_due",
-      updated_at: new Date().toISOString(),
-    }).eq("email", email);
-    if (failed.error) throw failed.error;
-  } else if (plan.plan_kind === "subscription") {
-    const grant = await supabase.rpc("adelphos_grant_subscription_period_credits", {
-      p_email: email,
-      p_plan_code: planCode,
-      p_period_id: invoice.id,
-      p_metadata: { stripe_invoice_id: invoice.id },
-    });
-    if (grant.error) throw grant.error;
+  if (plan.plan_kind === 'subscription') {
+    const subscriptionId = stripeId(invoice.subscription ?? (invoice as any).parent?.subscription_details?.subscription);
+    const state = await readSubscriptionState(supabase, stripe, subscriptionId, email, livemode);
+    if (!state) return;
+    if (state.customerId !== stripeId(invoice.customer)) throw new Error('Invoice subscription customer mismatch.');
+    // Historical invoices remain visible, but only the current paid invoice can
+    // grant an allowance. A delayed previous period must not refill this one.
+    const isCurrentPaidInvoice = invoice.status === 'paid' && state.status === 'active'
+      && stripeId(state.subscription.latest_invoice) === invoice.id;
+    if (isCurrentPaidInvoice && state.plan.code !== planCode) throw new Error('Paid invoice and current subscription plan disagree.');
+    await writeSubscriptionState(supabase, state, isCurrentPaidInvoice ? invoice.id : null);
   }
-}
-
-function mapSubscriptionStatus(status: string): string {
-  if (status === "active" || status === "trialing") return status;
-  if (status === "past_due" || status === "unpaid") return "past_due";
-  if (status === "canceled" || status === "incomplete_expired") return "canceled";
-  return "incomplete";
 }
 
 type StripeMode = "live" | "test";
@@ -321,17 +256,6 @@ type WebhookCandidate = {
   mode: StripeMode;
   stripeSecret: string;
   webhookSecret: string;
-};
-
-type SubscriptionWithItemPeriods = Stripe.Subscription & {
-  current_period_start?: number | null;
-  current_period_end?: number | null;
-  items?: {
-    data?: Array<{
-      current_period_start?: number | null;
-      current_period_end?: number | null;
-    }>;
-  };
 };
 
 async function resolveWebhookContext(rawBody: string, signature: string, candidates: WebhookCandidate[]): Promise<WebhookContext> {
@@ -364,20 +288,6 @@ function assertPlanMode(plan: { code: string; metadata?: Record<string, unknown>
   if (configuredMode === "test" && livemode) throw new Error(`Plan ${plan.code} is not configured for live Stripe events.`);
   if (configuredMode === "live" && !livemode) throw new Error(`Plan ${plan.code} is not configured for test Stripe events.`);
   if (configuredMode !== "test" && configuredMode !== "live") throw new Error(`Plan ${plan.code} has no valid Stripe mode.`);
-}
-
-function subscriptionPeriod(subscription: Stripe.Subscription) {
-  const periodSubscription = subscription as SubscriptionWithItemPeriods;
-  const starts = (periodSubscription.items?.data || [])
-    .map((item) => item.current_period_start)
-    .filter((value): value is number => typeof value === "number");
-  const ends = (periodSubscription.items?.data || [])
-    .map((item) => item.current_period_end)
-    .filter((value): value is number => typeof value === "number");
-  return {
-    start: periodSubscription.current_period_start ?? (starts.length ? Math.min(...starts) : null),
-    end: periodSubscription.current_period_end ?? (ends.length ? Math.max(...ends) : null),
-  };
 }
 
 async function resolveSecret(supabase: SupabaseClient, key: string): Promise<string> {
