@@ -2,6 +2,8 @@
 
 Create hosted checkout for a server-verified identity and server-owned plan/price. Collect billing address and tax ID with explicit customer update permission.
 
+For subscription purchases, verify the bound Stripe customer and inspect its canonical subscription history. If any nonterminal subscription exists, return a Billing Portal session for that customer instead of creating another subscription Checkout. One-time credit top-ups remain available. Provider or ownership failures must not fall through to new subscription creation.
+
 Secrets are supplied by the deployment environment; never store credentials or session URLs here.
 
 
