@@ -8,6 +8,7 @@ import { assertBillingVerificationIdentity } from "../_shared/010-guard-billing-
 import { resolveInvoicePrice } from "./010-resolve-invoice-price.ts";
 import { applyPaymentRefund } from "./030-apply-payment-refund.ts";
 import { readSubscriptionState, writeSubscriptionState, stripeId } from "./050-subscription-state.ts";
+import { paidCycleInvoices } from "./070-paid-cycle-invoices.ts";
 
 serve(async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
@@ -237,9 +238,11 @@ async function applyInvoice(supabase: SupabaseClient, stripe: Stripe, eventInvoi
     // Historical invoices remain visible, but only the current paid invoice can
     // grant an allowance. A delayed previous period must not refill this one.
     const isCurrentPaidInvoice = invoice.status === 'paid' && state.status === 'active'
-      && stripeId(state.subscription.latest_invoice) === invoice.id;
+      && stripeId(state.subscription.latest_invoice) === invoice.id
+      && ['subscription_create', 'subscription_cycle', 'subscription_update'].includes(invoice.billing_reason || '');
     if (isCurrentPaidInvoice && state.plan.code !== planCode) throw new Error('Paid invoice and current subscription plan disagree.');
-    await writeSubscriptionState(supabase, state, isCurrentPaidInvoice ? invoice.id : null);
+    const paidInvoices = isCurrentPaidInvoice ? await paidCycleInvoices(supabase, stripe, state, invoice.id) : [];
+    await writeSubscriptionState(supabase, state, isCurrentPaidInvoice ? invoice.id : null, paidInvoices);
   }
 }
 

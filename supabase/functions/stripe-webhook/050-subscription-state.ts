@@ -69,9 +69,9 @@ export async function readSubscriptionState(db: any, stripe: any, subscriptionId
   return { licence, subscription, plan, email, customerId, start, end, status, allowBinding };
 }
 
-export async function writeSubscriptionState(db: any, state: any, invoiceId: string | null = null) {
+export async function writeSubscriptionState(db: any, state: any, invoiceId: string | null = null, paidInvoices: any[] = []) {
   if (!state) return { ignored: true, reason: 'replaced_subscription' };
-  const { data, error } = await db.rpc('adelphos_apply_subscription_event', {
+  const { data, error } = await db.rpc('adelphos_apply_subscription_event_v2', {
     p_email: state.email,
     p_expected_subscription_id: state.licence.stripe_subscription_id,
     p_expected_state_version: state.licence.stripe_state_version,
@@ -84,6 +84,7 @@ export async function writeSubscriptionState(db: any, state: any, invoiceId: str
     p_cancel_at_period_end: Boolean(state.subscription.cancel_at_period_end),
     p_allow_binding: state.allowBinding,
     p_invoice_id: invoiceId,
+    p_paid_invoices: paidInvoices,
   });
   if (error) throw error;
   return data;
