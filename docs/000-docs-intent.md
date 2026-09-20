@@ -14,6 +14,10 @@ Private credentials and portal session URLs must remain outside this repository.
 
 ## Edit log
 
+2026-09-20 / 01a0b8b9: `commercial-point-3-simulation-2026-09-20.md` records
+159 passing offline handler checks and the user's explicit final-payment
+deferral, without changing historical sandbox evidence into real payment proof.
+
 | Date | Session | Files | Change and reason |
 | --- | --- | --- | --- |
 | 2026-09-20 | 01a0b8b9 | commercial-point-3-portal-policy-2026-09-20.md; 000-docs-intent.md | Record the completed GBP15 browser upgrade, 27.5 UC allocation and duplicate-event result; preserve the pending downgrade boundary. |

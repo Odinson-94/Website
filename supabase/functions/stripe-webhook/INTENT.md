@@ -10,3 +10,9 @@ taxes and Adaptive Pricing display amounts must not change the UC grant.
 Discounts, shipping, wrong currency/mode, incomplete tax calculations and
 unpaid or incomplete sessions fail closed. `100-test-checkout-amounts.cjs`
 covers this boundary and the actual entitlement handler.
+
+<!-- #region ADELPHOS-SESSION 2026-09-20/payment-simulation/01a0b8b9 -->
+`110-test-simulated-plan-checkout.cjs` covers each plan's actual Checkout and
+invoice handler commands using offline adapters. The simulation runner keeps
+this evidence distinct from Stripe delivery and durable database settlement.
+<!-- #endregion ADELPHOS-SESSION 01a0b8b9 -->
