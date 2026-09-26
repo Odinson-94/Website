@@ -91,3 +91,37 @@ for (const model of ['claude-opus-4-6','claude-opus-4-7','claude-opus-4-8','clau
     if (model !== 'claude-opus-4-6') assert.equal(resolveBillingModel(model), null);
   });
 }
+
+for (const [model, inputRate, outputRate] of [['gpt-5.6-sol',4,20],['gpt-6-sol',2,10],['gpt-6-astra',10,50]]) {
+  for (const [factor, multiplier] of [['helper',1.1],['standard',4],['schematic',20]]) {
+    test(`${model} ${factor} reserves at its exact component rates`, async () => {
+      let handler; const queries = [], rpcs = [];
+      const db = { from() { const query = {}; queries.push(query); const chain = {
+        select() { return chain; }, eq(k,v) { query[k]=v; return chain; }, lte() { return chain; }, order() { return chain; },
+        async limit() { return {data:[{usd_per_million_units: (query.component === 'uncached_input' ? inputRate : outputRate)*multiplier, effective_until:null}]}; },
+      }; return chain; }, async rpc(name,args) { rpcs.push({name,args}); return {data:{allowed:true}}; } };
+      vm.runInNewContext(compile('index.ts'), {exports:{},Request,Response,Date,console,
+        Deno:{env:{get:(key)=>({ADELPHOS_METERING_SERVICE_TOKEN:'fixture',SUPABASE_URL:'https://fixture.invalid',SUPABASE_SERVICE_ROLE_KEY:'fixture'})[key]}},
+        require(name) {
+          if(name.includes('/http/server')) return {serve(fn){handler=fn;}};
+          if(name.includes('supabase-js')) return {createClient:()=>db};
+          if(name.endsWith('010-resolve-provider-model.ts')) return modelOwner.exports;
+          throw Error(name);
+        },
+      });
+      const response=await handler(new Request('https://fixture.invalid',{method:'POST',headers:{authorization:'Bearer fixture','content-type':'application/json'},
+        body:JSON.stringify({action:'reserve',request_kind:'chat',model,factor_code:factor,email:'test@example.invalid',project_id:'p',request_id:'r',maximum_usage:{uncached_input:1000,billable_output:100}})}));
+      assert.equal(response.status,200);
+      assert.equal(resolveBillingModel(model,factor),model);
+      assert.ok(queries.every(q=>q.model===model && q.factor_code===factor));
+      assert.equal(rpcs[0].args.p_model,model);
+      assert.equal(rpcs[0].args.p_reserve_usage_credits,Number(((1000*inputRate+100*outputRate)*multiplier/1e6).toFixed(9)));
+    });
+  }
+}
+test('unpriced provider models and snapshots are not silently aliased',()=>{
+  for(const model of ['gpt-5.6-luna','gpt-6-astra-unknown','gpt-6-astra-2026-09-26']) {
+    assert.equal(resolveBillingModel(model,'helper'),null);
+    assert.equal(resolveBillingModel(model,'standard'),null);
+  }
+});
