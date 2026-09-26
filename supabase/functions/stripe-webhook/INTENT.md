@@ -16,3 +16,5 @@ covers this boundary and the actual entitlement handler.
 invoice handler commands using offline adapters. The simulation runner keeps
 this evidence distinct from Stripe delivery and durable database settlement.
 <!-- #endregion ADELPHOS-SESSION 01a0b8b9 -->
+
+2026-09-26: Support app subscriptions are separate from base plans. Add-on checkout verifies registered customer and monthly catalogue price, refuses duplicates and preserves existing base subscriptions. Signed webhook writes service-only app licences and never grants base credits for Support. Local Stripe regression tests pass; live activation requires the approved Support Price and deployment.

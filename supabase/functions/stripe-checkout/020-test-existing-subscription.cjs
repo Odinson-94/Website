@@ -60,3 +60,27 @@ test('actual handler still creates subscription Checkout for a customer with ter
 test('actual handler permits top-ups while subscribed and never creates another subscription',async()=>{
  const f=fixture();f.plan.plan_kind='payment';f.subscriptions=[subscription('active')];const response=await invoke(f);assert.equal(response.status,200);assert.equal(f.calls.find(c=>c[0]==='checkout')[1].mode,'payment');assert.ok(!f.calls.some(c=>c[0]==='list'||c[0]==='portal'));
 });
+
+
+test('a Support-only subscriber may still purchase their first base subscription',async()=>{
+ const f=fixture();f.subscriptions=[{...subscription('active'),metadata:{app_addon:'support'}}];assert.equal(await portal(f),null);
+});
+function addonFixture(){
+ const f=fixture();Object.assign(f.plan,{price_cents:1000,currency:'aud',metadata:{stripe_mode:'test',app_addon:'support'}});
+ f.stripe.prices={retrieve:async()=>({active:true,unit_amount:1000,currency:'aud',recurring:{interval:'month',interval_count:1}})};
+ f.stripe.subscriptions.list=async()=>({has_more:false,data:f.subscriptions});
+ return f;
+}
+test('existing base subscriber buys Support as a separate subscription with owner metadata',async()=>{
+ const f=addonFixture();f.subscriptions=[subscription('active')];assert.equal((await invoke(f)).status,200);
+ const params=f.calls.find(c=>c[0]==='checkout')[1];assert.equal(params.subscription_data.metadata.app_addon,'support');assert.equal(params.subscription_data.metadata.adelphos_user_id,'user_fixture');assert.ok(!f.calls.some(c=>c[0]==='portal'));
+});
+test('existing nonterminal Support subscription refuses duplicate purchase',async()=>{
+ const f=addonFixture();f.subscriptions=[{...subscription('active'),metadata:{app_addon:'support'}}];assert.equal((await invoke(f)).status,409);assert.ok(!f.calls.some(c=>c[0]==='checkout'));
+});
+test('Support price mismatch cannot charge a different amount from the catalogue',async()=>{
+ const f=addonFixture();f.plan.price_cents=2000;assert.equal((await invoke(f)).status,502);assert.ok(!f.calls.some(c=>c[0]==='checkout'));
+});
+test('Support customer ownership mismatch cannot create checkout',async()=>{
+ const f=addonFixture();f.customer.email='other@example.invalid';assert.equal((await invoke(f)).status,502);assert.ok(!f.calls.some(c=>c[0]==='checkout'));
+});
