@@ -1,6 +1,6 @@
 /** Existing subscribers manage their current billing account instead of buying a second subscription. */
 import { billingPortalUrl, type PortalClient } from '../_shared/030-billing-portal-session.ts';
-type Subscription = { id: string; customer: string | { id: string }; livemode: boolean; status: string };
+type Subscription = { metadata?: { app_addon?: string }; id: string; customer: string | { id: string }; livemode: boolean; status: string };
 type Customer = { deleted?: boolean; email?: string | null; livemode?: boolean };
 type StripeClient = PortalClient & {
   customers: { retrieve(id: string): Promise<Customer> };
@@ -27,7 +27,7 @@ export async function existingSubscriptionPortal(
     }
     // Canceled and incomplete_expired are terminal. Every other status can
     // still involve a subscription or pending collection; fail closed for new statuses.
-    if (!['canceled', 'incomplete_expired'].includes(subscription.status)) existing = true;
+    if (!subscription.metadata?.app_addon && !['canceled', 'incomplete_expired'].includes(subscription.status)) existing = true;
   }
   if (!existing) return null;
   return billingPortalUrl(stripe, identity.customerId, identity.live, configurationId);

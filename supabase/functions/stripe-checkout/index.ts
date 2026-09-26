@@ -52,7 +52,7 @@ serve(async (req) => {
     }
     const { data: plan, error: planError } = await supabase
       .from("adelphos_billing_plans")
-      .select("code, name, plan_kind, stripe_price_id, stripe_lookup_key, active, is_active, metadata")
+      .select("code, name, plan_kind, price_cents, currency, stripe_price_id, stripe_lookup_key, active, is_active, metadata")
       .eq("code", planCode)
       .eq("active", true)
       .eq("is_active", true)
@@ -107,8 +107,21 @@ serve(async (req) => {
       if (customerError) throw customerError;
     }
 
+    const addon = plan.metadata?.app_addon;
+    if (addon && addon !== 'support') throw new Error('Unknown app add-on.');
+    if (addon === 'support') {
+      if (plan.plan_kind !== 'subscription') throw new Error('Support requires a subscription price.');
+      const customer = await stripe.customers.retrieve(customerId);
+      if (customer.deleted || customer.livemode !== (stripeMode === 'live') || String(customer.email || '').trim().toLowerCase() !== email) throw new Error('Support customer does not match the signed-in account.');
+      const price = await stripe.prices.retrieve(plan.stripe_price_id);
+      if (!price.active || !price.unit_amount || price.unit_amount <= 0 || price.unit_amount !== Number(plan.price_cents) || price.currency !== plan.currency || price.recurring?.interval !== 'month' || price.recurring?.interval_count !== 1) throw new Error('Support requires an active paid monthly price.');
+      const subscriptions = await stripe.subscriptions.list({ customer: customerId, status: 'all', limit: 100 });
+      if (subscriptions.has_more || subscriptions.data.some(sub => sub.metadata?.app_addon === 'support' && !['canceled', 'incomplete_expired'].includes(sub.status))) {
+        return json({ error: 'Manage your existing Support subscription in Billing.' }, 409, corsHeaders);
+      }
+    }
     const mode = plan.plan_kind === "payment" ? "payment" : "subscription";
-    if (mode === "subscription") {
+    if (mode === "subscription" && !addon) {
       const configurationId = Deno.env.get(stripeMode === "live" ? "STRIPE_LIVE_BILLING_PORTAL_CONFIGURATION_ID" : "STRIPE_TEST_BILLING_PORTAL_CONFIGURATION_ID") || "";
       const portalUrl = await existingSubscriptionPortal(stripe, { customerId, email, live: stripeMode === "live" }, configurationId);
       if (portalUrl) return json({ url: portalUrl, action: "manage_existing_subscription" }, 200, corsHeaders);
@@ -133,6 +146,7 @@ serve(async (req) => {
         adelphos_tenant_id: tenantId,
         billing_cycle: mode === "subscription" ? "monthly" : "one_time",
         stripe_mode: stripeMode,
+        ...(addon ? { app_addon: addon } : {}),
       },
     };
     const paymentMethodConfiguration = stripeMode === "live"
@@ -147,12 +161,12 @@ serve(async (req) => {
     }
     if (mode === "subscription") {
       params.subscription_data = {
-        metadata: { email, plan_code: plan.code, price_lookup_key: String(plan.stripe_lookup_key || ""), adelphos_user_id: userId, adelphos_tenant_id: tenantId, billing_cycle: "monthly" },
+        metadata: { ...(addon ? { app_addon: addon } : {}), email, plan_code: plan.code, price_lookup_key: String(plan.stripe_lookup_key || ""), adelphos_user_id: userId, adelphos_tenant_id: tenantId, billing_cycle: "monthly" },
       };
     } else {
       params.invoice_creation = { enabled: true };
       params.payment_intent_data = {
-        metadata: { email, plan_code: plan.code, price_lookup_key: String(plan.stripe_lookup_key || ""), adelphos_user_id: userId, adelphos_tenant_id: tenantId },
+        metadata: { ...(addon ? { app_addon: addon } : {}), email, plan_code: plan.code, price_lookup_key: String(plan.stripe_lookup_key || ""), adelphos_user_id: userId, adelphos_tenant_id: tenantId },
       };
     }
 

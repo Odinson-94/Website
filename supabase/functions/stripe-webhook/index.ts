@@ -1,3 +1,4 @@
+import { applySupportEvent } from './120-apply-support-license.ts';
 // Verifies Stripe events and applies subscription entitlements or pay-as-you-go credit.
 // Deploy with verify_jwt = false. Authentication is the Stripe signature over the raw body.
 
@@ -55,7 +56,8 @@ serve(async (req) => {
   }, { onConflict: "stripe_event_id" });
 
   try {
-    switch (event.type) {
+    const supportHandled = await applySupportEvent(supabase, stripe, event);
+    if (!supportHandled) switch (event.type) {
       case "charge.refunded":
       case "refund.updated":
         if (!hasApiKey) throw new Error("Refund needs Stripe API verification.");
@@ -155,6 +157,7 @@ async function applyCompletedCheckout(
   const priceId = lineItems.data[0]?.price?.id || "";
   if (lineItems.data.length !== 1 || !priceId) throw new Error(`Checkout session ${session.id} has no single configured Price.`);
   const plan = await billingPlanByPrice(supabase, priceId);
+  if (plan.metadata?.app_addon) throw new Error("App subscription could not be verified; base plan is unchanged.");
   assertBillingVerificationIdentity(plan, { email, userId, tenantId });
   const planCode = String(plan.code || "").trim().toLowerCase();
   if (!planCode) throw new Error(`Checkout session ${session.id} resolved to a plan without a code.`);
@@ -218,6 +221,7 @@ async function applyInvoice(supabase: SupabaseClient, stripe: Stripe, eventInvoi
   if (!email) throw new Error(`Invoice ${invoice.id} has no entitlement email.`);
   const priceId = resolveInvoicePrice(invoice);
   const plan = await billingPlanByPrice(supabase, priceId);
+  if (plan.metadata?.app_addon) throw new Error("App subscription could not be verified; base plan is unchanged.");
   const planCode = String(plan.code || "").trim().toLowerCase();
   assertPlanMode(plan, livemode);
   assertBillingVerificationIdentity(plan, { email });
