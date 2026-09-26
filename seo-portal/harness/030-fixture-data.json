@@ -1,0 +1,366 @@
+{
+  "ok": true,
+  "configured": {
+    "database": true,
+    "google_search_console": true,
+    "google_ads_keyword_planner": true,
+    "dataforseo": false,
+    "portal_access": true,
+    "schedule": "Daily at 03:15 UTC",
+    "serp_depth": 20,
+    "run_limit": 25,
+    "research_markets": [
+      {
+        "country": "Australia",
+        "code": "AU"
+      },
+      {
+        "country": "United Kingdom",
+        "code": "GB"
+      },
+      {
+        "country": "Canada",
+        "code": "CA"
+      }
+    ]
+  },
+  "generated_at": "2026-09-14T10:00:00Z",
+  "summary": {
+    "tracked": 3,
+    "visible": 2,
+    "top_10": 1,
+    "visibility": 40,
+    "clicks": 16,
+    "impressions": 200,
+    "ctr": 0.08,
+    "rank_source": "gsc",
+    "discovered": 0
+  },
+  "keywords": [
+    {
+      "id": 1,
+      "keyword": "Synthetic cable sizing",
+      "country": "United Kingdom",
+      "location_name": "United Kingdom",
+      "device": "desktop",
+      "tag": "fixture",
+      "target_url": "https://example.invalid/1",
+      "page_title": "Synthetic cable sizing",
+      "position": 8,
+      "previous_position": 10,
+      "movement": 2,
+      "impressions": 100,
+      "clicks": 8,
+      "gsc_position": 8,
+      "checked_at": "2026-09-14T10:00:00Z",
+      "owner_match": true,
+      "country_breakdown": [
+        {
+          "country": "United Kingdom",
+          "clicks": 8,
+          "impressions": 100,
+          "position": 8
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "keyword": "Synthetic building report",
+      "country": "Australia",
+      "location_name": "Australia",
+      "device": "desktop",
+      "tag": "fixture",
+      "target_url": "https://example.invalid/2",
+      "page_title": "Synthetic building report",
+      "position": 14,
+      "previous_position": 16,
+      "movement": 2,
+      "impressions": 100,
+      "clicks": 8,
+      "gsc_position": 14,
+      "checked_at": "2026-09-14T10:00:00Z",
+      "owner_match": false,
+      "country_breakdown": [
+        {
+          "country": "Australia",
+          "clicks": 8,
+          "impressions": 100,
+          "position": 14
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "keyword": "Synthetic untouched target",
+      "country": "United Kingdom",
+      "location_name": "United Kingdom",
+      "device": "desktop",
+      "tag": "fixture",
+      "target_url": "https://example.invalid/3",
+      "page_title": "Synthetic untouched target",
+      "position": null,
+      "previous_position": null,
+      "movement": null,
+      "impressions": 0,
+      "clicks": 0,
+      "gsc_position": null,
+      "checked_at": "2026-09-14T10:00:00Z",
+      "owner_match": true,
+      "country_breakdown": [
+        {
+          "country": "United Kingdom",
+          "clicks": 8,
+          "impressions": 100,
+          "position": null
+        }
+      ]
+    }
+  ],
+  "searches": [
+    {
+      "id": 1,
+      "keyword": "Synthetic cable sizing",
+      "country": "United Kingdom",
+      "location_name": "United Kingdom",
+      "device": "desktop",
+      "tag": "fixture",
+      "target_url": "https://example.invalid/1",
+      "page_title": "Synthetic cable sizing",
+      "position": 8,
+      "previous_position": 10,
+      "movement": 2,
+      "impressions": 100,
+      "clicks": 8,
+      "gsc_position": 8,
+      "checked_at": "2026-09-14T10:00:00Z",
+      "owner_match": true,
+      "country_breakdown": [
+        {
+          "country": "United Kingdom",
+          "clicks": 8,
+          "impressions": 100,
+          "position": 8
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "keyword": "Synthetic building report",
+      "country": "Australia",
+      "location_name": "Australia",
+      "device": "desktop",
+      "tag": "fixture",
+      "target_url": "https://example.invalid/2",
+      "page_title": "Synthetic building report",
+      "position": 14,
+      "previous_position": 16,
+      "movement": 2,
+      "impressions": 100,
+      "clicks": 8,
+      "gsc_position": 14,
+      "checked_at": "2026-09-14T10:00:00Z",
+      "owner_match": false,
+      "country_breakdown": [
+        {
+          "country": "Australia",
+          "clicks": 8,
+          "impressions": 100,
+          "position": 14
+        }
+      ]
+    }
+  ],
+  "countries": [
+    {
+      "country": "United Kingdom",
+      "clicks": 8,
+      "impressions": 100,
+      "position": 8
+    },
+    {
+      "country": "Australia",
+      "clicks": 8,
+      "impressions": 100,
+      "position": 14
+    }
+  ],
+  "trend": [
+    {
+      "date": "2026-09-13",
+      "visibility": 30
+    },
+    {
+      "date": "2026-09-14",
+      "visibility": 40
+    }
+  ],
+  "gsc_daily": [
+    {
+      "date": "2026-09-13",
+      "impressions": 80
+    },
+    {
+      "date": "2026-09-14",
+      "impressions": 120
+    }
+  ],
+  "pages": {
+    "counts": {
+      "pages": 3,
+      "visible": 2,
+      "average_score": 90,
+      "high_priority": 1
+    },
+    "pages": [
+      {
+        "page_title": "Synthetic cable sizing",
+        "primary_keyword": "Synthetic cable sizing",
+        "target_url": "https://example.invalid/1",
+        "score": 96,
+        "status": "Visible in Google",
+        "clicks": 8,
+        "impressions": 100,
+        "gsc_position": 8,
+        "campaign_priority": "Build",
+        "opportunity": "Review fixture",
+        "ranking_queries": [
+          {
+            "query": "Synthetic cable sizing",
+            "position": 8
+          }
+        ],
+        "issues": []
+      },
+      {
+        "page_title": "Synthetic building report",
+        "primary_keyword": "Synthetic building report",
+        "target_url": "https://example.invalid/2",
+        "score": 78,
+        "status": "Visible in Google",
+        "clicks": 8,
+        "impressions": 100,
+        "gsc_position": 14,
+        "campaign_priority": "High",
+        "opportunity": "Improve synthetic description",
+        "ranking_queries": [
+          {
+            "query": "Synthetic building report",
+            "position": 14
+          }
+        ],
+        "issues": [
+          {
+            "message": "Synthetic description missing",
+            "action": "Review this fixture description."
+          }
+        ]
+      },
+      {
+        "page_title": "Synthetic untouched target",
+        "primary_keyword": "Synthetic untouched target",
+        "target_url": "https://example.invalid/3",
+        "score": 96,
+        "status": "Awaiting first impression",
+        "clicks": 0,
+        "impressions": 0,
+        "gsc_position": null,
+        "campaign_priority": "Build",
+        "opportunity": "Review fixture",
+        "ranking_queries": [],
+        "issues": []
+      }
+    ]
+  },
+  "research": {
+    "counts": {
+      "keywords": 3,
+      "with_monthly_volume": 2,
+      "ranked": 2,
+      "countries": 2
+    },
+    "keywords": [
+      {
+        "keyword": "Synthetic cable sizing",
+        "country": "United Kingdom",
+        "cluster": "Synthetic fixtures",
+        "monthly_searches": 400,
+        "competition": "LOW",
+        "competition_index": 18,
+        "current_position": 8,
+        "movement": 2,
+        "opportunity_score": 70,
+        "target_page_label": "Synthetic cable sizing",
+        "target_url": "https://example.invalid/1",
+        "status": "Fixture",
+        "volume_source": "Google Ads Keyword Planner",
+        "volume_captured_at": "2026-09-14T10:00:00Z"
+      },
+      {
+        "keyword": "Synthetic building report",
+        "country": "Australia",
+        "cluster": "Synthetic fixtures",
+        "monthly_searches": 400,
+        "competition": "LOW",
+        "competition_index": 18,
+        "current_position": 14,
+        "movement": 2,
+        "opportunity_score": 60,
+        "target_page_label": "Synthetic building report",
+        "target_url": "https://example.invalid/2",
+        "status": "Fixture",
+        "volume_source": "Google Ads Keyword Planner",
+        "volume_captured_at": "2026-09-14T10:00:00Z"
+      },
+      {
+        "keyword": "Synthetic untouched target",
+        "country": "United Kingdom",
+        "cluster": "Synthetic fixtures",
+        "monthly_searches": null,
+        "competition": "LOW",
+        "competition_index": 18,
+        "current_position": null,
+        "movement": null,
+        "opportunity_score": 50,
+        "target_page_label": "Synthetic untouched target",
+        "target_url": "https://example.invalid/3",
+        "status": "Fixture",
+        "volume_source": "Google Ads Keyword Planner",
+        "volume_captured_at": "2026-09-14T10:00:00Z"
+      }
+    ]
+  },
+  "backlinks": {
+    "external_links": 12,
+    "referring_domains": 3,
+    "internal_links": 20,
+    "internal_link_pages_crawled": 3,
+    "internal_link_pages_listed": 3,
+    "authority_score": 25,
+    "captured_at": "2026-09-14T10:00:00Z",
+    "source": "Synthetic fixture",
+    "source_scope": "Synthetic sample only.",
+    "authority_method": "Synthetic authority explanation.",
+    "top_linking_domains": [
+      {
+        "domain": "example.invalid",
+        "links": 12
+      }
+    ],
+    "top_linked_pages": [
+      {
+        "url": "https://example.invalid/1",
+        "links": 12
+      }
+    ]
+  },
+  "runs": [
+    {
+      "started_at": "2026-09-14T10:00:00Z",
+      "status": "complete",
+      "items_requested": 3,
+      "items_succeeded": 3,
+      "cost_usd": 0,
+      "error": null
+    }
+  ]
+}

@@ -31,3 +31,20 @@ test('unauthorized callers never access DB and action conflict has stable409',as
  assert.equal((await run(new Request('http://local.invalid',{method:'POST'}))).status,401);assert.equal(calls,0);
  const res=await run(request({action:'admin_revoke'}));assert.equal(res.status,409);assert.ok(!(await res.text()).includes('private-canary'));
 });
+
+test('existing hash-only issuers remain compatible without fabricated fragments',async()=>{
+ let saved;const chain={insert(value){saved=value;return this;},select(){return this;},single:async()=>({data:{id:'legacy',token_prefix:null,token_suffix:null}})};
+ const run=handler({from:()=>chain});
+ const res=await run(request({action:'register',chat_user_id:'owner',tenant_id:'personal',owner_email:'owner@invalid.test',name:'Existing client',token_hash:'b'.repeat(64)}));
+ assert.equal(res.status,201);assert.equal(saved.token_prefix,null);assert.equal(saved.token_suffix,null);
+ assert.ok(!JSON.stringify(await res.json()).includes('b'.repeat(64)));
+});
+
+test('existing owner revoke uses atomic audit and refuses another owner or an audit failure',async()=>{
+ const calls=[];let error;const run=handler({rpc:async(name,args)=>{calls.push({name,args});return error?{error}:{data:{id:'key'}};}});
+ const body={action:'revoke',id:'key',chat_user_id:'owner',tenant_id:'personal',owner_email:'owner@invalid.test'};
+ assert.deepEqual(await (await run(request(body))).json(),{ok:true});
+ assert.equal(calls[0].name,'adelphos_admin_revoke_cli_key');assert.equal(calls[0].args.p_mode,'owner');assert.equal(calls[0].args.p_actor_id,'owner');assert.equal(calls[0].args.p_tenant,'personal');assert.match(calls[0].args.p_request_id,/^[0-9a-f-]{36}$/);
+ error={code:'P0002'};assert.equal((await run(request(body))).status,404);
+ error={code:'23514'};assert.equal((await run(request(body))).status,503);
+});

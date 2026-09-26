@@ -1,5 +1,7 @@
 # Jason CLI device registry
 
+2026-09-26: Activate the P06 schema and credential handler together. Preserve existing hash-only issuers with null display fragments and the old owner revoke operation, routed through the same atomic ownership/audit RPC. Partial or malformed fragments remain refused. Six isolated handler tests cover both current and existing callers. No raw credentials are stored or reconstructed.
+
 Use the existing central licensing Supabase project. The authenticated Chat backend binds devices to its own user/tenant identity. Store only credential hashes; issue no alternate wallet or login account. Credentials expire after 90 days, can be revoked per device, and are resolved for each API request. The service token is never sent to a customer. Added 17 September 2026 for the agreed Settings/billing/CLI work.
 
 2026-09-25 p06: Nullable constrained first11/last4 fragments support irreversible safe display. Registration accepts fragments only alongside the hash. Owner and staff revoke use separate trusted actions backed by one transactional RPC; audit and revocation commit together, replay conflicts refuse, and timeout receipt reads return exact prior results without another mutation. Revoked/expired resolution fails before touch.010 runs the actual handler with isolated transport doubles; SQL regression separately proves atomic rollback, replay, ownership and audit secrecy. Existing171600 source was approved untracked canonical input copied byte-for-byte before this change; tooling copies are excluded. No remote deployment performed.

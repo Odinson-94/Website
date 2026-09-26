@@ -41,8 +41,11 @@ serve(async (req) => {
     if(!user || !tenant || !email.includes("@")) return json({error:"Owner required"},400);
     if(body.action === "register") {
       const name=String(body.name || "").trim();
-      if(!name || name.length>80 || !/^[a-f0-9]{64}$/.test(body.token_hash || "") || !/^jcli_[0-9a-f]{6}$/.test(body.token_prefix || "") || !/^[0-9a-f]{4}$/.test(body.token_suffix || "")) return json({error:"Invalid device"},400);
-      const {data,error}=await table().insert({chat_user_id:user,tenant_id:tenant,owner_email:email,name,token_hash:body.token_hash,token_prefix:body.token_prefix,token_suffix:body.token_suffix}).select(fields).single();
+      // Older trusted Chat callers supply only a hash. Preserve that contract;
+      // never reconstruct missing display fragments, and reject partial pairs.
+      const legacy=body.token_prefix == null && body.token_suffix == null;
+      if(!name || name.length>80 || !/^[a-f0-9]{64}$/.test(body.token_hash || "") || (!legacy && (!/^jcli_[0-9a-f]{6}$/.test(body.token_prefix || "") || !/^[0-9a-f]{4}$/.test(body.token_suffix || "")))) return json({error:"Invalid device"},400);
+      const {data,error}=await table().insert({chat_user_id:user,tenant_id:tenant,owner_email:email,name,token_hash:body.token_hash,token_prefix:legacy?null:body.token_prefix,token_suffix:legacy?null:body.token_suffix}).select(fields).single();
       if(error) throw error;
       return json(data,201);
     }
@@ -50,6 +53,17 @@ serve(async (req) => {
       const {data,error}=await table().select(fields).eq("chat_user_id",user).eq("tenant_id",tenant).order("created_at",{ascending:false});
       if(error) throw error;
       return json({devices:data});
+    }
+    // Keep existing owner clients working while routing every revocation through
+    // the same ownership check and atomic audit transaction as the new controls.
+    if(body.action === "revoke") {
+      const {data,error}=await db.rpc("adelphos_admin_revoke_cli_key",{
+        p_request_id:crypto.randomUUID(),p_actor_id:user,p_actor_email:email,
+        p_key_id:String(body.id || ""),p_reason:"Owner-requested revocation from existing client",
+        p_read_only:false,p_mode:"owner",p_tenant:tenant
+      });
+      if(error) return json({error:"Device revocation unavailable"},error.code==="P0002"?404:["22023","22P02"].includes(error.code)?400:503);
+      return data ? json({ok:true}) : json({error:"Device not found"},404);
     }
     return json({error:"Unknown operation"},400);
   } catch {

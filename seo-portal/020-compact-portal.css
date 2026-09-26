@@ -1,0 +1,118 @@
+/* ADELPHOS-SESSION 2026-09-15/ui-storage-harness/seo
+ * App-owned presentation only. Shared220 is the token authority; original
+ * controls, renderers, authentication, collection and export code are retained. */
+body.adelphos-app-ui {
+  color-scheme: light;
+  --ink: var(--app-ui-ink);
+  --muted: var(--app-ui-muted);
+  --faint: var(--app-ui-muted);
+  --line: var(--app-ui-border);
+  --line-strong: var(--app-ui-border);
+  --panel: var(--app-ui-surface);
+  --panel-soft: var(--app-ui-soft);
+  --canvas: var(--app-ui-soft);
+  --green: var(--app-ui-accent);
+  --green-strong: var(--app-ui-success-ink);
+  --green-soft: var(--app-ui-success-surface);
+  --amber: var(--app-ui-warning-ink);
+  --amber-soft: var(--app-ui-warning-surface);
+  --red: var(--app-ui-danger-ink);
+  --radius: var(--app-ui-panel-radius);
+  --shadow: none;
+  background: var(--app-ui-soft);
+}
+.adelphos-app-ui .shell { grid-template-columns: 200px minmax(0, 1fr); }
+.adelphos-app-ui .sidebar { padding: 16px 12px; background: var(--app-ui-surface); }
+.adelphos-app-ui .brand { gap: 8px; padding: 0 8px 14px; }
+.adelphos-app-ui .brand-mark, .adelphos-app-ui .dialog-mark { width: 28px; height: 28px; border-radius: var(--app-ui-radius); background: var(--app-ui-soft); color: var(--app-ui-ink); box-shadow: none; font-weight: 600; }
+.adelphos-app-ui .brand strong { font-size: 14px; font-weight: 600; letter-spacing: normal; }
+.adelphos-app-ui .brand span { font-size: var(--app-ui-detail); }
+.adelphos-app-ui .nav-label { padding: 0 8px; margin: 8px 0 4px; font-size: var(--app-ui-detail); font-weight: 500; letter-spacing: normal; text-transform: none; }
+.adelphos-app-ui .nav { gap: 2px; }
+.adelphos-app-ui .nav button { min-height: var(--app-ui-control-height); padding: 4px 8px; gap: 8px; border-radius: var(--app-ui-radius); font-size: var(--app-ui-control-text); line-height: var(--app-ui-control-leading); font-weight: 500; }
+.adelphos-app-ui .nav button:hover, .adelphos-app-ui .nav button[aria-selected="true"] { background: var(--app-ui-hover); color: var(--app-ui-ink); box-shadow: none; }
+.adelphos-app-ui .side-foot { padding: 12px 8px 0; }
+.adelphos-app-ui .side-foot button, .adelphos-app-ui .button { min-height: var(--app-ui-control-height); padding: 4px 12px; border: 1px solid var(--app-ui-border); border-radius: var(--app-ui-action-radius); background: var(--app-ui-surface); color: var(--app-ui-ink); font: 500 var(--app-ui-control-text)/var(--app-ui-control-leading) var(--app-ui-font); box-shadow: none; }
+.adelphos-app-ui .button:hover, .adelphos-app-ui .side-foot button:hover { background: var(--app-ui-hover); border-color: var(--app-ui-border); }
+.adelphos-app-ui .button.primary { background: var(--app-ui-accent); border-color: var(--app-ui-accent); color: var(--app-ui-on-accent); }
+.adelphos-app-ui .button.primary:hover { background: var(--app-ui-accent-hover); }
+.adelphos-app-ui main { padding: 16px 20px 24px; }
+.adelphos-app-ui .topbar { align-items: center; gap: 12px; margin-bottom: 16px; }
+.adelphos-app-ui .topbar > div { min-width: 0; }
+.adelphos-app-ui .eyebrow { color: var(--app-ui-muted); font-size: var(--app-ui-detail); font-weight: 500; text-transform: none; letter-spacing: normal; }
+.adelphos-app-ui h1 { margin: 2px 0 4px; font-size: var(--app-ui-title); line-height: 1.4; font-weight: 600; letter-spacing: normal; }
+.adelphos-app-ui .lede { font-size: var(--app-ui-control-text); }
+.adelphos-app-ui .actions { gap: 6px; }
+.adelphos-app-ui .status { font-size: var(--app-ui-detail); }
+.adelphos-app-ui .status-dot { box-shadow: none; }
+.adelphos-app-ui .notice { border-color: var(--app-ui-border); border-radius: var(--app-ui-radius); padding: 8px 12px; margin-bottom: 12px; background: var(--app-ui-warning-surface); color: var(--app-ui-warning-ink); line-height: var(--app-ui-leading); }
+.adelphos-app-ui .metric { padding: 12px 16px; }
+.adelphos-app-ui .metric-label { margin-bottom: 4px; font-size: var(--app-ui-detail); }
+.adelphos-app-ui .metric-value { font-size: 26px; line-height: 1.35; font-weight: 600; letter-spacing: normal; }
+.adelphos-app-ui .metric-context { margin-top: 4px; overflow-wrap: anywhere; }
+.adelphos-app-ui .grid { gap: 12px; margin-top: 12px; }
+.adelphos-app-ui .panel-head { padding: 12px 12px 8px; gap: 8px; }
+.adelphos-app-ui .panel-head > div { min-width: 0; }
+.adelphos-app-ui .panel h2 { margin-bottom: 3px; font-size: 14px; font-weight: 600; letter-spacing: normal; }
+.adelphos-app-ui .panel-sub { font-size: var(--app-ui-detail); overflow-wrap: anywhere; }
+.adelphos-app-ui .chart { height: 210px; padding: 4px 12px 12px; }
+.adelphos-app-ui .chart-line { stroke: var(--app-ui-accent); }
+.adelphos-app-ui .chart-dot { stroke: var(--app-ui-accent); }
+.adelphos-app-ui .chart stop { stop-color: var(--app-ui-accent); }
+.adelphos-app-ui .opportunity-list { padding: 0 12px 12px; }
+.adelphos-app-ui .opportunity { padding: 8px 0; gap: 8px; }
+.adelphos-app-ui .opportunity > div { min-width: 0; overflow-wrap: anywhere; }
+.adelphos-app-ui .opportunity span { font-size: var(--app-ui-detail); }
+.adelphos-app-ui .rank { width: auto; min-width: 32px; height: 28px; padding: 2px 6px; border-radius: var(--app-ui-radius); font-weight: 600; background: var(--app-ui-soft); color: var(--app-ui-ink); }
+.adelphos-app-ui .section { margin-top: 12px; }
+.adelphos-app-ui th { padding: 8px 12px; font-size: var(--app-ui-detail); font-weight: 500; letter-spacing: normal; text-transform: none; }
+.adelphos-app-ui td { padding: 8px 12px; }
+.adelphos-app-ui tbody tr:hover { background: var(--app-ui-soft); }
+.adelphos-app-ui .keyword-cell strong { font-weight: 500; }
+.adelphos-app-ui .keyword-cell a { margin-top: 2px; font-size: var(--app-ui-detail); }
+.adelphos-app-ui .page-warning { font-size: var(--app-ui-detail); margin-top: 4px; }
+.adelphos-app-ui .issue-list { margin-top: 4px; font-size: var(--app-ui-detail); }
+.adelphos-app-ui details summary { cursor: pointer; padding: 4px 0; color: var(--app-ui-muted); }
+.adelphos-app-ui .score { border-radius: var(--app-ui-radius); font-weight: 600; }
+.adelphos-app-ui .movement { font-weight: 500; }
+.adelphos-app-ui .pill { border-radius: var(--app-ui-radius); padding: 2px 6px; font-size: var(--app-ui-detail); background: var(--app-ui-soft); }
+.adelphos-app-ui .toolbar, .adelphos-app-ui .market-picker { gap: 6px; padding: 0 12px 12px; }
+.adelphos-app-ui .search input, .adelphos-app-ui select, .adelphos-app-ui dialog input { min-height: var(--app-ui-control-height); padding: 3px 8px; border-radius: var(--app-ui-radius); background: var(--app-ui-surface); color: var(--app-ui-ink); font-size: var(--app-ui-entry); line-height: var(--app-ui-control-leading); }
+.adelphos-app-ui .search input:focus, .adelphos-app-ui select:focus { border-color: var(--app-ui-muted); box-shadow: none; }
+.adelphos-app-ui .market-choice { min-height: var(--app-ui-control-height); padding: 4px 8px; gap: 6px; border-radius: var(--app-ui-radius); background: var(--app-ui-surface); color: var(--app-ui-ink); font-size: var(--app-ui-control-text); }
+.adelphos-app-ui .market-choice:has(input:checked) { border-color: var(--app-ui-border); background: var(--app-ui-hover); color: var(--app-ui-ink); }
+.adelphos-app-ui .market-choice input { accent-color: var(--app-ui-accent); }
+.adelphos-app-ui .split-metrics { gap: 8px; padding: 0 12px 12px; }
+.adelphos-app-ui .mini { padding: 10px 12px; border-radius: var(--app-ui-radius); }
+.adelphos-app-ui .mini span { font-size: var(--app-ui-detail); margin-bottom: 4px; }
+.adelphos-app-ui .mini strong { font-size: 20px; font-weight: 600; }
+.adelphos-app-ui .settings-grid { gap: 12px; }
+.adelphos-app-ui .settings-body { padding: 0 12px 12px; }
+.adelphos-app-ui .check-row { padding: 8px 0; gap: 12px; }
+.adelphos-app-ui .check-row strong { font-weight: 500; }
+.adelphos-app-ui .check { font-weight: 500; }
+.adelphos-app-ui .empty-row { padding: 20px 12px; }
+.adelphos-app-ui .toast { right: 12px; bottom: 12px; max-width: min(380px, calc(100vw - 24px)); padding: 10px 12px; background: var(--app-ui-surface); border-radius: var(--app-ui-panel-radius); box-shadow: var(--app-ui-shadow); overflow-wrap: anywhere; }
+.adelphos-app-ui .toast.error { background: var(--app-ui-danger-surface); color: var(--app-ui-danger-ink); border-color: var(--app-ui-border); }
+.adelphos-app-ui dialog { max-height: calc(100dvh - 24px); overflow: auto; border-radius: var(--app-ui-panel-radius); background: var(--app-ui-surface); box-shadow: var(--app-ui-shadow); }
+.adelphos-app-ui dialog::backdrop { background: var(--app-ui-overlay); backdrop-filter: none; }
+.adelphos-app-ui .dialog-body { padding: 20px; }
+.adelphos-app-ui .dialog-mark { margin-bottom: 12px; }
+.adelphos-app-ui dialog h2 { font-size: var(--app-ui-title); font-weight: 600; letter-spacing: normal; }
+.adelphos-app-ui dialog p { margin: 6px 0 12px; }
+.adelphos-app-ui dialog label { font-size: var(--app-ui-detail); margin-bottom: 4px; }
+.adelphos-app-ui .dialog-actions { margin-top: 12px; }
+@media (max-width: 720px) {
+  body.adelphos-app-ui[data-app-ui-style="compact-white-v1"] { --app-ui-control-height: 36px; }
+  .adelphos-app-ui .sidebar { padding: 10px 12px; }
+  .adelphos-app-ui .brand { padding: 0 4px 8px; }
+  .adelphos-app-ui .nav button { flex-shrink: 0; }
+  .adelphos-app-ui main { padding: 12px; }
+  .adelphos-app-ui .topbar { margin-bottom: 12px; }
+  .adelphos-app-ui .actions { margin-top: 8px; }
+  .adelphos-app-ui .metric { padding: 10px 12px; }
+  .adelphos-app-ui .metric-value { font-size: 24px; }
+  .adelphos-app-ui .panel-head { flex-wrap: wrap; }
+  .adelphos-app-ui .panel-head .actions { margin-top: 0; }
+  .adelphos-app-ui .check-row { flex-wrap: wrap; gap: 6px; }
+}

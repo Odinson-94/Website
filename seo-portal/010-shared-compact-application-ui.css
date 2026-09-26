@@ -1,0 +1,73 @@
+/* STATUS: UNLOCKED
+ * PURPOSE: Approved compact white application UI, scoped away from Chat/outer shell.
+ * AUTHORITY: 960-app-ui-style-review/020-shared-app-styles.css, approved 2026-09-13.
+ * CALLERS: Explicit .adelphos-app-ui consumers; first adoption is Estimating.
+ * CHANGELOG: 2026-09-13 — shared surfaces, Inter Text, compact controls and focus.
+ */
+@font-face { font-family: "Adelphos App Inter"; src: url('./fonts/Inter-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Adelphos App Inter"; src: url('./fonts/Inter-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Adelphos App Inter"; src: url('./fonts/Inter-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+
+.adelphos-app-ui.adelphos-canonical-shell,
+.adelphos-app-ui[data-app-ui-style="compact-white-v1"] {
+  --app-ui-font: "Adelphos App Inter", "Segoe UI", system-ui, sans-serif;
+  --app-ui-surface: #fff;
+  --app-ui-soft: #f7f8f9;
+  --app-ui-canvas: #f3f5f7;
+  --app-ui-ink: #303236;
+  --app-ui-muted: #626b72;
+  --app-ui-border: #e6e6ea;
+  --app-ui-hover: #f3f3f5;
+  --app-ui-accent: #156082;
+  --app-ui-accent-hover: #1b7ba3;
+  --app-ui-on-accent: #fff;
+  --app-ui-control-height: 28px;
+  --app-ui-header-height: 44px;
+  --app-ui-radius: 5px;
+  --app-ui-action-radius: 999px;
+  --app-ui-panel-radius: 14px;
+  --app-ui-shadow: 0 6px 24px #00000018;
+  --app-ui-overlay: #00000035;
+  --app-ui-success-ink: #126557;
+  --app-ui-success-surface: #e3f4ef;
+  --app-ui-danger-ink: #b42318;
+  --app-ui-danger-surface: #fff4f2;
+  --app-ui-warning-ink: #855b1e;
+  --app-ui-warning-surface: #fff9ee;
+  --app-ui-body: 13px;
+  --app-ui-control-text: 12px;
+  --app-ui-control-leading: 18px;
+  --app-ui-detail: 11px;
+  --app-ui-entry: 14px;
+  --app-ui-title: 18px;
+  --app-ui-leading: 1.5;
+  --app-ui-space-1: 4px;
+  --app-ui-space-2: 8px;
+  --app-ui-space-3: 12px;
+  --app-ui-space-4: 16px;
+  /* Existing child panels inherit the new app surface, without changing :root. */
+  --adelphos-shell-font-family: var(--app-ui-font);
+  --text-primary: var(--app-ui-ink);
+  --text-secondary: var(--app-ui-muted);
+  --surface-primary: var(--app-ui-surface);
+  --surface-primary-alt: var(--app-ui-soft);
+  --surface-primary-contrast: var(--app-ui-soft);
+  --border-light: var(--app-ui-border);
+  color: var(--app-ui-ink);
+  font: 400 var(--app-ui-body)/var(--app-ui-leading) var(--app-ui-font);
+}
+.adelphos-app-ui, .adelphos-app-ui * { box-sizing: border-box; }
+.adelphos-app-ui :where(button, input, select, textarea) { font-family: inherit; }
+.adelphos-app-ui :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--app-ui-muted);
+  outline-offset: 2px;
+}
+.adelphos-app-ui :where(input, select, textarea) {
+  border-radius: var(--app-ui-radius);
+  color: var(--app-ui-ink);
+  background: var(--app-ui-surface);
+}
+.adelphos-app-ui :where(button, a, input, select, textarea) { touch-action: manipulation; }
+@media (prefers-reduced-motion: reduce) {
+  .adelphos-app-ui * { scroll-behavior: auto; }
+}
