@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {buildReport,periodKey} from '../supabase/functions/seo-weekly-report/report.mjs';
+const now=new Date('2026-09-30T03:00:00Z');
+const row=(date,query,impressions,clicks,position)=>({search_date:date,query,impressions,clicks,position});
+test('Sunday boundary uses Perth time',()=>{assert.equal(periodKey(new Date('2026-10-03T15:59:00Z')),'2026-09-27');assert.equal(periodKey(new Date('2026-10-03T16:00:00Z')),'2026-10-04');});
+test('latest seven days and preceding seven days stay separate',()=>{const r=buildReport([row('2026-09-28','q',10,2,4),row('2026-09-22','q',30,1,8),row('2026-09-21','q',100,3,9)],now);assert.equal(r.totals.impressions,40);assert.equal(r.totals.clicks,3);assert.equal(r.queries[0].position,7);assert.match(r.html,/Previous seven-day window: 3 clicks and 100 impressions/);});
+test('no data remains unavailable rather than a fabricated rank',()=>{const r=buildReport([],now);assert.equal(r.stale,true);assert.equal(r.queries.length,0);assert.match(r.html,/not available/);});
+test('old data has a clear freshness warning',()=>assert.equal(buildReport([row('2026-09-01','q',1,0,10)],now).stale,true));
+test('current observations are not flagged stale',()=>assert.equal(buildReport([row('2026-09-28','q',1,0,10)],now).stale,false));
+test('untrusted query HTML is escaped',()=>{const r=buildReport([row('2026-09-28','<img src=x onerror=alert(1)>',50,0,5)],now);assert.ok(!r.html.includes('<img'));assert.ok(r.html.includes('&lt;img'));});
+test('recommendations come from observed positions and clicks',()=>{const r=buildReport([row('2026-09-28','near query',30,1,12),row('2026-09-28','visible query',50,0,3)],now);assert.match(r.html,/near query \(average position 12.0\)/);assert.match(r.html,/high-visibility, low-click queries: visible query/);});
