@@ -16,10 +16,12 @@ serve(async (req) => {
     const table = () => db.from("adelphos_cli_devices");
     if(body.action === "resolve") {
       if(!/^[a-f0-9]{64}$/.test(body.token_hash || "")) return json({error:"Credential refused"},401);
-      const {data,error} = await table().select("id,chat_user_id,tenant_id,owner_email,scopes").eq("token_hash",body.token_hash).is("revoked_at",null).gt("expires_at",new Date().toISOString()).maybeSingle();
+      // A key with no expiry never expires; a chosen expiry is enforced to the second.
+      const live=`expires_at.is.null,expires_at.gt."${new Date().toISOString()}"`;
+      const {data,error} = await table().select("id,chat_user_id,tenant_id,owner_email,scopes").eq("token_hash",body.token_hash).is("revoked_at",null).or(live).maybeSingle();
       if(error) throw error;
       if(!data) return json({error:"Credential refused"},401);
-      const touched = await table().update({last_used_at:new Date().toISOString()}).eq("id",data.id).is("revoked_at",null).gt("expires_at",new Date().toISOString()).select("id").maybeSingle();
+      const touched = await table().update({last_used_at:new Date().toISOString()}).eq("id",data.id).is("revoked_at",null).or(live).select("id").maybeSingle();
       if(touched.error) throw touched.error;
       if(!touched.data) return json({error:"Credential refused"},401);
       return json(data);
@@ -45,7 +47,10 @@ serve(async (req) => {
       // never reconstruct missing display fragments, and reject partial pairs.
       const legacy=body.token_prefix == null && body.token_suffix == null;
       if(!name || name.length>80 || !/^[a-f0-9]{64}$/.test(body.token_hash || "") || (!legacy && (!/^jcli_[0-9a-f]{6}$/.test(body.token_prefix || "") || !/^[0-9a-f]{4}$/.test(body.token_suffix || "")))) return json({error:"Invalid device"},400);
-      const {data,error}=await table().insert({chat_user_id:user,tenant_id:tenant,owner_email:email,name,token_hash:body.token_hash,token_prefix:legacy?null:body.token_prefix,token_suffix:legacy?null:body.token_suffix}).select(fields).single();
+      // The owner chooses when a key expires (2026-10-04); no choice means it never expires.
+      const chosen=body.expires_at==null ? null : Date.parse(String(body.expires_at));
+      if(chosen!==null && !(Number.isFinite(chosen) && chosen>Date.now())) return json({error:"Invalid expiry"},400);
+      const {data,error}=await table().insert({chat_user_id:user,tenant_id:tenant,owner_email:email,name,token_hash:body.token_hash,token_prefix:legacy?null:body.token_prefix,token_suffix:legacy?null:body.token_suffix,expires_at:chosen===null?null:new Date(chosen).toISOString()}).select(fields).single();
       if(error) throw error;
       return json(data,201);
     }

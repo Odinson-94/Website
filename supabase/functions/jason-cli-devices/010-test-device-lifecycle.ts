@@ -23,7 +23,7 @@ test('owner and staff audit actions select distinct modes and receipt-only never
  assert.equal(calls[0].args.p_mode,'owner');assert.equal(calls[0].args.p_tenant,'personal');assert.equal(calls[1].args.p_mode,'staff');assert.equal(calls[1].args.p_read_only,true);assert.equal(calls[1].args.p_tenant,null);
 });
 test('revoked during resolve touch cannot return an authenticated device',async()=>{
- let updated=false;const chain={select(){return this;},eq(){return this;},is(){return this;},gt(){return this;},update(){updated=true;return this;},maybeSingle:async()=>({data:updated?null:{id:'key',chat_user_id:'owner'}})};
+ let updated=false;const chain={select(){return this;},eq(){return this;},is(){return this;},gt(){return this;},or(){return this;},update(){updated=true;return this;},maybeSingle:async()=>({data:updated?null:{id:'key',chat_user_id:'owner'}})};
  const run=handler({from:()=>chain});assert.equal((await run(request({action:'resolve',token_hash:'a'.repeat(64)}))).status,401);
 });
 test('unauthorized callers never access DB and action conflict has stable409',async()=>{
@@ -47,4 +47,23 @@ test('existing owner revoke uses atomic audit and refuses another owner or an au
  assert.equal(calls[0].name,'adelphos_admin_revoke_cli_key');assert.equal(calls[0].args.p_mode,'owner');assert.equal(calls[0].args.p_actor_id,'owner');assert.equal(calls[0].args.p_tenant,'personal');assert.match(calls[0].args.p_request_id,/^[0-9a-f-]{36}$/);
  error={code:'P0002'};assert.equal((await run(request(body))).status,404);
  error={code:'23514'};assert.equal((await run(request(body))).status,503);
+});
+
+test('the owner chooses expiry: none means never, a chosen date is stored, a past date is refused',async()=>{
+ const saved=[];const chain={insert(value){saved.push(value);return this;},select(){return this;},single:async()=>({data:{id:'key'}})};
+ const run=handler({from:()=>chain});
+ const base={action:'register',chat_user_id:'owner',tenant_id:'personal',owner_email:'owner@invalid.test',name:'Laptop',token_hash:'c'.repeat(64),token_prefix:'jcli_abcdef',token_suffix:'1234'};
+ assert.equal((await run(request(base))).status,201);assert.equal(saved[0].expires_at,null,'no choice never expires');
+ const chosen=new Date(Date.now()+30*86400000).toISOString();
+ assert.equal((await run(request({...base,expires_at:chosen}))).status,201);assert.equal(saved[1].expires_at,chosen);
+ assert.equal((await run(request({...base,expires_at:new Date(Date.now()-1000).toISOString()}))).status,400);
+ assert.equal((await run(request({...base,expires_at:'not a date'}))).status,400);assert.equal(saved.length,2);
+});
+
+test('resolve accepts a key with no expiry and filters a chosen expiry against now',async()=>{
+ const filters=[];const chain={select(){return this;},eq(){return this;},is(){return this;},or(value){filters.push(value);return this;},update(){return this;},maybeSingle:async()=>({data:{id:'key',chat_user_id:'owner'}})};
+ const run=handler({from:()=>chain});
+ assert.equal((await run(request({action:'resolve',token_hash:'a'.repeat(64)}))).status,200);
+ assert.equal(filters.length,2,'both the lookup and the last-used touch apply it');
+ for(const value of filters) assert.match(value,/^expires_at\.is\.null,expires_at\.gt\."\d{4}-\d{2}-\d{2}T[\d:.]+Z"$/);
 });
