@@ -14,9 +14,9 @@ test('preserves canonical and existing Opus alias behavior', () => {
   assert.equal(resolveBillingModel(CANONICAL_MODEL), CANONICAL_MODEL);
   assert.equal(resolveBillingModel('claude-opus-4-6'), CANONICAL_MODEL);
 });
-test('Haiku retains its own billing model; unconfigured models are refused', () => {
+test('Exact model identities reach central rate validation', () => {
   assert.equal(resolveBillingModel(HAIKU_MODEL), HAIKU_MODEL);
-  assert.equal(resolveBillingModel('unknown'), null);
+  assert.equal(resolveBillingModel('unknown'), 'unknown');
 });
 test('real reserve handler looks up Haiku rates and stores Haiku on the reservation', async () => {
   let handler;
@@ -60,7 +60,7 @@ test('real reserve handler looks up Haiku rates and stores Haiku on the reservat
 
 for (const scenario of [
   { name: 'missing helper price never falls back to standard4x', model: HAIKU_MODEL, factor: 'helper', status: 400, queries: 1 },
-  { name: 'unknown helper model is refused before a rate lookup', model: 'unknown-model', factor: 'helper', status: 403, queries: 0 },
+  { name: 'unpriced helper model is refused by central rates before reserve', model: 'unknown-model', factor: 'helper', status: 400, queries: 1 },
   { name: 'unknown factors cannot silently change pricing', model: CANONICAL_MODEL, factor: 'unconfigured', status: 400, queries: 0 },
 ]) {
   test(scenario.name, async () => {
@@ -88,7 +88,7 @@ for (const scenario of [
 for (const model of ['claude-opus-4-6','claude-opus-4-7','claude-opus-4-8','claude-sonnet-4-6','claude-sonnet-5']) {
   test(`helper ${model} keeps its own identity`, () => {
     assert.equal(resolveBillingModel(model, 'helper'), model);
-    if (model !== 'claude-opus-4-6') assert.equal(resolveBillingModel(model), null);
+    if (model !== 'claude-opus-4-6') assert.equal(resolveBillingModel(model), model);
   });
 }
 
@@ -119,9 +119,9 @@ for (const [model, inputRate, outputRate] of [['gpt-5.6-sol',4,20],['gpt-6-sol',
     });
   }
 }
-test('unpriced provider models and snapshots are not silently aliased',()=>{
+test('provider identities are preserved for exact central rate validation',()=>{
   for(const model of ['gpt-5.6-luna','gpt-6-astra-unknown','gpt-6-astra-2026-09-26']) {
-    assert.equal(resolveBillingModel(model,'helper'),null);
-    assert.equal(resolveBillingModel(model,'standard'),null);
+    assert.equal(resolveBillingModel(model,'helper'),model);
+    assert.equal(resolveBillingModel(model,'standard'),model);
   }
 });
