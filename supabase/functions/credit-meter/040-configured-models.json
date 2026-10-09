@@ -1,0 +1,734 @@
+{
+  "verified_at": "2026-10-09",
+  "purpose": "Audit and regression census, not an admission allowlist. Effective-dated central rates own model admission.",
+  "models": [
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "provider_usd_per_million": {
+        "uncached_input": 1,
+        "cache_read": 0.1,
+        "cache_write_5m": 1.25,
+        "cache_write_1h": 2,
+        "billable_output": 5
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\020_sdk_options_checks\\check_options.py",
+          "line": 58
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\609-chat-assistance\\020-review-chat-with-support.js",
+          "line": 40
+        },
+        {
+          "path": "adelphos-azure-backend\\04_patch_panel\\patch_panel\\expose_pm_allocate_from_email_api.py",
+          "line": 37
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\606-overnight-pm-batch\\020-define-overnight-batch-classifier-prompts.js",
+          "line": 36
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\06_loops\\12_Loop_Attention_Neurons\\040_call_haiku_neuron.py",
+          "line": 47
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\362-dms-document-store\\050-analyse-upload-with-haiku.js",
+          "line": 27
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 13
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\077-serve-mail-autofile.js",
+          "line": 70
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\075-serve-prompt-interpretation.js",
+          "line": 35
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\075-serve-prompt-interpretation.js",
+          "line": 96
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\085-run-meeting-coordinator.js",
+          "line": 50
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\086-serve-mail-jason-assist.js",
+          "line": 118
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\086-serve-mail-jason-assist.js",
+          "line": 677
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\086-serve-mail-jason-assist.js",
+          "line": 834
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\084-serve-mail-tool-neuron.js",
+          "line": 37
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\098-serve-ghost-complete.js",
+          "line": 132
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\099-serve-project-manager-catchup.js",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "provider_usd_per_million": {
+        "uncached_input": 1,
+        "cache_read": 0.1,
+        "cache_write_5m": 1.25,
+        "cache_write_1h": 2,
+        "billable_output": 5
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 148
+        },
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 411
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\04_relevance_check\\check_page_relevance.py",
+          "line": 25
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\generate_running_context.py",
+          "line": 34
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\classify_coding_route.py",
+          "line": 40
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\05_sdk_timeout_checks\\check_sdk_timeout_compatibility.py",
+          "line": 17
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\05_sdk_timeout_checks\\check_sdk_timeout_compatibility.py",
+          "line": 49
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\05_sdk_timeout_checks\\check_sdk_timeout_compatibility.py",
+          "line": 54
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\05_sdk_timeout_checks\\check_sdk_timeout_compatibility.py",
+          "line": 63
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\05_sdk_timeout_checks\\check_sdk_timeout_compatibility.py",
+          "line": 112
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\05_sdk_timeout_checks\\check_sdk_timeout_compatibility.py",
+          "line": 116
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\01_instruction_trees\\instruction_trees\\03_running_context\\05_sdk_timeout_checks\\check_sdk_timeout_compatibility.py",
+          "line": 122
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\07_agent_framework\\agent_framework\\18_react_tool_agent\\conscience_check.py",
+          "line": 97
+        },
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\180-langchain-tools\\577-create-project-management-tools.ts",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "model": "claude-opus-4-6",
+      "provider_usd_per_million": {
+        "uncached_input": 5,
+        "cache_read": 0.5,
+        "cache_write_5m": 6.25,
+        "cache_write_1h": 10,
+        "billable_output": 25
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 153
+        },
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 416
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\020_sdk_options_checks\\check_options.py",
+          "line": 58
+        },
+        {
+          "path": "adelphos-azure-backend\\00_infrastructure\\infrastructure\\08_shared\\shared\\00_shared_config_load\\shared_config_load.py",
+          "line": 157
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\010-meter-commercial-execution.js",
+          "line": 50
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 14
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app.py",
+          "line": 598
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\function_app.py",
+          "line": 655
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\function_app.py",
+          "line": 1331
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\cv_pipeline\\qa_reviewer.py",
+          "line": 23
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\cv_pipeline\\plan_cv_sections.py",
+          "line": 18
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\cv_pipeline\\extract_name_image.py",
+          "line": 49
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\cv_pipeline\\extract_name_image.py",
+          "line": 137
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\cv_pipeline\\classifier.py",
+          "line": 29
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\cv_pipeline\\plan_cv_sections.py",
+          "line": 18
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\tg_bot.py",
+          "line": 9
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\infrastructure\\settings.py",
+          "line": 26
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\cursor_mobile_bot.py",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "model": "claude-opus-4-7",
+      "provider_usd_per_million": {
+        "uncached_input": 5,
+        "cache_read": 0.5,
+        "cache_write_5m": 6.25,
+        "cache_write_1h": 10,
+        "billable_output": 25
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 160
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\send_request_to_claude.py",
+          "line": 67
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\send_request_to_claude.py",
+          "line": 108
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\anthropic_sse_translator.py",
+          "line": 34
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\anthropic_sse_translator.py",
+          "line": 94
+        },
+        {
+          "path": "adelphos-azure-backend\\00_infrastructure\\infrastructure\\02_app_state\\app_state.py",
+          "line": 30
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "model": "claude-opus-4-8",
+      "provider_usd_per_million": {
+        "uncached_input": 5,
+        "cache_read": 0.5,
+        "cache_write_5m": 6.25,
+        "cache_write_1h": 10,
+        "billable_output": 25
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 161
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\send_request_to_claude.py",
+          "line": 108
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\06_loops\\report-studio-engine\\api_connection.py",
+          "line": 46
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\07_agent_framework\\agent_framework\\18_react_tool_agent\\request_claude_tool_turn.py",
+          "line": 53
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\06_loops\\report-studio-engine\\connect_anthropic_model_api.py",
+          "line": 46
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 15
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\511-report-studio-mapping\\engine\\api_connection.py",
+          "line": 53
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\49_template_onboarding_skill\\engine\\onboard_template.py",
+          "line": 1555
+        }
+      ]
+    },
+    {
+      "model": "claude-opus-5",
+      "provider_usd_per_million": {
+        "uncached_input": 5,
+        "cache_read": 0.5,
+        "cache_write_5m": 6.25,
+        "cache_write_1h": 10,
+        "billable_output": 25
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 170
+        },
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 422
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\send_request_to_claude.py",
+          "line": 108
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\010-meter-commercial-execution.js",
+          "line": 49
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "provider_usd_per_million": {
+        "uncached_input": 3,
+        "cache_read": 0.3,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6,
+        "billable_output": 15
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-azure-backend\\00_infrastructure\\infrastructure\\13_cache_layer\\service\\python-client\\compiled_skills.py",
+          "line": 482
+        },
+        {
+          "path": "adelphos-azure-backend\\00_infrastructure\\infrastructure\\13_cache_layer\\service\\api\\batch_precompute.py",
+          "line": 153
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\06_loops\\report-studio-engine\\domain_001_template_onboarding_classify_pages.py",
+          "line": 172
+        },
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\180-langchain-tools\\570-create-starlink-dispatch-tool.ts",
+          "line": 25
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\520-report-pipeline\\400-onboard-their-template\\prove_model_wiring_is_one_path.py",
+          "line": 91
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\520-report-pipeline\\400-onboard-their-template\\prove_model_wiring_is_one_path.py",
+          "line": 92
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\511-report-studio-mapping\\engine\\domain_001_template_onboarding_classify_pages.py",
+          "line": 172
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\19_recruitment_skill\\function_app\\email_handler\\signature_image_extractor.py",
+          "line": 117
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\49_template_onboarding_skill\\engine\\studio\\domain_001_template_onboarding_classify_pages.py",
+          "line": 172
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-4-5",
+      "provider_usd_per_million": {
+        "uncached_input": 3,
+        "cache_read": 0.3,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6,
+        "billable_output": 15
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-azure-backend\\08_scripts_temp\\scripts_temp\\spec_scripts\\specbuilder_v2.py",
+          "line": 27
+        },
+        {
+          "path": "adelphos-azure-backend\\08_scripts_temp\\scripts_temp\\spec_scripts\\specbuilder.py",
+          "line": 34
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\20_sap_skill\\sap_epc_standalone\\cli\\audit_mcp_registry.py",
+          "line": 365
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\20_sap_skill\\sap_domain\\llm_panel_config.py",
+          "line": 38
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\20_sap_skill\\sap_domain\\llm_panel_config.py",
+          "line": 88
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\20_sap_skill\\mcp_servers\\sap\\tool_registry\\guidance.py",
+          "line": 143
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "provider_usd_per_million": {
+        "uncached_input": 3,
+        "cache_read": 0.3,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6,
+        "billable_output": 15
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 152
+        },
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 413
+        },
+        {
+          "path": "adelphos-azure-backend\\app\\report_templates\\constants.py",
+          "line": 67
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 15
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\payment_reconciliation\\extractor.py",
+          "line": 46
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\invoice_chasing\\drafter.py",
+          "line": 68
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\infrastructure\\settings.py",
+          "line": 27
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\function_app.py",
+          "line": 152
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\feedback_loop\\tools.py",
+          "line": 307
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\feedback_loop\\drafter.py",
+          "line": 63
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\feedback_loop\\drafter.py",
+          "line": 87
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\feedback_loop\\drafter.py",
+          "line": 114
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\feedback_loop\\classifier.py",
+          "line": 57
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\10_quotation_skill\\jpa-quotation-function\\contact_extraction\\extractor.py",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-5",
+      "provider_usd_per_million": {
+        "uncached_input": 2,
+        "cache_read": 0.2,
+        "cache_write_5m": 2.5,
+        "cache_write_1h": 4,
+        "billable_output": 10
+      },
+      "pricing_source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 171
+        },
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\865-llm-client-and-providers\\090-define-tokens.ts",
+          "line": 423
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\020_sdk_options_checks\\check_options.py",
+          "line": 58
+        },
+        {
+          "path": "adelphos-azure-backend\\02_claude_api\\claude_api\\send_request_to_claude.py",
+          "line": 109
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\07_agent_framework\\agent_framework\\18_react_tool_agent\\qa_review.py",
+          "line": 70
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 15
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\086-serve-mail-jason-assist.js",
+          "line": 114
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\510-http-route-aggregation\\400-mail-one-ai-suggestion\\401-serve-mail-suggest-one\\401-serve-mail-suggest-one.js",
+          "line": 80
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p142_alias_checks\\run_alias_checks.py",
+          "line": 83
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p142_alias_checks\\run_alias_checks.py",
+          "line": 87
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p136_chunk_checks\\run_chunk_checks.py",
+          "line": 141
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p136_chunk_checks\\run_chunk_checks.py",
+          "line": 155
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p134_provider_diagnostic_checks\\run_provider_diagnostic_checks.py",
+          "line": 53
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p128_coverage_checks\\run_coverage_checks.py",
+          "line": 71
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p128_coverage_checks\\run_coverage_checks.py",
+          "line": 96
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p126_line_checks\\run_line_checks.py",
+          "line": 112
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p126_line_checks\\run_line_checks.py",
+          "line": 121
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p122_response_checks\\run_response_checks.py",
+          "line": 23
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p122_response_checks\\run_response_checks.py",
+          "line": 104
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\07_schedule_skill\\_shared\\source_content_review\\p079_effort\\resolve_review_effort.py",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "provider_usd_per_million": {
+        "uncached_input": 0.2,
+        "cache_read": 0.02,
+        "cache_write_5m": 0.25,
+        "cache_write_1h": 0.25,
+        "billable_output": 1.2
+      },
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\280-agent-core-logic\\100-load-agent-with-mcp-tools.ts",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "provider_usd_per_million": {
+        "uncached_input": 4,
+        "cache_read": 0.4,
+        "cache_write_5m": 5,
+        "cache_write_1h": 5,
+        "billable_output": 20
+      },
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/npm-packages-shared/backend-ts-helpers\\280-agent-core-logic\\100-load-agent-with-mcp-tools.ts",
+          "line": 49
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\010-meter-commercial-execution.js",
+          "line": 50
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "provider_usd_per_million": {
+        "uncached_input": 2,
+        "cache_read": 0.2,
+        "cache_write_5m": 2.5,
+        "cache_write_1h": 2.5,
+        "billable_output": 10
+      },
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\010-meter-commercial-execution.js",
+          "line": 50
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "provider_usd_per_million": {
+        "uncached_input": 10,
+        "cache_read": 1,
+        "cache_write_5m": 12.5,
+        "cache_write_1h": 12.5,
+        "billable_output": 50
+      },
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\010-meter-commercial-execution.js",
+          "line": 50
+        },
+        {
+          "path": "adelphos-chat/chat-backend\\127-commercial-metering\\070-meter-auxiliary-provider-call.js",
+          "line": 14
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\40_pdf_markup_skill\\mcp_servers\\pdf_markup\\tool_handlers\\trace_estimating_with_astra.py",
+          "line": 319
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\40_pdf_markup_skill\\mcp_servers\\pdf_markup\\tool_handlers\\call_astra_trace_review.py",
+          "line": 19
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\40_pdf_markup_skill\\mcp_servers\\pdf_markup\\tool_handlers\\build_astra_trace_artifacts.py",
+          "line": 55
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\40_pdf_markup_skill\\mcp_servers\\pdf_markup\\tool_handlers\\build_astra_trace_artifacts.py",
+          "line": 57
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\40_pdf_markup_skill\\mcp_servers\\pdf_markup\\tool_handlers\\finalize_astra_trace_checkpoint.py",
+          "line": 57
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\40_pdf_markup_skill\\mcp_servers\\pdf_markup\\tool_handlers\\finalize_astra_trace_checkpoint.py",
+          "line": 90
+        },
+        {
+          "path": "adelphos-azure-backend\\03_jason_logic\\jason_logic\\03_skills\\skills\\40_pdf_markup_skill\\mcp_servers\\pdf_markup\\graph_builder\\takeoff_payload.py",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "model": "gpt-4o-transcribe",
+      "provider_usd_per_million": {
+        "uncached_input": 2.5,
+        "billable_output": 10
+      },
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-transcribe",
+      "configured_source_references": [
+        {
+          "path": "adelphos-chat/adelphos.yaml",
+          "line": 32
+        }
+      ]
+    }
+  ]
+}

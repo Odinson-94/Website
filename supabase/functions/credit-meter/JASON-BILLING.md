@@ -15,3 +15,7 @@ Verification:
 - After deployment, call the server-only `pricing_quote` action for each configured model and factor and compare its effective prices with the migration. Then exercise reserve/settle on an approved billing test account. An exempt owner's successful API run proves the application workflow, not a customer debit.
 
 Do not print service tokens, API keys or raw provider errors in the browser. User-facing errors and model labels belong to the Jason/Adelphos presentation layer.
+
+## Configured model reconciliation — 9 October 2026
+
+The census in `040-configured-models.json` records 15 configured identifiers. Migration `20261009090000_link_configured_model_billing.sql` adds only absent current standard-context cells and replaces the inspected reserve model gate with effective-rate validation. It supports both inspected predecessor gates and an already-applied repair. Migration `20261009100000_link_model_price_catalogue.sql` links missing Sales products and seeds only new codes, preserving existing draft and published edits. Existing factors and historical reservations are unchanged. The gateway keeps legacy Opus alias behavior and refuses models with missing exact prices before reservation. Speech uses the existing input/output token components; long-context and provider Fast-tier pricing are outside this reconciliation. Apply scoped migrations explicitly after rollback rehearsal; do not bulk-push unrelated migration history.
